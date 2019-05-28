@@ -1,0 +1,9 @@
+gameico.png
+gameico.ico
+gift1.png
+gift2.png
+mine.png
+background.png
+santa.png
+santa-head.png
+timer.png

@@ -1,0 +1,5 @@
+{
+  "deploy": {
+    "jarName": "./Launcher.jar"
+  }
+}

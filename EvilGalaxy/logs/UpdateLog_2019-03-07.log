@@ -1,0 +1,254 @@
+Mar 07, 2019 1:30:39 AM launcher.Launcher needDownload
+INFO: Version: "3.0"
+Mar 07, 2019 1:30:45 AM launcher.Launcher needDownload
+INFO: Downloading!
+Mar 07, 2019 1:30:45 AM launcher.Launcher needDownload
+INFO: Updated to version "3.0" from version "3.0"
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: Dir saves/ already exists
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: Dir sounds/ already exists
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: Dir images/ already exists
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: No need to download saves.txt!
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: No need to download images.txt!
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: false 228 || 228
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: No need to download sounds.txt!
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: false 2573 || 2573
+Mar 07, 2019 1:30:45 AM launcher.Launcher <init>
+INFO: No need to download images/alien.gif
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: false 510 || 510
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: No need to download images/alien.png
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: false 2655 || 2655
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: No need to download images/alien2.gif
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: false 2595 || 2595
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: No need to download images/alien3.gif
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: false 4368 || 4368
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: No need to download images/balloon.png
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: false 5960 || 5960
+Mar 07, 2019 1:30:46 AM launcher.Launcher <init>
+INFO: No need to download images/bomber.png
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: false 8632 || 8632
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: No need to download images/boss.png
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: false 31310 || 31310
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: No need to download images/bunker.png
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: false 31488 || 31488
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: No need to download images/bunker_hit.png
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: false 4014 || 4014
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: No need to download images/canon.png
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: false 2557 || 2557
+Mar 07, 2019 1:30:47 AM launcher.Launcher <init>
+INFO: No need to download images/craft.png
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: false 23091 || 23091
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: No need to download images/craft_shake.gif
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: false 9063 || 9063
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: No need to download images/evilhead.png
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: false 8996 || 8996
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: No need to download images/evilhead2.png
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: false 7393 || 7393
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: No need to download images/fireball.png
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: false 1067 || 1067
+Mar 07, 2019 1:30:48 AM launcher.Launcher <init>
+INFO: No need to download images/flames.png
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: false 253075 || 253075
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: No need to download images/galaxy2.jpg
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: false 79993 || 79993
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: No need to download images/galaxy3.jpg
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: false 1788 || 1788
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: No need to download images/gift.png
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: false 2198 || 2198
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: No need to download images/gift2.png
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: false 2355 || 2355
+Mar 07, 2019 1:30:49 AM launcher.Launcher <init>
+INFO: No need to download images/gold.png
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: false 2556 || 2556
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: No need to download images/health.png
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: false 2575 || 2575
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: No need to download images/hitcraft.gif
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: false 944 || 944
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: No need to download images/lifebar.png
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: false 5058 || 5058
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: No need to download images/lightning.png
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: false 10562 || 10562
+Mar 07, 2019 1:30:50 AM launcher.Launcher <init>
+INFO: No need to download images/magnetic.png
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: false 238 || 238
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: No need to download images/missile.png
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: false 1273 || 1273
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: No need to download images/mute.png
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: false 10671 || 10671
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: No need to download images/newship.png
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: false 1532 || 1532
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: No need to download images/rocket.png
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: false 398160 || 398160
+Mar 07, 2019 1:30:51 AM launcher.Launcher <init>
+INFO: No need to download images/shadow1.png
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: false 69498 || 69498
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: No need to download images/strikehead.gif
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: false 8794 || 8794
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: No need to download images/strikehead.png
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: false 293324 || 293324
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: No need to download images/tenor.gif
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: false 1616 || 1616
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: No need to download images/volbutt.png
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: false 7309 || 7309
+Mar 07, 2019 1:30:52 AM launcher.Launcher <init>
+INFO: No need to download images/_alien2.gif
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: false 19002 || 19002
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: No need to download images/_shadow1.png
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: false 4919 || 4919
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: No need to download images/saved.png
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: false 1004 || 1004
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: No need to download images/pointer.png
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: false 684110 || 684110
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: No need to download sounds/attack.wav
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: false 680114 || 680114
+Mar 07, 2019 1:30:53 AM launcher.Launcher <init>
+INFO: No need to download sounds/backmusic.wav
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: false 607538 || 607538
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: No need to download sounds/backmusic2.wav
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: false 3854 || 3854
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: No need to download sounds/bloop.wav
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: false 214956 || 214956
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: No need to download sounds/boing.wav
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: false 336506 || 336506
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: No need to download sounds/boing2.wav
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: false 321524 || 321524
+Mar 07, 2019 1:30:54 AM launcher.Launcher <init>
+INFO: No need to download sounds/burned.wav
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: false 308814 || 308814
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: No need to download sounds/collect.wav
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: false 387196 || 387196
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: No need to download sounds/denied.wav
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: false 530046 || 530046
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: No need to download sounds/explosion.wav
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: false 336680 || 336680
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: No need to download sounds/fin.wav
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: false 1009278 || 1009278
+Mar 07, 2019 1:30:55 AM launcher.Launcher <init>
+INFO: No need to download sounds/fuse.wav
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: false 445472 || 445472
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: No need to download sounds/highsc.wav
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: false 207438 || 207438
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: No need to download sounds/laser.wav
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: false 345722 || 345722
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: No need to download sounds/magic.wav
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: false 115278 || 115278
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: No need to download sounds/rocket.wav
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: false 80948 || 80948
+Mar 07, 2019 1:30:56 AM launcher.Launcher <init>
+INFO: No need to download sounds/scream.wav
+Mar 07, 2019 1:30:57 AM launcher.Launcher <init>
+INFO: false 183332 || 183332
+Mar 07, 2019 1:30:57 AM launcher.Launcher <init>
+INFO: No need to download sounds/smashed.wav
+Mar 07, 2019 1:30:57 AM launcher.Launcher <init>
+INFO: false 91762 || 91762
+Mar 07, 2019 1:30:57 AM launcher.Launcher <init>
+INFO: No need to download sounds/taunt.wav
+Mar 07, 2019 1:30:57 AM launcher.Launcher <init>
+INFO: Exists: true

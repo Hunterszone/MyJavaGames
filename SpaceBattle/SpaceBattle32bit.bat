@@ -1,0 +1,1 @@
+java -Dorg.lwjgl.opengl.Display.allowSoftwareOpenGL=true -jar SpaceBattle32bit.jar

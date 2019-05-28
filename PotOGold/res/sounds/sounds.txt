@@ -1,0 +1,3 @@
+bgmusic.wav
+explosion.wav
+collect.wav
