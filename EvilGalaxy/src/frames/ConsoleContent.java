@@ -36,7 +36,8 @@ public class ConsoleContent extends OutputStream {
 	protected static JTextField textField;
 	protected JTextArea textArea;
 	static String out = "";
-	protected static String[] commands;
+	protected static String[] commands = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit", "voloff",
+			"volon", "god", "dog", "stats", "restart", "level2", "level3", "level4" };
 
 	public ConsoleContent() {
 		contentPane = new JPanel();
@@ -46,25 +47,6 @@ public class ConsoleContent extends OutputStream {
 
 		setTextField(new JTextField());
 		getTextField().setFont(getTextField().getFont().deriveFont(14f));
-
-		commands = new String[17];
-		commands[0] = "help";
-		commands[1] = "cls";
-		commands[2] = "refresh";
-		commands[3] = "pause";
-		commands[4] = "easy";
-		commands[5] = "med";
-		commands[6] = "hard";
-		commands[7] = "exit";
-		commands[8] = "voloff";
-		commands[9] = "volon";
-		commands[10] = "god";
-		commands[11] = "dog";
-		commands[12] = "stats";
-		commands[13] = "restart";
-		commands[14] = "level2";
-		commands[15] = "level3";
-		commands[16] = "level4";
 
 		getTextField().addKeyListener(new KeyAdapter() {
 			@Override
@@ -78,29 +60,22 @@ public class ConsoleContent extends OutputStream {
 					getTextField().requestFocusInWindow();
 
 					if (commands[0].trim().equalsIgnoreCase(textArea.getText().trim())) {
-						textArea.append("********HERE IS A LIST OF ALL AVAILABLE COMMANDS:*********" + "\n");
-						textArea.append("HELP - show this list" + "\n");
-						textArea.append("EASY - restart/resume (if not in a game), or switch to EASY" + "\n");
-						textArea.append("MED - restart/resume (if not in a game), or switch to MEDIUM" + "\n");
-						textArea.append("HARD - restart/resume (if not in a game), or switch to HARD" + "\n");
-						textArea.append("RESTART - restart the game, even if a game is running" + "\n");
-						textArea.append("PAUSE - game pause" + "\n");
-						textArea.append("GOD - enable Godmode" + "\n");
-						textArea.append("DOG - disable Godmode" + "\n");
-						textArea.append("LEVEL2 - skip to Level 2" + "\n");
-						textArea.append("LEVEL3 - skip to Level 3" + "\n");
-						textArea.append("LEVEL4 - skip to Level 4" + "\n");
-						textArea.append("VOLOFF - stop game music" + "\n");
-						textArea.append("VOLON - play game music" + "\n");
-						textArea.append("STATS - show multiple game stats" + "\n");
-						textArea.append("CLS - close console" + "\n");
-						textArea.append("EXIT - exit game" + "\n");
+						textArea.append("********HERE IS A LIST OF ALL AVAILABLE COMMANDS:*********" + "\n"
+								+ "HELP - show this list" + "\n"
+								+ "EASY - restart/resume (if not in a game), or switch to EASY" + "\n"
+								+ "MED - restart/resume (if not in a game), or switch to MEDIUM" + "\n"
+								+ "HARD - restart/resume (if not in a game), or switch to HARD" + "\n"
+								+ "RESTART - restart the game, even if a game is running" + "\n" + "PAUSE - game pause"
+								+ "\n" + "GOD - enable Godmode" + "\n" + "DOG - disable Godmode" + "\n"
+								+ "LEVEL2 - skip to Level 2" + "\n" + "LEVEL3 - skip to Level 3" + "\n"
+								+ "LEVEL4 - skip to Level 4" + "\n" + "VOLOFF - stop game music" + "\n"
+								+ "VOLON - play game music" + "\n" + "STATS - show multiple game stats" + "\n"
+								+ "CLS - close console" + "\n" + "EXIT - exit game" + "\n");
 						return;
 					}
 
 					if (commands[1].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						InitObjects.consoleON = false;
-//						dispose();
 						textArea.append("********Closing...*********" + "\n");
 						return;
 					}
