@@ -1,5 +1,7 @@
 # README - check it out!
 
+### Main techniques: moving sprites, collisions detection, timer-based
+
 ## HOW TO LAUNCH, USING LAUNCHER:
 
 Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](http://me4gaming.com/LauncherPG/Launcher.jnlp) button.  
