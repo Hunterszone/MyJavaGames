@@ -1,5 +1,7 @@
 # README - check it out!
 
+### Main techniques: moving sprites, collision detection, 3 levels of difficulty, multiple levels, AI algorithms
+
 ## HOW TO LAUNCH, USING LAUNCHER:
 
 Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](http://me4gaming.com/LauncherEG/Launcher.jnlp) button.  

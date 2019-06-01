@@ -1,5 +1,7 @@
 # README - check it out!
 
+### Main techniques: moving sprites, collision detection, texture-dependent constraints, levels & backgrounds built-in generator
+
 ### Load unlimited number of new levels and backgrounds dynamically:
 - create your own levels and put them into the "levels"-folder, as you keep the level pattern
 - create your own backgrounds and put them into the "backgrounds"-folder
