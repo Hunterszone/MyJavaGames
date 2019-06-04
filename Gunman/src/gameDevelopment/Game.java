@@ -76,7 +76,7 @@ public class Game {
 
 	private TrueTypeFont font;
 	private Font awtFont;
-	private Sound footsteps, healthy, collect, shot, duckhit, restart, bgmusic, quack;
+	private Sound footsteps, healthy, denied, collect, shot, duckhit, restart, bgmusic, quack;
 
 	/**
 	 * Application init
@@ -155,6 +155,7 @@ public class Game {
 			// Audio
 			footsteps = new Sound("res/sounds/footsteps.wav");
 			healthy = new Sound("res/sounds/magic.wav");
+			denied = new Sound("res/sounds/denied.wav");
 			shot = new Sound("res/sounds/explosion.wav");
 			duckhit = new Sound("res/sounds/huh.wav");
 			collect = new Sound("res/sounds/collect.wav");
@@ -182,40 +183,40 @@ public class Game {
 		TreasureEntity treasure;
 		Random r = new Random();
 
-		for (int ii = 0; ii < MAX_LEVELS; ii++) {
+		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<Entity> objectsOnALevel = new ArrayList<Entity>();
-			for (int jj = 0; jj < TREASURES_ON_LEVEL; jj++) {
+			for (int j = 0; j < TREASURES_ON_LEVEL; j++) {
 				treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
 				objectsOnALevel.add(treasure);
 			}
-			treasures.put(ii, objectsOnALevel);
+			treasures.put(i, objectsOnALevel);
 		}
 	}
 
 	private void initHealth(MySprite sprite) {
 		Random r = new Random();
-		for (int ii = 0; ii < MAX_LEVELS; ii++) {
+		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<Entity> objectsOnALevel = new ArrayList<Entity>();
-			for (int jj = 0; jj < MINES_ON_LEVEL; jj++) {
+			for (int j = 0; j < MINES_ON_LEVEL; j++) {
 				health = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
 				objectsOnALevel.add(health);
 			}
-			healthpacks.put(ii, objectsOnALevel);
+			healthpacks.put(i, objectsOnALevel);
 		}
 	}
 
 	private void initEnemies(MySprite enemyTexture) {
 		Random r = new Random();
-		for (int ii = 0; ii < MAX_LEVELS; ii++) {
+		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
-			for (int jj = 0; jj < ENEMIES_ON_LEVEL; jj++) {
+			for (int j = 0; j < ENEMIES_ON_LEVEL; j++) {
 				enemy = new EnemyEntity(this, enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
 				objectsOnALevel.add(enemy);
 			}
-			enemies.put(ii, objectsOnALevel);
+			enemies.put(i, objectsOnALevel);
 		}
 	}
 
@@ -359,10 +360,10 @@ public class Game {
 				if ((currentLevel + 1) < MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 						&& enemies.get(currentLevel).isEmpty()) {
 					currentLevel++;
+					healthy.play(1, 0.2f);
 					hero.setX(0);
 					hero.setY(700);
 				} else {
-
 					posX = 10;
 					hero.setX(posX);
 				}
@@ -376,9 +377,11 @@ public class Game {
 				crosshair.setY(posY);
 				crosshair.setX(posX + 200);
 			} else {
+				denied.play(1, 0.2f);
 				if ((currentLevel + 1) < MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 						&& enemies.get(currentLevel).isEmpty()) {
 					currentLevel++;
+					treasuresFound = 0;
 					hero.setX(0);
 					hero.setY(700);
 				}
@@ -392,10 +395,9 @@ public class Game {
 				hero.setX(posX -= 10);
 				crosshair.setY(posY);
 				crosshair.setX(posX - 200);
-
 			} else {
 				int prevLev = currentLevel - 1;
-				if ((prevLev) >= 0) {
+				if ((prevLev) >= -1) {
 					prevLev++;
 					hero.setX(SCREEN_SIZE_WIDTH - hero.getWidth());
 				}
@@ -517,8 +519,8 @@ public class Game {
 		// Font draw
 //		AffineTransform affinetransform = new AffineTransform();
 //		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
-		font.drawString(10, 10,
-				String.format("Treasures found: %d/%d", treasuresFound, TREASURES_ON_LEVEL * MAX_LEVELS), Color.white);
+		font.drawString(10, 10, String.format("Treasures found: %d/%d", treasuresFound, TREASURES_ON_LEVEL),
+				Color.white);
 		font.drawString(455, 10, String.format("Killed: %d", enemiesKilled, Color.white));
 		font.drawString(825, 10, String.format("Level: %d", currentLevel + 1, Color.white));
 		font.drawString(1150, 10, String.format("Lives: %d", lives, MAX_LIVES), Color.white);
@@ -528,8 +530,8 @@ public class Game {
 
 	public void objectsDraw(ArrayList<Entity> objectsOnLevel) {
 		Entity object;
-		for (int jj = 0; jj < objectsOnLevel.size(); jj++) {
-			object = objectsOnLevel.get(jj);
+		for (int j = 0; j < objectsOnLevel.size(); j++) {
+			object = objectsOnLevel.get(j);
 			if (object.isVisible())
 				object.draw();
 		}
@@ -543,10 +545,10 @@ public class Game {
 
 			if ((enemX - 10) > 0)
 				enemy.setX(enemX -= 10);
-			
+
 			if (enemX - 10 <= 0)
 				enemy.setX(SCREEN_SIZE_WIDTH - enemy.getWidth());
-			
+
 			if (enemy.isVisible())
 				enemy.draw();
 		}
@@ -640,7 +642,9 @@ public class Game {
 			objectsOnLevel.remove(treasure);
 			treasuresFound++;
 			collect.play(1, 0.2f);
-			if (treasuresFound == 25)
+			int posX = hero.getX();
+			if (currentLevel + 1 == MAX_LEVELS && treasures.get(currentLevel).isEmpty()
+					&& enemies.get(currentLevel).isEmpty())
 				gameRestart();
 		} else {
 			if (object instanceof HealthEntity) {
