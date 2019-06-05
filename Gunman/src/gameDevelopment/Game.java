@@ -309,7 +309,6 @@ public class Game {
 			hero.setY(posY -= MAX_JUMP);
 			crosshair.setY(posY -= MAX_JUMP);
 			isJumping = true;
-
 		}
 
 		else {
@@ -368,7 +367,6 @@ public class Game {
 					hero.setX(posX);
 				}
 			}
-
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
@@ -378,7 +376,7 @@ public class Game {
 				crosshair.setX(posX + 200);
 			} else {
 				denied.play(1, 0.2f);
-				if ((currentLevel + 1) < MAX_LEVELS && treasures.get(currentLevel).isEmpty()
+				if (currentLevel + 1 < MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 						&& enemies.get(currentLevel).isEmpty()) {
 					currentLevel++;
 					treasuresFound = 0;
@@ -387,7 +385,6 @@ public class Game {
 				}
 			}
 			footsteps();
-
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
@@ -642,7 +639,6 @@ public class Game {
 			objectsOnLevel.remove(treasure);
 			treasuresFound++;
 			collect.play(1, 0.2f);
-			int posX = hero.getX();
 			if (currentLevel + 1 == MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 					&& enemies.get(currentLevel).isEmpty())
 				gameRestart();
