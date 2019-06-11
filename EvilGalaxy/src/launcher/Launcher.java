@@ -30,9 +30,6 @@ import game_engine.DrawScene;
 
 public class Launcher extends JFrame {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 	String version = "";
 	boolean needDownload = false;
@@ -58,6 +55,7 @@ public class Launcher extends JFrame {
 			}
 		}
 		progressBar.setValue(25);
+
 		{
 			URL location;
 			URL verfile;
@@ -84,7 +82,6 @@ public class Launcher extends JFrame {
 					System.setOut(printStream);
 					System.setErr(printStream);
 
-					System.out.println(inputLine + " || " + version);
 					if (!inputVersion.contains(version)) {
 						needDownload = true;
 						System.out.println("Downloading!");
@@ -108,11 +105,9 @@ public class Launcher extends JFrame {
 
 				progressBar.setValue(100);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	JProgressBar progressBar;
@@ -157,6 +152,7 @@ public class Launcher extends JFrame {
 					updlog.logger.info("Dir saves/ already exists");
 				}
 			}
+
 			{
 				File f = new File("sounds/");
 				if (!f.exists()) {
@@ -173,6 +169,7 @@ public class Launcher extends JFrame {
 					updlog.logger.info("Dir sounds/ already exists");
 				}
 			}
+
 			{
 				File f = new File("images/");
 
@@ -198,48 +195,35 @@ public class Launcher extends JFrame {
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("saves/save.txt");
-					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						System.out.println("Downloading resource!");
 						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/saves/save.txt",
 								"saves/save.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download saves.txt!");
 						updlog.logger.info("No need to download saves.txt!");
 					}
-
 				}
+
 				{
 					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("images.txt");
-					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						System.out.println("Downloading resource!");
-						updlog.logger.info("Downloading resource!");
 						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images.txt",
 								"images.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download images.txt!");
 						updlog.logger.info("No need to download images.txt!");
 					}
-
 				}
+
 				{
 					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("sounds.txt");
-					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
-					updlog.logger.info((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						System.out.println("Downloading resource!");
-						updlog.logger.info("Downloading resource!");
 						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds.txt",
 								"sounds.txt", conn.getContentLength());
 					} else {
@@ -248,6 +232,7 @@ public class Launcher extends JFrame {
 					}
 
 				}
+
 				progressBar.setValue(15);
 				ArrayList<String> downloadImg = readTextFile("images.txt");
 				ArrayList<String> downloadSounds = readTextFile("sounds.txt");
@@ -262,13 +247,7 @@ public class Launcher extends JFrame {
 					if (!fi.getParentFile().exists()) {
 						fi.getParentFile().mkdirs();
 					}
-					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
-					updlog.logger.info((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						System.out.println("Downloading resource!");
-						updlog.logger.info("Downloading resource!");
 						progressBar.setValue(50);
 						Thread t = new Thread() {
 							@Override
@@ -286,7 +265,6 @@ public class Launcher extends JFrame {
 						updlog.logger.info("No need to download " + "images/" + str);
 						progressBar.setValue(100);
 					}
-
 				}
 				for (final String str : downloadSounds) {
 
@@ -298,12 +276,7 @@ public class Launcher extends JFrame {
 					if (!fi.getParentFile().exists()) {
 						fi.getParentFile().mkdirs();
 					}
-					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
-					updlog.logger.info((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
-							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						System.out.println("Downloading resource!");
 						// progressBar.setValue(50);
 						Thread t = new Thread() {
 							@Override
@@ -325,7 +298,6 @@ public class Launcher extends JFrame {
 				}
 				i++;
 				oprogressBar.setValue((int) ((i * 100.0f) / downloadImg.size() - threads.size()));
-
 			} catch (Exception e) {
 
 			}
@@ -350,7 +322,6 @@ public class Launcher extends JFrame {
 				};
 				t.start();
 				threads.add(t);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -375,7 +346,7 @@ public class Launcher extends JFrame {
 		try {
 			pb.start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("Running " + exec);
@@ -389,8 +360,8 @@ public class Launcher extends JFrame {
 
 		// ten percent of the total download size
 		File ofile = new File(System.getProperty("user.dir") + "", destination);
-		System.out.printf("\nDownloading\n\t%s\nTo\n\t%s\n", source, destination);
-		updlog.logger.logp(Level.INFO, "\nDownloading\n\t%s\nTo\n\t%s\n", source, destination);
+		System.out.println("\nDownloading from\n\t " + source + "\nTo\n\t " + destination + "\n");
+		updlog.logger.logp(Level.INFO, "Downloading from\n\t " + source + "\nTo\n\t " + destination + "\n", "", "");
 		try {
 			if (ofile.exists())
 				ofile.delete();
@@ -440,8 +411,8 @@ public class Launcher extends JFrame {
 			String line = "";
 			while ((line = reader.readLine()) != null) {
 				values.add(line);
-
 			}
+			reader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

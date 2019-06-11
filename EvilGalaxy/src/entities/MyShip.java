@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import game_engine.SpritePattern;
 import items.ShipMissile;
@@ -17,6 +18,8 @@ public class MyShip extends SpritePattern {
 	private ArrayList<ShipMissile> missiles;
 	private ArrayList<ShipRocket> rockets;
 
+	private String imageName, soundName;
+
 	public MyShip(int x, int y) {
 		super(x, y);
 
@@ -24,47 +27,53 @@ public class MyShip extends SpritePattern {
 		initAmmo();
 	}
 
-	private void initCraft() {
+	public String initCraft() {
 
-		loadImage("images/craft.png");
+		imageName = "images/craft.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
-	private void initAmmo() {
+	public String shipOnFire() {
 
-		missiles = new ArrayList<>();
-		rockets = new ArrayList<>();
+		imageName = "images/newship.png";
+		loadImage(imageName);
+		getImageDimensions();
+		return imageName;
+	}
+
+	public String upsideDown() {
+
+		imageName = "images/alien.gif";
+		loadImage(imageName);
+		getImageDimensions();
+		return imageName;
+	}
+
+	public String godMode() {
+
+		imageName = "images/alien2.gif";
+		loadImage(imageName);
+		getImageDimensions();
+		return imageName;
+	}
+
+	public String escapeForbidden() {
+
+		imageName = "images/alien3.gif";
+		loadImage(imageName);
+		getImageDimensions();
+		return imageName;
 
 	}
 
-	private void shipOnFire() {
+	public String shipDamaged() {
 
-		loadImage("images/newship.png");
+		imageName = "images/hitcraft.gif";
+		loadImage(imageName);
 		getImageDimensions();
-	}
-
-	public void upsideDown() {
-
-		loadImage("images/alien.gif");
-		getImageDimensions();
-	}
-
-	public void godMode() {
-
-		loadImage("images/alien2.gif");
-		getImageDimensions();
-	}
-
-	public void escapeForbidden() {
-
-		loadImage("images/alien3.gif");
-		getImageDimensions();
-	}
-
-	public void shipDamaged() {
-
-		loadImage("images/hitcraft.gif");
-		getImageDimensions();
+		return imageName;
 	}
 
 	public void shipShaked() {
@@ -130,6 +139,11 @@ public class MyShip extends SpritePattern {
 		}
 	}
 
+	private void initAmmo() {
+		missiles = new ArrayList<>();
+		rockets = new ArrayList<>();
+	}
+
 	@SuppressWarnings("rawtypes")
 	public ArrayList getMissiles() {
 		return missiles;
@@ -140,18 +154,24 @@ public class MyShip extends SpritePattern {
 		return rockets;
 	}
 
-	public void loadMissiles() {
+	public List<ShipMissile> loadMissiles() {
+		soundName = "sounds/laser.wav";
 		missiles.add(new ShipMissile(x + width, y + height / 2));
-		new PlayWave1st("sounds/laser.wav").start();
+		new PlayWave1st(soundName).start();
+		return missiles;
 	}
 
-	public void loadRockets() {
+	public List<ShipRocket> loadRockets() {
+		soundName = "sounds/rocket.wav";
 		rockets.add(new ShipRocket(x + width, y + height / 2));
-		new PlayWave1st("sounds/rocket.wav").start();
+		new PlayWave1st(soundName).start();
+		return rockets;
 	}
 
-	public void gunLocked() {
-		new PlayWave1st("sounds/denied.wav").start();
+	public String gunLocked() {
+		soundName = "sounds/denied.wav";
+		new PlayWave1st(soundName).start();
+		return soundName;
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -202,6 +222,5 @@ public class MyShip extends SpritePattern {
 			speedY = 0;
 			initCraft();
 		}
-
 	}
 }

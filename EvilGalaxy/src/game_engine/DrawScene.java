@@ -100,7 +100,6 @@ public class DrawScene extends UpdateObjects {
 				GameMenu.savedOnL4 = false;
 				GameMenu.savedOnL2 = true;
 				if (voiceInterruptor == true) {
-
 					initVoice("Autosave: ON!");
 					voiceInterruptor = false;
 					return;
@@ -218,7 +217,6 @@ public class DrawScene extends UpdateObjects {
 
 		if (lifeEvilHead >= 10 && lifeEvilHead < 20) {
 			g.drawString("Health: 80%", EvilHead.evilHead.x, EvilHead.evilHead.y);
-
 		}
 
 		if (lifeEvilHead >= 20 && lifeEvilHead < 30) {
@@ -281,7 +279,6 @@ public class DrawScene extends UpdateObjects {
 				MyShip.myShip.loadImage("images/magnetic.png");
 				MyShip.myShip.getImageDimensions();
 			}
-
 		}
 	}
 
@@ -567,9 +564,9 @@ public class DrawScene extends UpdateObjects {
 			Font small = new Font("Helvetica", Font.BOLD, 17);
 			g.setColor(Color.white);
 			g.setFont(small);
-			
+
 			if (GameMenu.autosave.isSelected() == true) {
-				if(!Gold.goldstack.isEmpty())
+				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: ON", 790, 15);
 				else
 					g.drawString("Autosave: ON", 810, 15);
@@ -580,7 +577,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (GameMenu.autosave.isSelected() == false) {
-				if(!Gold.goldstack.isEmpty())
+				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: OFF", 790, 15);
 				else
 					g.drawString("Autosave: OFF", 810, 15);
@@ -703,40 +700,40 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void setScene1(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible() 
+		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg1, 0, 0, null)) {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
-			if(SaveSign.saveSign.isVisible())
+			if (SaveSign.saveSign.isVisible())
 				g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
 
 	private void setScene2(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible() 
+		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg2, 0, 0, null)) {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
-			if(SaveSign.saveSign.isVisible())
+			if (SaveSign.saveSign.isVisible())
 				g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
 
 	private void setScene3(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible() 
+		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
-			if(SaveSign.saveSign.isVisible())
+			if (SaveSign.saveSign.isVisible())
 				g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
@@ -751,19 +748,19 @@ public class DrawScene extends UpdateObjects {
 		g.setFont(small);
 		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
 	}
-	
+
 	private void drawKilledBy(Graphics g) {
-		
+
 		String msg = null;
-		if(Collisions.killedByAlien == true)
+		if (Collisions.killedByAlien == true)
 			msg = "Killed by an alien!";
-		if(Collisions.killedByDragon == true)
+		if (Collisions.killedByDragon == true)
 			msg = "Killed by a dragon!";
-		if(Collisions.killedByBunker == true)
+		if (Collisions.killedByBunker == true)
 			msg = "Killed by the bunker!";
-		if(Collisions.killedByEvilHead == true)
+		if (Collisions.killedByEvilHead == true)
 			msg = "Killed by the Evil Head!";
-		
+
 		Font small = new Font("Helvetica", Font.BOLD, 17);
 		FontMetrics fm = getFontMetrics(small);
 

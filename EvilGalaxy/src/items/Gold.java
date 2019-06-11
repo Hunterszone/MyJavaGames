@@ -9,6 +9,7 @@ public class Gold extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	public static List<Gold> goldstack;
 	private final int INITIAL_Y = 1200;
+	private String imageName;
 
 	public Gold(int x, int y) {
 		super(x, y);
@@ -16,10 +17,12 @@ public class Gold extends SpritePattern {
 		initGifts();
 	}
 
-	private void initGifts() {
+	public String initGifts() {
 
-		loadImage("images/gold.png");
+		imageName = "images/gold.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void move() {

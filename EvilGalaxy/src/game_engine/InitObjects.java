@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -74,17 +75,17 @@ public class InitObjects extends JPanel implements ActionListener {
 
 		MyShip.myShip = new MyShip(MYSHIP_X, MYSHIP_Y);
 		MyShip.myShip.isVisible();
-		
+
 		Crosshair.crosshair = new Crosshair(MYCROSSHAIR_X, MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
-		
+
 		EvilHead.evilHead = new EvilHead(EVILHEAD_X, EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
 		VolBtn.volButt = new VolBtn(VOLBUT_X, VOLBUT_Y);
 		VolBtn.volButt.isVisible();
-		
+
 		SaveSign.saveSign = new SaveSign((B_WIDTH - 350) / 2, (B_HEIGHT - 350) / 2);
 		SaveSign.saveSign.setVisible(false);
 
@@ -95,7 +96,7 @@ public class InitObjects extends JPanel implements ActionListener {
 		initGold();
 		initDragons();
 		initHealth();
-		
+
 		GameMenu.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
@@ -107,44 +108,47 @@ public class InitObjects extends JPanel implements ActionListener {
 		LoadSounds.bgMusic.loop();
 	}
 
-	static void initAliens() {
+	public static List<Alien> initAliens() {
 		Alien.aliens = new ArrayList<>();
 
 		for (int i = 0; i < 40; i++) {
 			Alien born = new Alien((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800));
 			Alien.aliens.add(born);
 		}
+		return Alien.aliens;
 	}
 
-	static void initDragons() {
+	public static List<Dragon> initDragons() {
 		Dragon.dragons = new ArrayList<>();
 		for (int[] p : posDragon) {
 			Dragon born = new Dragon(p[0], p[1]);
 			Dragon.dragons.add(born);
 			born.setVisible(false);
 		}
+		return Dragon.dragons;
 	}
 
-	static void initGold() {
+	public static List<Gold> initGold() {
 		Gold.goldstack = new ArrayList<>();
 
 		for (int[] p : posGold) {
 			Gold.goldstack.add(new Gold(p[0], p[1]));
 		}
+
+		return Gold.goldstack;
 	}
 
-	static void initHealth() {
+	public static List<HealthPack> initHealth() {
 		HealthPack.healthpack = new ArrayList<>();
 
 		for (int[] p : posHealthPack) {
 			HealthPack.healthpack.add(new HealthPack(p[0], p[1]));
 		}
-
+		return HealthPack.healthpack;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

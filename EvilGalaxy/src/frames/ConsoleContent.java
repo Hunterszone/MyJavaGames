@@ -29,15 +29,14 @@ import game_engine.UpdateObjects;
 import items.HealthPack;
 import sound_engine.LoadSounds;
 
-@SuppressWarnings("serial")
 public class ConsoleContent extends OutputStream {
 
 	protected JPanel contentPane;
 	protected static JTextField textField;
 	protected JTextArea textArea;
 	static String out = "";
-	protected static String[] commands = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit", "voloff",
-			"volon", "god", "dog", "stats", "restart", "level2", "level3", "level4" };
+	public static final String[] COMMANDS = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit",
+			"voloff", "volon", "god", "dog", "stats", "restart", "level2", "level3", "level4" };
 
 	public ConsoleContent() {
 		contentPane = new JPanel();
@@ -59,7 +58,7 @@ public class ConsoleContent extends OutputStream {
 					getTextField().setText("");
 					getTextField().requestFocusInWindow();
 
-					if (commands[0].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[0].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						textArea.append("********HERE IS A LIST OF ALL AVAILABLE COMMANDS:*********" + "\n"
 								+ "HELP - show this list" + "\n"
 								+ "EASY - restart/resume (if not in a game), or switch to EASY" + "\n"
@@ -74,13 +73,13 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[1].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[1].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						InitObjects.consoleON = false;
 						textArea.append("********Closing...*********" + "\n");
 						return;
 					}
 
-					if (commands[2].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[2].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						// Create operating system process from arpe.bat file
 						// command
@@ -93,7 +92,6 @@ public class ConsoleContent extends OutputStream {
 						try {
 							p = pb.start();
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 
@@ -155,7 +153,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[3].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[3].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true) {
 							InitObjects.timerEasy.stop();
 							InitObjects.timerMedium.stop();
@@ -170,7 +168,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[4].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[4].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true && !InitObjects.timerEasy.isRunning()) {
 							textArea.append("********Game switched to easy!*********" + "\n");
 							InitObjects.timerMedium.stop();
@@ -192,7 +190,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[5].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[5].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true && !InitObjects.timerMedium.isRunning()) {
 							textArea.append("********Game switched to medium!*********" + "\n");
 							InitObjects.timerEasy.stop();
@@ -213,7 +211,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[6].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[6].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true && !InitObjects.timerHard.isRunning()) {
 							textArea.append("********Game switched to hard!*********" + "\n");
 							InitObjects.timerEasy.stop();
@@ -234,13 +232,13 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[7].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[7].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						System.exit(0);
 						textArea.append("********Exiting...*********" + "\n");
 						return;
 					}
 
-					if (commands[8].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[8].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) {
 							LoadSounds.bgMusic.stop();
@@ -256,7 +254,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[9].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[9].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) {
 							LoadSounds.bgMusic.loop();
@@ -271,7 +269,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[10].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[10].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifeMyShip >= 3) {
 							InitObjects.god = true;
@@ -292,7 +290,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[11].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[11].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifeMyShip < 3) {
 							InitObjects.god = false;
@@ -313,7 +311,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[12].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[12].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true) {
 							if (Alien.aliens.size() > 0) {
 								if (InitObjects.timerEasy.isRunning() == true) {
@@ -605,14 +603,14 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[13].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[13].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						textArea.append("********Game initialized!*********" + "\n");
 						Difficulty.restart();
 						return;
 					}
 
-					if (commands[14].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[14].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
 							textArea.append("********Level 2 was loaded!*********" + "\n");
@@ -643,7 +641,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[15].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[15].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
 							Difficulty.restart();
@@ -673,7 +671,7 @@ public class ConsoleContent extends OutputStream {
 						return;
 					}
 
-					if (commands[16].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (COMMANDS[16].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
 							Difficulty.restart();
@@ -749,9 +747,7 @@ public class ConsoleContent extends OutputStream {
 
 	@Override
 	public void write(int b) throws IOException {
-		// TODO Auto-generated method stub
 		textArea.append(String.valueOf((char) b));
-
 		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
 }

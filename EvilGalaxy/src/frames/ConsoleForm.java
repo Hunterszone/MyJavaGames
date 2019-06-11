@@ -1,6 +1,7 @@
 package frames;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -9,7 +10,6 @@ import javax.swing.SwingUtilities;
 
 public final class ConsoleForm extends ConsoleContent {
 
-	private static final long serialVersionUID = 1L;
 	Vector<String> matches = new Vector<>();
 	JList<Object> list = new JList<>();
 
@@ -17,9 +17,14 @@ public final class ConsoleForm extends ConsoleContent {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new ConsoleForm();
+				ConsoleForm consoleForm = new ConsoleForm();
 				Main ex = new Main();
 				ex.setVisible(true);
+				try {
+					consoleForm.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -37,12 +42,9 @@ public final class ConsoleForm extends ConsoleContent {
 		new AutoSuggestor(textField, frame, null, Color.WHITE.brighter(), Color.BLUE, Color.RED, 0.75f) {
 			@Override
 			boolean wordTyped(String typedWord) {
-
 				setDictionary(textField.getText());
 				return super.wordTyped(typedWord);
 			}
 		};
-
 	}
-
 }

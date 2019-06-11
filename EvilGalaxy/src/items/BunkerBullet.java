@@ -7,6 +7,7 @@ public class BunkerBullet extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	private static final int BULLET_SPEED_Y = 4;
 	private static final int BULLET_SPEED_X = 3;
+	private String imageName;
 
 	public BunkerBullet(int x, int y) {
 		super(x, y);
@@ -14,10 +15,12 @@ public class BunkerBullet extends SpritePattern {
 		initBullet();
 	}
 
-	private void initBullet() {
+	public String initBullet() {
 
-		loadImage("images/bomber.png");
+		imageName = "images/bomber.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void moveLeft() {

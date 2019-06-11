@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import game_engine.SpritePattern;
 import items.CanonBall;
@@ -11,6 +12,7 @@ public class EvilHead extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	public static EvilHead evilHead;
+	private String imageName;
 	private double speedX;
 	private double speedY;
 	private ArrayList<FireBall> fireballs;
@@ -23,10 +25,11 @@ public class EvilHead extends SpritePattern {
 		initAmmo();
 	}
 
-	private void initEnemy() {
-
-		loadImage("images/evilhead.png");
+	public String initEnemy() {
+		imageName = "images/evilhead.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	private void initAmmo() {
@@ -189,18 +192,19 @@ public class EvilHead extends SpritePattern {
 		return canons;
 	}
 
-	public void throwFireballs() {
+	public List<FireBall> throwFireballs() {
 		fireballs.add(new FireBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing2.wav").start();
+		return fireballs;
 	}
 
-	public void throwCanons() {
+	public List<CanonBall> throwCanons() {
 		canons.add(new CanonBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing.wav").start();
+		return canons;
 	}
 
 	public void strikeHead() {
-
 		loadImage("images/strikehead.png");
 		getImageDimensions();
 	}

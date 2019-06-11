@@ -10,6 +10,7 @@ public class Alien extends SpritePattern {
 	public static List<Alien> aliens;
 	private final int INITIAL_X = 1024;
 	private final int INITIAL_Y = 0;
+	private String imageName;
 
 	public Alien(int x, int y) {
 		super(x, y);
@@ -17,10 +18,12 @@ public class Alien extends SpritePattern {
 		initAlien();
 	}
 
-	private void initAlien() {
+	public String initAlien() {
 
-		loadImage("images/alien.png");
+		imageName = "images/alien.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void move() {
@@ -35,7 +38,6 @@ public class Alien extends SpritePattern {
 
 		x -= 3.1;
 		y += 1.1;
-
 	}
 
 	public void moveFaster() {
@@ -45,6 +47,5 @@ public class Alien extends SpritePattern {
 		}
 
 		x -= 0.1;
-
 	}
 }

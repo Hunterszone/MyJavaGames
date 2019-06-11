@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import game_engine.SpritePattern;
 import items.BunkerBullet;
@@ -10,8 +11,8 @@ public class Bunker extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	public static ArrayList<BunkerBullet> bullets;
 	public static ArrayList<BunkerBullet> bullets2;
-
 	public static Bunker bunkerObj;
+	private String imageName;
 
 	public Bunker(int x, int y) {
 		super(x, y);
@@ -27,12 +28,14 @@ public class Bunker extends SpritePattern {
 
 	}
 
-	public void loadBullet() {
+	public List<BunkerBullet> loadBullet() {
 		bullets.add(new BunkerBullet(x + width - 40, y - 50 + height / 2));
+		return bullets;
 	}
 
-	public void loadBullet2() {
+	public List<BunkerBullet> loadBullet2() {
 		bullets2.add(new BunkerBullet(x + width - 40, y - 50 + height / 2));
+		return bullets2;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -45,18 +48,17 @@ public class Bunker extends SpritePattern {
 		return bullets2;
 	}
 
-	public void initBunker() {
-
-		loadImage("images/bunker.png");
+	public String initBunker() {
+		imageName = "images/bunker.png";
+		loadImage(imageName);
 		getImageDimensions();
-
+		return imageName;
 	}
 
-	public void initBunkerHit() {
-
-		loadImage("images/bunker_hit.png");
+	public String initBunkerHit() {
+		imageName = "images/bunker_hit.png";
+		loadImage(imageName);
 		getImageDimensions();
-
+		return imageName;
 	}
-
 }

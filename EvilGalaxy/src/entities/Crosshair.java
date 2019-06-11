@@ -8,6 +8,7 @@ public class Crosshair extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	public static Crosshair crosshair;
+	public String imageName;
 	double speedX;
 	double speedY;
 
@@ -17,29 +18,30 @@ public class Crosshair extends SpritePattern {
 		initCrosshair();
 	}
 
-	private void initCrosshair() {
-
-		loadImage("images/pointer.png");
+	public String initCrosshair() {
+		imageName = "images/pointer.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void move() {
 		x += speedX;
 		y += speedY;
-		
+
 		if (x < 210) {
 			x = 210;
 		} else if (x > 1110) {
 			x = 1110;
 		}
-		
+
 		if (y < -15) {
 			y = -15;
 		} else if (y > 685) {
 			y = 685;
 		}
 	}
-	
+
 	public void crosShaked() {
 
 		x += speedX;

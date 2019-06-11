@@ -316,7 +316,5 @@ public abstract class Collisions extends UpdateObjects {
 				}
 			}
 		}
-
 	}
-
 }

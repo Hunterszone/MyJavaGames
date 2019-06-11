@@ -138,10 +138,10 @@ public class GameMenu extends JFrame {
 			try {
 				Desktop.getDesktop().browse(new URI("https://github.com/Hunterszone/EvilGalaxy"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		});
@@ -152,10 +152,10 @@ public class GameMenu extends JFrame {
 			try {
 				Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		});
@@ -179,12 +179,12 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+
 				Launcher.main(null);
 				System.exit(0);
 			}
 
-		} 
+		}
 
 		class ExitAction implements ActionListener {
 			@Override
@@ -299,7 +299,7 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+
 				saveGameDataToFile(file);
 
 			}
@@ -347,11 +347,11 @@ public class GameMenu extends JFrame {
 
 					initSavedAssets();
 
-//					objectStream.close();
+					objectStream.close();
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 			}
 
 			void initSavedAssets() {
@@ -436,15 +436,15 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+
 				try {
-					if(!InitObjects.ingame)
+					if (!InitObjects.ingame)
 						loadGameDataFromFile(file);
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 				}
 
@@ -481,7 +481,7 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+
 				Difficulty.restart();
 			}
 
@@ -491,7 +491,7 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+
 				Difficulty.restart();
 				Alien.aliens.clear();
 			}
@@ -502,7 +502,7 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+
 				Difficulty.restart();
 				Alien.aliens.clear();
 				Dragon.dragons.clear();
@@ -514,7 +514,7 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+
 				Difficulty.restart();
 				Alien.aliens.clear();
 				Dragon.dragons.clear();

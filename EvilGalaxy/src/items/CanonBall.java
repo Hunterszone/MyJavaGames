@@ -6,6 +6,7 @@ public class CanonBall extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	private final int CANON_SPEED = 8;
+	private String imageName;
 
 	public CanonBall(int x, int y) {
 		super(x, y);
@@ -13,10 +14,11 @@ public class CanonBall extends SpritePattern {
 		initCanon();
 	}
 
-	private void initCanon() {
-
-		loadImage("images/canon.png");
+	public String initCanon() {
+		imageName = "images/canon.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void moveCanon() {

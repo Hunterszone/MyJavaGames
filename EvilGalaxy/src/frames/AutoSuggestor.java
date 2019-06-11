@@ -233,10 +233,10 @@ class AutoSuggestor {
  public void setDictionary(String lookFor) {
   lookFor = lookFor.toLowerCase();
   dictionary.clear();
-  if (ConsoleContent.commands == null) {
+  if (ConsoleContent.COMMANDS == null) {
    return; //so we can call constructor with null value for dictionary without exception thrown
   }
-  for (String word: ConsoleContent.commands) {
+  for (String word: ConsoleContent.COMMANDS) {
    if (word.contains(lookFor)) {
     dictionary.add(word);
     //getTextField().setText(word);

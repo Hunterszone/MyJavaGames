@@ -9,6 +9,7 @@ public class HealthPack extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	public static List<HealthPack> healthpack;
 	private final int INITIAL_Y = 0;
+	private String imageName;
 
 	public HealthPack(int x, int y) {
 		super(x, y);
@@ -16,10 +17,11 @@ public class HealthPack extends SpritePattern {
 		initHealth();
 	}
 
-	private void initHealth() {
-
-		loadImage("images/health.png");
+	public String initHealth() {
+		imageName = "images/health.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void move() {

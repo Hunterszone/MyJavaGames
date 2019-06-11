@@ -29,10 +29,11 @@ public abstract class SpritePattern implements Serializable {
 		height = image.getHeight(null);
 	}
 
-	protected void loadImage(String imageName) {
+	public Image loadImage(String imageName) {
 
 		ImageIcon ii = new ImageIcon(imageName);
 		image = ii.getImage();
+		return image;
 	}
 
 	public Image getImage() {

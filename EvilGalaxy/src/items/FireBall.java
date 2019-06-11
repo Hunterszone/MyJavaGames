@@ -7,6 +7,7 @@ public class FireBall extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	private final int EVILGUN_SPEED = 9;
 	private final double EVILGUN_SPEED_2 = 2.5;
+	private String imageName;
 
 	public FireBall(int x, int y) {
 		super(x, y);
@@ -14,10 +15,11 @@ public class FireBall extends SpritePattern {
 		initEvilGun();
 	}
 
-	private void initEvilGun() {
-
-		loadImage("images/fireball.png");
+	public String initEvilGun() {
+		imageName = "images/fireball.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void evilShot() {

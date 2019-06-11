@@ -8,11 +8,10 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class UpdateLogger {
-	final Logger logger = Logger.getLogger(UpdateLogger.class
-            .getName());
-    private FileHandler fh = null;
-    
-    {
+	final Logger logger = Logger.getLogger(UpdateLogger.class.getName());
+	private FileHandler fh = null;
+
+	{
 		File f = new File("logs/");
 		if (!f.exists()) {
 			if (!f.mkdir()) {
@@ -26,22 +25,21 @@ public class UpdateLogger {
 		}
 	}
 
-    public UpdateLogger() {
-        //just to make our log file nicer :)
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            fh = new FileHandler(System.getProperty("user.dir") + "/logs/UpdateLog_"
-                + format.format(Calendar.getInstance().getTime()) + ".log");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	public UpdateLogger() {
+		// just to make our log file nicer :)
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			fh = new FileHandler(System.getProperty("user.dir") + "/logs/UpdateLog_"
+					+ format.format(Calendar.getInstance().getTime()) + ".log");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        fh.setFormatter(new SimpleFormatter());
-        logger.addHandler(fh);
-    }
-    
-    public static void main(String[] args){
-    	UpdateLogger obj = new UpdateLogger();
+		fh.setFormatter(new SimpleFormatter());
+		logger.addHandler(fh);
 	}
-    
-}   
+
+	public static void main(String[] args) {
+		new UpdateLogger();
+	}
+}
