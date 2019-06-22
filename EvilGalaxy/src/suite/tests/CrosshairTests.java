@@ -1,4 +1,4 @@
-package tests;
+package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -7,26 +7,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import items.CanonBall;
+import entities.Crosshair;
 
-public class CanonBallTests {
+public class CrosshairTests {
 
-	private CanonBall canonBall;
+	private Crosshair crosshair;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		canonBall = new CanonBall(x, y);
+		crosshair = new Crosshair(x, y);
 	}
 
 	@Test
-	public void testCanonBallUnit() {
-		assertNotNull(canonBall.loadImage(canonBall.initCanon()));
-		assertFalse(canonBall.initCanon().equals(""));
+	public void testCrosshair() {
+		assertNotNull(crosshair.loadImage(crosshair.initCrosshair()));
+		assertFalse(crosshair.initCrosshair().equals(""));
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		canonBall = null;
+		crosshair = null;
 	}
 }

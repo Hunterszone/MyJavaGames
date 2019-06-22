@@ -8,17 +8,18 @@ public class ShipRocket extends SpritePattern {
 	private final int BOARD_WIDTH = 390;
 	private final int ROCKET_SPEED = 7;
 	private final double ROCKET_SPEED2 = 2.5;
+	private String imageName;
 
 	public ShipRocket(int x, int y) {
 		super(x, y);
-
 		initRocket();
 	}
 
-	private void initRocket() {
-
-		loadImage("images/rocket.png");
+	public String initRocket() {
+		imageName = "images/rocket.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void move() {

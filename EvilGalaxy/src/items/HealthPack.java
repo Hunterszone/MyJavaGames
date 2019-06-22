@@ -13,7 +13,6 @@ public class HealthPack extends SpritePattern {
 
 	public HealthPack(int x, int y) {
 		super(x, y);
-
 		initHealth();
 	}
 

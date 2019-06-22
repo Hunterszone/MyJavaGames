@@ -1,4 +1,4 @@
-package tests;
+package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -7,26 +7,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Crosshair;
+import items.FireBall;
 
-public class CrosshairTests {
+public class FireBallTests {
 
-	private Crosshair crosshair;
+	private FireBall fireBall;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		crosshair = new Crosshair(x, y);
+		fireBall = new FireBall(x, y);
 	}
 
 	@Test
-	public void testCrosshair() {
-		assertNotNull(crosshair.loadImage(crosshair.initCrosshair()));
-		assertFalse(crosshair.initCrosshair().equals(""));
+	public void testFireBallUnit() {
+		assertNotNull(fireBall.loadImage(fireBall.initEvilGun()));
+		assertFalse(fireBall.initEvilGun().equals(""));
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		crosshair = null;
+		fireBall = null;
 	}
 }

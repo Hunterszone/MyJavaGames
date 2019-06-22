@@ -10,32 +10,32 @@ public class SaveSign extends SpritePattern implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	public static SaveSign saveSign;
+	private String imageName;
 
 	public SaveSign(int x, int y) {
 		super(x, y);
 	}
 
-	private void initSave() {
-
-		loadImage("images/saved.png");
+	public String initSave() {
+		imageName = "images/saved.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+
 		int key = e.getKeyCode();
 
 		if (((key == KeyEvent.VK_Z) && ((e.getModifiers() & KeyEvent.ALT_MASK) != 0)) || ((key == KeyEvent.VK_X)

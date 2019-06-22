@@ -15,12 +15,11 @@ public class EvilHead extends SpritePattern {
 	private String imageName;
 	private double speedX;
 	private double speedY;
-	private ArrayList<FireBall> fireballs;
-	private ArrayList<CanonBall> canons;
+	private List<FireBall> fireballs;
+	private List<CanonBall> canons;
 
 	public EvilHead(int x, int y) {
 		super(x, y);
-
 		initEnemy();
 		initAmmo();
 	}
@@ -33,10 +32,8 @@ public class EvilHead extends SpritePattern {
 	}
 
 	private void initAmmo() {
-
 		fireballs = new ArrayList<>();
 		canons = new ArrayList<>();
-
 	}
 
 	// Simulated Artificial Intelligence on EASY
@@ -47,7 +44,6 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 1) {
 			x = 1;
-
 		}
 
 		if (y < 1) {
@@ -59,14 +55,12 @@ public class EvilHead extends SpritePattern {
 		if (x < 500) {
 			speedX += 1.2;
 			initEnemy();
-
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
 			initEnemy();
-
 		}
 
 		if (x > 800) {
@@ -74,7 +68,6 @@ public class EvilHead extends SpritePattern {
 			speedX -= 1.2;
 			speedY += 1.2;
 			initEnemy();
-
 		}
 
 		if (y > 500) {
@@ -92,7 +85,6 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 1) {
 			x = 1;
-
 		}
 
 		if (y < 1) {
@@ -108,18 +100,15 @@ public class EvilHead extends SpritePattern {
 		if (x < 500) {
 			speedX += 1.2;
 			initEnemy();
-
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
 			initEnemy();
-
 		}
 
 		if (x > 800) {
-
 			speedX -= 1.2;
 			speedY += 1.2;
 			initEnemy();
@@ -141,7 +130,6 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 1) {
 			x = 1;
-
 		}
 
 		if (y < 1) {
@@ -157,22 +145,18 @@ public class EvilHead extends SpritePattern {
 		if (x < 500) {
 			speedX += 1.2;
 			initEnemy();
-
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
 			initEnemy();
-
 		}
 
 		if (x > 800) {
-
 			speedX -= 1.2;
 			speedY += 1.2;
 			initEnemy();
-
 		}
 
 		if (y > 500) {
@@ -182,13 +166,11 @@ public class EvilHead extends SpritePattern {
 
 	}
 
-	@SuppressWarnings("rawtypes")
-	public ArrayList getEvilMissiles() {
+	public List<FireBall> getEvilMissiles() {
 		return fireballs;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public ArrayList getCanons() {
+	public List<CanonBall> getCanons() {
 		return canons;
 	}
 

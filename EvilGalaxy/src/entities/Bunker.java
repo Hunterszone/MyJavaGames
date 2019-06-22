@@ -9,8 +9,8 @@ import items.BunkerBullet;
 public class Bunker extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
-	public static ArrayList<BunkerBullet> bullets;
-	public static ArrayList<BunkerBullet> bullets2;
+	public static List<BunkerBullet> bullets;
+	public static List<BunkerBullet> bullets2;
 	public static Bunker bunkerObj;
 	private String imageName;
 
@@ -22,10 +22,8 @@ public class Bunker extends SpritePattern {
 	}
 
 	private void initBullets() {
-
 		bullets = new ArrayList<>();
 		bullets2 = new ArrayList<>();
-
 	}
 
 	public List<BunkerBullet> loadBullet() {
@@ -38,13 +36,11 @@ public class Bunker extends SpritePattern {
 		return bullets2;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public ArrayList getBullets() {
+	public List<BunkerBullet> getBullets() {
 		return bullets;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public ArrayList getBullets2() {
+	public List<BunkerBullet> getBullets2() {
 		return bullets2;
 	}
 

@@ -39,7 +39,7 @@ import launcher.Launcher;
 import multiplayer_tbd.JoinGame;
 import sound_engine.LoadSounds;
 
-@SuppressWarnings("serial")
+
 public class GameMenu extends JFrame {
 
 	public static boolean savedOnL1 = false;

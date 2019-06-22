@@ -11,12 +11,10 @@ public class BunkerBullet extends SpritePattern {
 
 	public BunkerBullet(int x, int y) {
 		super(x, y);
-
 		initBullet();
 	}
 
 	public String initBullet() {
-
 		imageName = "images/bomber.png";
 		loadImage(imageName);
 		getImageDimensions();
@@ -24,32 +22,24 @@ public class BunkerBullet extends SpritePattern {
 	}
 
 	public void moveLeft() {
-
 		x -= BULLET_SPEED_X + 1;
 	}
 
 	public void moveRight() {
-
 		x += BULLET_SPEED_X + 1;
 	}
 
 	public void moveDiagLeft() {
-
 		y -= BULLET_SPEED_Y;
 		x -= BULLET_SPEED_X;
 	}
 
 	public void moveDiagRight() {
-
 		y -= BULLET_SPEED_Y;
 		x += BULLET_SPEED_X;
-
 	}
 
 	public void moveDown() {
-
 		y += BULLET_SPEED_Y + 1;
-
 	}
-
 }

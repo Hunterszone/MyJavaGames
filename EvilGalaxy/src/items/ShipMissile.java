@@ -7,17 +7,18 @@ public class ShipMissile extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	private final int BOARD_WIDTH = 390;
 	private final int MISSILE_SPEED = 50;
+	private String imageName;
 
 	public ShipMissile(int x, int y) {
 		super(x, y);
-
 		initMissile();
 	}
 
-	private void initMissile() {
-
-		loadImage("images/missile.png");
+	public String initMissile() {
+		imageName = "images/missile.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void move() {

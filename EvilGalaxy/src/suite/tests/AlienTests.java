@@ -1,4 +1,4 @@
-package tests;
+package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -21,18 +21,18 @@ public class AlienTests {
 	}
 
 	@Test
-	public void testAlienUnit() {
+	public void testAlienUnit_imageNotNull_imageNameNotEmpty() {
 		assertNotNull(alien.loadImage(alien.initAlien()));
 		assertFalse(alien.initAlien().equals(""));
 	}
 
 	@Test
-	public void testListOfAliens() {
+	public void testListOfAliens_NotEmpty() {
 		assertFalse(InitObjects.initAliens().isEmpty());
 	}
 
 	@Test
-	public void testAliensBorders() {
+	public void testAliensBorders_imageInsideBorders() {
 		assertFalse(alien.getX() < 0);
 		assertFalse(alien.getY() > 1200);
 	}

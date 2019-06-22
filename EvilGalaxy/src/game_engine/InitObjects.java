@@ -24,7 +24,7 @@ import items.SaveSign;
 import items.VolBtn;
 import sound_engine.LoadSounds;
 
-@SuppressWarnings("serial")
+
 public class InitObjects extends JPanel implements ActionListener {
 
 	public static boolean consoleON, manualON, ingame, god;

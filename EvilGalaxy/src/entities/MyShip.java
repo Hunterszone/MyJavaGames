@@ -15,8 +15,8 @@ public class MyShip extends SpritePattern {
 	public static MyShip myShip;
 	double speedX;
 	double speedY;
-	private ArrayList<ShipMissile> missiles;
-	private ArrayList<ShipRocket> rockets;
+	private List<ShipMissile> missiles;
+	private List<ShipRocket> rockets;
 
 	private String imageName, soundName;
 
@@ -144,13 +144,11 @@ public class MyShip extends SpritePattern {
 		rockets = new ArrayList<>();
 	}
 
-	@SuppressWarnings("rawtypes")
-	public ArrayList getMissiles() {
+	public List<ShipMissile> getMissiles() {
 		return missiles;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public ArrayList getRockets() {
+	public List<ShipRocket> getRockets() {
 		return rockets;
 	}
 

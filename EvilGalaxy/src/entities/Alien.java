@@ -14,12 +14,10 @@ public class Alien extends SpritePattern {
 
 	public Alien(int x, int y) {
 		super(x, y);
-
 		initAlien();
 	}
 
 	public String initAlien() {
-
 		imageName = "images/alien.png";
 		loadImage(imageName);
 		getImageDimensions();

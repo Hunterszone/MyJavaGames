@@ -5,14 +5,11 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.geom.RoundRectangle2D;
 import java.net.URISyntaxException;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
 import game_engine.DrawScene;
 
-@SuppressWarnings("serial")
 public final class Main extends GameMenu {
 
 	public Main() {

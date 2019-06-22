@@ -8,23 +8,25 @@ public class VolBtn extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	public static VolBtn volButt;
+	private String imageName;
 
 	public VolBtn(int x, int y) {
 		super(x, y);
-
 		initVol();
 	}
 
-	private void initVol() {
-
-		loadImage("images/volbutt.png");
+	public String initVol() {
+		imageName = "images/volbutt.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
-	private void initMute() {
-
-		loadImage("images/mute.png");
+	public String initMute() {
+		imageName = "images/mute.png";
+		loadImage(imageName);
 		getImageDimensions();
+		return imageName;
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -40,5 +42,4 @@ public class VolBtn extends SpritePattern {
 		}
 
 	}
-
 }

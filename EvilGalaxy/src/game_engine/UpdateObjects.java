@@ -1,7 +1,7 @@
 package game_engine;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 import entities.Alien;
 import entities.Bunker;
@@ -18,6 +18,7 @@ import items.ShipMissile;
 import items.ShipRocket;
 import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
+import sound_engine.SoundEffects;
 
 public abstract class UpdateObjects extends InitObjects {
 
@@ -64,7 +65,7 @@ public abstract class UpdateObjects extends InitObjects {
 			MyShip.myShip.move();
 		}
 	}
-	
+
 	private void updateMyCrosshair() {
 
 		if (Crosshair.crosshair.isVisible()) {
@@ -74,8 +75,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateMyShipMissiles() {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<ShipMissile> missiles = MyShip.myShip.getMissiles();
+		List<ShipMissile> missiles = MyShip.myShip.getMissiles();
 
 		for (int nextmissile = 0; nextmissile < missiles.size(); nextmissile++) {
 
@@ -92,10 +92,9 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateBullets() {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<BunkerBullet> bullets1 = Bunker.bunkerObj.getBullets();
-		@SuppressWarnings("unchecked")
-		ArrayList<BunkerBullet> bullets2 = Bunker.bunkerObj.getBullets2();
+		List<BunkerBullet> bullets1 = Bunker.bunkerObj.getBullets();
+
+		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBullets2();
 
 		for (int nextbullet = 0; nextbullet < bullets1.size(); nextbullet++) {
 
@@ -117,9 +116,7 @@ public abstract class UpdateObjects extends InitObjects {
 		}
 
 		for (int nextbullet = 0; nextbullet < bullets2.size(); nextbullet++) {
-
 			BunkerBullet bullet2 = bullets2.get(nextbullet);
-
 			if (bullet2.isVisible()) {
 				bullet2.moveDiagRight();
 				if (MyShip.myShip.x > 200) {
@@ -135,18 +132,12 @@ public abstract class UpdateObjects extends InitObjects {
 				bullets2.remove(nextbullet);
 			}
 		}
-
 	}
 
 	private void updateEvilHeadMissiles() {
-
-		@SuppressWarnings("unchecked")
-		ArrayList<FireBall> fireballs = EvilHead.evilHead.getEvilMissiles();
-
+		List<FireBall> fireballs = EvilHead.evilHead.getEvilMissiles();
 		for (int nextball = 0; nextball < fireballs.size(); nextball++) {
-
 			FireBall fireball = fireballs.get(nextball);
-
 			if (fireball.isVisible() && Dragon.dragons.isEmpty() && timerHard.isRunning() == true) {
 				if (Gold.goldstack.isEmpty() && lifeMyShip <= 3) {
 					fireball.evilShotDiagUp();
@@ -171,18 +162,12 @@ public abstract class UpdateObjects extends InitObjects {
 				fireballs.remove(nextball);
 			}
 		}
-
 	}
 
 	private void updateEvilHeadCanons() {
-
-		@SuppressWarnings("unchecked")
-		ArrayList<CanonBall> canonballs = EvilHead.evilHead.getCanons();
-
+		List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
 		for (int nextcanon = 0; nextcanon < canonballs.size(); nextcanon++) {
-
 			CanonBall canonball = canonballs.get(nextcanon);
-
 			if (canonball.isVisible()) {
 				canonball.moveCanon();
 			} else {
@@ -192,14 +177,9 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateRockets() {
-
-		@SuppressWarnings("unchecked")
-		ArrayList<ShipRocket> rocketstack = MyShip.myShip.getRockets();
-
+		List<ShipRocket> rocketstack = MyShip.myShip.getRockets();
 		for (int nextrocket = 0; nextrocket < rocketstack.size(); nextrocket++) {
-
 			ShipRocket shiprocket = rocketstack.get(nextrocket);
-
 			if (shiprocket.isVisible()) {
 				shiprocket.move();
 			} else {
@@ -209,11 +189,8 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateAliens() {
-
 		for (int nextalien = 0; nextalien < Alien.aliens.size(); nextalien++) {
-
 			Alien alien = Alien.aliens.get(nextalien);
-
 			if (alien.isVisible() && timerHard.isRunning() == true) {
 				alien.moveFaster();
 			}
@@ -222,15 +199,13 @@ public abstract class UpdateObjects extends InitObjects {
 				alien.move();
 			} else {
 				Alien.aliens.remove(nextalien);
-				new PlayWave1st("sounds/bloop.wav").start();
+				SoundEffects.BLOOP.getSound();
 			}
 		}
 	}
 
 	protected static void updateDragons() {
-
 		for (int nextdragon = 0; nextdragon < Dragon.dragons.size(); nextdragon++) {
-
 			Dragon dragon = Dragon.dragons.get(nextdragon);
 			dragon.setVisible(true);
 			Collisions.checkCollisions();
@@ -238,14 +213,12 @@ public abstract class UpdateObjects extends InitObjects {
 				dragon.move();
 			} else {
 				Dragon.dragons.remove(nextdragon);
-				new PlayWave1st("sounds/bloop.wav").start();
+				SoundEffects.BLOOP.getSound();
 			}
 		}
-
 	}
 
 	private void updateEvilHead() {
-
 		if (EvilHead.evilHead.isVisible() && timerEasy.isRunning()) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnEasy();
@@ -272,13 +245,10 @@ public abstract class UpdateObjects extends InitObjects {
 				EvilHead.evilHead.AIOnHard();
 			}
 		}
-
 	}
 
 	private void updateGold() {
-
 		for (int nextgold = 0; nextgold < Gold.goldstack.size(); nextgold++) {
-
 			Gold goldpiece = Gold.goldstack.get(nextgold);
 			if (goldpiece.isVisible()) {
 				goldpiece.move();
@@ -290,15 +260,11 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateHealth() {
-
 		for (int nextpack = 0; nextpack < HealthPack.healthpack.size(); nextpack++) {
-
 			HealthPack healthpiece = HealthPack.healthpack.get(nextpack);
-
 			if (HealthPack.healthpack.size() < 5 && lifeMyShip > 3) {
 				HealthPack.healthpack.add(nextpack, new HealthPack(EvilHead.evilHead.x, EvilHead.evilHead.y));
 			}
-
 			if (healthpiece.isVisible()) {
 				healthpiece.move();
 			} else {
@@ -306,10 +272,7 @@ public abstract class UpdateObjects extends InitObjects {
 				if (lifeMyShip > 3) {
 					lifeMyShip--;
 				}
-
 			}
-
 		}
 	}
-
 }

@@ -6,7 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
@@ -607,8 +607,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawObjects(Graphics g) {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<ShipMissile> ms = MyShip.myShip.getMissiles();
+		List<ShipMissile> ms = MyShip.myShip.getMissiles();
 
 		for (ShipMissile m : ms) {
 
@@ -617,8 +616,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		@SuppressWarnings("unchecked")
-		ArrayList<ShipRocket> rs = MyShip.myShip.getRockets();
+		List<ShipRocket> rs = MyShip.myShip.getRockets();
 
 		for (ShipRocket r : rs) {
 			if (r.isVisible()) {
@@ -626,8 +624,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		@SuppressWarnings("unchecked")
-		ArrayList<FireBall> guner = EvilHead.evilHead.getEvilMissiles();
+		List<FireBall> guner = EvilHead.evilHead.getEvilMissiles();
 
 		for (FireBall n : guner) {
 
@@ -636,8 +633,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		@SuppressWarnings("unchecked")
-		ArrayList<CanonBall> can = EvilHead.evilHead.getCanons();
+		List<CanonBall> can = EvilHead.evilHead.getCanons();
 
 		for (CanonBall n : can) {
 
@@ -646,8 +642,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		@SuppressWarnings("unchecked")
-		ArrayList<BunkerBullet> bull = Bunker.bunkerObj.getBullets();
+		List<BunkerBullet> bull = Bunker.bunkerObj.getBullets();
 
 		for (BunkerBullet n : bull) {
 
@@ -656,8 +651,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		@SuppressWarnings("unchecked")
-		ArrayList<BunkerBullet> bull2 = Bunker.bunkerObj.getBullets2();
+		List<BunkerBullet> bull2 = Bunker.bunkerObj.getBullets2();
 
 		for (BunkerBullet n : bull2) {
 

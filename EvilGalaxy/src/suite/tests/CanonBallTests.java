@@ -1,4 +1,4 @@
-package tests;
+package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -7,26 +7,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import items.FireBall;
+import items.CanonBall;
 
-public class FireBallTests {
+public class CanonBallTests {
 
-	private FireBall fireBall;
+	private CanonBall canonBall;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		fireBall = new FireBall(x, y);
+		canonBall = new CanonBall(x, y);
 	}
 
 	@Test
-	public void testFireBallUnit() {
-		assertNotNull(fireBall.loadImage(fireBall.initEvilGun()));
-		assertFalse(fireBall.initEvilGun().equals(""));
+	public void testCanonBallUnit() {
+		assertNotNull(canonBall.loadImage(canonBall.initCanon()));
+		assertFalse(canonBall.initCanon().equals(""));
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		fireBall = null;
+		canonBall = null;
 	}
 }

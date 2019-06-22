@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import frames.ConsoleForm;
 
 
-@SuppressWarnings("serial")
+
 public class JoinGame extends JFrame {
 	
 
