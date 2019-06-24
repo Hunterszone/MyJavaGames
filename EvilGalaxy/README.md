@@ -1,11 +1,11 @@
 # README - check it out!
 
-### Main techniques: moving sprites, collision detection, 3 levels of difficulty, multiple levels, AI algorithms
+### Main techniques: moving sprites, collision detection, three levels of difficulty, multiple levels, AI algorithms
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
 Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherEG/Launcher.jnlp) button.  
-After executing the file, it will automatically download all the required stuff inside the dir 
+After executing the file it will automatically download all the required stuff inside the dir 
 and will launch the game immediately after that.  
 It will also compare the game version and will update it, if needed.
 
@@ -50,7 +50,7 @@ Use keys '1' to '4' to switch the level.
 Use Alt+Z to instantly save the game state, Alt+X to enable auto-saving and Alt+C to load already saved game.   
 Use 'ESC' to quit the game.  
 
-
+NB: Beware the electromagnetic field the EvilHead creates on level 4 
 
 ## AUTHOR: 
 
