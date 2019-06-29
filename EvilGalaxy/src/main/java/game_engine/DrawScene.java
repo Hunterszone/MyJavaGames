@@ -31,21 +31,17 @@ import sound_engine.LoadSounds;
 
 public class DrawScene extends UpdateObjects {
 
+	private static final long serialVersionUID = 1L;
+	private static final String VOICENAME = "kevin16";
 	private String unicode;
 	private String checkMark;
-	private static final long serialVersionUID = 1L;
-	transient static Image bg1;
-	transient static Image bg2;
-	transient static Image bg3;
-	public static boolean finMusicIsPlayed;
-
-	private static final String VOICENAME = "kevin16";
 	static boolean voiceStopped;
 	static Voice voice;
+	transient static Image bg1, bg2, bg3;
+	public static boolean finMusicIsPlayed;
 	public static boolean voiceInterruptor = false;
 
 	public static void initVoice(String message) {
-
 		VoiceManager vm = VoiceManager.getInstance();
 		voice = vm.getVoice(VOICENAME);
 		voice.allocate();
@@ -54,7 +50,6 @@ public class DrawScene extends UpdateObjects {
 		if (voiceStopped == false) {
 			voiceStopped = true;
 		}
-
 	}
 
 	public DrawScene() {

@@ -1,0 +1,6 @@
+language: java
+jdk: openjdk8
+environment:
+   - DISPLAY=unix$DISPLAY
+install: true
+script: mvn clean install
