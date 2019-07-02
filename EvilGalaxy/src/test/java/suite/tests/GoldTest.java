@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -20,18 +21,18 @@ public class GoldTest {
 		goldBar = new Gold(x, y);
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testGoldUnit() {
 		assertNotNull(goldBar.loadImage(goldBar.initGifts()));
-		assertFalse(goldBar.initGifts().equals(""));
+		assertNotEquals("", goldBar.initGifts());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testListOfGoldBars() {
 		assertFalse(InitObjects.initGold().isEmpty());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testGoldBorders() {
 		assertFalse(goldBar.getY() < 0);
 	}

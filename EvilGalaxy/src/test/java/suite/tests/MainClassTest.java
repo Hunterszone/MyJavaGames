@@ -11,11 +11,6 @@ import frames.Main;
 
 public class MainClassTest {
 
-//	@BeforeClass
-//	public static void onceExecutedBeforeAll() {
-//		System.out.println("Executing tests for class MainClassTest");
-//	}
-
 	private Main main;
 
 	@Before
@@ -23,22 +18,22 @@ public class MainClassTest {
 		main = new Main();
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testFrameVisibility() {
 		assertFalse(main.isVisible());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testGameTitle() {
 		assertTrue(main.getTitle().equals("EvilGalaxy"));
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testFrameSize() {
 		assertFalse(main.isResizable());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testFrameDecoration() {
 		assertTrue(main.isUndecorated());
 	}

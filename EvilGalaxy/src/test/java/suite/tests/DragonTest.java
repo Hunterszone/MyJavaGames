@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -23,7 +24,7 @@ public class DragonTest {
 	@Test(timeout = 200)
 	public void testDragonUnit() {
 		assertNotNull(dragon.loadImage(dragon.initBoss()));
-		assertFalse(dragon.initBoss().equals(""));
+		assertNotEquals("", dragon.initBoss());
 	}
 
 	@Test(timeout = 200)

@@ -1,6 +1,6 @@
 package suite.tests;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -19,10 +19,10 @@ public class ShipMissileTest {
 		shipMissile = new ShipMissile(x, y);
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testShipMissileUnit() {
 		assertNotNull(shipMissile.loadImage(shipMissile.initMissile()));
-		assertFalse(shipMissile.initMissile().equals(""));
+		assertNotEquals("", shipMissile.initMissile());
 	}
 
 	@After

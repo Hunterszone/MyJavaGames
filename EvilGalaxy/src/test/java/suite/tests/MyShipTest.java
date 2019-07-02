@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -21,50 +22,50 @@ public class MyShipTest {
 		myShip = new MyShip(x, y);
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipUnit() {
 		assertNotNull(myShip.loadImage(myShip.initCraft()));
-		assertFalse(myShip.initCraft().equals(""));
+		assertNotEquals("", myShip.initCraft());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipDamaged() {
 		assertNotNull(myShip.loadImage(myShip.shipDamaged()));
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipUpsideDown() {
 		assertNotNull(myShip.loadImage(myShip.upsideDown()));
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipFired() {
 		assertNotNull(myShip.loadImage(myShip.shipOnFire()));
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipEscapeForbidden() {
 		assertNotNull(myShip.loadImage(myShip.escapeForbidden()));
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipGodMode() {
 		assertNotNull(myShip.loadImage(myShip.godMode()));
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testListsOfAmmos() {
 		assertFalse(myShip.loadMissiles().isEmpty());
 		assertFalse(myShip.loadRockets().isEmpty());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testGunLockedSound() {
 		PlayWave1st sound = new PlayWave1st(myShip.gunLocked());
 		assertTrue(sound.doesFileExists());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testMyShipBorders() {
 		assertFalse(myShip.getX() < 0 || myShip.getX() > 900);
 		assertFalse(myShip.getY() < 0 || myShip.getY() > 700);

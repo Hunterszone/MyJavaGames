@@ -1,6 +1,6 @@
 package suite.tests;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -19,10 +19,10 @@ public class SaveSignTest {
 		sign = new SaveSign(x, y);
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testSaveSign() {
 		assertNotNull(sign.loadImage(sign.initSave()));
-		assertFalse(sign.initSave().equals(""));
+		assertNotEquals("", sign.initSave());
 	}
 
 	@After

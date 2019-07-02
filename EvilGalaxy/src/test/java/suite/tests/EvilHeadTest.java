@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -19,13 +20,13 @@ public class EvilHeadTest {
 		evilHead = new EvilHead(x, y);
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testEvilHead() {
 		assertNotNull(evilHead.loadImage(evilHead.initEnemy()));
-		assertFalse(evilHead.initEnemy().equals(""));
+		assertNotEquals("", evilHead.initEnemy());
 	}
 
-	@Test
+	@Test(timeout = 200)
 	public void testListsOfAmmos() {
 		assertFalse(evilHead.throwCanons().isEmpty());
 		assertFalse(evilHead.throwFireballs().isEmpty());

@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -21,18 +22,18 @@ public class AlienTest {
 	}
 
 	@Test(timeout = 200)
-	public void testAlienUnit_imageNotNull_imageNameNotEmpty() {
+	public void testAlienUnit() {
 		assertNotNull(alien.loadImage(alien.initAlien()));
-		assertFalse(alien.initAlien().equals(""));
+		assertNotEquals("", alien.initAlien());
 	}
 
 	@Test(timeout = 200)
-	public void testListOfAliens_NotEmpty() {
+	public void testListOfAliens() {
 		assertFalse(InitObjects.initAliens().isEmpty());
 	}
 
 	@Test(timeout = 200)
-	public void testAliensBorders_imageInsideBorders() {
+	public void testAliensBorders() {
 		assertFalse(alien.getX() < 0);
 		assertFalse(alien.getY() > 1200);
 	}

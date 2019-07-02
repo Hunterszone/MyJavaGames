@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -22,7 +23,7 @@ public class BunkerTest {
 	@Test(timeout = 200)
 	public void testBunkerUnit() {
 		assertNotNull(bunker.loadImage(bunker.initBunker()));
-		assertFalse(bunker.initBunker().equals(""));
+		assertNotEquals("", bunker.initBunker());
 	}
 
 	@Test(timeout = 200)
