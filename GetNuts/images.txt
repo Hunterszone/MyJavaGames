@@ -1,7 +1,6 @@
 baggage.png
 bridge.png
 holder.png
-images.txt
 sokoban.png
 terrain.png
 wall.png
