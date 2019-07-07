@@ -63,8 +63,8 @@ public class Board extends JPanel {
 		addKeyListener(new TAdapter());
 		setFocusable(true);
 
-		LevelsAndBgs.addLevels();
-		LevelsAndBgs.addBackgrounds();
+		LevelsBgsEngine.addLevels();
+		LevelsBgsEngine.addBackgrounds();
 
 		initWorld();
 	}
@@ -102,9 +102,9 @@ public class Board extends JPanel {
 
 		LoadSounds.bgMusic.loop();
 
-		for (int i = 0; i < LevelsAndBgs.levels.get(levelNum).length(); i++) {
+		for (int i = 0; i < LevelsBgsEngine.levels.get(levelNum).length(); i++) {
 
-			char item = LevelsAndBgs.levels.get(levelNum).charAt(i);
+			char item = LevelsBgsEngine.levels.get(levelNum).charAt(i);
 
 			if (item == '\n') {
 				y += SPACE;
@@ -145,12 +145,12 @@ public class Board extends JPanel {
 
 	public void buildWorld(Graphics g) {
 
-		for (int i = 0; i < LevelsAndBgs.backgrounds.size(); i++) {
+		for (int i = 0; i < LevelsBgsEngine.backgrounds.size(); i++) {
 			if (completed == false) {
-				if (levelNum >= LevelsAndBgs.backgrounds.size()) {
-					g.drawImage(LevelsAndBgs.backgrounds.get(2), 0, 0, null);
+				if (levelNum >= LevelsBgsEngine.backgrounds.size()) {
+					g.drawImage(LevelsBgsEngine.backgrounds.get(2), 0, 0, null);
 				} else {
-					g.drawImage(LevelsAndBgs.backgrounds.get(levelNum), 0, 0, null);
+					g.drawImage(LevelsBgsEngine.backgrounds.get(levelNum), 0, 0, null);
 				}
 
 			} else {
@@ -184,14 +184,14 @@ public class Board extends JPanel {
 	}
 
 	public void loadNextLevel(Graphics g) {
-		for (int i = 0; i <= LevelsAndBgs.levels.size(); i++) {
+		for (int i = 0; i <= LevelsBgsEngine.levels.size(); i++) {
 			if (completed == true) {
 				g.setFont(font);
 				g.setColor(new Color(233, 233, 12));
-				if (levelNum <= LevelsAndBgs.levels.size() - 2) {
+				if (levelNum <= LevelsBgsEngine.levels.size() - 2) {
 					g.drawString("LEVEL " + (levelNum + 1) + " COMPLETED!", 150, 200);
 				}
-				if (levelNum > LevelsAndBgs.levels.size() - 2) {
+				if (levelNum > LevelsBgsEngine.levels.size() - 2) {
 					g.drawString("VICTORY!", 150, 200);
 					levelNum = 0;
 					restartLevel();
@@ -258,14 +258,14 @@ public class Board extends JPanel {
 				if (help == false) {
 					help = true;
 					if (help == true) {
-						Collections.shuffle(LevelsAndBgs.levels); // changes
+						Collections.shuffle(LevelsBgsEngine.levels); // changes
 																	// order of
 																	// levels
-						Collections.shuffle(LevelsAndBgs.backgrounds); // changes
+						Collections.shuffle(LevelsBgsEngine.backgrounds); // changes
 																		// order
 																		// of
 																		// bgs
-						LevelsAndBgs.levels.add(shuffleString(LevelsAndBgs.levels.get(levelNum))); // adds
+						LevelsBgsEngine.levels.add(shuffleString(LevelsBgsEngine.levels.get(levelNum))); // adds
 																									// random
 																									// levels
 																									// to

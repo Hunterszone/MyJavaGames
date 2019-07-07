@@ -22,7 +22,7 @@ public class BridgeTest {
 	@Test
 	public void testBridge() {
 		assertNotNull(bridge.getImage());
-		assertNotEquals("", bridge.img);
+		assertNotEquals("Bridge img name is empty", "", bridge.img);
 	}
 
 	@After

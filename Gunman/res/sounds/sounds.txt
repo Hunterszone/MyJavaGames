@@ -1,0 +1,9 @@
+bgmusic.wav
+collect.wav
+ding.wav
+explosion.wav
+footsteps.wav
+highsc.wav
+huh.wav
+magic.wav
+quack.wav

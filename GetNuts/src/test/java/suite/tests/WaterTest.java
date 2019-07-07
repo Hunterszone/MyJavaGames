@@ -22,7 +22,7 @@ public class WaterTest {
 	@Test
 	public void testWater() {
 		assertNotNull(water.getImage());
-		assertNotEquals("", water.img);
+		assertNotEquals("Water img name is empty", "", water.img);
 	}
 
 	@After

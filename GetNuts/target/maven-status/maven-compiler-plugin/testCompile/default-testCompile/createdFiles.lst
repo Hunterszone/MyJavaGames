@@ -1,8 +1,8 @@
 suite\tests\AreaTest.class
 suite\tests\WallTest.class
-suite\tests\LevelsAndBgsTest.class
 suite\tests\NutTest.class
 suite\tests\PlayerTest.class
+suite\tests\LoadResourcesTest.class
 suite\tests\ActorTest.class
 suite\main\AllTests.class
 suite\tests\WaterTest.class

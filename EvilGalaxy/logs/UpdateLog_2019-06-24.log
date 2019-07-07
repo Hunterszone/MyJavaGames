@@ -1,374 +1,146 @@
-Jun 24, 2019 2:55:39 AM launcher.Launcher needDownload
+Jun 24, 2019 3:22:07 AM launcher.Launcher needDownload
 INFO: Version: up-to-date
-Jun 24, 2019 2:55:46 AM launcher.Launcher needDownload
+Jun 24, 2019 3:22:12 AM launcher.Launcher needDownload
 INFO: Downloading!
-Jun 24, 2019 2:55:46 AM launcher.Launcher needDownload
+Jun 24, 2019 3:22:12 AM launcher.Launcher needDownload
 INFO: Updated to version "1.0" from version up-to-date
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
+Jun 24, 2019 3:22:12 AM launcher.Launcher <init>
 INFO: Dir saves/ already exists
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
-INFO: Created dir sounds/!
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
-INFO: Created dir images/!
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
-INFO: No need to download saves.txt!
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
+Jun 24, 2019 3:22:12 AM launcher.Launcher <init>
+INFO: Dir sounds/ already exists
+Jun 24, 2019 3:22:12 AM launcher.Launcher <init>
+INFO: Dir images/ already exists
+Jun 24, 2019 3:22:12 AM Downloading from
+	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/saves/save.txt
+To
+	 saves/save.txt
+ 
+INFO: 
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
 INFO: No need to download images.txt!
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
 INFO: No need to download sounds.txt!
-Jun 24, 2019 2:55:46 AM launcher.Launcher <init>
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/alien.gif
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/alien.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/alien2.gif
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/alien3.gif
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/balloon.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/bomber.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/boss.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/bunker.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/bunker_hit.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/canon.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/craft.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/craft_shake.gif
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/evilhead.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/evilhead2.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/fireball.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/flames.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/galaxy2.jpg
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/galaxy3.jpg
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/gift.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/gift2.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/gold.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/health.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/hitcraft.gif
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/lifebar.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/lightning.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/magnetic.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/missile.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/mute.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/newship.png
+Jun 24, 2019 3:22:13 AM launcher.Launcher <init>
+INFO: No need to download images/rocket.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/shadow1.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/strikehead.gif
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/strikehead.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/tenor.gif
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/volbutt.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/_alien2.gif
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/_shadow1.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/saved.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download images/pointer.png
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/attack.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/backmusic.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/backmusic2.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/bloop.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/boing.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/boing2.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/burned.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/collect.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/denied.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/explosion.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/fin.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/fuse.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/highsc.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/laser.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/magic.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/rocket.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/scream.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/smashed.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
+INFO: No need to download sounds/taunt.wav
+Jun 24, 2019 3:22:14 AM launcher.Launcher <init>
 INFO: Exists: true
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/alien.gif
-To
-	 images/alien.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/bomber.png
-To
-	 images/bomber.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/balloon.png
-To
-	 images/balloon.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/bunker.png
-To
-	 images/bunker.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/alien3.gif
-To
-	 images/alien3.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/alien2.gif
-To
-	 images/alien2.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/craft.png
-To
-	 images/craft.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/craft_shake.gif
-To
-	 images/craft_shake.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/bunker_hit.png
-To
-	 images/bunker_hit.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/_alien2.gif
-To
-	 images/_alien2.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/boss.png
-To
-	 images/boss.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/taunt.wav
-To
-	 sounds/taunt.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/rocket.wav
-To
-	 sounds/rocket.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/canon.png
-To
-	 images/canon.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/evilhead.png
-To
-	 images/evilhead.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/flames.png
-To
-	 images/flames.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/fireball.png
-To
-	 images/fireball.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/gift.png
-To
-	 images/gift.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/evilhead2.png
-To
-	 images/evilhead2.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/mute.png
-To
-	 images/mute.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/scream.wav
-To
-	 sounds/scream.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/hitcraft.gif
-To
-	 images/hitcraft.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/galaxy3.jpg
-To
-	 images/galaxy3.jpg
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/lifebar.png
-To
-	 images/lifebar.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/shadow1.png
-To
-	 images/shadow1.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/boing2.wav
-To
-	 sounds/boing2.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/newship.png
-To
-	 images/newship.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/missile.png
-To
-	 images/missile.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/collect.wav
-To
-	 sounds/collect.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/lightning.png
-To
-	 images/lightning.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/tenor.gif
-To
-	 images/tenor.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/gift2.png
-To
-	 images/gift2.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/explosion.wav
-To
-	 sounds/explosion.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/strikehead.gif
-To
-	 images/strikehead.gif
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/volbutt.png
-To
-	 images/volbutt.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/magnetic.png
-To
-	 images/magnetic.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/gold.png
-To
-	 images/gold.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/pointer.png
-To
-	 images/pointer.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/galaxy2.jpg
-To
-	 images/galaxy2.jpg
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/smashed.wav
-To
-	 sounds/smashed.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/health.png
-To
-	 images/health.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/strikehead.png
-To
-	 images/strikehead.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
+Jun 24, 2019 3:22:14 AM Downloading from
 	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/EvilGalaxy.jar
 To
 	 EvilGalaxy.jar
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/saved.png
-To
-	 images/saved.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/backmusic2.wav
-To
-	 sounds/backmusic2.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/backmusic.wav
-To
-	 sounds/backmusic.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/magic.wav
-To
-	 sounds/magic.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/fuse.wav
-To
-	 sounds/fuse.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/highsc.wav
-To
-	 sounds/highsc.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/bloop.wav
-To
-	 sounds/bloop.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/laser.wav
-To
-	 sounds/laser.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/attack.wav
-To
-	 sounds/attack.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/boing.wav
-To
-	 sounds/boing.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/burned.wav
-To
-	 sounds/burned.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/alien.png
-To
-	 images/alien.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/rocket.png
-To
-	 images/rocket.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/_shadow1.png
-To
-	 images/_shadow1.png
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/fin.wav
-To
-	 sounds/fin.wav
- 
-INFO: 
-Jun 24, 2019 2:55:47 AM Downloading from
-	 https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/denied.wav
-To
-	 sounds/denied.wav
  
 INFO: 

@@ -23,6 +23,12 @@ public final class Main extends GameMenu {
 	public void initGame() {
 
 		// MainFrame outlook
+//		GuiPanel guiP = new GuiPanel();
+//		guiP.setBackground(Color.black);
+//		guiP.add(new GuiButton(400, 130, 230, 120));
+//		guiP.add(new GuiButton(400, 330, 230, 120));
+//		guiP.add(new GuiButton(400, 530, 230, 120));
+//		add(guiP);
 		add(new DrawScene());
 		setResizable(false);
 		setUndecorated(true);
@@ -48,5 +54,4 @@ public final class Main extends GameMenu {
 			}
 		});
 	}
-
 }

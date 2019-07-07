@@ -22,7 +22,7 @@ public class WallTest {
 	@Test
 	public void testWall() {
 		assertNotNull(wall.getImage());
-		assertNotEquals("", wall.img);
+		assertNotEquals("Wall img name is empty", "", wall.img);
 	}
 
 	@After

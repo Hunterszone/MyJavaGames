@@ -1,0 +1,6 @@
+game_over_font.fnt
+game_over_font.png
+game_over_mine_2.png
+score_numer_font.fnt
+score_numer_font.png
+score_numer_mine.png

@@ -22,7 +22,7 @@ public class PlayerTest {
 	@Test
 	public void testPlayer() {
 		assertNotNull(player.getImage());
-		assertNotEquals("", player.img);
+		assertNotEquals("Player img name is empty", "", player.img);
 	}
 
 	@After

@@ -22,7 +22,7 @@ public class AreaTest {
 	@Test
 	public void testArea() {
 		assertNotNull(area.getImage());
-		assertNotEquals("", area.img);
+		assertNotEquals("Area img name is empty", "", area.img);
 	}
 
 	@After

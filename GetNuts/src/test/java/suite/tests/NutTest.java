@@ -22,7 +22,7 @@ public class NutTest {
 	@Test
 	public void testNut() {
 		assertNotNull(nut.getImage());
-		assertNotEquals("", nut.img);
+		assertNotEquals("Nut img name is empty", "", nut.img);
 	}
 
 	@After
