@@ -1,0 +1,3 @@
+[submodule "chatapp"]
+	path = chatapp
+	url = https://github.com/Hunterszone/chatapp
