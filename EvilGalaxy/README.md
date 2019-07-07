@@ -1,4 +1,4 @@
-# README - check it out!
+# README - check it out now!
 
 ### Main techniques: moving sprites, collision detection, three levels of difficulty, multiple levels, AI algorithms
 
