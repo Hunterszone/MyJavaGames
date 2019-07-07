@@ -1,0 +1,6 @@
+baggage.png
+bridge.png
+holder.png
+sokoban.png
+terrain.png
+wall.png

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase=
+"https://me4gaming.com/LauncherGN/" 
+    href="Launcher.jnlp">
+    <information>
+        <title>Launcher GN</title>
+        <vendor>Drenski Studios</vendor>
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.7+"
+              href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="Launcher.jar"
+            main="true" />
+
+    </resources>
+    <application-desc
+         name="Launcher"
+         main-class=
+           "launcher.Launcher"
+         width="50"
+         height="50">
+     </application-desc>
+     <update check="background"/>
+</jnlp>               

@@ -1,0 +1,7 @@
+backmusic.wav
+boing.wav
+correct.wav
+dead.wav
+denied.wav
+highsc.wav
+move.wav
