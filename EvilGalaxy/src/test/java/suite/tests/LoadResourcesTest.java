@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import game_engine.Images;
 import sound_engine.SoundEffects;
 
 public class LoadResourcesTest {
@@ -17,18 +18,26 @@ public class LoadResourcesTest {
 		assertTrue("Folder 'images' does not exist", Files.exists(Paths.get("images")));
 		assertTrue("Folder 'sounds' does not exist", Files.exists(Paths.get("sounds")));
 
-		assertTrue("BLOOP sound file does not exist", Files.exists(Paths.get(SoundEffects.BLOOP.getSound())));
-		assertTrue("BURNED sound file does not exist", Files.exists(Paths.get(SoundEffects.BURNED.getSound())));
-		assertTrue("EXPLOSION sound file does not exist", Files.exists(Paths.get(SoundEffects.EXPLOSION.getSound())));
-		assertTrue("SCREAM sound file does not exist", Files.exists(Paths.get(SoundEffects.SCREAM.getSound())));
+		if (Files.exists(Paths.get("images"))) {
+			for (int i = 0; i < Images.values().length; i++) {
+				assertTrue(Images.values()[i].toString() + " sound file does not exist",
+						Files.exists(Paths.get(Images.values()[i].getImg())));
+				assertNotEquals(Images.values()[i].toString() + " sound value is NULL", null,
+						Images.values()[i].getImg());
+				assertNotEquals(Images.values()[i].toString() + " sound value is empty", "",
+						Images.values()[i].getImg());
+			}
+		}
 
-		assertNotEquals("BLOOP sound value is NULL", null, SoundEffects.BLOOP.getSound());
-		assertNotEquals("BURNED sound value is NULL", null, SoundEffects.BURNED.getSound());
-		assertNotEquals("EXPLOSION sound value is NULL", null, SoundEffects.EXPLOSION.getSound());
-		assertNotEquals("SCREAM sound value is NULL", null, SoundEffects.SCREAM.getSound());
-		assertNotEquals("BLOOP sound value is empty", "", SoundEffects.BLOOP.getSound());
-		assertNotEquals("BURNED sound value is empty", "", SoundEffects.BURNED.getSound());
-		assertNotEquals("EXPLOSION sound value is empty", "", SoundEffects.EXPLOSION.getSound());
-		assertNotEquals("SCREAM sound value is empty", "", SoundEffects.SCREAM.getSound());
+		if (Files.exists(Paths.get("sounds"))) {
+			for (int i = 0; i < SoundEffects.values().length; i++) {
+				assertTrue(SoundEffects.values()[i].toString() + " sound file does not exist",
+						Files.exists(Paths.get(SoundEffects.values()[i].getSound())));
+				assertNotEquals(SoundEffects.values()[i].toString() + " sound value is NULL", null,
+						SoundEffects.values()[i].getSound());
+				assertNotEquals(SoundEffects.values()[i].toString() + " sound value is empty", "",
+						SoundEffects.values()[i].getSound());
+			}
+		}
 	}
 }

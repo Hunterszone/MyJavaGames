@@ -4,10 +4,12 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 import items.ShipMissile;
 import items.ShipRocket;
 import sound_engine.PlayWave1st;
+import sound_engine.SoundEffects;
 
 public class MyShip extends SpritePattern {
 
@@ -23,13 +25,13 @@ public class MyShip extends SpritePattern {
 	public MyShip(int x, int y) {
 		super(x, y);
 
-		initCraft();
+		initShip();
 		initAmmo();
 	}
 
-	public String initCraft() {
+	public String initShip() {
 
-		imageName = "images/craft.png";
+		imageName = Images.MYSHIPINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -37,7 +39,7 @@ public class MyShip extends SpritePattern {
 
 	public String shipOnFire() {
 
-		imageName = "images/newship.png";
+		imageName = Images.MYSHIPONFIRE.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -45,7 +47,7 @@ public class MyShip extends SpritePattern {
 
 	public String upsideDown() {
 
-		imageName = "images/alien.gif";
+		imageName = Images.MYSHIPUPDOWN.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -53,7 +55,7 @@ public class MyShip extends SpritePattern {
 
 	public String godMode() {
 
-		imageName = "images/alien2.gif";
+		imageName = Images.MYSHIPGOD.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -61,7 +63,7 @@ public class MyShip extends SpritePattern {
 
 	public String escapeForbidden() {
 
-		imageName = "images/alien3.gif";
+		imageName = Images.MYSHIPESCAPE.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -70,7 +72,7 @@ public class MyShip extends SpritePattern {
 
 	public String shipDamaged() {
 
-		imageName = "images/hitcraft.gif";
+		imageName = Images.MYSHIPDAMAGED.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -153,21 +155,21 @@ public class MyShip extends SpritePattern {
 	}
 
 	public List<ShipMissile> loadMissiles() {
-		soundName = "sounds/laser.wav";
+		soundName = SoundEffects.LASER.getSound();
 		missiles.add(new ShipMissile(x + width, y + height / 2));
 		new PlayWave1st(soundName).start();
 		return missiles;
 	}
 
 	public List<ShipRocket> loadRockets() {
-		soundName = "sounds/rocket.wav";
+		soundName = SoundEffects.ROCKET.getSound();
 		rockets.add(new ShipRocket(x + width, y + height / 2));
 		new PlayWave1st(soundName).start();
 		return rockets;
 	}
 
 	public String gunLocked() {
-		soundName = "sounds/denied.wav";
+		soundName = SoundEffects.DENIED.getSound();
 		new PlayWave1st(soundName).start();
 		return soundName;
 	}
@@ -203,22 +205,22 @@ public class MyShip extends SpritePattern {
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = 0;
-			initCraft();
+			initShip();
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			speedX = 0;
-			initCraft();
+			initShip();
 		}
 
 		if (key == KeyEvent.VK_UP) {
 			speedY = 0;
-			initCraft();
+			initShip();
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
 			speedY = 0;
-			initCraft();
+			initShip();
 		}
 	}
 }

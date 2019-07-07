@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 import items.BunkerBullet;
 
@@ -27,12 +28,12 @@ public class Bunker extends SpritePattern {
 	}
 
 	public List<BunkerBullet> loadBullet() {
-		bullets.add(new BunkerBullet(x + width - 40, y - 50 + height / 2));
+		bullets.add(new BunkerBullet(x + width + 40, y - 50 + height / 2));
 		return bullets;
 	}
 
 	public List<BunkerBullet> loadBullet2() {
-		bullets2.add(new BunkerBullet(x + width - 40, y - 50 + height / 2));
+		bullets2.add(new BunkerBullet(x - width - 40, y - 50 + height / 2));
 		return bullets2;
 	}
 
@@ -45,14 +46,14 @@ public class Bunker extends SpritePattern {
 	}
 
 	public String initBunker() {
-		imageName = "images/bunker.png";
+		imageName = Images.BUNKER.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
 	}
 
 	public String initBunkerHit() {
-		imageName = "images/bunker_hit.png";
+		imageName = Images.BUNKERHIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

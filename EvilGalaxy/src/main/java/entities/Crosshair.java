@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.event.KeyEvent;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class Crosshair extends SpritePattern {
@@ -19,7 +20,7 @@ public class Crosshair extends SpritePattern {
 	}
 
 	public String initCrosshair() {
-		imageName = "images/pointer.png";
+		imageName = Images.CROSSHAIR.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

@@ -23,8 +23,8 @@ public class DragonTest {
 
 	@Test(timeout = 200)
 	public void testDragonUnit() {
-		assertNotNull(dragon.loadImage(dragon.initBoss()));
-		assertNotEquals("", dragon.initBoss());
+		assertNotNull(dragon.loadImage(dragon.initDragon()));
+		assertNotEquals("", dragon.initDragon());
 	}
 
 	@Test(timeout = 200)

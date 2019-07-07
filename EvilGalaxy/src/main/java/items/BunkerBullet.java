@@ -1,5 +1,6 @@
 package items;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class BunkerBullet extends SpritePattern {
@@ -15,7 +16,7 @@ public class BunkerBullet extends SpritePattern {
 	}
 
 	public String initBullet() {
-		imageName = "images/bomber.png";
+		imageName = Images.BULLETINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

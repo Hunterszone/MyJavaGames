@@ -2,6 +2,7 @@ package items;
 
 import java.awt.event.KeyEvent;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class VolBtn extends SpritePattern {
@@ -16,7 +17,7 @@ public class VolBtn extends SpritePattern {
 	}
 
 	public String initVol() {
-		imageName = "images/volbutt.png";
+		imageName = Images.VOLUMEINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

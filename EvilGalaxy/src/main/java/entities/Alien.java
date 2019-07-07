@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class Alien extends SpritePattern {
@@ -18,7 +19,7 @@ public class Alien extends SpritePattern {
 	}
 
 	public String initAlien() {
-		imageName = "images/alien.png";
+		imageName = Images.ALIEN.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

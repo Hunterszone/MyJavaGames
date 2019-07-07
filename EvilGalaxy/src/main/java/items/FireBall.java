@@ -1,5 +1,6 @@
 package items;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class FireBall extends SpritePattern {
@@ -16,7 +17,7 @@ public class FireBall extends SpritePattern {
 	}
 
 	public String initEvilGun() {
-		imageName = "images/fireball.png";
+		imageName = Images.FIREBALLINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

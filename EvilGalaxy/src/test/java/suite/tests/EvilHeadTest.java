@@ -22,8 +22,8 @@ public class EvilHeadTest {
 
 	@Test(timeout = 200)
 	public void testEvilHead() {
-		assertNotNull(evilHead.loadImage(evilHead.initEnemy()));
-		assertNotEquals("", evilHead.initEnemy());
+		assertNotNull(evilHead.loadImage(evilHead.initHead()));
+		assertNotEquals("", evilHead.initHead());
 	}
 
 	@Test(timeout = 200)

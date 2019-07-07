@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import frames.GameMenu;
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class SaveSign extends SpritePattern implements KeyListener {
@@ -17,7 +18,7 @@ public class SaveSign extends SpritePattern implements KeyListener {
 	}
 
 	public String initSave() {
-		imageName = "images/saved.png";
+		imageName = Images.SAVESIGNINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

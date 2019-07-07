@@ -1,5 +1,6 @@
 package items;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class ShipRocket extends SpritePattern {
@@ -16,7 +17,7 @@ public class ShipRocket extends SpritePattern {
 	}
 
 	public String initRocket() {
-		imageName = "images/rocket.png";
+		imageName = Images.ROCKETINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

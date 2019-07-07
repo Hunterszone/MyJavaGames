@@ -2,6 +2,7 @@ package items;
 
 import java.util.List;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class Gold extends SpritePattern {
@@ -18,8 +19,7 @@ public class Gold extends SpritePattern {
 	}
 
 	public String initGifts() {
-
-		imageName = "images/gold.png";
+		imageName = Images.GOLDINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

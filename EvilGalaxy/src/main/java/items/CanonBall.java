@@ -1,5 +1,6 @@
 package items;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class CanonBall extends SpritePattern {
@@ -10,20 +11,17 @@ public class CanonBall extends SpritePattern {
 
 	public CanonBall(int x, int y) {
 		super(x, y);
-
 		initCanon();
 	}
 
 	public String initCanon() {
-		imageName = "images/canon.png";
+		imageName = Images.CANONINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
 	}
 
 	public void moveCanon() {
-
 		x -= CANON_SPEED;
-
 	}
 }

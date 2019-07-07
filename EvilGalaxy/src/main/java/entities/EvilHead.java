@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 import items.CanonBall;
 import items.FireBall;
@@ -20,12 +21,12 @@ public class EvilHead extends SpritePattern {
 
 	public EvilHead(int x, int y) {
 		super(x, y);
-		initEnemy();
+		initHead();
 		initAmmo();
 	}
 
-	public String initEnemy() {
-		imageName = "images/evilhead.png";
+	public String initHead() {
+		imageName = Images.EVILHEAD.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
@@ -54,25 +55,25 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 500) {
 			speedX += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		if (x > 800) {
 
 			speedX -= 1.2;
 			speedY += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		if (y > 500) {
 			speedY -= 1;
-			initEnemy();
+			initHead();
 		}
 
 	}
@@ -99,25 +100,25 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 500) {
 			speedX += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		if (x > 800) {
 			speedX -= 1.2;
 			speedY += 1.2;
-			initEnemy();
+			initHead();
 
 		}
 
 		if (y > 500) {
 			speedY -= 1;
-			initEnemy();
+			initHead();
 		}
 
 	}
@@ -144,24 +145,24 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 500) {
 			speedX += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		if (x > 800) {
 			speedX -= 1.2;
 			speedY += 1.2;
-			initEnemy();
+			initHead();
 		}
 
 		if (y > 500) {
 			speedY -= 1;
-			initEnemy();
+			initHead();
 		}
 
 	}

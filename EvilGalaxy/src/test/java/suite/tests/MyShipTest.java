@@ -24,8 +24,8 @@ public class MyShipTest {
 
 	@Test(timeout = 200)
 	public void testMyShipUnit() {
-		assertNotNull(myShip.loadImage(myShip.initCraft()));
-		assertNotEquals("", myShip.initCraft());
+		assertNotNull(myShip.loadImage(myShip.initShip()));
+		assertNotEquals("", myShip.initShip());
 	}
 
 	@Test(timeout = 200)

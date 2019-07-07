@@ -570,7 +570,6 @@ public class DrawScene extends UpdateObjects {
 				GameMenu.savedOnL3 = false;
 				GameMenu.savedOnL4 = true;
 			}
-
 			if (GameMenu.autosave.isSelected() == false) {
 				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: OFF", 790, 15);

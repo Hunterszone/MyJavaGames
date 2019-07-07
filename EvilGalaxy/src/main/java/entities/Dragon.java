@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class Dragon extends SpritePattern {
@@ -14,11 +15,11 @@ public class Dragon extends SpritePattern {
 	public Dragon(int x, int y) {
 		super(x, y);
 
-		initBoss();
+		initDragon();
 	}
 
-	public String initBoss() {
-		imageName = "images/boss.png";
+	public String initDragon() {
+		imageName = Images.DRAGON.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
