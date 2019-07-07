@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import javax.imageio.ImageIO;
 
-public class LevelsAndBgs {
+public class LevelsBgsEngine {
 
 	static List<String> levels = new ArrayList<String>();
 	static List<Image> backgrounds = new ArrayList<Image>();
@@ -23,13 +23,15 @@ public class LevelsAndBgs {
 		return new String(encoded, encoding);
 	}
 
-	static void addLevels() {
+	public static String addLevels() {
+		String filePath = null;
+		String levelString = null;
 		try {
 			Stream<Path> files = Files.list(Paths.get("levels"));
 			long filesCount = files.count();
-			String levelString;
 			for (int i = 0; i < filesCount; i++) {
-				levelString = readFile("levels/level" + i + ".txt", Charset.defaultCharset());
+				filePath = "levels/level" + i + ".txt";
+				levelString = readFile(filePath, Charset.defaultCharset());
 				levels.add(levelString);
 			}
 			files.close();
@@ -37,14 +39,16 @@ public class LevelsAndBgs {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return filePath;
 	}
 
-	static void addBackgrounds() {
+	public static File addBackgrounds() {
+		File sourceImage = null;
 		try {
 			Stream<Path> images = Files.list(Paths.get("backgrounds"));
 			long imagesCount = images.count();
 			for (int i = 0; i < imagesCount; i++) {
-				File sourceImage = new File("backgrounds/bg" + i + ".jpg");
+				sourceImage = new File("backgrounds/bg" + i + ".jpg");
 				Image levelBG = ImageIO.read(sourceImage);
 				backgrounds.add(levelBG);
 			}
@@ -53,6 +57,6 @@ public class LevelsAndBgs {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		return sourceImage;
 	}
 }
