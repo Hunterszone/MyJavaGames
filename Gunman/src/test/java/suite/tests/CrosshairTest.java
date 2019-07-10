@@ -17,30 +17,31 @@ import gameDevelopment.MySprite;
 
 public class CrosshairTest {
 
-	private MySprite sprite;
-	private Entity entity;
+	private MySprite crosshair;
+	private Entity enemy;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		sprite = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
-		entity = new EnemyEntity(sprite, x, y);
+		crosshair = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
+		enemy = new EnemyEntity(crosshair, x, y);
 	}
 
 	@Test
 	public void testCrosshair() {
-		assertNotNull(Game.initCrosshair(sprite));
+		assertNotNull(Game.initCrosshair(crosshair));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initCrosshair(sprite).remove(entity));
-		Display.destroy();
+		assertTrue(Game.initCrosshair(crosshair).remove(enemy));
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		sprite = null;
+		Display.destroy();
+		crosshair = null;
+		enemy = null;
 	}
 }
