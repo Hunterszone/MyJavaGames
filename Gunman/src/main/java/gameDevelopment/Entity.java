@@ -1,29 +1,24 @@
 package gameDevelopment;
 
-import java.awt.Rectangle;
+interface RemoveEntities {
+	boolean remove(Entity other);
+}
 
-public abstract class Entity {
+interface CheckCollision {
+	boolean collidesWith(Entity other);
+}
+
+public abstract class Entity implements RemoveEntities, CheckCollision {
 	protected int x;
 	protected int y;
 	protected MySprite sprite;
 	private boolean visible;
-
-	private Rectangle hero = new Rectangle();
-	private Rectangle object = new Rectangle();
 
 	public Entity(MySprite sprite, int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.sprite = sprite;
 		this.visible = true;
-	}
-
-	public abstract boolean remove(Entity other);
-
-	public boolean collidesWith(Entity other) {
-		hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-		object.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-		return hero.intersects(object);
 	}
 
 	public void draw() {
@@ -60,10 +55,5 @@ public abstract class Entity {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
-	}
-
-	public void collidedWith(HeroEntity other) {
-		// TODO Auto-generated method stub
-
 	}
 }

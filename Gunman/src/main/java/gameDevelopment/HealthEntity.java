@@ -11,4 +11,9 @@ public class HealthEntity extends Entity {
 		return false;
 	}
 
+	@Override
+	public boolean collidesWith(Entity other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

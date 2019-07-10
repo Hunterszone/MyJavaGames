@@ -22,16 +22,13 @@ import org.newdawn.slick.util.ResourceLoader;
 
 /**
  *
- * This is a <em>very basic</em> skeleton to init a game and run it.
+ * This is a skeleton to init a game and run it.
  *
  * start() -> init() -> run() -> cleanup()
  *
  * Gameloop - run() Logic - logic() - Here we make all calculations and collect
  * the user input Render - render() - Here we draw every graphic object to the
  * screen
- *
- * Task: Draw tiles to the screen and draw an avatar, which can move in any
- * direction (right/lef/up/down)
  *
  */
 public class Game {
@@ -53,6 +50,7 @@ public class Game {
 	public static int FLOOR_HEIGHT = SCREEN_SIZE_HEIGHT - 695;
 	private static final int MAX_JUMP = 70;
 	private boolean isJumping = false;
+	private static boolean isNotified = false;
 
 	/** Desired frame time */
 	private static final int FRAMERATE = 60;
@@ -124,7 +122,7 @@ public class Game {
 	 *
 	 * @throws Exception if init fails
 	 */
-	private void init() throws Exception {
+	public void init() throws Exception {
 		MySprite avatarTexture;
 		MySprite treasureSprite;
 		MySprite mineSprite;
@@ -184,7 +182,7 @@ public class Game {
 			awtFont = new Font("Times New Roman", Font.BOLD, 24);
 			font = new TrueTypeFont(awtFont, false);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			finished = true;
 		}
@@ -224,7 +222,7 @@ public class Game {
 		}
 	}
 
-	private static void initEnemies(MySprite enemyTexture) {
+	public static EnemyEntity initEnemies(MySprite enemyTexture) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
@@ -233,8 +231,10 @@ public class Game {
 						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
 				objectsOnALevel.add(enemy);
 			}
-			enemies.put(i, objectsOnALevel);
+			if (enemies != null)
+				enemies.put(i, objectsOnALevel);
 		}
+		return enemy;
 	}
 
 	private void initGL(int width, int height) {
@@ -356,8 +356,6 @@ public class Game {
 			finished = true;
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-//			objectsOnLevel = healthpacks.get(currentLevel);
-//			checkForItems(crosshair, objectsOnLevel);
 			enemiesOnLevel = enemies.get(currentLevel);
 			checkForEnemies(crosshair, enemiesOnLevel);
 		}
@@ -472,7 +470,6 @@ public class Game {
 
 	private void checkForEnemies(Crosshair crosshair, ArrayList<EnemyEntity> enemiesOnLevel) {
 		EnemyEntity enemy;
-
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (crosshair.collidesWith(enemy)) {
@@ -490,7 +487,7 @@ public class Game {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (gunman.collidesWith(enemy)) {
-				enemy.collidedWith(gunman);
+				enemy.remove(gunman);
 				enemiesOnLevel.remove(enemy);
 				enemiesKilled++;
 				duckhit.play(1, 0.2f);
@@ -587,7 +584,7 @@ public class Game {
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
 			initEnemies(enemiesSprite);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -598,7 +595,7 @@ public class Game {
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/chest.png")));
 			initTreasures(treasureSprite);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -609,25 +606,13 @@ public class Game {
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
 			initHealth(mineSprite);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
 
 	public static boolean notifyCrosshair(Entity crossh, Object object) {
-		ArrayList<Entity> objectsOnLevel;
 		ArrayList<EnemyEntity> enemiesOnLevel;
-		boolean isNotified = false;
-//		if (object instanceof HealthEntity) {
-//			isNotified = true;
-//			objectsOnLevel = healthpacks.get(currentLevel);
-//			health = (HealthEntity) object;
-//			health.setVisible(false);
-//			objectsOnLevel.remove(health);
-//			lives++;
-//			healthy.play(1, 0.2f);
-//			return isNotified;
-//		}
 		if (object instanceof EnemyEntity) {
 			enemiesOnLevel = null;
 			isNotified = true;
@@ -641,16 +626,21 @@ public class Game {
 		return isNotified;
 	}
 
-	public static void notifyEnemiesHit(Entity heroEntity, Object object) {
+	public static boolean notifyEnemiesHit(Entity heroEntity, Object object) {
 		ArrayList<EnemyEntity> objectsOnLevel;
 		if (object instanceof HeroEntity) {
-			objectsOnLevel = enemies.get(currentLevel);
-			enemy.setVisible(false);
-			objectsOnLevel.remove(enemy);
+			isNotified = true;
+			objectsOnLevel = null;
+			if (enemies != null) {
+				objectsOnLevel = enemies.get(currentLevel);
+				enemy.setVisible(false);
+				objectsOnLevel.remove(enemy);
+			}
 			lives--;
 			if (lives == 0)
 				gameRestart();
 		}
+		return isNotified;
 	}
 
 	public static void notifyItemsCollected(Entity heroEntity, Object object) {
