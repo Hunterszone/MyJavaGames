@@ -60,23 +60,39 @@ public class Game {
 	/** Exit the game */
 	private boolean finished;
 
-	private int currentLevel = 0;
-	private int enemiesKilled = 0;
-	private int treasuresFound = 0;
-	private int lives = 3;
+	private static int currentLevel = 0;
+	private static int enemiesKilled = 0;
+	private static int treasuresFound = 0;
+	private static int lives = 3;
 
 	private LevelTile levels[] = new LevelTile[MAX_LEVELS];
 	private HeroEntity hero;
-	private EnemyEntity enemy;
-	private HealthEntity health;
-	private Crosshair crosshair;
-	private HashMap<Integer, ArrayList<Entity>> treasures;
-	private HashMap<Integer, ArrayList<Entity>> healthpacks;
-	private HashMap<Integer, ArrayList<EnemyEntity>> enemies;
+	private static EnemyEntity enemy;
+	private static HealthEntity health;
+	private static Crosshair crosshair;
+	private static HashMap<Integer, ArrayList<Entity>> treasures;
+	private static HashMap<Integer, ArrayList<Entity>> healthpacks;
+	private static HashMap<Integer, ArrayList<EnemyEntity>> enemies;
 
 	private TrueTypeFont font;
 	private Font awtFont;
-	private Sound footsteps, healthy, denied, collect, shot, duckhit, restart, bgmusic, quack;
+	private Sound footsteps;
+
+	private static Sound healthy;
+
+	private Sound denied;
+
+	private static Sound collect;
+
+	private Sound shot;
+
+	private Sound duckhit;
+
+	private static Sound restart;
+
+	private Sound bgmusic;
+
+	private Sound quack;
 
 	/**
 	 * Application init
@@ -127,12 +143,12 @@ public class Game {
 			// Crosshair
 			crosshairSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
-			initCrosshair(this, crosshairSprite);
+			initCrosshair(crosshairSprite);
 
 			// Avatar
 			avatarTexture = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
-			hero = new HeroEntity(this, avatarTexture, AVATAR_START_POS_X, AVATAR_START_POS_Y);
+			hero = new HeroEntity(avatarTexture, AVATAR_START_POS_X, AVATAR_START_POS_Y);
 
 			// Treasures
 			treasures = new HashMap<Integer, ArrayList<Entity>>();
@@ -174,12 +190,13 @@ public class Game {
 		}
 	}
 
-	private void initCrosshair(Object object, MySprite sprite) {
-		crosshair = new Crosshair(object, sprite, SCREEN_SIZE_WIDTH - sprite.getWidth(),
+	public static Crosshair initCrosshair(MySprite sprite) {
+		crosshair = new Crosshair(sprite, SCREEN_SIZE_WIDTH - sprite.getWidth(),
 				SCREEN_SIZE_HEIGHT - sprite.getHeight());
+		return crosshair;
 	}
 
-	private void initTreasures(MySprite sprite) {
+	private static void initTreasures(MySprite sprite) {
 		TreasureEntity treasure;
 		Random r = new Random();
 
@@ -194,7 +211,7 @@ public class Game {
 		}
 	}
 
-	private void initHealth(MySprite sprite) {
+	private static void initHealth(MySprite sprite) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<Entity> objectsOnALevel = new ArrayList<Entity>();
@@ -207,12 +224,12 @@ public class Game {
 		}
 	}
 
-	private void initEnemies(MySprite enemyTexture) {
+	private static void initEnemies(MySprite enemyTexture) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
 			for (int j = 0; j < ENEMIES_ON_LEVEL; j++) {
-				enemy = new EnemyEntity(this, enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
+				enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
 				objectsOnALevel.add(enemy);
 			}
@@ -339,8 +356,8 @@ public class Game {
 			finished = true;
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			objectsOnLevel = healthpacks.get(currentLevel);
-			checkForItems(crosshair, objectsOnLevel);
+//			objectsOnLevel = healthpacks.get(currentLevel);
+//			checkForItems(crosshair, objectsOnLevel);
 			enemiesOnLevel = enemies.get(currentLevel);
 			checkForEnemies(crosshair, enemiesOnLevel);
 		}
@@ -444,7 +461,6 @@ public class Game {
 
 	private void checkForItems(Entity initObject, ArrayList<Entity> objectsOnLevel) {
 		Entity object;
-
 		for (int jj = 0; jj < objectsOnLevel.size(); jj++) {
 			object = objectsOnLevel.get(jj);
 			if (initObject.collidesWith(object)) {
@@ -551,7 +567,7 @@ public class Game {
 		}
 	}
 
-	public void gameRestart() {
+	public static void gameRestart() {
 
 		lives = 3;
 		currentLevel = 0;
@@ -598,26 +614,34 @@ public class Game {
 		}
 	}
 
-	public void notifyCrosshair(Entity crossh, Object object) {
+	public static boolean notifyCrosshair(Entity crossh, Object object) {
 		ArrayList<Entity> objectsOnLevel;
 		ArrayList<EnemyEntity> enemiesOnLevel;
-
-		if (object instanceof HealthEntity) {
-			objectsOnLevel = healthpacks.get(currentLevel);
-			health = (HealthEntity) object;
-			health.setVisible(false);
-			objectsOnLevel.remove(health);
-			lives++;
-			healthy.play(1, 0.2f);
-		}
+		boolean isNotified = false;
+//		if (object instanceof HealthEntity) {
+//			isNotified = true;
+//			objectsOnLevel = healthpacks.get(currentLevel);
+//			health = (HealthEntity) object;
+//			health.setVisible(false);
+//			objectsOnLevel.remove(health);
+//			lives++;
+//			healthy.play(1, 0.2f);
+//			return isNotified;
+//		}
 		if (object instanceof EnemyEntity) {
-			enemiesOnLevel = enemies.get(currentLevel);
-			enemy.setVisible(false);
-			enemiesOnLevel.remove(enemy);
+			enemiesOnLevel = null;
+			isNotified = true;
+			if (enemies != null) {
+				enemiesOnLevel = enemies.get(currentLevel);
+				enemy.setVisible(false);
+				enemiesOnLevel.remove(enemy);
+			}
+			return isNotified;
 		}
+		return isNotified;
 	}
 
-	public void notifyEnemiesHit(Entity heroEntity, Object object) {
+	public static void notifyEnemiesHit(Entity heroEntity, Object object) {
 		ArrayList<EnemyEntity> objectsOnLevel;
 		if (object instanceof HeroEntity) {
 			objectsOnLevel = enemies.get(currentLevel);
@@ -629,7 +653,7 @@ public class Game {
 		}
 	}
 
-	public void notifyItemsCollected(Entity heroEntity, Object object) {
+	public static void notifyItemsCollected(Entity heroEntity, Object object) {
 		ArrayList<Entity> objectsOnLevel;
 
 		if (object instanceof TreasureEntity) {

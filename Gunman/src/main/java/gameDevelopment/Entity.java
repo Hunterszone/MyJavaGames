@@ -2,13 +2,12 @@ package gameDevelopment;
 
 import java.awt.Rectangle;
 
-
 public abstract class Entity {
 	protected int x;
 	protected int y;
-	private MySprite sprite;
+	protected MySprite sprite;
 	private boolean visible;
-	
+
 	private Rectangle hero = new Rectangle();
 	private Rectangle object = new Rectangle();
 
@@ -19,16 +18,14 @@ public abstract class Entity {
 		this.visible = true;
 	}
 
+	public abstract boolean remove(Entity other);
+
 	public boolean collidesWith(Entity other) {
 		hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-		object.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(),
-				other.sprite.getHeight());
-
+		object.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
 		return hero.intersects(object);
 	}
 
-	public abstract void remove(Entity other);
-	
 	public void draw() {
 		sprite.draw(x, y);
 	}
@@ -67,6 +64,6 @@ public abstract class Entity {
 
 	public void collidedWith(HeroEntity other) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

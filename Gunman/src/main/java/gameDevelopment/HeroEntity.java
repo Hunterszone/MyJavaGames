@@ -1,19 +1,15 @@
 package gameDevelopment;
 
 public class HeroEntity extends Entity {
-	private Object game;
-
-	public HeroEntity(Object game, MySprite sprite, int x, int y) {
+	public HeroEntity(MySprite sprite, int x, int y) {
 		super(sprite, x, y);
-		this.game = game;
 	}
 
 	@Override
-	public void remove(Entity other) {
-		Game myGame = (Game) game;
+	public boolean remove(Entity other) {
 		System.out.println("Collision detected HeroEntity");
-		myGame.notifyItemsCollected(this, other);
+		Game.notifyItemsCollected(this, other);
+		return false;
 	}
-
 
 }

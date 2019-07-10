@@ -7,7 +7,8 @@ public class HealthEntity extends Entity {
 	}
 
 	@Override
-	public void remove(Entity other) {
+	public boolean remove(Entity other) {
+		return false;
 	}
-	
+
 }
