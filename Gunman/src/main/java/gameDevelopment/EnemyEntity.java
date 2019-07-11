@@ -17,14 +17,12 @@ public class EnemyEntity extends Entity {
 		if (other instanceof HeroEntity) {
 			enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
 			hero.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-			System.out.println("Collision detected Enemy");
 			if (enemy.intersects(hero))
 				return true;
 		}
 		if (other instanceof Crosshair) {
 			enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
 			crosshair.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-			System.out.println("Collision detected Enemy");
 			if (enemy.intersects(crosshair))
 				return true;
 		}
@@ -33,6 +31,7 @@ public class EnemyEntity extends Entity {
 
 	@Override
 	public boolean remove(Entity other) {
+		System.out.println("Collision detected EnemyEntity");
 		return Game.notifyEnemiesHit(this, other);
 	}
 }

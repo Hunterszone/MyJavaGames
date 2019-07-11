@@ -15,8 +15,10 @@ public class HeroEntity extends Entity {
 
 	@Override
 	public boolean remove(Entity other) {
-		System.out.println("Collision detected HeroEntity");
-		Game.notifyItemsCollected(this, other);
+		if (other instanceof HealthEntity || other instanceof TreasureEntity)
+			Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
+		if (other instanceof EnemyEntity)
+			Game.notifyEnemiesHit(new HeroEntity(sprite, x, y), other);
 		return false;
 	}
 

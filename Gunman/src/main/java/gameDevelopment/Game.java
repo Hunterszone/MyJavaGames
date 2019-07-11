@@ -66,8 +66,9 @@ public class Game {
 	private LevelTile levels[] = new LevelTile[MAX_LEVELS];
 	private HeroEntity hero;
 	private static EnemyEntity enemy;
-	private static HealthEntity health;
+	private static HealthEntity healthpack;
 	private static Crosshair crosshair;
+	private static TreasureEntity treasure;
 	private static HashMap<Integer, ArrayList<Entity>> treasures;
 	private static HashMap<Integer, ArrayList<Entity>> healthpacks;
 	private static HashMap<Integer, ArrayList<EnemyEntity>> enemies;
@@ -194,10 +195,8 @@ public class Game {
 		return crosshair;
 	}
 
-	private static void initTreasures(MySprite sprite) {
-		TreasureEntity treasure;
+	public static TreasureEntity initTreasures(MySprite sprite) {
 		Random r = new Random();
-
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<Entity> objectsOnALevel = new ArrayList<Entity>();
 			for (int j = 0; j < TREASURES_ON_LEVEL; j++) {
@@ -205,21 +204,25 @@ public class Game {
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
 				objectsOnALevel.add(treasure);
 			}
-			treasures.put(i, objectsOnALevel);
+			if (treasures != null)
+				treasures.put(i, objectsOnALevel);
 		}
+		return treasure;
 	}
 
-	private static void initHealth(MySprite sprite) {
+	public static HealthEntity initHealth(MySprite sprite) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<Entity> objectsOnALevel = new ArrayList<Entity>();
 			for (int j = 0; j < MINES_ON_LEVEL; j++) {
-				health = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+				healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				objectsOnALevel.add(health);
+				objectsOnALevel.add(healthpack);
 			}
-			healthpacks.put(i, objectsOnALevel);
+			if (healthpacks != null)
+				healthpacks.put(i, objectsOnALevel);
 		}
+		return healthpack;
 	}
 
 	public static EnemyEntity initEnemies(MySprite enemyTexture) {
@@ -440,13 +443,13 @@ public class Game {
 
 		// Collision
 		objectsOnLevel = treasures.get(currentLevel);
-		checkForItems(hero, objectsOnLevel);
+		checkForItems(treasure, hero, objectsOnLevel);
 
 		objectsOnLevel = healthpacks.get(currentLevel);
-		checkForItems(hero, objectsOnLevel);
+		checkForItems(healthpack, hero, objectsOnLevel);
 
 		enemiesOnLevel = enemies.get(currentLevel);
-		checkForHero(hero, enemiesOnLevel);
+		checkForHero(enemy, hero, enemiesOnLevel);
 
 		// Sound
 //		SoundStore.get().poll(0);
@@ -457,13 +460,12 @@ public class Game {
 			footsteps.play(1, 0.2f);
 	}
 
-	private void checkForItems(Entity initObject, ArrayList<Entity> objectsOnLevel) {
-		Entity object;
+	private void checkForItems(Entity item, HeroEntity entity, ArrayList<Entity> objectsOnLevel) {
 		for (int jj = 0; jj < objectsOnLevel.size(); jj++) {
-			object = objectsOnLevel.get(jj);
-			if (initObject.collidesWith(object)) {
-				object.remove(initObject);
-				initObject.remove(object);
+			item = objectsOnLevel.get(jj);
+			if (entity.collidesWith(item)) {
+				item.remove(entity);
+				entity.remove(item);
 			}
 		}
 	}
@@ -481,9 +483,7 @@ public class Game {
 		}
 	}
 
-	private void checkForHero(HeroEntity gunman, ArrayList<EnemyEntity> enemiesOnLevel) {
-		EnemyEntity enemy;
-
+	private void checkForHero(EnemyEntity enemy, HeroEntity gunman, ArrayList<EnemyEntity> enemiesOnLevel) {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (gunman.collidesWith(enemy)) {
@@ -643,28 +643,34 @@ public class Game {
 		return isNotified;
 	}
 
-	public static void notifyItemsCollected(Entity heroEntity, Object object) {
+	public static boolean notifyItemsCollected(Entity heroEntity, Object object) {
 		ArrayList<Entity> objectsOnLevel;
-
 		if (object instanceof TreasureEntity) {
-			objectsOnLevel = treasures.get(currentLevel);
-			TreasureEntity treasure = (TreasureEntity) object;
-			treasure.setVisible(false);
-			objectsOnLevel.remove(treasure);
-			treasuresFound++;
-			collect.play(1, 0.2f);
+			isNotified = true;
+			if (treasures != null) {
+				objectsOnLevel = treasures.get(currentLevel);
+				TreasureEntity treasure = (TreasureEntity) object;
+				treasure.setVisible(false);
+				objectsOnLevel.remove(treasure);
+				treasuresFound++;
+				collect.play(1, 0.2f);
+			}
 			if (currentLevel + 1 == MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 					&& enemies.get(currentLevel).isEmpty())
 				gameRestart();
 		} else {
 			if (object instanceof HealthEntity) {
-				objectsOnLevel = healthpacks.get(currentLevel);
-				health = (HealthEntity) object;
-				health.setVisible(false);
-				objectsOnLevel.remove(health);
-				lives++;
-				healthy.play(1, 0.2f);
+				isNotified = true;
+				if (healthpacks != null) {
+					objectsOnLevel = healthpacks.get(currentLevel);
+					healthpack = (HealthEntity) object;
+					healthpack.setVisible(false);
+					objectsOnLevel.remove(healthpack);
+					lives++;
+					healthy.play(1, 0.2f);
+				}
 			}
 		}
+		return isNotified;
 	}
 }

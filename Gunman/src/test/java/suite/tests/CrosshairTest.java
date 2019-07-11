@@ -3,6 +3,8 @@ package suite.tests;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Rectangle;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,18 +21,28 @@ public class CrosshairTest {
 
 	private MySprite crosshair;
 	private Entity enemy;
+	private Rectangle crosshRect, enemyRect;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		crosshair = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
+		crosshair = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
 		enemy = new EnemyEntity(crosshair, x, y);
+		enemyRect = new Rectangle();
+		crosshRect = new Rectangle();
 	}
 
 	@Test
 	public void testCrosshair() {
 		assertNotNull(Game.initCrosshair(crosshair));
+	}
+
+	@Test
+	public void testCollidedWithEnemy() {
+		if (crosshRect.intersects(enemyRect))
+			assertTrue(Game.initCrosshair(crosshair).collidesWith(enemy));
 	}
 
 	@Test
@@ -43,5 +55,7 @@ public class CrosshairTest {
 		Display.destroy();
 		crosshair = null;
 		enemy = null;
+		enemyRect = null;
+		crosshRect = null;
 	}
 }

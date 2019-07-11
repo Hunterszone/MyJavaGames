@@ -53,7 +53,7 @@ public class EnemyEntityTest {
 
 	@Test
 	public void testCollidedWithCrosshair() {
-		if (crosshRect.intersects(enemyRect))
+		if (enemyRect.intersects(crosshRect))
 			assertTrue(Game.initEnemies(enemySprite).collidesWith(crosshair));
 	}
 

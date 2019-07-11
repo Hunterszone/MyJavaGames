@@ -20,7 +20,6 @@ public class Crosshair extends Entity {
 	public boolean collidesWith(Entity other) {
 		crosshair.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
 		enemy.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-		System.out.println("Collision detected Crosshair");
 		if (crosshair.intersects(enemy))
 			return true;
 		return false;
