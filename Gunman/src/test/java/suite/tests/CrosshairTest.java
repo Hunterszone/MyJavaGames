@@ -20,7 +20,7 @@ import gameDevelopment.MySprite;
 public class CrosshairTest {
 
 	private MySprite crosshair;
-	private Entity enemy;
+	private Entity enemyEntity;
 	private Rectangle crosshRect, enemyRect;
 	private int x, y;
 
@@ -29,7 +29,9 @@ public class CrosshairTest {
 		Display.create();
 		crosshair = new MySprite(
 				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
-		enemy = new EnemyEntity(crosshair, x, y);
+		enemyEntity = new EnemyEntity(
+				new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png"))), x,
+				y);
 		enemyRect = new Rectangle();
 		crosshRect = new Rectangle();
 	}
@@ -42,19 +44,19 @@ public class CrosshairTest {
 	@Test
 	public void testCollidedWithEnemy() {
 		if (crosshRect.intersects(enemyRect))
-			assertTrue(Game.initCrosshair(crosshair).collidesWith(enemy));
+			assertTrue(Game.initCrosshair(crosshair).collidesWith(enemyEntity));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initCrosshair(crosshair).remove(enemy));
+		assertTrue(Game.initCrosshair(crosshair).removedByHero(enemyEntity));
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		Display.destroy();
 		crosshair = null;
-		enemy = null;
+		enemyEntity = null;
 		enemyRect = null;
 		crosshRect = null;
 	}

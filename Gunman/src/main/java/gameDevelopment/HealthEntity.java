@@ -12,8 +12,8 @@ public class HealthEntity extends Entity {
 	}
 
 	@Override
-	public boolean remove(Entity other) {
-		System.out.println("Collision detected HealthEntity");
+	public boolean removedByHero(Entity other) {
+		System.out.println("Hero intersects HealthEntity");
 		return Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
 	}
 

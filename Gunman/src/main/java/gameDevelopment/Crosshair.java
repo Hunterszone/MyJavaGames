@@ -12,17 +12,16 @@ public class Crosshair extends Entity {
 	}
 
 	@Override
-	public boolean remove(Entity other) {
-		return Game.notifyCrosshair(this, new EnemyEntity(sprite, x, y));
-	}
-
-	@Override
 	public boolean collidesWith(Entity other) {
-		crosshair.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-		enemy.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+		enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
+		crosshair.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
 		if (crosshair.intersects(enemy))
 			return true;
 		return false;
 	}
 
+	@Override
+	public boolean removedByHero(Entity other) {
+		return Game.notifyCrosshairUsed(new Crosshair(sprite, x, y), other);
+	}
 }

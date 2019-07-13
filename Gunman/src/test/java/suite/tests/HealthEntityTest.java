@@ -20,44 +20,47 @@ import gameDevelopment.MySprite;
 
 public class HealthEntityTest {
 
-	private MySprite sprite;
+	private MySprite healthpack, hero;
 	private Rectangle heroRect, healthRect;
-	private Entity healthpack, hero;
+	private Entity healthpackEntity, heroEntity;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		sprite = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
+		healthpack = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
+		hero = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
 		heroRect = new Rectangle();
 		healthRect = new Rectangle();
-		healthpack = new HealthEntity(sprite, x, y);
-		hero = new HeroEntity(sprite, x, y);
+		healthpackEntity = new HealthEntity(healthpack, x, y);
+		heroEntity = new HeroEntity(hero, x, y);
 	}
 
 	@Test
 	public void testHealthEntity() {
-		assertNotNull(Game.initHealth(sprite));
+		assertNotNull(Game.initHealth(healthpack));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initHealth(sprite).remove(healthpack));
+		assertTrue(Game.initHealth(healthpack).removedByHero(healthpackEntity));
 	}
 
 	@Test
 	public void testCollidesWithHero() {
 		if (heroRect.intersects(healthRect))
-			assertTrue(Game.initHealth(sprite).collidesWith(hero));
+			assertTrue(Game.initHealth(healthpack).collidesWith(heroEntity));
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		Display.destroy();
-		sprite = null;
-		heroRect = null;
-		healthRect = null;
 		healthpack = null;
 		hero = null;
+		heroRect = null;
+		healthRect = null;
+		healthpackEntity = null;
+		heroEntity = null;
 	}
 }

@@ -20,21 +20,20 @@ import gameDevelopment.MySprite;
 
 public class EnemyEntityTest {
 
-	private MySprite heroSprite, crosshairSprite, enemySprite;
-	private Entity hero, crosshair;
+	private MySprite hero, crosshair, enemy;
+	private Entity heroEntity, crosshairEntity;
 	private Rectangle heroRect, enemyRect, crosshRect;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		heroSprite = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
-		crosshairSprite = new MySprite(
+		hero = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
+		crosshair = new MySprite(
 				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
-		enemySprite = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
-		hero = new HeroEntity(heroSprite, x, y);
-		crosshair = new Crosshair(crosshairSprite, x, y);
+		enemy = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
+		heroEntity = new HeroEntity(hero, x, y);
+		crosshairEntity = new Crosshair(crosshair, x, y);
 		heroRect = new Rectangle();
 		enemyRect = new Rectangle();
 		crosshRect = new Rectangle();
@@ -42,34 +41,34 @@ public class EnemyEntityTest {
 
 	@Test
 	public void testEnemyEntity() {
-		assertNotNull(Game.initEnemies(enemySprite));
+		assertNotNull(Game.initEnemies(enemy));
 	}
 
 	@Test
 	public void testCollidedWithHero() {
 		if (heroRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemySprite).collidesWith(hero));
+			assertTrue(Game.initEnemies(enemy).collidesWith(heroEntity));
 	}
 
 	@Test
 	public void testCollidedWithCrosshair() {
-		if (enemyRect.intersects(crosshRect))
-			assertTrue(Game.initEnemies(enemySprite).collidesWith(crosshair));
+		if (crosshRect.intersects(enemyRect))
+			assertTrue(Game.initEnemies(enemy).collidesWith(crosshairEntity));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initEnemies(enemySprite).remove(hero));
+		assertTrue(Game.initEnemies(enemy).removedByHero(heroEntity));
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		Display.destroy();
-		heroSprite = null;
-		crosshairSprite = null;
-		enemySprite = null;
 		hero = null;
 		crosshair = null;
+		enemy = null;
+		heroEntity = null;
+		crosshairEntity = null;
 		heroRect = null;
 		enemyRect = null;
 		crosshRect = null;

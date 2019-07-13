@@ -14,11 +14,13 @@ public class HeroEntity extends Entity {
 	}
 
 	@Override
-	public boolean remove(Entity other) {
-		if (other instanceof HealthEntity || other instanceof TreasureEntity)
-			Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
+	public boolean removedByHero(Entity other) {
+		if (other instanceof HealthEntity)
+			return Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
+		if (other instanceof TreasureEntity)
+			return Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
 		if (other instanceof EnemyEntity)
-			Game.notifyEnemiesHit(new HeroEntity(sprite, x, y), other);
+			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
 		return false;
 	}
 
@@ -28,15 +30,15 @@ public class HeroEntity extends Entity {
 			enemy.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(enemy);
 		}
-		if (other instanceof HealthEntity) {
-			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			health.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-			return hero.intersects(health);
-		}
 		if (other instanceof TreasureEntity) {
 			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
 			treasure.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(treasure);
+		}
+		if (other instanceof HealthEntity) {
+			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
+			health.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			return hero.intersects(health);
 		}
 		return false;
 	}

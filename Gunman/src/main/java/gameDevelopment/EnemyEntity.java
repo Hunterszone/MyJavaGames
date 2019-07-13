@@ -15,23 +15,23 @@ public class EnemyEntity extends Entity {
 	@Override
 	public boolean collidesWith(Entity other) {
 		if (other instanceof HeroEntity) {
-			enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			hero.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-			if (enemy.intersects(hero))
+			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
+			enemy.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			if (hero.intersects(enemy))
 				return true;
 		}
 		if (other instanceof Crosshair) {
 			enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
 			crosshair.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
-			if (enemy.intersects(crosshair))
+			if (crosshair.intersects(enemy))
 				return true;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean remove(Entity other) {
-		System.out.println("Collision detected EnemyEntity");
-		return Game.notifyEnemiesHit(this, other);
+	public boolean removedByHero(Entity other) {
+		System.out.println("Hero intersects EnemyEntity");
+		return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
 	}
 }

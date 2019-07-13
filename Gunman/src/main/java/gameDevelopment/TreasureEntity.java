@@ -12,8 +12,8 @@ public class TreasureEntity extends Entity {
 	}
 
 	@Override
-	public boolean remove(Entity other) {
-		System.out.println("Collision detected TreasureEntity");
+	public boolean removedByHero(Entity other) {
+		System.out.println("Hero intersects TreasureEntity");
 		return Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
 	}
 

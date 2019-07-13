@@ -42,7 +42,7 @@ public class TreasureEntityTest {
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initTreasures(sprite).remove(treasure));
+		assertTrue(Game.initTreasures(sprite).removedByHero(treasure));
 	}
 
 	@Test

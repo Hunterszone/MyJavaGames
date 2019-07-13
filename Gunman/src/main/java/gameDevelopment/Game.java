@@ -64,7 +64,7 @@ public class Game {
 	private static int lives = 3;
 
 	private LevelTile levels[] = new LevelTile[MAX_LEVELS];
-	private HeroEntity hero;
+	private static HeroEntity hero;
 	private static EnemyEntity enemy;
 	private static HealthEntity healthpack;
 	private static Crosshair crosshair;
@@ -124,7 +124,7 @@ public class Game {
 	 * @throws Exception if init fails
 	 */
 	public void init() throws Exception {
-		MySprite avatarTexture;
+		MySprite heroSprite;
 		MySprite treasureSprite;
 		MySprite mineSprite;
 		MySprite crosshairSprite;
@@ -134,39 +134,33 @@ public class Game {
 
 		try {
 			// Levels
-			for (int ii = 0; ii < MAX_LEVELS; ii++) {
-				levels[ii] = new LevelTile(TextureLoader.getTexture("PNG",
-						ResourceLoader.getResourceAsStream("res/tile_" + Integer.toString(ii + 1) + ".png")));
+			for (int i = 0; i < MAX_LEVELS; i++) {
+				levels[i] = new LevelTile(TextureLoader.getTexture("PNG",
+						ResourceLoader.getResourceAsStream("res/tile_" + Integer.toString(i + 1) + ".png")));
 			}
-
 			// Crosshair
 			crosshairSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
 			initCrosshair(crosshairSprite);
-
-			// Avatar
-			avatarTexture = new MySprite(
+			// Hero
+			heroSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
-			hero = new HeroEntity(avatarTexture, AVATAR_START_POS_X, AVATAR_START_POS_Y);
-
+			initHero(heroSprite);
 			// Treasures
 			treasures = new HashMap<Integer, ArrayList<Entity>>();
 			treasureSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/chest.png")));
 			initTreasures(treasureSprite);
-
-			// Mines
+			// Healthpacks
 			healthpacks = new HashMap<Integer, ArrayList<Entity>>();
 			mineSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
 			initHealth(mineSprite);
-
 			// Enemies
 			enemies = new HashMap<Integer, ArrayList<EnemyEntity>>();
 			enemyTexture = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
 			initEnemies(enemyTexture);
-
 			// Audio
 			footsteps = new Sound("res/sounds/footsteps.wav");
 			healthy = new Sound("res/sounds/magic.wav");
@@ -178,12 +172,10 @@ public class Game {
 			quack = new Sound("res/sounds/quack.wav");
 			bgmusic = new Sound("res/sounds/bgmusic.wav");
 			bgmusic.loop();
-
 			// Font
 			awtFont = new Font("Times New Roman", Font.BOLD, 24);
 			font = new TrueTypeFont(awtFont, false);
 		} catch (IOException e) {
-
 			e.printStackTrace();
 			finished = true;
 		}
@@ -193,6 +185,11 @@ public class Game {
 		crosshair = new Crosshair(sprite, SCREEN_SIZE_WIDTH - sprite.getWidth(),
 				SCREEN_SIZE_HEIGHT - sprite.getHeight());
 		return crosshair;
+	}
+
+	public static HeroEntity initHero(MySprite sprite) {
+		hero = new HeroEntity(sprite, AVATAR_START_POS_X, AVATAR_START_POS_Y);
+		return hero;
 	}
 
 	public static TreasureEntity initTreasures(MySprite sprite) {
@@ -360,7 +357,7 @@ public class Game {
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			enemiesOnLevel = enemies.get(currentLevel);
-			checkForEnemies(crosshair, enemiesOnLevel);
+			checkForEnemies(enemy, crosshair, enemiesOnLevel);
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_A) && !bgmusic.playing())
@@ -460,18 +457,17 @@ public class Game {
 			footsteps.play(1, 0.2f);
 	}
 
-	private void checkForItems(Entity item, HeroEntity entity, ArrayList<Entity> objectsOnLevel) {
+	private void checkForItems(Entity item, HeroEntity hero, ArrayList<Entity> objectsOnLevel) {
 		for (int jj = 0; jj < objectsOnLevel.size(); jj++) {
 			item = objectsOnLevel.get(jj);
-			if (entity.collidesWith(item)) {
-				item.remove(entity);
-				entity.remove(item);
+			if (hero.collidesWith(item)) {
+				item.removedByHero(hero);
+				hero.removedByHero(item);
 			}
 		}
 	}
 
-	private void checkForEnemies(Crosshair crosshair, ArrayList<EnemyEntity> enemiesOnLevel) {
-		EnemyEntity enemy;
+	private void checkForEnemies(EnemyEntity enemy, Crosshair crosshair, ArrayList<EnemyEntity> enemiesOnLevel) {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (crosshair.collidesWith(enemy)) {
@@ -487,7 +483,7 @@ public class Game {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (gunman.collidesWith(enemy)) {
-				enemy.remove(gunman);
+				enemy.removedByHero(gunman);
 				enemiesOnLevel.remove(enemy);
 				enemiesKilled++;
 				duckhit.play(1, 0.2f);
@@ -611,7 +607,7 @@ public class Game {
 		}
 	}
 
-	public static boolean notifyCrosshair(Entity crossh, Object object) {
+	public static boolean notifyCrosshairUsed(Entity crossh, Object object) {
 		ArrayList<EnemyEntity> enemiesOnLevel;
 		if (object instanceof EnemyEntity) {
 			enemiesOnLevel = null;
@@ -626,7 +622,7 @@ public class Game {
 		return isNotified;
 	}
 
-	public static boolean notifyEnemiesHit(Entity heroEntity, Object object) {
+	public static boolean notifyEnemyHit(Entity heroEntity, Object object) {
 		ArrayList<EnemyEntity> objectsOnLevel;
 		if (object instanceof HeroEntity) {
 			isNotified = true;

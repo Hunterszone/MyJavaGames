@@ -1,7 +1,7 @@
 package gameDevelopment;
 
 interface RemoveEntities {
-	boolean remove(Entity other);
+	boolean removedByHero(Entity other);
 }
 
 interface CheckCollision {
