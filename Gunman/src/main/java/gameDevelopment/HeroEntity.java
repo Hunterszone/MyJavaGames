@@ -16,9 +16,9 @@ public class HeroEntity extends Entity {
 	@Override
 	public boolean removedByHero(Entity other) {
 		if (other instanceof HealthEntity)
-			return Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
+			return Game.notifyHpCollected(new HeroEntity(sprite, x, y), other);
 		if (other instanceof TreasureEntity)
-			return Game.notifyItemsCollected(new HeroEntity(sprite, x, y), other);
+			return Game.notifyTreasuresCollected(new HeroEntity(sprite, x, y), other);
 		if (other instanceof EnemyEntity)
 			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
 		return false;
