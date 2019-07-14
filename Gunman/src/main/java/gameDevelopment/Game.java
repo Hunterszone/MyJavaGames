@@ -46,8 +46,6 @@ public class Game {
 	private static final int MINES_ON_LEVEL = 3;
 	private static final int ENEMIES_ON_LEVEL = 10;
 	private static final int MAX_LIVES = 3;
-
-	public static int FLOOR_HEIGHT = SCREEN_SIZE_HEIGHT - 695;
 	private static final int MAX_JUMP = 70;
 	private boolean isJumping = false;
 	private static boolean isNotified = false;
@@ -76,22 +74,15 @@ public class Game {
 	private TrueTypeFont font;
 	private Font awtFont;
 	private Sound footsteps;
+	private Sound denied;
+	private Sound shot;
+	private Sound duckhit;
+	private Sound bgmusic;
+	private Sound quack;
 
 	private static Sound healthy;
-
-	private Sound denied;
-
 	private static Sound collect;
-
-	private Sound shot;
-
-	private Sound duckhit;
-
 	private static Sound restart;
-
-	private Sound bgmusic;
-
-	private Sound quack;
 
 	/**
 	 * Application init
@@ -357,7 +348,7 @@ public class Game {
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			enemiesOnLevel = enemies.get(currentLevel);
-			checkForEnemies(enemy, crosshair, enemiesOnLevel);
+			crosshairCheckForEnemies(enemy, crosshair, enemiesOnLevel);
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_A) && !bgmusic.playing())
@@ -446,7 +437,7 @@ public class Game {
 		checkForItems(healthpack, hero, objectsOnLevel);
 
 		enemiesOnLevel = enemies.get(currentLevel);
-		checkForHero(enemy, hero, enemiesOnLevel);
+		heroCheckForEnemies(enemy, hero, enemiesOnLevel);
 
 		// Sound
 //		SoundStore.get().poll(0);
@@ -467,10 +458,12 @@ public class Game {
 		}
 	}
 
-	private void checkForEnemies(EnemyEntity enemy, Crosshair crosshair, ArrayList<EnemyEntity> enemiesOnLevel) {
+	private void crosshairCheckForEnemies(EnemyEntity enemy, Crosshair crosshair,
+			ArrayList<EnemyEntity> enemiesOnLevel) {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (crosshair.collidesWith(enemy)) {
+				enemy.removedByHero(crosshair);
 				enemiesOnLevel.remove(enemy);
 				enemiesKilled++;
 				quack.play();
@@ -479,13 +472,14 @@ public class Game {
 		}
 	}
 
-	private void checkForHero(EnemyEntity enemy, HeroEntity gunman, ArrayList<EnemyEntity> enemiesOnLevel) {
+	private void heroCheckForEnemies(EnemyEntity enemy, HeroEntity gunman, ArrayList<EnemyEntity> enemiesOnLevel) {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (gunman.collidesWith(enemy)) {
 				enemy.removedByHero(gunman);
 				enemiesOnLevel.remove(enemy);
 				enemiesKilled++;
+				quack.play();
 				duckhit.play(1, 0.2f);
 			}
 		}

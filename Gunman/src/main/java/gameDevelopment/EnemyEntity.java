@@ -31,7 +31,14 @@ public class EnemyEntity extends Entity {
 
 	@Override
 	public boolean removedByHero(Entity other) {
-		System.out.println("Hero intersects EnemyEntity");
-		return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
+		if (other instanceof HeroEntity) {
+			System.out.println("Hero intersects EnemyEntity");
+			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
+		}
+		if (other instanceof Crosshair) {
+			System.out.println("Crosshair intersects EnemyEntity");
+			return Game.notifyCrosshairUsed(new Crosshair(sprite, x, y), other);
+		}
+		return false;
 	}
 }
