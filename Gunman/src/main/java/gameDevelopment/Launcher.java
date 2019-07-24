@@ -309,7 +309,7 @@ public class Launcher extends JFrame {
 
 				for (final String str : downloadDLLs) {
 
-					URL url = new URL("https://github.com/Hunterszone/MyJavaGames/raw/master/GunMan/" + str);
+					URL url = new URL("https://github.com/Hunterszone/MyJavaGames/raw/master/Gunman/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -325,7 +325,7 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://github.com/Hunterszone/MyJavaGames/raw/master/GunMan/" + str,
+								download("https://github.com/Hunterszone/MyJavaGames/raw/master/Gunman/" + str,
 										"/" + str, conn.getContentLength());
 							}
 						};
