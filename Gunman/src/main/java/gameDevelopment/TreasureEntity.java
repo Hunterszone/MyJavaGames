@@ -13,7 +13,6 @@ public class TreasureEntity extends Entity {
 
 	@Override
 	public boolean removedByHero(Entity other) {
-		System.out.println("Hero intersects TreasureEntity");
 		return Game.notifyTreasuresCollected(new HeroEntity(sprite, x, y), other);
 	}
 

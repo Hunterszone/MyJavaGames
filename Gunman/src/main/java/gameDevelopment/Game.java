@@ -91,7 +91,7 @@ public class Game {
 	 */
 	public static void main(String[] args) {
 		Game myGame = new Game();
-		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon("res/gunman.png", myGame));
+		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon("res/images/gunman.png", myGame));
 		myGame.start();
 	}
 
@@ -127,30 +127,30 @@ public class Game {
 			// Levels
 			for (int i = 0; i < MAX_LEVELS; i++) {
 				levels[i] = new LevelTile(TextureLoader.getTexture("PNG",
-						ResourceLoader.getResourceAsStream("res/tile_" + Integer.toString(i + 1) + ".png")));
+						ResourceLoader.getResourceAsStream("res/images/tile_" + Integer.toString(i + 1) + ".png")));
 			}
 			// Crosshair
 			crosshairSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
 			initCrosshair(crosshairSprite);
 			// Hero
 			heroSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
 			initHero(heroSprite);
 			// Treasures
 			treasures = new HashMap<Integer, ArrayList<TreasureEntity>>();
 			treasureSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/chest.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
 			initTreasures(treasureSprite);
 			// Healthpacks
 			healthpacks = new HashMap<Integer, ArrayList<HealthEntity>>();
 			mineSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
 			initHealth(mineSprite);
 			// Enemies
 			enemies = new HashMap<Integer, ArrayList<EnemyEntity>>();
 			enemyTexture = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
 			initEnemies(enemyTexture);
 			// Audio
 			footsteps = new Sound("res/sounds/footsteps.wav");
@@ -591,7 +591,7 @@ public class Game {
 		enemies = new HashMap<Integer, ArrayList<EnemyEntity>>();
 		try {
 			enemiesSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
 			initEnemies(enemiesSprite);
 		} catch (IOException e) {
 
@@ -602,7 +602,7 @@ public class Game {
 		treasures = new HashMap<Integer, ArrayList<TreasureEntity>>();
 		try {
 			treasureSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/chest.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
 			initTreasures(treasureSprite);
 		} catch (IOException e) {
 
@@ -613,7 +613,7 @@ public class Game {
 		healthpacks = new HashMap<Integer, ArrayList<HealthEntity>>();
 		try {
 			mineSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
 			initHealth(mineSprite);
 		} catch (IOException e) {
 

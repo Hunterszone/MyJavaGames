@@ -144,8 +144,23 @@ public class Launcher extends JFrame {
 					System.out.println("Dir already exists");
 				}
 			}
+
 			{
 				File f = new File("res/sounds/");
+				if (!f.exists()) {
+					if (!f.mkdir()) {
+						System.out.println("Unable to create dir!!");
+						System.exit(1);
+					} else {
+						System.out.println("Created dir!");
+					}
+				} else {
+					System.out.println("Dir already exists");
+				}
+			}
+
+			{
+				File f = new File("res/images/");
 				if (!f.exists()) {
 					if (!f.mkdir()) {
 						System.out.println("Unable to create dir!!");
@@ -162,16 +177,16 @@ public class Launcher extends JFrame {
 			try {
 				{
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/images.txt");
+							"https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/images/images.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
-					File fi = new File("res/images.txt");
+					File fi = new File("res/images/images.txt");
 					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/images.txt",
-								"res/images.txt", conn.getContentLength());
+						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/images/images.txt",
+								"res/images/images.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
 					}
@@ -188,8 +203,7 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/sounds/sounds.txt",
+						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/sounds/sounds.txt",
 								"res/sounds/sounds.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -206,25 +220,25 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/dlls.txt",
-								"dlls.txt", conn.getContentLength());
+						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/dlls.txt", "dlls.txt",
+								conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
 					}
 
 				}
 				progressBar.setValue(15);
-				ArrayList<String> downloadImg = readTextFile("res/images.txt");
+				ArrayList<String> downloadImg = readTextFile("res/images/images.txt");
 				ArrayList<String> downloadSounds = readTextFile("res/sounds/sounds.txt");
 				ArrayList<String> downloadDLLs = readTextFile("dlls.txt");
 
 				for (final String str : downloadImg) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/" + str);
+					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/images/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
-					File fi = new File("res/" + str);
+					File fi = new File("res/images/" + str);
 					if (!fi.getParentFile().exists()) {
 						fi.getParentFile().mkdirs();
 					}
@@ -236,8 +250,9 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/" + str,
-										"res/" + str, conn.getContentLength());
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/images/" + str,
+										"res/images/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -251,8 +266,7 @@ public class Launcher extends JFrame {
 				}
 				for (final String str : downloadSounds) {
 
-					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/sounds/" + str);
+					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/sounds/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -268,8 +282,9 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/sounds/"
-										+ str, "res/sounds/" + str, conn.getContentLength());
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/GunMan/master/res/sounds/" + str,
+										"res/sounds/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -334,8 +349,7 @@ public class Launcher extends JFrame {
 
 					@Override
 					public void run() {
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/GunMan/master/GunMan64bit.jar",
+						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/GunMan64bit.jar",
 								"GunMan64bit.jar", conn.getContentLength());
 					}
 				};
@@ -358,8 +372,7 @@ public class Launcher extends JFrame {
 
 					@Override
 					public void run() {
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/GunMan/master/GunMan32bit.jar",
+						download("https://raw.githubusercontent.com/Hunterszone/GunMan/master/GunMan32bit.jar",
 								"GunMan32bit.jar", conn.getContentLength());
 					}
 				};

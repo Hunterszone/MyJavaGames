@@ -13,7 +13,6 @@ public class HealthEntity extends Entity {
 
 	@Override
 	public boolean removedByHero(Entity other) {
-		System.out.println("Hero intersects HealthEntity");
 		return Game.notifyHpCollected(new HeroEntity(sprite, x, y), other);
 	}
 
