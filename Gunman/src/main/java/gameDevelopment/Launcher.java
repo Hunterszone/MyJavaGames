@@ -62,7 +62,7 @@ public class Launcher extends JFrame {
 
 			try {
 				location = new URL("https://github.com/Hunterszone/GunMan");
-				verfile = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/version.txt");
+				verfile = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/version.txt");
 
 				URLConnection connection = location.openConnection();
 				URLConnection verconnection = verfile.openConnection();
@@ -212,7 +212,7 @@ public class Launcher extends JFrame {
 				}
 
 				{
-					URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/dlls.txt");
+					URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/dlls.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("dlls.txt");
@@ -220,8 +220,8 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/dlls.txt",
-								"dlls.txt", conn.getContentLength());
+						download("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/dlls.txt", "dlls.txt",
+								conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
 					}
@@ -340,7 +340,7 @@ public class Launcher extends JFrame {
 		File f = new File("GunMan64bit.jar");
 		System.out.println("Exists: " + f.exists());
 		try {
-			URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/GunMan64bit.jar");
+			URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/GunMan64bit.jar");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f.exists() || f.length() != conn.getContentLength()) {
@@ -349,7 +349,7 @@ public class Launcher extends JFrame {
 
 					@Override
 					public void run() {
-						download("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/GunMan64bit.jar",
+						download("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/GunMan64bit.jar",
 								"GunMan64bit.jar", conn.getContentLength());
 					}
 				};
@@ -363,7 +363,7 @@ public class Launcher extends JFrame {
 		File f2 = new File("GunMan32bit.jar");
 		System.out.println("Exists: " + f2.exists());
 		try {
-			URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/GunMan32bit.jar");
+			URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/GunMan32bit.jar");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f2.exists() || f2.length() != conn.getContentLength()) {
@@ -372,7 +372,7 @@ public class Launcher extends JFrame {
 
 					@Override
 					public void run() {
-						download("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/master/GunMan32bit.jar",
+						download("https://github.com/Hunterszone/MyJavaGames/tree/master/Gunman/GunMan32bit.jar",
 								"GunMan32bit.jar", conn.getContentLength());
 					}
 				};
