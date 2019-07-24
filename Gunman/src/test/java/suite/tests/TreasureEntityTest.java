@@ -28,7 +28,8 @@ public class TreasureEntityTest {
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		sprite = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/chest.png")));
+		sprite = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
 		heroRect = new Rectangle();
 		treasureRect = new Rectangle();
 		treasure = new TreasureEntity(sprite, x, y);

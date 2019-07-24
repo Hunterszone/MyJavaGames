@@ -29,8 +29,9 @@ public class HealthEntityTest {
 	public void setUp() throws Exception {
 		Display.create();
 		healthpack = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
-		hero = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
+		hero = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
 		heroRect = new Rectangle();
 		healthRect = new Rectangle();
 		healthpackEntity = new HealthEntity(healthpack, x, y);

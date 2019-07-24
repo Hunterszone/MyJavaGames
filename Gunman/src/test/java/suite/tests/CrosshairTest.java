@@ -28,10 +28,11 @@ public class CrosshairTest {
 	public void setUp() throws Exception {
 		Display.create();
 		crosshair = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
 		enemyEntity = new EnemyEntity(
-				new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png"))), x,
-				y);
+				new MySprite(
+						TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png"))),
+				x, y);
 		enemyRect = new Rectangle();
 		crosshRect = new Rectangle();
 	}

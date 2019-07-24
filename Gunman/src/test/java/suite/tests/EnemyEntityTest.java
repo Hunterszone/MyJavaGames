@@ -28,10 +28,12 @@ public class EnemyEntityTest {
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		hero = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
+		hero = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
 		crosshair = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/pointer.png")));
-		enemy = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
+		enemy = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
 		heroEntity = new HeroEntity(hero, x, y);
 		crosshairEntity = new Crosshair(crosshair, x, y);
 		heroRect = new Rectangle();

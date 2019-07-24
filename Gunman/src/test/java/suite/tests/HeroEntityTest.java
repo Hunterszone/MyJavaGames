@@ -29,11 +29,14 @@ public class HeroEntityTest {
 	@Before
 	public void setUp() throws Exception {
 		Display.create();
-		hero = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/gunman.png")));
-		enemy = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/bird.png")));
-		treasure = new MySprite(TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/chest.png")));
+		hero = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
+		enemy = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
+		treasure = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
 		healthpack = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/health.png")));
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
 		enemyEntity = new EnemyEntity(enemy, x, y);
 		treasureEntity = new TreasureEntity(treasure, x, y);
 		healthpackEntity = new HealthEntity(healthpack, x, y);
