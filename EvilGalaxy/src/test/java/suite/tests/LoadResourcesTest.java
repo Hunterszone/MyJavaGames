@@ -21,11 +21,11 @@ public class LoadResourcesTest {
 
 		if (Files.exists(Paths.get("images"))) {
 			for (int i = 0; i < Images.values().length; i++) {
-				assertFalse(Images.values()[i].toString() + " sound file does not exist",
+				assertFalse(Images.values()[i].toString() + " image file does not exist",
 						!Files.exists(Paths.get(Images.values()[i].getImg())));
-				assertNotEquals(Images.values()[i].toString() + " sound value is NULL", null,
+				assertNotEquals(Images.values()[i].toString() + " image value is NULL", null,
 						Images.values()[i].getImg());
-				assertNotEquals(Images.values()[i].toString() + " sound value is empty", "",
+				assertNotEquals(Images.values()[i].toString() + " image value is empty", "",
 						Images.values()[i].getImg());
 			}
 		}
