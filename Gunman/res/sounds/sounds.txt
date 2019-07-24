@@ -7,3 +7,4 @@ highsc.wav
 huh.wav
 magic.wav
 quack.wav
+denied.wav
