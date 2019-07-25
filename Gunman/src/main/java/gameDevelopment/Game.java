@@ -91,11 +91,11 @@ public class Game {
 	 */
 	public static void main(String[] args) {
 		Game myGame = new Game();
-		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon("res/images/gunman.png", myGame));
+		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon(Images.GUNMAN.getImg(), myGame));
 		myGame.start();
 	}
 
-	public void start() {
+	private void start() {
 		try {
 			init();
 			run();
@@ -114,7 +114,7 @@ public class Game {
 	 *
 	 * @throws Exception if init fails
 	 */
-	public void init() throws Exception {
+	private void init() throws Exception {
 		MySprite heroSprite;
 		MySprite treasureSprite;
 		MySprite mineSprite;
