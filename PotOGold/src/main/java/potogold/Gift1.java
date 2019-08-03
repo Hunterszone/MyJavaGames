@@ -33,6 +33,8 @@ public class Gift1 extends GameObject {
 	}
 
 	public boolean checkCollision(GameObject gameObject) {
-		return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		if (collisionSurface != null)
+			return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		return false;
 	}
 }
