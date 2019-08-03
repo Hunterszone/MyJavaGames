@@ -1,5 +1,7 @@
 package potogold;
 
+import java.awt.image.BufferedImage;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Ellipse;
@@ -16,6 +18,10 @@ public class Bomb extends GameObject {
 		collisionSurface = new Ellipse(x, y, 60, 60);
 	}
 
+	public Bomb(int x, int y, BufferedImage image) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void update(int delta) {
 		speed += acceleration;
@@ -30,10 +36,11 @@ public class Bomb extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		image.drawCentered(x, y);
-
 	}
 
 	public boolean checkCollision(GameObject gameObject) {
-		return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		if (collisionSurface != null)
+			return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		return false;
 	}
 }
