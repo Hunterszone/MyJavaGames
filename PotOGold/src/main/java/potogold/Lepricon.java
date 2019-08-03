@@ -1,5 +1,7 @@
 package potogold;
 
+import java.awt.image.BufferedImage;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -20,6 +22,10 @@ public class Lepricon extends GameObject {
 		this.input = input;
 		this.lepriMagic = emitter;
 		collisionSurface = new Ellipse(x, y, 95, 105);
+	}
+
+	public Lepricon(int x, int y, BufferedImage image) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

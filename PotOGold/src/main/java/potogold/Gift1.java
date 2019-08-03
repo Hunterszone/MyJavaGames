@@ -1,5 +1,7 @@
 package potogold;
 
+import java.awt.image.BufferedImage;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Ellipse;
@@ -14,6 +16,10 @@ public class Gift1 extends GameObject {
 	public Gift1(int x, int y, Image image) {
 		super(x, y, image);
 		collisionSurface = new Ellipse(x, y, 60, 60);
+	}
+
+	public Gift1(int x, int y, BufferedImage image) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
