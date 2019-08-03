@@ -1,5 +1,7 @@
 package potogold;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.newdawn.slick.AngelCodeFont;
@@ -27,17 +29,13 @@ public class Main extends BasicGame {
 	private Sound soundBoom;
 	private Lepricon lepricon;
 	private Effects effects;
-	private Bomb bomb;
-	private Bomb bomb2;
-	private Bomb bomb3;
-	private Bomb bomb4;
-	private Bomb bomb5;
 	private Gift1 gift1;
 	private Gift2 gift2;
 	private GameOver gameOver;
 	private YouWon youWon;
 	private GamePause gamePaused;
 	private static AppGameContainer app;
+	private List<Bomb> bombs;
 
 	final static int SCREEN_WIDTH = 1000;
 	final static int SCREEN_HEIGTH = 700;
@@ -70,14 +68,11 @@ public class Main extends BasicGame {
 		effects.draw(g);
 		gift1.draw(g);
 		gift2.draw(g);
-		bomb.draw(g);
-		bomb2.draw(g);
-		bomb3.draw(g);
-		bomb4.draw(g);
-		bomb5.draw(g);
+
 		if (gameOver.isGameOver()) {
 			gameOver.draw(g);
 		}
+
 		if (youWon.isGameWon()) {
 			youWon.draw(g);
 		}
@@ -87,12 +82,16 @@ public class Main extends BasicGame {
 		}
 
 		points.draw(g);
-		
+
 		if (!gamePaused.isGamePaused()) {
 			timer.decrementTime();
 		}
+
+		for (Bomb bomb : bombs)
+			bomb.draw(g);
+
 		timer.draw(g);
-		
+
 		lepriLives.draw(g);
 	}
 
@@ -118,14 +117,16 @@ public class Main extends BasicGame {
 		timer = new Timer(container.getWidth() - 470, 10, fontPoints);
 		lepriLives = new Lives(container.getWidth() - 80, 10, fontPoints);
 		effects = new Effects();
-		lepricon = new Lepricon(500, 630, new Image("res/santa.png"), container.getInput(), effects.getRocketSmokeEmitter());
+		lepricon = new Lepricon(500, 630, new Image("res/santa.png"), container.getInput(),
+				effects.getRocketSmokeEmitter());
 		gift1 = new Gift1(400, 200, new Image("res/gift1.png"));
 		gift2 = new Gift2(200, 500, new Image("res/gift2.png"));
-		bomb = new Bomb(650, 10, new Image("res/mine.png"));
-		bomb2 = new Bomb(550, 30, new Image("res/mine.png"));
-		bomb3 = new Bomb(850, 10, new Image("res/mine.png"));
-		bomb4 = new Bomb(200, 30, new Image("res/mine.png"));
-		bomb5 = new Bomb(350, 10, new Image("res/mine.png"));
+		bombs = new ArrayList<>();
+		bombs.add(new Bomb(650, 10, new Image("res/mine.png")));
+		bombs.add(new Bomb(550, 30, new Image("res/mine.png")));
+		bombs.add(new Bomb(850, 10, new Image("res/mine.png")));
+		bombs.add(new Bomb(200, 30, new Image("res/mine.png")));
+		bombs.add(new Bomb(350, 10, new Image("res/mine.png")));
 		soundCollected = new Sound("res/sounds/collect.wav");
 		soundBoom = new Sound("res/sounds/explosion.wav");
 		Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
@@ -142,16 +143,16 @@ public class Main extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		Input input = container.getInput();
-		if (!gameOver.isGameOver() && !container.isPaused() && !youWon.isGameWon()) {
 
+		Input input = container.getInput();
+
+		if (!gameOver.isGameOver() && !container.isPaused() && !youWon.isGameWon()) {
 			if (input.isKeyDown(Input.KEY_LEFT) && lepricon.getX() >= 70) {
 				Lepricon.speedX += -10.5;
 				if (lepricon.getX() < 70) {
 					lepricon.setX(70);
 					return;
 				}
-
 			}
 
 			if (input.isKeyDown(Input.KEY_RIGHT) && lepricon.getX() <= SCREEN_WIDTH - 70) {
@@ -180,13 +181,10 @@ public class Main extends BasicGame {
 
 			gift1.update(delta);
 			gift2.update(delta);
-			bomb.update(delta);
-			bomb2.update(delta);
-			bomb3.update(delta);
-			bomb4.update(delta);
-			bomb5.update(delta);
 			lepricon.update(delta);
 			effects.update(delta);
+			for (Bomb bomb : bombs)
+				bomb.update(delta);
 		}
 
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
@@ -211,6 +209,7 @@ public class Main extends BasicGame {
 				gamePaused.setGamePaused(false);
 				container.resume();
 			}
+
 			if (gameOver.isGameOver() || youWon.isGameWon()) {
 				init(container);
 				Points.points = 0;
@@ -229,28 +228,15 @@ public class Main extends BasicGame {
 		if (gift1.checkCollision(lepricon)) {
 			newGift1(container, lepricon);
 		}
+
 		if (gift2.checkCollision(lepricon)) {
 			newGift2(container, lepricon);
 		}
 
-		if (lepricon.checkCollision(bomb)) {
-			lepriLifeMinus(container, bomb);
-		}
-
-		if (lepricon.checkCollision(bomb2)) {
-			lepriLifeMinus(container, bomb2);
-		}
-
-		if (lepricon.checkCollision(bomb3)) {
-			lepriLifeMinus(container, bomb3);
-		}
-
-		if (lepricon.checkCollision(bomb4)) {
-			lepriLifeMinus(container, bomb4);
-		}
-
-		if (lepricon.checkCollision(bomb5)) {
-			lepriLifeMinus(container, bomb5);
+		for (Bomb bomb : bombs) {
+			if (lepricon.checkCollision(bomb)) {
+				lepriLifeMinus(container, bomb);
+			}
 		}
 
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
