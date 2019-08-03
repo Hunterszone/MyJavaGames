@@ -243,16 +243,13 @@ public class Main extends BasicGame {
 			if (Points.points >= 30 && lepriLives.lives > 0) {
 				youWon.setYouWon(true);
 			}
-
 		}
 
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
 			if (Points.points < 30) {
 				gameOver.setGameOver(true);
 			}
-
 		}
-
 	}
 
 	private void newGift1(GameContainer container, Lepricon spaceship) {
@@ -285,5 +282,4 @@ public class Main extends BasicGame {
 			gameOver.setGameOver(true);
 		}
 	}
-
 }
