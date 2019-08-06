@@ -17,13 +17,13 @@ import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 import org.newdawn.slick.geom.Shape;
 
-import potogold.Bomb;
+import potogold.Gift2;
 import potogold.Lepricon;
 
-public class BombTest {
+public class Gift2Test {
 
 	private BufferedImage image;
-	private Bomb bomb;
+	private Gift2 gift2;
 	private Lepricon lepricon;
 	private Shape collisionSurface;
 	private int x, y;
@@ -32,18 +32,17 @@ public class BombTest {
 	public void setUp() throws Exception {
 		x = 60;
 		y = 60;
-		bomb = new Bomb(x, y, image);
+		gift2 = new Gift2(x, y, image);
 	}
 
 	@Test
-	public void testBomb() {
-		assertNotNull(bomb);
+	public void testGift1IntIntImage() {
+		assertNotNull(gift2);
 	}
 
-	@Test
 	public void testDraw() {
 		try {
-			image = ImageIO.read(new FileInputStream("res/mine.png"));
+			image = ImageIO.read(new FileInputStream("res/gift2.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -56,14 +55,15 @@ public class BombTest {
 	@Test
 	public void testCheckCollision() {
 		collisionSurface = new Ellipse(x, y, 60, 60);
-		lepricon = new Lepricon(x, y, image);
-		assertFalse(bomb.checkCollision(lepricon));
+		gift2 = new Gift2(x, y, image);
+		assertFalse(gift2.checkCollision(lepricon));
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		x = 0;
 		y = 0;
-		bomb = null;
+		lepricon = null;
+		gift2 = null;
 	}
 }

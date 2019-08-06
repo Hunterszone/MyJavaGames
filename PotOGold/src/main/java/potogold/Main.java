@@ -32,8 +32,8 @@ public class Main extends BasicGame {
 	private Gift1 gift1;
 	private Gift2 gift2;
 	private GameOver gameOver;
-	private YouWon youWon;
-	private GamePause gamePaused;
+	private YouWon youWonLabel;
+	private GamePause gamePausedLabel;
 	private static AppGameContainer app;
 	private List<Bomb> bombs;
 
@@ -73,17 +73,17 @@ public class Main extends BasicGame {
 			gameOver.draw(g);
 		}
 
-		if (youWon.isGameWon()) {
-			youWon.draw(g);
+		if (youWonLabel.isGameWon()) {
+			youWonLabel.draw(g);
 		}
 
-		if (gamePaused.isGamePaused()) {
-			gamePaused.draw(g);
+		if (gamePausedLabel.isGamePaused()) {
+			gamePausedLabel.draw(g);
 		}
 
 		points.draw(g);
 
-		if (!gamePaused.isGamePaused()) {
+		if (!gamePausedLabel.isGamePaused()) {
 			timer.decrementTime();
 		}
 
@@ -136,8 +136,8 @@ public class Main extends BasicGame {
 				fontYouWon = new AngelCodeFont("res/fonts/game_over_font.fnt",
 						new Image("res/fonts/game_over_mine_2.png"));
 		gameOver = new GameOver(container.getHeight(), container.getWidth(), fontGameOver);
-		gamePaused = new GamePause(container.getHeight(), container.getWidth(), fontGamePaused);
-		youWon = new YouWon(container.getHeight(), container.getWidth(), fontYouWon);
+		gamePausedLabel = new GamePause(container.getHeight(), container.getWidth(), fontGamePaused);
+		youWonLabel = new YouWon(container.getHeight(), container.getWidth(), fontYouWon);
 		musicON(true);
 	}
 
@@ -146,7 +146,7 @@ public class Main extends BasicGame {
 
 		Input input = container.getInput();
 
-		if (!gameOver.isGameOver() && !container.isPaused() && !youWon.isGameWon()) {
+		if (!gameOver.isGameOver() && !container.isPaused() && !youWonLabel.isGameWon()) {
 			if (input.isKeyDown(Input.KEY_LEFT) && lepricon.getX() >= 70) {
 				Lepricon.speedX += -10.5;
 				if (lepricon.getX() < 70) {
@@ -200,17 +200,17 @@ public class Main extends BasicGame {
 		}
 
 		if (input.isKeyPressed(Input.KEY_P) && !gameOver.isGameOver()) {
-			gamePaused.setGamePaused(true);
+			gamePausedLabel.setGamePaused(true);
 			container.pause();
 		}
 
 		if (input.isKeyPressed(Input.KEY_R)) {
 			if (container.isPaused()) {
-				gamePaused.setGamePaused(false);
+				gamePausedLabel.setGamePaused(false);
 				container.resume();
 			}
 
-			if (gameOver.isGameOver() || youWon.isGameWon()) {
+			if (gameOver.isGameOver() || youWonLabel.isGameWon()) {
 				init(container);
 				Points.points = 0;
 				Lives.lives = 3;
@@ -241,7 +241,7 @@ public class Main extends BasicGame {
 
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
 			if (Points.points >= 30 && lepriLives.lives > 0) {
-				youWon.setYouWon(true);
+				youWonLabel.setYouWon(true);
 			}
 		}
 

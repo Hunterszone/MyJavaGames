@@ -1,4 +1,4 @@
-package potogold;
+package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -17,11 +17,16 @@ import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 import org.newdawn.slick.geom.Shape;
 
+import potogold.Gift1;
+import potogold.Gift2;
+import potogold.Lepricon;
+
 public class LepriconTest {
 
 	private BufferedImage image;
 	private Lepricon lepricon;
-	private GameObject gift1, gift2;
+	private Gift1 gift1;
+	private Gift2 gift2;
 	private Shape collisionSurface;
 	private int x, y;
 
@@ -47,7 +52,7 @@ public class LepriconTest {
 			e.printStackTrace();
 		}
 		assertNotNull(image);
-		assertNotEquals("Not empty", "", image);
+		assertNotEquals("Image name is empty", "", image);
 	}
 
 	@Test
@@ -64,5 +69,7 @@ public class LepriconTest {
 		x = 0;
 		y = 0;
 		lepricon = null;
+		gift1 = null;
+		gift2 = null;
 	}
 }
