@@ -9,7 +9,7 @@ import org.newdawn.slick.geom.Shape;
 
 public class Bomb extends GameObject {
 
-	private Shape collisionSurface;
+	public Shape collisionSurface;
 	private double speed = 2;
 	private double acceleration = 0.001;
 

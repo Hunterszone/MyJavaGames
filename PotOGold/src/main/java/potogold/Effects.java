@@ -10,15 +10,15 @@ import org.newdawn.slick.particles.ParticleSystem;
 
 public class Effects extends GameObject {
 
-	private ParticleSystem particleSystem;
-	private ConfigurableEmitter santaFart;
-	private ConfigurableEmitter objCollision;
+	public ParticleSystem particleSystem;
+	public ConfigurableEmitter lepriconSmoke;
+	public ConfigurableEmitter objCollision;
 	
 	public Effects() throws SlickException {
 		try {
 			particleSystem = ParticleIO.loadConfiguredSystem("res/particles/empty_system.xml");
-			santaFart = ParticleIO.loadEmitter("res/particles/rocket_smoke.xml");
-			particleSystem.addEmitter(santaFart);
+			lepriconSmoke = ParticleIO.loadEmitter("res/particles/rocket_smoke.xml");
+			particleSystem.addEmitter(lepriconSmoke);
 			objCollision = ParticleIO.loadEmitter("res/particles/ufo_explosion.xml");
 		} catch (IOException e) {
 			throw new SlickException("Particle system cannot be loaded!", e);
@@ -36,7 +36,7 @@ public class Effects extends GameObject {
 	}
 
 	public ConfigurableEmitter getRocketSmokeEmitter() {
-		return santaFart;
+		return lepriconSmoke;
 	}
 
 	public void objColliding(int x, int y) {

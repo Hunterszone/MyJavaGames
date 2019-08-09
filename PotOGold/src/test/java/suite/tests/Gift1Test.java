@@ -15,7 +15,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
-import org.newdawn.slick.geom.Shape;
 
 import potogold.Gift1;
 import potogold.Lepricon;
@@ -25,7 +24,6 @@ public class Gift1Test {
 	private BufferedImage image;
 	private Gift1 gift1;
 	private Lepricon lepricon;
-	private Shape collisionSurface;
 	private int x, y;
 
 	@Before
@@ -37,7 +35,7 @@ public class Gift1Test {
 
 	@Test
 	public void testGift1IntIntImage() {
-		assertNotNull(gift1);
+		assertNotNull(gift1.collisionSurface = new Ellipse(x, y, 60, 60));
 	}
 
 	public void testDraw() {
@@ -54,8 +52,6 @@ public class Gift1Test {
 
 	@Test
 	public void testCheckCollision() {
-		collisionSurface = new Ellipse(x, y, 60, 60);
-		gift1 = new Gift1(x, y, image);
 		assertFalse(gift1.checkCollision(lepricon));
 	}
 
