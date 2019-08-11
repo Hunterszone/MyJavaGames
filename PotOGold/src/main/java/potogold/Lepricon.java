@@ -13,7 +13,7 @@ public class Lepricon extends GameObject {
 
 	private ConfigurableEmitter lepriMagic;
 	private Input input;
-	private Shape collisionSurface;
+	public Shape collisionSurface;
 	static double speedX;
 	static double speedY;
 
