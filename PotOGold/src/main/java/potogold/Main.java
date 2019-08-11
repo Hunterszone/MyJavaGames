@@ -24,11 +24,11 @@ public class Main extends BasicGame {
 	private Image timerImg;
 	private Points points;
 	private Timer timer;
-	private Lives lepriLives;
 	private Sound soundCollected;
 	private Sound soundBoom;
 	private Lepricon lepricon;
 	private Effects effects;
+	private Lives lives;
 	private Gift1 gift1;
 	private Gift2 gift2;
 	private GameOver gameOver;
@@ -58,10 +58,13 @@ public class Main extends BasicGame {
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
+
 		background.draw();
+
 		if (!gameOver.isGameOver()) {
 			lepricon.draw(g);
 		}
+
 		lepriHead.draw(850, 10);
 		collectedGifts.draw(10, 10);
 		timerImg.draw(430, 10);
@@ -91,18 +94,18 @@ public class Main extends BasicGame {
 			bomb.draw(g);
 
 		timer.draw(g);
-
-		lepriLives.draw(g);
+		lives.draw(g);
 	}
 
 	public void musicON(boolean isOn) throws SlickException {
+
 		Music mus = new Music("res/sounds/bgmusic.wav");
+
 		if (isOn == true) {
 			mus.loop();
 		} else {
 			mus.pause();
 		}
-
 	}
 
 	@Override
@@ -115,7 +118,7 @@ public class Main extends BasicGame {
 				new Image("res/fonts/score_numer_mine.png"));
 		points = new Points(container.getWidth() - 900, 10, fontPoints);
 		timer = new Timer(container.getWidth() - 470, 10, fontPoints);
-		lepriLives = new Lives(container.getWidth() - 80, 10, fontPoints);
+		lives = new Lives(container.getWidth() - 80, 10, fontPoints);
 		effects = new Effects();
 		lepricon = new Lepricon(500, 630, new Image("res/santa.png"), container.getInput(),
 				effects.getRocketSmokeEmitter());
@@ -240,7 +243,7 @@ public class Main extends BasicGame {
 		}
 
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
-			if (Points.points >= 30 && lepriLives.lives > 0) {
+			if (Points.points >= 30 && Lives.lives > 0) {
 				youWonLabel.setYouWon(true);
 			}
 		}
@@ -276,9 +279,9 @@ public class Main extends BasicGame {
 		bomb.setX(random.nextInt(container.getWidth()));
 		bomb.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 		soundBoom.play();
-		lepriLives.lives--;
-		if (lepriLives.lives <= 0) {
-			lepriLives.lives = 0;
+		Lives.lives--;
+		if (Lives.lives <= 0) {
+			Lives.lives = 0;
 			gameOver.setGameOver(true);
 		}
 	}
