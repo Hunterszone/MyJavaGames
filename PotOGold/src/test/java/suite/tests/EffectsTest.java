@@ -1,13 +1,11 @@
 package suite.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,7 +15,7 @@ import org.newdawn.slick.particles.ParticleIO;
 import potogold.Effects;
 
 public class EffectsTest {
-	
+
 	private BufferedImage image;
 	private Effects effects;
 	private int x, y;
@@ -40,18 +38,11 @@ public class EffectsTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testDraw() {
-		try {
-			image = ImageIO.read(new FileInputStream("res/mine.png"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		assertNotNull(image);
-		assertNotEquals("Image name is empty", "", image);
+		assertFalse(effects.particleSystem.equals(null));
+		assertNotEquals("Effect name is empty", "", effects.particleSystem);
 	}
 
 	@After
