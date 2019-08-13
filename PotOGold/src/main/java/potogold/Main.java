@@ -279,7 +279,7 @@ public class Main extends BasicGame {
 		bomb.setX(random.nextInt(container.getWidth()));
 		bomb.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 		soundBoom.play();
-		Lives.lives--;
+		lives.decrementLives(new Integer(Lives.lives));
 		if (Lives.lives <= 0) {
 			Lives.lives = 0;
 			gameOver.setGameOver(true);

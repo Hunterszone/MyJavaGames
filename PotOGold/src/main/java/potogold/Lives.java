@@ -19,4 +19,12 @@ public class Lives extends GameObject {
 		String numOfLives = String.format("%01d", lives);
 		g.drawString("Lives: " + numOfLives, x, y);
 	}
+
+	public int decrementLives(Integer live) {
+		if (live != null) {
+			lives--;
+			live = new Integer(lives);
+		}
+		return live;
+	}
 }
