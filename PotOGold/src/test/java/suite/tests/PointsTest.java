@@ -1,9 +1,11 @@
-package potogold;
+package suite.tests;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.newdawn.slick.Font;
+
+import potogold.Points;
 
 public class PointsTest {
 
