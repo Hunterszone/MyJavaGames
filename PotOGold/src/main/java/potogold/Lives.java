@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 public class Lives extends GameObject {
 
 	private Font font;
-	static int lives = 3;
+	public static int lives = 3;
 
 	public Lives(int x, int y, Font font) {
 		super(x, y);
