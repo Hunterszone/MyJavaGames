@@ -261,7 +261,7 @@ public class Main extends BasicGame {
 		gift1.setX(random.nextInt(container.getWidth()));
 		gift1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 		soundCollected.play();
-		points.incrementPoints();
+		points.incrementPoints(new Integer(Points.points));
 	}
 
 	private void newGift2(GameContainer container, Lepricon spaceship) {
@@ -270,7 +270,7 @@ public class Main extends BasicGame {
 		gift2.setX(random.nextInt(container.getWidth()));
 		gift2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 		soundCollected.play();
-		points.incrementPoints();
+		points.incrementPoints(new Integer(Points.points));
 	}
 
 	private void lepriLifeMinus(GameContainer container, Bomb bomb) throws SlickException {
