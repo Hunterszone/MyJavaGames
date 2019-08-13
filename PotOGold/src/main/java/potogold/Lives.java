@@ -15,9 +15,11 @@ public class Lives extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setFont(font);
-		String numOfLives = String.format("%01d", lives);
-		g.drawString("Lives: " + numOfLives, x, y);
+		if (g != null) {
+			g.setFont(font);
+			String numOfLives = String.format("%01d", lives);
+			g.drawString("Lives: " + numOfLives, x, y);
+		}
 	}
 
 	public int decrementLives(Integer live) {
