@@ -36,7 +36,6 @@ public class GameOver extends GameObject {
 		"Lives: " + Lives.lives + "\n" +
 		"Gold: " + Points.points + "/30" + "\n" +
 		"Target: 30" + "\n", (width / 2) - (textWidth / 2), (height / 3) - textHeight);
-		return;
 	}
 
 	public void setGameOver(boolean isGameOver) {
