@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: suite.tests.ConsoleContentClassTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.236 sec <<< FAILURE!
-testCommmands(suite.tests.ConsoleContentClassTest)  Time elapsed: 0.235 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.201 sec <<< FAILURE!
+testCommmands(suite.tests.ConsoleContentClassTest)  Time elapsed: 0.2 sec  <<< ERROR!
 org.junit.runners.model.TestTimedOutException: test timed out after 200 milliseconds
 	at java.lang.ClassLoader.findBootstrapClass(Native Method)
 	at java.lang.ClassLoader.findBootstrapClassOrNull(ClassLoader.java:1015)
