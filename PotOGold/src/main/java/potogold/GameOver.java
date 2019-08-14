@@ -21,21 +21,24 @@ public class GameOver extends GameObject {
 		this.fontGameOver = fontGameOver;
 		transparent = new Color(Color.black);
 		transparent.a = 0.5f;
-		textWidth = fontGameOver.getWidth(GAME_OVER);
-		textHeight = fontGameOver.getHeight(GAME_OVER);
-		
+		if(fontGameOver != null) {
+			textWidth = fontGameOver.getWidth(GAME_OVER);
+			textHeight = fontGameOver.getHeight(GAME_OVER);	
+		}		
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(transparent);
-		g.fillRect(0, 0, width, height);
-		g.setColor(Color.white);
-		g.setFont(fontGameOver);
-		g.drawString(GAME_OVER + "\n" + 
-		"Lives: " + Lives.lives + "\n" +
-		"Gold: " + Points.points + "/30" + "\n" +
-		"Target: 30" + "\n", (width / 2) - (textWidth / 2), (height / 3) - textHeight);
+		if(g != null) {
+			g.setColor(transparent);
+			g.fillRect(0, 0, width, height);
+			g.setColor(Color.white);
+			g.setFont(fontGameOver);
+			g.drawString(GAME_OVER + "\n" + 
+			"Lives: " + Lives.lives + "\n" +
+			"Gold: " + Points.points + "/30" + "\n" +
+			"Target: 30" + "\n", (width / 2) - (textWidth / 2), (height / 3) - textHeight);	
+		}
 	}
 
 	public void setGameOver(boolean isGameOver) {
