@@ -8,7 +8,7 @@ public class YouWon extends GameObject {
 
 	private int height;
 	private int width;
-	private int textWidth ;
+	private int textWidth;
 	private int textHeight;
 	private Color transparent;
 	private Font fontYouWon;
@@ -21,9 +21,10 @@ public class YouWon extends GameObject {
 		this.fontYouWon = fontYouWon;
 		transparent = new Color(Color.black);
 		transparent.a = 0.5f;
-		textWidth = fontYouWon.getWidth(YOU_WON);
-		textHeight = fontYouWon.getHeight(YOU_WON);
-		
+		if (fontYouWon != null) {
+			textWidth = fontYouWon.getWidth(YOU_WON);
+			textHeight = fontYouWon.getHeight(YOU_WON);
+		}
 	}
 
 	@Override
@@ -32,12 +33,11 @@ public class YouWon extends GameObject {
 		g.fillRect(0, 0, width, height);
 		g.setColor(Color.white);
 		g.setFont(fontYouWon);
-		g.drawString(YOU_WON + "\n" + "Gold: " + Points.points + "/30" + "\n" + 
-		"Lives: " + Lives.lives, 
+		g.drawString(YOU_WON + "\n" + "Gold: " + Points.points + "/30" + "\n" + "Lives: " + Lives.lives,
 				(width / 2) - (textWidth / 2), (height / 2) - textHeight);
 		return;
 	}
-	
+
 	public void setYouWon(boolean isGameWon) {
 		this.isGameWon = isGameWon;
 	}

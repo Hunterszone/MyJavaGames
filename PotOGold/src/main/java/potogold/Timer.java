@@ -17,28 +17,30 @@ public class Timer extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setFont(font);
-		initialTime = null;
-		if (60 - (elapsedMillis / 1000) > 0 && Lives.lives != 0) {
-			initialTime = String.format("%02d", 60 - (elapsedMillis / 1000));
-			g.drawString(initialTime, x, y);
-			return;
+		if (g != null) {
+			g.setFont(font);
+			initialTime = null;
+			if (60 - (elapsedMillis / 1000) > 0 && Lives.lives != 0) {
+				initialTime = String.format("%02d", 60 - (elapsedMillis / 1000));
+				g.drawString(initialTime, x, y);
+				return;
+			}
+			if ((60 - (elapsedMillis / 1000)) == 0) {
+				initialTime = String.format("%02d", 00);
+				g.drawString(initialTime, x, y);
+				return;
+			}
+			if (Lives.lives == 0) {
+				initialTime = String.format("%02d", 00);
+				g.drawString(initialTime, x, y);
+				return;
+			}
 		}
-		if ((60 - (elapsedMillis / 1000)) == 0) {
-			initialTime = String.format("%02d", 00);
-			g.drawString(initialTime, x, y);
-			return;
-		}
-		if (Lives.lives == 0) {
-			initialTime = String.format("%02d", 00);
-			g.drawString(initialTime, x, y);
-			return;
-		}
-
 	}
 
-	public void decrementTime() {
+	public long decrementTime() {
 		elapsedMillis = System.currentTimeMillis() - startTime;
+		return elapsedMillis;
 	}
 
 }
