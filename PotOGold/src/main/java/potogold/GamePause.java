@@ -25,9 +25,10 @@ public class GamePause extends GameObject {
 		this.fontGamePaused = fontGamePaused;
 		transparent = new Color(Color.black);
 		transparent.a = 0.5f;
-		textWidth = fontGamePaused.getWidth(GAME_PAUSED);
-		textHeight = fontGamePaused.getHeight(GAME_PAUSED);
-
+		if(fontGamePaused != null) {
+			textWidth = fontGamePaused.getWidth(GAME_PAUSED);
+			textHeight = fontGamePaused.getHeight(GAME_PAUSED);	
+		}
 	}
 
 	@Override
