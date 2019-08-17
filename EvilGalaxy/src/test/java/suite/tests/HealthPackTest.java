@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import game_engine.InitObjects;
 import items.HealthPack;
@@ -20,15 +21,18 @@ public class HealthPackTest {
 		healthPack = new HealthPack(x, y);
 	}
 
+	@Test
 	public void testGoldUnit() {
 		assertNotNull(healthPack.loadImage(healthPack.initHealth()));
 		assertNotEquals("", healthPack.initHealth());
 	}
 
+	@Test
 	public void testListOfGoldBars() {
 		assertFalse(InitObjects.initGold().isEmpty());
 	}
 
+	@Test
 	public void testGoldBorders() {
 		assertFalse(healthPack.getY() > 1200);
 	}

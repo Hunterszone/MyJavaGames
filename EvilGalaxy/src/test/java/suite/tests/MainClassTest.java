@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import frames.Main;
 
@@ -17,18 +18,22 @@ public class MainClassTest {
 		main = new Main();
 	}
 
+	@Test
 	public void testFrameVisibility() {
 		assertFalse(main.isVisible());
 	}
 
+	@Test
 	public void testGameTitle() {
 		assertTrue(main.getTitle().equals("EvilGalaxy"));
 	}
 
+	@Test
 	public void testFrameSize() {
 		assertFalse(main.isResizable());
 	}
 
+	@Test
 	public void testFrameDecoration() {
 		assertTrue(main.isUndecorated());
 	}

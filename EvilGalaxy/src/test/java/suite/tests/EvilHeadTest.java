@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import entities.EvilHead;
 
@@ -19,11 +20,13 @@ public class EvilHeadTest {
 		evilHead = new EvilHead(x, y);
 	}
 
+	@Test
 	public void testEvilHead() {
 		assertNotNull(evilHead.loadImage(evilHead.initHead()));
 		assertNotEquals("", evilHead.initHead());
 	}
 
+	@Test
 	public void testListsOfAmmos() {
 		assertFalse(evilHead.throwCanons().isEmpty());
 		assertFalse(evilHead.throwFireballs().isEmpty());

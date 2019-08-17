@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import entities.Alien;
 import entities.Dragon;
@@ -45,79 +46,94 @@ public class CollisionsTest {
 		missile = new ShipMissile(x, y);
 	}
 
+	@Test
 	public void canonIntersectsShip() {
 		Rectangle canonUnit = canon.getBounds();
 		assertTrue("", Collisions.canonIntersectsShip(myship, canon, canonUnit));
 	}
 
+	@Test
 	public void bulletTwoIntersectsShip() {
 		Rectangle bulletUnit2 = bullet.getBounds();
 		assertTrue("", Collisions.bulletTwoIntersectsShip(bullet, myship, bulletUnit2));
 	}
 
+	@Test
 	public void fireBallIntersectsShip() {
 		Rectangle fireballUnit = fireball.getBounds();
 		assertTrue("", Collisions.fireBallIntersectsShip(fireball, fireballUnit, myship));
 	}
 
+	@Test
 	public void rocketIntersectsBunker() {
 		rocketUnit = rocket.getBounds();
 		assertTrue("", Collisions.rocketIntersectsBunker(bunker, rocket, rocketUnit));
 	}
 
+	@Test
 	public void rocketIntersectsHead() {
 		rocketUnit = rocket.getBounds();
 		assertTrue("", Collisions.rocketIntersectsHead(evilhead, rocket, rocketUnit));
 	}
 
+	@Test
 	public void missileIntersectsAlien() {
 		missileUnit = missile.getBounds();
 		alienUnit = alien.getBounds();
 		assertTrue("missileIntersectsAlien", Collisions.missileIntersectsAlien(missile, missileUnit, alien, alienUnit));
 	}
 
+	@Test
 	public void missileIntersectsHead() {
 		missileUnit = missile.getBounds();
 		assertTrue("missileIntersectsHead", Collisions.missileIntersectsHead(evilhead, missile, missileUnit));
 	}
 
+	@Test
 	public void missileIntersectsBunker() {
 		missileUnit = missile.getBounds();
 		assertTrue("missileIntersectsBunker", Collisions.missileIntersectsBunker(bunker, missile, missileUnit));
 	}
 
+	@Test
 	public void rocketIntersectsDragon() {
 		rocketUnit = rocket.getBounds();
 		dragonUnit = dragon.getBounds();
 		assertTrue("rocketIntersectsDragon", Collisions.rocketIntersectsDragon(rocket, rocketUnit, dragon, dragonUnit));
 	}
 
+	@Test
 	public void shipIntersectsAlien() {
 		alienUnit = alien.getBounds();
 		assertTrue("shipIntersectsBunker", Collisions.shipIntersectsAlien(myship, alien, alienUnit));
 	}
 
+	@Test
 	public void shipIntersectsDragon() {
 		dragonUnit = dragon.getBounds();
 		assertTrue("shipIntersectsBunker", Collisions.shipIntersectsDragon(myship, dragon, dragonUnit));
 	}
 
+	@Test
 	public void shipIntersectsHead() {
 		assertTrue("shipIntersectsHead", Collisions.shipIntersectsHead(myship, evilhead));
 	}
 
+	@Test
 	public void shipIntersectsHealth() {
 		HealthPack health = new HealthPack(x, y);
 		Rectangle healthUnit = health.getBounds();
 		assertTrue("shipIntersectsHealth", Collisions.shipIntersectsHealth(myship, health, healthUnit));
 	}
 
+	@Test
 	public void shipIntersectsGold() {
 		Gold gold = new Gold(x, y);
 		Rectangle goldUnit = gold.getBounds();
 		assertTrue("shipIntersectsGold", Collisions.shipIntersectsGold(myship, gold, goldUnit));
 	}
 
+	@Test
 	public void shipIntersectsBunker() {
 		assertTrue("shipIntersectsBunker", Collisions.shipIntersectsBunker(myship, bunker));
 	}

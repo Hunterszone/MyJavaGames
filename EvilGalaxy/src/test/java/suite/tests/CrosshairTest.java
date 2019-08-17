@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import entities.Crosshair;
 
@@ -18,6 +19,7 @@ public class CrosshairTest {
 		crosshair = new Crosshair(x, y);
 	}
 
+	@Test
 	public void testCrosshair() {
 		assertNotNull(crosshair.loadImage(crosshair.initCrosshair()));
 		assertNotEquals("", crosshair.initCrosshair());
