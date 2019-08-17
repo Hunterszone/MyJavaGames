@@ -131,6 +131,5 @@ public class Crosshair extends SpritePattern {
 			speedY = 0;
 			initCrosshair();
 		}
-
 	}
 }

@@ -115,7 +115,6 @@ public class MyShip extends SpritePattern {
 		if (y > 50) {
 			speedY -= 0.3;
 		}
-
 	}
 
 	public void move() {
