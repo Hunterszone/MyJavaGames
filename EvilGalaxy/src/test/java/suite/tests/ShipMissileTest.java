@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import items.ShipMissile;
 
@@ -19,7 +18,6 @@ public class ShipMissileTest {
 		shipMissile = new ShipMissile(x, y);
 	}
 
-	@Test(timeout = 200)
 	public void testShipMissileUnit() {
 		assertNotNull(shipMissile.loadImage(shipMissile.initMissile()));
 		assertNotEquals("", shipMissile.initMissile());

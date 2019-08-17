@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: suite.tests.BombTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.545 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.495 sec

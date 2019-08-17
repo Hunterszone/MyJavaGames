@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import items.BunkerBullet;
 
@@ -19,7 +18,6 @@ public class BunkerBulletsTest {
 		bunkerBullet = new BunkerBullet(x, y);
 	}
 
-	@Test(timeout = 200)
 	public void testBunkerBulletUnit() {
 		assertNotNull(bunkerBullet.loadImage(bunkerBullet.initBullet()));
 		assertNotEquals("", bunkerBullet.initBullet());

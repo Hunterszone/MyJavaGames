@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import entities.Alien;
 import game_engine.InitObjects;
@@ -21,18 +20,15 @@ public class AlienTest {
 		alien = new Alien(x, y);
 	}
 
-	@Test(timeout = 200)
 	public void testAlienUnit() {
 		assertNotNull(alien.loadImage(alien.initAlien()));
 		assertNotEquals("", alien.initAlien());
 	}
 
-	@Test(timeout = 200)
 	public void testListOfAliens() {
 		assertFalse(InitObjects.initAliens().isEmpty());
 	}
 
-	@Test(timeout = 200)
 	public void testAliensBorders() {
 		assertFalse(alien.getX() < 0);
 		assertFalse(alien.getY() > 1200);

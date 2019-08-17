@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import items.FireBall;
 
@@ -19,7 +18,6 @@ public class FireBallTest {
 		fireBall = new FireBall(x, y);
 	}
 
-	@Test(timeout = 200)
 	public void testFireBallUnit() {
 		assertNotNull(fireBall.loadImage(fireBall.initEvilGun()));
 		assertNotEquals("", fireBall.initEvilGun());

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import entities.Dragon;
 import game_engine.InitObjects;
@@ -21,18 +20,15 @@ public class DragonTest {
 		dragon = new Dragon(x, y);
 	}
 
-	@Test(timeout = 200)
 	public void testDragonUnit() {
 		assertNotNull(dragon.loadImage(dragon.initDragon()));
 		assertNotEquals("", dragon.initDragon());
 	}
 
-	@Test(timeout = 200)
 	public void testListOfDragons() {
 		assertFalse(InitObjects.initDragons().isEmpty());
 	}
 
-	@Test(timeout = 200)
 	public void testDragonsBorders() {
 		assertFalse(dragon.getX() < 0);
 	}
