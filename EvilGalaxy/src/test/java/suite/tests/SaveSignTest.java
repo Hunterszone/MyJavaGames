@@ -19,7 +19,7 @@ public class SaveSignTest {
 		sign = new SaveSign(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testSaveSign() {
 		assertNotNull(sign.loadImage(sign.initSave()));
 		assertNotEquals("", sign.initSave());

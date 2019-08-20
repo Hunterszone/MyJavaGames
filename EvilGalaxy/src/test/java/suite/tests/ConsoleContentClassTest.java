@@ -8,7 +8,7 @@ import frames.ConsoleContent;
 
 public class ConsoleContentClassTest {
 
-	@Test(timeout = 200)
+	@Test
 	public void testCommmands() {
 		final String[] commands = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit", "voloff", "volon",
 				"god", "dog", "stats", "restart", "level2", "level3", "level4" };

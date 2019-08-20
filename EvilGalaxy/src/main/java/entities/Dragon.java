@@ -32,6 +32,5 @@ public class Dragon extends SpritePattern {
 		}
 
 		x -= 3;
-
 	}
 }

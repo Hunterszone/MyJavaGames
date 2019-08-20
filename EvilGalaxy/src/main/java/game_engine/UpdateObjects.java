@@ -23,7 +23,7 @@ import sound_engine.SoundEffects;
 public abstract class UpdateObjects extends InitObjects {
 
 	private static final long serialVersionUID = 1L;
-	static int lifeEvilHead = 3;
+	public static int lifeEvilHead = 3;
 	public static int lifeMyShip = 3;
 	public static int lifeBunker = 3;
 

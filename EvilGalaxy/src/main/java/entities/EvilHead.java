@@ -191,5 +191,4 @@ public class EvilHead extends SpritePattern {
 		loadImage("images/strikehead.png");
 		getImageDimensions();
 	}
-
 }

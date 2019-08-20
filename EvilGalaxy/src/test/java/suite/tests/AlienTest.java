@@ -21,18 +21,18 @@ public class AlienTest {
 		alien = new Alien(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testAlienUnit() {
 		assertNotNull(alien.loadImage(alien.initAlien()));
 		assertNotEquals("", alien.initAlien());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testListOfAliens() {
 		assertFalse(InitObjects.initAliens().isEmpty());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testAliensBorders() {
 		assertFalse(alien.getX() < 0);
 		assertFalse(alien.getY() > 1200);

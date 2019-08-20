@@ -19,7 +19,7 @@ public class CrosshairTest {
 		crosshair = new Crosshair(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testCrosshair() {
 		assertNotNull(crosshair.loadImage(crosshair.initCrosshair()));
 		assertNotEquals("", crosshair.initCrosshair());

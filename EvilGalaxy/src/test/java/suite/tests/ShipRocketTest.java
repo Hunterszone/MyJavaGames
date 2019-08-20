@@ -19,7 +19,7 @@ public class ShipRocketTest {
 		shipRocket = new ShipRocket(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testShipMissileUnit() {
 		assertNotNull(shipRocket.loadImage(shipRocket.initRocket()));
 		assertNotEquals("", shipRocket.initRocket());

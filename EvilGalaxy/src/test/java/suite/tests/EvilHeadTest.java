@@ -20,13 +20,13 @@ public class EvilHeadTest {
 		evilHead = new EvilHead(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testEvilHead() {
 		assertNotNull(evilHead.loadImage(evilHead.initHead()));
 		assertNotEquals("", evilHead.initHead());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testListsOfAmmos() {
 		assertFalse(evilHead.throwCanons().isEmpty());
 		assertFalse(evilHead.throwFireballs().isEmpty());

@@ -22,50 +22,50 @@ public class MyShipTest {
 		myShip = new MyShip(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipUnit() {
 		assertNotNull(myShip.loadImage(myShip.initShip()));
 		assertNotEquals("", myShip.initShip());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipDamaged() {
 		assertNotNull(myShip.loadImage(myShip.shipDamaged()));
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipUpsideDown() {
 		assertNotNull(myShip.loadImage(myShip.upsideDown()));
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipFired() {
 		assertNotNull(myShip.loadImage(myShip.shipOnFire()));
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipEscapeForbidden() {
 		assertNotNull(myShip.loadImage(myShip.escapeForbidden()));
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipGodMode() {
 		assertNotNull(myShip.loadImage(myShip.godMode()));
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testListsOfAmmos() {
 		assertFalse(myShip.loadMissiles().isEmpty());
 		assertFalse(myShip.loadRockets().isEmpty());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testGunLockedSound() {
 		PlayWave1st sound = new PlayWave1st(myShip.gunLocked());
 		assertTrue(sound.doesFileExists());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testMyShipBorders() {
 		assertFalse(myShip.getX() < 0 || myShip.getX() > 900);
 		assertFalse(myShip.getY() < 0 || myShip.getY() > 700);

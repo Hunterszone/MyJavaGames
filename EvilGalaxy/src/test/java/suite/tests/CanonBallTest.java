@@ -19,7 +19,7 @@ public class CanonBallTest {
 		canonBall = new CanonBall(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testCanonBallUnit() {
 		assertNotNull(canonBall.loadImage(canonBall.initCanon()));
 		assertNotEquals("", canonBall.initCanon());

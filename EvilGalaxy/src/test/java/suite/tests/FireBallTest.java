@@ -19,7 +19,7 @@ public class FireBallTest {
 		fireBall = new FireBall(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testFireBallUnit() {
 		assertNotNull(fireBall.loadImage(fireBall.initEvilGun()));
 		assertNotEquals("", fireBall.initEvilGun());

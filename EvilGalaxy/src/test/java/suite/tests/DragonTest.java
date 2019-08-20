@@ -21,18 +21,18 @@ public class DragonTest {
 		dragon = new Dragon(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testDragonUnit() {
 		assertNotNull(dragon.loadImage(dragon.initDragon()));
 		assertNotEquals("", dragon.initDragon());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testListOfDragons() {
 		assertFalse(InitObjects.initDragons().isEmpty());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testDragonsBorders() {
 		assertFalse(dragon.getX() < 0);
 	}

@@ -26,6 +26,7 @@ import game_engine.Difficulty;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;
+import items.Gold;
 import items.HealthPack;
 import sound_engine.LoadSounds;
 
@@ -530,6 +531,23 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 4" + "\n");
 									textArea.append("Difficulty: Easy" + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									if (Gold.goldstack.isEmpty()) {
+										if (UpdateObjects.lifeEvilHead < 10) {
+											textArea.append("lifeEvilHead: 100 %" + "\n");
+										}
+										if (UpdateObjects.lifeEvilHead >= 10 && UpdateObjects.lifeEvilHead < 20) {
+											textArea.append("lifeEvilHead: 80 %" + "\n");
+										}
+										if (UpdateObjects.lifeEvilHead >= 20 && UpdateObjects.lifeEvilHead < 30) {
+											textArea.append("lifeEvilHead: 60 %" + "\n");
+										}
+										if (UpdateObjects.lifeEvilHead >= 30 && UpdateObjects.lifeEvilHead < 40) {
+											textArea.append("lifeEvilHead: 40 %" + "\n");
+										}
+										if (UpdateObjects.lifeEvilHead >= 40 && UpdateObjects.lifeEvilHead < 50) {
+											textArea.append("lifeEvilHead: 20 %" + "\n");
+										}
+									}
 									if (UpdateObjects.lifeMyShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}

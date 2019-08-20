@@ -19,7 +19,7 @@ public class BunkerBulletsTest {
 		bunkerBullet = new BunkerBullet(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testBunkerBulletUnit() {
 		assertNotNull(bunkerBullet.loadImage(bunkerBullet.initBullet()));
 		assertNotEquals("", bunkerBullet.initBullet());

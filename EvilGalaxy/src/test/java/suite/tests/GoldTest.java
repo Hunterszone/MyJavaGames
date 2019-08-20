@@ -21,18 +21,18 @@ public class GoldTest {
 		goldBar = new Gold(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testGoldUnit() {
 		assertNotNull(goldBar.loadImage(goldBar.initGifts()));
 		assertNotEquals("", goldBar.initGifts());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testListOfGoldBars() {
 		assertFalse(InitObjects.initGold().isEmpty());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testGoldBorders() {
 		assertFalse(goldBar.getY() < 0);
 	}

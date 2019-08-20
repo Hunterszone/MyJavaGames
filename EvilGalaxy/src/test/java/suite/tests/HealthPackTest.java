@@ -21,18 +21,18 @@ public class HealthPackTest {
 		healthPack = new HealthPack(x, y);
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testGoldUnit() {
 		assertNotNull(healthPack.loadImage(healthPack.initHealth()));
 		assertNotEquals("", healthPack.initHealth());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testListOfGoldBars() {
 		assertFalse(InitObjects.initGold().isEmpty());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testGoldBorders() {
 		assertFalse(healthPack.getY() > 1200);
 	}

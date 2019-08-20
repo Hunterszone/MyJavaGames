@@ -18,22 +18,22 @@ public class MainClassTest {
 		main = new Main();
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testFrameVisibility() {
 		assertFalse(main.isVisible());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testGameTitle() {
 		assertTrue(main.getTitle().equals("EvilGalaxy"));
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testFrameSize() {
 		assertFalse(main.isResizable());
 	}
 
-	@Test(timeout = 200)
+	@Test
 	public void testFrameDecoration() {
 		assertTrue(main.isUndecorated());
 	}

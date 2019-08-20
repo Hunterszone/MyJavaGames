@@ -1,6 +1,14 @@
+suite\tests\LoadIconTest.class
+suite\tests\YouWonTest.class
+suite\tests\EffectsTest.class
+suite\main\AllTests.class
+suite\tests\Gift2Test.class
+suite\tests\TimerTest.class
+suite\main\TestRunner.class
+suite\tests\GamePauseTest.class
+suite\tests\LivesTest.class
 suite\tests\Gift1Test.class
 suite\tests\LepriconTest.class
-suite\main\AllTests.class
+suite\tests\GameOverTest.class
+suite\tests\PointsTest.class
 suite\tests\BombTest.class
-suite\tests\Gift2Test.class
-suite\main\TestRunner.class
