@@ -22,7 +22,7 @@ grant {
   permission java.security.AllPermission;
 };
 ```
-Otherwise just download the EGinit.jar into an empty folder from [here](https://github.com/Hunterszone/EvilGalaxy/blob/master/EGinit.jar?raw=true) (NB: some browsers could deny the operation!)
+Otherwise just download the EGinit.jar into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EGInit.jar?raw=true) (NB: some browsers could deny the operation!)
 
 ## HOW TO INSTALL/LAUNCH (manually):
 
