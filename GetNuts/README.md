@@ -32,7 +32,7 @@ grant {
 };
 ```
 
-Otherwise just download the Launcher.jar into an empty folder from [here](https://github.com/Hunterszone/GetNuts/blob/master/Launcher.jar?raw=true).
+Otherwise just download the Launcher.jar into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/GetNuts/Launcher.jar?raw=true).
 
 ## HOW TO INSTALL/LAUNCH (manually):
 
