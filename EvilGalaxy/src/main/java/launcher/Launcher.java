@@ -61,8 +61,9 @@ public class Launcher extends JFrame {
 			URL verfile;
 
 			try {
-				location = new URL("https://github.com/Hunterszone/EvilGalaxy");
-				verfile = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/version.txt");
+				location = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy");
+				verfile = new URL(
+						"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/version.txt");
 
 				URLConnection connection = location.openConnection();
 				URLConnection verconnection = verfile.openConnection();
@@ -191,12 +192,14 @@ public class Launcher extends JFrame {
 			progressBar.setValue(10);
 			try {
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/saves/save.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/saves/save.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("saves/save.txt");
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/saves/save.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/saves/save.txt",
 								"saves/save.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download saves.txt!");
@@ -205,12 +208,14 @@ public class Launcher extends JFrame {
 				}
 
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("images.txt");
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images.txt",
 								"images.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download images.txt!");
@@ -219,12 +224,14 @@ public class Launcher extends JFrame {
 				}
 
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("sounds.txt");
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds.txt",
 								"sounds.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download sounds.txt!");
@@ -239,7 +246,9 @@ public class Launcher extends JFrame {
 
 				for (final String str : downloadImg) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/" + str);
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images/"
+									+ str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -253,7 +262,8 @@ public class Launcher extends JFrame {
 							@Override
 							public void run() {
 								download(
-										"https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/images/" + str,
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images/"
+												+ str,
 										"images/" + str, conn.getContentLength());
 							}
 						};
@@ -268,7 +278,9 @@ public class Launcher extends JFrame {
 				}
 				for (final String str : downloadSounds) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/" + str);
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds/"
+									+ str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					// progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -282,7 +294,8 @@ public class Launcher extends JFrame {
 							@Override
 							public void run() {
 								download(
-										"https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/sounds/" + str,
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds/"
+												+ str,
 										"sounds/" + str, conn.getContentLength());
 							}
 						};
@@ -307,7 +320,8 @@ public class Launcher extends JFrame {
 		System.out.println("Exists: " + f.exists());
 		updlog.logger.info("Exists: " + f.exists());
 		try {
-			URL url = new URL("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/EvilGalaxy.jar");
+			URL url = new URL(
+					"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/EvilGalaxy.jar");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f.exists() || f.length() != conn.getContentLength()) {
@@ -316,7 +330,8 @@ public class Launcher extends JFrame {
 
 					@Override
 					public void run() {
-						download("https://raw.githubusercontent.com/Hunterszone/EvilGalaxy/master/EvilGalaxy.jar",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/EvilGalaxy.jar",
 								"EvilGalaxy.jar", conn.getContentLength());
 					}
 				};
