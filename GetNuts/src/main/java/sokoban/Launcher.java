@@ -61,8 +61,9 @@ public class Launcher extends JFrame {
 			URL verfile;
 
 			try {
-				location = new URL("https://github.com/Hunterszone/GetNuts");
-				verfile = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/version.txt");
+				location = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/GetNuts");
+				verfile = new URL(
+						"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/version.txt");
 
 				URLConnection connection = location.openConnection();
 				URLConnection verconnection = verfile.openConnection();
@@ -188,7 +189,8 @@ public class Launcher extends JFrame {
 			progressBar.setValue(10);
 			try {
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/images.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/images.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("images.txt");
@@ -196,7 +198,7 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/images.txt",
+						download("https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/images.txt",
 								"images.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -204,7 +206,8 @@ public class Launcher extends JFrame {
 
 				}
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/sounds.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/sounds.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("sounds.txt");
@@ -212,7 +215,7 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/sounds.txt",
+						download("https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/sounds.txt",
 								"sounds.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -220,7 +223,8 @@ public class Launcher extends JFrame {
 
 				}
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/levels.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/levels.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("levels.txt");
@@ -228,7 +232,7 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/levels.txt",
+						download("https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/levels.txt",
 								"levels.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -236,7 +240,8 @@ public class Launcher extends JFrame {
 
 				}
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/backgrounds.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/backgrounds.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("backgrounds.txt");
@@ -244,7 +249,8 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/backgrounds.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/backgrounds.txt",
 								"backgrounds.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -259,7 +265,8 @@ public class Launcher extends JFrame {
 
 				for (final String str : downloadImg) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/images/" + str);
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/images/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -275,7 +282,9 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/images/" + str,
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/images/"
+												+ str,
 										"images/" + str, conn.getContentLength());
 							}
 						};
@@ -290,7 +299,8 @@ public class Launcher extends JFrame {
 				}
 				for (final String str : downloadSounds) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/sounds/" + str);
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/sounds/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -306,7 +316,9 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/sounds/" + str,
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/sounds/"
+												+ str,
 										"sounds/" + str, conn.getContentLength());
 							}
 						};
@@ -321,7 +333,8 @@ public class Launcher extends JFrame {
 				}
 				for (final String str : downloadLevels) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/levels/" + str);
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/levels/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -337,7 +350,9 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/levels/" + str,
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/levels/"
+												+ str,
 										"levels/" + str, conn.getContentLength());
 							}
 						};
@@ -353,7 +368,8 @@ public class Launcher extends JFrame {
 				for (final String str : downloadBackgrounds) {
 
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/GetNuts/master/backgrounds/" + str);
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/backgrounds/"
+									+ str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -369,8 +385,10 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/backgrounds/"
-										+ str, "backgrounds/" + str, conn.getContentLength());
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/backgrounds/"
+												+ str,
+										"backgrounds/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -393,7 +411,7 @@ public class Launcher extends JFrame {
 		File f = new File("GetNuts.jar");
 		System.out.println("Exists: " + f.exists());
 		try {
-			URL url = new URL("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/GetNuts.jar");
+			URL url = new URL("https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/GetNuts.jar");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f.exists() || f.length() != conn.getContentLength()) {
@@ -402,7 +420,7 @@ public class Launcher extends JFrame {
 
 					@Override
 					public void run() {
-						download("https://raw.githubusercontent.com/Hunterszone/GetNuts/master/GetNuts.jar",
+						download("https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/GetNuts/GetNuts.jar",
 								"GetNuts.jar", conn.getContentLength());
 					}
 				};
