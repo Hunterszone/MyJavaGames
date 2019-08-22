@@ -61,8 +61,9 @@ public class Launcher extends JFrame {
 			URL verfile;
 
 			try {
-				location = new URL("https://github.com/Hunterszone/SpaceBattle");
-				verfile = new URL("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/version.txt");
+				location = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/SpaceBattle");
+				verfile = new URL(
+						"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/version.txt");
 
 				URLConnection connection = location.openConnection();
 				URLConnection verconnection = verfile.openConnection();
@@ -188,7 +189,7 @@ public class Launcher extends JFrame {
 			try {
 				{
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/images.txt");
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/images.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("res/images.txt");
@@ -196,7 +197,8 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/images.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/images.txt",
 								"res/images.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -206,7 +208,7 @@ public class Launcher extends JFrame {
 
 				{
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/sounds/sounds.txt");
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/sounds/sounds.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("res/sounds/sounds.txt");
@@ -215,7 +217,7 @@ public class Launcher extends JFrame {
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
 						download(
-								"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/sounds/sounds.txt",
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/sounds/sounds.txt",
 								"res/sounds/sounds.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -224,7 +226,7 @@ public class Launcher extends JFrame {
 				}
 				{
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/particles/particles.txt");
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/particles/particles.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("res/particles/particles.txt");
@@ -233,7 +235,7 @@ public class Launcher extends JFrame {
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
 						download(
-								"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/particles/particles.txt",
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/particles/particles.txt",
 								"res/particles/particles.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -242,7 +244,7 @@ public class Launcher extends JFrame {
 				}
 				{
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/fonts/fonts.txt");
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/fonts/fonts.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("res/fonts/fonts.txt");
@@ -250,7 +252,8 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/fonts/fonts.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/fonts/fonts.txt",
 								"res/fonts/fonts.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -258,7 +261,8 @@ public class Launcher extends JFrame {
 
 				}
 				{
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/dlls.txt");
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/dlls.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
 					File fi = new File("dlls.txt");
@@ -266,7 +270,8 @@ public class Launcher extends JFrame {
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/dlls.txt",
+						download(
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/dlls.txt",
 								"dlls.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
@@ -282,7 +287,8 @@ public class Launcher extends JFrame {
 
 				for (final String str : downloadImg) {
 
-					URL url = new URL("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/" + str);
+					URL url = new URL(
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -298,7 +304,9 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/" + str,
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/"
+												+ str,
 										"res/" + str, conn.getContentLength());
 							}
 						};
@@ -314,7 +322,8 @@ public class Launcher extends JFrame {
 				for (final String str : downloadSounds) {
 
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/sounds/" + str);
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/sounds/"
+									+ str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -330,8 +339,10 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/sounds/"
-										+ str, "res/sounds/" + str, conn.getContentLength());
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/sounds/"
+												+ str,
+										"res/sounds/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -347,7 +358,8 @@ public class Launcher extends JFrame {
 				for (final String str : downloadParticles) {
 
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/particles/" + str);
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/particles/"
+									+ str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -364,7 +376,7 @@ public class Launcher extends JFrame {
 							@Override
 							public void run() {
 								download(
-										"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/particles/"
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/particles/"
 												+ str,
 										"res/particles/" + str, conn.getContentLength());
 							}
@@ -381,7 +393,8 @@ public class Launcher extends JFrame {
 				for (final String str : downloadFonts) {
 
 					URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/fonts/" + str);
+							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/fonts/"
+									+ str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -397,8 +410,10 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/res/fonts/"
-										+ str, "res/fonts/" + str, conn.getContentLength());
+								download(
+										"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/res/fonts/"
+												+ str,
+										"res/fonts/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -413,7 +428,7 @@ public class Launcher extends JFrame {
 
 				for (final String str : downloadDLLs) {
 
-					URL url = new URL("https://github.com/Hunterszone/SpaceBattle/raw/master/" + str);
+					URL url = new URL("https://github.com/Hunterszone/MyJavaGames/raw/master/SpaceBattle/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
@@ -429,8 +444,8 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://github.com/Hunterszone/SpaceBattle/raw/master/" + str, "/" + str,
-										conn.getContentLength());
+								download("https://github.com/Hunterszone/MyJavaGames/raw/master/SpaceBattle/" + str,
+										"/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -454,7 +469,8 @@ public class Launcher extends JFrame {
 		File f = new File("SpaceBattle64bit.jar");
 		System.out.println("Exists: " + f.exists());
 		try {
-			URL url = new URL("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/SpaceBattle64bit.jar");
+			URL url = new URL(
+					"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/SpaceBattle64bit.jar");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f.exists() || f.length() != conn.getContentLength()) {
@@ -464,7 +480,7 @@ public class Launcher extends JFrame {
 					@Override
 					public void run() {
 						download(
-								"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/SpaceBattle64bit.jar",
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/SpaceBattle64bit.jar",
 								"SpaceBattle64bit.jar", conn.getContentLength());
 					}
 				};
@@ -478,7 +494,8 @@ public class Launcher extends JFrame {
 		File f2 = new File("SpaceBattle32bit.jar");
 		System.out.println("Exists: " + f2.exists());
 		try {
-			URL url = new URL("https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/SpaceBattle32bit.jar");
+			URL url = new URL(
+					"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/SpaceBattle32bit.jar");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f2.exists() || f2.length() != conn.getContentLength()) {
@@ -488,7 +505,7 @@ public class Launcher extends JFrame {
 					@Override
 					public void run() {
 						download(
-								"https://raw.githubusercontent.com/Hunterszone/SpaceBattle/master/SpaceBattle32bit.jar",
+								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/SpaceBattle32bit.jar",
 								"SpaceBattle32bit.jar", conn.getContentLength());
 					}
 				};
