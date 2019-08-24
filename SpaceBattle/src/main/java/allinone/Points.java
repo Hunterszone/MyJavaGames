@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 public class Points extends GameObject {
 
 	private Font font;
-	static int points;
+	public static int points;
 
 	public Points(int x, int y, Font font) {
 		super(x, y);
@@ -15,12 +15,18 @@ public class Points extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setFont(font);
-		String zeroDigits = String.format("%04d", points);
-		g.drawString(zeroDigits, x, y);
+		if (g != null) {
+			g.setFont(font);
+			String zeroDigits = String.format("%04d", points);
+			g.drawString(zeroDigits, x, y);
+		}
 	}
 
-	public void incrementPoints() {
-		points++;
+	public int incrementPoints(Integer smth) {
+		if (smth != null) {
+			points++;
+			smth = new Integer(points);
+		}
+		return smth;
 	}
 }
