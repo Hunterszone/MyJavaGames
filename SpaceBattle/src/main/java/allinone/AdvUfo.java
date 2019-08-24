@@ -35,10 +35,12 @@ public class AdvUfo extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		image.drawCentered(x, y);
-//		Color.red.a = 0.4f;
-//		g.setColor(Color.red);
-//		g.fill(collisionSurface);
+		if (g != null) {
+			image.drawCentered(x, y);
+//			Color.red.a = 0.4f;
+//			g.setColor(Color.red);
+//			g.fill(collisionSurface);			
+		}
 	}
 
 	public boolean checkCollision(GameObject gameObject) {
