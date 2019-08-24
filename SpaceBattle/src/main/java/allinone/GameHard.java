@@ -8,7 +8,7 @@ public class GameHard extends GameObject {
 
 	private int height;
 	private int width;
-	private int textWidth ;
+	private int textWidth;
 	private int textHeight;
 	private Color transparent;
 	private Font fontGameHard;
@@ -19,9 +19,10 @@ public class GameHard extends GameObject {
 		this.height = height;
 		this.width = width;
 		this.fontGameHard = fontGameHard;
-		textWidth = fontGameHard.getWidth(GAME_HARD);
-		textHeight = fontGameHard.getHeight(GAME_HARD);
-
+		if (fontGameHard != null) {
+			textWidth = fontGameHard.getWidth(GAME_HARD);
+			textHeight = fontGameHard.getHeight(GAME_HARD);
+		}
 	}
 
 	@Override
