@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import org.junit.After;
@@ -16,14 +15,10 @@ import potogold.Effects;
 
 public class EffectsTest {
 
-	private BufferedImage image;
 	private Effects effects;
-	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		x = 60;
-		y = 60;
 		effects = new Effects();
 	}
 
@@ -47,8 +42,6 @@ public class EffectsTest {
 
 	@After
 	public void tearDown() throws Exception {
-		x = 0;
-		y = 0;
 		effects = null;
 	}
 }
