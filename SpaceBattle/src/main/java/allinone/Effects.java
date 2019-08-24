@@ -10,9 +10,9 @@ import org.newdawn.slick.particles.ParticleSystem;
 
 public class Effects extends GameObject {
 
-	private ParticleSystem particleSystem;
-	private ConfigurableEmitter rocketSmoke;
-	private ConfigurableEmitter ufoExplosion;
+	public ParticleSystem particleSystem;
+	public ConfigurableEmitter rocketSmoke;
+	public ConfigurableEmitter ufoExplosion;
 	private ConfigurableEmitter shotParticlesShip;
 	private ConfigurableEmitter shotParticlesMoon;
 
