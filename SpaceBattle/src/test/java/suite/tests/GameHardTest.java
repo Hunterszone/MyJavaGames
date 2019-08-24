@@ -13,7 +13,7 @@ public class GameHardTest {
 	private int x, y;
 
 	@Test
-	public void testGameMedium() {
+	public void testGameHard() {
 		GameHard gameHard = new GameHard(x, y, font);
 		assertNotNull(gameHard.isGameHard());
 	}
