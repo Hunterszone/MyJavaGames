@@ -16,8 +16,10 @@ public class ShotShip extends GameObject {
 	public ShotShip(int x, int y, Sound blasterSound, ConfigurableEmitter emitter) {
 		super(x, y);
 		this.emitter = emitter;
-		emitter.setPosition(x, y);
-		blasterSound.playAt(x, y, 0);
+		if (blasterSound != null && emitter != null) {
+			emitter.setPosition(x, y);
+			blasterSound.playAt(x, y, 0);
+		}
 	}
 
 	public ShotShip(int x, int y, BufferedImage image) {
@@ -32,12 +34,13 @@ public class ShotShip extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+		if (g != null) {
+			g.setColor(Color.yellow);
+			g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+		}
 	}
 
 	public void disappear() {
 		emitter.setEnabled(false);
 	}
-
 }
