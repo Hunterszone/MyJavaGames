@@ -8,7 +8,7 @@ public class GameEnd extends GameObject {
 
 	private int height;
 	private int width;
-	private int textWidth ;
+	private int textWidth;
 	private int textHeight;
 	private Color transparent;
 	private Font fontGameOver;
@@ -21,9 +21,10 @@ public class GameEnd extends GameObject {
 		this.fontGameOver = fontGameOver;
 		transparent = new Color(Color.black);
 		transparent.a = 0.5f;
-		textWidth = fontGameOver.getWidth(GAME_OVER);
-		textHeight = fontGameOver.getHeight(GAME_OVER);
-		
+		if (fontGameOver != null) {
+			textWidth = fontGameOver.getWidth(GAME_OVER);
+			textHeight = fontGameOver.getHeight(GAME_OVER);
+		}
 	}
 
 	@Override
@@ -32,7 +33,8 @@ public class GameEnd extends GameObject {
 		g.fillRect(0, 0, width, height);
 		g.setColor(Color.white);
 		g.setFont(fontGameOver);
-		g.drawString(GAME_OVER + "\nPoints: " + Points.points, (width / 2) - (textWidth / 2), (height / 2) - textHeight);
+		g.drawString(GAME_OVER + "\nPoints: " + Points.points, (width / 2) - (textWidth / 2),
+				(height / 2) - textHeight);
 	}
 
 	public void setGameOver(boolean isGameOver) {
