@@ -8,7 +8,7 @@ public class GameMedium extends GameObject {
 
 	private int height;
 	private int width;
-	private int textWidth ;
+	private int textWidth;
 	private int textHeight;
 	private Color transparent;
 	private Font fontGameMedium;
@@ -19,9 +19,10 @@ public class GameMedium extends GameObject {
 		this.height = height;
 		this.width = width;
 		this.fontGameMedium = fontGameMedium;
-		textWidth = fontGameMedium.getWidth(GAME_MEDIUM);
-		textHeight = fontGameMedium.getHeight(GAME_MEDIUM);
-
+		if (fontGameMedium != null) {
+			textWidth = fontGameMedium.getWidth(GAME_MEDIUM);
+			textHeight = fontGameMedium.getHeight(GAME_MEDIUM);
+		}
 	}
 
 	@Override
