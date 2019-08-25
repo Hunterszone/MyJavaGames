@@ -18,6 +18,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Ellipse;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 
+import allinone.Images;
 import allinone.ShotMoon;
 import allinone.ShotUfo;
 import allinone.Spaceship;
@@ -45,14 +46,15 @@ public class SpaceshipTest {
 	@Test
 	public void testDraw() {
 		try {
-			image = ImageIO.read(new FileInputStream("res/spaceship.png"));
+			assertNotNull(ImageIO.read(new FileInputStream(Images.SPACESHIP.getImg())));
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotNull(image);
-		assertNotEquals("Image name is empty", "", image);
+		assertNotEquals("Image name is empty", "", Images.SPACESHIP.getImg());
 	}
 
 	@Test
