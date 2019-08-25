@@ -1,5 +1,7 @@
 package allinone;
 
+import java.awt.image.BufferedImage;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -11,7 +13,7 @@ public class Spaceship extends GameObject {
 
 	private ConfigurableEmitter emitter;
 	private Input input;
-	private Shape collisionSurface;
+	public Shape collisionSurface;
 	static double speedX;
 	static double speedY;
 
@@ -20,6 +22,10 @@ public class Spaceship extends GameObject {
 		this.input = input;
 		this.emitter = emitter;
 		collisionSurface = new Ellipse(x, y, 30, 45);
+	}
+
+	public Spaceship(int x, int y, BufferedImage image) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -39,7 +45,9 @@ public class Spaceship extends GameObject {
 	}
 
 	public boolean checkCollision(GameObject gameObject) {
-		return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		if (collisionSurface != null)
+			return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		return false;
 	}
 
 }
