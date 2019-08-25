@@ -1,7 +1,5 @@
 package allinone;
 
-import java.awt.image.BufferedImage;
-
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -24,7 +22,7 @@ public class Spaceship extends GameObject {
 		collisionSurface = new Ellipse(x, y, 30, 45);
 	}
 
-	public Spaceship(int x, int y, BufferedImage image) {
+	public Spaceship(int x, int y, Image image) {
 		// TODO Auto-generated constructor stub
 	}
 

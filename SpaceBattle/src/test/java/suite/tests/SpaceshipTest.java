@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +13,7 @@ import javax.imageio.ImageIO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Ellipse;
 import org.newdawn.slick.particles.ConfigurableEmitter;
@@ -31,7 +31,7 @@ public class SpaceshipTest {
 	private Sound sound;
 	private ConfigurableEmitter emitter;
 	private int x, y;
-	private BufferedImage image;
+	private Image image;
 
 	@Before
 	public void setUp() throws Exception {
@@ -67,8 +67,6 @@ public class SpaceshipTest {
 
 	@After
 	public void tearDown() throws Exception {
-		x = 0;
-		y = 0;
 		spaceship = null;
 	}
 }
