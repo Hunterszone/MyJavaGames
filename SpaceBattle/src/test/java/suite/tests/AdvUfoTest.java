@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
 import allinone.AdvUfo;
+import allinone.Images;
 import allinone.ShotShip;
 
 public class AdvUfoTest {
@@ -39,14 +40,15 @@ public class AdvUfoTest {
 	@Test
 	public void testDraw() {
 		try {
-			image = ImageIO.read(new FileInputStream("res/advufo.png"));
+			assertNotNull(ImageIO.read(new FileInputStream(Images.ADVUFO.getImg())));
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotNull(image);
-		assertNotEquals("Image name is empty", "", image);
+		assertNotEquals("Image name is empty", "", Images.ADVUFO.getImg());
 	}
 
 	@Test
