@@ -268,7 +268,6 @@ public class GameScene extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (inGame) {
-
             checkApple();
             checkCollision();
             move();
