@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class WaterTest {
 	@Test
 	public void testWater() {
 		assertNotNull(water.getImage());
-		assertNotEquals("Water img name is empty", "", water.img);
+		assertFalse("Water img name is empty", water.img.isEmpty());
 	}
 
 	@After

@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class CanonBallTest {
 	@Test
 	public void testCanonBallUnit() {
 		assertNotNull(canonBall.loadImage(canonBall.initCanon()));
-		assertNotEquals("", canonBall.initCanon());
+		assertFalse(canonBall.initCanon().isEmpty());
 	}
 
 	@After

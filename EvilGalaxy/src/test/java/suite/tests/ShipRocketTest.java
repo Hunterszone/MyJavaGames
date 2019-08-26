@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class ShipRocketTest {
 	@Test
 	public void testShipMissileUnit() {
 		assertNotNull(shipRocket.loadImage(shipRocket.initRocket()));
-		assertNotEquals("", shipRocket.initRocket());
+		assertFalse(shipRocket.initRocket().isEmpty());
 	}
 
 	@After

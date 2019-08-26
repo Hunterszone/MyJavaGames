@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class CrosshairTest {
 	@Test
 	public void testCrosshair() {
 		assertNotNull(crosshair.loadImage(crosshair.initCrosshair()));
-		assertNotEquals("", crosshair.initCrosshair());
+		assertFalse(crosshair.initCrosshair().isEmpty());
 	}
 
 	@After

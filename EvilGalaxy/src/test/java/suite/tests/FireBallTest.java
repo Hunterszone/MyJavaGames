@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class FireBallTest {
 	@Test
 	public void testFireBallUnit() {
 		assertNotNull(fireBall.loadImage(fireBall.initEvilGun()));
-		assertNotEquals("", fireBall.initEvilGun());
+		assertFalse(fireBall.initEvilGun().isEmpty());
 	}
 
 	@After
