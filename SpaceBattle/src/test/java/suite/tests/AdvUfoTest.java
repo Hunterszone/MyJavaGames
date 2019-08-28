@@ -48,7 +48,7 @@ public class AdvUfoTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotEquals("Image name is empty", "", Images.ADVUFO.getImg());
+		assertFalse("Image name is empty", Images.ADVUFO.getImg().isEmpty());
 	}
 
 	@Test
