@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class BridgeTest {
 	@Test
 	public void testBridge() {
 		assertNotNull(bridge.getImage());
-		assertNotEquals("Bridge img name is empty", "", bridge.img);
+		assertFalse("Bridge img name is empty", bridge.img.isEmpty());
 	}
 
 	@After

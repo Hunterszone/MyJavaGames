@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -65,7 +66,7 @@ public class Main extends BasicGame {
 		app.setClearEachFrame(false);
 		app.setMinimumLogicUpdateInterval(20);
 		app.setShowFPS(false);
-		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon("res/gameico.png", app));
+		Display.setIcon(LoadIcon.loadIcon("res/gameico.png", app));
 		app.start();
 	}
 

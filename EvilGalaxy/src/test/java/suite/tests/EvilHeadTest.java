@@ -23,7 +23,7 @@ public class EvilHeadTest {
 	@Test
 	public void testEvilHead() {
 		assertNotNull(evilHead.loadImage(evilHead.initHead()));
-		assertNotEquals("", evilHead.initHead());
+		assertFalse(evilHead.initHead().isEmpty());
 	}
 
 	@Test

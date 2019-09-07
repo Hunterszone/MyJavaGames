@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class NutTest {
 	@Test
 	public void testNut() {
 		assertNotNull(nut.getImage());
-		assertNotEquals("Nut img name is empty", "", nut.img);
+		assertFalse("Nut img name is empty", nut.img.isEmpty());
 	}
 
 	@After

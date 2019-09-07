@@ -1,7 +1,6 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.awt.image.BufferedImage;
@@ -18,6 +17,7 @@ import org.newdawn.slick.geom.Ellipse;
 
 import potogold.Gift1;
 import potogold.Gift2;
+import potogold.Images;
 import potogold.Lepricon;
 
 public class LepriconTest {
@@ -43,14 +43,13 @@ public class LepriconTest {
 	@Test
 	public void testDraw() {
 		try {
-			image = ImageIO.read(new FileInputStream("res/santa.png"));
+			assertNotNull(ImageIO.read(new FileInputStream(Images.LEPRICON.getImg())));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertNotNull(image);
-		assertNotEquals("Image name is empty", "", image);
+		assertFalse("Image name is empty", Images.LEPRICON.getImg().isEmpty());
 	}
 
 	@Test

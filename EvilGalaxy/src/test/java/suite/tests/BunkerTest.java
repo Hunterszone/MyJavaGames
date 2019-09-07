@@ -23,13 +23,13 @@ public class BunkerTest {
 	@Test
 	public void testBunkerUnit() {
 		assertNotNull(bunker.loadImage(bunker.initBunker()));
-		assertNotEquals("", bunker.initBunker());
+		assertFalse(bunker.initBunker().isEmpty());
 	}
 
 	@Test
 	public void testBunkerUnitHit() {
 		assertNotNull(bunker.loadImage(bunker.initBunkerHit()));
-		assertFalse(bunker.initBunkerHit().equals(""));
+		assertFalse(bunker.initBunkerHit().isEmpty());
 	}
 
 	@Test

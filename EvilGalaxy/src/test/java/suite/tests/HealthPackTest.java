@@ -24,7 +24,7 @@ public class HealthPackTest {
 	@Test
 	public void testGoldUnit() {
 		assertNotNull(healthPack.loadImage(healthPack.initHealth()));
-		assertNotEquals("", healthPack.initHealth());
+		assertFalse(healthPack.initHealth().isEmpty());
 	}
 
 	@Test

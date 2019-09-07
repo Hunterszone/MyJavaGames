@@ -25,7 +25,7 @@ public class MyShipTest {
 	@Test
 	public void testMyShipUnit() {
 		assertNotNull(myShip.loadImage(myShip.initShip()));
-		assertNotEquals("", myShip.initShip());
+		assertFalse(myShip.initShip().isEmpty());
 	}
 
 	@Test

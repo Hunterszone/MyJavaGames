@@ -49,31 +49,31 @@ public class CollisionsTest {
 	@Test
 	public void canonIntersectsShip() {
 		Rectangle canonUnit = canon.getBounds();
-		assertTrue("", Collisions.canonIntersectsShip(myship, canon, canonUnit));
+		assertTrue("canonIntersectsShip", Collisions.canonIntersectsShip(myship, canon, canonUnit));
 	}
 
 	@Test
 	public void bulletTwoIntersectsShip() {
 		Rectangle bulletUnit2 = bullet.getBounds();
-		assertTrue("", Collisions.bulletTwoIntersectsShip(bullet, myship, bulletUnit2));
+		assertTrue("bulletTwoIntersectsShip", Collisions.bulletTwoIntersectsShip(bullet, myship, bulletUnit2));
 	}
 
 	@Test
 	public void fireBallIntersectsShip() {
 		Rectangle fireballUnit = fireball.getBounds();
-		assertTrue("", Collisions.fireBallIntersectsShip(fireball, fireballUnit, myship));
+		assertTrue("fireBallIntersectsShip", Collisions.fireBallIntersectsShip(fireball, fireballUnit, myship));
 	}
 
 	@Test
 	public void rocketIntersectsBunker() {
 		rocketUnit = rocket.getBounds();
-		assertTrue("", Collisions.rocketIntersectsBunker(bunker, rocket, rocketUnit));
+		assertTrue("rocketIntersectsBunker", Collisions.rocketIntersectsBunker(bunker, rocket, rocketUnit));
 	}
 
 	@Test
 	public void rocketIntersectsHead() {
 		rocketUnit = rocket.getBounds();
-		assertTrue("", Collisions.rocketIntersectsHead(evilhead, rocket, rocketUnit));
+		assertTrue("rocketIntersectsHead", Collisions.rocketIntersectsHead(evilhead, rocket, rocketUnit));
 	}
 
 	@Test

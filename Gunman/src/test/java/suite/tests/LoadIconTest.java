@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -21,7 +22,7 @@ public class LoadIconTest {
 	@Test
 	public void testLoadIcon() {
 		assertNotNull(filePath);
-		assertNotEquals("Game icon is undefined", "", filePath);
+		assertFalse("Game icon is undefined", filePath.isEmpty());
 	}
 
 	@After

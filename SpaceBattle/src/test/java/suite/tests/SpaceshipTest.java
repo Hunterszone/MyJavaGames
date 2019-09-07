@@ -54,7 +54,7 @@ public class SpaceshipTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotEquals("Image name is empty", "", Images.SPACESHIP.getImg());
+		assertFalse("Image name is empty", Images.SPACESHIP.getImg().isEmpty());
 	}
 
 	@Test

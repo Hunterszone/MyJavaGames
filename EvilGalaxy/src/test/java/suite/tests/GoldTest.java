@@ -24,7 +24,7 @@ public class GoldTest {
 	@Test
 	public void testGoldUnit() {
 		assertNotNull(goldBar.loadImage(goldBar.initGifts()));
-		assertNotEquals("", goldBar.initGifts());
+		assertFalse(goldBar.initGifts().isEmpty());
 	}
 
 	@Test

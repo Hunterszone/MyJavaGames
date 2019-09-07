@@ -36,7 +36,7 @@ public class EffectsTest {
 
 	@Test
 	public void testDraw() {
-		assertFalse(effects.particleSystem.equals(null));
+		assertNotNull(effects.particleSystem);
 		assertNotEquals("Effect name is empty", "", effects.particleSystem);
 	}
 

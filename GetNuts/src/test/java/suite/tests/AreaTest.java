@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -22,7 +23,7 @@ public class AreaTest {
 	@Test
 	public void testArea() {
 		assertNotNull(area.getImage());
-		assertNotEquals("Area img name is empty", "", area.img);
+		assertFalse("Area img name is empty", area.img.isEmpty());
 	}
 
 	@After

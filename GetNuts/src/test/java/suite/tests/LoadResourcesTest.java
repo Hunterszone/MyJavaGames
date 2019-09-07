@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -29,15 +30,15 @@ public class LoadResourcesTest {
 			if (Files.exists(Paths.get("levels"))) {
 				path = LevelsBgsEngine.addLevels();
 				assertTrue("File " + path + " does not exist", Files.exists(Paths.get(path)));
+				assertFalse(LevelsBgsEngine.readFile(path, encoding).isEmpty());
 				assertNotNull(LevelsBgsEngine.readFile(path, encoding));
-				assertNotEquals("", LevelsBgsEngine.readFile(path, encoding));
 			}
 			if (Files.exists(Paths.get("backgrounds"))) {
 				sourceImage = LevelsBgsEngine.addBackgrounds();
 				assertTrue("File " + sourceImage.toString() + " does not exist",
 						Files.exists(Paths.get(sourceImage.toString())));
+				assertFalse("Image name is empty", ImageIO.read(sourceImage).getProperty(sourceImage.toString()).equals(""));
 				assertNotNull(ImageIO.read(sourceImage));
-				assertNotEquals("", ImageIO.read(sourceImage));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

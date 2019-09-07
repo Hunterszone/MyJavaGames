@@ -1,7 +1,6 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.awt.image.BufferedImage;
@@ -17,6 +16,7 @@ import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
 import potogold.Bomb;
+import potogold.Images;
 import potogold.Lepricon;
 
 public class BombTest {
@@ -41,14 +41,13 @@ public class BombTest {
 	@Test
 	public void testDraw() {
 		try {
-			image = ImageIO.read(new FileInputStream("res/mine.png"));
+			assertNotNull(ImageIO.read(new FileInputStream(Images.BOMB.getImg())));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertNotNull(image);
-		assertNotEquals("Image name is empty", "", image);
+		assertFalse("Image name is empty", Images.BOMB.getImg().isEmpty());
 	}
 
 	@Test
