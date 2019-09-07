@@ -1,7 +1,6 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.awt.image.BufferedImage;
