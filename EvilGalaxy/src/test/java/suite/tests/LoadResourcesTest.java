@@ -1,7 +1,6 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Files;
@@ -36,7 +35,7 @@ public class LoadResourcesTest {
 						!Files.exists(Paths.get(SoundEffects.values()[i].getSound())));
 				assertFalse(SoundEffects.values()[i].toString() + " sound value is NULL",
 						SoundEffects.values()[i].getSound().equals(null));
-				assertFalse(SoundEffects.values()[i].toString() + " sound value is empty", 
+				assertFalse(SoundEffects.values()[i].toString() + " sound value is empty",
 						SoundEffects.values()[i].getSound().isEmpty());
 			}
 		}
