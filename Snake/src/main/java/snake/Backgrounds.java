@@ -16,29 +16,26 @@ public class Backgrounds {
 
 	static ArrayList<Image> backgrounds = new ArrayList<Image>();
 
-	static String readFile(String path, Charset encoding) throws IOException {
+	public static String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
 
-	static void addBackgrounds() {
-
+	public static File addBackgrounds() {
+		File sourceImage = null;
 		try {
 			Stream<Path> images = Files.list(Paths.get("backgrounds"));
 			long imagesCount = images.count();
-
 			for (int i = 0; i < imagesCount; i++) {
-				File sourceImage = new File("backgrounds/bg" + i + ".jpg");
+				sourceImage = new File("backgrounds/bg" + i + ".jpg");
 				Image levelBG = ImageIO.read(sourceImage);
 				backgrounds.add(levelBG);
 			}
-
 			images.close();
-
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		return sourceImage;
 	}
 }
