@@ -185,7 +185,6 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
-			dragonKilled++;
 			killedByBunker = false;
 			killedByEvilHead = false;
 			killedByAlien = false;
@@ -302,7 +301,6 @@ public abstract class Collisions extends UpdateObjects {
 			rocket.setVisible(false);
 			dragon.setVisible(false);
 //					new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
-			dragonKilled++;
 			if (rocket.isVisible())
 				return false;
 		}

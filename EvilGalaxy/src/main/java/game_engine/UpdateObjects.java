@@ -212,6 +212,7 @@ public abstract class UpdateObjects extends InitObjects {
 			if (dragon.isVisible()) {
 				dragon.move();
 			} else {
+				Collisions.dragonKilled++;
 				Dragon.dragons.remove(nextdragon);
 				SoundEffects.BLOOP.getSound();
 			}
