@@ -6,6 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.sun.speech.freetts.Voice;
@@ -179,6 +180,12 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Monsters left: " + 0, 5, 15);
 				g.drawString("Gold: " + 0, 150, 15);
 				g.drawString("Health: 0%", 230, 15);
+				try {
+					HighScoreToDb.main(null);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 			if (lifeEvilHead == 50) {

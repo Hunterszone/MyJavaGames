@@ -152,4 +152,11 @@ public class InitObjects extends JPanel implements ActionListener {
 
 	}
 
+	static List<String> getEnemyNames() {
+		List<String> enemyNames = new ArrayList<String>();
+		enemyNames.add(Alien.class.getName());
+		enemyNames.add(Dragon.class.getName());
+		return enemyNames;
+	}
+
 }

@@ -420,4 +420,16 @@ public abstract class Collisions extends UpdateObjects {
 		}
 		return true;
 	}
+
+	static String[] getNameAndKilledCount(String enemyName) {
+		if (enemyName.equalsIgnoreCase(Alien.class.getName())) {
+			Integer alienKilledd = (Integer) alienKilled;
+			return new String[] { enemyName, alienKilledd.toString() };
+		}
+		if (enemyName.equalsIgnoreCase(Dragon.class.getName())) {
+			Integer dragonKilledd = (Integer) dragonKilled;
+			return new String[] { enemyName, dragonKilledd.toString() };
+		}
+		return null;
+	}
 }
