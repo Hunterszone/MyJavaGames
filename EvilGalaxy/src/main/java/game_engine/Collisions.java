@@ -41,16 +41,18 @@ public abstract class Collisions extends UpdateObjects {
 
 		for (Alien alien : Alien.aliens) {
 
-			Rectangle alienUnit = alien.getBounds();
-
-			shipIntersectsAlien(myship, alien, alienUnit);
+			if (alien != null) {
+				Rectangle alienUnit = alien.getBounds();
+				shipIntersectsAlien(myship, alien, alienUnit);
+			}
 		}
 
 		for (Dragon dragon : Dragon.dragons) {
 
-			Rectangle dragonunit = dragon.getBounds();
-
-			shipIntersectsDragon(myship, dragon, dragonunit);
+			if (dragon != null) {
+				Rectangle dragonunit = dragon.getBounds();
+				shipIntersectsDragon(myship, dragon, dragonunit);
+			}
 		}
 
 		shipIntersectsHead(myship, evilhead);
@@ -61,36 +63,42 @@ public abstract class Collisions extends UpdateObjects {
 		}
 
 		for (Gold gold : Gold.goldstack) {
-			Rectangle goldUnit = gold.getBounds();
 
-			shipIntersectsGold(myship, gold, goldUnit);
+			if (gold != null) {
+				Rectangle goldUnit = gold.getBounds();
+				shipIntersectsGold(myship, gold, goldUnit);
+			}
 		}
 
 		for (HealthPack health : HealthPack.healthpack) {
-			Rectangle healthUnit = health.getBounds();
-
-			shipIntersectsHealth(myship, health, healthUnit);
+			if (health != null) {
+				Rectangle healthUnit = health.getBounds();
+				shipIntersectsHealth(myship, health, healthUnit);
+			}
 		}
 
 		List<ShipMissile> missiles = MyShip.myShip.getMissiles();
 
 		for (ShipMissile missile : missiles) {
 
-			Rectangle missileUnit = missile.getBounds();
+			if (missile != null) {
+				Rectangle missileUnit = missile.getBounds();
 
-			for (Alien alien : Alien.aliens) {
+				for (Alien alien : Alien.aliens) {
+					if (alien != null) {
+						Rectangle alienUnit = alien.getBounds();
+						missileIntersectsAlien(missile, missileUnit, alien, alienUnit);
+					}
+				}
 
-				Rectangle alienUnit = alien.getBounds();
+				if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && lifeBunker < 50) {
+					missileIntersectsBunker(bunker, missile, missileUnit);
+				}
 
-				missileIntersectsAlien(missile, missileUnit, alien, alienUnit);
-			}
-
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && lifeBunker < 50) {
-				missileIntersectsBunker(bunker, missile, missileUnit);
-			}
-
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
-				missileIntersectsHead(evilhead, missile, missileUnit);
+				if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty()
+						&& lifeBunker >= 50) {
+					missileIntersectsHead(evilhead, missile, missileUnit);
+				}
 			}
 		}
 
@@ -98,65 +106,65 @@ public abstract class Collisions extends UpdateObjects {
 
 		for (ShipRocket rocket : rockets) {
 
-			Rectangle rocketUnit = rocket.getBounds();
+			if (rocket != null) {
+				Rectangle rocketUnit = rocket.getBounds();
 
-			for (Dragon dragon : Dragon.dragons) {
+				for (Dragon dragon : Dragon.dragons) {
+					if (dragon != null) {
+						Rectangle dragonunit = dragon.getBounds();
+						rocketIntersectsDragon(rocket, rocketUnit, dragon, dragonunit);
+					}
+				}
 
-				Rectangle dragonunit = dragon.getBounds();
+				if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty()
+						&& lifeBunker >= 50) {
+					rocketIntersectsHead(evilhead, rocket, rocketUnit);
+				}
 
-				rocketIntersectsDragon(rocket, rocketUnit, dragon, dragonunit);
+				if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && lifeBunker < 50) {
+					rocketIntersectsBunker(bunker, rocket, rocketUnit);
+				}
 			}
-
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
-				rocketIntersectsHead(evilhead, rocket, rocketUnit);
-			}
-
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && lifeBunker < 50) {
-				rocketIntersectsBunker(bunker, rocket, rocketUnit);
-			}
-
 		}
 
 		List<FireBall> fireballs = EvilHead.evilHead.getEvilMissiles();
 
 		for (FireBall fireball : fireballs) {
-
-			Rectangle fireballUnit = fireball.getBounds();
-
-			Rectangle ship = MyShip.myShip.getBounds();
-
-			fireBallIntersectsShip(fireball, fireballUnit, ship);
+			if (fireball != null) {
+				Rectangle fireballUnit = fireball.getBounds();
+				Rectangle ship = MyShip.myShip.getBounds();
+				fireBallIntersectsShip(fireball, fireballUnit, ship);
+			}
 		}
 
 		List<BunkerBullet> bullets = Bunker.bunkerObj.getBullets();
 
 		for (BunkerBullet bullet : bullets) {
 
-			Rectangle bulletUnit = bullet.getBounds();
-
-			Rectangle ship = MyShip.myShip.getBounds();
-
-			bulletOneIntersectsShip(bullet, bulletUnit, ship);
+			if (bullet != null) {
+				Rectangle bulletUnit = bullet.getBounds();
+				Rectangle ship = MyShip.myShip.getBounds();
+				bulletOneIntersectsShip(bullet, bulletUnit, ship);
+			}
 		}
 
 		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBullets2();
 
 		for (BunkerBullet bullet : bullets2) {
-
-			Rectangle bulletUnit2 = bullet.getBounds();
-
-			Rectangle ship = MyShip.myShip.getBounds();
-
-			bulletTwoIntersectsShip(bullet, bulletUnit2, ship);
+			if (bullet != null) {
+				Rectangle bulletUnit2 = bullet.getBounds();
+				Rectangle ship = MyShip.myShip.getBounds();
+				bulletTwoIntersectsShip(bullet, bulletUnit2, ship);
+			}
 		}
 
 		List<CanonBall> canons = EvilHead.evilHead.getCanons();
 
 		for (CanonBall canon : canons) {
-
-			Rectangle canonUnit = canon.getBounds();
-
-			canonIntersectsShip(myship, canon, canonUnit);
+			if (canon != null) {
+				Rectangle canonUnit = canon.getBounds();
+				canonIntersectsShip(myship, canon, canonUnit);
+			}
 		}
 	}
 
@@ -428,6 +436,6 @@ public abstract class Collisions extends UpdateObjects {
 			Integer dragonKilledd = (Integer) dragonKilled;
 			return new String[] { enemyName, dragonKilledd.toString() };
 		}
-		return null;
+		return new String[] { "" };
 	}
 }
