@@ -48,13 +48,13 @@ public class InitObjects extends JPanel implements ActionListener {
 	private final static int[][] posGold = { { 500, 1029 }, { 290, 1180 }, { 330, 60 }, { 510, 1839 }, { 620, 1600 },
 			{ 480, 1359 }, { 360, 1150 }, { 640, 90 }, { 430, 1420 }, { 560, 1520 }, { 455, 1228 }, { 600, 1130 } };
 
-	private final static int[][] posDragon = { { 1380, 550 }, { 1580, 370 }, { 1680, 239 }, { 1390, 450 },
-			{ 1460, 580 }, { 1790, 590 }, { 1400, 359 }, { 1460, 290 }, { 1540, 250 }, { 1410, 220 }, { 1560, 250 },
-			{ 1740, 280 }, { 1420, 290 }, { 1590, 690 }, { 1700, 470 }, { 1380, 650 }, { 1580, 270 }, { 1680, 439 },
-			{ 1390, 350 }, { 1460, 280 }, { 1790, 490 }, { 1400, 259 }, { 1460, 690 }, { 1540, 450 }, { 1410, 420 },
-			{ 1560, 350 }, { 1740, 280 }, { 1420, 250 }, { 1590, 290 }, { 1700, 470 }
-
-	};
+//	private final static int[][] posDragon = { { 1380, 550 }, { 1580, 370 }, { 1680, 239 }, { 1390, 450 },
+//			{ 1460, 580 }, { 1790, 590 }, { 1400, 359 }, { 1460, 290 }, { 1540, 250 }, { 1410, 220 }, { 1560, 250 },
+//			{ 1740, 280 }, { 1420, 290 }, { 1590, 690 }, { 1700, 470 }, { 1380, 650 }, { 1580, 270 }, { 1680, 439 },
+//			{ 1390, 350 }, { 1460, 280 }, { 1790, 490 }, { 1400, 259 }, { 1460, 690 }, { 1540, 450 }, { 1410, 420 },
+//			{ 1560, 350 }, { 1740, 280 }, { 1420, 250 }, { 1590, 290 }, { 1700, 470 }
+//
+//	};
 
 	private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, { 650, 240 }, { 600, 500 },
 			{ 500, 600 } };
@@ -120,8 +120,8 @@ public class InitObjects extends JPanel implements ActionListener {
 
 	public static List<Dragon> initDragons() {
 		Dragon.dragons = new ArrayList<>();
-		for (int[] p : posDragon) {
-			Dragon born = new Dragon(p[0], p[1]);
+		for (int i = 0; i < 30; i++) {
+			Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700), (int) Math.ceil(Math.random() * 800));
 			Dragon.dragons.add(born);
 			born.setVisible(false);
 		}

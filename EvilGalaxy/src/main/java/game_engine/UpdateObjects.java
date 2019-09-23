@@ -204,7 +204,7 @@ public abstract class UpdateObjects extends InitObjects {
 		}
 	}
 
-	protected static void updateDragons() {
+	protected static int updateDragons() {
 		for (int nextdragon = 0; nextdragon < Dragon.dragons.size(); nextdragon++) {
 			Dragon dragon = Dragon.dragons.get(nextdragon);
 			dragon.setVisible(true);
@@ -215,8 +215,10 @@ public abstract class UpdateObjects extends InitObjects {
 				Collisions.dragonKilled++;
 				Dragon.dragons.remove(nextdragon);
 				SoundEffects.BLOOP.getSound();
+				return Collisions.dragonKilled;
 			}
 		}
+		return 0;
 	}
 
 	private void updateEvilHead() {

@@ -383,16 +383,17 @@ public class GameMenu extends JFrame {
 					Difficulty.restart();
 					Alien.aliens.clear();
 					Dragon.dragons = new ArrayList<>();
-//					for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
-//						Dragon born = new Dragon((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800));
-//						Dragon.dragons.add(born);
-//					}
-					for (Object born : loadedAssets) {
-						born = new Dragon((int) Math.ceil(Math.random() * 4000), (int) Math.ceil(Math.random() * 800));
-						Dragon.dragons.add((Dragon) born);
-						if (Dragon.dragons.size() == 14)
-							break;
+					for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
+						Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700),
+								(int) Math.ceil(Math.random() * 800));
+						Dragon.dragons.add(born);
 					}
+//					for (Object born : loadedAssets) {
+//						born = new Dragon((int) Math.ceil(Math.random() * 4000), (int) Math.ceil(Math.random() * 800));
+//						Dragon.dragons.add((Dragon) born);
+//						if (Dragon.dragons.size() == 14)
+//							break;
+//					}
 
 					DrawScene.voiceInterruptor = true;
 					savedOnL2 = false;
