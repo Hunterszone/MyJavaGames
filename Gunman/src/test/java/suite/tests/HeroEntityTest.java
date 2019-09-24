@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -19,6 +20,7 @@ import gameDevelopment.HealthEntity;
 import gameDevelopment.MySprite;
 import gameDevelopment.TreasureEntity;
 
+@Ignore
 public class HeroEntityTest {
 
 	private MySprite hero, enemy, treasure, healthpack;

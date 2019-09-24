@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -18,6 +19,7 @@ import gameDevelopment.Game;
 import gameDevelopment.HeroEntity;
 import gameDevelopment.MySprite;
 
+@Ignore
 public class EnemyEntityTest {
 
 	private MySprite hero, crosshair, enemy;
