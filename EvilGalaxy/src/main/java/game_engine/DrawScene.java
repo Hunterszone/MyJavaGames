@@ -186,8 +186,6 @@ public class DrawScene extends UpdateObjects {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				Collisions.alienKilled = 0;
-				Collisions.dragonKilled = 0;
 			}
 
 			if (lifeEvilHead == 50) {

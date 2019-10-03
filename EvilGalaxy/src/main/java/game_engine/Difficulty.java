@@ -14,11 +14,16 @@ public class Difficulty {
 
 	public static void restart() {
 
+		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+			Collisions.alienKilled = 0;
+			Collisions.dragonKilled = 0;
+		}
+
 		DrawScene.finMusicIsPlayed = false;
-		
+
 		GameMenu.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
-		
+
 		if (InitObjects.god == true) {
 			InitObjects.god = false;
 		}
@@ -58,10 +63,15 @@ public class Difficulty {
 	}
 
 	public static void easy() {
-		
+
+		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+			Collisions.alienKilled = 0;
+			Collisions.dragonKilled = 0;
+		}
+
 		GameMenu.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
-		
+
 		DrawScene.finMusicIsPlayed = false;
 
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
@@ -101,9 +111,14 @@ public class Difficulty {
 
 	public static void medium() {
 
+		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+			Collisions.alienKilled = 0;
+			Collisions.dragonKilled = 0;
+		}
+
 		GameMenu.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
-		
+
 		DrawScene.finMusicIsPlayed = false;
 
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
@@ -145,9 +160,14 @@ public class Difficulty {
 
 	public static void hard() {
 
+		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+			Collisions.alienKilled = 0;
+			Collisions.dragonKilled = 0;
+		}
+
 		GameMenu.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
-		
+
 		DrawScene.finMusicIsPlayed = false;
 
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
@@ -185,5 +205,4 @@ public class Difficulty {
 		LoadSounds.bgMusic.loop();
 		LoadSounds.roar.stop();
 	}
-
 }

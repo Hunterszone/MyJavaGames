@@ -29,6 +29,7 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
 import game_engine.Collisions;
+import game_engine.Controls;
 import game_engine.Difficulty;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
@@ -362,15 +363,23 @@ public class GameMenu extends JFrame {
 
 					DrawScene.initVoice("Game loaded!");
 
-					Difficulty.restart();
-					Alien.aliens = new ArrayList<>();
+					if (Controls.isEPressed == true)
+						Difficulty.easy();
+					else if (Controls.isMPressed == true)
+						Difficulty.medium();
+					else if (Controls.isHPressed == true)
+						Difficulty.hard();
+					else
+						Difficulty.restart();
 
+					Alien.aliens = new ArrayList<>();
 					for (int i = 0; i < 40 - Collisions.alienKilled; i++) {
 						Alien born = new Alien((int) Math.ceil(Math.random() * 7000),
 								(int) Math.ceil(Math.random() * 800));
 						Alien.aliens.add(born);
 					}
 
+					System.out.println("Score after loading will be added to entities.Alien");
 					DrawScene.voiceInterruptor = true;
 					savedOnL1 = false;
 					return;
@@ -379,8 +388,18 @@ public class GameMenu extends JFrame {
 				DrawScene.voiceInterruptor = false;
 
 				if (savedOnL2 && DrawScene.voiceInterruptor == false) {
+
 					DrawScene.initVoice("Game loaded!");
-					Difficulty.restart();
+
+					if (Controls.isEPressed == true)
+						Difficulty.easy();
+					else if (Controls.isMPressed == true)
+						Difficulty.medium();
+					else if (Controls.isHPressed == true)
+						Difficulty.hard();
+					else
+						Difficulty.restart();
+
 					Alien.aliens.clear();
 					Dragon.dragons = new ArrayList<>();
 					for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
@@ -395,6 +414,7 @@ public class GameMenu extends JFrame {
 //							break;
 //					}
 
+					System.out.println("Score after loading will be added to entities.Dragon");
 					DrawScene.voiceInterruptor = true;
 					savedOnL2 = false;
 					return;
@@ -403,8 +423,18 @@ public class GameMenu extends JFrame {
 				DrawScene.voiceInterruptor = false;
 
 				if (savedOnL3 && DrawScene.voiceInterruptor == false) {
+
 					DrawScene.initVoice("Game loaded!");
-					Difficulty.restart();
+
+					if (Controls.isEPressed == true)
+						Difficulty.easy();
+					else if (Controls.isMPressed == true)
+						Difficulty.medium();
+					else if (Controls.isHPressed == true)
+						Difficulty.hard();
+					else
+						Difficulty.restart();
+
 					Alien.aliens.clear();
 					Dragon.dragons.clear();
 					DrawScene.voiceInterruptor = true;
@@ -415,8 +445,18 @@ public class GameMenu extends JFrame {
 				DrawScene.voiceInterruptor = false;
 
 				if (savedOnL4 && DrawScene.voiceInterruptor == false) {
+
 					DrawScene.initVoice("Game loaded!");
-					Difficulty.restart();
+
+					if (Controls.isEPressed == true)
+						Difficulty.easy();
+					else if (Controls.isMPressed == true)
+						Difficulty.medium();
+					else if (Controls.isHPressed == true)
+						Difficulty.hard();
+					else
+						Difficulty.restart();
+
 					Alien.aliens.clear();
 					Dragon.dragons.clear();
 					UpdateObjects.lifeBunker = 50;

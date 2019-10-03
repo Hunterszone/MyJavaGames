@@ -18,6 +18,7 @@ import sound_engine.LoadSounds;
 public class Controls extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
+	public static boolean isEPressed, isMPressed, isHPressed;
 
 	public void keyReleased(KeyEvent e) {
 		MyShip.myShip.keyReleased(e);
@@ -84,6 +85,7 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_1) {
+
 			Difficulty.restart();
 			if (DrawScene.voiceInterruptor == false) {
 				DrawScene.initVoice("Level 1!");
@@ -126,15 +128,19 @@ public class Controls extends JFrame implements KeyListener {
 				DrawScene.voiceInterruptor = true;
 				return;
 			}
-
 		}
 
 		if (key == KeyEvent.VK_R) {
+			isEPressed = false;
+			isMPressed = false;
+			isHPressed = false;
 			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_E) {
-
+			isMPressed = false;
+			isHPressed = false;
+			isEPressed = true;
 			InitObjects.manualON = false;
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
@@ -152,7 +158,9 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_M) {
-
+			isEPressed = false;
+			isHPressed = false;
+			isMPressed = true;
 			InitObjects.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerHard.stop();
@@ -170,7 +178,9 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_H) {
-
+			isEPressed = false;
+			isMPressed = false;
+			isHPressed = true;
 			InitObjects.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
@@ -184,14 +194,13 @@ public class Controls extends JFrame implements KeyListener {
 
 				Difficulty.hard();
 			}
-
 		}
 
 		if (key == KeyEvent.VK_G) {
 
 			if (!InitObjects.god) {
-				
-				if(InitObjects.ingame == true) {
+
+				if (InitObjects.ingame == true) {
 					InitObjects.god = true;
 					UpdateObjects.lifeMyShip = -999;
 					DrawScene.initVoice("GODLIKE!");
@@ -201,7 +210,7 @@ public class Controls extends JFrame implements KeyListener {
 
 			else {
 
-				if(InitObjects.ingame == true) {
+				if (InitObjects.ingame == true) {
 					InitObjects.god = false;
 					UpdateObjects.lifeMyShip = 3;
 					DrawScene.initVoice("Healthy!");
