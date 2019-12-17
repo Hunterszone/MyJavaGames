@@ -34,7 +34,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_212/lib/ext/freetts.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_212/lib/ext/mbrola.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_191/lib/ext/freetts.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_191/lib/ext/mbrola.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
