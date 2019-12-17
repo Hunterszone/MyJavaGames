@@ -8,7 +8,6 @@ import java.util.List;
 
 public class HighScoreToDb {
 
-	// API connection & extraction
 	private static String[] enemyAndCount;
 	private static List<String> enemyNames = InitObjects.getEnemyNames();
 
