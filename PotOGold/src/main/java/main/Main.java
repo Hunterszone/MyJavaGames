@@ -1,4 +1,4 @@
-package potogold;
+package main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,18 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+
+import entities.Bomb;
+import entities.Gift1;
+import entities.Gift2;
+import entities.Lepricon;
+import entities.Lives;
+import entities.Points;
+import entities.Timer;
+import resources.Effects;
+import states.GameOver;
+import states.GamePause;
+import states.YouWon;
 
 public class Main extends BasicGame {
 

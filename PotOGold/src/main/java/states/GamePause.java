@@ -2,11 +2,13 @@
  * @version 0.0 06.01.2011
  * @author Tobse F
  */
-package potogold;
+package states;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
+
+import entities.GameObject;
 
 public class GamePause extends GameObject {
 

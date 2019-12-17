@@ -1,4 +1,4 @@
-package potogold;
+package entities;
 
 import java.awt.image.BufferedImage;
 
@@ -7,18 +7,18 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Ellipse;
 import org.newdawn.slick.geom.Shape;
 
-public class Bomb extends GameObject {
+public class Gift1 extends GameObject {
 
 	public Shape collisionSurface;
 	private double speed = 2;
 	private double acceleration = 0.001;
 
-	public Bomb(int x, int y, Image image) {
+	public Gift1(int x, int y, Image image) {
 		super(x, y, image);
 		collisionSurface = new Ellipse(x, y, 60, 60);
 	}
 
-	public Bomb(int x, int y, BufferedImage image) {
+	public Gift1(int x, int y, BufferedImage image) {
 		// TODO Auto-generated constructor stub
 	}
 

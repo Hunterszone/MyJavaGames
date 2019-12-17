@@ -1,8 +1,12 @@
-package potogold;
+package states;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
+
+import entities.GameObject;
+import entities.Lives;
+import entities.Points;
 
 public class GameOver extends GameObject {
 

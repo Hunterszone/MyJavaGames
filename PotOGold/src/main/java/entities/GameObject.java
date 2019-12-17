@@ -1,4 +1,4 @@
-package potogold;
+package entities;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 

@@ -15,9 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
-import potogold.Bomb;
-import potogold.Images;
-import potogold.Lepricon;
+import entities.Bomb;
+import entities.Lepricon;
+import resources.Images;
 
 public class BombTest {
 

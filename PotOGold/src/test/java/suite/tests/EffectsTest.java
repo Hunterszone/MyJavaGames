@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.particles.ParticleIO;
 
-import potogold.Effects;
+import resources.Effects;
 
 public class EffectsTest {
 

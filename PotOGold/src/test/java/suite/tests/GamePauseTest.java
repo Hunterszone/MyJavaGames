@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.newdawn.slick.Font;
 
-import potogold.GamePause;
+import states.GamePause;
 
 public class GamePauseTest {
 

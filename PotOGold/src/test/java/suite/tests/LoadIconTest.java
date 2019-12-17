@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import org.junit.Test;
 import org.newdawn.slick.AppGameContainer;
 
-import potogold.LoadIcon;
+import main.LoadIcon;
 
 public class LoadIconTest {
 

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.newdawn.slick.Font;
 
-import potogold.YouWon;
+import states.YouWon;
 
 public class YouWonTest {
 

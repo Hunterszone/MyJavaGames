@@ -1,4 +1,4 @@
-package potogold;
+package entities;
 
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
@@ -7,7 +7,7 @@ public class Timer extends GameObject {
 
 	private Font font;
 	long startTime = System.currentTimeMillis();
-	static long elapsedMillis;
+	public static long elapsedMillis;
 	static String initialTime;
 
 	public Timer(int x, int y, Font font) {

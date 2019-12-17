@@ -1,4 +1,4 @@
-package potogold;
+package resources;
 
 public enum Images {
 	BACKGROUND {

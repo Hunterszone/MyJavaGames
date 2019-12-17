@@ -15,9 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
-import potogold.Gift2;
-import potogold.Images;
-import potogold.Lepricon;
+import entities.Gift2;
+import entities.Lepricon;
+import resources.Images;
 
 public class Gift2Test {
 

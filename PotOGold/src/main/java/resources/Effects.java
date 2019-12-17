@@ -1,4 +1,4 @@
-package potogold;
+package resources;
 
 import java.io.IOException;
 
@@ -7,6 +7,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleIO;
 import org.newdawn.slick.particles.ParticleSystem;
+
+import entities.GameObject;
 
 public class Effects extends GameObject {
 
