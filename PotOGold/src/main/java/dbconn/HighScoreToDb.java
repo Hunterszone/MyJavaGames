@@ -24,7 +24,6 @@ public class HighScoreToDb {
 	private static final String USER = "root";
 	private static final String PASS = "";
 
-	@SuppressWarnings("resource")
 	public static void main(String[] args) throws SQLException {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
@@ -40,6 +39,7 @@ public class HighScoreToDb {
 			// Empty DB table before operations
 			preparedStatement = conn.prepareStatement("DELETE FROM lepristats WHERE 1");
 			preparedStatement.executeUpdate();
+			preparedStatement.close();
 
 			// STEP 3: Execute a query
 			pointsAndLives = GameObject.getLivesAndPoints();
