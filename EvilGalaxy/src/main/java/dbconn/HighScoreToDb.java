@@ -1,10 +1,13 @@
-package game_engine;
+package dbconn;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+
+import game_engine.Collisions;
+import game_engine.InitObjects;
 
 public class HighScoreToDb {
 
