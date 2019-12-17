@@ -36,6 +36,10 @@ public class HighScoreToDb {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("Connected database successfully...");
 
+			// Empty DB before operations
+			preparedStatement = conn.prepareStatement("DELETE FROM highscores WHERE 1");
+			preparedStatement.executeUpdate();
+
 			while (counter < enemyNames.size()) {
 				// STEP 3: Execute a query
 				enemyAndCount = Collisions.getNameAndKilledCount(enemyNames.get(counter));
