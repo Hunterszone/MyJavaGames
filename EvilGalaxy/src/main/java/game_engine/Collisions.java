@@ -254,7 +254,7 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean missileIntersectsBunker(Rectangle bunker, ShipMissile missile, Rectangle missileUnit) {
 		if (missileUnit.intersects(bunker)) {
-			Bunker.bunkerObj.initBunkerHit();
+			Bunker.bunkerObj.drawBunkerHit();
 			Bunker.bunkerObj.loadBullet();
 			Bunker.bunkerObj.loadBullet2();
 			missile.setVisible(false);
@@ -265,7 +265,7 @@ public abstract class Collisions extends UpdateObjects {
 				return false;
 		} else {
 			if (Bunker.bunkerObj != null)
-				Bunker.bunkerObj.initBunker();
+				Bunker.bunkerObj.drawBunker();
 		}
 		return true;
 	}
@@ -333,7 +333,7 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean rocketIntersectsBunker(Rectangle bunker, ShipRocket rocket, Rectangle rocketUnit) {
 		if (rocketUnit.intersects(bunker)) {
-			Bunker.bunkerObj.initBunkerHit();
+			Bunker.bunkerObj.drawBunkerHit();
 			Bunker.bunkerObj.loadBullet();
 			Bunker.bunkerObj.loadBullet2();
 			rocket.setVisible(false);
@@ -344,7 +344,7 @@ public abstract class Collisions extends UpdateObjects {
 				return false;
 		} else {
 			if (Bunker.bunkerObj != null)
-				Bunker.bunkerObj.initBunker();
+				Bunker.bunkerObj.drawBunker();
 		}
 		return true;
 	}

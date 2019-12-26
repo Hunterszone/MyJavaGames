@@ -15,10 +15,10 @@ public class Dragon extends SpritePattern {
 	public Dragon(int x, int y) {
 		super(x, y);
 
-		initDragon();
+		drawDragon();
 	}
 
-	public String initDragon() {
+	public String drawDragon() {
 		imageName = Images.DRAGON.getImg();
 		loadImage(imageName);
 		getImageDimensions();

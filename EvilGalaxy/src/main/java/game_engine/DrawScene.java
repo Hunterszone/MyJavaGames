@@ -591,7 +591,7 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
 			}
 
-			Bunker.bunkerObj.initBunkerHit();
+			Bunker.bunkerObj.drawBunkerHit();
 		}
 	}
 

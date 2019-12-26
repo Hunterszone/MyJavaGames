@@ -21,8 +21,8 @@ public class EvilHeadTest {
 
 	@Test
 	public void testEvilHead() {
-		assertNotNull(evilHead.loadImage(evilHead.initHead()));
-		assertFalse(evilHead.initHead().isEmpty());
+		assertNotNull(evilHead.loadImage(evilHead.drawHead()));
+		assertFalse(evilHead.drawHead().isEmpty());
 	}
 
 	@Test

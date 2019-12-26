@@ -22,8 +22,8 @@ public class DragonTest {
 
 	@Test
 	public void testDragonUnit() {
-		assertNotNull(dragon.loadImage(dragon.initDragon()));
-		assertFalse(dragon.initDragon().isEmpty());
+		assertNotNull(dragon.loadImage(dragon.drawDragon()));
+		assertFalse(dragon.drawDragon().isEmpty());
 	}
 
 	@Test

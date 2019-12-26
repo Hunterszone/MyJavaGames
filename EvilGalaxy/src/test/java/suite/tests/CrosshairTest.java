@@ -21,8 +21,8 @@ public class CrosshairTest {
 
 	@Test
 	public void testCrosshair() {
-		assertNotNull(crosshair.loadImage(crosshair.initCrosshair()));
-		assertFalse(crosshair.initCrosshair().isEmpty());
+		assertNotNull(crosshair.loadImage(crosshair.drawCrosshair()));
+		assertFalse(crosshair.drawCrosshair().isEmpty());
 	}
 
 	@After

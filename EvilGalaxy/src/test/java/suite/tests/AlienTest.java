@@ -23,8 +23,8 @@ public class AlienTest {
 
 	@Test
 	public void testAlienUnit() {
-		assertNotNull(alien.loadImage(alien.initAlien()));
-		assertNotEquals("", alien.initAlien());
+		assertNotNull("Image file not found!", alien.drawAlien());
+		assertNotEquals("Image name is empty!", "", alien.drawAlien());
 	}
 
 	@Test
