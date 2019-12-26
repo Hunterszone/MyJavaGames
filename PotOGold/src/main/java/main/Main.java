@@ -1,5 +1,6 @@
 package main;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +17,7 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+import dbconn.HighScoreToDb;
 import entities.Bomb;
 import entities.Gift1;
 import entities.Gift2;
@@ -257,12 +259,24 @@ public class Main extends BasicGame {
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
 			if (Points.points >= 30 && Lives.lives > 0) {
 				youWonLabel.setYouWon(true);
+				try {
+					HighScoreToDb.main(null);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
 			if (Points.points < 30) {
 				gameOver.setGameOver(true);
+				try {
+					HighScoreToDb.main(null);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -295,6 +309,12 @@ public class Main extends BasicGame {
 		if (Lives.lives <= 0) {
 			Lives.lives = 0;
 			gameOver.setGameOver(true);
+			try {
+				HighScoreToDb.main(null);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

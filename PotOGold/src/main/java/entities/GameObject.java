@@ -42,6 +42,9 @@ public abstract class GameObject {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	public static String[] getLivesAndPoints() {
+		return new String[] {Integer.toString(Lives.lives), Integer.toString(Points.points)};
 	};
 
 }

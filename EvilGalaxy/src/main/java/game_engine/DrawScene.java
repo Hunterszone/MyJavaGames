@@ -12,6 +12,7 @@ import java.util.List;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
+import dbconn.HighScoreToDb;
 import entities.Alien;
 import entities.Bunker;
 import entities.Crosshair;
