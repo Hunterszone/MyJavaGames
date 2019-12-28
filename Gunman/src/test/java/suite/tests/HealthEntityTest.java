@@ -13,11 +13,11 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import gameDevelopment.Entity;
-import gameDevelopment.Game;
-import gameDevelopment.HealthEntity;
-import gameDevelopment.HeroEntity;
-import gameDevelopment.MySprite;
+import entities.Entity;
+import entities.HealthEntity;
+import entities.HeroEntity;
+import game_engine.MySprite;
+import main.Game;
 
 @Ignore
 public class HealthEntityTest {

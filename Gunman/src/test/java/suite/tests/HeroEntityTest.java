@@ -13,12 +13,12 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import gameDevelopment.EnemyEntity;
-import gameDevelopment.Entity;
-import gameDevelopment.Game;
-import gameDevelopment.HealthEntity;
-import gameDevelopment.MySprite;
-import gameDevelopment.TreasureEntity;
+import entities.EnemyEntity;
+import entities.Entity;
+import entities.HealthEntity;
+import entities.TreasureEntity;
+import game_engine.MySprite;
+import main.Game;
 
 @Ignore
 public class HeroEntityTest {

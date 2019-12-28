@@ -1,4 +1,6 @@
-package gameDevelopment;
+package entities;
+
+import game_engine.MySprite;
 
 interface RemoveEntities {
 	boolean removedByHero(Entity other);

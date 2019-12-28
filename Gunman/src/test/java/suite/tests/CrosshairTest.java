@@ -13,10 +13,10 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import gameDevelopment.EnemyEntity;
-import gameDevelopment.Entity;
-import gameDevelopment.Game;
-import gameDevelopment.MySprite;
+import entities.EnemyEntity;
+import entities.Entity;
+import game_engine.MySprite;
+import main.Game;
 
 @Ignore
 public class CrosshairTest {

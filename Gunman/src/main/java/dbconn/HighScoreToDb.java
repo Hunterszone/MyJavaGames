@@ -1,9 +1,11 @@
-package gameDevelopment;
+package dbconn;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import main.Game;
 
 public class HighScoreToDb {
 

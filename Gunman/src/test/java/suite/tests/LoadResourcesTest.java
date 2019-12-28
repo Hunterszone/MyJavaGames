@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
-import gameDevelopment.Images;
-import gameDevelopment.SoundEffects;
+import game_engine.Images;
+import game_engine.SoundEffects;
 
 public class LoadResourcesTest {
 

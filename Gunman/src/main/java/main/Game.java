@@ -1,4 +1,4 @@
-package gameDevelopment;
+package main;
 
 import java.awt.Font;
 import java.io.IOException;
@@ -20,6 +20,18 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
+
+import dbconn.HighScoreToDb;
+import entities.Crosshair;
+import entities.EnemyEntity;
+import entities.Entity;
+import entities.HealthEntity;
+import entities.HeroEntity;
+import entities.TreasureEntity;
+import game_engine.Images;
+import game_engine.LevelTile;
+import game_engine.LoadIcon;
+import game_engine.MySprite;
 
 /**
  *
@@ -635,7 +647,7 @@ public class Game {
 		}
 	}
 
-	static boolean notifyCrosshairUsed(Entity crossh, Object object) {
+	public static boolean notifyCrosshairUsed(Entity crossh, Object object) {
 		ArrayList<EnemyEntity> enemiesOnLevel;
 		if (object instanceof EnemyEntity) {
 			enemiesOnLevel = null;
@@ -650,7 +662,7 @@ public class Game {
 		return isNotified;
 	}
 
-	static boolean notifyEnemyHit(Entity heroEntity, Object object) {
+	public static boolean notifyEnemyHit(Entity heroEntity, Object object) {
 		ArrayList<EnemyEntity> objectsOnLevel;
 		if (object instanceof HeroEntity) {
 			isNotified = true;
@@ -667,7 +679,7 @@ public class Game {
 		return isNotified;
 	}
 
-	static boolean notifyTreasuresCollected(Entity heroEntity, Object object) {
+	public static boolean notifyTreasuresCollected(Entity heroEntity, Object object) {
 		ArrayList<TreasureEntity> treasuresOnLevel;
 		if (object instanceof TreasureEntity) {
 			isNotified = true;
@@ -684,7 +696,7 @@ public class Game {
 		return isNotified;
 	}
 
-	static boolean notifyHpCollected(Entity heroEntity, Object object) {
+	public static boolean notifyHpCollected(Entity heroEntity, Object object) {
 		ArrayList<HealthEntity> hpOnLevel;
 		if (object instanceof HealthEntity) {
 			isNotified = true;

@@ -13,11 +13,11 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import gameDevelopment.Entity;
-import gameDevelopment.Game;
-import gameDevelopment.HeroEntity;
-import gameDevelopment.MySprite;
-import gameDevelopment.TreasureEntity;
+import entities.Entity;
+import entities.HeroEntity;
+import entities.TreasureEntity;
+import game_engine.MySprite;
+import main.Game;
 
 @Ignore
 public class TreasureEntityTest {

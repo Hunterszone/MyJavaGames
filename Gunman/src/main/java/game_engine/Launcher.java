@@ -1,4 +1,4 @@
-package gameDevelopment;
+package game_engine;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

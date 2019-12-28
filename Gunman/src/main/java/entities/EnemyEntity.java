@@ -1,6 +1,9 @@
-package gameDevelopment;
+package entities;
 
 import java.awt.Rectangle;
+
+import game_engine.MySprite;
+import main.Game;
 
 public class EnemyEntity extends Entity {
 

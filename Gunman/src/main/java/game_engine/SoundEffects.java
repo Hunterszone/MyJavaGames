@@ -1,4 +1,4 @@
-package gameDevelopment;
+package game_engine;
 
 public enum SoundEffects {
 	BGMUSIC {

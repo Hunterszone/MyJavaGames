@@ -1,4 +1,4 @@
-package gameDevelopment;
+package game_engine;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
+
+import main.Game;
 
 public class LoadIcon {
 
