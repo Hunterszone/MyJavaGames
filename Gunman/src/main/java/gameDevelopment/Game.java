@@ -2,6 +2,7 @@ package gameDevelopment;
 
 import java.awt.Font;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -59,6 +60,7 @@ public class Game {
 	private static int currentLevel = 0;
 	private static int enemiesKilled = 0;
 	private static int treasuresFound = 0;
+	private static int treasuresSum = 0;
 	private static int lives = 3;
 
 	private LevelTile levels[] = new LevelTile[MAX_LEVELS];
@@ -385,8 +387,10 @@ public class Game {
 				denied.play(1, 0.2f);
 				if (currentLevel + 1 < MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 						&& enemies.get(currentLevel).isEmpty()) {
-					currentLevel++;
+					treasuresSum += treasuresFound;
+					treasuresSum /= 2;
 					treasuresFound = 0;
+					currentLevel++;
 					hero.setX(0);
 					hero.setY(700);
 				}
@@ -463,6 +467,7 @@ public class Game {
 			if (gunman.collidesWith(item)) {
 				gunman.removedByHero(item);
 				treasuresFound++;
+				treasuresSum++;
 				collect.play(1, 0.2f);
 			}
 		}
@@ -576,6 +581,15 @@ public class Game {
 
 	private static void gameRestart() {
 
+		System.out.println("Num of treasures: " + treasuresSum);
+
+		try {
+			HighScoreToDb.main(null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		lives = 3;
 		currentLevel = 0;
 		treasuresFound = 0;
@@ -682,5 +696,9 @@ public class Game {
 			}
 		}
 		return isNotified;
+	}
+
+	public static String[] getTreasuresAndKilledCount() {
+		return new String[] { Integer.toString(treasuresSum), Integer.toString(enemiesKilled) };
 	}
 }
