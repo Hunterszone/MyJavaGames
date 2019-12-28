@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
-import sokoban.LevelsBgsEngine;
+import game_engine.LevelsBgsEngine;
 
 public class LoadResourcesTest {
 

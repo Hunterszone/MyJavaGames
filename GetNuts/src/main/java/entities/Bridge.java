@@ -1,7 +1,9 @@
-package sokoban;
+package entities;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+
+import game_engine.Actor;
 
 public class Bridge extends Actor {
 

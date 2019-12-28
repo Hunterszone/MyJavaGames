@@ -1,17 +1,20 @@
-package sokoban;
+package entities;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class Area extends Actor {
+import game_engine.Actor;
+
+public class Water extends Actor {
 
 	private Image image;
 	public String img;
 
-	public Area(int x, int y) {
+	public Water(int x, int y) {
 		super(x, y);
-		img = "images/holder.png";
+		img = "images/terrain.png";
 		image = Toolkit.getDefaultToolkit().createImage(img);
 		this.setImage(image);
+		return;
 	}
 }

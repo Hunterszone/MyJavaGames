@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sokoban.Water;
+import entities.Water;
 
 public class WaterTest {
 

@@ -1,16 +1,16 @@
-package sokoban;
+package game_engine;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class Wall extends Actor {
+public class Area extends Actor {
 
 	private Image image;
 	public String img;
 
-	public Wall(int x, int y) {
+	public Area(int x, int y) {
 		super(x, y);
-		img = "images/wall.png";
+		img = "images/holder.png";
 		image = Toolkit.getDefaultToolkit().createImage(img);
 		this.setImage(image);
 	}

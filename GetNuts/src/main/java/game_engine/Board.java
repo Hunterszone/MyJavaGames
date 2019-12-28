@@ -1,4 +1,4 @@
-package sokoban;
+package game_engine;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,6 +15,11 @@ import javax.swing.JPanel;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
+import entities.Bridge;
+import entities.Nut;
+import entities.Player;
+import entities.Wall;
+import entities.Water;
 import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
 

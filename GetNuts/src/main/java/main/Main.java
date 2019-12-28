@@ -1,8 +1,10 @@
-package sokoban;
+package main;
 
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+
+import game_engine.Board;
 
 public final class Main extends JFrame {
 

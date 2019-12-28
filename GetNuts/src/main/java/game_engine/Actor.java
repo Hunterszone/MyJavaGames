@@ -1,4 +1,4 @@
-package sokoban;
+package game_engine;
 
 import java.awt.Image;
 
