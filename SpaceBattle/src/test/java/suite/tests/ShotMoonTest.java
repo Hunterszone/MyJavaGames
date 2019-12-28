@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 
-import allinone.ShotMoon;
+import entities.ShotMoon;
 
 public class ShotMoonTest {
 

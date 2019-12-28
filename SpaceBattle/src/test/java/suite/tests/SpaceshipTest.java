@@ -17,10 +17,10 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Ellipse;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 
-import allinone.Images;
-import allinone.ShotMoon;
-import allinone.ShotUfo;
-import allinone.Spaceship;
+import entities.ShotMoon;
+import entities.ShotUfo;
+import entities.Spaceship;
+import game_engine.Images;
 
 public class SpaceshipTest {
 

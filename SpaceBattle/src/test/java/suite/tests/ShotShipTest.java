@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 
-import allinone.ShotShip;
+import entities.ShotShip;
 
 public class ShotShipTest {
 

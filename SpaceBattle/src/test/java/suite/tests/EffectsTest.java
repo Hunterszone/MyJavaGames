@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.particles.ParticleIO;
 
-import allinone.Effects;
+import game_engine.Effects;
 
 public class EffectsTest {
 
