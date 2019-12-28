@@ -327,7 +327,8 @@ public class Main extends BasicGame {
 			container.pause();
 		}
 
-		if (input.isKeyPressed(Input.KEY_R) || input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+		if (input.isKeyPressed(Input.KEY_R) || input.isKeyPressed(Input.KEY_M) || input.isKeyPressed(Input.KEY_H)
+				|| input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			container.setMouseGrabbed(false);
 			if (container.isPaused()) {
 				gamePaused.setGamePaused(false);
