@@ -1,6 +1,6 @@
 # README - check it out!
 
-### Main techniques: moving sprites, collision detection, texture-based, multiple levels
+### Main techniques: moving sprites, collision detection, tile map engine, multiple levels
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
