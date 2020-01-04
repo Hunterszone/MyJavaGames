@@ -1,8 +1,8 @@
 # README - check it out!
 
-### Main techniques: moving sprites, collision detection, texture-dependent constraints, levels & backgrounds built-in generator
+### Main techniques: moving sprites, collision detection, tile map engine, levels & backgrounds built-in generator
 
-### Load unlimited number of new levels and backgrounds dynamically:
+### Load unlimited number of new levels and backgrounds from txt and image files:
 - create your own levels and put them into the "levels"-folder, as you keep the level pattern
 - create your own backgrounds and put them into the "backgrounds"-folder
 
