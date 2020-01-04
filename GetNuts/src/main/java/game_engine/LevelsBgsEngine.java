@@ -82,8 +82,8 @@ public class LevelsBgsEngine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (int i = 0; i < boardArray.length; i++) {
-			for (int j = 0; j < boardArray[i].length; j++) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
 				boardArray[i][j] = str.charAt(offset++);
 				System.out.print(boardArray[i][j]);
 			}
