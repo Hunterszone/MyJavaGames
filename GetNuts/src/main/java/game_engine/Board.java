@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,6 +46,7 @@ public class Board extends JPanel {
 	private int myScore = 500;
 	private boolean completed = false;
 	private boolean help = false;
+	private boolean isPressed = false;
 
 	private static final String VOICENAME = "kevin16";
 	static boolean voiceStopped;
@@ -264,17 +266,17 @@ public class Board extends JPanel {
 					help = true;
 					if (help == true) {
 						Collections.shuffle(LevelsBgsEngine.levels); // changes
-																	// order of
-																	// levels
+																		// order of
+																		// levels
 						Collections.shuffle(LevelsBgsEngine.backgrounds); // changes
-																		// order
-																		// of
-																		// bgs
+																			// order
+																			// of
+																			// bgs
 						LevelsBgsEngine.levels.add(shuffleString(LevelsBgsEngine.levels.get(levelNum))); // adds
-																									// random
-																									// levels
-																									// to
-																									// levels-ArrayList
+						// random
+						// levels
+						// to
+						// levels-ArrayList
 					}
 				} else {
 					help = false;
@@ -380,7 +382,21 @@ public class Board extends JPanel {
 				restartLevel();
 				help = false;
 			} else if (key == KeyEvent.VK_ENTER) {
-				completed = false;
+				if (!isPressed) {
+					LevelsBgsEngine.addLevels();
+					completed = false;
+					isPressed = true;
+				} else {
+					if (isCompleted())
+						completed = true;
+					isPressed = false;
+					try {
+						Runtime.getRuntime().exec("cls");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			} else if (key == KeyEvent.VK_S) {
 				LoadSounds.bgMusic.stop();
 			} else if (key == KeyEvent.VK_A) {
@@ -589,7 +605,7 @@ public class Board extends JPanel {
 		return false;
 	}
 
-	public void isCompleted() {
+	public boolean isCompleted() {
 
 		int num = nuts.size();
 		int compl = 0;
@@ -610,7 +626,9 @@ public class Board extends JPanel {
 			LoadSounds.bgMusic.stop();
 			new PlayWave1st("sounds/highsc.wav").start();
 			repaint();
+			return true;
 		}
+		return false;
 
 	}
 
