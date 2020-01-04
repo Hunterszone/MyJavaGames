@@ -4,7 +4,8 @@
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
-Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherEG/Launcher.jnlp) button.  
+Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherEG/Launcher.jnlp) button or download the **EGinit.jar** into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EGInit.jar?raw=true).  
+
 After executing the file it will automatically download all the required stuff inside the dir 
 and will launch the game immediately after that.  
 It will also compare the game version and will update it, if needed.
@@ -22,7 +23,6 @@ grant {
   permission java.security.AllPermission;
 };
 ```
-Otherwise just download the EGinit.jar into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EGInit.jar?raw=true) (NB: some browsers could deny the operation!)
 
 ## HOW TO INSTALL/LAUNCH (manually):
 

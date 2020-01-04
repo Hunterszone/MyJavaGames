@@ -1,8 +1,8 @@
 # README - check it out!
 
-### Main techniques: moving sprites, collision detection, texture-dependent constraints, levels & backgrounds built-in generator
+### Main techniques: moving sprites, collision detection, tile map engine, levels & backgrounds built-in generator
 
-### Load unlimited number of new levels and backgrounds dynamically:
+### Load unlimited number of new levels and backgrounds from txt and image files:
 - create your own levels and put them into the "levels"-folder, as you keep the level pattern
 - create your own backgrounds and put them into the "backgrounds"-folder
 
@@ -13,7 +13,8 @@
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
-Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherGN/Launcher.jnlp) button.  
+Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherGN/Launcher.jnlp) button or download the **Launcher.jar** into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/GetNuts/Launcher.jar?raw=true). 
+
 After executing the file, it will automatically download all the required stuff inside the dir 
 and will launch the game immediately after that.  
 It will also compare the game version and will update it, if needed.
@@ -31,8 +32,6 @@ grant {
   permission java.security.AllPermission;
 };
 ```
-
-Otherwise just download the Launcher.jar into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/GetNuts/Launcher.jar?raw=true).
 
 ## HOW TO INSTALL/LAUNCH (manually):
 
