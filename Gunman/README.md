@@ -4,8 +4,9 @@
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
-Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherGMan/Launcher.jnlp) button.  
-After executing the file, it will automatically download all the required stuff inside the dir 
+Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherGMan/Launcher.jnlp) button or download the **Launcher.jar** into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/Gunman/Launcher.jar?raw=true).
+.  
+After executing the downloaded file, it will automatically download all the required stuff inside the dir 
 and will launch the game immediately after that.  
 It will also compare the game version and will update it, if needed.
 
@@ -22,8 +23,6 @@ grant {
   permission java.security.AllPermission;
 };
 ```
-
-Otherwise just download the Launcher.jar into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/Gunman/Launcher.jar?raw=true).
 
 ## HOW TO INSTALL/LAUNCH (manually):
 
