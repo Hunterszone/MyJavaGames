@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 
-import allinone.ShotUfo;
+import entities.ShotUfo;
 
 public class ShotUfoTest {
 

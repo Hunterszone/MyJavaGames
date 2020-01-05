@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.newdawn.slick.Font;
 
-import allinone.GameHard;
+import game_state.GameHard;
 
 public class GameHardTest {
 

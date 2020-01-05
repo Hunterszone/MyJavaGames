@@ -25,11 +25,11 @@ public class MyShip extends SpritePattern {
 	public MyShip(int x, int y) {
 		super(x, y);
 
-		initShip();
+		drawShip();
 		initAmmo();
 	}
 
-	public String initShip() {
+	public String drawShip() {
 
 		imageName = Images.MYSHIPINIT.getImg();
 		loadImage(imageName);
@@ -204,22 +204,22 @@ public class MyShip extends SpritePattern {
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = 0;
-			initShip();
+			drawShip();
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			speedX = 0;
-			initShip();
+			drawShip();
 		}
 
 		if (key == KeyEvent.VK_UP) {
 			speedY = 0;
-			initShip();
+			drawShip();
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
 			speedY = 0;
-			initShip();
+			drawShip();
 		}
 	}
 }

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import org.junit.Test;
 import org.newdawn.slick.AppGameContainer;
 
-import allinone.LoadIcon;
+import game_engine.LoadIcon;
 
 public class LoadIconTest {
 

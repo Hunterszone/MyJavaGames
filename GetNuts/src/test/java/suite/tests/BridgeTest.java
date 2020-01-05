@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sokoban.Bridge;
+import entities.Bridge;
 
 public class BridgeTest {
 

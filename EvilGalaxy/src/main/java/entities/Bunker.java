@@ -18,7 +18,7 @@ public class Bunker extends SpritePattern {
 	public Bunker(int x, int y) {
 		super(x, y);
 
-		initBunker();
+		drawBunker();
 		initBullets();
 	}
 
@@ -45,14 +45,14 @@ public class Bunker extends SpritePattern {
 		return bullets2;
 	}
 
-	public String initBunker() {
+	public String drawBunker() {
 		imageName = Images.BUNKER.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;
 	}
 
-	public String initBunkerHit() {
+	public String drawBunkerHit() {
 		imageName = Images.BUNKERHIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();

@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import gameDevelopment.Images;
+import game_engine.Images;
 
 public class LoadIconTest {
 

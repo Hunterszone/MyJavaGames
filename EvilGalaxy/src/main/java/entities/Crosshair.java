@@ -16,10 +16,10 @@ public class Crosshair extends SpritePattern {
 	public Crosshair(int x, int y) {
 		super(x, y);
 
-		initCrosshair();
+		drawCrosshair();
 	}
 
-	public String initCrosshair() {
+	public String drawCrosshair() {
 		imageName = Images.CROSSHAIR.getImg();
 		loadImage(imageName);
 		getImageDimensions();
@@ -89,22 +89,22 @@ public class Crosshair extends SpritePattern {
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = -7.5;
-			initCrosshair();
+			drawCrosshair();
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			speedX = 7.5;
-			initCrosshair();
+			drawCrosshair();
 		}
 
 		if (key == KeyEvent.VK_UP) {
 			speedY = -7.5;
-			initCrosshair();
+			drawCrosshair();
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
 			speedY = 7.5;
-			initCrosshair();
+			drawCrosshair();
 		}
 	}
 
@@ -114,22 +114,22 @@ public class Crosshair extends SpritePattern {
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = 0;
-			initCrosshair();
+			drawCrosshair();
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			speedX = 0;
-			initCrosshair();
+			drawCrosshair();
 		}
 
 		if (key == KeyEvent.VK_UP) {
 			speedY = 0;
-			initCrosshair();
+			drawCrosshair();
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
 			speedY = 0;
-			initCrosshair();
+			drawCrosshair();
 		}
 	}
 }

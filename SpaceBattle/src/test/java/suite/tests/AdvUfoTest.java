@@ -15,9 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
-import allinone.AdvUfo;
-import allinone.Images;
-import allinone.ShotShip;
+import entities.AdvUfo;
+import entities.ShotShip;
+import game_engine.Images;
 
 public class AdvUfoTest {
 

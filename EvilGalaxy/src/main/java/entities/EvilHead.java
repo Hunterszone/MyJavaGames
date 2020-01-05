@@ -21,11 +21,11 @@ public class EvilHead extends SpritePattern {
 
 	public EvilHead(int x, int y) {
 		super(x, y);
-		initHead();
+		drawHead();
 		initAmmo();
 	}
 
-	public String initHead() {
+	public String drawHead() {
 		imageName = Images.EVILHEAD.getImg();
 		loadImage(imageName);
 		getImageDimensions();
@@ -55,25 +55,25 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 500) {
 			speedX += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		if (x > 800) {
 
 			speedX -= 1.2;
 			speedY += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		if (y > 500) {
 			speedY -= 1;
-			initHead();
+			drawHead();
 		}
 
 	}
@@ -100,25 +100,25 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 500) {
 			speedX += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		if (x > 800) {
 			speedX -= 1.2;
 			speedY += 1.2;
-			initHead();
+			drawHead();
 
 		}
 
 		if (y > 500) {
 			speedY -= 1;
-			initHead();
+			drawHead();
 		}
 
 	}
@@ -145,24 +145,24 @@ public class EvilHead extends SpritePattern {
 
 		if (x < 500) {
 			speedX += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		y -= 1;
 		if (y == 0) {
 			x += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		if (x > 800) {
 			speedX -= 1.2;
 			speedY += 1.2;
-			initHead();
+			drawHead();
 		}
 
 		if (y > 500) {
 			speedY -= 1;
-			initHead();
+			drawHead();
 		}
 
 	}

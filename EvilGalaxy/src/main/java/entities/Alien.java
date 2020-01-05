@@ -15,10 +15,10 @@ public class Alien extends SpritePattern {
 
 	public Alien(int x, int y) {
 		super(x, y);
-		initAlien();
+		drawAlien();
 	}
 
-	public String initAlien() {
+	public String drawAlien() {
 		imageName = Images.ALIEN.getImg();
 		loadImage(imageName);
 		getImageDimensions();

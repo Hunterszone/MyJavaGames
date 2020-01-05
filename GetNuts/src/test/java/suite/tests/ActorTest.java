@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sokoban.Actor;
+import game_engine.Actor;
 
 public class ActorTest {
 

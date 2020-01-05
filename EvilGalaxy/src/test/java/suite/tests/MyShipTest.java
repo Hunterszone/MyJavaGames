@@ -23,8 +23,8 @@ public class MyShipTest {
 
 	@Test
 	public void testMyShipUnit() {
-		assertNotNull(myShip.loadImage(myShip.initShip()));
-		assertFalse(myShip.initShip().isEmpty());
+		assertNotNull(myShip.loadImage(myShip.drawShip()));
+		assertFalse(myShip.drawShip().isEmpty());
 	}
 
 	@Test

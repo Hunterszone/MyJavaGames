@@ -158,14 +158,15 @@ public class GameScene extends JPanel implements ActionListener {
     	setBackground(Color.black);
 
         String msg = "Game Over";
+        String msg2 = "Press 'R' to restart";
         Font small = new Font("Helvetica", Font.BOLD, 16);
         FontMetrics metr = getFontMetrics(small);
 
         g.setColor(Color.white);
         g.setFont(small);
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 20);
-        //Here we draw the high score on the Game Over screen
         g.drawString("High score: " + myScore, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 + 10);
+        g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2 + 40);	
 
         level = 1;
     }

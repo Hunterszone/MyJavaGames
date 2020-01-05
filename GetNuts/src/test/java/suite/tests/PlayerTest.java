@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sokoban.Player;
+import entities.Player;
 
 public class PlayerTest {
 
