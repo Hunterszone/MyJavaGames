@@ -182,7 +182,7 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Gold: " + 0, 150, 15);
 				g.drawString("Health: 0%", 230, 15);
 				try {
-					HighScoreToDb.main(null);
+					HighScoreToDb.initDbConn();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

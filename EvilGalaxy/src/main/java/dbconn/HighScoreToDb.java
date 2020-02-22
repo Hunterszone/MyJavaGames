@@ -25,7 +25,7 @@ public class HighScoreToDb {
 	private static final String USER = "root";
 	private static final String PASS = "root";
 
-	public static void main(String[] args) throws SQLException {
+	public static void initDbConn() throws SQLException {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
 		int counter = 0;
