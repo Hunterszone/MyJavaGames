@@ -9,6 +9,8 @@ import entities.Alien;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.MyShip;
+import frames.ConsoleContent;
+import frames.ConsoleForm;
 import frames.Manual;
 import items.Gold;
 import items.SaveSign;
@@ -17,8 +19,8 @@ import sound_engine.LoadSounds;
 
 public class Controls extends JFrame implements KeyListener {
 
-	private static final long serialVersionUID = 1L;
 	public static boolean isEPressed, isMPressed, isHPressed;
+	private static final long serialVersionUID = 1L;
 
 	public void keyReleased(KeyEvent e) {
 		MyShip.myShip.keyReleased(e);
@@ -141,7 +143,7 @@ public class Controls extends JFrame implements KeyListener {
 			isMPressed = false;
 			isHPressed = false;
 			isEPressed = true;
-			InitObjects.manualON = false;
+			ConsoleContent.manualON = false;
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
@@ -161,7 +163,7 @@ public class Controls extends JFrame implements KeyListener {
 			isEPressed = false;
 			isHPressed = false;
 			isMPressed = true;
-			InitObjects.manualON = false;
+			ConsoleContent.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.start();
@@ -181,7 +183,7 @@ public class Controls extends JFrame implements KeyListener {
 			isEPressed = false;
 			isMPressed = false;
 			isHPressed = true;
-			InitObjects.manualON = false;
+			ConsoleContent.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.start();
@@ -198,10 +200,10 @@ public class Controls extends JFrame implements KeyListener {
 
 		if (key == KeyEvent.VK_G) {
 
-			if (!InitObjects.god) {
+			if (!ConsoleContent.god) {
 
 				if (InitObjects.ingame == true) {
-					InitObjects.god = true;
+					ConsoleContent.god = true;
 					UpdateObjects.lifeMyShip = -999;
 					DrawScene.initVoice("GODLIKE!");
 					return;
@@ -211,7 +213,7 @@ public class Controls extends JFrame implements KeyListener {
 			else {
 
 				if (InitObjects.ingame == true) {
-					InitObjects.god = false;
+					ConsoleContent.god = false;
 					UpdateObjects.lifeMyShip = 3;
 					DrawScene.initVoice("Healthy!");
 					return;
@@ -221,22 +223,29 @@ public class Controls extends JFrame implements KeyListener {
 
 		}
 
-		if (key == KeyEvent.VK_O && !InitObjects.manualON) {
+		if (key == KeyEvent.VK_O && !ConsoleContent.manualON) {
 
-			InitObjects.manual = new Manual();
-			InitObjects.manual.setVisible(true);
+			ConsoleContent.manual = new Manual();
+			ConsoleContent.manual.setVisible(true);
 
-			if (!InitObjects.manualON == true) {
+			if (ConsoleContent.manualON == true) {
+				ConsoleContent.manualON = false;
+			}
 
-				InitObjects.manualON = true;
+		}
+
+		if (key == KeyEvent.VK_C && !ConsoleContent.consoleON) {
+
+			ConsoleForm.console = new ConsoleForm();
+
+			if (ConsoleContent.consoleON == true) {
+				ConsoleContent.consoleON = false;
 			}
 
 		}
 
 		if (key == KeyEvent.VK_ESCAPE) {
-
 			System.exit(0);
-
 		}
 
 	}
