@@ -64,18 +64,12 @@ public class JoinGame extends JFrame {
 			}
 		});
 
-		// csl = new BestConsole();
-
 		refrbutt.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				// csl.setVisible(true);
-//					if(!InitObjects.consoleON == true){
-//                    	InitObjects.consoleON = true;
-//                    }
-				ConsoleForm.getTextField().setText("refresh");
+				new ConsoleForm().getTextField().setText("refresh");
 
 			}
 		});

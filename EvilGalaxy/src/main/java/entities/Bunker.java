@@ -9,10 +9,9 @@ import items.BunkerBullet;
 
 public class Bunker extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
-	public static List<BunkerBullet> bullets;
-	public static List<BunkerBullet> bullets2;
+	public static List<BunkerBullet> bullets, bullets2;
 	public static Bunker bunkerObj;
+	private static final long serialVersionUID = 1L;
 	private String imageName;
 
 	public Bunker(int x, int y) {

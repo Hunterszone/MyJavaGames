@@ -7,8 +7,8 @@ import game_engine.SpritePattern;
 
 public class Alien extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static List<Alien> aliens;
+	private static final long serialVersionUID = 1L;
 	private final int INITIAL_X = 1024;
 	private final int INITIAL_Y = 0;
 	private String imageName;

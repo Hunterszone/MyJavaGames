@@ -11,11 +11,10 @@ import sound_engine.PlayWave1st;
 
 public class EvilHead extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static EvilHead evilHead;
+	private static final long serialVersionUID = 1L;
 	private String imageName;
-	private double speedX;
-	private double speedY;
+	private double speedX, speedY;
 	private List<FireBall> fireballs;
 	private List<CanonBall> canons;
 

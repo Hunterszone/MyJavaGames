@@ -7,8 +7,8 @@ import game_engine.SpritePattern;
 
 public class Gold extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static List<Gold> goldstack;
+	private static final long serialVersionUID = 1L;
 	private final int INITIAL_Y = 1200;
 	private String imageName;
 

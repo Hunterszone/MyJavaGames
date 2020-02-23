@@ -13,10 +13,9 @@ import sound_engine.SoundEffects;
 
 public class MyShip extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static MyShip myShip;
-	double speedX;
-	double speedY;
+	double speedX, speedY;
+	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;
 	private List<ShipRocket> rockets;
 

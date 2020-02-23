@@ -7,11 +7,10 @@ import game_engine.SpritePattern;
 
 public class Crosshair extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static Crosshair crosshair;
 	public String imageName;
-	double speedX;
-	double speedY;
+	double speedX, speedY;
+	private static final long serialVersionUID = 1L;
 
 	public Crosshair(int x, int y) {
 		super(x, y);

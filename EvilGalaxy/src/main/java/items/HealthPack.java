@@ -7,8 +7,8 @@ import game_engine.SpritePattern;
 
 public class HealthPack extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static List<HealthPack> healthpack;
+	private static final long serialVersionUID = 1L;
 	private final int INITIAL_Y = 0;
 	private String imageName;
 

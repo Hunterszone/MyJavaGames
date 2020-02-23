@@ -15,9 +15,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
-import frames.ConsoleForm;
 import frames.GameMenu;
-import frames.Manual;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
@@ -26,10 +24,15 @@ import sound_engine.LoadSounds;
 
 public class InitObjects extends JPanel implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
-	public static boolean consoleON, manualON, ingame, god;
-	public static ConsoleForm console;
-	public static Manual manual;
+	// Constants
+	final static int VOLBUT_X = 940;
+	final static int VOLBUT_Y = 15;
+	final static int BUNKER_X = 450;
+	final static int BUNKER_Y = 680;
+	final static int B_WIDTH = 1310;
+	final static int B_HEIGHT = 1040;
+
+	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
 	int MYSHIP_X = 40;
 	int MYSHIP_Y = 180;
@@ -37,12 +40,7 @@ public class InitObjects extends JPanel implements ActionListener {
 	int MYCROSSHAIR_Y = 165;
 	int EVILHEAD_X = 640;
 	int EVILHEAD_Y = 180;
-	final static int VOLBUT_X = 940;
-	final static int VOLBUT_Y = 15;
-	final static int BUNKER_X = 450;
-	final static int BUNKER_Y = 680;
-	final static int B_WIDTH = 1310;
-	final static int B_HEIGHT = 1040;
+	private static final long serialVersionUID = 1L;
 	private final int DELAY = 15;
 
 	private final static int[][] posGold = { { 500, 1029 }, { 290, 1180 }, { 330, 60 }, { 510, 1839 }, { 620, 1600 },

@@ -33,15 +33,17 @@ import sound_engine.LoadSounds;
 
 public class DrawScene extends UpdateObjects {
 
-	private static final long serialVersionUID = 1L;
+	// Constants
 	private static final String VOICENAME = "kevin16";
-	private String unicode;
-	private String checkMark;
+
+	public static boolean finMusicIsPlayed;
+	public static boolean voiceInterruptor = false;
 	static boolean voiceStopped;
 	static Voice voice;
 	transient static Image bg1, bg2, bg3;
-	public static boolean finMusicIsPlayed;
-	public static boolean voiceInterruptor = false;
+	private static final long serialVersionUID = 1L;
+	private String unicode;
+	private String checkMark;
 
 	public static void initVoice(String message) {
 		VoiceManager vm = VoiceManager.getInstance();
@@ -75,7 +77,7 @@ public class DrawScene extends UpdateObjects {
 				voiceInterruptor = false;
 			}
 
-			setScene1(g);
+			drawScene1(g);
 			drawObjects(g);
 			drawL1Labels(g);
 			drawCountGold(g);
@@ -84,7 +86,7 @@ public class DrawScene extends UpdateObjects {
 
 		if (Alien.aliens.isEmpty()) {
 
-			setScene2(g);
+			drawScene2(g);
 
 			Font small = new Font("Helvetica", Font.BOLD, 17);
 			g.setColor(Color.white);
@@ -132,7 +134,7 @@ public class DrawScene extends UpdateObjects {
 
 		if (Dragon.dragons.isEmpty()) {
 
-			setScene3(g);
+			drawScene3(g);
 			Font small = new Font("Helvetica", Font.BOLD, 17);
 			g.setColor(Color.white);
 			g.setFont(small);
@@ -695,7 +697,7 @@ public class DrawScene extends UpdateObjects {
 
 	}
 
-	private void setScene1(Graphics g) {
+	private void drawScene1(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg1, 0, 0, null)) {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
@@ -708,7 +710,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void setScene2(Graphics g) {
+	private void drawScene2(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg2, 0, 0, null)) {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
@@ -721,7 +723,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void setScene3(Graphics g) {
+	private void drawScene3(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && MyShip.myShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);

@@ -20,12 +20,14 @@ import javax.swing.event.DocumentListener;
 
 class AutoSuggestor {
 
-	private final JTextField textField;
-	private final Window container;
+	// Constants
+	private static final ArrayList<String> DICTIONARY = new ArrayList<>();
+
+	private JTextField textField;
 	private JPanel suggestionsPanel;
 	private JWindow autoSuggestionPopUpWindow;
+	private Window container;
 	private String typedWord;
-	private final ArrayList<String> dictionary = new ArrayList<>();
 	private int currentIndexOfSpace, tW, tH;
 	private DocumentListener documentListener = new DocumentListener() {
 
@@ -237,14 +239,14 @@ class AutoSuggestor {
 
 	public void setDictionary(String lookFor) {
 		lookFor = lookFor.toLowerCase();
-		dictionary.clear();
+		DICTIONARY.clear();
 		if (ConsoleContent.COMMANDS == null) {
 			return; // so we can call constructor with null value for dictionary without exception
 					// thrown
 		}
 		for (String word : ConsoleContent.COMMANDS) {
 			if (word.contains(lookFor)) {
-				dictionary.add(word);
+				DICTIONARY.add(word);
 				// getTextField().setText(word);
 			}
 
@@ -264,7 +266,7 @@ class AutoSuggestor {
 	}
 
 	public void addToDictionary(String word) {
-		dictionary.add(word);
+		DICTIONARY.add(word);
 	}
 
 	boolean wordTyped(String typedWord) {
@@ -276,7 +278,7 @@ class AutoSuggestor {
 
 		boolean suggestionAdded = false;
 
-		for (String word : dictionary) { // get commands in the dictionary which we added
+		for (String word : DICTIONARY) { // get commands in the dictionary which we added
 			boolean fullymatches = true;
 			for (int i = 0; i < typedWord.length(); i++) { // each string in the word
 				if (!typedWord.toLowerCase().startsWith(String.valueOf(word.toLowerCase().charAt(i)), i)) { // check for

@@ -5,9 +5,11 @@ import game_engine.SpritePattern;
 
 public class BunkerBullet extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
+	// Constants
 	private static final int BULLET_SPEED_Y = 4;
 	private static final int BULLET_SPEED_X = 3;
+
+	private static final long serialVersionUID = 1L;
 	private String imageName;
 
 	public BunkerBullet(int x, int y) {

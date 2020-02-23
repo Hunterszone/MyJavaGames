@@ -42,16 +42,15 @@ import sound_engine.LoadSounds;
 
 public class GameMenu extends JFrame {
 
-	private static final long serialVersionUID = 1L;
 	public static boolean savedOnL1 = false;
 	public static boolean savedOnL2 = false;
 	public static boolean savedOnL3 = false;
 	public static boolean savedOnL4 = false;
+	private static final long serialVersionUID = 1L;
 
 	public static JCheckBoxMenuItem autosave;
 
 	public GameMenu() {
-
 		createMenu();
 	}
 
@@ -180,7 +179,6 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				Launcher.main(null);
 				System.exit(0);
 			}
@@ -407,12 +405,6 @@ public class GameMenu extends JFrame {
 								(int) Math.ceil(Math.random() * 800));
 						Dragon.dragons.add(born);
 					}
-//					for (Object born : loadedAssets) {
-//						born = new Dragon((int) Math.ceil(Math.random() * 4000), (int) Math.ceil(Math.random() * 800));
-//						Dragon.dragons.add((Dragon) born);
-//						if (Dragon.dragons.size() == 14)
-//							break;
-//					}
 
 					System.out.println("Score after loading will be added to entities.Dragon");
 					DrawScene.voiceInterruptor = true;
@@ -508,10 +500,10 @@ public class GameMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Manual manual = new Manual();
 
-				if (!InitObjects.manualON) {
+				if (!ConsoleContent.manualON) {
 					manual.setVisible(true);
-					if (!InitObjects.manualON == true) {
-						InitObjects.manualON = true;
+					if (!ConsoleContent.manualON == true) {
+						ConsoleContent.manualON = true;
 					}
 				}
 

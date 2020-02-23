@@ -7,8 +7,8 @@ import game_engine.SpritePattern;
 
 public class VolBtn extends SpritePattern {
 
-	private static final long serialVersionUID = 1L;
 	public static VolBtn volButt;
+	private static final long serialVersionUID = 1L;
 	private String imageName;
 
 	public VolBtn(int x, int y) {

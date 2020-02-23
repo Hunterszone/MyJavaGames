@@ -6,6 +6,7 @@ import entities.Bunker;
 import entities.Crosshair;
 import entities.EvilHead;
 import entities.MyShip;
+import frames.ConsoleContent;
 import frames.GameMenu;
 import items.VolBtn;
 import sound_engine.LoadSounds;
@@ -24,8 +25,8 @@ public class Difficulty {
 		GameMenu.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
-		if (InitObjects.god == true) {
-			InitObjects.god = false;
+		if (ConsoleContent.god == true) {
+			ConsoleContent.god = false;
 		}
 
 		InitObjects.ingame = true;

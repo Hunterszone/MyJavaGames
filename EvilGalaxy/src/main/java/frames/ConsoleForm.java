@@ -17,7 +17,9 @@ public final class ConsoleForm extends ConsoleContent {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				ConsoleForm.console = new ConsoleForm();
+				if (ConsoleForm.console == null) {
+					ConsoleForm.console = new ConsoleForm();
+				}
 				Main ex = new Main();
 				ex.setVisible(true);
 				try {
