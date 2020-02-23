@@ -17,11 +17,11 @@ public final class ConsoleForm extends ConsoleContent {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				ConsoleForm consoleForm = new ConsoleForm();
+				ConsoleForm.console = new ConsoleForm();
 				Main ex = new Main();
 				ex.setVisible(true);
 				try {
-					consoleForm.close();
+					ConsoleForm.console.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -33,7 +33,7 @@ public final class ConsoleForm extends ConsoleContent {
 
 		JFrame frame = new JFrame();
 		frame.setTitle("Game Console");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane.add(textField);
 		frame.add(contentPane);
 		frame.pack();

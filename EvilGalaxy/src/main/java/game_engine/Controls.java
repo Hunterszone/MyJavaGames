@@ -224,24 +224,12 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_O && !ConsoleContent.manualON) {
-
 			ConsoleContent.manual = new Manual();
 			ConsoleContent.manual.setVisible(true);
-
-			if (ConsoleContent.manualON == true) {
-				ConsoleContent.manualON = false;
-			}
-
 		}
 
 		if (key == KeyEvent.VK_C && !ConsoleContent.consoleON) {
-
 			ConsoleForm.console = new ConsoleForm();
-
-			if (ConsoleContent.consoleON == true) {
-				ConsoleContent.consoleON = false;
-			}
-
 		}
 
 		if (key == KeyEvent.VK_ESCAPE) {
