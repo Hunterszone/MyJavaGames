@@ -22,7 +22,7 @@ public class ShipMissile extends SpritePattern {
 		return imageName;
 	}
 
-	public void move() {
+	public void moveMissile() {
 
 		x += MISSILE_SPEED;
 

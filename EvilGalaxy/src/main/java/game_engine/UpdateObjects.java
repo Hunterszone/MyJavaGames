@@ -82,7 +82,7 @@ public abstract class UpdateObjects extends InitObjects {
 			ShipMissile missile = missiles.get(nextmissile);
 
 			if (missile.isVisible()) {
-				missile.move();
+				missile.moveMissile();
 			} else {
 				missiles.remove(nextmissile);
 			}
@@ -181,7 +181,7 @@ public abstract class UpdateObjects extends InitObjects {
 		for (int nextrocket = 0; nextrocket < rocketstack.size(); nextrocket++) {
 			ShipRocket shiprocket = rocketstack.get(nextrocket);
 			if (shiprocket.isVisible()) {
-				shiprocket.move();
+				shiprocket.moveRocket();
 			} else {
 				rocketstack.remove(nextrocket);
 			}

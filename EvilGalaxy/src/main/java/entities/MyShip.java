@@ -201,22 +201,12 @@ public class MyShip extends SpritePattern {
 
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_LEFT) {
+		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
 			speedX = 0;
 			drawShip();
 		}
 
-		if (key == KeyEvent.VK_RIGHT) {
-			speedX = 0;
-			drawShip();
-		}
-
-		if (key == KeyEvent.VK_UP) {
-			speedY = 0;
-			drawShip();
-		}
-
-		if (key == KeyEvent.VK_DOWN) {
+		if (key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
 			speedY = 0;
 			drawShip();
 		}
