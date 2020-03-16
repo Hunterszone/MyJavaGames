@@ -23,7 +23,7 @@ public class ShipRocket extends SpritePattern {
 		return imageName;
 	}
 
-	public void move() {
+	public void moveRocket() {
 
 		x += ROCKET_SPEED;
 		y += ROCKET_SPEED2;
