@@ -16,8 +16,8 @@ public class Crosshair extends Entity {
 
 	@Override
 	public boolean collidesWith(Entity other) {
-		enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-		crosshair.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+		enemy.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+		crosshair.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 		if (crosshair.intersects(enemy))
 			return true;
 		return false;

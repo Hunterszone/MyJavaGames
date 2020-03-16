@@ -18,14 +18,14 @@ public class EnemyEntity extends Entity {
 	@Override
 	public boolean collidesWith(Entity other) {
 		if (other instanceof HeroEntity) {
-			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			enemy.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+			enemy.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			if (hero.intersects(enemy))
 				return true;
 		}
 		if (other instanceof Crosshair) {
-			enemy.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			crosshair.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			enemy.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+			crosshair.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			if (crosshair.intersects(enemy))
 				return true;
 		}

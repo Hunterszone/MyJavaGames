@@ -31,20 +31,21 @@ public class HeroEntity extends Entity {
 		return false;
 	}
 
+	@Override
 	public boolean collidesWith(Entity other) {
 		if (other instanceof EnemyEntity) {
-			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			enemy.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+			enemy.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(enemy);
 		}
 		if (other instanceof TreasureEntity) {
-			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			treasure.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+			treasure.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(treasure);
 		}
 		if (other instanceof HealthEntity) {
-			hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-			health.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+			hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+			health.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(health);
 		}
 		return false;

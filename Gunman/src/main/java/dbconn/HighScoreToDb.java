@@ -22,7 +22,7 @@ public class HighScoreToDb {
 	private static final String USER = "root";
 	private static final String PASS = "root";
 
-	public static void main(String[] args) throws SQLException {
+	public static void init() throws SQLException {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
 		try {

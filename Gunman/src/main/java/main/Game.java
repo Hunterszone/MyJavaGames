@@ -596,7 +596,7 @@ public class Game {
 		System.out.println("Num of treasures: " + treasuresSum);
 
 		try {
-			HighScoreToDb.main(null);
+			HighScoreToDb.init();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

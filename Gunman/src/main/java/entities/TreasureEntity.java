@@ -21,8 +21,8 @@ public class TreasureEntity extends Entity {
 
 	@Override
 	public boolean collidesWith(Entity other) {
-		hero.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-		treasure.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+		hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
+		treasure.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 		if (hero.intersects(treasure))
 			return true;
 		return false;
