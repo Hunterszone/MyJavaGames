@@ -22,11 +22,13 @@ public class Controls extends JFrame implements KeyListener {
 	public static boolean isEPressed, isMPressed, isHPressed;
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 		MyShip.myShip.keyReleased(e);
 		Crosshair.crosshair.keyReleased(e);
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		MyShip.myShip.keyPressed(e);
 		Crosshair.crosshair.keyPressed(e);
@@ -229,7 +231,7 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_C && !ConsoleContent.consoleON) {
-			ConsoleForm.console = new ConsoleForm();
+			ConsoleContent.console = new ConsoleForm();
 		}
 
 		if (key == KeyEvent.VK_ESCAPE) {

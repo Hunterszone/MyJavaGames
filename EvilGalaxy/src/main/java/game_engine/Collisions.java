@@ -429,11 +429,11 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static String[] getNameAndKilledCount(String enemyName) {
 		if (enemyName.equalsIgnoreCase(Alien.class.getName())) {
-			Integer alienKilledd = (Integer) alienKilled;
+			Integer alienKilledd = alienKilled;
 			return new String[] { enemyName, alienKilledd.toString() };
 		}
 		if (enemyName.equalsIgnoreCase(Dragon.class.getName())) {
-			Integer dragonKilledd = (Integer) dragonKilled;
+			Integer dragonKilledd = dragonKilled;
 			return new String[] { enemyName, dragonKilledd.toString() };
 		}
 		return new String[] { "" };

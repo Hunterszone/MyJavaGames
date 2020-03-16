@@ -27,15 +27,13 @@ public class Manual extends JFrame {
 
 	public static void main(String[] args) {
 
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Manual readme = new Manual();
-					readme.setVisible(true);
-					readme.setResizable(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		EventQueue.invokeLater(() -> {
+			try {
+				Manual readme = new Manual();
+				readme.setVisible(true);
+				readme.setResizable(true);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 

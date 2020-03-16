@@ -1,5 +1,6 @@
 package items;
 
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -39,8 +40,8 @@ public class SaveSign extends SpritePattern implements KeyListener {
 
 		int key = e.getKeyCode();
 
-		if (((key == KeyEvent.VK_Z) && ((e.getModifiers() & KeyEvent.ALT_MASK) != 0)) || ((key == KeyEvent.VK_X)
-				&& ((e.getModifiers() & KeyEvent.ALT_MASK) != 0) && GameMenu.autosave.isSelected() == false)) {
+		if (((key == KeyEvent.VK_Z) && ((e.getModifiers() & InputEvent.ALT_MASK) != 0)) || ((key == KeyEvent.VK_X)
+				&& ((e.getModifiers() & InputEvent.ALT_MASK) != 0) && GameMenu.autosave.isSelected() == false)) {
 			if (saveSign != null) {
 				saveSign.initSave();
 				saveSign.setVisible(true);

@@ -14,19 +14,16 @@ public final class ConsoleForm extends ConsoleContent {
 	JList<Object> list = new JList<>();
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				if (ConsoleForm.console == null) {
-					ConsoleForm.console = new ConsoleForm();
-				}
-				Main ex = new Main();
-				ex.setVisible(true);
-				try {
-					ConsoleForm.console.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		SwingUtilities.invokeLater(() -> {
+			if (ConsoleContent.console == null) {
+				ConsoleContent.console = new ConsoleForm();
+			}
+			Main ex = new Main();
+			ex.setVisible(true);
+			try {
+				ConsoleContent.console.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
 	}

@@ -31,13 +31,16 @@ public class SwingLink extends JLabel {
 	    setText(text);
 	    setToolTipText(uri.toString());
 	    addMouseListener(new MouseAdapter() {
-	      public void mouseClicked(MouseEvent e) {
+	      @Override
+		public void mouseClicked(MouseEvent e) {
 	        open(uri);
 	      }
-	      public void mouseEntered(MouseEvent e) {
+	      @Override
+		public void mouseEntered(MouseEvent e) {
 	        setText(text,false);
 	      }
-	      public void mouseExited(MouseEvent e) {
+	      @Override
+		public void mouseExited(MouseEvent e) {
 	        setText(text,true);
 	      }
 	    });

@@ -46,12 +46,9 @@ public final class Main extends GameMenu {
 
 	public static void main(String[] args) throws URISyntaxException {
 
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				Main ex = new Main();
-				ex.setVisible(true);
-			}
+		EventQueue.invokeLater(() -> {
+			Main ex = new Main();
+			ex.setVisible(true);
 		});
 	}
 }

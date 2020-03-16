@@ -1,8 +1,6 @@
 package multiplayer_tbd;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -55,24 +53,12 @@ public class JoinGame extends JFrame {
 		// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		// action listener
-		joinbutt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				label2.setText("Waiting for connection...");
-				label1.setText("Joined at : " + textfield.getText());
-			}
+		joinbutt.addActionListener(arg0 -> {
+			label2.setText("Waiting for connection...");
+			label1.setText("Joined at : " + textfield.getText());
 		});
 
-		refrbutt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				new ConsoleForm().getTextField().setText("refresh");
-
-			}
-		});
+		refrbutt.addActionListener(arg0 -> new ConsoleForm().getTextField().setText("refresh"));
 	}
 
 	public static void main(String[] args) {

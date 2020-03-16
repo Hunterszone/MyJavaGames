@@ -329,10 +329,10 @@ public class GameMenu extends JFrame {
 					savedShip = (MyShip) objectStream.readObject();
 					savedHead = (EvilHead) objectStream.readObject();
 					savedBunker = (Bunker) objectStream.readObject();
-					savedAliens = (Object) objectStream.readObject();
-					savedDragons = (Object) objectStream.readObject();
-					savedGold = (Object) objectStream.readObject();
-					savedHP = (Object) objectStream.readObject();
+					savedAliens = objectStream.readObject();
+					savedDragons = objectStream.readObject();
+					savedGold = objectStream.readObject();
+					savedHP = objectStream.readObject();
 
 					loadedAssets.add(savedShip);
 					loadedAssets.add(savedHead);
