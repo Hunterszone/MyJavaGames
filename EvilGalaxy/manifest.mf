@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Created-By: Konstantin Drenski
+Main-Class: frames.Main
 X-COMMENT: Main-Class will be added automatically by build
 Codebase: https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy
 Permissions: sandbox
