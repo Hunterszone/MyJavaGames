@@ -491,32 +491,7 @@ public class Launcher extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		File f2 = new File("SpaceBattle32bit.jar");
-		System.out.println("Exists: " + f2.exists());
-		try {
-			URL url = new URL(
-					"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/SpaceBattle32bit.jar");
-			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("HEAD");
-			if (needDownload || !f2.exists() || f2.length() != conn.getContentLength()) {
-
-				Thread t = new Thread() {
-
-					@Override
-					public void run() {
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/SpaceBattle/SpaceBattle32bit.jar",
-								"SpaceBattle32bit.jar", conn.getContentLength());
-					}
-				};
-				t.start();
-				threads.add(t);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+	
 		for (Thread t : threads) {
 			try {
 				t.join();
