@@ -10,7 +10,7 @@
         <!-- Application Resources -->
         <j2se version="1.7+"
               href="https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/"/>
-        <jar href="EGinit.jar?raw=true"
+        <jar href="EGinit.jar"
             main="true" />
 
     </resources>
