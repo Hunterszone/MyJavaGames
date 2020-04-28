@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy">
+<jnlp spec="1.0+" codebase=
+"https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/" 
+    href="Launcher.jnlp">
     <information>
         <title>Launcher EG</title>
         <vendor>Drenski Studios</vendor>
@@ -8,14 +10,16 @@
         <!-- Application Resources -->
         <j2se version="1.7+"
               href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="EGInit.jar"
+        <jar href="EGinit.jar?raw=true"
             main="true" />
+
     </resources>
     <application-desc
          name="Launcher"
-         main-class="launcher.Launcher"
+         main-class=
+           "launcher.Launcher"
          width="50"
          height="50">
      </application-desc>
      <update check="background"/>
-</jnlp>
+</jnlp>               
