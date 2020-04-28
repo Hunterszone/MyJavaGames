@@ -1,6 +1,19 @@
-/bin/
-/target/
-/.classpath
-/*.project
-/.settings
+# Eclipse Core      
+.project
+.settings
+
+# JDT-specific (Eclipse Java Development Tools)     
+.classpath
+
+# Target folder and its attributes
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+.idea/
+.eclipse
+/.gitignore
 /bin/
