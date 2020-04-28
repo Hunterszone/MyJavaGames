@@ -16,8 +16,7 @@
     </resources>
     <application-desc
          name="Launcher"
-         main-class=
-           "src.main.java.launcher.Launcher"
+         main-class="src.main.java.launcher.Launcher"
          width="50"
          height="50">
      </application-desc>
