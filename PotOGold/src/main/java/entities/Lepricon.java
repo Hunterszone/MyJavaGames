@@ -32,7 +32,7 @@ public class Lepricon extends GameObject {
 		y = 630;
 		x += speedX;
 		y += speedY;
-		lepriMagic.setPosition(x, y + 45, false);
+		lepriMagic.setPosition(x, y + 45);
 		collisionSurface.setCenterX(x);
 		collisionSurface.setCenterY(y);
 	}
