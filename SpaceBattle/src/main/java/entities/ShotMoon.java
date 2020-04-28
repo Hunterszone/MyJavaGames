@@ -24,7 +24,7 @@ public class ShotMoon extends GameObject {
 	public void update(int delta) {
 		y += speed;
 		x += speed;
-		emitter.setPosition(x, y, false);
+		emitter.setPosition(x, y);
 	}
 
 	@Override

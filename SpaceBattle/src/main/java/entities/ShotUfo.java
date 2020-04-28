@@ -23,7 +23,7 @@ public class ShotUfo extends GameObject {
 	@Override
 	public void update(int delta) {
 		y += speed;
-		emitter.setPosition(x, y, false);
+		emitter.setPosition(x, y);
 	}
 
 	@Override

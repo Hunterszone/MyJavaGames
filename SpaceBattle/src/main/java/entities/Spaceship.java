@@ -32,7 +32,7 @@ public class Spaceship extends GameObject {
 		y = input.getMouseY() + 250;
 		x += speedX;
 		y += speedY;
-		emitter.setPosition(x, y + 45, false);
+		emitter.setPosition(x, y + 45);
 		collisionSurface.setCenterX(x);
 		collisionSurface.setCenterY(y);
 	}
