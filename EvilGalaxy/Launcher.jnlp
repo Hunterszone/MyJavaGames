@@ -9,7 +9,7 @@
     <resources>
         <!-- Application Resources -->
         <j2se version="1.7+"
-              href="http://java.sun.com/products/autodl/j2se"/>
+              href="https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/"/>
         <jar href="EGinit.jar?raw=true"
             main="true" />
 
@@ -17,7 +17,7 @@
     <application-desc
          name="Launcher"
          main-class=
-           "launcher.Launcher"
+           "src.main.java.launcher.Launcher"
          width="50"
          height="50">
      </application-desc>
