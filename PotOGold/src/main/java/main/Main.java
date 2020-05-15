@@ -50,6 +50,9 @@ public class Main extends BasicGame {
 	private GamePause gamePausedLabel;
 	private static AppGameContainer app;
 	private List<Bomb> bombs;
+	private Music bgMusic;
+	private Music musicFailure;
+	private Music musicVictory;
 
 	final static int SCREEN_WIDTH = 1000;
 	final static int SCREEN_HEIGTH = 700;
@@ -111,17 +114,6 @@ public class Main extends BasicGame {
 		lives.draw(g);
 	}
 
-	public void musicON(boolean isOn) throws SlickException {
-
-		Music mus = new Music("res/sounds/bgmusic.wav");
-
-		if (isOn == true) {
-			mus.loop();
-		} else {
-			mus.pause();
-		}
-	}
-
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		background = new Image("res/background.png");
@@ -155,7 +147,10 @@ public class Main extends BasicGame {
 		gameOver = new GameOver(container.getHeight(), container.getWidth(), fontGameOver);
 		gamePausedLabel = new GamePause(container.getHeight(), container.getWidth(), fontGamePaused);
 		youWonLabel = new YouWon(container.getHeight(), container.getWidth(), fontYouWon);
-		musicON(true);
+		bgMusic = new Music("res/sounds/bgmusic.wav");
+		bgMusic.loop();
+		musicFailure = new Music("res/sounds/failure.wav");
+		musicVictory = new Music("res/sounds/victory.wav");
 	}
 
 	@Override
@@ -168,7 +163,6 @@ public class Main extends BasicGame {
 				Lepricon.speedX += -10.5;
 				if (lepricon.getX() < 70) {
 					lepricon.setX(70);
-					return;
 				}
 			}
 
@@ -176,7 +170,6 @@ public class Main extends BasicGame {
 				Lepricon.speedX += 10.5;
 				if (lepricon.getX() > SCREEN_WIDTH - 70) {
 					lepricon.setX(SCREEN_WIDTH - 70);
-					return;
 				}
 			}
 
@@ -184,7 +177,6 @@ public class Main extends BasicGame {
 				Lepricon.speedY += -10.5;
 				if (lepricon.getY() < 70) {
 					lepricon.setY(70);
-					return;
 				}
 			}
 
@@ -192,7 +184,6 @@ public class Main extends BasicGame {
 				Lepricon.speedY += 10.5;
 				if (lepricon.getY() > SCREEN_HEIGTH - 75) {
 					lepricon.setY(SCREEN_HEIGTH - 75);
-					return;
 				}
 			}
 
@@ -209,38 +200,33 @@ public class Main extends BasicGame {
 		}
 
 		if (input.isKeyPressed(Input.KEY_A)) {
-			musicON(true);
+			bgMusic.loop();
 		}
 
 		if (input.isKeyPressed(Input.KEY_S)) {
-			musicON(false);
+			bgMusic.stop();
 		}
 
 		if (input.isKeyPressed(Input.KEY_P) && !gameOver.isGameOver()) {
+			bgMusic.stop();
 			gamePausedLabel.setGamePaused(true);
 			container.pause();
 		}
 
 		if (input.isKeyPressed(Input.KEY_R)) {
+
 			if (container.isPaused()) {
+				bgMusic.loop();
 				gamePausedLabel.setGamePaused(false);
 				container.resume();
-			}
-
-			if (gameOver.isGameOver() || youWonLabel.isGameWon()) {
+			} else {
+				bgMusic.stop();
 				init(container);
 				Points.points = 0;
 				Lives.lives = 3;
 			}
 
 		}
-
-		/* Restart if in a play mode - optional */
-//		if (input.isKeyPressed(Input.KEY_N)) {
-//			if (!gameOver.isGameOver()) {
-//				init(container);
-//			}
-//		}
 
 		if (gift1.checkCollision(lepricon)) {
 			newGift1(container, lepricon);
@@ -257,8 +243,10 @@ public class Main extends BasicGame {
 		}
 
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
-			if (Points.points >= 30 && Lives.lives > 0) {
-				youWonLabel.setYouWon(true);
+			if (Points.points < 30) {
+				gameOver.setGameOver(true);
+				bgMusic.stop();
+				musicFailure.play();
 				try {
 					HighScoreToDb.main(null);
 				} catch (SQLException e) {
@@ -266,11 +254,10 @@ public class Main extends BasicGame {
 					e.printStackTrace();
 				}
 			}
-		}
-
-		if ((60 - Timer.elapsedMillis / 1000) == 0) {
-			if (Points.points < 30) {
-				gameOver.setGameOver(true);
+			if (Points.points >= 30 && Lives.lives > 0) {
+				youWonLabel.setYouWon(true);
+				bgMusic.stop();
+				musicVictory.play();
 				try {
 					HighScoreToDb.main(null);
 				} catch (SQLException e) {
@@ -309,6 +296,8 @@ public class Main extends BasicGame {
 		if (Lives.lives <= 0) {
 			Lives.lives = 0;
 			gameOver.setGameOver(true);
+			bgMusic.stop();
+			musicFailure.play();
 			try {
 				HighScoreToDb.main(null);
 			} catch (SQLException e) {

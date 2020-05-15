@@ -39,7 +39,6 @@ public class YouWon extends GameObject {
 		g.setFont(fontYouWon);
 		g.drawString(YOU_WON + "\n" + "Gold: " + Points.points + "/30" + "\n" + "Lives: " + Lives.lives,
 				(width / 2) - (textWidth / 2), (height / 2) - textHeight);
-		return;
 	}
 
 	public void setYouWon(boolean isGameWon) {
