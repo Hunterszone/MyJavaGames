@@ -124,6 +124,7 @@ public class Main extends BasicGame {
 				new Image("res/fonts/score_numer_mine.png"));
 		points = new Points(container.getWidth() - 900, 10, fontPoints);
 		timer = new Timer(container.getWidth() - 470, 10, fontPoints);
+		timer.running = true;
 		lives = new Lives(container.getWidth() - 80, 10, fontPoints);
 		effects = new Effects();
 		lepricon = new Lepricon(500, 630, new Image("res/santa.png"), container.getInput(),
@@ -242,6 +243,19 @@ public class Main extends BasicGame {
 			}
 		}
 
+		if (Points.points == 30) {
+			timer.stopTime();
+			youWonLabel.setYouWon(true);
+			bgMusic.stop();
+//			musicVictory.play();
+			try {
+				HighScoreToDb.main(null);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
 			if (Points.points < 30) {
 				gameOver.setGameOver(true);
@@ -254,36 +268,29 @@ public class Main extends BasicGame {
 					e.printStackTrace();
 				}
 			}
-			if (Points.points >= 30 && Lives.lives > 0) {
-				youWonLabel.setYouWon(true);
-				bgMusic.stop();
-				musicVictory.play();
-				try {
-					HighScoreToDb.main(null);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 
 	private void newGift1(GameContainer container, Lepricon spaceship) {
-		effects.objColliding(gift1.getX(), gift1.getY());
-		Random random = new Random();
-		gift1.setX(random.nextInt(container.getWidth()));
-		gift1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
-		soundCollected.play();
-		points.incrementPoints(new Integer(Points.points));
+		if (Points.points < 30) {
+			effects.objColliding(gift1.getX(), gift1.getY());
+			Random random = new Random();
+			gift1.setX(random.nextInt(container.getWidth()));
+			gift1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
+			soundCollected.play();
+			points.incrementPoints(new Integer(Points.points));
+		}
 	}
 
 	private void newGift2(GameContainer container, Lepricon spaceship) {
-		effects.objColliding(gift2.getX(), gift2.getY());
-		Random random = new Random();
-		gift2.setX(random.nextInt(container.getWidth()));
-		gift2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
-		soundCollected.play();
-		points.incrementPoints(new Integer(Points.points));
+		if (Points.points < 30) {
+			effects.objColliding(gift2.getX(), gift2.getY());
+			Random random = new Random();
+			gift2.setX(random.nextInt(container.getWidth()));
+			gift2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
+			soundCollected.play();
+			points.incrementPoints(new Integer(Points.points));
+		}
 	}
 
 	private void lepriLifeMinus(GameContainer container, Bomb bomb) throws SlickException {

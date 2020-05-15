@@ -6,9 +6,11 @@ import org.newdawn.slick.Graphics;
 public class Timer extends GameObject {
 
 	private Font font;
-	long startTime = System.currentTimeMillis();
+	private long startTime = System.currentTimeMillis();
+	private long endTime;
+    public boolean running = false;
 	public static long elapsedMillis;
-	static String initialTime;
+	public static String initialTime;
 
 	public Timer(int x, int y, Font font) {
 		super(x, y);
@@ -39,8 +41,13 @@ public class Timer extends GameObject {
 	}
 
 	public long decrementTime() {
-		elapsedMillis = System.currentTimeMillis() - startTime;
+		if(running == true)	elapsedMillis = System.currentTimeMillis() - startTime;
 		return elapsedMillis;
 	}
-
+	
+	public void stopTime() {
+		this.endTime = System.currentTimeMillis();
+		running = false;
+	}
+	
 }

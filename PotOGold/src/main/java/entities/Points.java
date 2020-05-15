@@ -23,7 +23,7 @@ public class Points extends GameObject {
 	}
 
 	public int incrementPoints(Integer smth) {
-		if (smth != null) {
+		if (smth != null && smth < 30) {
 			points++;
 			smth = new Integer(points);
 		}
