@@ -22,7 +22,7 @@ import resources.Images;
 public class GiftTest {
 
 	private BufferedImage image;
-	private Gift gift1, gift2;
+	private Gift gift;
 	private Lepricon lepricon;
 	private int x, y;
 
@@ -30,13 +30,12 @@ public class GiftTest {
 	public void setUp() throws Exception {
 		x = 60;
 		y = 60;
-		gift1 = new Gift(x, y, image);
-		gift2 = new Gift(x, y, image);
+		gift = new Gift(x, y, image);
 	}
 
 	@Test
 	public void testGift1IntIntImage() {
-		assertNotNull(gift1.collisionSurface = new Ellipse(x, y, 60, 60));
+		assertNotNull(gift.collisionSurface = new Ellipse(x, y, 60, 60));
 	}
 
 	public void testDraw() {
@@ -54,8 +53,7 @@ public class GiftTest {
 
 	@Test
 	public void testCheckCollision() {
-		assertFalse(gift1.checkCollision(lepricon));
-		assertFalse(gift2.checkCollision(lepricon));
+		assertFalse(gift.checkCollision(lepricon));
 	}
 
 	@After
@@ -63,7 +61,6 @@ public class GiftTest {
 		x = 0;
 		y = 0;
 		lepricon = null;
-		gift1 = null;
-		gift2 = null;
+		gift = null;
 	}
 }
