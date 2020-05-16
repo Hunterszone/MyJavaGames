@@ -15,14 +15,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
-import entities.Gift1;
+import entities.Gift;
 import entities.Lepricon;
 import resources.Images;
 
-public class Gift1Test {
+public class GiftTest {
 
 	private BufferedImage image;
-	private Gift1 gift1;
+	private Gift gift1, gift2;
 	private Lepricon lepricon;
 	private int x, y;
 
@@ -30,7 +30,8 @@ public class Gift1Test {
 	public void setUp() throws Exception {
 		x = 60;
 		y = 60;
-		gift1 = new Gift1(x, y, image);
+		gift1 = new Gift(x, y, image);
+		gift2 = new Gift(x, y, image);
 	}
 
 	@Test
@@ -41,17 +42,20 @@ public class Gift1Test {
 	public void testDraw() {
 		try {
 			assertNotNull(ImageIO.read(new FileInputStream(Images.GIFT1.getImg())));
+			assertNotNull(ImageIO.read(new FileInputStream(Images.GIFT2.getImg())));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		assertFalse("Image name is empty", Images.GIFT1.getImg().isEmpty());
+		assertFalse("Image name is empty", Images.GIFT2.getImg().isEmpty());
 	}
 
 	@Test
 	public void testCheckCollision() {
 		assertFalse(gift1.checkCollision(lepricon));
+		assertFalse(gift2.checkCollision(lepricon));
 	}
 
 	@After
@@ -60,5 +64,6 @@ public class Gift1Test {
 		y = 0;
 		lepricon = null;
 		gift1 = null;
+		gift2 = null;
 	}
 }

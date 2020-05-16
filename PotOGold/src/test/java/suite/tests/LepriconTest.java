@@ -15,8 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.geom.Ellipse;
 
-import entities.Gift1;
-import entities.Gift2;
+import entities.Gift;
 import entities.Lepricon;
 import resources.Images;
 
@@ -24,8 +23,7 @@ public class LepriconTest {
 
 	private BufferedImage image;
 	private Lepricon lepricon;
-	private Gift1 gift1;
-	private Gift2 gift2;
+	private Gift gift;
 	private int x, y;
 
 	@Before
@@ -54,10 +52,8 @@ public class LepriconTest {
 
 	@Test
 	public void testCheckCollision() {
-		gift1 = new Gift1(x, y, image);
-		gift2 = new Gift2(x, y, image);
-		assertFalse(lepricon.checkCollision(gift1));
-		assertFalse(lepricon.checkCollision(gift2));
+		gift = new Gift(x, y, image);
+		assertFalse(lepricon.checkCollision(gift));
 	}
 
 	@After
@@ -65,7 +61,6 @@ public class LepriconTest {
 		x = 0;
 		y = 0;
 		lepricon = null;
-		gift1 = null;
-		gift2 = null;
+		gift = null;
 	}
 }

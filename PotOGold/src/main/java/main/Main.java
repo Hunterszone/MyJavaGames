@@ -19,8 +19,7 @@ import org.newdawn.slick.Sound;
 
 import dbconn.HighScoreToDb;
 import entities.Bomb;
-import entities.Gift1;
-import entities.Gift2;
+import entities.Gift;
 import entities.Lepricon;
 import entities.Lives;
 import entities.Points;
@@ -43,8 +42,7 @@ public class Main extends BasicGame {
 	private Lepricon lepricon;
 	private Effects effects;
 	private Lives lives;
-	private Gift1 gift1;
-	private Gift2 gift2;
+	private Gift gift1, gift2;
 	private GameOver gameOver;
 	private YouWon youWonLabel;
 	private GamePause gamePausedLabel;
@@ -130,8 +128,8 @@ public class Main extends BasicGame {
 		effects = new Effects();
 		lepricon = new Lepricon(500, 630, new Image("res/santa.png"), container.getInput(),
 				effects.getRocketSmokeEmitter());
-		gift1 = new Gift1(400, 200, new Image("res/gift1.png"));
-		gift2 = new Gift2(200, 500, new Image("res/gift2.png"));
+		gift1 = new Gift(400, 200, new Image("res/gift1.png"));
+		gift2 = new Gift(200, 500, new Image("res/gift2.png"));
 		bombs = new ArrayList<>();
 		bombs.add(new Bomb(650, 10, new Image("res/mine.png")));
 		bombs.add(new Bomb(550, 30, new Image("res/mine.png")));
@@ -230,12 +228,8 @@ public class Main extends BasicGame {
 
 		}
 
-		if (gift1.checkCollision(lepricon)) {
-			newGift1(container, lepricon);
-		}
-
-		if (gift2.checkCollision(lepricon)) {
-			newGift2(container, lepricon);
+		if (gift1.checkCollision(lepricon) || gift2.checkCollision(lepricon)) {
+			newGift(container, lepricon);
 		}
 
 		for (Bomb bomb : bombs) {
@@ -259,35 +253,19 @@ public class Main extends BasicGame {
 		}
 	}
 
-	private void newGift1(GameContainer container, Lepricon lepricon) {
+	private void newGift(GameContainer container, Lepricon lepricon) {
 		if (Points.points < 30) {
-			effects.objColliding(gift1.getX(), gift1.getY());
 			Random random = new Random();
-			gift1.setX(random.nextInt(container.getWidth()));
-			gift1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
-			soundCollected.play();
-			points.incrementPoints(new Integer(Points.points));
-			if (Points.points == 30) {
-				timer.stopTime();
-				bgMusic.stop();
-				youWonLabel.setYouWon(true);
-				musicVictory.play(1, 0.3f);
-				try {
-					HighScoreToDb.init();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			if (gift1.checkCollision(lepricon)) {
+				effects.objColliding(gift1.getX(), gift1.getY());
+				gift1.setX(random.nextInt(container.getWidth()));
+				gift1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 			}
-		}
-	}
-
-	private void newGift2(GameContainer container, Lepricon lepricon) {
-		if (Points.points < 30) {
-			effects.objColliding(gift2.getX(), gift2.getY());
-			Random random = new Random();
-			gift2.setX(random.nextInt(container.getWidth()));
-			gift2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
+			if (gift2.checkCollision(lepricon)) {
+				effects.objColliding(gift2.getX(), gift2.getY());
+				gift2.setX(random.nextInt(container.getWidth()));
+				gift2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
+			}
 			soundCollected.play();
 			points.incrementPoints(new Integer(Points.points));
 			if (Points.points == 30) {
