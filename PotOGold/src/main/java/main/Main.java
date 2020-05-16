@@ -208,7 +208,7 @@ public class Main extends BasicGame {
 		}
 
 		if (input.isKeyPressed(Input.KEY_P) && !gameOver.isGameOver()) {
-			bgMusic.stop();
+			bgMusic.pause();
 			gamePausedLabel.setGamePaused(true);
 			container.pause();
 		}
