@@ -1,3 +1,5 @@
 bgmusic.wav
 explosion.wav
 collect.wav
+failure.wav
+victory.wav
