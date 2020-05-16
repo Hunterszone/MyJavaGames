@@ -86,6 +86,7 @@ public class Main extends BasicGame {
 		collectedGifts.draw(10, 10);
 		timerImg.draw(430, 10);
 		effects.draw(g);
+
 		gift1.draw(g);
 		gift2.draw(g);
 
@@ -243,26 +244,13 @@ public class Main extends BasicGame {
 			}
 		}
 
-		if (Points.points == 30) {
-			timer.stopTime();
-			youWonLabel.setYouWon(true);
-			bgMusic.stop();
-//			musicVictory.play();
-			try {
-				HighScoreToDb.main(null);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
 		if ((60 - Timer.elapsedMillis / 1000) == 0) {
 			if (Points.points < 30) {
 				gameOver.setGameOver(true);
 				bgMusic.stop();
 				musicFailure.play();
 				try {
-					HighScoreToDb.main(null);
+					HighScoreToDb.init();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -271,7 +259,7 @@ public class Main extends BasicGame {
 		}
 	}
 
-	private void newGift1(GameContainer container, Lepricon spaceship) {
+	private void newGift1(GameContainer container, Lepricon lepricon) {
 		if (Points.points < 30) {
 			effects.objColliding(gift1.getX(), gift1.getY());
 			Random random = new Random();
@@ -279,10 +267,22 @@ public class Main extends BasicGame {
 			gift1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 			soundCollected.play();
 			points.incrementPoints(new Integer(Points.points));
+			if (Points.points == 30) {
+				timer.stopTime();
+				bgMusic.stop();
+				youWonLabel.setYouWon(true);
+				musicVictory.play(1, 0.3f);
+				try {
+					HighScoreToDb.init();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
-	private void newGift2(GameContainer container, Lepricon spaceship) {
+	private void newGift2(GameContainer container, Lepricon lepricon) {
 		if (Points.points < 30) {
 			effects.objColliding(gift2.getX(), gift2.getY());
 			Random random = new Random();
@@ -290,6 +290,18 @@ public class Main extends BasicGame {
 			gift2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 			soundCollected.play();
 			points.incrementPoints(new Integer(Points.points));
+			if (Points.points == 30) {
+				timer.stopTime();
+				bgMusic.stop();
+				youWonLabel.setYouWon(true);
+				musicVictory.play(1, 0.3f);
+				try {
+					HighScoreToDb.init();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -306,7 +318,7 @@ public class Main extends BasicGame {
 			bgMusic.stop();
 			musicFailure.play();
 			try {
-				HighScoreToDb.main(null);
+				HighScoreToDb.init();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
