@@ -7,7 +7,6 @@ public class Timer extends GameObject {
 
 	private Font font;
 	private long startTime = System.currentTimeMillis();
-	private long endTime;
     public boolean running = false;
 	public static long elapsedMillis;
 	public static String initialTime;
@@ -25,17 +24,14 @@ public class Timer extends GameObject {
 			if (60 - (elapsedMillis / 1000) > 0 && Lives.lives != 0) {
 				initialTime = String.format("%02d", 60 - (elapsedMillis / 1000));
 				g.drawString(initialTime, x, y);
-				return;
 			}
 			if ((60 - (elapsedMillis / 1000)) == 0) {
 				initialTime = String.format("%02d", 00);
 				g.drawString(initialTime, x, y);
-				return;
 			}
 			if (Lives.lives == 0) {
 				initialTime = String.format("%02d", 00);
 				g.drawString(initialTime, x, y);
-				return;
 			}
 		}
 	}
@@ -46,7 +42,7 @@ public class Timer extends GameObject {
 	}
 	
 	public void stopTime() {
-		this.endTime = System.currentTimeMillis();
+		System.currentTimeMillis();
 		running = false;
 	}
 	
