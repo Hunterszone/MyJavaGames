@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import entities.Alien;
 import entities.Bunker;
@@ -46,6 +48,8 @@ public class GameMenu extends JFrame {
 	public static boolean savedOnL2 = false;
 	public static boolean savedOnL3 = false;
 	public static boolean savedOnL4 = false;
+	private int counter = 1;
+	private File file;
 	private static final long serialVersionUID = 1L;
 
 	public static JCheckBoxMenuItem autosave;
@@ -174,7 +178,6 @@ public class GameMenu extends JFrame {
 		tools.add(autosave);
 
 		// Menu SubItems
-
 		class Updater implements ActionListener {
 
 			@Override
@@ -184,7 +187,7 @@ public class GameMenu extends JFrame {
 			}
 
 		}
-
+		
 		class ExitAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -214,10 +217,9 @@ public class GameMenu extends JFrame {
 
 		class SaveGame implements ActionListener {
 
-			String savesPath = "saves/save.txt";
-			File file = new File(savesPath);
-
 			public void saveGameDataToFile(File savefile) {
+				
+				counter++;
 
 				DrawScene.voiceInterruptor = false;
 
@@ -298,17 +300,13 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
+				file = new File("saves/save" + counter + ".txt");
 				saveGameDataToFile(file);
-
 			}
 
 		}
 
 		class LoadGame implements ActionListener {
-
-			String savesPath = "saves/save.txt";
-			File file = new File(savesPath);
 
 			List<Object> loadedAssets = new ArrayList<Object>();
 
@@ -320,7 +318,7 @@ public class GameMenu extends JFrame {
 			Object savedGold;
 			Object savedHP;
 
-			public void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
+			private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
 				try {
 					FileInputStream fileStream = new FileInputStream(loadfile);
@@ -353,7 +351,7 @@ public class GameMenu extends JFrame {
 				}
 			}
 
-			void initSavedAssets() {
+			private void initSavedAssets() {
 
 				DrawScene.voiceInterruptor = false;
 
@@ -469,18 +467,30 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				JFileChooser chooser = new JFileChooser(new File("./saves"));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+						".txt", "txt");
+				int returnVal = chooser.showOpenDialog(null);
 
-				try {
-					if (!InitObjects.ingame)
-						loadGameDataFromFile(file);
-				} catch (ClassNotFoundException e1) {
-
-					e1.printStackTrace();
-				} catch (IOException e1) {
-
-					e1.printStackTrace();
-				}
-
+				if(load.getText().trim().equalsIgnoreCase("Load Game") && 
+						returnVal != JFileChooser.CANCEL_OPTION) {
+			        chooser.setFileFilter(filter);
+			        if(returnVal == JFileChooser.APPROVE_OPTION) {
+			        	try {
+//			        		if (!InitObjects.ingame)
+			        		loadGameDataFromFile(chooser.getSelectedFile());
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+						 	// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			            System.out.println("You chose to open this file: " +
+			                    chooser.getSelectedFile().getName());
+			        }	
+				}				
 			}
 
 		}
