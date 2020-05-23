@@ -34,6 +34,7 @@ public class Controls extends JFrame implements KeyListener {
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
 		SaveSign.saveSign.keyPressed(e);
+		
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
@@ -230,7 +231,7 @@ public class Controls extends JFrame implements KeyListener {
 			ConsoleContent.manual.setVisible(true);
 		}
 
-		if (key == KeyEvent.VK_C && !ConsoleContent.consoleON) {
+		if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
 			ConsoleContent.console = new ConsoleForm();
 		}
 
