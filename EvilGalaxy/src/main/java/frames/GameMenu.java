@@ -44,12 +44,11 @@ import sound_engine.LoadSounds;
 
 public class GameMenu extends JFrame {
 
-	public static boolean savedOnL1 = false;
-	public static boolean savedOnL2 = false;
-	public static boolean savedOnL3 = false;
-	public static boolean savedOnL4 = false;
+	public static Boolean savedOnL1 = false;
+	public static Boolean savedOnL2 = false;
+	public static Boolean savedOnL3 = false;
+	public static Boolean savedOnL4 = false;
 	private int counter = 1;
-	private File file;
 	private static final long serialVersionUID = 1L;
 
 	public static JCheckBoxMenuItem autosave;
@@ -283,6 +282,10 @@ public class GameMenu extends JFrame {
 						objectStream.writeObject(Dragon.dragons);
 						objectStream.writeObject(Gold.goldstack);
 						objectStream.writeObject(HealthPack.healthpack);
+						objectStream.writeObject(savedOnL1);
+						objectStream.writeObject(savedOnL2);
+						objectStream.writeObject(savedOnL3);
+						objectStream.writeObject(savedOnL4);
 
 						objectStream.close();
 						fileStream.close();
@@ -300,7 +303,7 @@ public class GameMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				file = new File("saves/save" + counter + ".txt");
+				File file = new File("saves/save" + counter + ".txt");
 				saveGameDataToFile(file);
 			}
 
@@ -317,6 +320,10 @@ public class GameMenu extends JFrame {
 			Object savedDragons;
 			Object savedGold;
 			Object savedHP;
+			Object savedOnL1;
+			Object savedOnL2;
+			Object savedOnL3;
+			Object savedOnL4;
 
 			private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
@@ -331,6 +338,10 @@ public class GameMenu extends JFrame {
 					savedDragons = objectStream.readObject();
 					savedGold = objectStream.readObject();
 					savedHP = objectStream.readObject();
+					savedOnL1 = objectStream.readObject();
+					savedOnL2 = objectStream.readObject();
+					savedOnL3 = objectStream.readObject();
+					savedOnL4 = objectStream.readObject();
 
 					loadedAssets.add(savedShip);
 					loadedAssets.add(savedHead);
@@ -339,10 +350,14 @@ public class GameMenu extends JFrame {
 					loadedAssets.add(savedDragons);
 					loadedAssets.add(savedGold);
 					loadedAssets.add(savedHP);
-
-					System.out.println(loadedAssets.toString());
+					loadedAssets.add(savedOnL1);
+					loadedAssets.add(savedOnL2);
+					loadedAssets.add(savedOnL3);
+					loadedAssets.add(savedOnL4);
 
 					initSavedAssets();
+
+					System.out.println(loadedAssets.toString());
 
 					objectStream.close();
 
@@ -355,7 +370,7 @@ public class GameMenu extends JFrame {
 
 				DrawScene.voiceInterruptor = false;
 
-				if (savedOnL1 == true && DrawScene.voiceInterruptor == false) {
+				if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && DrawScene.voiceInterruptor == false) {
 
 					DrawScene.initVoice("Game loaded!");
 
@@ -375,15 +390,14 @@ public class GameMenu extends JFrame {
 						Alien.aliens.add(born);
 					}
 
-					System.out.println("Score after loading will be added to entities.Alien");
+					System.out.println("Score after loading will be added to " + Alien.class.getName());
 					DrawScene.voiceInterruptor = true;
-					savedOnL1 = false;
 					return;
 				}
 
 				DrawScene.voiceInterruptor = false;
 
-				if (savedOnL2 && DrawScene.voiceInterruptor == false) {
+				if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && DrawScene.voiceInterruptor == false) {
 
 					DrawScene.initVoice("Game loaded!");
 
@@ -404,15 +418,14 @@ public class GameMenu extends JFrame {
 						Dragon.dragons.add(born);
 					}
 
-					System.out.println("Score after loading will be added to entities.Dragon");
+					System.out.println("Score after loading will be added to " + Dragon.class.getName());
 					DrawScene.voiceInterruptor = true;
-					savedOnL2 = false;
 					return;
 				}
 
 				DrawScene.voiceInterruptor = false;
 
-				if (savedOnL3 && DrawScene.voiceInterruptor == false) {
+				if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && DrawScene.voiceInterruptor == false) {
 
 					DrawScene.initVoice("Game loaded!");
 
@@ -428,13 +441,12 @@ public class GameMenu extends JFrame {
 					Alien.aliens.clear();
 					Dragon.dragons.clear();
 					DrawScene.voiceInterruptor = true;
-					savedOnL3 = false;
 					return;
 				}
 
 				DrawScene.voiceInterruptor = false;
 
-				if (savedOnL4 && DrawScene.voiceInterruptor == false) {
+				if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && DrawScene.voiceInterruptor == false) {
 
 					DrawScene.initVoice("Game loaded!");
 
@@ -451,7 +463,6 @@ public class GameMenu extends JFrame {
 					Dragon.dragons.clear();
 					UpdateObjects.lifeBunker = 50;
 					DrawScene.voiceInterruptor = true;
-					savedOnL4 = false;
 					return;
 				}
 
@@ -473,8 +484,7 @@ public class GameMenu extends JFrame {
 						".txt", "txt");
 				int returnVal = chooser.showOpenDialog(null);
 
-				if(load.getText().trim().equalsIgnoreCase("Load Game") && 
-						returnVal != JFileChooser.CANCEL_OPTION) {
+				if(load.getText().trim().equalsIgnoreCase("Load Game")) {
 			        chooser.setFileFilter(filter);
 			        if(returnVal == JFileChooser.APPROVE_OPTION) {
 			        	try {
