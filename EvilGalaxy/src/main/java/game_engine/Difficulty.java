@@ -7,7 +7,7 @@ import entities.Crosshair;
 import entities.EvilHead;
 import entities.MyShip;
 import frames.ConsoleContent;
-import frames.GameMenu;
+import frames.GameMenuBar;
 import items.VolBtn;
 import sound_engine.LoadSounds;
 
@@ -15,14 +15,14 @@ public class Difficulty {
 
 	public static void restart() {
 
-		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+		if (GameMenuBar.savedOnL1 == false && GameMenuBar.savedOnL2 == false) {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
 
 		DrawScene.finMusicIsPlayed = false;
 
-		GameMenu.autosave.setSelected(false);
+		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
 		if (ConsoleContent.god == true) {
@@ -65,12 +65,12 @@ public class Difficulty {
 
 	public static void easy() {
 
-		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+		if (GameMenuBar.savedOnL1 == false && GameMenuBar.savedOnL2 == false) {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
 
-		GameMenu.autosave.setSelected(false);
+		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
 		DrawScene.finMusicIsPlayed = false;
@@ -112,12 +112,12 @@ public class Difficulty {
 
 	public static void medium() {
 
-		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+		if (GameMenuBar.savedOnL1 == false && GameMenuBar.savedOnL2 == false) {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
 
-		GameMenu.autosave.setSelected(false);
+		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
 		DrawScene.finMusicIsPlayed = false;
@@ -161,12 +161,12 @@ public class Difficulty {
 
 	public static void hard() {
 
-		if (GameMenu.savedOnL1 == false && GameMenu.savedOnL2 == false) {
+		if (GameMenuBar.savedOnL1 == false && GameMenuBar.savedOnL2 == false) {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
 
-		GameMenu.autosave.setSelected(false);
+		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
 		DrawScene.finMusicIsPlayed = false;

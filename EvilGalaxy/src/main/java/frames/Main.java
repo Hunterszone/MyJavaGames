@@ -1,7 +1,6 @@
 package frames;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.geom.RoundRectangle2D;
 import java.net.URISyntaxException;
@@ -11,8 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import game_engine.DrawScene;
+import menu_engine.CanvasMenu;
 
-public final class Main extends GameMenu {
+public final class Main extends GameMenuBar {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,13 +22,6 @@ public final class Main extends GameMenu {
 
 	public void initGame() {
 
-		// MainFrame outlook
-//		GuiPanel guiP = new GuiPanel();
-//		guiP.setBackground(Color.black);
-//		guiP.add(new GuiButton(400, 130, 230, 120));
-//		guiP.add(new GuiButton(400, 330, 230, 120));
-//		guiP.add(new GuiButton(400, 530, 230, 120));
-//		add(guiP);
 		add(new DrawScene());
 		setResizable(false);
 		setUndecorated(true);
@@ -45,10 +38,7 @@ public final class Main extends GameMenu {
 	}
 
 	public static void main(String[] args) throws URISyntaxException {
-
-		EventQueue.invokeLater(() -> {
-			Main ex = new Main();
-			ex.setVisible(true);
-		});
+		CanvasMenu engine = new CanvasMenu();
+		engine.start();		
 	}
 }

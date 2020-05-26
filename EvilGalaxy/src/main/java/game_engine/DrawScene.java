@@ -19,7 +19,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
-import frames.GameMenu;
+import frames.GameMenuBar;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.FireBall;
@@ -68,11 +68,11 @@ public class DrawScene extends UpdateObjects {
 
 		if (ingame && Alien.aliens.size() > 0) {
 
-			if (GameMenu.autosave.isSelected() == true && voiceInterruptor == true) {
-				GameMenu.savedOnL2 = false;
-				GameMenu.savedOnL3 = false;
-				GameMenu.savedOnL4 = false;
-				GameMenu.savedOnL1 = true;
+			if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
+				GameMenuBar.savedOnL2 = false;
+				GameMenuBar.savedOnL3 = false;
+				GameMenuBar.savedOnL4 = false;
+				GameMenuBar.savedOnL1 = true;
 				initVoice("Autosave: ON!");
 				voiceInterruptor = false;
 			}
@@ -92,12 +92,12 @@ public class DrawScene extends UpdateObjects {
 			g.setColor(Color.white);
 			g.setFont(small);
 
-			if (GameMenu.autosave.isSelected() == true) {
+			if (GameMenuBar.autosave.isSelected() == true) {
 				g.drawString("Autosave: ON", 790, 15);
-				GameMenu.savedOnL1 = false;
-				GameMenu.savedOnL3 = false;
-				GameMenu.savedOnL4 = false;
-				GameMenu.savedOnL2 = true;
+				GameMenuBar.savedOnL1 = false;
+				GameMenuBar.savedOnL3 = false;
+				GameMenuBar.savedOnL4 = false;
+				GameMenuBar.savedOnL2 = true;
 				if (voiceInterruptor == true) {
 					initVoice("Autosave: ON!");
 					voiceInterruptor = false;
@@ -105,7 +105,7 @@ public class DrawScene extends UpdateObjects {
 				}
 			}
 
-			if (GameMenu.autosave.isSelected() == false) {
+			if (GameMenuBar.autosave.isSelected() == false) {
 				g.drawString("Autosave: OFF", 790, 15);
 				voiceInterruptor = true;
 			}
@@ -139,19 +139,19 @@ public class DrawScene extends UpdateObjects {
 			g.setColor(Color.white);
 			g.setFont(small);
 
-			if (GameMenu.autosave.isSelected() == true && lifeBunker < 50) {
+			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
 				g.drawString("Autosave: ON", 810, 15);
-				GameMenu.savedOnL1 = false;
-				GameMenu.savedOnL2 = false;
-				GameMenu.savedOnL4 = false;
-				GameMenu.savedOnL3 = true;
+				GameMenuBar.savedOnL1 = false;
+				GameMenuBar.savedOnL2 = false;
+				GameMenuBar.savedOnL4 = false;
+				GameMenuBar.savedOnL3 = true;
 				if (voiceInterruptor == true) {
 					initVoice("Autosave: ON!");
 					voiceInterruptor = false;
 				}
 
 			}
-			if (GameMenu.autosave.isSelected() == false && lifeBunker < 50) {
+			if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
 				g.drawString("Autosave: OFF", 810, 15);
 				voiceInterruptor = true;
 			}
@@ -363,12 +363,12 @@ public class DrawScene extends UpdateObjects {
 			g.setColor(Color.white);
 			g.setFont(small);
 
-			if (GameMenu.autosave.isSelected() == true) {
+			if (GameMenuBar.autosave.isSelected() == true) {
 				g.drawString("Autosave: ON", 790, 15);
 
 			}
 
-			if (GameMenu.autosave.isSelected() == false) {
+			if (GameMenuBar.autosave.isSelected() == false) {
 				g.drawString("Autosave: OFF", 790, 15);
 				voiceInterruptor = true;
 			}
@@ -382,12 +382,12 @@ public class DrawScene extends UpdateObjects {
 
 		if (Alien.aliens.size() > 0 && timerMedium.isRunning()) {
 
-			if (GameMenu.autosave.isSelected() == true) {
+			if (GameMenuBar.autosave.isSelected() == true) {
 				g.drawString("Autosave: ON", 790, 15);
 
 			}
 
-			if (GameMenu.autosave.isSelected() == false) {
+			if (GameMenuBar.autosave.isSelected() == false) {
 				g.drawString("Autosave: OFF", 790, 15);
 				voiceInterruptor = true;
 			}
@@ -402,12 +402,12 @@ public class DrawScene extends UpdateObjects {
 
 		if (Alien.aliens.size() > 0 && timerHard.isRunning()) {
 
-			if (GameMenu.autosave.isSelected() == true) {
+			if (GameMenuBar.autosave.isSelected() == true) {
 				g.drawString("Autosave: ON", 790, 15);
 
 			}
 
-			if (GameMenu.autosave.isSelected() == false) {
+			if (GameMenuBar.autosave.isSelected() == false) {
 				g.drawString("Autosave: OFF", 790, 15);
 				voiceInterruptor = true;
 			}
@@ -570,17 +570,17 @@ public class DrawScene extends UpdateObjects {
 			g.setColor(Color.white);
 			g.setFont(small);
 
-			if (GameMenu.autosave.isSelected() == true) {
+			if (GameMenuBar.autosave.isSelected() == true) {
 				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: ON", 790, 15);
 				else
 					g.drawString("Autosave: ON", 810, 15);
-				GameMenu.savedOnL1 = false;
-				GameMenu.savedOnL2 = false;
-				GameMenu.savedOnL3 = false;
-				GameMenu.savedOnL4 = true;
+				GameMenuBar.savedOnL1 = false;
+				GameMenuBar.savedOnL2 = false;
+				GameMenuBar.savedOnL3 = false;
+				GameMenuBar.savedOnL4 = true;
 			}
-			if (GameMenu.autosave.isSelected() == false) {
+			if (GameMenuBar.autosave.isSelected() == false) {
 				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: OFF", 790, 15);
 				else

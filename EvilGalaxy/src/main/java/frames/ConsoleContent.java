@@ -752,10 +752,10 @@ public class ConsoleContent extends OutputStream {
 
 							if (Alien.aliens.size() > 0 && DrawScene.voiceInterruptor == false) {
 
-								GameMenu.savedOnL2 = false;
-								GameMenu.savedOnL3 = false;
-								GameMenu.savedOnL4 = false;
-								GameMenu.savedOnL1 = true;
+								GameMenuBar.savedOnL2 = false;
+								GameMenuBar.savedOnL3 = false;
+								GameMenuBar.savedOnL4 = false;
+								GameMenuBar.savedOnL1 = true;
 								DrawScene.initVoice("Game saved!");
 								DrawScene.voiceInterruptor = true;
 
@@ -770,10 +770,10 @@ public class ConsoleContent extends OutputStream {
 							if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0
 									&& DrawScene.voiceInterruptor == false) {
 
-								GameMenu.savedOnL1 = false;
-								GameMenu.savedOnL3 = false;
-								GameMenu.savedOnL4 = false;
-								GameMenu.savedOnL2 = true;
+								GameMenuBar.savedOnL1 = false;
+								GameMenuBar.savedOnL3 = false;
+								GameMenuBar.savedOnL4 = false;
+								GameMenuBar.savedOnL2 = true;
 								DrawScene.initVoice("Game saved!");
 								DrawScene.voiceInterruptor = true;
 
@@ -788,10 +788,10 @@ public class ConsoleContent extends OutputStream {
 							if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
 									&& DrawScene.voiceInterruptor == false) {
 
-								GameMenu.savedOnL2 = false;
-								GameMenu.savedOnL1 = false;
-								GameMenu.savedOnL4 = false;
-								GameMenu.savedOnL3 = true;
+								GameMenuBar.savedOnL2 = false;
+								GameMenuBar.savedOnL1 = false;
+								GameMenuBar.savedOnL4 = false;
+								GameMenuBar.savedOnL3 = true;
 								DrawScene.initVoice("Game saved!");
 								DrawScene.voiceInterruptor = true;
 
@@ -805,10 +805,10 @@ public class ConsoleContent extends OutputStream {
 
 							if (UpdateObjects.lifeBunker == 50 && DrawScene.voiceInterruptor == false) {
 
-								GameMenu.savedOnL1 = false;
-								GameMenu.savedOnL2 = false;
-								GameMenu.savedOnL3 = false;
-								GameMenu.savedOnL4 = true;
+								GameMenuBar.savedOnL1 = false;
+								GameMenuBar.savedOnL2 = false;
+								GameMenuBar.savedOnL3 = false;
+								GameMenuBar.savedOnL4 = true;
 								DrawScene.initVoice("Game saved!");
 								DrawScene.voiceInterruptor = true;
 
@@ -823,7 +823,7 @@ public class ConsoleContent extends OutputStream {
 
 					// AUTOSAVE
 					else if (COMMANDS[18].trim().equalsIgnoreCase(textArea.getText().trim())) {
-						GameMenu.autosave.setSelected(true);
+						GameMenuBar.autosave.setSelected(true);
 						if (SaveSign.saveSign != null) {
 							SaveSign.saveSign.initSave();
 							SaveSign.saveSign.setVisible(true);

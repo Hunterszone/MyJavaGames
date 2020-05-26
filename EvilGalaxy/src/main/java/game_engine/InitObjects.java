@@ -15,7 +15,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
-import frames.GameMenu;
+import frames.GameMenuBar;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
@@ -93,7 +93,7 @@ public class InitObjects extends JPanel implements ActionListener {
 		initDragons();
 		initHealth();
 
-		GameMenu.autosave.setSelected(false);
+		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
 		timerEasy = new Timer(DELAY, this);

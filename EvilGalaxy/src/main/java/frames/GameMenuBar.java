@@ -42,7 +42,7 @@ import launcher.Launcher;
 import multiplayer_tbd.JoinGame;
 import sound_engine.LoadSounds;
 
-public class GameMenu extends JFrame {
+public class GameMenuBar extends JFrame {
 
 	public static Boolean savedOnL1 = false;
 	public static Boolean savedOnL2 = false;
@@ -53,7 +53,7 @@ public class GameMenu extends JFrame {
 
 	public static JCheckBoxMenuItem autosave;
 
-	public GameMenu() {
+	public GameMenuBar() {
 		createMenu();
 	}
 
