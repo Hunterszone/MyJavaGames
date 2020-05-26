@@ -15,6 +15,8 @@ import frames.Manual;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
+import menu_engine.MouseInputHandler;
+import menu_states.MenuState;
 import sound_engine.LoadSounds;
 
 public class Controls extends JFrame implements KeyListener {
@@ -236,7 +238,14 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			System.exit(0);
+//			System.exit(0);
+			MenuState.isOn = false;
+			LoadSounds.bgMusic.stop();
+			LoadSounds.fuse.stop();
+			LoadSounds.roar.stop();
+			InitObjects.ingame = false;
+			MouseInputHandler.main.dispose();
+			MenuState.isOn = true;
 		}
 
 	}

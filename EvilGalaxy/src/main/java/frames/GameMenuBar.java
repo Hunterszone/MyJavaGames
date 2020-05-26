@@ -39,6 +39,8 @@ import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
 import launcher.Launcher;
+import menu_engine.MouseInputHandler;
+import menu_states.MenuState;
 import multiplayer_tbd.JoinGame;
 import sound_engine.LoadSounds;
 
@@ -190,7 +192,14 @@ public class GameMenuBar extends JFrame {
 		class ExitAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+//				System.exit(0);
+				MenuState.isOn = false;
+				LoadSounds.bgMusic.stop();
+				LoadSounds.fuse.stop();
+				LoadSounds.roar.stop();
+				InitObjects.ingame = false;
+				MouseInputHandler.main.dispose();
+				MenuState.isOn = true;
 			}
 		}
 

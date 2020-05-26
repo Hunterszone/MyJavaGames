@@ -14,7 +14,7 @@ import sound_engine.LoadSounds;
 
 public class MouseInputHandler implements MouseListener{
 	
-	Main main;
+	public static Main main;
 
 	@Override
 	public void mousePressed(MouseEvent e) {
