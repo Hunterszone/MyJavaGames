@@ -36,7 +36,7 @@ public class Controls extends JFrame implements KeyListener {
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
 		SaveSign.saveSign.keyPressed(e);
-		
+
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
@@ -52,8 +52,8 @@ public class Controls extends JFrame implements KeyListener {
 
 		if (key == KeyEvent.VK_P) {
 			InitObjects.timerEasy.stop();
-			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
+			InitObjects.timerHard.stop();
 			LoadSounds.bgMusic.stop();
 			LoadSounds.roar.stop();
 		}

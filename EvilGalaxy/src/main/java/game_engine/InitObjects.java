@@ -80,13 +80,13 @@ public class InitObjects extends JPanel implements ActionListener {
 		EvilHead.evilHead.AIOnEasy();
 
 		VolBtn.volButt = new VolBtn(VOLBUT_X, VOLBUT_Y);
-		VolBtn.volButt.isVisible();
+		VolBtn.volButt.setVisible(true);
+
+		Bunker.bunkerObj = new Bunker(BUNKER_X, BUNKER_Y);
+		Bunker.bunkerObj.setVisible(true);
 
 		SaveSign.saveSign = new SaveSign((B_WIDTH - 350) / 2, (B_HEIGHT - 350) / 2);
 		SaveSign.saveSign.setVisible(false);
-
-		Bunker.bunkerObj = new Bunker(BUNKER_X, BUNKER_Y);
-		Bunker.bunkerObj.isVisible();
 
 		initAliens();
 		initGold();
