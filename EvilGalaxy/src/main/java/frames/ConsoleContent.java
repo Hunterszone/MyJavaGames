@@ -29,6 +29,8 @@ import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
+import menu_engine.MouseInputHandler;
+import menu_states.MenuState;
 import sound_engine.LoadSounds;
 
 public class ConsoleContent extends OutputStream {
@@ -248,8 +250,15 @@ public class ConsoleContent extends OutputStream {
 
 					// EXIT
 					else if (COMMANDS[7].trim().equalsIgnoreCase(textArea.getText().trim())) {
-						System.exit(0);
-						textArea.append("********Exiting...*********" + "\n");
+//						System.exit(0);
+						MenuState.isOn = false;
+						LoadSounds.bgMusic.stop();
+						LoadSounds.fuse.stop();
+						LoadSounds.roar.stop();
+						InitObjects.ingame = false;
+						MouseInputHandler.main.dispose();
+						MenuState.isOn = true;
+						textArea.append("********Game exited!*********" + "\n");
 						return;
 					}
 
