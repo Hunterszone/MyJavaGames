@@ -12,6 +12,7 @@ public final class ConsoleForm extends ConsoleContent {
 
 	Vector<String> matches = new Vector<>();
 	JList<Object> list = new JList<>();
+	public static JFrame frame;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
@@ -30,7 +31,7 @@ public final class ConsoleForm extends ConsoleContent {
 
 	public ConsoleForm() {
 
-		JFrame frame = new JFrame();
+		frame = new JFrame();
 		frame.setTitle("Game Console");
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane.add(textField);

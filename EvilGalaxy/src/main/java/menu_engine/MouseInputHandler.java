@@ -30,10 +30,12 @@ public class MouseInputHandler implements MouseListener{
 					UpdateObjects.lifeEvilHead = 3;
 					UpdateObjects.lifeBunker = 3;
 					InitObjects.ingame = true;
-					EventQueue.invokeLater(() -> {
+					if(main == null) {
+						EventQueue.invokeLater(() -> {
 							main = new Main();
 							main.setVisible(true);
-					});
+						});
+					}
 					MenuState.isOn = true;
 				} else if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
 					MenuState.isOn = false;
@@ -41,7 +43,8 @@ public class MouseInputHandler implements MouseListener{
 					LoadSounds.fuse.stop();
 					LoadSounds.roar.stop();
 					InitObjects.ingame = false;
-					main.dispose();
+					if(main != null) main.dispose();
+					main = null;
 					MenuState.isOn = true;
 				} else if (mouseY >= 250 && mouseY <= 300 && MenuState.isOn) {
 					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);

@@ -85,6 +85,9 @@ public class ConsoleContent extends OutputStream {
 					// CLOSE CONSOLE
 					else if (COMMANDS[1].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						consoleON = false;
+						if(ConsoleForm.frame != null) ConsoleForm.frame.dispose();
+						ConsoleForm.frame = null;
+						ConsoleContent.console = null;
 						textArea.append("********Closing...*********" + "\n");
 						return;
 					}
@@ -197,7 +200,7 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.ingame) {
 							textArea.append("********Game initialized!*********" + "\n");
-							Difficulty.easy();
+							if(MouseInputHandler.main != null) Difficulty.easy();
 							return;
 						}
 
@@ -220,7 +223,7 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.ingame) {
 							textArea.append("********Game initialized!*********" + "\n");
-							Difficulty.medium();
+							if(MouseInputHandler.main != null) Difficulty.medium();
 							return;
 						}
 						return;
@@ -242,7 +245,7 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.ingame) {
 							textArea.append("********Game initialized!*********" + "\n");
-							Difficulty.hard();
+							if(MouseInputHandler.main != null) Difficulty.hard();
 							return;
 						}
 						return;
@@ -256,7 +259,8 @@ public class ConsoleContent extends OutputStream {
 						LoadSounds.fuse.stop();
 						LoadSounds.roar.stop();
 						InitObjects.ingame = false;
-						MouseInputHandler.main.dispose();
+						if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
+						MouseInputHandler.main = null;
 						MenuState.isOn = true;
 						textArea.append("********Game exited!*********" + "\n");
 						return;
@@ -653,7 +657,7 @@ public class ConsoleContent extends OutputStream {
 					else if (COMMANDS[13].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						textArea.append("********Game initialized!*********" + "\n");
-						Difficulty.restart();
+						if(MouseInputHandler.main != null) Difficulty.restart();
 						return;
 					}
 
@@ -663,7 +667,7 @@ public class ConsoleContent extends OutputStream {
 						if (InitObjects.ingame == true) {
 							textArea.append("********Level 2 was loaded!*********" + "\n");
 
-							Difficulty.restart();
+							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							LoadSounds.roar.loop();
 							if (DrawScene.voiceInterruptor == false) {
@@ -693,7 +697,7 @@ public class ConsoleContent extends OutputStream {
 					else if (COMMANDS[15].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
-							Difficulty.restart();
+							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
 							LoadSounds.roar.stop();
@@ -724,7 +728,7 @@ public class ConsoleContent extends OutputStream {
 					else if (COMMANDS[16].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
-							Difficulty.restart();
+							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
 							LoadSounds.roar.stop();
