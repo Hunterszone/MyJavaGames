@@ -8,7 +8,7 @@ import java.awt.image.BufferStrategy;
 
 public class CanvasMenu implements Runnable {
 
-	private Display display;
+	public static Display display;
 	private BufferStrategy bs;
 	private Graphics g;
 	private Thread thread;
@@ -26,8 +26,8 @@ public class CanvasMenu implements Runnable {
 
 		Constants.LOAD_ASSETS.init();
 
-		this.display = new Display();
-		this.display.getCanvas().addMouseListener(new MouseInputHandler());
+		display = new Display();
+		display.getCanvas().addMouseListener(new MouseInputHandler());
 
 		State = new StateManager();
 		this.mainMenu = new MenuState();
@@ -35,10 +35,10 @@ public class CanvasMenu implements Runnable {
 	}
 
 	private void render() {
-		this.bs = this.display.getCanvas().getBufferStrategy();
+		this.bs = display.getCanvas().getBufferStrategy();
 
 		if (this.bs == null) {
-			this.display.getCanvas().createBufferStrategy(2);
+			display.getCanvas().createBufferStrategy(2);
 			return;
 		}
 		this.g = this.bs.getDrawGraphics();

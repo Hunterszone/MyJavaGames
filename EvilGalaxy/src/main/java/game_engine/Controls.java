@@ -1,5 +1,6 @@
 package game_engine;
 
+import java.awt.Canvas;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -15,6 +16,8 @@ import frames.Manual;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
+import menu_engine.CanvasMenu;
+import menu_engine.Display;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import sound_engine.LoadSounds;
@@ -238,7 +241,6 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_ESCAPE) {
-//			System.exit(0);
 			MenuState.isOn = false;
 			LoadSounds.bgMusic.stop();
 			LoadSounds.fuse.stop();
@@ -247,6 +249,8 @@ public class Controls extends JFrame implements KeyListener {
 			if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
 			MenuState.isOn = true;
+			CanvasMenu engine = new CanvasMenu();
+			engine.start();
 		}
 
 	}

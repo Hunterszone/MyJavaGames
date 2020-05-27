@@ -16,37 +16,37 @@ public class Display {
         return frame;
     }
 
-    private JFrame frame;
-    private Canvas canvas;
+    public static JFrame frame;
+    public static Canvas canvas;
 
     public Display() {
         init();
     }
 
     public Canvas getCanvas() {
-        return this.canvas;
+        return canvas;
     }
 
     private void init() {
-        this.frame = new JFrame("Evil Galaxy CanvasMenu");
-        this.frame.setVisible(true);
-        this.frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        this.frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        this.frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-        this.frame.setFocusable(true);
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame = new JFrame("Evil Menu");
+        frame.setVisible(true);
+        frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+        frame.setFocusable(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        this.frame.setResizable(false);
-        this.frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
 
-        this.canvas = new Canvas();
+        canvas = new Canvas();
 
-        this.canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        this.canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        this.canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-        this.canvas.setVisible(true);
+        canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+        canvas.setVisible(true);
 
-        this.frame.add(canvas);
-        this.frame.pack();
+        frame.add(canvas);
+        frame.pack();
     }
 }

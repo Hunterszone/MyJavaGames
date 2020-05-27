@@ -39,6 +39,7 @@ import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
 import launcher.Launcher;
+import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import multiplayer_tbd.JoinGame;
@@ -192,15 +193,16 @@ public class GameMenuBar extends JFrame {
 		class ExitAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				System.exit(0);
 				MenuState.isOn = false;
 				LoadSounds.bgMusic.stop();
 				LoadSounds.fuse.stop();
 				LoadSounds.roar.stop();
 				InitObjects.ingame = false;
-				if(MouseInputHandler.main != null)	MouseInputHandler.main.dispose();
+				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;
 				MenuState.isOn = true;
+				CanvasMenu engine = new CanvasMenu();
+				engine.start();
 			}
 		}
 

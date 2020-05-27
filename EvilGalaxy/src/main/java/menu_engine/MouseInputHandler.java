@@ -10,7 +10,6 @@ import game_engine.UpdateObjects;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
-import sound_engine.LoadSounds;
 
 public class MouseInputHandler implements MouseListener{
 	
@@ -31,6 +30,8 @@ public class MouseInputHandler implements MouseListener{
 					UpdateObjects.lifeBunker = 3;
 					InitObjects.ingame = true;
 					if(main == null) {
+						Display.frame.remove(Display.canvas);
+						Display.frame.dispose();
 						EventQueue.invokeLater(() -> {
 							main = new Main();
 							main.setVisible(true);
@@ -38,14 +39,7 @@ public class MouseInputHandler implements MouseListener{
 					}
 					MenuState.isOn = true;
 				} else if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
-					MenuState.isOn = false;
-					LoadSounds.bgMusic.stop();
-					LoadSounds.fuse.stop();
-					LoadSounds.roar.stop();
-					InitObjects.ingame = false;
-					if(main != null) main.dispose();
-					main = null;
-					MenuState.isOn = true;
+					System.exit(0);
 				} else if (mouseY >= 250 && mouseY <= 300 && MenuState.isOn) {
 					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
 					MenuState.isOn = false;
