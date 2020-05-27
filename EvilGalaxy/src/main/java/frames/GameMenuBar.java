@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -51,7 +52,6 @@ public class GameMenuBar extends JFrame {
 	public static Boolean savedOnL2 = false;
 	public static Boolean savedOnL3 = false;
 	public static Boolean savedOnL4 = false;
-	private int counter = 1;
 	private static final long serialVersionUID = 1L;
 
 	public static JCheckBoxMenuItem autosave;
@@ -232,8 +232,6 @@ public class GameMenuBar extends JFrame {
 		class SaveGame implements ActionListener {
 
 			public void saveGameDataToFile(File savefile) {
-				
-				counter++;
 
 				DrawScene.voiceInterruptor = false;
 
@@ -318,7 +316,8 @@ public class GameMenuBar extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				File file = new File("saves/save" + counter + ".txt");
+				Random rand = new Random();
+				File file = new File("saves/save" + rand.nextInt() + ".txt");
 				saveGameDataToFile(file);
 			}
 
