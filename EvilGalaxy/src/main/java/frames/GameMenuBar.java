@@ -197,6 +197,9 @@ public class GameMenuBar extends JFrame {
 				LoadSounds.bgMusic.stop();
 				LoadSounds.fuse.stop();
 				LoadSounds.roar.stop();
+				InitObjects.timerEasy.stop();
+				InitObjects.timerMedium.stop();
+				InitObjects.timerHard.stop();
 				InitObjects.ingame = false;
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;

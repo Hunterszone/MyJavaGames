@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import frames.Main;
 import game_engine.InitObjects;
+import game_engine.LoadGame;
 import game_engine.UpdateObjects;
 import menu_states.MenuState;
 import menu_states.SettingsState;
@@ -38,15 +39,19 @@ public class MouseInputHandler implements MouseListener{
 						});
 					}
 					MenuState.isOn = true;
-				} else if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
-					System.exit(0);
-				} else if (mouseY >= 250 && mouseY <= 300 && MenuState.isOn) {
+				} else if(mouseY >= 250 && mouseY <= 300) {
+					new LoadGame().openFileChooser();
+				}								
+				else if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
 					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
 					MenuState.isOn = false;
 					SettingsState.isOn = true;
+				}  else if (mouseY >= 450 && mouseY <= 500 && MenuState.isOn) {
+					System.exit(0);
 				}
 			}
 		}
+		
 		if(SettingsState.isOn) {
 			if(mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {

@@ -16,6 +16,7 @@ public class Assets extends SpritePattern {
 	public Image blackBG;
 	public Image menu;
 	public Image playGame;
+	public Image loadGame;
 	public Image settingsButton;
 	public Image quitGame;
 	public Image settingsText;
@@ -32,6 +33,7 @@ public class Assets extends SpritePattern {
 		blackBG = loadImage("images/backgrounds/main.jpg");
 		menu = loadImage("images/buttons/menu.png");
 		playGame = loadImage("images/buttons/playGame.png");
+		loadGame = loadImage("images/buttons/loadGame.png");
 		settingsButton = loadImage("images/buttons/settings.png");
 		quitGame = loadImage("images/buttons/quitGame.png");
 		settingsText = loadImage("images/settingsText.png");
