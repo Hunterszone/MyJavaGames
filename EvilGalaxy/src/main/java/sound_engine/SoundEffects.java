@@ -7,16 +7,16 @@ public enum SoundEffects {
 			return "sounds/attack.wav";
 		}
 	},
-	BACKMUSIC {
+	BGMUSIC {
 		@Override
 		public String getSound() {
-			return "sounds/backmusic.wav";
+			return "sounds/bgmusic.wav";
 		}
 	},
-	BACKMUSIC2 {
+	MENUMUSIC {
 		@Override
 		public String getSound() {
-			return "sounds/backmusic2.wav";
+			return "sounds/menusound.wav";
 		}
 	},
 	BLOOP {
