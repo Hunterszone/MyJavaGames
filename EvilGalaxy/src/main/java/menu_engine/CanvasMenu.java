@@ -3,7 +3,6 @@ package menu_engine;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import entities.MyShip;
 import menu_states.ControlsState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
@@ -18,7 +17,7 @@ public class CanvasMenu implements Runnable {
 	private boolean isRunning;
 	public static boolean isPause;
 	public static ColorSwitcher color;
-    public static MyShip myShip;
+	public static ColorSwitcher color2;
 
 	private MenuState mainMenu;
 	private ControlsState controlsMenu;
@@ -41,6 +40,8 @@ public class CanvasMenu implements Runnable {
 		this.settingsMenu = new SettingsState();
 		
 		color = new ColorSwitcher();
+		color2 = new ColorSwitcher();
+		color2.nextColor(color.getColor());
 	}
 
 	private void render() {
@@ -61,7 +62,7 @@ public class CanvasMenu implements Runnable {
 		} else if(State.getState() == StateManager.STATES.CONTROLS) {
             this.controlsMenu.render(g);
         } else if(State.getState() == StateManager.STATES.SETTINGS) {
-            this.settingsMenu.render(g, color);
+            this.settingsMenu.render(g, color, color2);
         }
 
 		// Stop Drawing

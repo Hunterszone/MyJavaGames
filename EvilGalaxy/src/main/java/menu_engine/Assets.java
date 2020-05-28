@@ -31,6 +31,7 @@ public class Assets extends SpritePattern {
 	public Image headerBackground;
 	public Image header;
 	public Image myShip;
+	public Image evilHead;
 
 	public void init() {
 		blackBG = loadImage("images/backgrounds/main.jpg");
@@ -51,6 +52,7 @@ public class Assets extends SpritePattern {
         headerBackground = loadImage("images/backgrounds/header.png");
         header = loadImage("images/header.png");
         myShip = loadImage("images/craft.png");
+        evilHead = loadImage("images/evilhead.png");
 		getImageDimensions();
 	}
 }

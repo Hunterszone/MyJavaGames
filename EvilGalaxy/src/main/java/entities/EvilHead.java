@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,9 @@ import game_engine.Images;
 import game_engine.SpritePattern;
 import items.CanonBall;
 import items.FireBall;
+import menu_engine.CanvasMenu;
+import menu_engine.Constants;
+import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 
 public class EvilHead extends SpritePattern {
@@ -190,4 +194,8 @@ public class EvilHead extends SpritePattern {
 		loadImage("images/strikehead.png");
 		getImageDimensions();
 	}
+	
+	public void renderEvilHead(Graphics g) {
+        g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.evilHead, CanvasMenu.color2.getColor()), Math.round(this.getX()), Math.round(this.getY()), null);
+    }
 }

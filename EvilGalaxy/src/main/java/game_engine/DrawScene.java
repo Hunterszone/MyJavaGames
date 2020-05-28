@@ -217,38 +217,47 @@ public class DrawScene extends UpdateObjects {
 
 	private void handleLifeEvilHead(Graphics g) {
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && lifeEvilHead < 10) {
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 100%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 10 && lifeEvilHead < 20) {
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 80%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 20 && lifeEvilHead < 30) {
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 60%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 30 && lifeEvilHead < 35) {
+			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.loop();
 		}
 
 		if (lifeEvilHead >= 35) {
+			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.stop();
 		}
 
 		if (lifeEvilHead >= 30 && lifeEvilHead < 40) {
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 40%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 40 && lifeEvilHead < 45) {
+			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.loop();
 		}
 
 		if (lifeEvilHead >= 45) {
+			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.stop();
 		}
 
 		if (lifeEvilHead >= 40 && lifeEvilHead < 50) {
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 20%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
@@ -595,6 +604,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Level: " + 4, 240, 15);
 			g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 			if (Gold.goldstack.size() > 0) {
+				EvilHead.evilHead.renderEvilHead(g);
 				g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
 			}
 
@@ -707,6 +717,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 		}
@@ -721,6 +732,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 		}
@@ -735,6 +747,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(MyShip.myShip.getImage(), MyShip.myShip.getX(), MyShip.myShip.getY(), this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
+			EvilHead.evilHead.renderEvilHead(g);
 			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 		}

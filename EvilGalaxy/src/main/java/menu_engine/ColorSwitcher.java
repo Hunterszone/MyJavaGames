@@ -14,7 +14,7 @@ public class ColorSwitcher {
     }
 
     private void init() {
-        colorsList.add(new Color(0, 0, 255, 175));
+        colorsList.add(new Color(255, 255, 255, 0));
         colorsList.add(new Color(255, 0, 0, 175));
         colorsList.add(new Color(255, 0, 255, 175));
         colorsList.add(new Color(0, 255, 255, 175));
