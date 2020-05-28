@@ -1,6 +1,5 @@
 package game_engine;
 
-import java.awt.Canvas;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -17,7 +16,6 @@ import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
 import menu_engine.CanvasMenu;
-import menu_engine.Display;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import sound_engine.LoadSounds;
