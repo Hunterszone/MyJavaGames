@@ -341,6 +341,8 @@ public class GameMenuBar extends JFrame {
 
 			private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
+				LoadSounds.menuMusic.stop();
+				
 				try {
 					FileInputStream fileStream = new FileInputStream(loadfile);
 					ObjectInputStream objectStream = new ObjectInputStream(fileStream);

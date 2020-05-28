@@ -22,6 +22,7 @@ import items.HealthPack;
 import menu_engine.Display;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
+import sound_engine.LoadSounds;
 
 public class LoadGame {
 
@@ -41,6 +42,8 @@ public class LoadGame {
 
 	private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
+		LoadSounds.menuMusic.stop();
+		
 		try {
 			FileInputStream fileStream = new FileInputStream(loadfile);
 			ObjectInputStream objectStream = new ObjectInputStream(fileStream);
