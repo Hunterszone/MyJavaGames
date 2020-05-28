@@ -1,6 +1,5 @@
 package menu_engine;
 
-import java.awt.Canvas;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Image;
