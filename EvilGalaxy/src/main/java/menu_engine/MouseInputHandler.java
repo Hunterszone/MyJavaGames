@@ -22,7 +22,7 @@ import sound_engine.SoundEffects;
 public class MouseInputHandler implements MouseListener {
 
 	public static Main main;
-	private String soundName = SoundEffects.LASER.getSound();
+	private String soundName = SoundEffects.CLICK.getSound();
 
 	@Override
 	public void mousePressed(MouseEvent e) {

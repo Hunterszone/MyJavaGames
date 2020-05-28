@@ -79,6 +79,12 @@ public enum SoundEffects {
 			return "sounds/laser.wav";
 		}
 	},
+	CLICK {
+		@Override
+		public String getSound() {
+			return "sounds/reload.wav";
+		}
+	},
 	MAGIC {
 		@Override
 		public String getSound() {
