@@ -1,10 +1,13 @@
 package menu_engine;
 
-import menu_engine.Display;
-import menu_states.*;
-
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import entities.MyShip;
+import menu_states.ControlsState;
+import menu_states.MenuState;
+import menu_states.SettingsState;
+import menu_states.StateManager;
 
 public class CanvasMenu implements Runnable {
 
@@ -14,8 +17,11 @@ public class CanvasMenu implements Runnable {
 	private Thread thread;
 	private boolean isRunning;
 	public static boolean isPause;
+	public static ColorSwitcher color;
+    public static MyShip myShip;
 
 	private MenuState mainMenu;
+	private ControlsState controlsMenu;
 	private SettingsState settingsMenu;
 	
 	public static StateManager State;
@@ -31,7 +37,10 @@ public class CanvasMenu implements Runnable {
 
 		State = new StateManager();
 		this.mainMenu = new MenuState();
+		this.controlsMenu = new ControlsState();
 		this.settingsMenu = new SettingsState();
+		
+		color = new ColorSwitcher();
 	}
 
 	private void render() {
@@ -49,8 +58,10 @@ public class CanvasMenu implements Runnable {
 
 		if (State.getState() == StateManager.STATES.MENU) {
 			this.mainMenu.render(this.g);
-		} else if(State.getState() == StateManager.STATES.SETTINGS) {
-            this.settingsMenu.render(g);
+		} else if(State.getState() == StateManager.STATES.CONTROLS) {
+            this.controlsMenu.render(g);
+        } else if(State.getState() == StateManager.STATES.SETTINGS) {
+            this.settingsMenu.render(g, color);
         }
 
 		// Stop Drawing

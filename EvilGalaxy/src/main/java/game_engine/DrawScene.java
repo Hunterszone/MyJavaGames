@@ -492,24 +492,28 @@ public class DrawScene extends UpdateObjects {
 
 		if (lifeMyShip == 3) {
 
+			MyShip.myShip.renderShip(g);
 			g.drawString("Health: 100%", MyShip.myShip.x, MyShip.myShip.y);
 
 		}
 
 		if (lifeMyShip == 4) {
 
+			MyShip.myShip.renderShip(g);
 			g.drawString("Health: 75%", MyShip.myShip.x, MyShip.myShip.y);
 
 		}
 
 		if (lifeMyShip == 5) {
 
+			MyShip.myShip.renderShip(g);
 			g.drawString("Health: 50%", MyShip.myShip.x, MyShip.myShip.y);
 
 		}
 
 		if (lifeMyShip == 6) {
 
+			MyShip.myShip.renderShip(g);
 			g.drawString("Health: 25%", MyShip.myShip.x, MyShip.myShip.y);
 
 		}

@@ -39,6 +39,6 @@ public final class Main extends GameMenuBar {
 
 	public static void main(String[] args) throws URISyntaxException {
 		CanvasMenu engine = new CanvasMenu();
-		engine.start();		
+		engine.start();
 	}
 }

@@ -3,8 +3,8 @@ package menu_states;
 public class StateManager {
 	public enum STATES {
 		GAME,
+		CONTROLS,
 		SETTINGS,
-		VICTORY,
 		PAUSE,
 		MENU
 	}

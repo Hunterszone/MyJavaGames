@@ -1,0 +1,21 @@
+package menu_states;
+
+import menu_engine.Constants;
+
+import java.awt.*;
+
+public class ControlsState {
+    public static boolean isOn;
+	public void render(Graphics g) {
+
+        g.drawImage(Constants.LOAD_ASSETS.header, 428, 32, 352, 49, null);
+        g.drawImage(Constants.LOAD_ASSETS.headerBackground, 180, 0, 802, 105, null);
+        g.drawImage(Constants.LOAD_ASSETS.back, 410, 135, 388, 89, null);
+        g.drawImage(Constants.LOAD_ASSETS.controlsText, 200, 270, 400, 120, null);
+		g.drawImage(Constants.LOAD_ASSETS.info, 700, 270, 400, 120, null);
+		g.drawImage(Constants.LOAD_ASSETS.controlsText2, 195, 450, 400, 120, null);
+		g.drawImage(Constants.LOAD_ASSETS.info2, 700, 450, 400, 120, null);
+		g.drawImage(Constants.LOAD_ASSETS.controlsText3, 180, 630, 400, 120, null);
+		g.drawImage(Constants.LOAD_ASSETS.info3, 700, 630, 400, 120, null);
+	}
+}

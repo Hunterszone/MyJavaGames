@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,9 @@ import game_engine.Images;
 import game_engine.SpritePattern;
 import items.ShipMissile;
 import items.ShipRocket;
+import menu_engine.CanvasMenu;
+import menu_engine.Constants;
+import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import sound_engine.SoundEffects;
 
@@ -211,4 +215,8 @@ public class MyShip extends SpritePattern {
 			drawShip();
 		}
 	}
+	
+	public void renderShip(Graphics g) {
+        g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.myShip, CanvasMenu.color.getColor()), Math.round(this.getX()), Math.round(this.getY()), null);
+    }
 }
