@@ -35,7 +35,7 @@ public class MyShipTest {
 
 	@Test
 	public void testMyShipUpsideDown() {
-		assertNotNull(Images.MYSHIPUPDOWN.getImg());
+		assertNotNull(Images.MYSHIPLIFEBAR.getImg());
 	}
 
 	@Test

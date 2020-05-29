@@ -51,7 +51,7 @@ public class MyShip extends SpritePattern {
 
 	public Image upsideDown() {
 
-		imageName = Images.MYSHIPUPDOWN.getImg();
+		imageName = Images.MYSHIPLIFEBAR.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return loadImage(imageName);

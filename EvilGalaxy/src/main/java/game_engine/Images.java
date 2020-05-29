@@ -55,10 +55,10 @@ public enum Images {
 			return "images/newship.png";
 		}
 	},
-	MYSHIPUPDOWN {
+	MYSHIPLIFEBAR {
 		@Override
 		public String getImg() {
-			return "images/alien.gif";
+			return "images/lifebar.png";
 		}
 	},
 	MYSHIPGOD {

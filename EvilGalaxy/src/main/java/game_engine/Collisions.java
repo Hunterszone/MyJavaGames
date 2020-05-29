@@ -173,7 +173,6 @@ public abstract class Collisions extends UpdateObjects {
 			lifeMyShip++;
 			alien.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
 			alienKilled++;
 			killedByBunker = false;
@@ -191,7 +190,6 @@ public abstract class Collisions extends UpdateObjects {
 			lifeMyShip++;
 			dragon.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
 			killedByBunker = false;
 			killedByEvilHead = false;
@@ -272,7 +270,6 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean shipIntersectsHead(Rectangle myship, Rectangle evilhead) {
 		if (myship.intersects(evilhead)) {
-
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			MyShip.myShip.setVisible(false);
 			EvilHead.evilHead.setVisible(false);
@@ -354,7 +351,6 @@ public abstract class Collisions extends UpdateObjects {
 			lifeMyShip++;
 			fireball.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
 			if (lifeMyShip > 6) {
 				killedByBunker = false;
@@ -374,7 +370,6 @@ public abstract class Collisions extends UpdateObjects {
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
-			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
 			if (lifeMyShip > 6) {
 				killedByDragon = false;
@@ -394,7 +389,6 @@ public abstract class Collisions extends UpdateObjects {
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
-			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
 			if (lifeMyShip > 6) {
 				killedByDragon = false;
@@ -413,7 +407,6 @@ public abstract class Collisions extends UpdateObjects {
 			lifeMyShip++;
 			canon.setVisible(false);
 			new PlayWave1st(SoundEffects.BURNED.getSound()).start();
-			MyShip.myShip.shipDamaged();
 			MyShip.myShip.upsideDown();
 			if (lifeMyShip > 6) {
 				killedByDragon = false;
