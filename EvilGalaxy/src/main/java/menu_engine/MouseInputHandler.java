@@ -91,11 +91,12 @@ public class MouseInputHandler implements MouseListener {
 					MenuState.isOn = true;
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
-			}
-			if((mouseX < 800 || mouseX > 800 + Constants.LOAD_ASSETS.myShip.getWidth(null)
-			|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null)) && 
-					!(mouseY >= 150 && mouseY <= 200)) {
-				new PlayWave1st(forbidden).start();
+			} else {
+				if((mouseX < 800 || mouseX > 800 + Constants.LOAD_ASSETS.myShip.getWidth(null)
+				|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null)) && 
+						!(mouseY >= 150 && mouseY <= 200)) {
+					new PlayWave1st(forbidden).start();
+				}
 			}
 		}
 	}
