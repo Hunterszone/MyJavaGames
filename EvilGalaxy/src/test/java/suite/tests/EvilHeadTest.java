@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.EvilHead;
+import game_engine.Images;
 
 public class EvilHeadTest {
 
@@ -21,8 +22,14 @@ public class EvilHeadTest {
 
 	@Test
 	public void testEvilHead() {
-		assertNotNull(evilHead.loadImage(evilHead.drawHead()));
-		assertFalse(evilHead.drawHead().isEmpty());
+		assertNotNull(evilHead.loadImage(Images.EVILHEAD.getImg()));
+		assertFalse(Images.EVILHEAD.getImg().isEmpty());
+	}
+	
+	@Test
+	public void testStrikeHead() {
+		assertNotNull(evilHead.loadImage(Images.STRIKEHEAD.getImg()));
+		assertFalse(Images.STRIKEHEAD.getImg().isEmpty());
 	}
 
 	@Test

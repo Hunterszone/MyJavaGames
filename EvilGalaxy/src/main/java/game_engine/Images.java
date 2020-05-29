@@ -37,6 +37,12 @@ public enum Images {
 			return "images/evilhead.png";
 		}
 	},
+	STRIKEHEAD {
+		@Override
+		public String getImg() {
+			return "images/strikehead.png";
+		}
+	},
 	MYSHIPINIT {
 		@Override
 		public String getImg() {

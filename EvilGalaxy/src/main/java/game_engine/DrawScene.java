@@ -216,48 +216,41 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void handleLifeEvilHead(Graphics g) {
+		EvilHead.evilHead.renderEvilHead(g);
+
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && lifeEvilHead < 10) {
-			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 100%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 10 && lifeEvilHead < 20) {
-			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 80%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 20 && lifeEvilHead < 30) {
-			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 60%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 30 && lifeEvilHead < 35) {
-			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.loop();
 		}
 
 		if (lifeEvilHead >= 35) {
-			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.stop();
 		}
 
 		if (lifeEvilHead >= 30 && lifeEvilHead < 40) {
-			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 40%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
 		if (lifeEvilHead >= 40 && lifeEvilHead < 45) {
-			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.loop();
 		}
 
 		if (lifeEvilHead >= 45) {
-			EvilHead.evilHead.renderEvilHead(g);
 			LoadSounds.roar.stop();
 		}
 
 		if (lifeEvilHead >= 40 && lifeEvilHead < 50) {
-			EvilHead.evilHead.renderEvilHead(g);
 			g.drawString("Health: 20%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 

@@ -2,6 +2,7 @@ package menu_engine;
 
 import java.awt.Image;
 
+import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class Assets extends SpritePattern {
@@ -51,8 +52,8 @@ public class Assets extends SpritePattern {
 		back = loadImage("images/buttons/back.png");
         headerBackground = loadImage("images/backgrounds/header.png");
         header = loadImage("images/header.png");
-        myShip = loadImage("images/craft.png");
-        evilHead = loadImage("images/evilhead.png");
+        myShip = loadImage(Images.MYSHIPINIT.getImg());
+        evilHead = loadImage(Images.EVILHEAD.getImg());
 		getImageDimensions();
 	}
 }

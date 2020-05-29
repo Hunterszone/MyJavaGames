@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.MyShip;
+import game_engine.Images;
 import sound_engine.PlayWave1st;
 
 public class MyShipTest {
@@ -23,33 +24,33 @@ public class MyShipTest {
 
 	@Test
 	public void testMyShipUnit() {
-		assertNotNull(myShip.loadImage(myShip.drawShip()));
-		assertFalse(myShip.drawShip().isEmpty());
+		assertNotNull(myShip.loadImage(Images.MYSHIPINIT.getImg()));
+		assertFalse(Images.MYSHIPINIT.getImg().isEmpty());
 	}
 
 	@Test
 	public void testMyShipDamaged() {
-		assertNotNull(myShip.loadImage(myShip.shipDamaged()));
+		assertNotNull(Images.MYSHIPDAMAGED.getImg());
 	}
 
 	@Test
 	public void testMyShipUpsideDown() {
-		assertNotNull(myShip.loadImage(myShip.upsideDown()));
+		assertNotNull(Images.MYSHIPUPDOWN.getImg());
 	}
 
 	@Test
 	public void testMyShipFired() {
-		assertNotNull(myShip.loadImage(myShip.shipOnFire()));
+		assertNotNull(Images.MYSHIPONFIRE.getImg());
 	}
 
 	@Test
 	public void testMyShipEscapeForbidden() {
-		assertNotNull(myShip.loadImage(myShip.escapeForbidden()));
+		assertNotNull(Images.MYSHIPESCAPE.getImg());
 	}
 
 	@Test
 	public void testMyShipGodMode() {
-		assertNotNull(myShip.loadImage(myShip.godMode()));
+		assertNotNull(Images.MYSHIPGOD.getImg());
 	}
 
 	@Test

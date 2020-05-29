@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +29,18 @@ public class EvilHead extends SpritePattern {
 		initAmmo();
 	}
 
-	public String drawHead() {
+	public Image drawHead() {
 		imageName = Images.EVILHEAD.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
+		return loadImage(imageName);
+	}
+	
+	public Image strikeHead() {
+		imageName = Images.STRIKEHEAD.getImg();
+		loadImage(imageName);
+		getImageDimensions();
+		return loadImage(imageName);
 	}
 
 	private void initAmmo() {
@@ -188,11 +196,6 @@ public class EvilHead extends SpritePattern {
 		canons.add(new CanonBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing.wav").start();
 		return canons;
-	}
-
-	public void strikeHead() {
-		loadImage("images/strikehead.png");
-		getImageDimensions();
 	}
 	
 	public void renderEvilHead(Graphics g) {
