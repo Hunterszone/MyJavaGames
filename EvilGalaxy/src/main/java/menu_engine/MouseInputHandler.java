@@ -21,6 +21,7 @@ public class MouseInputHandler implements MouseListener {
 
 	public static Main main;
 	private String soundName = SoundEffects.CLICK.getSound();
+	private String forbidden = SoundEffects.FORBIDDEN.getSound();
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -47,23 +48,25 @@ public class MouseInputHandler implements MouseListener {
 						});
 					}
 					MenuState.isOn = true;
-				} else if (mouseY >= 250 && mouseY <= 300) {
+				} if (mouseY >= 250 && mouseY <= 300) {
 					new PlayWave1st(soundName).start();
 					new LoadGame().openFileChooser();
-				} else if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
+				} if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
 					new PlayWave1st(soundName).start();
 					CanvasMenu.State.setState(StateManager.STATES.CONTROLS);
 					MenuState.isOn = false;
 					ControlsState.isOn = true;
-				} else if (mouseY >= 450 && mouseY <= 500 && MenuState.isOn) {
+				} if (mouseY >= 450 && mouseY <= 500 && MenuState.isOn) {
 					new PlayWave1st(soundName).start();
 					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
 					MenuState.isOn = false;
 					SettingsState.isOn = true;
-				} else if (mouseY >= 550 && mouseY <= 600 && MenuState.isOn) {
+				} if (mouseY >= 550 && mouseY <= 600 && MenuState.isOn) {
 					new PlayWave1st(soundName).start();
 					System.exit(0);
 				}
+			} else {
+				new PlayWave1st(forbidden).start();
 			}
 		}
 
@@ -75,9 +78,11 @@ public class MouseInputHandler implements MouseListener {
 					MenuState.isOn = true;
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
+			} else {
+				new PlayWave1st(forbidden).start();
 			}
 		}
-		
+
 		if (SettingsState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
@@ -86,6 +91,11 @@ public class MouseInputHandler implements MouseListener {
 					MenuState.isOn = true;
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
+			}
+			if((mouseX < 800 || mouseX > 800 + Constants.LOAD_ASSETS.myShip.getWidth(null)
+			|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null)) && 
+					!(mouseY >= 150 && mouseY <= 200)) {
+				new PlayWave1st(forbidden).start();
 			}
 		}
 	}
@@ -105,14 +115,16 @@ public class MouseInputHandler implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Point point = e.getPoint();
-		if((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS) && (point.getX() >= 800 && point.getX() <= 800 + Constants.LOAD_ASSETS.myShip.getWidth(null))) {
-			if(point.getY() >= 255 && point.getY() <= 255 + Constants.LOAD_ASSETS.myShip.getHeight(null)) {				
+		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
+				&& (point.getX() >= 800 && point.getX() <= 800 + Constants.LOAD_ASSETS.myShip.getWidth(null))) {
+			if (point.getY() >= 255 && point.getY() <= 255 + Constants.LOAD_ASSETS.myShip.getHeight(null)) {
 				new PlayWave1st(soundName).start();
 				CanvasMenu.color.nextColor(CanvasMenu.color.getColor());
 			}
 		}
-		if((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS) && (point.getX() >= 800 && point.getX() <= 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null))) {
-			if(point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null)) {				
+		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
+				&& (point.getX() >= 800 && point.getX() <= 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null))) {
+			if (point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null)) {
 				new PlayWave1st(soundName).start();
 				CanvasMenu.color2.nextColor(CanvasMenu.color2.getColor());
 			}

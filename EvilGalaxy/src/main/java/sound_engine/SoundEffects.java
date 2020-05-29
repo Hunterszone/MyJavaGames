@@ -49,6 +49,12 @@ public enum SoundEffects {
 			return "sounds/denied.wav";
 		}
 	},
+	FORBIDDEN {
+		@Override
+		public String getSound() {
+			return "sounds/forbidden.wav";
+		}
+	},
 	EXPLOSION {
 		@Override
 		public String getSound() {
