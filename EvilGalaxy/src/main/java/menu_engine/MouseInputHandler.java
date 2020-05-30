@@ -130,6 +130,21 @@ public class MouseInputHandler implements MouseListener {
 				CanvasMenu.color2.nextColor(CanvasMenu.color2.getColor());
 			}
 		}
+		if ((CanvasMenu.State.getState() == StateManager.STATES.MENU || 
+				CanvasMenu.State.getState() == StateManager.STATES.CONTROLS || 
+				CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
+				&& (point.getX() >= 1100 && point.getX() <= 1100 + Constants.LOAD_ASSETS.volume.getWidth(null))) {
+			if ((point.getY() >= 32 && point.getY() <= 32 + Constants.LOAD_ASSETS.volume.getHeight(null))) {
+				new PlayWave1st(soundName).start();
+				LoadSounds.menuMusic.stop();
+			}
+		} else {
+			if(   	   !(point.getY() >= 150 && point.getY() <= 200)
+					&& !(point.getY() >= 250 && point.getY() <= 300)
+					&& !(point.getY() >= 350 && point.getY() <= 400)
+					&& !(point.getY() >= 450 && point.getY() <= 500))
+			LoadSounds.menuMusic.loop();
+		}
 	}
 
 }

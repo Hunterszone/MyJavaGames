@@ -24,7 +24,7 @@ public class VolBtn extends SpritePattern {
 	}
 
 	public String initMute() {
-		imageName = "images/mute.png";
+		imageName = Images.VOLUMEMUTE.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

@@ -33,6 +33,7 @@ public class Assets extends SpritePattern {
 	public Image header;
 	public Image myShip;
 	public Image evilHead;
+	public Image volume;
 
 	public void init() {
 		blackBG = loadImage("images/backgrounds/main.jpg");
@@ -54,6 +55,7 @@ public class Assets extends SpritePattern {
         header = loadImage("images/header.png");
         myShip = loadImage(Images.MYSHIPINIT.getImg());
         evilHead = loadImage(Images.EVILHEAD.getImg());
+        volume = loadImage(Images.VOLUMEMUTE.getImg());
 		getImageDimensions();
 	}
 }

@@ -132,6 +132,12 @@ public enum Images {
 		public String getImg() {
 			return "images/volbutt.png";
 		}
+	},
+	VOLUMEMUTE {
+		@Override
+		public String getImg() {
+			return "images/mute.png";
+		}
 	};
 	public abstract String getImg();
 }

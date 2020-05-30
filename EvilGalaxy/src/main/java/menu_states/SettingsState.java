@@ -10,7 +10,8 @@ public class SettingsState {
     public static boolean isOn;
 	public void render(Graphics g, ColorSwitcher color, ColorSwitcher color2) {
 
-        g.drawImage(Constants.LOAD_ASSETS.header, 428, 32, 352, 49, null);
+		g.drawImage(Constants.LOAD_ASSETS.volume, 1100, 32, null);
+		g.drawImage(Constants.LOAD_ASSETS.header, 428, 32, 352, 49, null);
         g.drawImage(Constants.LOAD_ASSETS.headerBackground, 180, 0, 802, 105, null);
         g.drawImage(Constants.LOAD_ASSETS.back, 410, 135, 388, 89, null);
         g.drawImage(Constants.LOAD_ASSETS.settingsText, 200, 265, 400, 120, null);
