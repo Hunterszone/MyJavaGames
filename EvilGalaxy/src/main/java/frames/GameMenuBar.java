@@ -6,33 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import entities.Alien;
 import entities.Bunker;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
-import game_engine.Collisions;
-import game_engine.Controls;
 import game_engine.Difficulty;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
@@ -76,10 +68,10 @@ public class GameMenuBar extends JFrame {
 		save.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		save.setMnemonic(KeyEvent.VK_Z);
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
-		JMenuItem load = new JMenuItem("Load Game");
-		load.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		load.setMnemonic(KeyEvent.VK_C);
-		load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
+//		JMenuItem load = new JMenuItem("Load Game");
+//		load.setFont(new Font("Segoe UI", Font.BOLD, 14));
+//		load.setMnemonic(KeyEvent.VK_C);
+//		load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
 		JMenuItem join = new JMenuItem("Join game");
 		join.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		JMenuItem exit = new JMenuItem("Exit           Esc");
@@ -90,7 +82,7 @@ public class GameMenuBar extends JFrame {
 		game.addSeparator();
 		game.add(save);
 		game.addSeparator();
-		game.add(load);
+//		game.add(load);
 		game.addSeparator();
 		game.add(join);
 		game.addSeparator();
@@ -323,7 +315,7 @@ public class GameMenuBar extends JFrame {
 
 		}
 
-		class LoadGame implements ActionListener {
+		/*class LoadGame implements ActionListener {
 
 			List<Object> loadedAssets = new ArrayList<Object>();
 
@@ -519,7 +511,7 @@ public class GameMenuBar extends JFrame {
 				}				
 			}
 
-		}
+		}*/
 
 		class Join implements ActionListener {
 
@@ -654,7 +646,7 @@ public class GameMenuBar extends JFrame {
 		newgame.addActionListener(new NewGame());
 		pause.addActionListener(new PauseGame());
 		save.addActionListener(new SaveGame());
-		load.addActionListener(new LoadGame());
+//		load.addActionListener(new LoadGame());
 		join.addActionListener(new Join());
 		level1.addActionListener(new Level1());
 		level2.addActionListener(new Level2());
