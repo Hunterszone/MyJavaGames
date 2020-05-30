@@ -88,7 +88,7 @@ public class Difficulty {
 
 		EvilHead.evilHead = new EvilHead(640, 180);
 		EvilHead.evilHead.isVisible();
-		EvilHead.evilHead.AIOnMedium();
+		EvilHead.evilHead.AIOnEasy();
 
 		Bunker.bunkerObj = new Bunker(450, 680);
 		Bunker.bunkerObj.isVisible();
@@ -184,7 +184,7 @@ public class Difficulty {
 
 		EvilHead.evilHead = new EvilHead(640, 180);
 		EvilHead.evilHead.isVisible();
-		EvilHead.evilHead.AIOnMedium();
+		EvilHead.evilHead.AIOnHard();
 
 		Bunker.bunkerObj = new Bunker(450, 680);
 		Bunker.bunkerObj.isVisible();
