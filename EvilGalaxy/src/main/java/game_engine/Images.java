@@ -82,7 +82,7 @@ public enum Images {
 	MYSHIPPULLED {
 		@Override
 		public String getImg() {
-			return "images/magnetic.gif";
+			return "images/magnetic.png";
 		}
 	},
 	BULLETINIT {
