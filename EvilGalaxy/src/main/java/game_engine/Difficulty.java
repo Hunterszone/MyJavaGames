@@ -57,6 +57,7 @@ public class Difficulty {
 		InitObjects.timerHard.stop();
 		InitObjects.timerMedium.stop();
 		InitObjects.timerEasy.restart();
+		
 		LoadSounds.gameWon.play();
 		LoadSounds.gameLost.stop();
 		LoadSounds.bgMusic.loop();
@@ -104,6 +105,7 @@ public class Difficulty {
 		InitObjects.timerMedium.stop();
 		InitObjects.timerHard.stop();
 		InitObjects.timerEasy.restart();
+		
 		LoadSounds.gameWon.play();
 		LoadSounds.gameLost.stop();
 		LoadSounds.bgMusic.loop();
@@ -150,7 +152,6 @@ public class Difficulty {
 
 		InitObjects.timerEasy.stop();
 		InitObjects.timerHard.stop();
-		;
 		InitObjects.timerMedium.restart();
 
 		LoadSounds.gameWon.play();
@@ -199,8 +200,8 @@ public class Difficulty {
 
 		InitObjects.timerEasy.stop();
 		InitObjects.timerMedium.stop();
-		;
 		InitObjects.timerHard.restart();
+
 		LoadSounds.gameWon.play();
 		LoadSounds.gameLost.stop();
 		LoadSounds.bgMusic.loop();
