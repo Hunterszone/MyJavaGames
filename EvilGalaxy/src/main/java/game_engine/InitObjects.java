@@ -1,6 +1,7 @@
 package game_engine;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
 import frames.GameMenuBar;
+import frames.Main;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
@@ -23,11 +25,15 @@ import items.VolBtn;
 import sound_engine.LoadSounds;
 
 public class InitObjects extends JPanel implements ActionListener {
+	
+	public static Dimension getCoordinates() {
+		return Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
+	}
 
 	// Constants
-	final static int VOLBUT_X = 940;
-	final static int VOLBUT_Y = 15;
-	final static int BUNKER_X = 450;
+	final static int VOLBUT_X = (int) getCoordinates().getWidth()-365;
+	final static int VOLBUT_Y = (int) getCoordinates().getHeight()-1070;
+	final static int BUNKER_X = ((int) getCoordinates().getWidth()-400)/2;
 	final static int BUNKER_Y = 680;
 	final static int B_WIDTH = 1310;
 	final static int B_HEIGHT = 1040;
@@ -85,7 +91,7 @@ public class InitObjects extends JPanel implements ActionListener {
 		Bunker.bunkerObj = new Bunker(BUNKER_X, BUNKER_Y);
 		Bunker.bunkerObj.setVisible(true);
 
-		SaveSign.saveSign = new SaveSign((B_WIDTH - 350) / 2, (B_HEIGHT - 350) / 2);
+		SaveSign.saveSign = new SaveSign(BUNKER_X, (B_HEIGHT - 350) / 2);
 		SaveSign.saveSign.setVisible(false);
 
 		initAliens();

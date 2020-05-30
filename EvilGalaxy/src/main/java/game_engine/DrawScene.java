@@ -2,7 +2,6 @@ package game_engine;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -20,6 +19,7 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
 import frames.GameMenuBar;
+import frames.Main;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.FireBall;
@@ -57,9 +57,15 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	public DrawScene() {
+		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) Main.dim.getWidth();
+		int height = (int) Main.dim.getHeight();
 		bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		bg1 = bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		bg2 = Toolkit.getDefaultToolkit().createImage("images/galaxy2.jpg");
+		bg2 = bg2.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		bg3 = Toolkit.getDefaultToolkit().createImage("images/galaxy3.jpg");
+		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
 
 	@Override
@@ -294,7 +300,7 @@ public class DrawScene extends UpdateObjects {
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
 
 			drawKillTheBunker(g);
-			g.drawString("Missiles: Unlocked", 320, 15);
+			g.drawString("Missiles: Locked", 320, 15);
 			g.drawString("Rockets: Unlocked", 490, 15);
 
 			if (timerEasy.isRunning()) {
@@ -745,11 +751,10 @@ public class DrawScene extends UpdateObjects {
 
 		String msg = "Game Over!";
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X+30, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawKilledBy(Graphics g) {
@@ -765,33 +770,30 @@ public class DrawScene extends UpdateObjects {
 			msg = "Killed by the Evil Head!";
 
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 222) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 222) / 2);
 	}
 
 	private void drawCollect(Graphics g) {
 
 		String msg = "Collect all the gold!";
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
 
 		String msg = "Destroy the bunker!";
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
-
+		
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 
 	}
 
@@ -799,33 +801,30 @@ public class DrawScene extends UpdateObjects {
 
 		String msg = "Finally..Kill the evil head!";
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
-
+		
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawYouWon(Graphics g) {
 
 		String msg = "You Won!";
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawOuttaControl(Graphics g) {
 
 		String msg = "Dragons invasion brings the ship outta control...";
 		Font small = new Font("Helvetica", Font.BOLD, 17);
-		FontMetrics fm = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - 268 - fm.stringWidth(msg)) / 2, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X-100, (B_HEIGHT - 272) / 2);
 	}
 
 }

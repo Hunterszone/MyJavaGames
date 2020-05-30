@@ -1,5 +1,6 @@
 package game_engine;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 
 import entities.Bunker;
@@ -8,6 +9,7 @@ import entities.EvilHead;
 import entities.MyShip;
 import frames.ConsoleContent;
 import frames.GameMenuBar;
+import frames.Main;
 import items.VolBtn;
 import sound_engine.LoadSounds;
 
@@ -43,10 +45,10 @@ public class Difficulty {
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
-		Bunker.bunkerObj = new Bunker(450, 680);
+		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, 680);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(940, 15);
+		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, 15);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -76,7 +78,11 @@ public class Difficulty {
 
 		DrawScene.finMusicIsPlayed = false;
 
+		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) Main.dim.getWidth();
+		int height = (int) Main.dim.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
 		UpdateObjects.lifeMyShip = 3;
@@ -91,10 +97,10 @@ public class Difficulty {
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
-		Bunker.bunkerObj = new Bunker(450, 680);
+		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, 680);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(940, 15);
+		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, 15);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -124,7 +130,11 @@ public class Difficulty {
 
 		DrawScene.finMusicIsPlayed = false;
 
+		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) Main.dim.getWidth();
+		int height = (int) Main.dim.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
 		UpdateObjects.lifeMyShip = 3;
@@ -139,10 +149,10 @@ public class Difficulty {
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnMedium();
 
-		Bunker.bunkerObj = new Bunker(450, 680);
+		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, 680);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(940, 15);
+		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, 15);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -172,7 +182,11 @@ public class Difficulty {
 
 		DrawScene.finMusicIsPlayed = false;
 
+		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) Main.dim.getWidth();
+		int height = (int) Main.dim.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
 		UpdateObjects.lifeMyShip = 3;
@@ -187,10 +201,10 @@ public class Difficulty {
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnHard();
 
-		Bunker.bunkerObj = new Bunker(450, 680);
+		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, 680);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(940, 15);
+		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, 15);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();

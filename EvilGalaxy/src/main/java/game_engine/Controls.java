@@ -79,15 +79,16 @@ public class Controls extends JFrame implements KeyListener {
 				&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
-				&& (Alien.aliens.size() > 0 || (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
-						|| (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
+				&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
 			MyShip.myShip.loadMissiles();
 		}
 
 		if (InitObjects.ingame == true
 				&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
-				&& key == KeyEvent.VK_SPACE && (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0
+				&& key == KeyEvent.VK_SPACE && 
+					((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
+						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
 			MyShip.myShip.gunLocked();
 		}
