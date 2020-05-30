@@ -26,7 +26,7 @@ public class ShipMissile extends SpritePattern {
 
 		x += MISSILE_SPEED;
 
-		if (x > BOARD_WIDTH + 350)
+		if (x > BOARD_WIDTH + 550)
 			vis = false;
 	}
 }

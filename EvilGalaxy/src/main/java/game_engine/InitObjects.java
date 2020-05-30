@@ -49,8 +49,8 @@ public class InitObjects extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final int DELAY = 15;
 
-	private final static int[][] posGold = { { 500, 1029 }, { 290, 1180 }, { 330, 60 }, { 510, 1839 }, { 620, 1600 },
-			{ 480, 1359 }, { 360, 1150 }, { 640, 90 }, { 430, 1420 }, { 560, 1520 }, { 455, 1228 }, { 600, 1130 } };
+	/*private final static int[][] posGold = { { 700, 1029 }, { 690, 1180 }, { 730, 60 }, { 510, 1839 }, { 820, 1600 },
+			{ 680, 1359 }, { 760, 1150 }, { 640, 90 }, { 630, 1420 }, { 760, 1520 }, { 655, 1228 }, { 700, 1130 } };*/
 
 	private final static int[][] posDragon = { { 1380, 550 }, { 1580, 370 }, { 1680, 239 }, { 1390, 450 },
 			{ 1460, 580 }, { 1790, 590 }, { 1400, 359 }, { 1460, 290 }, { 1540, 250 }, { 1410, 220 }, { 1560, 250 },
@@ -58,8 +58,8 @@ public class InitObjects extends JPanel implements ActionListener {
 			{ 1390, 350 }, { 1460, 280 }, { 1790, 490 }, { 1400, 259 }, { 1460, 690 }, { 1540, 450 }, { 1410, 420 },
 			{ 1560, 350 }, { 1740, 280 }, { 1420, 250 }, { 1590, 290 }, { 1700, 470 } };
 
-	private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, { 650, 240 }, { 600, 500 },
-			{ 500, 600 } };
+	/*private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, { 650, 240 }, { 600, 500 },
+			{ 500, 600 } };*/
 
 	public InitObjects() {
 
@@ -132,8 +132,8 @@ public class InitObjects extends JPanel implements ActionListener {
 	public static List<Gold> initGold() {
 		Gold.goldstack = new ArrayList<>();
 
-		for (int[] p : posGold) {
-			Gold.goldstack.add(new Gold(p[0], p[1]));
+		for (int i = 0; i < 12; i++) {
+			Gold.goldstack.add(new Gold((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 
 		return Gold.goldstack;
@@ -142,8 +142,8 @@ public class InitObjects extends JPanel implements ActionListener {
 	public static List<HealthPack> initHealth() {
 		HealthPack.healthpack = new ArrayList<>();
 
-		for (int[] p : posHealthPack) {
-			HealthPack.healthpack.add(new HealthPack(p[0], p[1]));
+		for (int i = 0; i < 5; i++) {
+			HealthPack.healthpack.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 		return HealthPack.healthpack;
 	}

@@ -2,10 +2,12 @@ package entities;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import frames.Main;
 import game_engine.Images;
 import game_engine.SpritePattern;
 import items.ShipMissile;
@@ -122,15 +124,17 @@ public class MyShip extends SpritePattern {
 	}
 
 	public void move() {
-
+		
+		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		x += speedX;
 		y += speedY;
 
 		if (x < 1) {
 			x = 1;
 			escapeForbidden();
-		} else if (x > 900) {
-			x = 900;
+		} else if (x > Main.dim.getWidth() - 700) {
+			x = (int) Main.dim.getWidth() - 700;
 			escapeForbidden();
 		}
 
