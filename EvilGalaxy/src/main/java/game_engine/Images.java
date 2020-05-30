@@ -79,6 +79,12 @@ public enum Images {
 			return "images/hitcraft.gif";
 		}
 	},
+	MYSHIPPULLED {
+		@Override
+		public String getImg() {
+			return "images/magnetic.gif";
+		}
+	},
 	BULLETINIT {
 		@Override
 		public String getImg() {

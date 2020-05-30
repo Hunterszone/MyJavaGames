@@ -289,7 +289,7 @@ public class DrawScene extends UpdateObjects {
 				MyShip.myShip.shipShaked();
 				Crosshair.crosshair.crosShaked();
 				MyShip.myShip.y = EvilHead.evilHead.y + 70;
-				MyShip.myShip.loadImage("images/magnetic.png");
+				MyShip.myShip.loadImage(Images.MYSHIPPULLED.getImg());
 				MyShip.myShip.getImageDimensions();
 			}
 		}
