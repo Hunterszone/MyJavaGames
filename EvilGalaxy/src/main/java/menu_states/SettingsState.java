@@ -18,5 +18,7 @@ public class SettingsState {
         g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.myShip, color.getColor()), 800, 285, null);
         g.drawImage(Constants.LOAD_ASSETS.settingsText, 200, 365, 400, 120, null);
         g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.evilHead, color2.getColor()), 800, 385, null);
+        g.drawImage(Constants.LOAD_ASSETS.settingsText2, 200, 480, 300, 90, null);
+        g.drawImage(Constants.LOAD_ASSETS.manual, 790, 485, 100, 100, null);
 	}
 }

@@ -5,7 +5,9 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import frames.ConsoleContent;
 import frames.Main;
+import frames.Manual;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
@@ -93,7 +95,8 @@ public class MouseInputHandler implements MouseListener {
 				}
 			} else {
 				if((mouseX < 800 || mouseX > 800 + Constants.LOAD_ASSETS.myShip.getWidth(null)
-				|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null)) && 
+				|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null) 
+				|| mouseX > 790 + Constants.LOAD_ASSETS.manual.getWidth(null)) && 
 						!(mouseY >= 150 && mouseY <= 200)) {
 					new PlayWave1st(forbidden).start();
 				}
@@ -128,6 +131,14 @@ public class MouseInputHandler implements MouseListener {
 			if (point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null)) {
 				new PlayWave1st(soundName).start();
 				CanvasMenu.color2.nextColor(CanvasMenu.color2.getColor());
+			}
+		}
+		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
+				&& (point.getX() >= 810 && point.getX() <= 660 + Constants.LOAD_ASSETS.manual.getWidth(null))) {
+			if (point.getY() >= 490 && point.getY() <= 370 + Constants.LOAD_ASSETS.manual.getHeight(null)) {
+				new PlayWave1st(soundName).start();
+				ConsoleContent.manual = new Manual();
+				ConsoleContent.manual.setVisible(true);
 			}
 		}
 		if ((CanvasMenu.State.getState() == StateManager.STATES.MENU || 

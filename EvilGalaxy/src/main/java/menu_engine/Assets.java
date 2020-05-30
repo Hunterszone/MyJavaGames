@@ -22,6 +22,7 @@ public class Assets extends SpritePattern {
 	public Image settingsButton;
 	public Image quitGame;
 	public Image settingsText;
+	public Image settingsText2;
 	public Image controlsText;
 	public Image controlsText2;
 	public Image controlsText3;
@@ -33,6 +34,7 @@ public class Assets extends SpritePattern {
 	public Image header;
 	public Image myShip;
 	public Image evilHead;
+	public Image manual;
 	public Image volume;
 
 	public void init() {
@@ -44,6 +46,7 @@ public class Assets extends SpritePattern {
 		settingsButton = loadImage("images/buttons/settings.png");
 		quitGame = loadImage("images/buttons/quitGame.png");
 		settingsText = loadImage("images/settingsText.png");
+		settingsText2 = loadImage("images/settingsText2.png");
 		controlsText = loadImage("images/controlsText.png");
 		controlsText2 = loadImage("images/controlsText2.png");
 		controlsText3 = loadImage("images/controlsText3.png");
@@ -55,6 +58,7 @@ public class Assets extends SpritePattern {
         header = loadImage("images/header.png");
         myShip = loadImage(Images.MYSHIPINIT.getImg());
         evilHead = loadImage(Images.EVILHEAD.getImg());
+        manual = loadImage("images/manual.png");
         volume = loadImage(Images.VOLUMEMUTE.getImg());
 		getImageDimensions();
 	}

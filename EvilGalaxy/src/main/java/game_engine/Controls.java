@@ -11,7 +11,6 @@ import entities.Dragon;
 import entities.MyShip;
 import frames.ConsoleContent;
 import frames.ConsoleForm;
-import frames.Manual;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
@@ -228,11 +227,6 @@ public class Controls extends JFrame implements KeyListener {
 
 			}
 
-		}
-
-		if (key == KeyEvent.VK_O && !ConsoleContent.manualON) {
-			ConsoleContent.manual = new Manual();
-			ConsoleContent.manual.setVisible(true);
 		}
 
 		if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
