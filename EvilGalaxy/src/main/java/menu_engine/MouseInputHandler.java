@@ -84,19 +84,6 @@ public class MouseInputHandler implements MouseListener {
 			}
 		}
 		
-		if (ManualState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 150 && mouseY <= 200) {
-					new PlayWave1st(soundName).start();
-					ManualState.isOn = false;
-					SettingsState.isOn = true;
-					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
-				}
-			} else {
-				new PlayWave1st(forbidden).start();
-			}
-		}
-
 		if (SettingsState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
@@ -112,6 +99,19 @@ public class MouseInputHandler implements MouseListener {
 						!(mouseY >= 150 && mouseY <= 200)) {
 					new PlayWave1st(forbidden).start();
 				}
+			}
+		}
+		
+		if (ManualState.isOn) {
+			if (mouseX >= 430 && mouseX <= 770) {
+				if (mouseY >= 150 && mouseY <= 200) {
+					new PlayWave1st(soundName).start();
+					ManualState.isOn = false;
+					SettingsState.isOn = true;
+					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
+				}
+			} else {
+				new PlayWave1st(forbidden).start();
 			}
 		}
 	}
