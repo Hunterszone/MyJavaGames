@@ -40,12 +40,12 @@ public class Assets extends SpritePattern {
 
 	public void init() {
 		blackBG = loadImage("images/backgrounds/main.jpg");
-		menu = loadImage("images/buttons/menu.png");
 		playGame = loadImage("images/buttons/playGame.png");
 		loadGame = loadImage("images/buttons/loadGame.png");
 		controlsButton = loadImage("images/buttons/controls.png");
 		settingsButton = loadImage("images/buttons/settings.png");
 		quitGame = loadImage("images/buttons/quitGame.png");
+		back = loadImage("images/buttons/back.png");
 		settingsText = loadImage("images/settingsText.png");
 		settingsText2 = loadImage("images/settingsText2.png");
 		controlsText = loadImage("images/controlsText.png");
@@ -54,7 +54,6 @@ public class Assets extends SpritePattern {
 		info = loadImage("images/info.png");
 		info2 = loadImage("images/info2.png");
 		info3 = loadImage("images/info3.png");
-		back = loadImage("images/buttons/back.png");
         headerBackground = loadImage("images/backgrounds/header.png");
         header = loadImage("images/header.png");
         myShip = loadImage(Images.MYSHIPINIT.getImg());
