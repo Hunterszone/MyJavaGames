@@ -155,7 +155,8 @@ public class MouseInputHandler implements MouseListener {
 		}
 		if ((CanvasMenu.State.getState() == StateManager.STATES.MENU || 
 				CanvasMenu.State.getState() == StateManager.STATES.CONTROLS || 
-				CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
+				CanvasMenu.State.getState() == StateManager.STATES.SETTINGS || 
+				CanvasMenu.State.getState() == StateManager.STATES.MANUAL)
 				&& (point.getX() >= 1100 && point.getX() <= 1100 + Constants.LOAD_ASSETS.volume.getWidth(null))) {
 			if ((point.getY() >= 32 && point.getY() <= 32 + Constants.LOAD_ASSETS.volume.getHeight(null))) {
 				new PlayWave1st(soundName).start();
@@ -167,7 +168,8 @@ public class MouseInputHandler implements MouseListener {
 					&& !(point.getY() >= 350 && point.getY() <= 400)
 					&& !(point.getY() >= 450 && point.getY() <= 500)
 					&& !(SettingsState.isOn && point.getY() >= 255 && point.getY() <= 255 + Constants.LOAD_ASSETS.myShip.getHeight(null))
-					&& !(SettingsState.isOn && point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null)))
+					&& !(SettingsState.isOn && point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null))
+					&& !(SettingsState.isOn && point.getY() >= 475 && point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
 			LoadSounds.menuMusic.loop();
 		}
 	}
