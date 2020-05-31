@@ -36,12 +36,12 @@ public class Difficulty {
 		UpdateObjects.lifeMyShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(40, 180);
+		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
 		MyShip.myShip.isVisible();
-		Crosshair.crosshair = new Crosshair(250, 165);
+		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(640, 180);
+		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
@@ -88,12 +88,12 @@ public class Difficulty {
 		UpdateObjects.lifeMyShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(40, 180);
+		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
 		MyShip.myShip.isVisible();
-		Crosshair.crosshair = new Crosshair(250, 180);
+		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(640, 180);
+		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
@@ -140,12 +140,12 @@ public class Difficulty {
 		UpdateObjects.lifeMyShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(40, 180);
+		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
 		MyShip.myShip.isVisible();
-		Crosshair.crosshair = new Crosshair(250, 180);
+		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(640, 180);
+		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnMedium();
 
@@ -192,12 +192,12 @@ public class Difficulty {
 		UpdateObjects.lifeMyShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(40, 180);
+		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
 		MyShip.myShip.isVisible();
-		Crosshair.crosshair = new Crosshair(250, 180);
+		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(640, 180);
+		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnHard();
 

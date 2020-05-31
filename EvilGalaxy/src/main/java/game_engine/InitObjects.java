@@ -31,6 +31,12 @@ public class InitObjects extends JPanel implements ActionListener {
 	}
 
 	// Constants
+	final static int MYSHIP_X = 40;
+	final static int MYSHIP_Y = 180;
+	final static int MYCROSSHAIR_X = 250;
+	final static int MYCROSSHAIR_Y = 165;
+	final static int EVILHEAD_X = 640;
+	final static int EVILHEAD_Y = 180;
 	final static int VOLBUT_X = (int) getCoordinates().getWidth()-365;
 	final static int VOLBUT_Y = (int) getCoordinates().getHeight()-1070;
 	final static int BUNKER_X = ((int) getCoordinates().getWidth()-400)/2;
@@ -40,12 +46,6 @@ public class InitObjects extends JPanel implements ActionListener {
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
-	int MYSHIP_X = 40;
-	int MYSHIP_Y = 180;
-	int MYCROSSHAIR_X = 250;
-	int MYCROSSHAIR_Y = 165;
-	int EVILHEAD_X = 640;
-	int EVILHEAD_Y = 180;
 	private static final long serialVersionUID = 1L;
 	private final int DELAY = 15;
 
