@@ -170,7 +170,7 @@ public class MouseInputHandler implements MouseListener {
 					&& !(point.getY() >= 450 && point.getY() <= 500)
 					&& !(SettingsState.isOn && point.getY() >= 255 && point.getY() <= 255 + Constants.LOAD_ASSETS.myShip.getHeight(null))
 					&& !(SettingsState.isOn && point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null))
-					&& !(SettingsState.isOn && point.getY() >= 475 && point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
+					&& !(ManualState.isOn && point.getY() >= 475 && point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
 			LoadSounds.menuMusic.loop();
 		}
 	}
