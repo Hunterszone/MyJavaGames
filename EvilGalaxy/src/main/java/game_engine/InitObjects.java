@@ -34,7 +34,7 @@ public class InitObjects extends JPanel implements ActionListener {
 	final static int VOLBUT_X = (int) getCoordinates().getWidth()-365;
 	final static int VOLBUT_Y = (int) getCoordinates().getHeight()-1070;
 	final static int BUNKER_X = ((int) getCoordinates().getWidth()-400)/2;
-	final static int BUNKER_Y = 680;
+	final static int BUNKER_Y = 688;
 	final static int B_WIDTH = 1310;
 	final static int B_HEIGHT = 1040;
 
