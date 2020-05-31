@@ -183,8 +183,8 @@ public class DrawScene extends UpdateObjects {
 				drawGameOver(g);
 				drawKilledBy(g);
 				g.drawString("Monsters left: " + 0, 5, 15);
-				g.drawString("Gold: " + 0, 150, 15);
-				g.drawString("Health: 0%", 230, 15);
+				g.drawString("Gold: " + 0, 200, 15);
+				g.drawString("Health: 0%", 300, 15);
 				try {
 					HighScoreToDb.initDbConn();
 				} catch (SQLException e) {
@@ -202,7 +202,7 @@ public class DrawScene extends UpdateObjects {
 
 				drawYouWon(g);
 				g.drawString("Monsters: Killed!", 5, 15);
-				g.drawString("Gold: Collected!", 165, 15);
+				g.drawString("Gold: Collected!", 210, 15);
 			}
 
 			return;
@@ -684,9 +684,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		Font small = new Font("Papyrus", Font.BOLD, 22);
-		g.setColor(Color.WHITE);
-		g.setFont(small);
+		setFontStyle(g);
 
 		unicode = "2713";
 		checkMark = String.valueOf(Character.toChars(Integer.parseInt(unicode, 16)));
@@ -799,7 +797,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void setFontStyle(Graphics g) {
 		Font small = new Font("Papyrus", Font.BOLD, 22);
-		g.setColor(Color.white);
+		g.setColor(Color.YELLOW);
 		g.setFont(small);
 	}
 	
