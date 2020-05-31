@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import menu_states.ControlsState;
+import menu_states.ManualState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
@@ -22,6 +23,7 @@ public class CanvasMenu implements Runnable {
 	private MenuState mainMenu;
 	private ControlsState controlsMenu;
 	private SettingsState settingsMenu;
+	private ManualState manualMenu;
 	
 	public static StateManager State;
 
@@ -38,6 +40,7 @@ public class CanvasMenu implements Runnable {
 		this.mainMenu = new MenuState();
 		this.controlsMenu = new ControlsState();
 		this.settingsMenu = new SettingsState();
+		this.manualMenu = new ManualState();
 		
 		color = new ColorSwitcher();
 		color2 = new ColorSwitcher();
@@ -61,7 +64,10 @@ public class CanvasMenu implements Runnable {
 			this.mainMenu.render(this.g);
 		} else if(State.getState() == StateManager.STATES.CONTROLS) {
             this.controlsMenu.render(g);
-        } else if(State.getState() == StateManager.STATES.SETTINGS) {
+        } else if(State.getState() == StateManager.STATES.MANUAL) {
+            this.manualMenu.render(g);
+        }
+        else if(State.getState() == StateManager.STATES.SETTINGS) {
             this.settingsMenu.render(g, color, color2);
         }
 

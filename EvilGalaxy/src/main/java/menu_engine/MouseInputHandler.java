@@ -5,13 +5,12 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import frames.ConsoleContent;
 import frames.Main;
-import frames.Manual;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
 import menu_states.ControlsState;
+import menu_states.ManualState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
@@ -84,6 +83,19 @@ public class MouseInputHandler implements MouseListener {
 				new PlayWave1st(forbidden).start();
 			}
 		}
+		
+		if (ManualState.isOn) {
+			if (mouseX >= 430 && mouseX <= 770) {
+				if (mouseY >= 150 && mouseY <= 200) {
+					new PlayWave1st(soundName).start();
+					ManualState.isOn = false;
+					SettingsState.isOn = true;
+					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
+				}
+			} else {
+				new PlayWave1st(forbidden).start();
+			}
+		}
 
 		if (SettingsState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
@@ -137,8 +149,8 @@ public class MouseInputHandler implements MouseListener {
 				&& (point.getX() >= 810 && point.getX() <= 660 + Constants.LOAD_ASSETS.manual.getWidth(null))) {
 			if (point.getY() >= 490 && point.getY() <= 370 + Constants.LOAD_ASSETS.manual.getHeight(null)) {
 				new PlayWave1st(soundName).start();
-				ConsoleContent.manual = new Manual();
-				ConsoleContent.manual.setVisible(true);
+				ManualState.isOn = true;
+				CanvasMenu.State.setState(StateManager.STATES.MANUAL);
 			}
 		}
 		if ((CanvasMenu.State.getState() == StateManager.STATES.MENU || 
