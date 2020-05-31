@@ -149,6 +149,7 @@ public class MouseInputHandler implements MouseListener {
 				&& (point.getX() >= 810 && point.getX() <= 660 + Constants.LOAD_ASSETS.manual.getWidth(null))) {
 			if (point.getY() >= 490 && point.getY() <= 370 + Constants.LOAD_ASSETS.manual.getHeight(null)) {
 				new PlayWave1st(soundName).start();
+				SettingsState.isOn = false;
 				ManualState.isOn = true;
 				CanvasMenu.State.setState(StateManager.STATES.MANUAL);
 			}
