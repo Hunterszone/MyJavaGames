@@ -71,15 +71,14 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawStar(Graphics g) {
-		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(), SatelliteAnimation.starAnim.getY(),
-				this);
+		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
+				SatelliteAnimation.starAnim.getY(), this);
 		Toolkit.getDefaultToolkit().sync();
 	}
-	
+
 	private void drawAsteroids(Graphics g) {
-		for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {			
-			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(),
-					this);
+		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
@@ -131,26 +130,10 @@ public class DrawScene extends UpdateObjects {
 				voiceInterruptor = true;
 			}
 
-			if (timerEasy.isRunning()) {
-				drawObjects(g);
-				drawCountGold(g);
-				drawL2LabelsEasy(g);
-				drawLifeMyShip(g);
-			}
-
-			if (timerMedium.isRunning()) {
-				drawObjects(g);
-				drawCountGold(g);
-				drawL2LabelsMedium(g);
-				drawLifeMyShip(g);
-			}
-
-			if (timerHard.isRunning()) {
-				drawObjects(g);
-				drawCountGold(g);
-				drawL2LabelsHard(g);
-				drawLifeMyShip(g);
-			}
+			drawL2Labels(g);
+			drawObjects(g);
+			drawCountGold(g);
+			drawLifeMyShip(g);
 		}
 
 		if (Dragon.dragons.isEmpty()) {
@@ -226,6 +209,8 @@ public class DrawScene extends UpdateObjects {
 			return;
 		}
 
+		stateWeaponsL1(g);
+		stateWeaponsL2(g);
 		stateWeaponsL3(g);
 		stateWeaponsL4(g);
 		stateWeaponsBoss(g);
@@ -309,6 +294,69 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
+	private void stateWeaponsL1(Graphics g) {
+		if (Alien.aliens.size() > 0) {
+
+			setFontStyle(g);
+
+			g.drawString("Aliens left: " + Alien.aliens.size(), 5, 20);
+			g.drawString("Level: " + 1, 310, 20);
+			g.drawString("Missiles: Unlocked", 410, 20);
+			g.drawString("Rockets: Locked", 630, 20);
+
+			if (timerEasy.isRunning()) {
+				g.drawString("Difficulty: Easy", 820, 20);
+			}
+
+			if (timerMedium.isRunning()) {
+				g.drawString("Difficulty: Med", 820, 20);
+			}
+
+			if (timerHard.isRunning()) {
+				g.drawString("Difficulty: Hard", 820, 20);
+			}
+
+			if (GameMenuBar.autosave.isSelected() == true) {
+				g.drawString("Autosave: ON", 1000, 20);
+
+			}
+
+			if (GameMenuBar.autosave.isSelected() == false) {
+				g.drawString("Autosave: OFF", 1020, 20);
+				voiceInterruptor = true;
+			}
+
+		}
+	}
+
+	private void stateWeaponsL2(Graphics g) {
+		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty() && ingame) {
+
+			if (Dragon.dragons.size() > 0) {
+				g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
+			}
+			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+				g.drawString("Dragonzz: Yes", 5, 20);
+			}
+
+			g.drawString("Level: " + 2, 310, 20);
+			g.drawString("Missiles: Locked", 410, 20);
+			g.drawString("Rockets: Unlocked", 600, 20);
+
+			if (timerEasy.isRunning()) {
+				g.drawString("Difficulty: Easy", 810, 20);
+			}
+
+			if (timerMedium.isRunning()) {
+				g.drawString("Difficulty: Med", 810, 20);
+			}
+
+			if (timerHard.isRunning()) {
+				g.drawString("Difficulty: Hard", 810, 20);
+			}
+		}
+	}
+
 	private void stateWeaponsL3(Graphics g) {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
@@ -379,9 +427,26 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawL1Labels(Graphics g) {
 
-		if (Alien.aliens.size() > 0 && timerEasy.isRunning()) {
+		if (Alien.aliens.size() > 0) {
 
 			setFontStyle(g);
+
+			g.drawString("Aliens left: " + Alien.aliens.size(), 5, 20);
+			g.drawString("Level: " + 1, 310, 20);
+			g.drawString("Missiles: Unlocked", 410, 20);
+			g.drawString("Rockets: Locked", 630, 20);
+
+			if (timerEasy.isRunning()) {
+				g.drawString("Difficulty: Easy", 820, 20);
+			}
+
+			if (timerMedium.isRunning()) {
+				g.drawString("Difficulty: Med", 820, 20);
+			}
+
+			if (timerHard.isRunning()) {
+				g.drawString("Difficulty: Hard", 820, 20);
+			}
 
 			if (GameMenuBar.autosave.isSelected() == true) {
 				g.drawString("Autosave: ON", 1020, 20);
@@ -391,114 +456,49 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Autosave: OFF", 1020, 20);
 				voiceInterruptor = true;
 			}
-
-			g.drawString("Aliens left: " + Alien.aliens.size(), 5, 20);
-			g.drawString("Level: " + 1, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Locked", 630, 20);
-			g.drawString("Difficulty: Easy", 820, 20);
 		}
-
-		if (Alien.aliens.size() > 0 && timerMedium.isRunning()) {
-
-			if (GameMenuBar.autosave.isSelected() == true) {
-				g.drawString("Autosave: ON", 1000, 20);
-
-			}
-
-			if (GameMenuBar.autosave.isSelected() == false) {
-				g.drawString("Autosave: OFF", 1020, 20);
-				voiceInterruptor = true;
-			}
-
-			g.drawString("Alien left: " + Alien.aliens.size(), 5, 20);
-			g.drawString("Level: " + 1, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Locked", 600, 20);
-			g.drawString("Difficulty: Med", 810, 20);
-
-		}
-
-		if (Alien.aliens.size() > 0 && timerHard.isRunning()) {
-
-			if (GameMenuBar.autosave.isSelected() == true) {
-				g.drawString("Autosave: ON", 1000, 20);
-
-			}
-
-			if (GameMenuBar.autosave.isSelected() == false) {
-				g.drawString("Autosave: OFF", 1020, 20);
-				voiceInterruptor = true;
-			}
-
-			g.drawString("Alien left: " + Alien.aliens.size(), 5, 20);
-			g.drawString("Level: " + 1, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Locked", 600, 20);
-			g.drawString("Difficulty: Hard", 810, 20);
-
-		}
-
 	}
 
-	private void drawL2LabelsEasy(Graphics g) {
+	private void drawL2Labels(Graphics g) {
+
 		if (Dragon.dragons.size() > 0) {
 			g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
 			g.drawString("Level: " + 2, 310, 20);
 			g.drawString("Missiles: Locked", 410, 20);
 			g.drawString("Rockets: Unlocked", 600, 20);
-			g.drawString("Difficulty: Easy", 810, 20);
 		}
-		UpdateObjects.updateDragons();
-		LoadSounds.roar.loop();
+
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
 			g.drawString("Dragonzz: Yes", 5, 20);
-			g.drawString("Level: " + 3, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Unlocked", 600, 20);
+		}
+
+		if (timerEasy.isRunning()) {
 			g.drawString("Difficulty: Easy", 810, 20);
 		}
-	}
 
-	private void drawL2LabelsMedium(Graphics g) {
-		if (Dragon.dragons.size() > 0) {
-			g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
-			g.drawString("Level: " + 2, 310, 20);
-			g.drawString("Missiles: Locked", 410, 20);
-			g.drawString("Rockets: Unlocked", 600, 20);
+		if (timerMedium.isRunning()) {
 			g.drawString("Difficulty: Med", 810, 20);
 		}
-		UpdateObjects.updateDragons();
-		LoadSounds.roar.loop();
-		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-			g.drawString("Dragonzz: Yes", 5, 20);
-			g.drawString("Level: " + 3, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Unlocked", 600, 20);
-			g.drawString("Difficulty: Med", 810, 20);
-		}
-	}
 
-	private void drawL2LabelsHard(Graphics g) {
-		if (Dragon.dragons.size() > 0) {
-			g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
-			g.drawString("Level: " + 2, 310, 20);
-			g.drawString("Missiles: Locked", 410, 20);
-			g.drawString("Rockets: Unlocked", 600, 20);
+		if (timerHard.isRunning()) {
 			g.drawString("Difficulty: Hard", 810, 20);
 			drawOuttaControl(g);
 			MyShip.myShip.shipShaked();
-			Crosshair.crosshair.crosShaked();
-		}
-
-		UpdateObjects.updateDragons();
-		LoadSounds.roar.loop();
-		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+			Crosshair.crosshair.crosShaked();			
+			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
 //			g.drawString("Dragonzz: Yes", 5, 20);
-			g.drawString("Level: " + 3, 160, 20);
-			g.drawString("Missiles: Unlocked", 240, 20);
-			g.drawString("Rockets: Unlocked", 430, 20);
-			g.drawString("Difficulty: Hard", 640, 20);
+				g.drawString("Level: " + 3, 160, 20);
+				g.drawString("Missiles: Unlocked", 240, 20);
+				g.drawString("Rockets: Unlocked", 430, 20);
+				g.drawString("Difficulty: Hard", 640, 20);
+			}
+		}
+		
+		if (timerEasy.isRunning() || 
+			timerMedium.isRunning() || 
+			timerHard.isRunning() ) {
+			UpdateObjects.updateDragons();
+			LoadSounds.roar.loop();
 		}
 	}
 
