@@ -83,7 +83,7 @@ public class GameMenuBar extends JFrame {
 		game.add(save);
 		game.addSeparator();
 //		game.add(load);
-		game.addSeparator();
+//		game.addSeparator();
 		game.add(join);
 		game.addSeparator();
 		game.add(exit);
