@@ -592,7 +592,7 @@ public class DrawScene extends UpdateObjects {
 				voiceInterruptor = true;
 			}
 //			g.drawString("Dragonzz: Yes", 5, 20);
-			g.drawString("Level: " + 4, 200, 20);
+			g.drawString("Level: " + 4, 150, 20);
 			g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 			if (Gold.goldstack.size() > 0) {
 				EvilHead.evilHead.renderEvilHead(g);
