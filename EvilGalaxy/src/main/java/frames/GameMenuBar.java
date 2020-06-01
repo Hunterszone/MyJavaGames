@@ -21,10 +21,12 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import entities.Alien;
+import entities.AsteroidsAnimation;
 import entities.Bunker;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
+import entities.SatelliteAnimation;
 import game_engine.Difficulty;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
@@ -192,6 +194,15 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerEasy.stop();
 				InitObjects.timerMedium.stop();
 				InitObjects.timerHard.stop();
+				if (InitObjects.ingame == false) {
+					DrawScene.initVoice("Loading main menu...");
+					DrawScene.voiceInterruptor = true;
+				}
+				if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
+				for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+					if(asteroidsAnim != null) asteroidsAnim = null;				
+				}
+				AsteroidsAnimation.asteroidsAnimations.clear();
 				InitObjects.ingame = false;
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;
