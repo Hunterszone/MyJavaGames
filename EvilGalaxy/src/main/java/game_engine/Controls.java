@@ -252,6 +252,10 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
+			if (InitObjects.ingame == false) {
+				DrawScene.initVoice("Loading main menu...");
+				DrawScene.voiceInterruptor = true;
+			}
 			if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
 			for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 				if(asteroidsAnim != null) asteroidsAnim = null;				
