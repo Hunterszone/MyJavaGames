@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import entities.Alien;
+import entities.AsteroidsAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
@@ -85,6 +86,16 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
 		SatelliteAnimation.starAnim.drawSatellite();
 		SatelliteAnimation.starAnim.setVisible(true);
+				
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 0));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(300, 300));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(600, 500));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(800, 320));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(1000, 150));
+		for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {			
+			asteroidsAnim.drawAsteroids();
+			asteroidsAnim.setVisible(true);
+		}
 
 		MyShip.myShip = new MyShip(MYSHIP_X, MYSHIP_Y);
 		MyShip.myShip.setVisible(true);
@@ -183,6 +194,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	        while (true) {
 
 	        	SatelliteAnimation.starAnim.cycle();
+	        	for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {	        		
+	        		asteroidsAnim.cycle();
+	        	}
 	            repaint();
 
 	            timeDiff = System.currentTimeMillis() - beforeTime;

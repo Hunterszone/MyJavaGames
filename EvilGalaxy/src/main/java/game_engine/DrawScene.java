@@ -13,6 +13,7 @@ import com.sun.speech.freetts.VoiceManager;
 
 import dbconn.HighScoreToDb;
 import entities.Alien;
+import entities.AsteroidsAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
@@ -74,6 +75,14 @@ public class DrawScene extends UpdateObjects {
 				this);
 		Toolkit.getDefaultToolkit().sync();
 	}
+	
+	private void drawAsteroids(Graphics g) {
+		for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {			
+			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(),
+					this);
+			Toolkit.getDefaultToolkit().sync();
+		}
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -95,12 +104,12 @@ public class DrawScene extends UpdateObjects {
 			drawL1Labels(g);
 			drawCountGold(g);
 			drawLifeMyShip(g);
+			drawAsteroids(g);
 		}
 
 		if (Alien.aliens.isEmpty()) {
 
 			drawScene2(g);
-
 			setFontStyle(g);
 
 			if (GameMenuBar.autosave.isSelected() == true) {

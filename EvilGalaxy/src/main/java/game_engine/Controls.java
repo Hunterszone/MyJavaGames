@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 import entities.Alien;
+import entities.AsteroidsAnimation;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.MyShip;
@@ -109,6 +110,7 @@ public class Controls extends JFrame implements KeyListener {
 				DrawScene.voiceInterruptor = true;
 			}
 			Difficulty.restart();
+			Alien.aliens.clear();
 		}
 
 		if (key == KeyEvent.VK_3) {
@@ -238,6 +240,9 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
 			if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
+			for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+				if(asteroidsAnim != null) asteroidsAnim = null;				
+			}
 			InitObjects.ingame = false;
 			if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
