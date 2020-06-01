@@ -9,7 +9,7 @@ import entities.Alien;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.MyShip;
-import entities.StarAnimation;
+import entities.SatelliteAnimation;
 import frames.ConsoleContent;
 import frames.ConsoleForm;
 import items.Gold;
@@ -237,7 +237,7 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
-			if(StarAnimation.starAnim != null) StarAnimation.starAnim = null;
+			if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
 			InitObjects.ingame = false;
 			if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;

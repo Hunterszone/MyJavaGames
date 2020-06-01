@@ -18,7 +18,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
-import entities.StarAnimation;
+import entities.SatelliteAnimation;
 import frames.GameMenuBar;
 import frames.Main;
 import items.BunkerBullet;
@@ -70,7 +70,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawStar(Graphics g) {
-		g.drawImage(StarAnimation.starAnim.getImage(), StarAnimation.starAnim.getX(), StarAnimation.starAnim.getY(),
+		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(), SatelliteAnimation.starAnim.getY(),
 				this);
 		Toolkit.getDefaultToolkit().sync();
 	}

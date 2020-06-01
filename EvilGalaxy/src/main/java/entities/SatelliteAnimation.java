@@ -6,22 +6,22 @@ import game_engine.Images;
 import game_engine.InitObjects;
 import game_engine.SpritePattern;
 
-public class StarAnimation extends SpritePattern {
+public class SatelliteAnimation extends SpritePattern {
 	
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_X = 0;
 	private final int INITIAL_Y = 0;
-	public static StarAnimation starAnim;
+	public static SatelliteAnimation starAnim;
 
-	public StarAnimation(int x, int y) {
+	public SatelliteAnimation(int x, int y) {
 		super(x, y);
-		drawStar();
+		drawSatellite();
 	}
 
 	private String imageName;
 
-	public Image drawStar() {
-		imageName = Images.STARINIT.getImg();
+	public Image drawSatellite() {
+		imageName = Images.SATELLITEINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return loadImage(imageName);

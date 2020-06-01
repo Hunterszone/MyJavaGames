@@ -17,7 +17,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
-import entities.StarAnimation;
+import entities.SatelliteAnimation;
 import frames.GameMenuBar;
 import frames.Main;
 import items.Gold;
@@ -82,9 +82,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 		
-		StarAnimation.starAnim = new StarAnimation(0, 0);
-		StarAnimation.starAnim.drawStar();
-		StarAnimation.starAnim.setVisible(true);
+		SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
+		SatelliteAnimation.starAnim.drawSatellite();
+		SatelliteAnimation.starAnim.setVisible(true);
 
 		MyShip.myShip = new MyShip(MYSHIP_X, MYSHIP_Y);
 		MyShip.myShip.setVisible(true);
@@ -182,7 +182,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	        while (true) {
 
-	        	StarAnimation.starAnim.cycle();
+	        	SatelliteAnimation.starAnim.cycle();
 	            repaint();
 
 	            timeDiff = System.currentTimeMillis() - beforeTime;

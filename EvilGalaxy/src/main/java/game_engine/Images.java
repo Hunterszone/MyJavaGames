@@ -49,7 +49,7 @@ public enum Images {
 			return "images/craft.png";
 		}
 	},
-	STARINIT {
+	SATELLITEINIT {
 		@Override
 		public String getImg() {
 			return "images/star.png";
