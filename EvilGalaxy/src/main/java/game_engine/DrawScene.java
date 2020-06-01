@@ -603,7 +603,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawCountGold(Graphics g) {
-		if (!Alien.aliens.isEmpty() || Dragon.dragons.size() > 0) {
+		if (!Alien.aliens.isEmpty() || !Dragon.dragons.isEmpty()) {
 			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 170, 20);
 		}
 		if (Dragon.dragons.isEmpty()) {
