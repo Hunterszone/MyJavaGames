@@ -95,48 +95,43 @@ public class Controls extends JFrame implements KeyListener {
 
 		if (key == KeyEvent.VK_1) {
 
-			Difficulty.restart();
-			if (DrawScene.voiceInterruptor == false) {
-				DrawScene.initVoice("Level 1!");
+			if (InitObjects.ingame == false) {
+				DrawScene.initVoice("Loading level 1...");
 				DrawScene.voiceInterruptor = true;
-				return;
 			}
+			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_2) {
 
-			Difficulty.restart();
-			Alien.aliens.clear();
-			if (DrawScene.voiceInterruptor == false && !Dragon.dragons.isEmpty()) {
-				DrawScene.initVoice("Level 2!");
+			if (InitObjects.ingame == false) {
+				DrawScene.initVoice("Loading level 2...");
 				DrawScene.voiceInterruptor = true;
-				return;
 			}
+			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_3) {
 
+			if (InitObjects.ingame == false) {
+				DrawScene.initVoice("Loading level 3...");
+				DrawScene.voiceInterruptor = true;
+			}
 			Difficulty.restart();
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
-			if (DrawScene.voiceInterruptor == false && Dragon.dragons.isEmpty()) {
-				DrawScene.initVoice("Level 3!");
-				DrawScene.voiceInterruptor = true;
-				return;
-			}
 		}
 
 		if (key == KeyEvent.VK_4) {
-
+			
+			if (InitObjects.ingame == false) {
+				DrawScene.initVoice("Loading level 4...");
+				DrawScene.voiceInterruptor = true;
+			}
 			Difficulty.restart();
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 			UpdateObjects.lifeBunker = 50;
-			if (DrawScene.voiceInterruptor == false) {
-				DrawScene.initVoice("Level 4!");
-				DrawScene.voiceInterruptor = true;
-				return;
-			}
 		}
 
 		if (key == KeyEvent.VK_R) {
