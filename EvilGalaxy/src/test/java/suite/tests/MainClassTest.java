@@ -19,18 +19,8 @@ public class MainClassTest {
 	}
 
 	@Test
-	public void testFrameVisibility() {
-		assertFalse(main.isVisible());
-	}
-
-	@Test
 	public void testGameTitle() {
 		assertTrue(main.getTitle().equals("EvilGalaxy"));
-	}
-
-	@Test
-	public void testFrameSize() {
-		assertFalse(main.isResizable());
 	}
 
 	@Test
