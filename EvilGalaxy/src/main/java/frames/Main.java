@@ -27,7 +27,7 @@ public final class Main extends GameMenuBar {
 	public void initGame() {
 
 		add(new DrawScene());
-		setResizable(true);
+		setResizable(false);
 		setUndecorated(true);
 		pack();
 		setTitle("EvilGalaxy");
