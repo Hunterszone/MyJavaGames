@@ -469,32 +469,21 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Level: " + 2, 310, 20);
 			g.drawString("Missiles: Locked", 410, 20);
 			g.drawString("Rockets: Unlocked", 600, 20);
-		}
+			
+			if (timerEasy.isRunning()) {
+				g.drawString("Difficulty: Easy", 810, 20);
+			}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-			g.drawString("Dragonzz: Yes", 5, 20);
-		}
+			if (timerMedium.isRunning()) {
+				g.drawString("Difficulty: Med", 810, 20);
+			}
 
-		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 810, 20);
-		}
-
-		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Med", 810, 20);
-		}
-
-		if (Dragon.dragons.size() > 0 && timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 810, 20);
-			drawOuttaControl(g);
-			MyShip.myShip.shipShaked();
-			Crosshair.crosshair.crosShaked();			
-//			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-////			g.drawString("Dragonzz: Yes", 5, 20);
-//				g.drawString("Level: " + 3, 160, 20);
-//				g.drawString("Missiles: Unlocked", 240, 20);
-//				g.drawString("Rockets: Unlocked", 430, 20);
-//				g.drawString("Difficulty: Hard", 640, 20);
-//			}
+			if (timerHard.isRunning()) {
+				g.drawString("Difficulty: Hard", 810, 20);
+				drawOuttaControl(g);
+				MyShip.myShip.shipShaked();
+				Crosshair.crosshair.crosShaked();			
+			}
 		}
 		
 		if (timerEasy.isRunning() || 
