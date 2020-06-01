@@ -9,7 +9,7 @@ public class Dragon extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	public static List<Dragon> dragons;
-	private final int INITIAL_X = (int) Math.ceil(Math.random() * 6000);
+	private final int INITIAL_X = (int) Math.ceil(Math.random() * 7000);
 	private String imageName;
 
 	public Dragon(int x, int y) {
