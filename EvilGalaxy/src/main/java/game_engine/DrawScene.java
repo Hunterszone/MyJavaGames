@@ -151,7 +151,7 @@ public class DrawScene extends UpdateObjects {
 			drawStar(g);
 
 			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
-				g.drawString("Autosave: ON", 1000, 15);
+				g.drawString("Autosave: ON", 870, 15);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL4 = false;
@@ -163,7 +163,7 @@ public class DrawScene extends UpdateObjects {
 
 			}
 			if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
-				g.drawString("Autosave: OFF", 1000, 15);
+				g.drawString("Autosave: OFF", 870, 15);
 				voiceInterruptor = true;
 			}
 			drawObjects(g);
@@ -305,22 +305,22 @@ public class DrawScene extends UpdateObjects {
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
 
 			drawKillTheBunker(g);
-			g.drawString("Missiles: Locked", 410, 15);
-			g.drawString("Rockets: Unlocked", 600, 15);
+			g.drawString("Missiles: Locked", 270, 15);
+			g.drawString("Rockets: Unlocked", 470, 15);
 
 			if (timerEasy.isRunning()) {
 
-				g.drawString("Difficulty: Easy", 810, 15);
+				g.drawString("Difficulty: Easy", 680, 15);
 			}
 
 			if (timerMedium.isRunning()) {
 
-				g.drawString("Difficulty: Med", 810, 15);
+				g.drawString("Difficulty: Med", 680, 15);
 			}
 
 			if (timerHard.isRunning()) {
 
-				g.drawString("Difficulty: Hard", 810, 15);
+				g.drawString("Difficulty: Hard", 680, 15);
 			}
 		}
 	}
@@ -330,19 +330,19 @@ public class DrawScene extends UpdateObjects {
 		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0 && ingame) {
 
 			drawCollect(g);
-			g.drawString("Missiles: Locked", 410, 15);
-			g.drawString("Rockets: Locked", 600, 15);
+			g.drawString("Missiles: Locked", 260, 15);
+			g.drawString("Rockets: Locked", 450, 15);
 
 			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 790, 15);
+				g.drawString("Difficulty: Easy", 640, 15);
 			}
 
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 790, 15);
+				g.drawString("Difficulty: Med", 640, 15);
 			}
 
 			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 790, 15);
+				g.drawString("Difficulty: Hard", 640, 15);
 			}
 		}
 
@@ -352,17 +352,17 @@ public class DrawScene extends UpdateObjects {
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && ingame) {
 
 			drawKillTheHead(g);
-			g.drawString("Missiles: Unlocked", 410, 15);
-			g.drawString("Rockets: Unlocked", 600, 15);
+			g.drawString("Missiles: Unlocked", 240, 15);
+			g.drawString("Rockets: Unlocked", 430, 15);
 
 			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 810, 15);
+				g.drawString("Difficulty: Easy", 640, 15);
 			}
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 810, 15);
+				g.drawString("Difficulty: Med", 640, 15);
 			}
 			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 810, 15);
+				g.drawString("Difficulty: Hard", 640, 15);
 			}
 		}
 
@@ -485,11 +485,11 @@ public class DrawScene extends UpdateObjects {
 		UpdateObjects.updateDragons();
 		LoadSounds.roar.loop();
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-			g.drawString("Dragonzz: Yes", 5, 15);
-			g.drawString("Level: " + 3, 310, 15);
-			g.drawString("Missiles: Unlocked", 410, 15);
-			g.drawString("Rockets: Unlocked", 600, 15);
-			g.drawString("Difficulty: Hard", 810, 15);
+//			g.drawString("Dragonzz: Yes", 5, 15);
+			g.drawString("Level: " + 3, 160, 15);
+			g.drawString("Missiles: Unlocked", 240, 15);
+			g.drawString("Rockets: Unlocked", 430, 15);
+			g.drawString("Difficulty: Hard", 640, 15);
 		}
 	}
 
@@ -566,8 +566,8 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifeBunker < 50) {
-			g.drawString("Dragonzz: Yes", 5, 15);
-			g.drawString("Level: " + 3, 310, 15);
+//			g.drawString("Dragonzz: Yes", 5, 15);
+			g.drawString("Level: " + 3, 160, 15);
 		}
 
 		if (lifeBunker == 50) {
@@ -576,9 +576,9 @@ public class DrawScene extends UpdateObjects {
 
 			if (GameMenuBar.autosave.isSelected() == true) {
 				if (!Gold.goldstack.isEmpty())
-					g.drawString("Autosave: ON", 990, 15);
+					g.drawString("Autosave: ON", 830, 15);
 				else
-					g.drawString("Autosave: ON", 990, 15);
+					g.drawString("Autosave: ON", 830, 15);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
@@ -586,13 +586,13 @@ public class DrawScene extends UpdateObjects {
 			}
 			if (GameMenuBar.autosave.isSelected() == false) {
 				if (!Gold.goldstack.isEmpty())
-					g.drawString("Autosave: OFF", 990, 15);
+					g.drawString("Autosave: OFF", 830, 15);
 				else
-					g.drawString("Autosave: OFF", 990, 15);
+					g.drawString("Autosave: OFF", 830, 15);
 				voiceInterruptor = true;
 			}
-			g.drawString("Dragonzz: Yes", 5, 15);
-			g.drawString("Level: " + 4, 310, 15);
+//			g.drawString("Dragonzz: Yes", 5, 15);
+			g.drawString("Level: " + 4, 150, 15);
 			g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 			if (Gold.goldstack.size() > 0) {
 				EvilHead.evilHead.renderEvilHead(g);
@@ -604,12 +604,14 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawCountGold(Graphics g) {
-		if (Gold.goldstack.size() > 0) {
+		if (Gold.goldstack.size() > 0 && !(Dragon.dragons.isEmpty())) {
 			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 170, 15);
+		} else {
+			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 5, 15);
 		}
 
 		if (Gold.goldstack.isEmpty()) {
-			g.drawString("Gold: Yes", 170, 15);
+			g.drawString("Gold: Collected", 5, 15);
 		}
 
 	}
