@@ -49,6 +49,12 @@ public enum Images {
 			return "images/craft.png";
 		}
 	},
+	STARINIT {
+		@Override
+		public String getImg() {
+			return "images/star.png";
+		}
+	},
 	MYSHIPONFIRE {
 		@Override
 		public String getImg() {

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -16,6 +17,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
+import entities.StarAnimation;
 import frames.GameMenuBar;
 import frames.Main;
 import items.Gold;
@@ -24,8 +26,10 @@ import items.SaveSign;
 import items.VolBtn;
 import sound_engine.LoadSounds;
 
-public class InitObjects extends JPanel implements ActionListener {
-	
+public class InitObjects extends JPanel implements ActionListener, Runnable {
+
+	private Thread animator;
+
 	public static Dimension getCoordinates() {
 		return Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 	}
@@ -37,20 +41,23 @@ public class InitObjects extends JPanel implements ActionListener {
 	final static int MYCROSSHAIR_Y = 165;
 	final static int EVILHEAD_X = 640;
 	final static int EVILHEAD_Y = 180;
-	final static int VOLBUT_X = (int) getCoordinates().getWidth()-365;
-	final static int VOLBUT_Y = (int) getCoordinates().getHeight()-1070;
-	final static int BUNKER_X = ((int) getCoordinates().getWidth()-400)/2;
+	final static int VOLBUT_X = (int) getCoordinates().getWidth() - 365;
+	final static int VOLBUT_Y = (int) getCoordinates().getHeight() - 1070;
+	final static int BUNKER_X = ((int) getCoordinates().getWidth() - 400) / 2;
 	final static int BUNKER_Y = 688;
 	final static int B_WIDTH = 1310;
-	final static int B_HEIGHT = 1040;
+	public final static int B_HEIGHT = 1040;
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
 	private static final long serialVersionUID = 1L;
 	private final int DELAY = 15;
 
-	/*private final static int[][] posGold = { { 700, 1029 }, { 690, 1180 }, { 730, 60 }, { 510, 1839 }, { 820, 1600 },
-			{ 680, 1359 }, { 760, 1150 }, { 640, 90 }, { 630, 1420 }, { 760, 1520 }, { 655, 1228 }, { 700, 1130 } };*/
+	/*
+	 * private final static int[][] posGold = { { 700, 1029 }, { 690, 1180 }, { 730,
+	 * 60 }, { 510, 1839 }, { 820, 1600 }, { 680, 1359 }, { 760, 1150 }, { 640, 90
+	 * }, { 630, 1420 }, { 760, 1520 }, { 655, 1228 }, { 700, 1130 } };
+	 */
 
 	private final static int[][] posDragon = { { 1380, 550 }, { 1580, 370 }, { 1680, 239 }, { 1390, 450 },
 			{ 1460, 580 }, { 1790, 590 }, { 1400, 359 }, { 1460, 290 }, { 1540, 250 }, { 1410, 220 }, { 1560, 250 },
@@ -58,13 +65,13 @@ public class InitObjects extends JPanel implements ActionListener {
 			{ 1390, 350 }, { 1460, 280 }, { 1790, 490 }, { 1400, 259 }, { 1460, 690 }, { 1540, 450 }, { 1410, 420 },
 			{ 1560, 350 }, { 1740, 280 }, { 1420, 250 }, { 1590, 290 }, { 1700, 470 } };
 
-	/*private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, { 650, 240 }, { 600, 500 },
-			{ 500, 600 } };*/
+	/*
+	 * private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, {
+	 * 650, 240 }, { 600, 500 }, { 500, 600 } };
+	 */
 
 	public InitObjects() {
-
 		initBoard();
-
 	}
 
 	private void initBoard() {
@@ -74,16 +81,20 @@ public class InitObjects extends JPanel implements ActionListener {
 		ingame = true;
 
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+		
+		StarAnimation.starAnim = new StarAnimation(0, 0);
+		StarAnimation.starAnim.drawStar();
+		StarAnimation.starAnim.setVisible(true);
 
 		MyShip.myShip = new MyShip(MYSHIP_X, MYSHIP_Y);
-		MyShip.myShip.isVisible();
+		MyShip.myShip.setVisible(true);
 
 		Crosshair.crosshair = new Crosshair(MYCROSSHAIR_X, MYCROSSHAIR_Y);
-		Crosshair.crosshair.isVisible();
-
+		Crosshair.crosshair.setVisible(true);
+		
 		EvilHead.evilHead = new EvilHead(EVILHEAD_X, EVILHEAD_Y);
-		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
+		EvilHead.evilHead.setVisible(true);
 
 		VolBtn.volButt = new VolBtn(VOLBUT_X, VOLBUT_Y);
 		VolBtn.volButt.setVisible(true);
@@ -143,7 +154,8 @@ public class InitObjects extends JPanel implements ActionListener {
 		HealthPack.healthpack = new ArrayList<>();
 
 		for (int i = 0; i < 5; i++) {
-			HealthPack.healthpack.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
+			HealthPack.healthpack
+					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 		return HealthPack.healthpack;
 	}
@@ -158,5 +170,46 @@ public class InitObjects extends JPanel implements ActionListener {
 		enemyNames.add(Alien.class.getName());
 		enemyNames.add(Dragon.class.getName());
 		return enemyNames;
+	}
+
+	 @Override
+	    public void run() {
+
+	        long beforeTime, timeDiff, sleep;
+
+	        beforeTime = System.currentTimeMillis();
+
+	        while (true) {
+
+	        	StarAnimation.starAnim.cycle();
+	            repaint();
+
+	            timeDiff = System.currentTimeMillis() - beforeTime;
+	            sleep = DELAY - timeDiff;
+
+	            if (sleep < 0) {
+	                sleep = 2;
+	            }
+
+	            try {
+	                Thread.sleep(sleep);
+	            } catch (InterruptedException e) {
+	                
+	                String msg = String.format("Thread interrupted: %s", e.getMessage());
+	                
+	                JOptionPane.showMessageDialog(this, msg, "Error", 
+	                    JOptionPane.ERROR_MESSAGE);
+	            }
+
+	            beforeTime = System.currentTimeMillis();
+	        }
+	    }
+
+	@Override
+	public void addNotify() {
+		super.addNotify();
+
+		animator = new Thread(this);
+		animator.start();
 	}
 }

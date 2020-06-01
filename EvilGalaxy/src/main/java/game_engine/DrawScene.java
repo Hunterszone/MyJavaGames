@@ -18,6 +18,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
+import entities.StarAnimation;
 import frames.GameMenuBar;
 import frames.Main;
 import items.BunkerBullet;
@@ -42,8 +43,8 @@ public class DrawScene extends UpdateObjects {
 	static Voice voice;
 	transient static Image bg1, bg2, bg3;
 	private static final long serialVersionUID = 1L;
-	private String unicode;
-	private String checkMark;
+//	private String unicode;
+//	private String checkMark;
 
 	public static void initVoice(String message) {
 		VoiceManager vm = VoiceManager.getInstance();
@@ -67,10 +68,17 @@ public class DrawScene extends UpdateObjects {
 		bg3 = Toolkit.getDefaultToolkit().createImage("images/galaxy3.jpg");
 		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
+	
+	private void drawStar(Graphics g) {
+        g.drawImage(StarAnimation.starAnim.getImage(), StarAnimation.starAnim.getX(), 
+        		StarAnimation.starAnim.getY(), this);
+        Toolkit.getDefaultToolkit().sync();
+    }
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
 
 		if (ingame && Alien.aliens.size() > 0) {
 
@@ -140,6 +148,7 @@ public class DrawScene extends UpdateObjects {
 
 			drawScene3(g);
 			setFontStyle(g);
+			drawStar(g);
 
 			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
 				g.drawString("Autosave: ON", 1000, 15);
@@ -686,8 +695,8 @@ public class DrawScene extends UpdateObjects {
 
 		setFontStyle(g);
 
-		unicode = "2713";
-		checkMark = String.valueOf(Character.toChars(Integer.parseInt(unicode, 16)));
+//		unicode = "2713";
+//		checkMark = String.valueOf(Character.toChars(Integer.parseInt(unicode, 16)));
 
 	}
 
