@@ -11,8 +11,8 @@ import game_engine.SpritePattern;
 public class AsteroidsAnimation extends SpritePattern {
 	
 	private static final long serialVersionUID = 1L;
-	private final int INITIAL_X = 0;
-	private final int INITIAL_Y = 0;
+	private final int INITIAL_X = (int) Math.ceil(Math.random() * 700);
+	private final int INITIAL_Y = (int) Math.ceil(Math.random());
 	public static List<AsteroidsAnimation> asteroidsAnimations = new ArrayList<AsteroidsAnimation>();
 
 	public AsteroidsAnimation(int x, int y) {
@@ -31,8 +31,8 @@ public class AsteroidsAnimation extends SpritePattern {
 	
 	public void cycle() {
 
-        x += 1;
-        y += 1;
+        x += 3;
+        y += 3;
 
         if (y > InitObjects.B_HEIGHT) {
 

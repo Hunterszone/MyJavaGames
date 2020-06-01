@@ -140,6 +140,10 @@ public class Controls extends JFrame implements KeyListener {
 			isEPressed = false;
 			isMPressed = false;
 			isHPressed = false;
+			if (InitObjects.ingame == false) {
+				DrawScene.initVoice("Loading level 1...");
+				DrawScene.voiceInterruptor = true;
+			}
 			Difficulty.restart();
 		}
 
@@ -157,7 +161,10 @@ public class Controls extends JFrame implements KeyListener {
 				LoadSounds.roar.loop();
 			}
 			if (!InitObjects.ingame) {
-
+				if (InitObjects.ingame == false) {
+					DrawScene.initVoice("Loading level 1...");
+					DrawScene.voiceInterruptor = true;
+				}
 				Difficulty.easy();
 			}
 
@@ -177,7 +184,10 @@ public class Controls extends JFrame implements KeyListener {
 				LoadSounds.roar.loop();
 			}
 			if (!InitObjects.ingame) {
-
+				if (InitObjects.ingame == false) {
+					DrawScene.initVoice("Loading level 1...");
+					DrawScene.voiceInterruptor = true;
+				}
 				Difficulty.medium();
 			}
 
@@ -197,7 +207,10 @@ public class Controls extends JFrame implements KeyListener {
 				LoadSounds.roar.loop();
 			}
 			if (!InitObjects.ingame) {
-
+				if (InitObjects.ingame == false) {
+					DrawScene.initVoice("Loading level 1...");
+					DrawScene.voiceInterruptor = true;
+				}
 				Difficulty.hard();
 			}
 		}
@@ -243,6 +256,7 @@ public class Controls extends JFrame implements KeyListener {
 			for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 				if(asteroidsAnim != null) asteroidsAnim = null;				
 			}
+			AsteroidsAnimation.asteroidsAnimations.clear();
 			InitObjects.ingame = false;
 			if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
