@@ -68,17 +68,16 @@ public class DrawScene extends UpdateObjects {
 		bg3 = Toolkit.getDefaultToolkit().createImage("images/galaxy3.jpg");
 		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
-	
+
 	private void drawStar(Graphics g) {
-        g.drawImage(StarAnimation.starAnim.getImage(), StarAnimation.starAnim.getX(), 
-        		StarAnimation.starAnim.getY(), this);
-        Toolkit.getDefaultToolkit().sync();
-    }
+		g.drawImage(StarAnimation.starAnim.getImage(), StarAnimation.starAnim.getX(), StarAnimation.starAnim.getY(),
+				this);
+		Toolkit.getDefaultToolkit().sync();
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 
 		if (ingame && Alien.aliens.size() > 0) {
 
@@ -353,16 +352,16 @@ public class DrawScene extends UpdateObjects {
 
 			drawKillTheHead(g);
 			g.drawString("Missiles: Unlocked", 240, 20);
-			g.drawString("Rockets: Unlocked", 430, 20);
+			g.drawString("Rockets: Unlocked", 460, 20);
 
 			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 640, 20);
+				g.drawString("Difficulty: Easy", 680, 20);
 			}
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 640, 20);
+				g.drawString("Difficulty: Med", 680, 20);
 			}
 			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 640, 20);
+				g.drawString("Difficulty: Hard", 680, 20);
 			}
 		}
 
@@ -496,7 +495,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawLifeMyShip(Graphics g) {
 
 		if (lifeMyShip >= 3) {
-			MyShip.myShip.renderShip(g);			
+			MyShip.myShip.renderShip(g);
 		}
 
 		if (lifeMyShip < 3) {
@@ -578,7 +577,7 @@ public class DrawScene extends UpdateObjects {
 				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: ON", 830, 20);
 				else
-					g.drawString("Autosave: ON", 830, 20);
+					g.drawString("Autosave: ON", 860, 20);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
@@ -588,7 +587,7 @@ public class DrawScene extends UpdateObjects {
 				if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: OFF", 830, 20);
 				else
-					g.drawString("Autosave: OFF", 830, 20);
+					g.drawString("Autosave: OFF", 860, 20);
 				voiceInterruptor = true;
 			}
 //			g.drawString("Dragonzz: Yes", 5, 20);
@@ -604,16 +603,12 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawCountGold(Graphics g) {
-		if (Gold.goldstack.size() > 0 && !(Dragon.dragons.isEmpty())) {
+		if (!Alien.aliens.isEmpty() || Dragon.dragons.size() > 0) {
 			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 170, 20);
-		} else {
+		}
+		if (Dragon.dragons.isEmpty()) {
 			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 5, 20);
 		}
-
-		if (Gold.goldstack.isEmpty()) {
-			g.drawString("Gold: Collected", 5, 20);
-		}
-
 	}
 
 	private void drawObjects(Graphics g) {
@@ -689,9 +684,11 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		for (HealthPack health : HealthPack.healthpack) {
-			if (health.isVisible()) {
-				g.drawImage(health.getImage(), health.getX(), health.getY(), this);
+		if (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+			for (HealthPack health : HealthPack.healthpack) {
+				if (health.isVisible()) {
+					g.drawImage(health.getImage(), health.getX(), health.getY(), this);
+				}
 			}
 		}
 
@@ -713,7 +710,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 		}
 		if (SaveSign.saveSign.isVisible()) {
-			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);			
+			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
 
@@ -728,7 +725,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 		}
 		if (SaveSign.saveSign.isVisible()) {
-			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);			
+			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
 
@@ -743,7 +740,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 		}
 		if (SaveSign.saveSign.isVisible()) {
-			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);			
+			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
 
@@ -751,7 +748,7 @@ public class DrawScene extends UpdateObjects {
 
 		String msg = "Game Over!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X+30, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X + 30, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawKilledBy(Graphics g) {
@@ -795,7 +792,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawYouWon(Graphics g) {
 
 		String msg = "You Won!";
-		setFontStyle(g);		
+		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
@@ -803,7 +800,7 @@ public class DrawScene extends UpdateObjects {
 
 		String msg = "Dragons invasion brings the ship outta control...";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X-100, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X - 100, (B_HEIGHT - 272) / 2);
 	}
 
 	private void setFontStyle(Graphics g) {
@@ -811,5 +808,5 @@ public class DrawScene extends UpdateObjects {
 		g.setColor(Color.YELLOW);
 		g.setFont(small);
 	}
-	
+
 }

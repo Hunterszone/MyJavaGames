@@ -109,6 +109,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		initGold();
 		initDragons();
 		initHealth();
+		HealthPack.healthpack.clear();
 
 		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
