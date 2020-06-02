@@ -190,6 +190,43 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Monsters left: " + 0, 5, 20);
 				g.drawString("Gold: " + 0, 200, 20);
 				g.drawString("Health: 0%", 300, 20);
+				
+				if (Collisions.killedByAlien == true) {			
+					if (InitObjects.ingame == false) {
+						DrawScene.initVoice("Killed by an alien!");
+						DrawScene.voiceInterruptor = true;
+						Collisions.killedByAlien = false;
+						return;
+					}
+				}
+				
+				if (Collisions.killedByDragon == true) {			
+					if (InitObjects.ingame == false) {
+						DrawScene.initVoice("Killed by a dragon!");
+						DrawScene.voiceInterruptor = true;
+						Collisions.killedByDragon = false;
+						return;
+					}
+				}
+				
+				if (Collisions.killedByBunker == true) {			
+					if (InitObjects.ingame == false) {
+						DrawScene.initVoice("Killed by the bunker!");
+						DrawScene.voiceInterruptor = true;
+						Collisions.killedByBunker = false;
+						return;
+					}
+				}
+				
+				if (Collisions.killedByEvilHead == true) {			
+					if (InitObjects.ingame == false) {
+						DrawScene.initVoice("Killed by the Evil Head!");
+						DrawScene.voiceInterruptor = true;
+						Collisions.killedByEvilHead = false;
+						return;
+					}
+				}
+				
 				try {
 					HighScoreToDb.initDbConn();
 				} catch (SQLException e) {
@@ -762,7 +799,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawKilledBy(Graphics g) {
 
 		String msg = null;
-		if (Collisions.killedByAlien == true)
+		if (Collisions.killedByAlien == true)			
 			msg = "Killed by an alien!";
 		if (Collisions.killedByDragon == true)
 			msg = "Killed by a dragon!";
