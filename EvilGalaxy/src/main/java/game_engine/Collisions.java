@@ -229,7 +229,7 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean shipIntersectsHealth(Rectangle myship, HealthPack health, Rectangle healthUnit) {
-		if (myship.intersects(healthUnit)) {
+		if (myship.intersects(healthUnit) && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
 			health.setVisible(false);
 			LoadSounds.gotHealthPack.play();
 			if (health.isVisible())
