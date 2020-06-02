@@ -233,6 +233,12 @@ public class DrawScene extends UpdateObjects {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
+				for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+					if(asteroidsAnim != null) asteroidsAnim = null;				
+				}
+				AsteroidsAnimation.asteroidsAnimations.clear();
 			}
 
 			if (lifeEvilHead == 50) {
