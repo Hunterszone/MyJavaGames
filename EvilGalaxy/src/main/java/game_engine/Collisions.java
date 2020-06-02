@@ -220,7 +220,7 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean shipIntersectsGold(Rectangle myship, Gold gold, Rectangle goldUnit) {
-		if (myship.intersects(goldUnit)) {
+		if (myship.intersects(goldUnit) && UpdateObjects.lifeBunker >= 50) {
 			gold.setVisible(false);
 			if (gold.isVisible())
 				return false;

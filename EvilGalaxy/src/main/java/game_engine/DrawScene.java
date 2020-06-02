@@ -729,9 +729,11 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		for (Gold gold : Gold.goldstack) {
-			if (gold.isVisible()) {
-				g.drawImage(gold.getImage(), gold.getX(), gold.getY(), this);
+		if(UpdateObjects.lifeBunker >= 50) {			
+			for (Gold gold : Gold.goldstack) {
+				if (gold.isVisible()) {
+					g.drawImage(gold.getImage(), gold.getX(), gold.getY(), this);
+				}
 			}
 		}
 
