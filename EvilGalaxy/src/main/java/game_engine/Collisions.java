@@ -174,6 +174,7 @@ public abstract class Collisions extends UpdateObjects {
 			alien.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			MyShip.myShip.upsideDown();
+			MyShip.myShip.x = -MyShip.myShip.getX();
 			alienKilled++;
 			killedByBunker = false;
 			killedByDragon = false;
