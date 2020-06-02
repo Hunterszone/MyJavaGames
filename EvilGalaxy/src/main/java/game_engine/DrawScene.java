@@ -108,7 +108,7 @@ public class DrawScene extends UpdateObjects {
 
 		}
 
-		if (Alien.aliens.isEmpty()) {
+		if (ingame && Alien.aliens.isEmpty()) {
 
 			drawScene2(g);
 			setFontStyle(g);
@@ -138,7 +138,7 @@ public class DrawScene extends UpdateObjects {
 
 		}
 
-		if (Dragon.dragons.isEmpty()) {
+		if (ingame && Dragon.dragons.isEmpty()) {
 
 			drawScene3(g);
 			setFontStyle(g);
@@ -342,7 +342,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void stateWeaponsL1(Graphics g) {
-		if (Alien.aliens.size() > 0) {
+		if (Alien.aliens.size() > 0 && ingame) {
 
 			setFontStyle(g);
 
