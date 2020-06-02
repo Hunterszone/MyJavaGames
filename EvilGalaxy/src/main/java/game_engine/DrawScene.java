@@ -42,6 +42,7 @@ public class DrawScene extends UpdateObjects {
 	public static boolean voiceInterruptor = false;
 	static boolean voiceStopped;
 	static Voice voice;
+	String difficulty = "Difficulty: ";
 	transient static Image bg1, bg2, bg3;
 	private static final long serialVersionUID = 1L;
 //	private String unicode;
@@ -306,6 +307,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Level: " + 1, 310, 20);
 			g.drawString("Missiles: Unlocked", 410, 20);
 			g.drawString("Rockets: Locked", 630, 20);
+			g.drawString(difficulty, 820, 20);
 
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 820, 20);
@@ -345,6 +347,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Level: " + 2, 310, 20);
 			g.drawString("Missiles: Locked", 410, 20);
 			g.drawString("Rockets: Unlocked", 600, 20);
+			g.drawString(difficulty, 810, 20);
 
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 810, 20);
@@ -367,6 +370,7 @@ public class DrawScene extends UpdateObjects {
 			drawKillTheBunker(g);
 			g.drawString("Missiles: Locked", 270, 20);
 			g.drawString("Rockets: Unlocked", 470, 20);
+			g.drawString(difficulty, 680, 20);
 
 			if (timerEasy.isRunning()) {
 
@@ -392,6 +396,7 @@ public class DrawScene extends UpdateObjects {
 			drawCollect(g);
 			g.drawString("Missiles: Locked", 260, 20);
 			g.drawString("Rockets: Locked", 450, 20);
+			g.drawString(difficulty, 640, 20);
 
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 640, 20);
@@ -414,6 +419,7 @@ public class DrawScene extends UpdateObjects {
 			drawKillTheHead(g);
 			g.drawString("Missiles: Unlocked", 240, 20);
 			g.drawString("Rockets: Unlocked", 460, 20);
+			g.drawString(difficulty, 680, 20);
 
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 680, 20);
