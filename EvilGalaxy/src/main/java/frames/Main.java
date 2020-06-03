@@ -35,7 +35,7 @@ public final class Main extends GameMenuBar {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setShape(new RoundRectangle2D.Double(60, 80, 1200, 1200, 100, 100));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Images.STRIKEHEAD.getImg()));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIPONFIRE.getImg()));
 		ImageIcon tileIcon = new ImageIcon("images/shadow1.png");
 		getRootPane().setBorder(BorderFactory.createMatteBorder(150, 150, 150, 150, tileIcon));
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
