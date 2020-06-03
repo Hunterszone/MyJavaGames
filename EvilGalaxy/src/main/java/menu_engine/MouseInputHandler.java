@@ -139,8 +139,8 @@ public class MouseInputHandler implements MouseListener {
 			}
 		}
 		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
-				&& (point.getX() >= 800 && point.getX() <= 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null))) {
-			if (point.getY() >= 355 && point.getY() <= 355 + Constants.LOAD_ASSETS.evilHead.getHeight(null)) {
+				&& (point.getX() >= 790 && point.getX() <= 790 + Constants.LOAD_ASSETS.evilHead.getWidth(null))) {
+			if (point.getY() >= 380 && point.getY() <= 380 + Constants.LOAD_ASSETS.evilHead.getHeight(null)) {
 				new PlayWave1st(soundName).start();
 				CanvasMenu.color2.nextColor(CanvasMenu.color2.getColor());
 			}
