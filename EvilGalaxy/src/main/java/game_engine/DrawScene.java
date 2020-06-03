@@ -449,6 +449,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Missiles: Locked", 270, 20);
 			g.drawString("Rockets: Unlocked", 470, 20);
 			g.drawString(difficulty, 680, 20);
+			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 			if (timerEasy.isRunning()) {
 
@@ -522,6 +523,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Level: " + 1, 310, 20);
 			g.drawString("Missiles: Unlocked", 410, 20);
 			g.drawString("Rockets: Locked", 630, 20);
+			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 820, 20);
@@ -553,6 +555,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Level: " + 2, 310, 20);
 			g.drawString("Missiles: Locked", 410, 20);
 			g.drawString("Rockets: Unlocked", 600, 20);
+			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 			
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 810, 20);
