@@ -132,19 +132,19 @@ public class MyShip extends SpritePattern {
 
 		if (x < 1) {
 			x = 1;
-			escapeForbidden();
+//			escapeForbidden();
 		} else if (x > Main.dim.getWidth() - 700) {
 			x = (int) Main.dim.getWidth() - 700;
-			escapeForbidden();
+//			escapeForbidden();
 		}
 
 		if (y < 0) {
 			y = 0;
-			escapeForbidden();
+//			escapeForbidden();
 		} else if (y > 700) {
 
 			y = 700;
-			escapeForbidden();
+//			escapeForbidden();
 		}
 	}
 
@@ -187,22 +187,22 @@ public class MyShip extends SpritePattern {
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = -7.5;
-			shipOnFire();
+//			shipOnFire();
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			speedX = 7.5;
-			shipOnFire();
+//			shipOnFire();
 		}
 
 		if (key == KeyEvent.VK_UP) {
 			speedY = -7.5;
-			shipOnFire();
+//			shipOnFire();
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
 			speedY = 7.5;
-			shipOnFire();
+//			shipOnFire();
 		}
 	}
 

@@ -4,7 +4,7 @@ public enum Images {
 	ALIEN {
 		@Override
 		public String getImg() {
-			return "images/alien.png";
+			return "images/alien.gif";
 		}
 	},
 	BUNKER {
@@ -28,13 +28,13 @@ public enum Images {
 	DRAGON {
 		@Override
 		public String getImg() {
-			return "images/boss.png";
+			return "images/boss.gif";
 		}
 	},
 	EVILHEAD {
 		@Override
 		public String getImg() {
-			return "images/evilhead.png";
+			return "images/evilhead.gif";
 		}
 	},
 	STRIKEHEAD {
@@ -46,7 +46,7 @@ public enum Images {
 	MYSHIPINIT {
 		@Override
 		public String getImg() {
-			return "images/craft.png";
+			return "images/craft.gif";
 		}
 	},
 	ASTRONAUTINIT {

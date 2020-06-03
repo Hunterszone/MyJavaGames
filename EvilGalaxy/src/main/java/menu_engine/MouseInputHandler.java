@@ -132,8 +132,8 @@ public class MouseInputHandler implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		Point point = e.getPoint();
 		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
-				&& (point.getX() >= 800 && point.getX() <= 800 + Constants.LOAD_ASSETS.myShip.getWidth(null))) {
-			if (point.getY() >= 255 && point.getY() <= 255 + Constants.LOAD_ASSETS.myShip.getHeight(null)) {
+				&& (point.getX() >= 790 && point.getX() <= 790 + Constants.LOAD_ASSETS.myShip.getWidth(null))) {
+			if (point.getY() >= 280 && point.getY() <= 280 + Constants.LOAD_ASSETS.myShip.getHeight(null)) {
 				new PlayWave1st(soundName).start();
 				CanvasMenu.color.nextColor(CanvasMenu.color.getColor());
 			}
