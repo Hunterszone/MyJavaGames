@@ -66,7 +66,7 @@ public class DrawScene extends UpdateObjects {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();
 		int height = (int) Main.dim.getHeight();
-		bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.jpg");
 		bg1 = bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		bg2 = Toolkit.getDefaultToolkit().createImage("images/galaxy2.jpg");
 		bg2 = bg2.getScaledInstance(width, height, Image.SCALE_SMOOTH);
