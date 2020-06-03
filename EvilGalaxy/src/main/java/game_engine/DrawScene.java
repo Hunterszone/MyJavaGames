@@ -92,10 +92,18 @@ public class DrawScene extends UpdateObjects {
 	    ((Graphics2D) g).setTransform(backup);
 	}
 
-	private void drawStar(Graphics g) {
+	private void drawSatellite(Graphics g) {
 		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
 				SatelliteAnimation.starAnim.getY(), this);
+		AffineTransform backup = ((Graphics2D) g).getTransform();
+		AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
+	    a.rotate(Math.toRadians(Math.ceil(Math.random())), SatelliteAnimation.starAnim.getX()/2, 
+	    		SatelliteAnimation.starAnim.getY()/2);
+	    ((Graphics2D) g).setTransform(a);
+	    g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
+	    		SatelliteAnimation.starAnim.getY(), this);
 		Toolkit.getDefaultToolkit().sync();
+		((Graphics2D) g).setTransform(backup);
 	}
 
 	private void drawAsteroids(Graphics g) {
@@ -133,7 +141,7 @@ public class DrawScene extends UpdateObjects {
 
 			drawScene2(g);
 			setFontStyle(g);
-			drawStar(g);
+			drawSatellite(g);
 			drawL2Labels(g);
 			drawObjects(g);
 			drawCountGold(g);
@@ -163,11 +171,16 @@ public class DrawScene extends UpdateObjects {
 
 			drawScene3(g);
 			setFontStyle(g);
-			drawAstronaut(g);
 			drawObjects(g);
 			drawCountGold(g);
 			drawLifeBunker(g);
 			drawLifeMyShip(g);
+			
+			if(UpdateObjects.lifeBunker < 50) { 
+				drawAstronaut(g);
+			} else {
+				drawAsteroids(g);
+			}
 			
 			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
 				g.drawString("Autosave: ON", 870, 20);

@@ -29,8 +29,8 @@ public class SatelliteAnimation extends SpritePattern {
 	
 	public void cycle() {
 
-        x += 1;
-        y += 1;
+        x += 3;
+        y += 3;
 
         if (y > InitObjects.B_HEIGHT) {
 
