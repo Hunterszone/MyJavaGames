@@ -3,8 +3,10 @@ package game_engine;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import com.sun.speech.freetts.VoiceManager;
 import dbconn.HighScoreToDb;
 import entities.Alien;
 import entities.AsteroidsAnimation;
+import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
@@ -70,6 +73,24 @@ public class DrawScene extends UpdateObjects {
 		bg3 = Toolkit.getDefaultToolkit().createImage("images/galaxy3.jpg");
 		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
+	
+	private void drawAstronaut(Graphics g) {
+	    AffineTransform backup = ((Graphics2D) g).getTransform();
+	    AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
+	    a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX()/2, 
+	    		AstronautAnimation.astronautAnim.getY()/2);
+	    ((Graphics2D) g).setTransform(a);
+	    g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
+	    		AstronautAnimation.astronautAnim.getY(), this);
+	    a = AffineTransform.getRotateInstance(180, 800, 400);
+	    a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX()/2, 
+	    		AstronautAnimation.astronautAnim.getY()/2);
+	    ((Graphics2D) g).setTransform(a);
+	    g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
+	    		AstronautAnimation.astronautAnim.getY(), this);
+	    Toolkit.getDefaultToolkit().sync();
+	    ((Graphics2D) g).setTransform(backup);
+	}
 
 	private void drawStar(Graphics g) {
 		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
@@ -112,7 +133,7 @@ public class DrawScene extends UpdateObjects {
 
 			drawScene2(g);
 			setFontStyle(g);
-			drawAsteroids(g);
+			drawStar(g);
 			drawL2Labels(g);
 			drawObjects(g);
 			drawCountGold(g);
@@ -142,7 +163,7 @@ public class DrawScene extends UpdateObjects {
 
 			drawScene3(g);
 			setFontStyle(g);
-			drawStar(g);
+			drawAstronaut(g);
 			drawObjects(g);
 			drawCountGold(g);
 			drawLifeBunker(g);
@@ -234,6 +255,7 @@ public class DrawScene extends UpdateObjects {
 					e.printStackTrace();
 				}
 				
+				if(AstronautAnimation.astronautAnim != null) AstronautAnimation.astronautAnim = null;
 				if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
 				for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 					if(asteroidsAnim != null) asteroidsAnim = null;				

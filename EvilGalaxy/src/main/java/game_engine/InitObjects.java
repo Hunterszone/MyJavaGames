@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 import entities.Alien;
 import entities.AsteroidsAnimation;
+import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
@@ -82,6 +83,10 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		ingame = true;
 
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+		
+		AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
+		AstronautAnimation.astronautAnim.drawAstronaut();
+		AstronautAnimation.astronautAnim.setVisible(true);
 		
 		SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
 		SatelliteAnimation.starAnim.drawSatellite();
@@ -193,6 +198,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	        while (true) {
 
 	        	SatelliteAnimation.starAnim.cycle();
+	        	AstronautAnimation.astronautAnim.cycle();
 	        	for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {	        		
 	        		asteroidsAnim.cycle();
 	        	}

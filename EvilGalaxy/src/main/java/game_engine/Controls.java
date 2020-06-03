@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import entities.Alien;
 import entities.AsteroidsAnimation;
+import entities.AstronautAnimation;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.MyShip;
@@ -256,6 +257,7 @@ public class Controls extends JFrame implements KeyListener {
 				DrawScene.initVoice("Loading main menu...");
 				DrawScene.voiceInterruptor = true;
 			}
+			if(AstronautAnimation.astronautAnim != null) AstronautAnimation.astronautAnim = null;
 			if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
 			for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 				if(asteroidsAnim != null) asteroidsAnim = null;				
