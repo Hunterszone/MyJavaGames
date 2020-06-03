@@ -93,6 +93,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		SatelliteAnimation.starAnim.setVisible(true);
 				
 		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 0));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 200));
 		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(300, 300));
 		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(600, 500));
 		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(800, 320));

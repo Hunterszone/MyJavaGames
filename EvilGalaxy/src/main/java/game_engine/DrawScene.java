@@ -82,7 +82,7 @@ public class DrawScene extends UpdateObjects {
 	    ((Graphics2D) g).setTransform(a);
 	    g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
 	    		AstronautAnimation.astronautAnim.getY(), this);
-	    a = AffineTransform.getRotateInstance(180, 800, 400);
+	    a = AffineTransform.getRotateInstance(180, 800, 700);
 	    a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX()/2, 
 	    		AstronautAnimation.astronautAnim.getY()/2);
 	    ((Graphics2D) g).setTransform(a);
