@@ -81,7 +81,7 @@ public class Difficulty {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();
 		int height = (int) Main.dim.getHeight();
-		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
@@ -133,7 +133,7 @@ public class Difficulty {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();
 		int height = (int) Main.dim.getHeight();
-		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
@@ -185,7 +185,7 @@ public class Difficulty {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();
 		int height = (int) Main.dim.getHeight();
-		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;

@@ -1,6 +1,24 @@
 package game_engine;
 
 public enum Images {
+	BG1 {
+		@Override
+		public String getImg() {
+			return "images/tenor.jpg";
+		}
+	},
+	BG2 {
+		@Override
+		public String getImg() {
+			return "images/galaxy2.jpg";
+		}
+	},
+	BG3 {
+		@Override
+		public String getImg() {
+			return "images/galaxy3.jpg";
+		}
+	},
 	ALIEN {
 		@Override
 		public String getImg() {
