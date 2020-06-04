@@ -37,7 +37,7 @@ public class ConsoleContent extends OutputStream {
 
 	// Constants
 	public static final String[] COMMANDS = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit",
-			"voloff", "volon", "god", "dog", "stats", "restart", "level2", "level3", "level4", "save", "autosave" };
+			"voloff", "volon", "god", "dog", "stats", "restart", "level2", "level3", "level4", "save"/*, "autosave"*/ };
 
 	public static ConsoleForm console;
 	public static Manual manual;
@@ -835,7 +835,7 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// AUTOSAVE
-					else if (COMMANDS[18].trim().equalsIgnoreCase(textArea.getText().trim()) && 
+					/*else if (COMMANDS[18].trim().equalsIgnoreCase(textArea.getText().trim()) && 
 							GameMenuBar.autosave.isSelected() == false) {
 						GameMenuBar.autosave.setSelected(true);
 						if (SaveSign.saveSign != null) {
@@ -843,7 +843,7 @@ public class ConsoleContent extends OutputStream {
 							SaveSign.saveSign.setVisible(true);
 						}
 						return;
-					}
+					}*/
 
 					else {
 						textArea.append("********No such command!*********" + "\n");

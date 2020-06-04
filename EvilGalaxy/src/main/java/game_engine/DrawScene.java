@@ -148,7 +148,7 @@ public class DrawScene extends UpdateObjects {
 			drawLifeMyShip(g);
 
 			if (GameMenuBar.autosave.isSelected() == true) {
-				g.drawString("Autosave: ON", 1000, 20);
+//				g.drawString("Autosave: ON", 1000, 20);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL3 = false;
 				GameMenuBar.savedOnL4 = false;
@@ -161,7 +161,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (GameMenuBar.autosave.isSelected() == false) {
-				g.drawString("Autosave: OFF", 1000, 20);
+//				g.drawString("Autosave: OFF", 1000, 20);
 				voiceInterruptor = true;
 			}
 
@@ -183,7 +183,7 @@ public class DrawScene extends UpdateObjects {
 			}
 			
 			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
-				g.drawString("Autosave: ON", 870, 20);
+//				g.drawString("Autosave: ON", 870, 20);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL4 = false;
@@ -196,7 +196,7 @@ public class DrawScene extends UpdateObjects {
 			}
 			
 			if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
-				g.drawString("Autosave: OFF", 870, 20);
+//				g.drawString("Autosave: OFF", 870, 20);
 				voiceInterruptor = true;
 			}
 			
@@ -399,12 +399,12 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (GameMenuBar.autosave.isSelected() == true) {
-				g.drawString("Autosave: ON", 1020, 20);
+//				g.drawString("Autosave: ON", 1020, 20);
 
 			}
 
 			if (GameMenuBar.autosave.isSelected() == false) {
-				g.drawString("Autosave: OFF", 1020, 20);
+//				g.drawString("Autosave: OFF", 1020, 20);
 				voiceInterruptor = true;
 			}
 
@@ -537,11 +537,11 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (GameMenuBar.autosave.isSelected() == true) {
-				g.drawString("Autosave: ON", 1020, 20);
+//				g.drawString("Autosave: ON", 1020, 20);
 			}
 
 			if (GameMenuBar.autosave.isSelected() == false) {
-				g.drawString("Autosave: OFF", 1020, 20);
+//				g.drawString("Autosave: OFF", 1020, 20);
 				voiceInterruptor = true;
 			}
 		}
@@ -662,20 +662,20 @@ public class DrawScene extends UpdateObjects {
 			setFontStyle(g);
 
 			if (GameMenuBar.autosave.isSelected() == true) {
-				if (!Gold.goldstack.isEmpty())
+				/*if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: ON", 830, 20);
 				else
-					g.drawString("Autosave: ON", 860, 20);
+					g.drawString("Autosave: ON", 860, 20);*/
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
 				GameMenuBar.savedOnL4 = true;
 			}
 			if (GameMenuBar.autosave.isSelected() == false) {
-				if (!Gold.goldstack.isEmpty())
+				/*if (!Gold.goldstack.isEmpty())
 					g.drawString("Autosave: OFF", 830, 20);
 				else
-					g.drawString("Autosave: OFF", 860, 20);
+					g.drawString("Autosave: OFF", 860, 20);*/
 				voiceInterruptor = true;
 			}
 //			g.drawString("Dragonzz: Yes", 5, 20);
@@ -843,7 +843,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawKilledBy(Graphics g) {
 
-		String msg = null;
+		String msg = "";
 		if (Collisions.killedByAlien == true)			
 			msg = "Killed by an alien!";
 		if (Collisions.killedByDragon == true)

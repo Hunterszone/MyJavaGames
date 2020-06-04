@@ -166,12 +166,12 @@ public class GameMenuBar extends JFrame {
 		JMenuItem launcher = new JMenuItem("Updater");
 		launcher.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		tools.add(launcher);
-		tools.addSeparator();
+//		tools.addSeparator();
 		autosave = new JCheckBoxMenuItem("Auto-Save");
-		autosave.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		autosave.setMnemonic(KeyEvent.VK_X);
-		autosave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
-		tools.add(autosave);
+//		autosave.setFont(new Font("Segoe UI", Font.BOLD, 14));
+//		autosave.setMnemonic(KeyEvent.VK_X);
+//		autosave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
+//		tools.add(autosave);
 
 		// Menu SubItems
 		class Updater implements ActionListener {
