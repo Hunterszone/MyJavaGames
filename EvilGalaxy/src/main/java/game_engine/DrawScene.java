@@ -400,7 +400,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (GameMenuBar.autosave.isSelected() == true) {
-				g.drawString("Autosave: ON", 1000, 20);
+				g.drawString("Autosave: ON", 1020, 20);
 
 			}
 
