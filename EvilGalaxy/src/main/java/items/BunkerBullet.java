@@ -6,8 +6,8 @@ import game_engine.SpritePattern;
 public class BunkerBullet extends SpritePattern {
 
 	// Constants
-	private static final int BULLET_SPEED_Y = 4;
-	private static final int BULLET_SPEED_X = 3;
+	private static final double BULLET_SPEED_X = 8;
+	private static final double BULLET_SPEED_Y = 4;
 
 	private static final long serialVersionUID = 1L;
 	private String imageName;

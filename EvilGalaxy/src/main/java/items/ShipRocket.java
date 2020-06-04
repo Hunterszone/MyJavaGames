@@ -1,14 +1,14 @@
 package items;
 
+import entities.MyShip;
 import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class ShipRocket extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
-	private final int BOARD_WIDTH = 390;
-	private final int ROCKET_SPEED = 7;
-	private final double ROCKET_SPEED2 = 2.5;
+	private final double ROCKET_SPEED_X = 7;
+	private final double ROCKET_SPEED_Y = 2.5;
 	private String imageName;
 
 	public ShipRocket(int x, int y) {
@@ -25,10 +25,10 @@ public class ShipRocket extends SpritePattern {
 
 	public void moveRocket() {
 
-		x += ROCKET_SPEED;
-		y += ROCKET_SPEED2;
+		x += ROCKET_SPEED_X;
+		y += ROCKET_SPEED_Y;
 
-		if (x > BOARD_WIDTH + 450)
+		if (x > MyShip.myShip.getX() + 320)
 			vis = false;
 	}
 }

@@ -1,13 +1,13 @@
 package items;
 
+import entities.MyShip;
 import game_engine.Images;
 import game_engine.SpritePattern;
 
 public class ShipMissile extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
-	private final int BOARD_WIDTH = 390;
-	private final int MISSILE_SPEED = 50;
+	private final double MISSILE_SPEED = 50;
 	private String imageName;
 
 	public ShipMissile(int x, int y) {
@@ -26,7 +26,7 @@ public class ShipMissile extends SpritePattern {
 
 		x += MISSILE_SPEED;
 
-		if (x > BOARD_WIDTH + 550)
+		if (x > MyShip.myShip.getX() + 550)
 			vis = false;
 	}
 }

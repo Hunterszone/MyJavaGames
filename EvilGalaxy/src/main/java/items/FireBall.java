@@ -6,8 +6,8 @@ import game_engine.SpritePattern;
 public class FireBall extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
-	private final int EVILGUN_SPEED = 9;
-	private final double EVILGUN_SPEED_2 = 2.5;
+	private final int EVILGUN_SPEED_X = 9;
+	private final double EVILGUN_SPEED_Y = 2.5;
 	private String imageName;
 
 	public FireBall(int x, int y) {
@@ -25,21 +25,21 @@ public class FireBall extends SpritePattern {
 
 	public void evilShot() {
 
-		x -= EVILGUN_SPEED;
+		x -= EVILGUN_SPEED_X;
 
 	}
 
 	public void evilShotDiagUp() {
 
-		x -= EVILGUN_SPEED;
-		y -= EVILGUN_SPEED_2;
+		x -= EVILGUN_SPEED_X;
+		y -= EVILGUN_SPEED_Y;
 
 	}
 
 	public void evilShotDiagDown() {
 
-		x -= EVILGUN_SPEED;
-		y += EVILGUN_SPEED_2;
+		x -= EVILGUN_SPEED_X;
+		y += EVILGUN_SPEED_Y;
 
 	}
 
