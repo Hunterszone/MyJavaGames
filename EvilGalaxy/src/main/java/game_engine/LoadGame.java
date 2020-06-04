@@ -119,6 +119,7 @@ public class LoadGame {
 
 			System.out.println("Score after loading will be added to " + Alien.class.getName());
 			DrawScene.voiceInterruptor = true;
+			savedOnL1 = false;
 			return;
 		}
 
@@ -146,6 +147,7 @@ public class LoadGame {
 
 			System.out.println("Score after loading will be added to " + Dragon.class.getName());
 			DrawScene.voiceInterruptor = true;
+			savedOnL2 = false;
 			return;
 		}
 
@@ -167,6 +169,7 @@ public class LoadGame {
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 			DrawScene.voiceInterruptor = true;
+			savedOnL3 = false;
 			return;
 		}
 
@@ -189,6 +192,7 @@ public class LoadGame {
 			Dragon.dragons.clear();
 			UpdateObjects.lifeBunker = 50;
 			DrawScene.voiceInterruptor = true;
+			savedOnL4 = false;
 			return;
 		}
 
