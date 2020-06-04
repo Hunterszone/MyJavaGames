@@ -843,7 +843,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawKilledBy(Graphics g) {
 
-		String msg = "";
+		String msg = null;
 		if (Collisions.killedByAlien == true)			
 			msg = "Killed by an alien!";
 		if (Collisions.killedByDragon == true)
