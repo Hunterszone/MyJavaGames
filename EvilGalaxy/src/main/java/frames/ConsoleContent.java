@@ -835,7 +835,8 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// AUTOSAVE
-					else if (COMMANDS[18].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (COMMANDS[18].trim().equalsIgnoreCase(textArea.getText().trim()) && 
+							GameMenuBar.autosave.isSelected() == false) {
 						GameMenuBar.autosave.setSelected(true);
 						if (SaveSign.saveSign != null) {
 							SaveSign.saveSign.initSave();
