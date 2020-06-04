@@ -178,7 +178,7 @@ public class EvilHead extends SpritePattern {
 
 	}
 
-	public List<FireBall> getEvilMissiles() {
+	public List<FireBall> getEvilFireballs() {
 		return fireballs;
 	}
 

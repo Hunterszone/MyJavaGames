@@ -127,7 +127,7 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<FireBall> fireballs = EvilHead.evilHead.getEvilMissiles();
+		List<FireBall> fireballs = EvilHead.evilHead.getEvilFireballs();
 
 		for (FireBall fireball : fireballs) {
 			if (fireball != null) {
@@ -137,7 +137,7 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<BunkerBullet> bullets = Bunker.bunkerObj.getBullets();
+		List<BunkerBullet> bullets = Bunker.bunkerObj.getBulletsLeft();
 
 		for (BunkerBullet bullet : bullets) {
 
@@ -148,7 +148,7 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBullets2();
+		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBulletsRight();
 
 		for (BunkerBullet bullet : bullets2) {
 			if (bullet != null) {

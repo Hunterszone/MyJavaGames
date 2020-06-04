@@ -701,9 +701,9 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawObjects(Graphics g) {
 
-		List<ShipMissile> ms = MyShip.myShip.getMissiles();
+		List<ShipMissile> missiles = MyShip.myShip.getMissiles();
 
-		for (ShipMissile m : ms) {
+		for (ShipMissile m : missiles) {
 
 			if (m.isVisible()) {
 				g.drawImage(m.getImage(), m.getX(), m.getY(), this);
@@ -718,36 +718,36 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		List<FireBall> guner = EvilHead.evilHead.getEvilMissiles();
+		List<FireBall> fireballs = EvilHead.evilHead.getEvilFireballs();
 
-		for (FireBall n : guner) {
-
-			if (n.isVisible()) {
-				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
-			}
-		}
-
-		List<CanonBall> can = EvilHead.evilHead.getCanons();
-
-		for (CanonBall n : can) {
+		for (FireBall n : fireballs) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		List<BunkerBullet> bull = Bunker.bunkerObj.getBullets();
+		List<CanonBall> canons = EvilHead.evilHead.getCanons();
 
-		for (BunkerBullet n : bull) {
+		for (CanonBall n : canons) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		List<BunkerBullet> bull2 = Bunker.bunkerObj.getBullets2();
+		List<BunkerBullet> bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
 
-		for (BunkerBullet n : bull2) {
+		for (BunkerBullet n : bulletsLeft) {
+
+			if (n.isVisible()) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+
+		List<BunkerBullet> bulletsRight = Bunker.bunkerObj.getBulletsRight();
+
+		for (BunkerBullet n : bulletsRight) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);

@@ -36,11 +36,11 @@ public class Bunker extends SpritePattern {
 		return bullets2;
 	}
 
-	public List<BunkerBullet> getBullets() {
+	public List<BunkerBullet> getBulletsLeft() {
 		return bullets;
 	}
 
-	public List<BunkerBullet> getBullets2() {
+	public List<BunkerBullet> getBulletsRight() {
 		return bullets2;
 	}
 

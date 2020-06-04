@@ -92,9 +92,9 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateBullets() {
 
-		List<BunkerBullet> bullets1 = Bunker.bunkerObj.getBullets();
+		List<BunkerBullet> bullets1 = Bunker.bunkerObj.getBulletsLeft();
 
-		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBullets2();
+		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBulletsRight();
 
 		for (int nextbullet = 0; nextbullet < bullets1.size(); nextbullet++) {
 
@@ -135,7 +135,7 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateEvilHeadMissiles() {
-		List<FireBall> fireballs = EvilHead.evilHead.getEvilMissiles();
+		List<FireBall> fireballs = EvilHead.evilHead.getEvilFireballs();
 		for (int nextball = 0; nextball < fireballs.size(); nextball++) {
 			FireBall fireball = fireballs.get(nextball);
 			if (fireball.isVisible() && Dragon.dragons.isEmpty() && timerHard.isRunning() == true) {
