@@ -347,22 +347,21 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void evilHeadBehaviour() {
+		
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50
-				&& EvilHead.evilHead.x - MyShip.myShip.x == 400 && timerEasy.isRunning()) {
-			EvilHead.evilHead.throwCanons();
+				&& (EvilHead.evilHead.x - MyShip.myShip.x == 100 ||
+					EvilHead.evilHead.x - MyShip.myShip.x == 200 ||
+					EvilHead.evilHead.x - MyShip.myShip.x == 300 ||
+					EvilHead.evilHead.x - MyShip.myShip.x == 400)) {
+			
 			EvilHead.evilHead.strikeHead();
-		}
-
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50
-				&& EvilHead.evilHead.x - MyShip.myShip.x == 400 && timerMedium.isRunning()) {
-			EvilHead.evilHead.throwFireballs();
-			EvilHead.evilHead.strikeHead();
-		}
-
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.size() >= 0 && lifeBunker >= 50
-				&& EvilHead.evilHead.x - MyShip.myShip.x == 400 && timerHard.isRunning()) {
-			EvilHead.evilHead.throwFireballs();
-			EvilHead.evilHead.strikeHead();
+			
+			if(timerEasy.isRunning()) {
+				EvilHead.evilHead.throwCanons();
+			}
+			if(timerMedium.isRunning() || timerHard.isRunning()) {
+				EvilHead.evilHead.throwFireballs();
+			}
 		}
 
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
