@@ -287,6 +287,7 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean missileIntersectsHead(Rectangle evilhead, ShipMissile missile, Rectangle missileUnit) {
 		if (missileUnit.intersects(evilhead)) {
+			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			missile.setVisible(false);
 			if (timerHard.isRunning() == true) {
 				EvilHead.evilHead.throwFireballs();
@@ -304,9 +305,9 @@ public abstract class Collisions extends UpdateObjects {
 	public static boolean rocketIntersectsDragon(ShipRocket rocket, Rectangle rocketUnit, Dragon dragon,
 			Rectangle dragonunit) {
 		if (rocketUnit.intersects(dragonunit)) {
+			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			rocket.setVisible(false);
 			dragon.setVisible(false);
-//					new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			if (rocket.isVisible())
 				return false;
 		}

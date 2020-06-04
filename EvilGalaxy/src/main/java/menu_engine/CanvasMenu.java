@@ -44,7 +44,7 @@ public class CanvasMenu implements Runnable {
 		
 		color = new ColorSwitcher();
 		color2 = new ColorSwitcher();
-		color.nextColor(color2.getColor());
+		color2.nextColor(color.getColor());
 	}
 
 	private void render() {
