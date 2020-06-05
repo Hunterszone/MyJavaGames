@@ -142,13 +142,13 @@ public enum Images {
 	GOLDINIT {
 		@Override
 		public String getImg() {
-			return "images/gold.png";
+			return "images/gold2.png";
 		}
 	},
 	HEALTHINIT {
 		@Override
 		public String getImg() {
-			return "images/health.png";
+			return "images/health2.png";
 		}
 	},
 	SAVESIGNINIT {
