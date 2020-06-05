@@ -170,8 +170,6 @@ public abstract class UpdateObjects extends InitObjects {
 			CanonBall canonball = canonballs.get(nextcanon);
 			if (canonball.isVisible() && (EvilHead.evilHead.x - MyShip.myShip.x > 0)) {
 				canonball.moveCanonLeft();
-			} else if (canonball.isVisible() && (EvilHead.evilHead.x - MyShip.myShip.x < 0)) {
-				canonball.moveCanonRight();
 			} else {
 				canonballs.remove(nextcanon);
 			}

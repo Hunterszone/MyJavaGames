@@ -24,8 +24,4 @@ public class CanonBall extends SpritePattern {
 	public void moveCanonLeft() {
 		x -= CANON_SPEED;
 	}
-	
-	public void moveCanonRight() {
-		x += CANON_SPEED;
-	}
 }
