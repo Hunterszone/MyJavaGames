@@ -134,11 +134,8 @@ public class MyShip extends SpritePattern {
 			x = 1;
 //			escapeForbidden();
 		} 
-		if (x > Main.dim.getWidth() - 700 && Alien.aliens.size() > 0) {
-			x = (int) Main.dim.getWidth() - 700;
-//			escapeForbidden();
-		} 
-		if (x > Main.dim.getWidth() - 390 && Alien.aliens.isEmpty()) {
+		
+		if (x > Main.dim.getWidth() - 390) {
 			x = (int) Main.dim.getWidth() - 390;
 		}
 

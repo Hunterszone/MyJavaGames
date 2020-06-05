@@ -187,7 +187,7 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean shipIntersectsDragon(Rectangle myship, Dragon dragon, Rectangle dragonunit) {
-		if (myship.intersects(dragonunit)) {
+		if (myship.intersects(dragonunit) && Alien.aliens.isEmpty()) {
 			lifeMyShip++;
 			dragon.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
