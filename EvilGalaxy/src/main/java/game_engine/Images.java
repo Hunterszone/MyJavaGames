@@ -130,13 +130,13 @@ public enum Images {
 	CANONINIT {
 		@Override
 		public String getImg() {
-			return "images/canon.png";
+			return "images/canon2.png";
 		}
 	},
 	FIREBALLINIT {
 		@Override
 		public String getImg() {
-			return "images/fireball.png";
+			return "images/fireball2.png";
 		}
 	},
 	GOLDINIT {
