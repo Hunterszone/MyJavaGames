@@ -354,6 +354,7 @@ public abstract class Collisions extends UpdateObjects {
 			fireball.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			MyShip.myShip.upsideDown();
+			MyShip.myShip.x = -MyShip.myShip.getX();
 			if (lifeMyShip > 6) {
 				killedByBunker = false;
 				killedByDragon = false;
