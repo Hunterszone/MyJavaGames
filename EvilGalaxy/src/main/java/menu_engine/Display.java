@@ -35,13 +35,14 @@ public class Display {
 
     private void init() {
         frame = new JFrame("Evil Menu");
+        frame.setUndecorated(true);
+        frame.pack();
         frame.setVisible(true);
         frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
