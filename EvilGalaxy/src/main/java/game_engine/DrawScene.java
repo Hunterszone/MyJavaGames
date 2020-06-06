@@ -128,7 +128,7 @@ public class DrawScene extends UpdateObjects {
 
 			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 					|| InitObjects.timerHard.isRunning())) {
-				gamePaused(g);
+				drawGamePaused(g);
 			}
 
 			if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
@@ -154,7 +154,7 @@ public class DrawScene extends UpdateObjects {
 			
 			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 					|| InitObjects.timerHard.isRunning())) {
-				gamePaused(g);
+				drawGamePaused(g);
 			}
 
 			if (GameMenuBar.autosave.isSelected() == true) {
@@ -188,7 +188,7 @@ public class DrawScene extends UpdateObjects {
 			
 			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 					|| InitObjects.timerHard.isRunning())) {
-				gamePaused(g);
+				drawGamePaused(g);
 			}
 
 			if (UpdateObjects.lifeBunker < 50) {
@@ -309,11 +309,11 @@ public class DrawScene extends UpdateObjects {
 			return;
 		}
 
-		stateWeaponsL1(g);
-		stateWeaponsL2(g);
-		stateWeaponsL3(g);
-		stateWeaponsL4(g);
-		stateWeaponsBoss(g);
+		drawGameStateL1(g);
+		drawGameStateL2(g);
+		drawGameStateL3(g);
+		drawGameStateL4(g);
+		drawGameStateBoss(g);
 		evilHeadBehaviour();
 		handleLifeEvilHead(g);
 
@@ -392,7 +392,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void stateWeaponsL1(Graphics g) {
+	private void drawGameStateL1(Graphics g) {
 		if (Alien.aliens.size() > 0 && ingame) {
 
 			setFontStyle(g);
@@ -428,7 +428,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void stateWeaponsL2(Graphics g) {
+	private void drawGameStateL2(Graphics g) {
 		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty() && ingame) {
 
 			if (Dragon.dragons.size() > 0) {
@@ -457,7 +457,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void stateWeaponsL3(Graphics g) {
+	private void drawGameStateL3(Graphics g) {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
 
@@ -489,7 +489,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void stateWeaponsL4(Graphics g) {
+	private void drawGameStateL4(Graphics g) {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0 && ingame) {
 
@@ -518,7 +518,7 @@ public class DrawScene extends UpdateObjects {
 
 	}
 
-	private void stateWeaponsBoss(Graphics g) {
+	private void drawGameStateBoss(Graphics g) {
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && ingame) {
 
 			if (InitObjects.timerEasy.isRunning() ||
@@ -922,7 +922,7 @@ public class DrawScene extends UpdateObjects {
 		g.setFont(small);
 	}
 
-	private void gamePaused(Graphics g) {
+	private void drawGamePaused(Graphics g) {
 		String msg = "Game paused";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);

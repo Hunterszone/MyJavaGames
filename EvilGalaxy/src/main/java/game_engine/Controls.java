@@ -86,10 +86,10 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (InitObjects.ingame == true
-				&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-						|| InitObjects.timerHard.isRunning() == true)
-				&& key == KeyEvent.VK_SPACE && 
-					((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
+				&& (InitObjects.timerEasy.isRunning() == true
+						|| InitObjects.timerMedium.isRunning() == true || InitObjects.timerHard.isRunning() == true)
+				&& key == KeyEvent.VK_SPACE
+				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
 			MyShip.myShip.gunLocked();
@@ -126,7 +126,7 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_4) {
-			
+
 			if (InitObjects.ingame == false) {
 				DrawScene.initVoice("Loading level 4...");
 				DrawScene.voiceInterruptor = true;
@@ -216,6 +216,21 @@ public class Controls extends JFrame implements KeyListener {
 			}
 		}
 
+		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning())
+				&& (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP
+						|| key == KeyEvent.VK_DOWN)) {
+			ConsoleContent.manualON = false;
+			InitObjects.timerHard.stop();
+			InitObjects.timerMedium.stop();
+			InitObjects.timerEasy.start();
+			LoadSounds.bgMusic.loop();				
+
+			if (Alien.aliens.isEmpty()) {
+				LoadSounds.roar.loop();
+			}
+		}
+
 		if (key == KeyEvent.VK_G) {
 
 			if (!ConsoleContent.god) {
@@ -257,14 +272,18 @@ public class Controls extends JFrame implements KeyListener {
 				DrawScene.initVoice("Loading main menu...");
 				DrawScene.voiceInterruptor = true;
 			}
-			if(AstronautAnimation.astronautAnim != null) AstronautAnimation.astronautAnim = null;
-			if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
-			for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-				if(asteroidsAnim != null) asteroidsAnim = null;				
+			if (AstronautAnimation.astronautAnim != null)
+				AstronautAnimation.astronautAnim = null;
+			if (SatelliteAnimation.starAnim != null)
+				SatelliteAnimation.starAnim = null;
+			for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+				if (asteroidsAnim != null)
+					asteroidsAnim = null;
 			}
 			AsteroidsAnimation.asteroidsAnimations.clear();
 			InitObjects.ingame = false;
-			if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
+			if (MouseInputHandler.main != null)
+				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
 			MenuState.isOn = true;
 			CanvasMenu engine = new CanvasMenu();
