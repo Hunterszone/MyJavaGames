@@ -25,7 +25,9 @@ public class Display {
 
     public static JFrame frame;
     public static Canvas canvas;
-
+//	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+	static Dimension dim;
+	
     public Display() {
         init();
     }
@@ -37,7 +39,7 @@ public class Display {
     private void init() {
         frame = new JFrame("Evil Menu");
         frame.setUndecorated(true);
-        frame.pack();
+//        device.setFullScreenWindow(frame); 
         frame.setVisible(true);
         frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -47,6 +49,8 @@ public class Display {
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIPONFIRE.getImg()));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 
         canvas = new Canvas();
 
