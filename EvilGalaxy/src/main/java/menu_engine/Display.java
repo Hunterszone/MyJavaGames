@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import game_engine.Images;
 import sound_engine.LoadSounds;
 
 public class Display {
@@ -43,6 +44,7 @@ public class Display {
         frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIPONFIRE.getImg()));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
