@@ -73,23 +73,23 @@ public class DrawScene extends UpdateObjects {
 		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg());
 		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
-	
+
 	private void drawAstronaut(Graphics g) {
-	    AffineTransform backup = ((Graphics2D) g).getTransform();
-	    AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
-	    a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX()/2, 
-	    		AstronautAnimation.astronautAnim.getY()/2);
-	    ((Graphics2D) g).setTransform(a);
-	    g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
-	    		AstronautAnimation.astronautAnim.getY(), this);
-	    a = AffineTransform.getRotateInstance(181, 850, 700);
-	    a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX()/2, 
-	    		AstronautAnimation.astronautAnim.getY()/2);
-	    ((Graphics2D) g).setTransform(a);
-	    g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
-	    		AstronautAnimation.astronautAnim.getY(), this);
-	    Toolkit.getDefaultToolkit().sync();
-	    ((Graphics2D) g).setTransform(backup);
+		AffineTransform backup = ((Graphics2D) g).getTransform();
+		AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX() / 2,
+				AstronautAnimation.astronautAnim.getY() / 2);
+		((Graphics2D) g).setTransform(a);
+		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
+				AstronautAnimation.astronautAnim.getY(), this);
+		a = AffineTransform.getRotateInstance(181, 850, 700);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX() / 2,
+				AstronautAnimation.astronautAnim.getY() / 2);
+		((Graphics2D) g).setTransform(a);
+		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
+				AstronautAnimation.astronautAnim.getY(), this);
+		Toolkit.getDefaultToolkit().sync();
+		((Graphics2D) g).setTransform(backup);
 	}
 
 	private void drawSatellite(Graphics g) {
@@ -97,11 +97,11 @@ public class DrawScene extends UpdateObjects {
 				SatelliteAnimation.starAnim.getY(), this);
 		AffineTransform backup = ((Graphics2D) g).getTransform();
 		AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
-	    a.rotate(Math.toRadians(Math.ceil(Math.random())), SatelliteAnimation.starAnim.getX()/2, 
-	    		SatelliteAnimation.starAnim.getY()/2);
-	    ((Graphics2D) g).setTransform(a);
-	    g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
-	    		SatelliteAnimation.starAnim.getY(), this);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), SatelliteAnimation.starAnim.getX() / 2,
+				SatelliteAnimation.starAnim.getY() / 2);
+		((Graphics2D) g).setTransform(a);
+		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
+				SatelliteAnimation.starAnim.getY(), this);
 		Toolkit.getDefaultToolkit().sync();
 		((Graphics2D) g).setTransform(backup);
 	}
@@ -126,6 +126,11 @@ public class DrawScene extends UpdateObjects {
 			drawLifeMyShip(g);
 			drawAsteroids(g);
 
+			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+					|| InitObjects.timerHard.isRunning())) {
+				gamePaused(g);
+			}
+
 			if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
@@ -138,7 +143,7 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (ingame && Alien.aliens.isEmpty()) {
-
+			
 			drawScene2(g);
 			setFontStyle(g);
 			drawSatellite(g);
@@ -146,6 +151,11 @@ public class DrawScene extends UpdateObjects {
 			drawObjects(g);
 			drawCountGold(g);
 			drawLifeMyShip(g);
+			
+			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+					|| InitObjects.timerHard.isRunning())) {
+				gamePaused(g);
+			}
 
 			if (GameMenuBar.autosave.isSelected() == true) {
 //				g.drawString("Autosave: ON", 1000, 20);
@@ -176,12 +186,17 @@ public class DrawScene extends UpdateObjects {
 			drawLifeBunker(g);
 			drawLifeMyShip(g);
 			
-			if(UpdateObjects.lifeBunker < 50) { 
+			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+					|| InitObjects.timerHard.isRunning())) {
+				gamePaused(g);
+			}
+
+			if (UpdateObjects.lifeBunker < 50) {
 				drawAstronaut(g);
 			} else {
 				drawAsteroids(g);
 			}
-			
+
 			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
 //				g.drawString("Autosave: ON", 870, 20);
 				GameMenuBar.savedOnL1 = false;
@@ -194,12 +209,12 @@ public class DrawScene extends UpdateObjects {
 				}
 
 			}
-			
+
 			if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
 //				g.drawString("Autosave: OFF", 870, 20);
 				voiceInterruptor = true;
 			}
-			
+
 			LoadSounds.roar.stop();
 		}
 
@@ -224,8 +239,8 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Monsters left: " + 0, 5, 20);
 				g.drawString("Gold: " + 0, 200, 20);
 				g.drawString("Health: 0%", 300, 20);
-				
-				if (Collisions.killedByAlien == true) {			
+
+				if (Collisions.killedByAlien == true) {
 					if (InitObjects.ingame == false) {
 						DrawScene.initVoice("Killed by an alien!");
 						DrawScene.voiceInterruptor = true;
@@ -233,8 +248,8 @@ public class DrawScene extends UpdateObjects {
 						return;
 					}
 				}
-				
-				if (Collisions.killedByDragon == true) {			
+
+				if (Collisions.killedByDragon == true) {
 					if (InitObjects.ingame == false) {
 						DrawScene.initVoice("Killed by a dragon!");
 						DrawScene.voiceInterruptor = true;
@@ -242,8 +257,8 @@ public class DrawScene extends UpdateObjects {
 						return;
 					}
 				}
-				
-				if (Collisions.killedByBunker == true) {			
+
+				if (Collisions.killedByBunker == true) {
 					if (InitObjects.ingame == false) {
 						DrawScene.initVoice("Killed by the bunker!");
 						DrawScene.voiceInterruptor = true;
@@ -251,8 +266,8 @@ public class DrawScene extends UpdateObjects {
 						return;
 					}
 				}
-				
-				if (Collisions.killedByEvilHead == true) {			
+
+				if (Collisions.killedByEvilHead == true) {
 					if (InitObjects.ingame == false) {
 						DrawScene.initVoice("Killed by the Evil Head!");
 						DrawScene.voiceInterruptor = true;
@@ -260,18 +275,21 @@ public class DrawScene extends UpdateObjects {
 						return;
 					}
 				}
-				
+
 				try {
 					HighScoreToDb.initDbConn();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				if(AstronautAnimation.astronautAnim != null) AstronautAnimation.astronautAnim = null;
-				if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
-				for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-					if(asteroidsAnim != null) asteroidsAnim = null;				
+
+				if (AstronautAnimation.astronautAnim != null)
+					AstronautAnimation.astronautAnim = null;
+				if (SatelliteAnimation.starAnim != null)
+					SatelliteAnimation.starAnim = null;
+				for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+					if (asteroidsAnim != null)
+						asteroidsAnim = null;
 				}
 				AsteroidsAnimation.asteroidsAnimations.clear();
 			}
@@ -347,19 +365,18 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void evilHeadBehaviour() {
-		
+
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50
-				&& (EvilHead.evilHead.x - MyShip.myShip.x == 100 ||
-					EvilHead.evilHead.x - MyShip.myShip.x == 200 ||
-					EvilHead.evilHead.x - MyShip.myShip.x == 300 ||
-					EvilHead.evilHead.x - MyShip.myShip.x == 400)) {
-			
+				&& (EvilHead.evilHead.x - MyShip.myShip.x == 100 || EvilHead.evilHead.x - MyShip.myShip.x == 200
+						|| EvilHead.evilHead.x - MyShip.myShip.x == 300
+						|| EvilHead.evilHead.x - MyShip.myShip.x == 400)) {
+
 			EvilHead.evilHead.strikeHead();
-			
-			if(timerEasy.isRunning()) {
+
+			if (timerEasy.isRunning()) {
 				EvilHead.evilHead.throwCanons();
 			}
-			if(timerMedium.isRunning() || timerHard.isRunning()) {
+			if (timerMedium.isRunning() || timerHard.isRunning()) {
 				EvilHead.evilHead.throwFireballs();
 			}
 		}
@@ -444,7 +461,12 @@ public class DrawScene extends UpdateObjects {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
 
-			drawKillTheBunker(g);
+			if (InitObjects.timerEasy.isRunning() ||
+					InitObjects.timerMedium.isRunning() ||
+					InitObjects.timerHard.isRunning()) {
+				drawKillTheBunker(g);
+			}
+			
 			g.drawString("Missiles: Locked", 270, 20);
 			g.drawString("Rockets: Unlocked", 470, 20);
 			g.drawString(difficulty, 680, 20);
@@ -471,7 +493,12 @@ public class DrawScene extends UpdateObjects {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0 && ingame) {
 
-			drawCollect(g);
+			if (InitObjects.timerEasy.isRunning() ||
+					InitObjects.timerMedium.isRunning() ||
+					InitObjects.timerHard.isRunning()) {
+				drawCollectGold(g);				
+			}
+			
 			g.drawString("Missiles: Locked", 260, 20);
 			g.drawString("Rockets: Locked", 450, 20);
 			g.drawString(difficulty, 640, 20);
@@ -494,7 +521,12 @@ public class DrawScene extends UpdateObjects {
 	private void stateWeaponsBoss(Graphics g) {
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && ingame) {
 
-			drawKillTheHead(g);
+			if (InitObjects.timerEasy.isRunning() ||
+					InitObjects.timerMedium.isRunning() ||
+					InitObjects.timerHard.isRunning()) {
+				drawKillTheHead(g);
+			}
+			
 			g.drawString("Missiles: Unlocked", 240, 20);
 			g.drawString("Rockets: Unlocked", 460, 20);
 			g.drawString(difficulty, 680, 20);
@@ -555,7 +587,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Missiles: Locked", 410, 20);
 			g.drawString("Rockets: Unlocked", 600, 20);
 			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
-			
+
 			if (timerEasy.isRunning()) {
 				g.drawString("Difficulty: Easy", 810, 20);
 			}
@@ -568,13 +600,11 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Difficulty: Hard", 810, 20);
 				drawOuttaControl(g);
 				MyShip.myShip.shipShaked();
-				Crosshair.crosshair.crosShaked();			
+				Crosshair.crosshair.crosShaked();
 			}
 		}
-		
-		if (timerEasy.isRunning() || 
-			timerMedium.isRunning() || 
-			timerHard.isRunning() ) {
+
+		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
 			UpdateObjects.updateDragons();
 			LoadSounds.roar.loop();
 		}
@@ -587,7 +617,7 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifeMyShip < 3) {
-			g.drawString("GODMODE!", MyShip.myShip.x, MyShip.myShip.y);
+			g.drawString("GODMODE", MyShip.myShip.x, MyShip.myShip.y);
 			MyShip.myShip.godMode();
 		}
 
@@ -662,20 +692,20 @@ public class DrawScene extends UpdateObjects {
 			setFontStyle(g);
 
 			if (GameMenuBar.autosave.isSelected() == true) {
-				/*if (!Gold.goldstack.isEmpty())
-					g.drawString("Autosave: ON", 830, 20);
-				else
-					g.drawString("Autosave: ON", 860, 20);*/
+				/*
+				 * if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: ON", 830, 20); else
+				 * g.drawString("Autosave: ON", 860, 20);
+				 */
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
 				GameMenuBar.savedOnL4 = true;
 			}
 			if (GameMenuBar.autosave.isSelected() == false) {
-				/*if (!Gold.goldstack.isEmpty())
-					g.drawString("Autosave: OFF", 830, 20);
-				else
-					g.drawString("Autosave: OFF", 860, 20);*/
+				/*
+				 * if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: OFF", 830, 20); else
+				 * g.drawString("Autosave: OFF", 860, 20);
+				 */
 				voiceInterruptor = true;
 			}
 //			g.drawString("Dragonzz: Yes", 5, 20);
@@ -766,7 +796,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		if(UpdateObjects.lifeBunker >= 50) {			
+		if (UpdateObjects.lifeBunker >= 50) {
 			for (Gold gold : Gold.goldstack) {
 				if (gold.isVisible()) {
 					g.drawImage(gold.getImage(), gold.getX(), gold.getY(), this);
@@ -835,16 +865,14 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGameOver(Graphics g) {
-
 		String msg = "Game Over!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X + 30, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawKilledBy(Graphics g) {
-
 		String msg = null;
-		if (Collisions.killedByAlien == true)			
+		if (Collisions.killedByAlien == true)
 			msg = "Killed by an alien!";
 		if (Collisions.killedByDragon == true)
 			msg = "Killed by a dragon!";
@@ -857,15 +885,13 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 222) / 2);
 	}
 
-	private void drawCollect(Graphics g) {
-
+	private void drawCollectGold(Graphics g) {
 		String msg = "Collect all the gold!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
-
 		String msg = "Destroy the bunker!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
@@ -873,21 +899,18 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawKillTheHead(Graphics g) {
-
 		String msg = "Finally..Kill the evil head!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawYouWon(Graphics g) {
-
 		String msg = "You Won!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 	private void drawOuttaControl(Graphics g) {
-
 		String msg = "Dragons invasion brings the ship outta control...";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X - 100, (B_HEIGHT - 272) / 2);
@@ -897,6 +920,12 @@ public class DrawScene extends UpdateObjects {
 		Font small = new Font("Papyrus", Font.BOLD, 22);
 		g.setColor(Color.YELLOW);
 		g.setFont(small);
+	}
+
+	private void gamePaused(Graphics g) {
+		String msg = "Game paused";
+		setFontStyle(g);
+		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
 	}
 
 }
