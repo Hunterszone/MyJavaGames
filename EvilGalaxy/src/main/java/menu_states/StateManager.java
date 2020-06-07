@@ -5,6 +5,7 @@ public class StateManager {
 		GAME,
 		CONTROLS,
 		SETTINGS,
+		EXTRAS,
 		MANUAL,
 		PAUSE,
 		MENU

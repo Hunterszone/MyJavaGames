@@ -1,15 +1,21 @@
 package menu_engine;
 
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import frames.Main;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
+import launcher.Launcher;
 import menu_states.ControlsState;
+import menu_states.ExtrasState;
 import menu_states.ManualState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
@@ -32,7 +38,7 @@ public class MouseInputHandler implements MouseListener {
 
 		if (MenuState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 150 && mouseY <= 200) {
+				if (mouseY >= 115 && mouseY <= 165) {
 					LoadSounds.menuMusic.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
@@ -49,20 +55,30 @@ public class MouseInputHandler implements MouseListener {
 						});
 					}
 					MenuState.isOn = true;
-				} if (mouseY >= 250 && mouseY <= 300) {
+				}
+				if (mouseY >= 215 && mouseY <= 265) {
 					new PlayWave1st(soundName).start();
 					new LoadGame().openFileChooser();
-				} if (mouseY >= 350 && mouseY <= 400 && MenuState.isOn) {
+				}
+				if (mouseY >= 315 && mouseY <= 365 && MenuState.isOn) {
 					new PlayWave1st(soundName).start();
 					CanvasMenu.State.setState(StateManager.STATES.CONTROLS);
 					MenuState.isOn = false;
 					ControlsState.isOn = true;
-				} if (mouseY >= 450 && mouseY <= 500 && MenuState.isOn) {
+				}
+				if (mouseY >= 415 && mouseY <= 465 && MenuState.isOn) {
 					new PlayWave1st(soundName).start();
 					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
 					MenuState.isOn = false;
 					SettingsState.isOn = true;
-				} if (mouseY >= 550 && mouseY <= 600 && MenuState.isOn) {
+				}
+				if (mouseY >= 515 && mouseY <= 565 && MenuState.isOn) {
+					new PlayWave1st(soundName).start();
+					CanvasMenu.State.setState(StateManager.STATES.EXTRAS);
+					MenuState.isOn = false;
+					ExtrasState.isOn = true;
+				}
+				if (mouseY >= 615 && mouseY <= 665 && MenuState.isOn) {
 					new PlayWave1st(soundName).start();
 					System.exit(0);
 				}
@@ -83,7 +99,7 @@ public class MouseInputHandler implements MouseListener {
 				new PlayWave1st(forbidden).start();
 			}
 		}
-		
+
 		if (SettingsState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
@@ -93,15 +109,15 @@ public class MouseInputHandler implements MouseListener {
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
 			} else {
-				if((mouseX < 800 || mouseX > 800 + Constants.LOAD_ASSETS.myShip.getWidth(null)
-				|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null) 
-				|| mouseX > 790 + Constants.LOAD_ASSETS.manual.getWidth(null)) && 
-						!(mouseY >= 150 && mouseY <= 200)) {
+				if ((mouseX < 800 || mouseX > 800 + Constants.LOAD_ASSETS.myShip.getWidth(null)
+						|| mouseX > 800 + Constants.LOAD_ASSETS.evilHead.getWidth(null)
+						|| mouseX > 790 + Constants.LOAD_ASSETS.manual.getWidth(null))
+						&& !(mouseY >= 150 && mouseY <= 200)) {
 					new PlayWave1st(forbidden).start();
 				}
 			}
 		}
-		
+
 		if (ManualState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
@@ -112,6 +128,49 @@ public class MouseInputHandler implements MouseListener {
 				}
 			} else {
 				new PlayWave1st(forbidden).start();
+			}
+		}
+
+		if (ExtrasState.isOn) {
+			if (mouseX >= 430 && mouseX <= 770) {
+				if (mouseY >= 150 && mouseY <= 200) {
+					new PlayWave1st(soundName).start();
+					Launcher.main(null);
+					System.exit(0);
+				}
+				if (mouseY >= 250 && mouseY <= 300) {
+					new PlayWave1st(soundName).start();
+					try {
+						Desktop.getDesktop().browse(new URI("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (mouseY >= 350 && mouseY <= 400) {
+					new PlayWave1st(soundName).start();
+					try {
+						Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (mouseY >= 450 && mouseY <= 500) {
+					new PlayWave1st(soundName).start();
+					ExtrasState.isOn = false;
+					MenuState.isOn = true;
+					CanvasMenu.State.setState(StateManager.STATES.MENU);
+				}
+			} else {
+				if (!(mouseY >= 150 && mouseY <= 200) ||
+					!(mouseY >= 250 && mouseY <= 300) ||
+					!(mouseY >= 350 && mouseY <= 400) ||
+					!(mouseY >= 450 && mouseY <= 500)) {
+					new PlayWave1st(forbidden).start();
+				}
 			}
 		}
 	}
@@ -154,24 +213,29 @@ public class MouseInputHandler implements MouseListener {
 				CanvasMenu.State.setState(StateManager.STATES.MANUAL);
 			}
 		}
-		if ((CanvasMenu.State.getState() == StateManager.STATES.MENU || 
-				CanvasMenu.State.getState() == StateManager.STATES.CONTROLS || 
-				CanvasMenu.State.getState() == StateManager.STATES.SETTINGS || 
-				CanvasMenu.State.getState() == StateManager.STATES.MANUAL)
+		if ((CanvasMenu.State.getState() == StateManager.STATES.MENU
+				|| CanvasMenu.State.getState() == StateManager.STATES.CONTROLS
+				|| CanvasMenu.State.getState() == StateManager.STATES.SETTINGS
+				|| CanvasMenu.State.getState() == StateManager.STATES.MANUAL
+				|| CanvasMenu.State.getState() == StateManager.STATES.EXTRAS)
 				&& (point.getX() >= 1100 && point.getX() <= 1100 + Constants.LOAD_ASSETS.volume.getWidth(null))) {
 			if ((point.getY() >= 32 && point.getY() <= 32 + Constants.LOAD_ASSETS.volume.getHeight(null))) {
 				new PlayWave1st(soundName).start();
 				LoadSounds.menuMusic.stop();
 			}
 		} else {
-			if(   	   !(point.getY() >= 150 && point.getY() <= 200)
-					&& !(point.getY() >= 250 && point.getY() <= 300)
-					&& !(point.getY() >= 350 && point.getY() <= 400)
-					&& !(point.getY() >= 450 && point.getY() <= 500)
-					&& !(SettingsState.isOn && point.getY() >= 280 && point.getY() <= 280 + Constants.LOAD_ASSETS.myShip.getHeight(null))
-					&& !(SettingsState.isOn && point.getY() >= 380 && point.getY() <= 380 + Constants.LOAD_ASSETS.evilHead.getHeight(null))
-					&& !(ManualState.isOn && point.getY() >= 475 && point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
-			LoadSounds.menuMusic.loop();
+			if (!(point.getY() >= 115 && point.getY() <= 165) && 
+				!(point.getY() >= 215 && point.getY() <= 265) && 
+				!(point.getY() >= 315 && point.getY() <= 365) && 
+				!(point.getY() >= 415 && point.getY() <= 465) &&
+				!(point.getY() >= 515 && point.getY() <= 565)
+					&& !(SettingsState.isOn && point.getY() >= 280
+							&& point.getY() <= 280 + Constants.LOAD_ASSETS.myShip.getHeight(null))
+					&& !(SettingsState.isOn && point.getY() >= 380
+							&& point.getY() <= 380 + Constants.LOAD_ASSETS.evilHead.getHeight(null))
+					&& !(ManualState.isOn && point.getY() >= 475
+							&& point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
+				LoadSounds.menuMusic.loop();
 		}
 	}
 

@@ -20,6 +20,7 @@ public class Assets extends SpritePattern {
 	public Image loadGame;
 	public Image controlsButton;
 	public Image settingsButton;
+	public Image extrasButton;
 	public Image quitGame;
 	public Image settingsText;
 	public Image settingsText2;
@@ -30,6 +31,9 @@ public class Assets extends SpritePattern {
 	public Image info2;
 	public Image info3;
 	public Image back;
+	public Image updater;
+	public Image gamerepo;
+	public Image gamesite;
 	public Image headerBackground;
 	public Image header;
 	public Image myShip;
@@ -44,8 +48,12 @@ public class Assets extends SpritePattern {
 		loadGame = loadImage("images/buttons/loadGame.png");
 		controlsButton = loadImage("images/buttons/controls.png");
 		settingsButton = loadImage("images/buttons/settings.png");
+		extrasButton = loadImage("images/buttons/extras.png");
 		quitGame = loadImage("images/buttons/quitGame.png");
 		back = loadImage("images/buttons/back.png");
+		updater = loadImage("images/buttons/update.png");
+		gamerepo = loadImage("images/buttons/gamerepo.png");
+		gamesite = loadImage("images/buttons/gamesite.png");
 		settingsText = loadImage("images/settingsText.png");
 		settingsText2 = loadImage("images/settingsText2.png");
 		controlsText = loadImage("images/controlsText.png");

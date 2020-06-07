@@ -138,10 +138,8 @@ public class GameMenuBar extends JFrame {
 			try {
 				Desktop.getDesktop().browse(new URI("https://github.com/Hunterszone/EvilGalaxy"));
 			} catch (IOException e1) {
-
 				e1.printStackTrace();
 			} catch (URISyntaxException e1) {
-
 				e1.printStackTrace();
 			}
 		});
@@ -152,10 +150,8 @@ public class GameMenuBar extends JFrame {
 			try {
 				Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
 			} catch (IOException e1) {
-
 				e1.printStackTrace();
 			} catch (URISyntaxException e1) {
-
 				e1.printStackTrace();
 			}
 		});
