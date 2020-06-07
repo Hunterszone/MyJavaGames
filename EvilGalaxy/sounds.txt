@@ -1,6 +1,6 @@
 attack.wav
-backmusic.wav
-backmusic2.wav
+bgmusic.wav
+bgmusic2.wav
 bloop.wav
 boing.wav
 boing2.wav
@@ -9,11 +9,15 @@ collect.wav
 denied.wav
 explosion.wav
 fin.wav
+forbidden.wav
 fuse.wav
 highsc.wav
 laser.wav
 magic.wav
+menusound.wav
+reload.wav
 rocket.wav
+scream.old.wav
 scream.wav
 smashed.wav
 taunt.wav
