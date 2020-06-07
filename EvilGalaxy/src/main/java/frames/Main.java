@@ -14,7 +14,7 @@ import game_engine.DrawScene;
 import game_engine.Images;
 import menu_engine.CanvasMenu;
 
-public final class Main extends GameMenuBar {
+public final class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];

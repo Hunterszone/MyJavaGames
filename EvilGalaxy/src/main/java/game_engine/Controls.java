@@ -1,7 +1,10 @@
 package game_engine;
 
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -38,7 +41,6 @@ public class Controls extends JFrame implements KeyListener {
 		MyShip.myShip.keyPressed(e);
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
-		SaveSign.saveSign.keyPressed(e);
 
 		int key = e.getKeyCode();
 
@@ -255,7 +257,22 @@ public class Controls extends JFrame implements KeyListener {
 			}
 
 		}
-
+		
+		if (((key == KeyEvent.VK_Z) && ((e.getModifiers() & InputEvent.ALT_MASK) != 0)) /*|| ((key == KeyEvent.VK_X)
+				&& ((e.getModifiers() & InputEvent.ALT_MASK) != 0) && GameMenuBar.autosave.isSelected() == false)*/) {
+			if (SaveSign.saveSign != null) {
+				SaveSign.saveSign.initSave();
+				SaveSign.saveSign.setVisible(true);
+				Random rand = new Random();
+				File file = new File("saves/save" + rand.nextInt() + ".txt");
+				SaveGame.saveGameDataToFile(file);
+			}
+		} else {
+			if (SaveSign.saveSign != null) {
+				SaveSign.saveSign.setVisible(false);
+			}
+		}
+		
 		if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
 			ConsoleContent.console = new ConsoleForm();
 		}

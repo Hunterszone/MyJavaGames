@@ -20,7 +20,7 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
-import frames.GameMenuBar;
+//import frames.GameMenuBar;
 import frames.Main;
 import items.Gold;
 import items.HealthPack;
@@ -46,7 +46,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	final static int VOLBUT_X = (int) getCoordinates().getWidth() - 365;
 	final static int VOLBUT_Y = (int) getCoordinates().getHeight() - 1050;
 	final static int BUNKER_X = ((int) getCoordinates().getWidth() - 400) / 2;
-	final static int BUNKER_Y = 688;
+	final static int BUNKER_Y = 720;
 	final static int B_WIDTH = 1310;
 	public final static int B_HEIGHT = 1040;
 
@@ -127,7 +127,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		initDragons();
 		initHealth();
 
-		GameMenuBar.autosave.setSelected(false);
+//		GameMenuBar.autosave.setSelected(false);
 		DrawScene.voiceInterruptor = true;
 
 		timerEasy = new Timer(DELAY, this);

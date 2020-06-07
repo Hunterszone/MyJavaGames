@@ -23,7 +23,6 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
-import frames.GameMenuBar;
 import frames.Main;
 import items.BunkerBullet;
 import items.CanonBall;
@@ -131,14 +130,14 @@ public class DrawScene extends UpdateObjects {
 				drawGamePaused(g);
 			}
 
-			if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
+			/*if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
 				GameMenuBar.savedOnL4 = false;
 				GameMenuBar.savedOnL1 = true;
 				initVoice("Autosave: ON!");
 				voiceInterruptor = false;
-			}
+			}*/
 
 		}
 
@@ -157,7 +156,7 @@ public class DrawScene extends UpdateObjects {
 				drawGamePaused(g);
 			}
 
-			if (GameMenuBar.autosave.isSelected() == true) {
+			/*if (GameMenuBar.autosave.isSelected() == true) {
 //				g.drawString("Autosave: ON", 1000, 20);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL3 = false;
@@ -168,12 +167,12 @@ public class DrawScene extends UpdateObjects {
 					voiceInterruptor = false;
 					return;
 				}
-			}
+			}*/
 
-			if (GameMenuBar.autosave.isSelected() == false) {
+			/*if (GameMenuBar.autosave.isSelected() == false) {
 //				g.drawString("Autosave: OFF", 1000, 20);
 				voiceInterruptor = true;
-			}
+			}*/
 
 		}
 
@@ -197,7 +196,7 @@ public class DrawScene extends UpdateObjects {
 				drawAsteroids(g);
 			}
 
-			if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
+			/*if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
 //				g.drawString("Autosave: ON", 870, 20);
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
@@ -208,12 +207,12 @@ public class DrawScene extends UpdateObjects {
 					voiceInterruptor = false;
 				}
 
-			}
+			}*/
 
-			if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
+			/*if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
 //				g.drawString("Autosave: OFF", 870, 20);
 				voiceInterruptor = true;
-			}
+			}*/
 
 			LoadSounds.roar.stop();
 		}
@@ -415,15 +414,15 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Difficulty: Hard", 820, 20);
 			}
 
-			if (GameMenuBar.autosave.isSelected() == true) {
+			/*if (GameMenuBar.autosave.isSelected() == true) {
 //				g.drawString("Autosave: ON", 1020, 20);
 
-			}
+			}*/
 
-			if (GameMenuBar.autosave.isSelected() == false) {
+			/*if (GameMenuBar.autosave.isSelected() == false) {
 //				g.drawString("Autosave: OFF", 1020, 20);
 				voiceInterruptor = true;
-			}
+			}*/
 
 		}
 	}
@@ -568,14 +567,14 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Difficulty: Hard", 820, 20);
 			}
 
-			if (GameMenuBar.autosave.isSelected() == true) {
+			/*if (GameMenuBar.autosave.isSelected() == true) {
 //				g.drawString("Autosave: ON", 1020, 20);
-			}
+			}*/
 
-			if (GameMenuBar.autosave.isSelected() == false) {
+			/*if (GameMenuBar.autosave.isSelected() == false) {
 //				g.drawString("Autosave: OFF", 1020, 20);
 				voiceInterruptor = true;
-			}
+			}*/
 		}
 	}
 
@@ -691,23 +690,23 @@ public class DrawScene extends UpdateObjects {
 
 			setFontStyle(g);
 
-			if (GameMenuBar.autosave.isSelected() == true) {
-				/*
-				 * if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: ON", 830, 20); else
-				 * g.drawString("Autosave: ON", 860, 20);
-				 */
+			/*if (GameMenuBar.autosave.isSelected() == true) {
+				
+				 if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: ON", 830, 20); else
+				 g.drawString("Autosave: ON", 860, 20);
+				 
 				GameMenuBar.savedOnL1 = false;
 				GameMenuBar.savedOnL2 = false;
 				GameMenuBar.savedOnL3 = false;
 				GameMenuBar.savedOnL4 = true;
 			}
 			if (GameMenuBar.autosave.isSelected() == false) {
-				/*
-				 * if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: OFF", 830, 20); else
-				 * g.drawString("Autosave: OFF", 860, 20);
-				 */
+				
+//				 if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: OFF", 830, 20); else
+//				 g.drawString("Autosave: OFF", 860, 20);
+				 
 				voiceInterruptor = true;
-			}
+			}*/
 //			g.drawString("Dragonzz: Yes", 5, 20);
 			g.drawString("Level: " + 4, 150, 20);
 			g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
