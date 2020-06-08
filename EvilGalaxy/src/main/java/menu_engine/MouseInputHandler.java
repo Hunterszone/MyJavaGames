@@ -134,9 +134,13 @@ public class MouseInputHandler implements MouseListener {
 		if (ExtrasState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
+					LoadSounds.menuMusic.stop();
 					new PlayWave1st(soundName).start();
+					MenuState.isOn = false;
+					Display.frame.remove(Display.canvas);
+					Display.frame.dispose();
 					Launcher.main(null);
-					System.exit(0);
+					MenuState.isOn = true;
 				}
 				if (mouseY >= 250 && mouseY <= 300) {
 					new PlayWave1st(soundName).start();
