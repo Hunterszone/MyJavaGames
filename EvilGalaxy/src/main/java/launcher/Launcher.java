@@ -33,16 +33,15 @@ public class Launcher extends JFrame {
 	private static final long serialVersionUID = 1L;
 	String version = "";
 	boolean needDownload = false;
-	static JFrame frame;
 	static UpdateLogger updlog = new UpdateLogger();
 
 	public static void main(String[] args) {
-		frame = new Launcher();
+		new Launcher();
 	}
 
 	public void needDownload() {
 		{
-			File filename = new File(System.getProperty("user.dir") + "/version.txt");
+			File filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
 			try {
 				List<String> lines = Files.readAllLines(Paths.get(filename.getAbsolutePath()), StandardCharsets.UTF_8);
 				for (String str : lines) {
@@ -86,14 +85,14 @@ public class Launcher extends JFrame {
 					if (!inputVersion.contains(version)) {
 						needDownload = true;
 						System.out.println("Downloading!");
-						File filename = new File(System.getProperty("user.dir") + "/version.txt");
+						File filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
 						PrintWriter writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
 						writer.println(inputVersion);
 						System.out.println("Updated to version " + inputVersion + " from version " + version);
 						writer.close();
 					} else {
 						System.out.println("No download needed!");
-						File filename = new File(System.getProperty("user.dir") + "/version.txt");
+						File filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
 						PrintWriter writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
 						writer.print("");
 						writer.println("up-to-date");
@@ -118,19 +117,18 @@ public class Launcher extends JFrame {
 	long lastTime = 0;
 
 	public Launcher() {
-		frame = this;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) screenSize.getWidth();
 		int height = (int) screenSize.getHeight();
-		frame.setTitle("Updating game...");
-		frame.setBounds(width / 2 - 200, height / 2 - 50, 400, 100);
-		frame.setVisible(true);
+		setTitle("Updating game...");
+		setBounds(width / 2 - 200, height / 2 - 50, 400, 100);
+		setVisible(true);
 		progressBar = new JProgressBar(0);
 		oprogressBar = new JProgressBar(0);
 		progressBar.setBounds(0, 0, 400, 50);
 		oprogressBar.setBounds(0, 50, 400, 50);
-		frame.add(progressBar);
-		frame.add(oprogressBar);
+		add(progressBar);
+		add(oprogressBar);
 		progressBar.setValue(0);
 		oprogressBar.setValue(0);
 		DrawScene.initVoice("Updating...");
@@ -365,7 +363,7 @@ public class Launcher extends JFrame {
 			e.printStackTrace();
 		}
 		System.out.println("Running " + exec);
-		frame.dispose();
+		dispose();
 
 		System.exit(0);
 
@@ -397,7 +395,7 @@ public class Launcher extends JFrame {
 					int percentage = (int) ((i * 100.0f) / size);
 
 					progressBar.setValue(((int) ((percentage * 100.0f) / 100)));
-					frame.setTitle(ofile.getName() + ": " + progressBar.getValue() + "%" + " Total: "
+					setTitle(ofile.getName() + ": " + progressBar.getValue() + "%" + " Total: "
 							+ oprogressBar.getValue() + "%");
 				}
 				fos.write(buff, 0, inChar);
