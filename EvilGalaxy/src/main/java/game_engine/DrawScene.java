@@ -866,7 +866,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawGameOver(Graphics g) {
 		String msg = "Game Over!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X + 30, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X + 30, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawKilledBy(Graphics g) {
@@ -881,38 +881,38 @@ public class DrawScene extends UpdateObjects {
 			msg = "Killed by the Evil Head!";
 
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 222) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 125);
 	}
 
 	private void drawCollectGold(Graphics g) {
 		String msg = "Collect all the gold!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
 		String msg = "Destroy the bunker!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 
 	}
 
 	private void drawKillTheHead(Graphics g) {
 		String msg = "Finally..Kill the evil head!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawYouWon(Graphics g) {
 		String msg = "You Won!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawOuttaControl(Graphics g) {
 		String msg = "Dragons invasion brings the ship outta control...";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X - 100, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X - 100, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void setFontStyle(Graphics g) {
@@ -924,7 +924,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawGamePaused(Graphics g) {
 		String msg = "Game paused";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, (B_HEIGHT - 272) / 2);
+		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 }

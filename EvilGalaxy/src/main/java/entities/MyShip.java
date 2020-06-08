@@ -142,9 +142,8 @@ public class MyShip extends SpritePattern {
 		if (y < 0) {
 			y = 0;
 //			escapeForbidden();
-		} else if (y > 700) {
-
-			y = 700;
+		} else if (y > Main.dim.getHeight() - 350) {
+			y = (int) (Main.dim.getHeight() - 350);
 //			escapeForbidden();
 		}
 	}

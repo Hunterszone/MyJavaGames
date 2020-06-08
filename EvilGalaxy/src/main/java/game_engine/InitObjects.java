@@ -44,9 +44,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	final static int EVILHEAD_X = 640;
 	final static int EVILHEAD_Y = 180;
 	final static int VOLBUT_X = (int) getCoordinates().getWidth() - 365;
-	final static int VOLBUT_Y = (int) getCoordinates().getHeight() - 1050;
+	final static int VOLBUT_Y = 15;
 	final static int BUNKER_X = ((int) getCoordinates().getWidth() - 400) / 2;
-	final static int BUNKER_Y = 720;
+	final static int BUNKER_Y = (int) getCoordinates().getHeight() - 360;
 	final static int B_WIDTH = 1310;
 	public final static int B_HEIGHT = 1040;
 
@@ -119,7 +119,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		Bunker.bunkerObj = new Bunker(BUNKER_X, BUNKER_Y);
 		Bunker.bunkerObj.setVisible(true);
 
-		SaveSign.saveSign = new SaveSign(BUNKER_X, (B_HEIGHT - 350) / 2);
+		SaveSign.saveSign = new SaveSign(BUNKER_X, (int) getCoordinates().getHeight() - 900);
 		SaveSign.saveSign.setVisible(false);
 
 		initAliens();

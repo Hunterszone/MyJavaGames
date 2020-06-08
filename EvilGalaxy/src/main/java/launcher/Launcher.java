@@ -321,7 +321,7 @@ public class Launcher extends JFrame {
 		updlog.logger.info("Exists: " + f.exists());
 		try {
 			URL url = new URL(
-					"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/EvilGalaxy.jar");
+					"https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EvilGalaxy.jar?raw=true");
 			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("HEAD");
 			if (needDownload || !f.exists() || f.length() != conn.getContentLength()) {
@@ -331,7 +331,7 @@ public class Launcher extends JFrame {
 					@Override
 					public void run() {
 						download(
-								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/EvilGalaxy.jar",
+								"https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EvilGalaxy.jar?raw=true",
 								"EvilGalaxy.jar", conn.getContentLength());
 					}
 				};
