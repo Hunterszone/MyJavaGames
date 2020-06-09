@@ -374,6 +374,7 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
 			MyShip.myShip.upsideDown();
+			MyShip.myShip.x = -MyShip.myShip.getX();
 			if (lifeMyShip > 6) {
 				killedByDragon = false;
 				killedByAlien = false;
@@ -393,6 +394,7 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
 			MyShip.myShip.upsideDown();
+			MyShip.myShip.x = -MyShip.myShip.getX();
 			if (lifeMyShip > 6) {
 				killedByDragon = false;
 				killedByAlien = false;
@@ -411,6 +413,7 @@ public abstract class Collisions extends UpdateObjects {
 			canon.setVisible(false);
 			new PlayWave1st(SoundEffects.BURNED.getSound()).start();
 			MyShip.myShip.upsideDown();
+			MyShip.myShip.x = -MyShip.myShip.getX();
 			if (lifeMyShip > 6) {
 				killedByDragon = false;
 				killedByAlien = false;
