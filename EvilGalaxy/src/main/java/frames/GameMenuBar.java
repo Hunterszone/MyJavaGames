@@ -24,6 +24,7 @@ import entities.Alien;
 import entities.AsteroidsAnimation;
 import entities.Bunker;
 import entities.Dragon;
+import entities.ElonAnimation;
 import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
@@ -199,6 +200,16 @@ public class GameMenuBar extends JFrame {
 					if(asteroidsAnim != null) asteroidsAnim = null;				
 				}
 				AsteroidsAnimation.asteroidsAnimations.clear();
+				for (ElonAnimation elonAnimUp : ElonAnimation.elonAnimationsUp) {
+					if (elonAnimUp != null)
+						elonAnimUp = null;
+				}
+				ElonAnimation.elonAnimationsUp.clear();
+				for (ElonAnimation elonAnimDown : ElonAnimation.elonAnimationsDown) {
+					if (elonAnimDown != null)
+						elonAnimDown = null;
+				}
+				ElonAnimation.elonAnimationsDown.clear();
 				InitObjects.ingame = false;
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;

@@ -20,6 +20,7 @@ import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
+import entities.ElonAnimation;
 import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
@@ -111,6 +112,20 @@ public class DrawScene extends UpdateObjects {
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
+	
+	private void drawElonsUp(Graphics g) {
+		for (ElonAnimation elonAnimUp : ElonAnimation.elonAnimationsUp) {
+			g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), this);
+			Toolkit.getDefaultToolkit().sync();
+		}
+	}
+	
+	private void drawElonsDown(Graphics g) {
+		for (ElonAnimation elonAnimDown : ElonAnimation.elonAnimationsDown) {
+			g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), this);
+			Toolkit.getDefaultToolkit().sync();
+		}
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -193,7 +208,8 @@ public class DrawScene extends UpdateObjects {
 			if (UpdateObjects.lifeBunker < 50) {
 				drawAstronaut(g);
 			} else {
-				drawAsteroids(g);
+				drawElonsUp(g);
+				drawElonsDown(g);
 			}
 
 			/*if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
@@ -291,6 +307,16 @@ public class DrawScene extends UpdateObjects {
 						asteroidsAnim = null;
 				}
 				AsteroidsAnimation.asteroidsAnimations.clear();
+				for (ElonAnimation elonAnimUp : ElonAnimation.elonAnimationsUp) {
+					if (elonAnimUp != null)
+						elonAnimUp = null;
+				}
+				ElonAnimation.elonAnimationsUp.clear();
+				for (ElonAnimation elonAnimDown : ElonAnimation.elonAnimationsDown) {
+					if (elonAnimDown != null)
+						elonAnimDown = null;
+				}
+				ElonAnimation.elonAnimationsDown.clear();
 			}
 
 			if (lifeEvilHead == 50) {

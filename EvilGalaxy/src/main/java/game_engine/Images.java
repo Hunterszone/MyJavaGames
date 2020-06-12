@@ -85,6 +85,18 @@ public enum Images {
 			return "images/asteroids.png";
 		}
 	},
+	ELONSUPINIT {
+		@Override
+		public String getImg() {
+			return "images/elon.png";
+		}
+	},
+	ELONSDOWNINIT {
+		@Override
+		public String getImg() {
+			return "images/elonDown.png";
+		}
+	},
 	MYSHIPONFIRE {
 		@Override
 		public String getImg() {

@@ -17,6 +17,7 @@ import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
+import entities.ElonAnimation;
 import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
@@ -101,6 +102,22 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {			
 			asteroidsAnim.drawAsteroids();
 			asteroidsAnim.setVisible(true);
+		}
+		
+		ElonAnimation.elonAnimationsUp.add(new ElonAnimation(100, InitObjects.B_HEIGHT));
+		ElonAnimation.elonAnimationsDown.add(new ElonAnimation(300, 0));
+		ElonAnimation.elonAnimationsUp.add(new ElonAnimation(500, InitObjects.B_HEIGHT));
+		ElonAnimation.elonAnimationsDown.add(new ElonAnimation(700, 0));
+		ElonAnimation.elonAnimationsUp.add(new ElonAnimation(900, InitObjects.B_HEIGHT));
+		
+		for(ElonAnimation elonAnim : ElonAnimation.elonAnimationsUp) {			
+			elonAnim.drawElonsUp();
+			elonAnim.setVisible(true);
+		}
+		
+		for(ElonAnimation elonAnim : ElonAnimation.elonAnimationsDown) {			
+			elonAnim.drawElonsDown();
+			elonAnim.setVisible(true);
 		}
 
 		MyShip.myShip = new MyShip(MYSHIP_X, MYSHIP_Y);
@@ -202,6 +219,12 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	        	AstronautAnimation.astronautAnim.cycle();
 	        	for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {	        		
 	        		asteroidsAnim.cycle();
+	        	}
+	        	for(ElonAnimation elonsAnim : ElonAnimation.elonAnimationsUp) {	        		
+	        		elonsAnim.cycleUp();
+	        	}
+	        	for(ElonAnimation elonsAnim : ElonAnimation.elonAnimationsDown) {	        		
+	        		elonsAnim.cycleDown();
 	        	}
 	            repaint();
 
