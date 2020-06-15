@@ -14,10 +14,6 @@
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
   <icon>C:\Users\Konstantin.Drenski\git\MyJavaGames\EvilGalaxy\images\newship.ico</icon>
-  <singleInstance>
-    <mutexName>EvilGalaxy</mutexName>
-    <windowTitle>EvilGalaxy</windowTitle>
-  </singleInstance>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
