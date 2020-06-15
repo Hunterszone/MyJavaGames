@@ -136,7 +136,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		Bunker.bunkerObj = new Bunker(BUNKER_X, BUNKER_Y);
 		Bunker.bunkerObj.setVisible(true);
 
-		SaveSign.saveSign = new SaveSign(BUNKER_X, (int) getCoordinates().getHeight() - 900);
+		SaveSign.saveSign = new SaveSign(BUNKER_X+30, (int) getCoordinates().getHeight() - 700);
 		SaveSign.saveSign.setVisible(false);
 
 		initAliens();
