@@ -8,6 +8,7 @@ import entities.Bunker;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
+import frames.FrameUtils;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.FireBall;
@@ -15,6 +16,7 @@ import items.Gold;
 import items.HealthPack;
 import items.ShipMissile;
 import items.ShipRocket;
+import menu_engine.MouseInputHandler;
 import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
 import sound_engine.SoundEffects;
@@ -170,6 +172,9 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean shipIntersectsAlien(Rectangle myship, Alien alien, Rectangle alienUnit) {
 		if (myship.intersects(alienUnit)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			lifeMyShip++;
 			alien.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
@@ -188,6 +193,9 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean shipIntersectsDragon(Rectangle myship, Dragon dragon, Rectangle dragonunit) {
 		if (myship.intersects(dragonunit) && Alien.aliens.isEmpty()) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			lifeMyShip++;
 			dragon.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
@@ -204,6 +212,9 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean shipIntersectsBunker(Rectangle myship, Rectangle bunker) {
 		if (myship.intersects(bunker)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
 			MyShip.myShip.setVisible(false);
@@ -239,8 +250,12 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean missileIntersectsAlien(ShipMissile missile, Rectangle missileUnit, Alien alien,
-			Rectangle alienUnit) {
+			Rectangle alienUnit) {		
+		
 		if (missileUnit.intersects(alienUnit)) {
+			
+			FrameUtils.vibrate(MouseInputHandler.main);
+			
 			missile.setVisible(false);
 			alien.setVisible(false);
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
@@ -253,6 +268,9 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean missileIntersectsBunker(Rectangle bunker, ShipMissile missile, Rectangle missileUnit) {
 		if (missileUnit.intersects(bunker)) {
+			
+			FrameUtils.vibrate(MouseInputHandler.main);
+			
 			Bunker.bunkerObj.drawBunkerHit();
 			Bunker.bunkerObj.loadBullet();
 			Bunker.bunkerObj.loadBullet2();
@@ -270,7 +288,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean shipIntersectsHead(Rectangle myship, Rectangle evilhead) {
+
 		if (myship.intersects(evilhead)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			MyShip.myShip.setVisible(false);
 			EvilHead.evilHead.setVisible(false);
@@ -287,6 +309,9 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean missileIntersectsHead(Rectangle evilhead, ShipMissile missile, Rectangle missileUnit) {
 		if (missileUnit.intersects(evilhead)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+			
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			missile.setVisible(false);
 			if (timerHard.isRunning() == true) {
@@ -304,7 +329,11 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static boolean rocketIntersectsDragon(ShipRocket rocket, Rectangle rocketUnit, Dragon dragon,
 			Rectangle dragonunit) {
+
 		if (rocketUnit.intersects(dragonunit)) {
+			
+			FrameUtils.vibrate(MouseInputHandler.main);
+			
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			rocket.setVisible(false);
 			dragon.setVisible(false);
@@ -315,7 +344,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean rocketIntersectsHead(Rectangle evilhead, ShipRocket rocket, Rectangle rocketUnit) {
+		
 		if (rocketUnit.intersects(evilhead)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+			
 			rocket.setVisible(false);
 			if (timerHard.isRunning() == true) {
 				EvilHead.evilHead.throwFireballs();
@@ -331,7 +364,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean rocketIntersectsBunker(Rectangle bunker, ShipRocket rocket, Rectangle rocketUnit) {
+		
 		if (rocketUnit.intersects(bunker)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+			
 			Bunker.bunkerObj.drawBunkerHit();
 			Bunker.bunkerObj.loadBullet();
 			Bunker.bunkerObj.loadBullet2();
@@ -349,7 +386,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean fireBallIntersectsShip(FireBall fireball, Rectangle fireballUnit, Rectangle ship) {
+	
 		if (fireballUnit.intersects(ship)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			lifeMyShip++;
 			fireball.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
@@ -368,7 +409,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean bulletOneIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit, Rectangle ship) {
+	
 		if (bulletUnit.intersects(ship)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			lifeMyShip++;
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
@@ -388,7 +433,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean bulletTwoIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit2, Rectangle ship) {
+		
 		if (bulletUnit2.intersects(ship)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			lifeMyShip++;
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
@@ -408,7 +457,11 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	public static boolean canonIntersectsShip(Rectangle myship, CanonBall canon, Rectangle canonUnit) {
+		
 		if (canonUnit.intersects(myship)) {
+
+			FrameUtils.vibrate(MouseInputHandler.main);
+
 			lifeMyShip++;
 			canon.setVisible(false);
 			new PlayWave1st(SoundEffects.BURNED.getSound()).start();
