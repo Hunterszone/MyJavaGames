@@ -433,7 +433,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 820, 20);
+				g.drawString("Difficulty: Medium", 820, 20);
 			}
 
 			if (timerHard.isRunning()) {
@@ -473,7 +473,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 810, 20);
+				g.drawString("Difficulty: Medium", 810, 20);
 			}
 
 			if (timerHard.isRunning()) {
@@ -504,7 +504,7 @@ public class DrawScene extends UpdateObjects {
 
 			if (timerMedium.isRunning()) {
 
-				g.drawString("Difficulty: Med", 680, 20);
+				g.drawString("Difficulty: Medium", 680, 20);
 			}
 
 			if (timerHard.isRunning()) {
@@ -533,7 +533,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 640, 20);
+				g.drawString("Difficulty: Medium", 640, 20);
 			}
 
 			if (timerHard.isRunning()) {
@@ -560,7 +560,7 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Difficulty: Easy", 680, 20);
 			}
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 680, 20);
+				g.drawString("Difficulty: Medium", 680, 20);
 			}
 			if (timerHard.isRunning()) {
 				g.drawString("Difficulty: Hard", 680, 20);
@@ -586,7 +586,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 820, 20);
+				g.drawString("Difficulty: Medium", 820, 20);
 			}
 
 			if (timerHard.isRunning()) {
@@ -618,7 +618,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Med", 810, 20);
+				g.drawString("Difficulty: Medium", 810, 20);
 			}
 
 			if (timerHard.isRunning()) {
@@ -829,7 +829,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		if (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+		if (Dragon.dragons.isEmpty() && (UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty())) {
 			for (HealthPack health : HealthPack.healthpack) {
 				if (health.isVisible()) {
 					g.drawImage(health.getImage(), health.getX(), health.getY(), this);
