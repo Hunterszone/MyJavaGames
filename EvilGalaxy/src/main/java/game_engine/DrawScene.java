@@ -54,8 +54,10 @@ public class DrawScene extends UpdateObjects {
 	public static void initVoice(String message) {
 		VoiceManager vm = VoiceManager.getInstance();
 		voice = vm.getVoice(VOICENAME);
-		voice.allocate();
-		voice.speak(message);
+		if (voice != null) {
+			voice.allocate();
+			voice.speak(message);
+		}
 
 		if (voiceStopped == false) {
 			voiceStopped = true;
@@ -112,14 +114,14 @@ public class DrawScene extends UpdateObjects {
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
-	
+
 	private void drawElonsUp(Graphics g) {
 		for (ElonAnimation elonAnimUp : ElonAnimation.elonAnimationsUp) {
 			g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
-	
+
 	private void drawElonsDown(Graphics g) {
 		for (ElonAnimation elonAnimDown : ElonAnimation.elonAnimationsDown) {
 			g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), this);
@@ -145,19 +147,17 @@ public class DrawScene extends UpdateObjects {
 				drawGamePaused(g);
 			}
 
-			/*if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
-				GameMenuBar.savedOnL2 = false;
-				GameMenuBar.savedOnL3 = false;
-				GameMenuBar.savedOnL4 = false;
-				GameMenuBar.savedOnL1 = true;
-				initVoice("Autosave: ON!");
-				voiceInterruptor = false;
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
+			 * GameMenuBar.savedOnL2 = false; GameMenuBar.savedOnL3 = false;
+			 * GameMenuBar.savedOnL4 = false; GameMenuBar.savedOnL1 = true;
+			 * initVoice("Autosave: ON!"); voiceInterruptor = false; }
+			 */
 
 		}
 
 		if (ingame && Alien.aliens.isEmpty()) {
-			
+
 			drawScene2(g);
 			setFontStyle(g);
 			drawSatellite(g);
@@ -165,29 +165,24 @@ public class DrawScene extends UpdateObjects {
 			drawObjects(g);
 			drawCountGold(g);
 			drawLifeMyShip(g);
-			
+
 			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 					|| InitObjects.timerHard.isRunning())) {
 				drawGamePaused(g);
 			}
 
-			/*if (GameMenuBar.autosave.isSelected() == true) {
-//				g.drawString("Autosave: ON", 1000, 20);
-				GameMenuBar.savedOnL1 = false;
-				GameMenuBar.savedOnL3 = false;
-				GameMenuBar.savedOnL4 = false;
-				GameMenuBar.savedOnL2 = true;
-				if (voiceInterruptor == true) {
-					initVoice("Autosave: ON!");
-					voiceInterruptor = false;
-					return;
-				}
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == true) { //
+			 * g.drawString("Autosave: ON", 1000, 20); GameMenuBar.savedOnL1 = false;
+			 * GameMenuBar.savedOnL3 = false; GameMenuBar.savedOnL4 = false;
+			 * GameMenuBar.savedOnL2 = true; if (voiceInterruptor == true) {
+			 * initVoice("Autosave: ON!"); voiceInterruptor = false; return; } }
+			 */
 
-			/*if (GameMenuBar.autosave.isSelected() == false) {
-//				g.drawString("Autosave: OFF", 1000, 20);
-				voiceInterruptor = true;
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == false) { //
+			 * g.drawString("Autosave: OFF", 1000, 20); voiceInterruptor = true; }
+			 */
 
 		}
 
@@ -199,7 +194,7 @@ public class DrawScene extends UpdateObjects {
 			drawCountGold(g);
 			drawLifeBunker(g);
 			drawLifeMyShip(g);
-			
+
 			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 					|| InitObjects.timerHard.isRunning())) {
 				drawGamePaused(g);
@@ -212,23 +207,20 @@ public class DrawScene extends UpdateObjects {
 				drawElonsDown(g);
 			}
 
-			/*if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) {
-//				g.drawString("Autosave: ON", 870, 20);
-				GameMenuBar.savedOnL1 = false;
-				GameMenuBar.savedOnL2 = false;
-				GameMenuBar.savedOnL4 = false;
-				GameMenuBar.savedOnL3 = true;
-				if (voiceInterruptor == true) {
-					initVoice("Autosave: ON!");
-					voiceInterruptor = false;
-				}
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == true && lifeBunker < 50) { //
+			 * g.drawString("Autosave: ON", 870, 20); GameMenuBar.savedOnL1 = false;
+			 * GameMenuBar.savedOnL2 = false; GameMenuBar.savedOnL4 = false;
+			 * GameMenuBar.savedOnL3 = true; if (voiceInterruptor == true) {
+			 * initVoice("Autosave: ON!"); voiceInterruptor = false; }
+			 * 
+			 * }
+			 */
 
-			}*/
-
-			/*if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) {
-//				g.drawString("Autosave: OFF", 870, 20);
-				voiceInterruptor = true;
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == false && lifeBunker < 50) { //
+			 * g.drawString("Autosave: OFF", 870, 20); voiceInterruptor = true; }
+			 */
 
 			LoadSounds.roar.stop();
 		}
@@ -440,15 +432,17 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Difficulty: Hard", 820, 20);
 			}
 
-			/*if (GameMenuBar.autosave.isSelected() == true) {
-//				g.drawString("Autosave: ON", 1020, 20);
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == true) { //
+			 * g.drawString("Autosave: ON", 1020, 20);
+			 * 
+			 * }
+			 */
 
-			}*/
-
-			/*if (GameMenuBar.autosave.isSelected() == false) {
-//				g.drawString("Autosave: OFF", 1020, 20);
-				voiceInterruptor = true;
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == false) { //
+			 * g.drawString("Autosave: OFF", 1020, 20); voiceInterruptor = true; }
+			 */
 
 		}
 	}
@@ -486,12 +480,11 @@ public class DrawScene extends UpdateObjects {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
 
-			if (InitObjects.timerEasy.isRunning() ||
-					InitObjects.timerMedium.isRunning() ||
-					InitObjects.timerHard.isRunning()) {
+			if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+					|| InitObjects.timerHard.isRunning()) {
 				drawKillTheBunker(g);
 			}
-			
+
 			g.drawString("Missiles: Locked", 270, 20);
 			g.drawString("Rockets: Unlocked", 470, 20);
 			g.drawString(difficulty, 680, 20);
@@ -518,12 +511,11 @@ public class DrawScene extends UpdateObjects {
 
 		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0 && ingame) {
 
-			if (InitObjects.timerEasy.isRunning() ||
-					InitObjects.timerMedium.isRunning() ||
-					InitObjects.timerHard.isRunning()) {
-				drawCollectGold(g);				
+			if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+					|| InitObjects.timerHard.isRunning()) {
+				drawCollectGold(g);
 			}
-			
+
 			g.drawString("Missiles: Locked", 260, 20);
 			g.drawString("Rockets: Locked", 450, 20);
 			g.drawString(difficulty, 640, 20);
@@ -546,12 +538,11 @@ public class DrawScene extends UpdateObjects {
 	private void drawGameStateBoss(Graphics g) {
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && ingame) {
 
-			if (InitObjects.timerEasy.isRunning() ||
-					InitObjects.timerMedium.isRunning() ||
-					InitObjects.timerHard.isRunning()) {
+			if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+					|| InitObjects.timerHard.isRunning()) {
 				drawKillTheHead(g);
 			}
-			
+
 			g.drawString("Missiles: Unlocked", 240, 20);
 			g.drawString("Rockets: Unlocked", 460, 20);
 			g.drawString(difficulty, 680, 20);
@@ -593,14 +584,15 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("Difficulty: Hard", 820, 20);
 			}
 
-			/*if (GameMenuBar.autosave.isSelected() == true) {
-//				g.drawString("Autosave: ON", 1020, 20);
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == true) { //
+			 * g.drawString("Autosave: ON", 1020, 20); }
+			 */
 
-			/*if (GameMenuBar.autosave.isSelected() == false) {
-//				g.drawString("Autosave: OFF", 1020, 20);
-				voiceInterruptor = true;
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == false) { //
+			 * g.drawString("Autosave: OFF", 1020, 20); voiceInterruptor = true; }
+			 */
 		}
 	}
 
@@ -716,23 +708,21 @@ public class DrawScene extends UpdateObjects {
 
 			setFontStyle(g);
 
-			/*if (GameMenuBar.autosave.isSelected() == true) {
-				
-				 if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: ON", 830, 20); else
-				 g.drawString("Autosave: ON", 860, 20);
-				 
-				GameMenuBar.savedOnL1 = false;
-				GameMenuBar.savedOnL2 = false;
-				GameMenuBar.savedOnL3 = false;
-				GameMenuBar.savedOnL4 = true;
-			}
-			if (GameMenuBar.autosave.isSelected() == false) {
-				
-//				 if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: OFF", 830, 20); else
-//				 g.drawString("Autosave: OFF", 860, 20);
-				 
-				voiceInterruptor = true;
-			}*/
+			/*
+			 * if (GameMenuBar.autosave.isSelected() == true) {
+			 * 
+			 * if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: ON", 830, 20); else
+			 * g.drawString("Autosave: ON", 860, 20);
+			 * 
+			 * GameMenuBar.savedOnL1 = false; GameMenuBar.savedOnL2 = false;
+			 * GameMenuBar.savedOnL3 = false; GameMenuBar.savedOnL4 = true; } if
+			 * (GameMenuBar.autosave.isSelected() == false) {
+			 * 
+			 * // if (!Gold.goldstack.isEmpty()) g.drawString("Autosave: OFF", 830, 20);
+			 * else // g.drawString("Autosave: OFF", 860, 20);
+			 * 
+			 * voiceInterruptor = true; }
+			 */
 //			g.drawString("Dragonzz: Yes", 5, 20);
 			g.drawString("Level: " + 4, 150, 20);
 			g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
