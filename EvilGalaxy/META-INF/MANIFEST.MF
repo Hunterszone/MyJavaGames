@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: EvilGalaxy.jar lib/freetts.jar /bin /src
+Main-Class: frames.Main
+
