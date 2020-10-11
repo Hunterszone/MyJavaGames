@@ -2,15 +2,15 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "EvilGalaxy"
-#define MyAppVersion "Final"
+#define MyAppVersion "FINAL"
 #define MyAppPublisher "Drenski Studios"
-#define MyAppURL "http://www.me4gaming.com/"
+#define MyAppURL "http://me4gaming.com/"
 #define MyAppExeName "EvilGalaxy.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{6FE87E8B-9C0E-483E-BE0F-44EE067DBD0C}
+AppId={{F381C853-E209-41C2-BC75-35248978047A}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -20,12 +20,13 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-InfoAfterFile=C:\Users\Konstantin.Drenski\git\MyJavaGames\EvilGalaxy\README.md
+InfoAfterFile=C:\Users\kdren\git\MyJavaGames\EvilGalaxy\README.md
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputDir=C:\Users\Konstantin.Drenski\git\MyJavaGames\EvilGalaxy
-OutputBaseFilename=EGSetup
-SetupIconFile=C:\Users\Konstantin.Drenski\git\MyJavaGames\EvilGalaxy\images\newship.ico
+PrivilegesRequiredOverridesAllowed=dialog
+OutputDir=C:\Users\kdren\Desktop\EvilGalaxy
+OutputBaseFilename=EvilGalaxy
+SetupIconFile=C:\Users\kdren\git\MyJavaGames\EvilGalaxy\images\newship.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -34,13 +35,14 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Konstantin.Drenski\git\MyJavaGames\EvilGalaxy\EvilGalaxy.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Konstantin.Drenski\git\MyJavaGames\EvilGalaxy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\kdren\git\MyJavaGames\EvilGalaxy\EvilGalaxy.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kdren\git\MyJavaGames\EvilGalaxy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>C:\Users\kdren\git\MyJavaGames\EvilGalaxy\EvilGalaxy.jar</jar>
-  <outfile>C:\Users\kdren\Desktop\EvilGalaxy.exe</outfile>
+  <outfile>C:\Users\kdren\git\MyJavaGames\EvilGalaxy\EvilGalaxy.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
