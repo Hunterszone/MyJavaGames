@@ -35,10 +35,10 @@ public class Crosshair extends SpritePattern {
 			x = 1110;
 		}
 
-		if (y < -27) {
-			y = -27;
-		} else if (y > 675) {
-			y = 675;
+		if (y < -10) {
+			y = -10;
+		} else if (y > 720) {
+			y = 720;
 		}
 	}
 

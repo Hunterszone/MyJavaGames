@@ -41,7 +41,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	final static int MYSHIP_X = 40;
 	final static int MYSHIP_Y = 180;
 	final static int MYCROSSHAIR_X = 250;
-	final static int MYCROSSHAIR_Y = 155;
+	final static int MYCROSSHAIR_Y = 170;
 	final static int EVILHEAD_X = 640;
 	final static int EVILHEAD_Y = 180;
 	final static int VOLBUT_X = (int) getCoordinates().getWidth() - 365;
