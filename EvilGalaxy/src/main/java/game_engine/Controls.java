@@ -274,9 +274,9 @@ public class Controls extends JFrame implements KeyListener {
 			}
 		}
 		
-		if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
+		/*if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
 			ConsoleContent.console = new ConsoleForm();
-		}
+		}*/
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			MenuState.isOn = false;
