@@ -17,7 +17,6 @@ import entities.ElonAnimation;
 import entities.MyShip;
 import entities.SatelliteAnimation;
 import frames.ConsoleContent;
-import frames.ConsoleForm;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
