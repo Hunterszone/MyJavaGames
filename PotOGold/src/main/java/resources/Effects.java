@@ -20,6 +20,7 @@ public class Effects extends GameObject {
 		try {
 			particleSystem = ParticleIO.loadConfiguredSystem("res/particles/empty_system.xml");
 			lepriconSmoke = ParticleIO.loadEmitter("res/particles/rocket_smoke.xml");
+//			lepriconSmoke.setPosition(x, y, true);
 			particleSystem.addEmitter(lepriconSmoke);
 			objCollision = ParticleIO.loadEmitter("res/particles/ufo_explosion.xml");
 		} catch (IOException e) {
@@ -30,6 +31,7 @@ public class Effects extends GameObject {
 	@Override
 	public void update(int delta) {
 		particleSystem.update(delta);
+//		particleSystem.setRemoveCompletedEmitters(false);
 	}
 
 	@Override
