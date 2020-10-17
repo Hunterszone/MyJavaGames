@@ -25,6 +25,9 @@ import entities.Lives;
 import entities.Points;
 import entities.Timer;
 import resources.Effects;
+import resources.Fonts;
+import resources.Images;
+import resources.Sounds;
 import states.GameOver;
 import states.GamePause;
 import states.YouWon;
@@ -67,7 +70,7 @@ public class Main extends BasicGame {
 		app.setClearEachFrame(false);
 		app.setMinimumLogicUpdateInterval(20);
 		app.setShowFPS(false);
-		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon("res/gameico.png", app));
+		org.lwjgl.opengl.Display.setIcon(LoadIcon.loadIcon(Images.GAME_ICON.getImg(), app));
 		app.start();
 	}
 
@@ -115,42 +118,42 @@ public class Main extends BasicGame {
 
 	@Override
 	public void init(GameContainer container) throws SlickException {
-		background = new Image("res/background.png");
-		lepriHead = new Image("res/santa-head.png");
-		collectedGifts = new Image("res/gift1.png");
-		timerImg = new Image("res/timer.png");
-		Font fontPoints = new AngelCodeFont("res/fonts/score_numer_font.fnt",
-				new Image("res/fonts/score_numer_mine.png"));
+		background = new Image(Images.BACKGROUND.getImg());
+		lepriHead = new Image(Images.LEPRIHEAD.getImg());
+		collectedGifts = new Image(Images.GIFT1.getImg());
+		timerImg = new Image(Images.TIMER.getImg());
+		Font fontPoints = new AngelCodeFont(Fonts.SCORE_NUMBER.getImg(),
+				new Image(Fonts.SCORE_NUMBER_MINE.getImg()));
 		points = new Points(container.getWidth() - 900, 10, fontPoints);
 		timer = new Timer(container.getWidth() - 470, 10, fontPoints);
 		timer.running = true;
 		lives = new Lives(container.getWidth() - 80, 10, fontPoints);
 		effects = new Effects();
-		lepricon = new Lepricon(500, 630, new Image("res/santa.png"), container.getInput(),
+		lepricon = new Lepricon(500, 630, new Image(Images.LEPRICON.getImg()), container.getInput(),
 				effects.getRocketSmokeEmitter());
-		gift1 = new Gift(400, 200, new Image("res/gift1.png"));
-		gift2 = new Gift(200, 500, new Image("res/gift2.png"));
+		gift1 = new Gift(400, 200, new Image(Images.GIFT1.getImg()));
+		gift2 = new Gift(200, 500, new Image(Images.GIFT2.getImg()));
 		bombs = new ArrayList<>();
-		bombs.add(new Bomb(650, 10, new Image("res/mine.png")));
-		bombs.add(new Bomb(550, 30, new Image("res/mine.png")));
-		bombs.add(new Bomb(850, 10, new Image("res/mine.png")));
-		bombs.add(new Bomb(200, 30, new Image("res/mine.png")));
-		bombs.add(new Bomb(350, 10, new Image("res/mine.png")));
-		soundCollected = new Sound("res/sounds/collect.wav");
-		soundBoom = new Sound("res/sounds/explosion.wav");
-		Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
-				new Image("res/fonts/game_over_mine_2.png")),
-				fontGamePaused = new AngelCodeFont("res/fonts/game_over_font.fnt",
-						new Image("res/fonts/game_over_mine_2.png")),
-				fontYouWon = new AngelCodeFont("res/fonts/game_over_font.fnt",
-						new Image("res/fonts/game_over_mine_2.png"));
+		bombs.add(new Bomb(650, 10, new Image(Images.BOMB.getImg())));
+		bombs.add(new Bomb(550, 30, new Image(Images.BOMB.getImg())));
+		bombs.add(new Bomb(850, 10, new Image(Images.BOMB.getImg())));
+		bombs.add(new Bomb(200, 30, new Image(Images.BOMB.getImg())));
+		bombs.add(new Bomb(350, 10, new Image(Images.BOMB.getImg())));
+		soundCollected = new Sound(Sounds.COLLECTED.getSound());
+		soundBoom = new Sound(Sounds.BOOM.getSound());
+		Font fontGameOver = new AngelCodeFont(Fonts.GAME_OVER.getImg(),
+				new Image(Fonts.GAME_OVER_MINE.getImg())),
+				fontGamePaused = new AngelCodeFont(Fonts.GAME_OVER.getImg(),
+						new Image(Fonts.GAME_OVER_MINE.getImg())),
+				fontYouWon = new AngelCodeFont(Fonts.GAME_OVER.getImg(),
+						new Image(Fonts.GAME_OVER_MINE.getImg()));
 		gameOver = new GameOver(container.getHeight(), container.getWidth(), fontGameOver);
 		gamePausedLabel = new GamePause(container.getHeight(), container.getWidth(), fontGamePaused);
 		youWonLabel = new YouWon(container.getHeight(), container.getWidth(), fontYouWon);
-		bgMusic = new Music("res/sounds/bgmusic.wav");
+		bgMusic = new Music(Sounds.BG_MUSIC.getSound());
 		bgMusic.loop();
-		musicFailure = new Music("res/sounds/failure.wav");
-		musicVictory = new Music("res/sounds/victory.wav");
+		musicFailure = new Music(Sounds.GAME_OVER.getSound());
+		musicVictory = new Music(Sounds.VICTORY.getSound());
 	}
 
 	@Override

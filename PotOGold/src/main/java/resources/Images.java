@@ -7,10 +7,22 @@ public enum Images {
 			return "res/background.png";
 		}
 	},
+	GAME_ICON {
+		@Override
+		public String getImg() {
+			return "res/gameico.png";
+		}
+	},
 	BOMB {
 		@Override
 		public String getImg() {
 			return "res/mine.png";
+		}
+	},
+	TIMER {
+		@Override
+		public String getImg() {
+			return "res/timer.png";
 		}
 	},
 	LEPRICON {
