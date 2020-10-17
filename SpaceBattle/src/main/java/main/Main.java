@@ -59,10 +59,6 @@ public class Main extends BasicGame {
 	private GameMedium gameMedium;
 	private GameHard gameHard;
 	static AppGameContainer app;
-	private static boolean movingLeft = false;
-	private static boolean movingRight = false;
-	private static boolean movingUp = false;
-	private static boolean movingDown = false;
 	private static boolean isEasy = false;
 	private static boolean isMedium = false;
 	private static boolean isHard = false;
@@ -270,28 +266,24 @@ public class Main extends BasicGame {
 			if (input.isKeyDown(Input.KEY_LEFT)) {
 				container.setMouseGrabbed(false);
 				r.mouseMove(p.x -= 15, p.y);
-				movingLeft = true;
 				Spaceship.speedX += -5.5;
 			}
 
 			if (input.isKeyDown(Input.KEY_RIGHT)) {
 				container.setMouseGrabbed(false);
 				r.mouseMove(p.x += 15, p.y);
-				movingRight = true;
 				Spaceship.speedX += 5.5;
 			}
 
 			if (input.isKeyDown(Input.KEY_UP)) {
 				container.setMouseGrabbed(false);
 				r.mouseMove(p.x, p.y -= 11);
-				movingUp = true;
 				Spaceship.speedY += -5.5;
 			}
 
 			if (input.isKeyDown(Input.KEY_DOWN)) {
 				container.setMouseGrabbed(false);
 				r.mouseMove(p.x, p.y += 11);
-				movingDown = true;
 				Spaceship.speedY += 5.5;
 			}
 
