@@ -215,17 +215,26 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	        while (true) {
 	        	
-	        	SatelliteAnimation.starAnim.cycle();
-	        	AstronautAnimation.astronautAnim.cycle();
+	        	if(SatelliteAnimation.starAnim != null) {
+	        		SatelliteAnimation.starAnim.cycle();	        		
+	        	}
+	        	
+	        	if(AstronautAnimation.astronautAnim != null) {
+	        		AstronautAnimation.astronautAnim.cycle();	        		
+	        	}
+	        	
 	        	for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {	        		
 	        		asteroidsAnim.cycle();
 	        	}
+	        	
 	        	for(ElonAnimation elonsAnim : ElonAnimation.elonAnimationsUp) {	        		
 	        		elonsAnim.cycleUp();
 	        	}
+	        	
 	        	for(ElonAnimation elonsAnim : ElonAnimation.elonAnimationsDown) {	        		
 	        		elonsAnim.cycleDown();
 	        	}
+	        	
 	            repaint();
 
 	            timeDiff = System.currentTimeMillis() - beforeTime;
