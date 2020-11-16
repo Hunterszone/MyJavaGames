@@ -51,6 +51,7 @@ public class CanvasMenu implements Runnable {
 	}
 
 	private void render() {
+		
 		this.bs = display.getCanvas().getBufferStrategy();
 
 		if (this.bs == null) {
@@ -58,10 +59,7 @@ public class CanvasMenu implements Runnable {
 			return;
 		}
 		
-		if(this.g == null) {			
-			this.g = this.bs.getDrawGraphics();
-		}
-		
+		this.g = this.bs.getDrawGraphics();
 		this.g.clearRect(0, 0, Display.WIDTH, Display.HEIGHT);
 
         //Start Drawing
