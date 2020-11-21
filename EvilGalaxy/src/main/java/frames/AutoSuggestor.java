@@ -7,6 +7,8 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -105,7 +107,7 @@ class AutoSuggestor {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 
-				ArrayList<SuggestionLabel> sls = getAddedSuggestionLabels();
+				List<SuggestionLabel> sls = getAddedSuggestionLabels();
 				int max = sls.size();
 
 				if (max > 1) { // more than 1 suggestion
@@ -149,14 +151,18 @@ class AutoSuggestor {
 		textField.requestFocusInWindow();
 	}
 
-	public ArrayList<SuggestionLabel> getAddedSuggestionLabels() {
-		ArrayList<SuggestionLabel> sls = new ArrayList<>();
-		for (int i = 0; i < suggestionsPanel.getComponentCount(); i++) {
+	public List<SuggestionLabel> getAddedSuggestionLabels() {
+		List<SuggestionLabel> sls = new ArrayList<>();
+		/*for (int i = 0; i < suggestionsPanel.getComponentCount(); i++) {
 			if (suggestionsPanel.getComponent(i) instanceof SuggestionLabel) {
 				SuggestionLabel sl = (SuggestionLabel) suggestionsPanel.getComponent(i);
 				sls.add(sl);
 			}
-		}
+		}*/
+		sls = sls.stream()
+				 .filter(sl -> sl.getComponent(SuggestionLabel.NEXT) instanceof SuggestionLabel)
+				 .collect(Collectors.toList());
+		
 		return sls;
 	}
 
