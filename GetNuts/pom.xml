@@ -1,8 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>GNMaven</groupId>
-  <artifactId>GNMaven</artifactId>
+  <groupId>com.drenski.myjavagames.getnuts</groupId>
+  <artifactId>GetNuts</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <parent>
+		<groupId>com.drenski.myjavagames</groupId>
+		<artifactId>MyJavaGames</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../../MyJavaGames/pom.xml</relativePath>
+  </parent>
   <build>
     <!--<sourceDirectory>src</sourceDirectory>-->
     <plugins>
