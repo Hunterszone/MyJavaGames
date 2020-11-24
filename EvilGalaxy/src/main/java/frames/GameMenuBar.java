@@ -29,7 +29,6 @@ import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
 import game_engine.Difficulty;
-import game_engine.DrawScene;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;
 import items.Gold;
@@ -41,6 +40,7 @@ import menu_states.MenuState;
 import multiplayer_tbd.JoinGame;
 import util.ConsoleContent;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class GameMenuBar extends JFrame {
 
@@ -193,8 +193,8 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerMedium.stop();
 				InitObjects.timerHard.stop();
 				if (InitObjects.ingame == false) {
-					DrawScene.initVoice("Loading main menu...");
-					DrawScene.voiceInterruptor = true;
+					TextToSpeech.initVoice("Loading main menu...");
+					TextToSpeech.voiceInterruptor = true;
 				}
 				if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
 				for(AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
@@ -244,55 +244,55 @@ public class GameMenuBar extends JFrame {
 
 			public void saveGameDataToFile(File savefile) {
 
-				DrawScene.voiceInterruptor = false;
+				TextToSpeech.voiceInterruptor = false;
 
 				if (InitObjects.ingame == true) {
 
-					if (Alien.aliens.size() > 0 && DrawScene.voiceInterruptor == false) {
+					if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 
 						savedOnL2 = false;
 						savedOnL3 = false;
 						savedOnL4 = false;
 						savedOnL1 = true;
-						DrawScene.initVoice("Game saved!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.voiceInterruptor = true;
 					}
 
-					DrawScene.voiceInterruptor = false;
+					TextToSpeech.voiceInterruptor = false;
 
-					if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0 && DrawScene.voiceInterruptor == false) {
+					if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 
 						savedOnL1 = false;
 						savedOnL3 = false;
 						savedOnL4 = false;
 						savedOnL2 = true;
-						DrawScene.initVoice("Game saved!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.voiceInterruptor = true;
 					}
 
-					DrawScene.voiceInterruptor = false;
+					TextToSpeech.voiceInterruptor = false;
 
 					if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
-							&& DrawScene.voiceInterruptor == false) {
+							&& TextToSpeech.voiceInterruptor == false) {
 
 						savedOnL2 = false;
 						savedOnL1 = false;
 						savedOnL4 = false;
 						savedOnL3 = true;
-						DrawScene.initVoice("Game saved!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.voiceInterruptor = true;
 					}
 
-					DrawScene.voiceInterruptor = false;
+					TextToSpeech.voiceInterruptor = false;
 
-					if (UpdateObjects.lifeBunker == 50 && DrawScene.voiceInterruptor == false) {
+					if (UpdateObjects.lifeBunker == 50 && TextToSpeech.voiceInterruptor == false) {
 
 						savedOnL1 = false;
 						savedOnL2 = false;
 						savedOnL3 = false;
 						savedOnL4 = true;
-						DrawScene.initVoice("Game saved!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.voiceInterruptor = true;
 					}
 
 					try {

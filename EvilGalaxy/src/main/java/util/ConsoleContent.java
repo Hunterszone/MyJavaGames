@@ -26,7 +26,6 @@ import frames.ConsoleForm;
 import frames.GameMenuBar;
 import frames.Manual;
 import game_engine.Difficulty;
-import game_engine.DrawScene;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;
 import items.Gold;
@@ -308,7 +307,7 @@ public class ConsoleContent extends OutputStream {
 							god = true;
 							UpdateObjects.lifeMyShip = -999;
 							textArea.append("********GODMODE ON*********" + "\n");
-							DrawScene.initVoice("GODLIKE!");
+							TextToSpeech.initVoice("GODLIKE!");
 							return;
 						}
 						if (InitObjects.ingame == true && UpdateObjects.lifeMyShip < 3) {
@@ -330,7 +329,7 @@ public class ConsoleContent extends OutputStream {
 							god = false;
 							UpdateObjects.lifeMyShip = 3;
 							textArea.append("********GODMODE OFF*********" + "\n");
-							DrawScene.initVoice("Healthy!");
+							TextToSpeech.initVoice("Healthy!");
 							return;
 						}
 						if (InitObjects.ingame == true && UpdateObjects.lifeMyShip >= 3) {
@@ -672,9 +671,9 @@ public class ConsoleContent extends OutputStream {
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							LoadSounds.roar.loop();
-							if (DrawScene.voiceInterruptor == false) {
-								DrawScene.initVoice("Level 2!");
-								DrawScene.voiceInterruptor = true;
+							if (TextToSpeech.voiceInterruptor == false) {
+								TextToSpeech.initVoice("Level 2!");
+								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
 							return;
@@ -703,9 +702,9 @@ public class ConsoleContent extends OutputStream {
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
 							LoadSounds.roar.stop();
-							if (DrawScene.voiceInterruptor == false) {
-								DrawScene.initVoice("Level 3!");
-								DrawScene.voiceInterruptor = true;
+							if (TextToSpeech.voiceInterruptor == false) {
+								TextToSpeech.initVoice("Level 3!");
+								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
 							textArea.append("********Level 3 was loaded!*********" + "\n");
@@ -735,9 +734,9 @@ public class ConsoleContent extends OutputStream {
 							Dragon.dragons.clear();
 							LoadSounds.roar.stop();
 							UpdateObjects.lifeBunker = 50;
-							if (DrawScene.voiceInterruptor == false) {
-								DrawScene.initVoice("Level 4!");
-								DrawScene.voiceInterruptor = true;
+							if (TextToSpeech.voiceInterruptor == false) {
+								TextToSpeech.initVoice("Level 4!");
+								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
 							textArea.append("********Level 4 was loaded!*********" + "\n");
@@ -761,18 +760,18 @@ public class ConsoleContent extends OutputStream {
 					// SAVE
 					else if (COMMANDS[17].trim().equalsIgnoreCase(textArea.getText().trim())) {
 
-						DrawScene.voiceInterruptor = false;
+						TextToSpeech.voiceInterruptor = false;
 
 						if (InitObjects.ingame == true) {
 
-							if (Alien.aliens.size() > 0 && DrawScene.voiceInterruptor == false) {
+							if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 
 								GameMenuBar.savedOnL2 = false;
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL1 = true;
-								DrawScene.initVoice("Game saved!");
-								DrawScene.voiceInterruptor = true;
+								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
 									SaveSign.saveSign.initSave();
@@ -780,17 +779,17 @@ public class ConsoleContent extends OutputStream {
 								}
 							}
 
-							DrawScene.voiceInterruptor = false;
+							TextToSpeech.voiceInterruptor = false;
 
 							if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0
-									&& DrawScene.voiceInterruptor == false) {
+									&& TextToSpeech.voiceInterruptor == false) {
 
 								GameMenuBar.savedOnL1 = false;
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL2 = true;
-								DrawScene.initVoice("Game saved!");
-								DrawScene.voiceInterruptor = true;
+								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
 									SaveSign.saveSign.initSave();
@@ -798,17 +797,17 @@ public class ConsoleContent extends OutputStream {
 								}
 							}
 
-							DrawScene.voiceInterruptor = false;
+							TextToSpeech.voiceInterruptor = false;
 
 							if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
-									&& DrawScene.voiceInterruptor == false) {
+									&& TextToSpeech.voiceInterruptor == false) {
 
 								GameMenuBar.savedOnL2 = false;
 								GameMenuBar.savedOnL1 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL3 = true;
-								DrawScene.initVoice("Game saved!");
-								DrawScene.voiceInterruptor = true;
+								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
 									SaveSign.saveSign.initSave();
@@ -816,16 +815,16 @@ public class ConsoleContent extends OutputStream {
 								}
 							}
 
-							DrawScene.voiceInterruptor = false;
+							TextToSpeech.voiceInterruptor = false;
 
-							if (UpdateObjects.lifeBunker == 50 && DrawScene.voiceInterruptor == false) {
+							if (UpdateObjects.lifeBunker == 50 && TextToSpeech.voiceInterruptor == false) {
 
 								GameMenuBar.savedOnL1 = false;
 								GameMenuBar.savedOnL2 = false;
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = true;
-								DrawScene.initVoice("Game saved!");
-								DrawScene.voiceInterruptor = true;
+								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
 									SaveSign.saveSign.initSave();

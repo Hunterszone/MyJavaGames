@@ -12,6 +12,7 @@ import frames.Main;
 import items.VolBtn;
 import util.ConsoleContent;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class Difficulty {
 
@@ -22,10 +23,10 @@ public class Difficulty {
 			Collisions.dragonKilled = 0;
 		}
 
-		DrawScene.finMusicIsPlayed = false;
+		TextToSpeech.finMusicIsPlayed = false;
 
 //		GameMenuBar.autosave.setSelected(false);
-		DrawScene.voiceInterruptor = true;
+		TextToSpeech.voiceInterruptor = true;
 
 		if (ConsoleContent.god == true) {
 			ConsoleContent.god = false;
@@ -74,9 +75,9 @@ public class Difficulty {
 		}
 
 //		GameMenuBar.autosave.setSelected(false);
-		DrawScene.voiceInterruptor = true;
+		TextToSpeech.voiceInterruptor = true;
 
-		DrawScene.finMusicIsPlayed = false;
+		TextToSpeech.finMusicIsPlayed = false;
 
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();
@@ -126,9 +127,9 @@ public class Difficulty {
 		}
 
 //		GameMenuBar.autosave.setSelected(false);
-		DrawScene.voiceInterruptor = true;
+		TextToSpeech.voiceInterruptor = true;
 
-		DrawScene.finMusicIsPlayed = false;
+		TextToSpeech.finMusicIsPlayed = false;
 
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();
@@ -178,9 +179,9 @@ public class Difficulty {
 		}
 
 //		GameMenuBar.autosave.setSelected(false);
-		DrawScene.voiceInterruptor = true;
+		TextToSpeech.voiceInterruptor = true;
 
-		DrawScene.finMusicIsPlayed = false;
+		TextToSpeech.finMusicIsPlayed = false;
 
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) Main.dim.getWidth();

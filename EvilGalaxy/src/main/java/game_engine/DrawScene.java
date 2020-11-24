@@ -10,9 +10,6 @@ import java.awt.geom.AffineTransform;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
-
 import dbconn.HighScoreToDb;
 import entities.Alien;
 import entities.AsteroidsAnimation;
@@ -36,34 +33,13 @@ import items.ShipMissile;
 import items.ShipRocket;
 import items.VolBtn;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class DrawScene extends UpdateObjects {
 
-	// Constants
-	private static final String VOICENAME = "kevin16";
-
-	public static boolean finMusicIsPlayed;
-	public static boolean voiceInterruptor = false;
-	static boolean voiceStopped;
-	static Voice voice;
-	String difficulty = "Difficulty: ";
 	transient static Image bg1, bg2, bg3;
 	private static final long serialVersionUID = 1L;
-//	private String unicode;
-//	private String checkMark;
-
-	public static void initVoice(String message) {
-		VoiceManager vm = VoiceManager.getInstance();
-		voice = vm.getVoice(VOICENAME);
-		if (voice != null) {
-			voice.allocate();
-			voice.speak(message);
-		}
-
-		if (voiceStopped == false) {
-			voiceStopped = true;
-		}
-	}
+	private String difficulty = "Difficulty: ";
 
 	public DrawScene() {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -237,9 +213,9 @@ public class DrawScene extends UpdateObjects {
 
 			if (lifeMyShip > 6) {
 
-				if (finMusicIsPlayed == false) {
+				if (TextToSpeech.finMusicIsPlayed == false) {
 					LoadSounds.gameLost.play();
-					finMusicIsPlayed = true;
+					TextToSpeech.finMusicIsPlayed = true;
 				}
 
 				drawGameOver(g);
@@ -250,8 +226,8 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByAlien == true) {
 					if (InitObjects.ingame == false) {
-						DrawScene.initVoice("Killed by an alien!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Killed by an alien!");
+						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByAlien = false;
 						return;
 					}
@@ -259,8 +235,8 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByDragon == true) {
 					if (InitObjects.ingame == false) {
-						DrawScene.initVoice("Killed by a dragon!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Killed by a dragon!");
+						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByDragon = false;
 						return;
 					}
@@ -268,8 +244,8 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByBunker == true) {
 					if (InitObjects.ingame == false) {
-						DrawScene.initVoice("Killed by the bunker!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Killed by the bunker!");
+						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByBunker = false;
 						return;
 					}
@@ -277,8 +253,8 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByEvilHead == true) {
 					if (InitObjects.ingame == false) {
-						DrawScene.initVoice("Killed by the Evil Head!");
-						DrawScene.voiceInterruptor = true;
+						TextToSpeech.initVoice("Killed by the Evil Head!");
+						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByEvilHead = false;
 						return;
 					}
@@ -314,9 +290,9 @@ public class DrawScene extends UpdateObjects {
 
 			if (lifeEvilHead == 50) {
 
-				if (finMusicIsPlayed == false) {
+				if (TextToSpeech.finMusicIsPlayed == false) {
 					LoadSounds.gameWon.play();
-					finMusicIsPlayed = true;
+					TextToSpeech.finMusicIsPlayed = true;
 				}
 
 				drawYouWon(g);

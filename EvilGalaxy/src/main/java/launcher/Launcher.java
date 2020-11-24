@@ -26,7 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
 import frames.ConsoleForm;
-import game_engine.DrawScene;
+import util.TextToSpeech;
 
 public class Launcher extends JFrame {
 
@@ -131,7 +131,7 @@ public class Launcher extends JFrame {
 		add(oprogressBar);
 		progressBar.setValue(0);
 		oprogressBar.setValue(0);
-		DrawScene.initVoice("Updating...");
+		TextToSpeech.initVoice("Updating...");
 		needDownload();
 
 		{

@@ -23,6 +23,7 @@ import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class LoadGame {
 
@@ -96,11 +97,11 @@ public class LoadGame {
 
 	private void initSavedAssets() {
 
-		DrawScene.voiceInterruptor = false;
+		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && DrawScene.voiceInterruptor == false) {
+		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && TextToSpeech.voiceInterruptor == false) {
 
-			DrawScene.initVoice("Game loaded!");
+			TextToSpeech.initVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -118,16 +119,16 @@ public class LoadGame {
 			}
 
 			System.out.println("Score after loading will be added to " + Alien.class.getName());
-			DrawScene.voiceInterruptor = true;
+			TextToSpeech.voiceInterruptor = true;
 			savedOnL1 = false;
 			return;
 		}
 
-		DrawScene.voiceInterruptor = false;
+		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && DrawScene.voiceInterruptor == false) {
+		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && TextToSpeech.voiceInterruptor == false) {
 
-			DrawScene.initVoice("Game loaded!");
+			TextToSpeech.initVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -146,16 +147,16 @@ public class LoadGame {
 			}
 
 			System.out.println("Score after loading will be added to " + Dragon.class.getName());
-			DrawScene.voiceInterruptor = true;
+			TextToSpeech.voiceInterruptor = true;
 			savedOnL2 = false;
 			return;
 		}
 
-		DrawScene.voiceInterruptor = false;
+		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && DrawScene.voiceInterruptor == false) {
+		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && TextToSpeech.voiceInterruptor == false) {
 
-			DrawScene.initVoice("Game loaded!");
+			TextToSpeech.initVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -168,16 +169,16 @@ public class LoadGame {
 
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
-			DrawScene.voiceInterruptor = true;
+			TextToSpeech.voiceInterruptor = true;
 			savedOnL3 = false;
 			return;
 		}
 
-		DrawScene.voiceInterruptor = false;
+		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && DrawScene.voiceInterruptor == false) {
+		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && TextToSpeech.voiceInterruptor == false) {
 
-			DrawScene.initVoice("Game loaded!");
+			TextToSpeech.initVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -191,7 +192,7 @@ public class LoadGame {
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 			UpdateObjects.lifeBunker = 50;
-			DrawScene.voiceInterruptor = true;
+			TextToSpeech.voiceInterruptor = true;
 			savedOnL4 = false;
 			return;
 		}

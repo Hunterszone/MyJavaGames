@@ -11,6 +11,7 @@ import entities.EvilHead;
 import entities.MyShip;
 import items.Gold;
 import items.HealthPack;
+import util.TextToSpeech;
 
 public class SaveGame {
 	
@@ -21,55 +22,55 @@ public class SaveGame {
 	
 	public static void saveGameDataToFile(File savefile) {
 
-		DrawScene.voiceInterruptor = false;
+		TextToSpeech.voiceInterruptor = false;
 
 		if (InitObjects.ingame == true) {
 
-			if (Alien.aliens.size() > 0 && DrawScene.voiceInterruptor == false) {
+			if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 
 				savedOnL2 = false;
 				savedOnL3 = false;
 				savedOnL4 = false;
 				savedOnL1 = true;
-				DrawScene.initVoice("Game saved!");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.voiceInterruptor = true;
 			}
 
-			DrawScene.voiceInterruptor = false;
+			TextToSpeech.voiceInterruptor = false;
 
-			if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0 && DrawScene.voiceInterruptor == false) {
+			if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 
 				savedOnL1 = false;
 				savedOnL3 = false;
 				savedOnL4 = false;
 				savedOnL2 = true;
-				DrawScene.initVoice("Game saved!");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.voiceInterruptor = true;
 			}
 
-			DrawScene.voiceInterruptor = false;
+			TextToSpeech.voiceInterruptor = false;
 
 			if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
-					&& DrawScene.voiceInterruptor == false) {
+					&& TextToSpeech.voiceInterruptor == false) {
 
 				savedOnL2 = false;
 				savedOnL1 = false;
 				savedOnL4 = false;
 				savedOnL3 = true;
-				DrawScene.initVoice("Game saved!");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.voiceInterruptor = true;
 			}
 
-			DrawScene.voiceInterruptor = false;
+			TextToSpeech.voiceInterruptor = false;
 
-			if (UpdateObjects.lifeBunker == 50 && DrawScene.voiceInterruptor == false) {
+			if (UpdateObjects.lifeBunker == 50 && TextToSpeech.voiceInterruptor == false) {
 
 				savedOnL1 = false;
 				savedOnL2 = false;
 				savedOnL3 = false;
 				savedOnL4 = true;
-				DrawScene.initVoice("Game saved!");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.voiceInterruptor = true;
 			}
 
 			try {

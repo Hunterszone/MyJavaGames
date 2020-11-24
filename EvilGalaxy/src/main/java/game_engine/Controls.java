@@ -24,6 +24,7 @@ import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import util.ConsoleContent;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class Controls extends JFrame implements KeyListener {
 
@@ -100,8 +101,8 @@ public class Controls extends JFrame implements KeyListener {
 		if (key == KeyEvent.VK_1) {
 
 			if (InitObjects.ingame == false) {
-				DrawScene.initVoice("Loading level 1...");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Loading level 1...");
+				TextToSpeech.voiceInterruptor = true;
 			}
 			Difficulty.restart();
 		}
@@ -109,8 +110,8 @@ public class Controls extends JFrame implements KeyListener {
 		if (key == KeyEvent.VK_2) {
 
 			if (InitObjects.ingame == false) {
-				DrawScene.initVoice("Loading level 2...");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Loading level 2...");
+				TextToSpeech.voiceInterruptor = true;
 			}
 			Difficulty.restart();
 			Alien.aliens.clear();
@@ -119,8 +120,8 @@ public class Controls extends JFrame implements KeyListener {
 		if (key == KeyEvent.VK_3) {
 
 			if (InitObjects.ingame == false) {
-				DrawScene.initVoice("Loading level 3...");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Loading level 3...");
+				TextToSpeech.voiceInterruptor = true;
 			}
 			Difficulty.restart();
 			Alien.aliens.clear();
@@ -130,8 +131,8 @@ public class Controls extends JFrame implements KeyListener {
 		if (key == KeyEvent.VK_4) {
 
 			if (InitObjects.ingame == false) {
-				DrawScene.initVoice("Loading level 4...");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Loading level 4...");
+				TextToSpeech.voiceInterruptor = true;
 			}
 			Difficulty.restart();
 			Alien.aliens.clear();
@@ -144,8 +145,8 @@ public class Controls extends JFrame implements KeyListener {
 			isMPressed = false;
 			isHPressed = false;
 			if (InitObjects.ingame == false) {
-				DrawScene.initVoice("Loading level 1...");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Loading level 1...");
+				TextToSpeech.voiceInterruptor = true;
 			}
 			Difficulty.restart();
 		}
@@ -165,8 +166,8 @@ public class Controls extends JFrame implements KeyListener {
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
-					DrawScene.initVoice("Loading level 1...");
-					DrawScene.voiceInterruptor = true;
+					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.voiceInterruptor = true;
 				}
 				Difficulty.easy();
 			}
@@ -188,8 +189,8 @@ public class Controls extends JFrame implements KeyListener {
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
-					DrawScene.initVoice("Loading level 1...");
-					DrawScene.voiceInterruptor = true;
+					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.voiceInterruptor = true;
 				}
 				Difficulty.medium();
 			}
@@ -211,8 +212,8 @@ public class Controls extends JFrame implements KeyListener {
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
-					DrawScene.initVoice("Loading level 1...");
-					DrawScene.voiceInterruptor = true;
+					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.voiceInterruptor = true;
 				}
 				Difficulty.hard();
 			}
@@ -240,7 +241,7 @@ public class Controls extends JFrame implements KeyListener {
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = true;
 					UpdateObjects.lifeMyShip = -999;
-					DrawScene.initVoice("GODLIKE!");
+					TextToSpeech.initVoice("GODLIKE!");
 					return;
 				}
 			}
@@ -250,7 +251,7 @@ public class Controls extends JFrame implements KeyListener {
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = false;
 					UpdateObjects.lifeMyShip = 3;
-					DrawScene.initVoice("Healthy!");
+					TextToSpeech.initVoice("Healthy!");
 					return;
 				}
 
@@ -286,8 +287,8 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
 			if (InitObjects.ingame == false) {
-				DrawScene.initVoice("Loading main menu...");
-				DrawScene.voiceInterruptor = true;
+				TextToSpeech.initVoice("Loading main menu...");
+				TextToSpeech.voiceInterruptor = true;
 			}
 			if (AstronautAnimation.astronautAnim != null)
 				AstronautAnimation.astronautAnim = null;

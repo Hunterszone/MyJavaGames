@@ -28,6 +28,7 @@ import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class InitObjects extends JPanel implements ActionListener, Runnable {
 
@@ -145,7 +146,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		initHealth();
 
 //		GameMenuBar.autosave.setSelected(false);
-		DrawScene.voiceInterruptor = true;
+		TextToSpeech.voiceInterruptor = true;
 
 		timerEasy = new Timer(DELAY, this);
 		timerMedium = new Timer(DELAY, this);
