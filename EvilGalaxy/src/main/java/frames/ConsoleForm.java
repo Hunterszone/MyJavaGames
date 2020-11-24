@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.SwingUtilities;
 
+import util.AutoSuggestor;
+import util.ConsoleContent;
+
 public final class ConsoleForm extends ConsoleContent {
 
 	Vector<String> matches = new Vector<>();
@@ -40,8 +43,7 @@ public final class ConsoleForm extends ConsoleContent {
 		frame.setVisible(true);
 
 		new AutoSuggestor(textField, frame, null, Color.WHITE.brighter(), Color.BLUE, Color.RED, 0.75f) {
-			@Override
-			boolean wordTyped(String typedWord) {
+			protected boolean wordTyped(String typedWord) {
 				setDictionary(textField.getText());
 				return super.wordTyped(typedWord);
 			}

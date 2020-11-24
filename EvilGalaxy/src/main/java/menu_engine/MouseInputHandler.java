@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import enums.SoundEffects;
 import frames.Main;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
@@ -20,9 +21,9 @@ import menu_states.ManualState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
-import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
-import sound_engine.SoundEffects;
+import util.Constants;
+import util.LoadSounds;
 
 public class MouseInputHandler implements MouseListener {
 
@@ -47,8 +48,8 @@ public class MouseInputHandler implements MouseListener {
 					UpdateObjects.lifeBunker = 3;
 					InitObjects.ingame = true;
 					if (main == null) {
-						Display.frame.remove(Display.canvas);
-						Display.frame.dispose();
+						DisplayCanvas.frame.remove(DisplayCanvas.canvas);
+						DisplayCanvas.frame.dispose();
 						EventQueue.invokeLater(() -> {
 							main = new Main();
 							main.setVisible(true);
@@ -137,8 +138,8 @@ public class MouseInputHandler implements MouseListener {
 					LoadSounds.menuMusic.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
-					Display.frame.remove(Display.canvas);
-					Display.frame.dispose();
+					DisplayCanvas.frame.remove(DisplayCanvas.canvas);
+					DisplayCanvas.frame.dispose();
 					Launcher.main(null);
 					MenuState.isOn = true;
 				}

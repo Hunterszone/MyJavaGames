@@ -7,10 +7,11 @@ import entities.Bunker;
 import entities.Crosshair;
 import entities.EvilHead;
 import entities.MyShip;
-import frames.ConsoleContent;
+import enums.Images;
 import frames.Main;
 import items.VolBtn;
-import sound_engine.LoadSounds;
+import util.ConsoleContent;
+import util.LoadSounds;
 
 public class Difficulty {
 

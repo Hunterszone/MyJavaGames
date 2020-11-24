@@ -1,15 +1,15 @@
-package menu_engine;
+package util;
 
 import java.awt.Image;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.SpritePattern;
 
-public class Assets extends SpritePattern {
+public class CanvasAssets extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Assets(int x, int y) {
+	public CanvasAssets(int x, int y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
 	}

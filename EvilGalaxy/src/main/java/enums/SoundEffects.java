@@ -1,4 +1,4 @@
-package sound_engine;
+package enums;
 
 public enum SoundEffects {
 	ATTACK {

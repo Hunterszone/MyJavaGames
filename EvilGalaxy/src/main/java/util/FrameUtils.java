@@ -1,4 +1,4 @@
-package frames;
+package util;
 
 import java.awt.Frame;
 

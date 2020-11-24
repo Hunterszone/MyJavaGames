@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.MyShip;
-import game_engine.Images;
+import enums.Images;
 import sound_engine.PlayWave1st;
 
 public class MyShipTest {

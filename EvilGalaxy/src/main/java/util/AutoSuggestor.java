@@ -1,4 +1,4 @@
-package frames;
+package util;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,7 +20,7 @@ import javax.swing.KeyStroke;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-class AutoSuggestor {
+public class AutoSuggestor {
 
 	// Constants
 	private static final ArrayList<String> DICTIONARY = new ArrayList<>();
@@ -275,7 +275,7 @@ class AutoSuggestor {
 		DICTIONARY.add(word);
 	}
 
-	boolean wordTyped(String typedWord) {
+	protected boolean wordTyped(String typedWord) {
 
 		if (typedWord.isEmpty()) {
 			return false;

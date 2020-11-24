@@ -19,10 +19,10 @@ import entities.MyShip;
 import frames.Main;
 import items.Gold;
 import items.HealthPack;
-import menu_engine.Display;
+import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
-import sound_engine.LoadSounds;
+import util.LoadSounds;
 
 public class LoadGame {
 
@@ -83,8 +83,8 @@ public class LoadGame {
 		
 		MenuState.isOn = false;
 		if(MouseInputHandler.main == null) {
-			Display.frame.remove(Display.canvas);
-			Display.frame.dispose();
+			DisplayCanvas.frame.remove(DisplayCanvas.canvas);
+			DisplayCanvas.frame.dispose();
 			EventQueue.invokeLater(() -> {
 				MouseInputHandler.main = new Main();
 				initSavedAssets();

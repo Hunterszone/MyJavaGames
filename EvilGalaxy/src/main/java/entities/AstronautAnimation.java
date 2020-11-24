@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Image;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.InitObjects;
 import game_engine.SpritePattern;
 

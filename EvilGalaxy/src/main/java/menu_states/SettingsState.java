@@ -3,8 +3,8 @@ package menu_states;
 import java.awt.Graphics;
 
 import menu_engine.ColorSwitcher;
-import menu_engine.Constants;
 import menu_engine.ImageColorizer;
+import util.Constants;
 
 public class SettingsState {
     public static boolean isOn;

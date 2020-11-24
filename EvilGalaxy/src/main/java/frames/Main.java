@@ -10,8 +10,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import enums.Images;
 import game_engine.DrawScene;
-import game_engine.Images;
 import menu_engine.CanvasMenu;
 
 public final class Main extends JFrame {

@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.SpritePattern;
 
 public class HealthPack extends SpritePattern {

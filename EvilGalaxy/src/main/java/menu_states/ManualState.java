@@ -2,7 +2,7 @@ package menu_states;
 
 import java.awt.Graphics;
 
-import menu_engine.Constants;
+import util.Constants;
 
 public class ManualState {
     public static boolean isOn;

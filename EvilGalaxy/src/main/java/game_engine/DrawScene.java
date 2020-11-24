@@ -24,6 +24,7 @@ import entities.ElonAnimation;
 import entities.EvilHead;
 import entities.MyShip;
 import entities.SatelliteAnimation;
+import enums.Images;
 import frames.Main;
 import items.BunkerBullet;
 import items.CanonBall;
@@ -34,7 +35,7 @@ import items.SaveSign;
 import items.ShipMissile;
 import items.ShipRocket;
 import items.VolBtn;
-import sound_engine.LoadSounds;
+import util.LoadSounds;
 
 public class DrawScene extends UpdateObjects {
 

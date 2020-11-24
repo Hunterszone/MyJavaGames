@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
-import game_engine.Images;
-import sound_engine.SoundEffects;
+import enums.Images;
+import enums.SoundEffects;
 
 public class LoadResourcesTest {
 

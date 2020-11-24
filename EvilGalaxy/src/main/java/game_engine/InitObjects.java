@@ -27,7 +27,7 @@ import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
-import sound_engine.LoadSounds;
+import util.LoadSounds;
 
 public class InitObjects extends JPanel implements ActionListener, Runnable {
 

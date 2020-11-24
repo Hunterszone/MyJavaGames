@@ -2,7 +2,7 @@ package entities;
 
 import java.util.List;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.SpritePattern;
 
 public class Dragon extends SpritePattern {

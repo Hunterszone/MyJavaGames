@@ -1,4 +1,7 @@
-package sound_engine;
+package util;
+
+import enums.SoundEffects;
+import sound_engine.PlayWave2nd;
 
 public abstract class LoadSounds {
 	public static PlayWave2nd bgMusic = new PlayWave2nd(SoundEffects.BGMUSIC.getSound());

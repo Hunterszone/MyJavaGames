@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.SpritePattern;
 import items.BunkerBullet;
 

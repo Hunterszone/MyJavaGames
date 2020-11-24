@@ -9,6 +9,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.MyShip;
+import enums.SoundEffects;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.FireBall;
@@ -16,9 +17,8 @@ import items.Gold;
 import items.HealthPack;
 import items.ShipMissile;
 import items.ShipRocket;
-import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
-import sound_engine.SoundEffects;
+import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects {
 

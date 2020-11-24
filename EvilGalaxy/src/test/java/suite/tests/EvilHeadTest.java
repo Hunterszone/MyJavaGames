@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.EvilHead;
-import game_engine.Images;
+import enums.Images;
 
 public class EvilHeadTest {
 

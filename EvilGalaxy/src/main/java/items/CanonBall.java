@@ -1,6 +1,6 @@
 package items;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.SpritePattern;
 
 public class CanonBall extends SpritePattern {

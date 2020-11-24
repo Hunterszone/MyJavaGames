@@ -10,10 +10,10 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import game_engine.Images;
-import sound_engine.LoadSounds;
+import enums.Images;
+import util.LoadSounds;
 
-public class Display {
+public class DisplayCanvas {
 
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
@@ -28,7 +28,7 @@ public class Display {
 //	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	static Dimension dim;
 	
-    public Display() {
+    public DisplayCanvas() {
         init();
     }
 
@@ -61,9 +61,9 @@ public class Display {
         
         Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image image = toolkit.getImage("images/cursor.png");
-		Cursor c = toolkit.createCustomCursor(image, new Point(Display.canvas.getX(), 
-				Display.canvas.getY()), "img");
-		Display.canvas.setCursor(c);
+		Cursor c = toolkit.createCustomCursor(image, new Point(DisplayCanvas.canvas.getX(), 
+				DisplayCanvas.canvas.getY()), "img");
+		DisplayCanvas.canvas.setCursor(c);
 
 		LoadSounds.menuMusic.loop();
 

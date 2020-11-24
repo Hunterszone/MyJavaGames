@@ -9,10 +9,11 @@ import menu_states.ManualState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
+import util.Constants;
 
 public class CanvasMenu implements Runnable {
 
-	public static Display display;
+	public static DisplayCanvas display;
 	private BufferStrategy bs;
 	private Graphics g;
 	private Thread thread;
@@ -35,7 +36,7 @@ public class CanvasMenu implements Runnable {
 
 		Constants.LOAD_ASSETS.init();
 
-		display = new Display();
+		display = new DisplayCanvas();
 		display.getCanvas().addMouseListener(new MouseInputHandler());
 
 		State = new StateManager();
@@ -60,7 +61,7 @@ public class CanvasMenu implements Runnable {
 		}
 		
 		this.g = this.bs.getDrawGraphics();
-		this.g.clearRect(0, 0, Display.WIDTH, Display.HEIGHT);
+		this.g.clearRect(0, 0, DisplayCanvas.WIDTH, DisplayCanvas.HEIGHT);
 
         //Start Drawing
 	    this.g.drawImage(Constants.LOAD_ASSETS.blackBG, 0,0, 1200, 800, null);

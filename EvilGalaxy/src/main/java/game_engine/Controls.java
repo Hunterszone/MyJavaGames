@@ -16,14 +16,14 @@ import entities.Dragon;
 import entities.ElonAnimation;
 import entities.MyShip;
 import entities.SatelliteAnimation;
-import frames.ConsoleContent;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
 import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
-import sound_engine.LoadSounds;
+import util.ConsoleContent;
+import util.LoadSounds;
 
 public class Controls extends JFrame implements KeyListener {
 

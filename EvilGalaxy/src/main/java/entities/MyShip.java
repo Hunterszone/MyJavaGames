@@ -7,16 +7,16 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.Images;
+import enums.SoundEffects;
 import frames.Main;
-import game_engine.Images;
 import game_engine.SpritePattern;
 import items.ShipMissile;
 import items.ShipRocket;
 import menu_engine.CanvasMenu;
-import menu_engine.Constants;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
-import sound_engine.SoundEffects;
+import util.Constants;
 
 public class MyShip extends SpritePattern {
 

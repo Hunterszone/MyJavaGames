@@ -1,4 +1,4 @@
-package game_engine;
+package enums;
 
 public enum Images {
 	BG1 {

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import frames.ConsoleContent;
+import util.ConsoleContent;
 
 public class ConsoleContentClassTest {
 

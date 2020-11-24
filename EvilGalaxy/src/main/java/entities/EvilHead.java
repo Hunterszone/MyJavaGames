@@ -5,14 +5,14 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import game_engine.Images;
+import enums.Images;
 import game_engine.SpritePattern;
 import items.CanonBall;
 import items.FireBall;
 import menu_engine.CanvasMenu;
-import menu_engine.Constants;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
+import util.Constants;
 
 public class EvilHead extends SpritePattern {
 

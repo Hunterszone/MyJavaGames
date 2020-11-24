@@ -1,4 +1,4 @@
-package frames;
+package util;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -22,6 +22,9 @@ import javax.swing.border.EmptyBorder;
 
 import entities.Alien;
 import entities.Dragon;
+import frames.ConsoleForm;
+import frames.GameMenuBar;
+import frames.Manual;
 import game_engine.Difficulty;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
@@ -31,7 +34,6 @@ import items.HealthPack;
 import items.SaveSign;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
-import sound_engine.LoadSounds;
 
 public class ConsoleContent extends OutputStream {
 

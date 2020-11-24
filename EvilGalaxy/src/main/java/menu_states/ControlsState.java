@@ -1,8 +1,8 @@
 package menu_states;
 
-import menu_engine.Constants;
-
 import java.awt.*;
+
+import util.Constants;
 
 public class ControlsState {
     public static boolean isOn;

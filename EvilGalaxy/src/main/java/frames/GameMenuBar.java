@@ -39,7 +39,8 @@ import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import multiplayer_tbd.JoinGame;
-import sound_engine.LoadSounds;
+import util.ConsoleContent;
+import util.LoadSounds;
 
 public class GameMenuBar extends JFrame {
 
