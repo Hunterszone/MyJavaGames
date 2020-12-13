@@ -50,6 +50,11 @@
 		    <version>1.0.1</version>
 		</dependency>
 		<dependency>
+			<groupId>javax.jnlp</groupId>
+			<artifactId>jnlp-api</artifactId>
+			<version>5.0</version>
+		</dependency>
+		<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.17</version>
