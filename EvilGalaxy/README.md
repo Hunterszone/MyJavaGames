@@ -2,6 +2,13 @@
 
 ### Main techniques: moving sprites, collision detection, three levels of difficulty, multiple levels, AI algorithms
 
+## DEVELOPER NOTES (for developers):
+To build the game, the following libraries (.jar) must be added to your build path:
+- voice-cmu-slt-hsmm-5.2
+- marytts-lang-en-5.2
+- marytts-runtime-5.2-jar-with-dependencies
+- marytts-client-5.2-jar-with-dependencies
+
 ## HOW TO LAUNCH, USING LAUNCHER:
 
 Create an empty folder and download the Launcher.jnlp file into it, using the [![button](https://java.com/js/webstart.png)](https://me4gaming.com/LauncherEG/Launcher.jnlp) button or download the **EGinit.jar** into an empty folder from [here](https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EGInit.jar?raw=true).  
