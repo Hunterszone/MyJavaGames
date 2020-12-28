@@ -34,6 +34,7 @@ import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
 import launcher.Launcher;
+import marytts.exceptions.MaryConfigurationException;
 import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
@@ -242,7 +243,7 @@ public class GameMenuBar extends JFrame {
 
 		class SaveGame implements ActionListener {
 
-			public void saveGameDataToFile(File savefile) {
+			public void saveGameDataToFile(File savefile) throws MaryConfigurationException {
 
 				TextToSpeech.voiceInterruptor = false;
 
@@ -329,7 +330,12 @@ public class GameMenuBar extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Random rand = new Random();
 				File file = new File("saves/save" + rand.nextInt() + ".txt");
-				saveGameDataToFile(file);
+				try {
+					saveGameDataToFile(file);
+				} catch (MaryConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		}

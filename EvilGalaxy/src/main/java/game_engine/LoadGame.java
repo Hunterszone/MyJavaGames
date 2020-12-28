@@ -19,6 +19,7 @@ import entities.MyShip;
 import frames.Main;
 import items.Gold;
 import items.HealthPack;
+import marytts.exceptions.MaryConfigurationException;
 import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
@@ -88,14 +89,19 @@ public class LoadGame {
 			DisplayCanvas.frame.dispose();
 			EventQueue.invokeLater(() -> {
 				MouseInputHandler.main = new Main();
-				initSavedAssets();
+				try {
+					initSavedAssets();
+				} catch (MaryConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				MouseInputHandler.main.setVisible(true);
 			});
 		}
 		MenuState.isOn = true;
 	}
 
-	private void initSavedAssets() {
+	private void initSavedAssets() throws MaryConfigurationException {
 
 		TextToSpeech.voiceInterruptor = false;
 

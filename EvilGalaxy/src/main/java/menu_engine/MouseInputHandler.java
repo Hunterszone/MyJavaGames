@@ -24,6 +24,7 @@ import menu_states.StateManager;
 import sound_engine.PlayWave1st;
 import util.Constants;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class MouseInputHandler implements MouseListener {
 
@@ -38,8 +39,10 @@ public class MouseInputHandler implements MouseListener {
 		int mouseY = e.getY();
 
 		if (MenuState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 115 && mouseY <= 165) {
+			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
+				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
+					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.voiceInterruptor = true;
 					LoadSounds.menuMusic.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;

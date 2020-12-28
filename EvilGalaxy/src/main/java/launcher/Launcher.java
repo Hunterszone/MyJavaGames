@@ -26,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
 import frames.ConsoleForm;
+import marytts.exceptions.MaryConfigurationException;
 import util.TextToSpeech;
 
 public class Launcher extends JFrame {
@@ -36,7 +37,12 @@ public class Launcher extends JFrame {
 	static UpdateLogger updlog = new UpdateLogger();
 
 	public static void main(String[] args) {
-		new Launcher();
+		try {
+			new Launcher();
+		} catch (MaryConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void needDownload() {
@@ -116,7 +122,7 @@ public class Launcher extends JFrame {
 	List<Thread> threads = new ArrayList<Thread>();
 	long lastTime = 0;
 
-	public Launcher() {
+	public Launcher() throws MaryConfigurationException {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) screenSize.getWidth();
 		int height = (int) screenSize.getHeight();

@@ -99,41 +99,29 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_1) {
-
-			if (InitObjects.ingame == false) {
-				TextToSpeech.initVoice("Loading level 1...");
-				TextToSpeech.voiceInterruptor = true;
-			}
+			TextToSpeech.initVoice("Loading level 1...");
+			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_2) {
-
-			if (InitObjects.ingame == false) {
-				TextToSpeech.initVoice("Loading level 2...");
-				TextToSpeech.voiceInterruptor = true;
-			}
+			TextToSpeech.initVoice("Loading level 2...");
+			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 			Alien.aliens.clear();
 		}
 
 		if (key == KeyEvent.VK_3) {
-
-			if (InitObjects.ingame == false) {
-				TextToSpeech.initVoice("Loading level 3...");
-				TextToSpeech.voiceInterruptor = true;
-			}
+			TextToSpeech.initVoice("Loading level 3...");
+			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 		}
 
 		if (key == KeyEvent.VK_4) {
-
-			if (InitObjects.ingame == false) {
-				TextToSpeech.initVoice("Loading level 4...");
-				TextToSpeech.voiceInterruptor = true;
-			}
+			TextToSpeech.initVoice("Loading level 4...");
+			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
@@ -227,7 +215,7 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
-			LoadSounds.bgMusic.loop();				
+			LoadSounds.bgMusic.loop();
 
 			if (Alien.aliens.isEmpty()) {
 				LoadSounds.roar.loop();
@@ -258,9 +246,13 @@ public class Controls extends JFrame implements KeyListener {
 			}
 
 		}
-		
-		if (((key == KeyEvent.VK_Z) && ((e.getModifiers() & InputEvent.ALT_MASK) != 0)) /*|| ((key == KeyEvent.VK_X)
-				&& ((e.getModifiers() & InputEvent.ALT_MASK) != 0) && GameMenuBar.autosave.isSelected() == false)*/) {
+
+		if (((key == KeyEvent.VK_Z)
+				&& ((e.getModifiers() & InputEvent.ALT_MASK) != 0)) /*
+																	 * || ((key == KeyEvent.VK_X) && ((e.getModifiers()
+																	 * & InputEvent.ALT_MASK) != 0) &&
+																	 * GameMenuBar.autosave.isSelected() == false)
+																	 */) {
 			if (SaveSign.saveSign != null) {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
@@ -273,10 +265,11 @@ public class Controls extends JFrame implements KeyListener {
 				SaveSign.saveSign.setVisible(false);
 			}
 		}
-		
-		/*if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
-			ConsoleContent.console = new ConsoleForm();
-		}*/
+
+		/*
+		 * if (key == KeyEvent.VK_V && !ConsoleContent.consoleON) {
+		 * ConsoleContent.console = new ConsoleForm(); }
+		 */
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			MenuState.isOn = false;
@@ -286,10 +279,8 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
-			if (InitObjects.ingame == false) {
-				TextToSpeech.initVoice("Loading main menu...");
-				TextToSpeech.voiceInterruptor = true;
-			}
+			TextToSpeech.initVoice("Loading main menu...");
+			TextToSpeech.voiceInterruptor = true;
 			if (AstronautAnimation.astronautAnim != null)
 				AstronautAnimation.astronautAnim = null;
 			if (SatelliteAnimation.starAnim != null)
