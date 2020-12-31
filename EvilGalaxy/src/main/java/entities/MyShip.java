@@ -3,8 +3,10 @@
 // Creator: Konstantin
 // 
 
+// include game package:
 package entities;
 
+// import java libraries:
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+// import game libraries:
 import enums.Images;
 import enums.SoundEffects;
 import frames.Main;
