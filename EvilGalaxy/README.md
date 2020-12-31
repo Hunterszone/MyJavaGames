@@ -3,7 +3,7 @@
 ### Main techniques: moving sprites, collision detection, three levels of difficulty, multiple levels, AI algorithms
 
 ## DEVELOPER NOTES (for developers):
-To build the game, the following libraries (.jar) must be added to your build path:
+To build the game, the following libraries (.jar) must be available for the project (currently provided in the **pom.xml**):
 - voice-cmu-slt-hsmm-5.2
 - marytts-lang-en-5.2
 - marytts-runtime-5.2-jar-with-dependencies
