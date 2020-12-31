@@ -3,8 +3,10 @@
 // Creator: Konstantin
 //
 
+// include game package:
 package menu_engine;
 
+// import java libraries:
 import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Point;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+// import game libraries:
 import enums.SoundEffects;
 import frames.Main;
 import game_engine.InitObjects;
