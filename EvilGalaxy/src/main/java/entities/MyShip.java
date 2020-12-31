@@ -1,3 +1,8 @@
+// MyShip.java
+// 
+// Creator: Konstantin
+// 
+
 package entities;
 
 import java.awt.Graphics;
@@ -18,9 +23,9 @@ import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
 
-public class MyShip extends SpritePattern {
+public class UserShip extends SpritePattern {
 
-	public static MyShip myShip;
+	public static UserShip playerOne;
 	double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;
@@ -28,7 +33,7 @@ public class MyShip extends SpritePattern {
 
 	private String imageName, soundName;
 
-	public MyShip(int x, int y) {
+	public UserShip(int x, int y) {
 		super(x, y);
 
 		drawShip();
