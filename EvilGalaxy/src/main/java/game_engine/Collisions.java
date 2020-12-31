@@ -1,3 +1,8 @@
+// Collisions.java
+// 
+// Creator: Konstantin
+// 
+
 package game_engine;
 
 import java.awt.Rectangle;
@@ -8,7 +13,7 @@ import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
-import entities.MyShip;
+import entities.UserShip;
 import enums.SoundEffects;
 import items.BunkerBullet;
 import items.CanonBall;
@@ -36,7 +41,7 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static void checkCollisions() {
 
-		Rectangle myship = MyShip.myShip.getBounds();
+		Rectangle myship = UserShip.playerOne.getBounds();
 
 		Rectangle evilhead = EvilHead.evilHead.getBounds();
 
@@ -80,7 +85,7 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<ShipMissile> missiles = MyShip.myShip.getMissiles();
+		List<ShipMissile> missiles = UserShip.playerOne.getMissiles();
 
 		for (ShipMissile missile : missiles) {
 
@@ -105,7 +110,7 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<ShipRocket> rockets = MyShip.myShip.getRockets();
+		List<ShipRocket> rockets = UserShip.playerOne.getRockets();
 
 		for (ShipRocket rocket : rockets) {
 
@@ -135,7 +140,7 @@ public abstract class Collisions extends UpdateObjects {
 		for (FireBall fireball : fireballs) {
 			if (fireball != null) {
 				Rectangle fireballUnit = fireball.getBounds();
-				Rectangle ship = MyShip.myShip.getBounds();
+				Rectangle ship = UserShip.playerOne.getBounds();
 				fireBallIntersectsShip(fireball, fireballUnit, ship);
 			}
 		}
@@ -146,7 +151,7 @@ public abstract class Collisions extends UpdateObjects {
 
 			if (bullet != null) {
 				Rectangle bulletUnit = bullet.getBounds();
-				Rectangle ship = MyShip.myShip.getBounds();
+				Rectangle ship = UserShip.playerOne.getBounds();
 				bulletOneIntersectsShip(bullet, bulletUnit, ship);
 			}
 		}
@@ -156,7 +161,7 @@ public abstract class Collisions extends UpdateObjects {
 		for (BunkerBullet bullet : bullets2) {
 			if (bullet != null) {
 				Rectangle bulletUnit2 = bullet.getBounds();
-				Rectangle ship = MyShip.myShip.getBounds();
+				Rectangle ship = UserShip.playerOne.getBounds();
 				bulletTwoIntersectsShip(bullet, bulletUnit2, ship);
 			}
 		}
@@ -176,11 +181,11 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
-			lifeMyShip++;
+			lifeUserShip++;
 			alien.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.upsideDown();
-			MyShip.myShip.x = -MyShip.myShip.getX();
+			UserShip.playerOne.upsideDown();
+			UserShip.playerOne.x = -UserShip.playerOne.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
 			alienKilled++;
 			killedByBunker = false;
@@ -198,10 +203,10 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
-			lifeMyShip++;
+			lifeUserShip++;
 			dragon.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.upsideDown();
+			UserShip.playerOne.upsideDown();
 			killedByBunker = false;
 			killedByEvilHead = false;
 			killedByAlien = false;
@@ -219,14 +224,14 @@ public abstract class Collisions extends UpdateObjects {
 
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
-			MyShip.myShip.setVisible(false);
+			UserShip.playerOne.setVisible(false);
 			Bunker.bunkerObj.setVisible(false);
-			lifeMyShip = 7;
+			lifeUserShip = 7;
 			killedByAlien = false;
 			killedByDragon = false;
 			killedByEvilHead = false;
 			killedByBunker = true;
-			if (MyShip.myShip.isVisible() || Bunker.bunkerObj.isVisible())
+			if (UserShip.playerOne.isVisible() || Bunker.bunkerObj.isVisible())
 				return false;
 		}
 		return true;
@@ -296,14 +301,14 @@ public abstract class Collisions extends UpdateObjects {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.setVisible(false);
+			UserShip.playerOne.setVisible(false);
 			EvilHead.evilHead.setVisible(false);
-			lifeMyShip = 7;
+			lifeUserShip = 7;
 			killedByBunker = false;
 			killedByAlien = false;
 			killedByDragon = false;
 			killedByEvilHead = true;
-			if (MyShip.myShip.isVisible() || EvilHead.evilHead.isVisible())
+			if (UserShip.playerOne.isVisible() || EvilHead.evilHead.isVisible())
 				return false;
 		}
 		return true;
@@ -393,12 +398,12 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
-			lifeMyShip++;
+			lifeUserShip++;
 			fireball.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			MyShip.myShip.upsideDown();
-			MyShip.myShip.x = -MyShip.myShip.getX();
-			if (lifeMyShip > 6) {
+			UserShip.playerOne.upsideDown();
+			UserShip.playerOne.x = -UserShip.playerOne.getX();
+			if (lifeUserShip > 6) {
 				killedByBunker = false;
 				killedByDragon = false;
 				killedByAlien = false;
@@ -416,14 +421,14 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
-			lifeMyShip++;
+			lifeUserShip++;
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
-			MyShip.myShip.upsideDown();
-			MyShip.myShip.x = -MyShip.myShip.getX();
+			UserShip.playerOne.upsideDown();
+			UserShip.playerOne.x = -UserShip.playerOne.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			if (lifeMyShip > 6) {
+			if (lifeUserShip > 6) {
 				killedByDragon = false;
 				killedByAlien = false;
 				killedByEvilHead = false;
@@ -441,14 +446,14 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
-			lifeMyShip++;
+			lifeUserShip++;
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
-			MyShip.myShip.upsideDown();
-			MyShip.myShip.x = -MyShip.myShip.getX();
+			UserShip.playerOne.upsideDown();
+			UserShip.playerOne.x = -UserShip.playerOne.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			if (lifeMyShip > 6) {
+			if (lifeUserShip > 6) {
 				killedByDragon = false;
 				killedByAlien = false;
 				killedByEvilHead = false;
@@ -466,13 +471,13 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
-			lifeMyShip++;
+			lifeUserShip++;
 			canon.setVisible(false);
 			new PlayWave1st(SoundEffects.BURNED.getSound()).start();
-			MyShip.myShip.upsideDown();
-			MyShip.myShip.x = -MyShip.myShip.getX();
+			UserShip.playerOne.upsideDown();
+			UserShip.playerOne.x = -UserShip.playerOne.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			if (lifeMyShip > 6) {
+			if (lifeUserShip > 6) {
 				killedByDragon = false;
 				killedByAlien = false;
 				killedByBunker = false;
