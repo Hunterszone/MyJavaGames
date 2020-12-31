@@ -3,11 +3,14 @@
 // Creator: Konstantin
 // 
 
+// include game package:
 package game_engine;
 
+// import java libraries:
 import java.awt.Rectangle;
 import java.util.List;
 
+// import game libraries:
 import entities.Alien;
 import entities.Bunker;
 import entities.Crosshair;
