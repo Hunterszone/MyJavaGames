@@ -1,5 +1,5 @@
 # MyJavaGames - all-in-one
-Instructions for each individual game are located in the README located in each game folder.
+Instructions for each individual game can be found in the README located in each game folder.
 
 ## AUTHOR: 
 [Konstantin Drenski](https://github.com/Hunterszone)
