@@ -1,1 +1,1 @@
-# MyJavaGames - all-in-one
+# MyJavaGames - all-in-one pack
