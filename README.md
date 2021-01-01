@@ -1,4 +1,4 @@
-# MyJavaGames - all-in-one
+# MyJavaGames - all-in-one pack
 Instructions for each individual game can be found in the README located in each game folder.
 
 ## AUTHOR: 
