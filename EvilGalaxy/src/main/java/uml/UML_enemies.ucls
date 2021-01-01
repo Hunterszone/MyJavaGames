@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="entities.EvilHead" project="EGMaven" 
     file="/EGMaven/src/main/java/entities/EvilHead.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="394" width="209" x="808" y="103"/>    
+    <position height="-1" width="-1" x="1009" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,33 +21,62 @@
   </class>  
   <class id="3" language="java" name="entities.Bunker" project="EGMaven" 
     file="/EGMaven/src/main/java/entities/Bunker.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="237" x="405" y="121"/>    
+    <position height="-1" width="-1" x="419" y="265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="4">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="5" name="evilHead"/>      
-      <multiplicity id="6" minimum="0" maximum="1"/>    
+  <class id="4" language="java" name="entities.Dragon" project="EGMaven" 
+    file="/EGMaven/src/main/java/entities/Dragon.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="153" x="639" y="100"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="5">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="6" name="dragons"/>      
+      <multiplicity id="7" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="7">    
+  <association id="8">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="8" name="bunkerObj"/>      
-      <multiplicity id="9" minimum="0" maximum="1"/>    
+      <attribute id="9" name="bunkerObj">        
+        <position height="0" width="0" x="-104" y="1"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-104" y="1"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="10">    
+  <association id="11">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="12" name="evilHead">        
+        <position height="0" width="0" x="97" y="-8"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="97" y="-8"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="11" name="aliens"/>      
-      <multiplicity id="12" minimum="0" maximum="2147483647"/>    
+      <attribute id="15" name="aliens">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
