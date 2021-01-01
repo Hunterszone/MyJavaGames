@@ -3,7 +3,6 @@
 // Creator: Konstantin
 // 
 
-// include game package:
 package entities;
 
 // import java libraries:
@@ -14,7 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-// import game libraries:
+// import game packages:
 import enums.Images;
 import enums.SoundEffects;
 import frames.Main;
@@ -26,9 +25,9 @@ import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
 
-public class UserShip extends SpritePattern {
+public class PlayerShip extends SpritePattern {
 
-	public static UserShip playerOne;
+	public static PlayerShip playerOne;
 	double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;
@@ -36,7 +35,7 @@ public class UserShip extends SpritePattern {
 
 	private String imageName, soundName;
 
-	public UserShip(int x, int y) {
+	public PlayerShip(int x, int y) {
 		super(x, y);
 
 		drawShip();
