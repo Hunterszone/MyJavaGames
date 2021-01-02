@@ -1,6 +1,7 @@
 # Eclipse Core      
 .project
 .settings
+.log
 
 # JDT-specific (Eclipse Java Development Tools)     
 .classpath
