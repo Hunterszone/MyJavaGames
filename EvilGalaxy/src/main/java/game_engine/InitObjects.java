@@ -19,9 +19,8 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.ElonAnimation;
 import entities.EvilHead;
-import entities.MyShip;
+import entities.PlayerShip;
 import entities.SatelliteAnimation;
-//import frames.GameMenuBar;
 import frames.Main;
 import items.Gold;
 import items.HealthPack;
@@ -121,8 +120,8 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 			elonAnim.setVisible(true);
 		}
 
-		MyShip.myShip = new MyShip(MYSHIP_X, MYSHIP_Y);
-		MyShip.myShip.setVisible(true);
+		PlayerShip.playerOne = new PlayerShip(MYSHIP_X, MYSHIP_Y);
+		PlayerShip.playerOne.setVisible(true);
 
 		Crosshair.crosshair = new Crosshair(MYCROSSHAIR_X, MYCROSSHAIR_Y);
 		Crosshair.crosshair.setVisible(true);

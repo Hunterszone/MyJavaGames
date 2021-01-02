@@ -24,9 +24,7 @@ import items.Gold;
 import items.HealthPack;
 import items.ShipMissile;
 import items.ShipRocket;
-import menu_engine.MouseInputHandler;
 import sound_engine.PlayWave1st;
-import util.FrameUtils;
 import util.LoadSounds;
 
 public abstract class Collisions extends UpdateObjects {

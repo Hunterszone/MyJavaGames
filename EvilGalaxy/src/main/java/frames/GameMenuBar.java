@@ -26,7 +26,7 @@ import entities.Bunker;
 import entities.Dragon;
 import entities.ElonAnimation;
 import entities.EvilHead;
-import entities.MyShip;
+import entities.PlayerShip;
 import entities.SatelliteAnimation;
 import game_engine.Difficulty;
 import game_engine.InitObjects;
@@ -300,7 +300,7 @@ public class GameMenuBar extends JFrame {
 						FileOutputStream fileStream = new FileOutputStream(savefile);
 						ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
 
-						objectStream.writeObject(MyShip.myShip);
+						objectStream.writeObject(PlayerShip.playerOne);
 						objectStream.writeObject(EvilHead.evilHead);
 						objectStream.writeObject(Bunker.bunkerObj);
 						objectStream.writeObject(Alien.aliens);

@@ -14,7 +14,7 @@ import entities.AstronautAnimation;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.ElonAnimation;
-import entities.MyShip;
+import entities.PlayerShip;
 import entities.SatelliteAnimation;
 import items.Gold;
 import items.SaveSign;
@@ -33,13 +33,13 @@ public class Controls extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		MyShip.myShip.keyReleased(e);
+		PlayerShip.playerOne.keyReleased(e);
 		Crosshair.crosshair.keyReleased(e);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		MyShip.myShip.keyPressed(e);
+		PlayerShip.playerOne.keyPressed(e);
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
 
@@ -69,7 +69,7 @@ public class Controls extends JFrame implements KeyListener {
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty()
 						&& (Dragon.dragons.size() > 0 || UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty()))) {
-			MyShip.myShip.loadRockets();
+			PlayerShip.playerOne.loadRockets();
 		}
 
 		if (InitObjects.ingame == true
@@ -77,7 +77,7 @@ public class Controls extends JFrame implements KeyListener {
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			MyShip.myShip.gunLocked();
+			PlayerShip.playerOne.gunLocked();
 		}
 
 		if (InitObjects.ingame == true
@@ -85,7 +85,7 @@ public class Controls extends JFrame implements KeyListener {
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
-			MyShip.myShip.loadMissiles();
+			PlayerShip.playerOne.loadMissiles();
 		}
 
 		if (InitObjects.ingame == true
@@ -95,7 +95,7 @@ public class Controls extends JFrame implements KeyListener {
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			MyShip.myShip.gunLocked();
+			PlayerShip.playerOne.gunLocked();
 		}
 
 		if (key == KeyEvent.VK_1) {
@@ -228,7 +228,7 @@ public class Controls extends JFrame implements KeyListener {
 
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = true;
-					UpdateObjects.lifeMyShip = -999;
+					UpdateObjects.lifePlayerShip = -999;
 					TextToSpeech.initVoice("GODLIKE!");
 					return;
 				}
@@ -238,7 +238,7 @@ public class Controls extends JFrame implements KeyListener {
 
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = false;
-					UpdateObjects.lifeMyShip = 3;
+					UpdateObjects.lifePlayerShip = 3;
 					TextToSpeech.initVoice("Healthy!");
 					return;
 				}

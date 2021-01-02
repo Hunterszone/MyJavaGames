@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.EvilHead;
-import entities.MyShip;
+import entities.PlayerShip;
 import enums.Images;
 import frames.Main;
 import items.VolBtn;
@@ -34,11 +34,11 @@ public class Difficulty {
 
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifeMyShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
-		MyShip.myShip.isVisible();
+		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne.isVisible();
 		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
@@ -86,11 +86,11 @@ public class Difficulty {
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifeMyShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
-		MyShip.myShip.isVisible();
+		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne.isVisible();
 		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
@@ -138,11 +138,11 @@ public class Difficulty {
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifeMyShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
-		MyShip.myShip.isVisible();
+		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne.isVisible();
 		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
@@ -190,11 +190,11 @@ public class Difficulty {
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifeMyShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		MyShip.myShip = new MyShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
-		MyShip.myShip.isVisible();
+		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne.isVisible();
 		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 

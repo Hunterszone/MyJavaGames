@@ -8,23 +8,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.MyShip;
+import entities.PlayerShip;
 import enums.Images;
 import sound_engine.PlayWave1st;
 
 public class MyShipTest {
 
-	private MyShip myShip;
+	private PlayerShip playerOne;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		myShip = new MyShip(x, y);
+		playerOne = new PlayerShip(x, y);
 	}
 
 	@Test
 	public void testMyShipUnit() {
-		assertNotNull(myShip.loadImage(Images.MYSHIPINIT.getImg()));
+		assertNotNull(playerOne.loadImage(Images.MYSHIPINIT.getImg()));
 		assertFalse(Images.MYSHIPINIT.getImg().isEmpty());
 	}
 
@@ -55,24 +55,24 @@ public class MyShipTest {
 
 	@Test
 	public void testListsOfAmmos() {
-		assertFalse(myShip.loadMissiles().isEmpty());
-		assertFalse(myShip.loadRockets().isEmpty());
+		assertFalse(playerOne.loadMissiles().isEmpty());
+		assertFalse(playerOne.loadRockets().isEmpty());
 	}
 
 	@Test
 	public void testGunLockedSound() {
-		PlayWave1st sound = new PlayWave1st(myShip.gunLocked());
+		PlayWave1st sound = new PlayWave1st(playerOne.gunLocked());
 		assertTrue(sound.doesFileExists());
 	}
 
 	@Test
 	public void testMyShipBorders() {
-		assertFalse(myShip.getX() < 0 || myShip.getX() > 900);
-		assertFalse(myShip.getY() < 0 || myShip.getY() > 700);
+		assertFalse(playerOne.getX() < 0 || playerOne.getX() > 900);
+		assertFalse(playerOne.getY() < 0 || playerOne.getY() > 700);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		myShip = null;
+		playerOne = null;
 	}
 }

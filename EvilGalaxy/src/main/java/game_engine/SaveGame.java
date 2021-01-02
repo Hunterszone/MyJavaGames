@@ -8,7 +8,7 @@ import entities.Alien;
 import entities.Bunker;
 import entities.Dragon;
 import entities.EvilHead;
-import entities.MyShip;
+import entities.PlayerShip;
 import items.Gold;
 import items.HealthPack;
 import util.TextToSpeech;
@@ -77,7 +77,7 @@ public class SaveGame {
 				FileOutputStream fileStream = new FileOutputStream(savefile);
 				ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
 
-				objectStream.writeObject(MyShip.myShip);
+				objectStream.writeObject(PlayerShip.playerOne);
 				objectStream.writeObject(EvilHead.evilHead);
 				objectStream.writeObject(Bunker.bunkerObj);
 				objectStream.writeObject(Alien.aliens);

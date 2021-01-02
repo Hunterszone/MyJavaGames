@@ -15,7 +15,7 @@ import entities.Alien;
 import entities.Bunker;
 import entities.Dragon;
 import entities.EvilHead;
-import entities.MyShip;
+import entities.PlayerShip;
 import frames.Main;
 import items.Gold;
 import items.HealthPack;
@@ -30,7 +30,7 @@ public class LoadGame {
 
 	List<Object> loadedAssets = new ArrayList<Object>();
 
-	MyShip savedShip;
+	PlayerShip savedShip;
 	EvilHead savedHead;
 	Bunker savedBunker;
 	Object savedAliens;
@@ -50,7 +50,7 @@ public class LoadGame {
 			FileInputStream fileStream = new FileInputStream(loadfile);
 			ObjectInputStream objectStream = new ObjectInputStream(fileStream);
 
-			savedShip = (MyShip) objectStream.readObject();
+			savedShip = (PlayerShip) objectStream.readObject();
 			savedHead = (EvilHead) objectStream.readObject();
 			savedBunker = (Bunker) objectStream.readObject();
 			savedAliens = objectStream.readObject();

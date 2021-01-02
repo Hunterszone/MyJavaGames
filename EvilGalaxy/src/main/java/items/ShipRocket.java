@@ -1,6 +1,6 @@
 package items;
 
-import entities.MyShip;
+import entities.PlayerShip;
 import enums.Images;
 import game_engine.SpritePattern;
 
@@ -28,7 +28,7 @@ public class ShipRocket extends SpritePattern {
 		x += ROCKET_SPEED_X;
 		y += ROCKET_SPEED_Y;
 
-		if (x > MyShip.myShip.getX() + 320)
+		if (x > PlayerShip.playerOne.getX() + 320)
 			vis = false;
 	}
 }

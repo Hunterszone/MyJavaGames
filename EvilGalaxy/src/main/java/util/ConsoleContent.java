@@ -303,14 +303,14 @@ public class ConsoleContent extends OutputStream {
 					// GODMODE ON
 					else if (COMMANDS[10].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifeMyShip >= 3) {
+								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip >= 3) {
 							god = true;
-							UpdateObjects.lifeMyShip = -999;
+							UpdateObjects.lifePlayerShip = -999;
 							textArea.append("********GODMODE ON*********" + "\n");
 							TextToSpeech.initVoice("GODLIKE!");
 							return;
 						}
-						if (InitObjects.ingame == true && UpdateObjects.lifeMyShip < 3) {
+						if (InitObjects.ingame == true && UpdateObjects.lifePlayerShip < 3) {
 							textArea.append("***********Already in GODMODE!*********" + "\n");
 							return;
 						}
@@ -325,14 +325,14 @@ public class ConsoleContent extends OutputStream {
 					// GODMODE OFF
 					else if (COMMANDS[11].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifeMyShip < 3) {
+								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip < 3) {
 							god = false;
-							UpdateObjects.lifeMyShip = 3;
+							UpdateObjects.lifePlayerShip = 3;
 							textArea.append("********GODMODE OFF*********" + "\n");
 							TextToSpeech.initVoice("Healthy!");
 							return;
 						}
-						if (InitObjects.ingame == true && UpdateObjects.lifeMyShip >= 3) {
+						if (InitObjects.ingame == true && UpdateObjects.lifePlayerShip >= 3) {
 							textArea.append("***********Not in a GODMODE!*********" + "\n");
 							return;
 						}
@@ -353,19 +353,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Difficulty: Easy" + "\n");
 									textArea.append("Alien.aliens killed: " + (-(Alien.aliens.size() - 54)) + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 
@@ -377,19 +377,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Difficulty: Medium" + "\n");
 									textArea.append("Alien.aliens killed: " + (-(Alien.aliens.size() - 54)) + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -400,19 +400,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Difficulty: Hard" + "\n");
 									textArea.append("Alien.aliens killed: " + (-(Alien.aliens.size() - 54)) + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -425,19 +425,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Difficulty: Easy" + "\n");
 									textArea.append("Dragons killed: " + (-(Dragon.dragons.size() - 30)) + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -448,19 +448,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Difficulty: Medium" + "\n");
 									textArea.append("Dragons killed: " + (-(Dragon.dragons.size() - 30)) + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -471,19 +471,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Difficulty: Hard" + "\n");
 									textArea.append("Dragons killed: " + (-(Dragon.dragons.size() - 30)) + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -495,19 +495,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 3" + "\n");
 									textArea.append("Difficulty: Easy" + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -517,19 +517,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 3" + "\n");
 									textArea.append("Difficulty: Medium" + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -539,19 +539,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 3" + "\n");
 									textArea.append("Difficulty: Hard" + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -581,19 +581,19 @@ public class ConsoleContent extends OutputStream {
 											textArea.append("lifeEvilHead: 20 %" + "\n");
 										}
 									}
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -603,19 +603,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 4" + "\n");
 									textArea.append("Difficulty: Medium" + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
@@ -625,19 +625,19 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 4" + "\n");
 									textArea.append("Difficulty: Hard" + "\n");
 									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
-									if (UpdateObjects.lifeMyShip <= 4) {
+									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
-									if (UpdateObjects.lifeMyShip == 5) {
+									if (UpdateObjects.lifePlayerShip == 5) {
 										textArea.append("Lifestats: Injured");
 									}
-									if (UpdateObjects.lifeMyShip == 6) {
+									if (UpdateObjects.lifePlayerShip == 6) {
 										textArea.append("Lifestats: Critical");
 									}
-									if (UpdateObjects.lifeMyShip < 3) {
+									if (UpdateObjects.lifePlayerShip < 3) {
 										textArea.append("\n" + "Godmode: " + "ON");
 									}
-									if (UpdateObjects.lifeMyShip == 3) {
+									if (UpdateObjects.lifePlayerShip == 3) {
 										textArea.append("\n" + "Godmode: " + "OFF");
 									}
 									return;
