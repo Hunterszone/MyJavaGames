@@ -1,5 +1,11 @@
+// MouseInputHandler.java
+//
+// Creator: Konstantin
+//
+
 package menu_engine;
 
+// import java libraries:
 import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Point;
@@ -9,6 +15,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+// import game packages:
 import enums.SoundEffects;
 import frames.Main;
 import game_engine.InitObjects;
@@ -46,7 +53,7 @@ public class MouseInputHandler implements MouseListener {
 					LoadSounds.menuMusic.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
-					UpdateObjects.lifeMyShip = 3;
+					UpdateObjects.lifePlayerShip = 3;
 					UpdateObjects.lifeEvilHead = 3;
 					UpdateObjects.lifeBunker = 3;
 					InitObjects.ingame = true;

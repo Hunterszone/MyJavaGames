@@ -1,5 +1,11 @@
+// MyShip.java
+// 
+// Creator: Konstantin
+// 
+
 package entities;
 
+// import java libraries:
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -7,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+// import game packages:
 import enums.Images;
 import enums.SoundEffects;
 import frames.Main;
@@ -18,9 +25,9 @@ import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
 
-public class MyShip extends SpritePattern {
+public class PlayerShip extends SpritePattern {
 
-	public static MyShip myShip;
+	public static PlayerShip playerOne;
 	double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;
@@ -28,7 +35,7 @@ public class MyShip extends SpritePattern {
 
 	private String imageName, soundName;
 
-	public MyShip(int x, int y) {
+	public PlayerShip(int x, int y) {
 		super(x, y);
 
 		drawShip();
