@@ -15,6 +15,7 @@ public class TextToSpeech {
 	public static boolean finMusicIsPlayed;
 	public static boolean voiceInterruptor = false;
 	private static MaryInterface marytts = null;
+	static Set<String> voices = null;
 
 	public static void initVoice(String message) {
 
@@ -25,7 +26,9 @@ public class TextToSpeech {
 			e1.printStackTrace();
 		}
 		
-		final Set<String> voices = marytts.getAvailableVoices();
+		if(marytts != null) {			
+			voices = marytts.getAvailableVoices();
+		}
 
 		System.out.println("Available voices: " + voices);
 
