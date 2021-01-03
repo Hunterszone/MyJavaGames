@@ -9,13 +9,9 @@
 saves/
 
 # Target folder and its attributes
-target/
-*.class
-*.jar
-*.war
-*.ear
-*.logs
-*.iml
+*/target/**
+
+# Other
 .idea/
 .eclipse
 /.gitignore
