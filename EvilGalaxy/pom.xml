@@ -30,6 +30,32 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>frames.Main</mainClass>
+								</transformer>
+							</transformers>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.1</version>
@@ -77,5 +103,26 @@
 			<artifactId>voice-cmu-slt-hsmm</artifactId>
 			<version>5.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/de.dfki.mary/voice-dfki-poppy-hsmm -->
+		<!-- <dependency>
+			<groupId>de.dfki.mary</groupId>
+			<artifactId>voice-dfki-poppy-hsmm</artifactId>
+			<version>5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>de.dfki.mary</groupId>
+			<artifactId>voice-cmu-rms-hsmm</artifactId>
+			<version>5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>de.dfki.mary</groupId>
+			<artifactId>marytts-lang-en</artifactId>
+			<version>5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>de.dfki.mary</groupId>
+			<artifactId>voice-dfki-prudence-hsmm</artifactId>
+			<version>5.2</version>
+		</dependency>  -->
 	</dependencies>
 </project>
