@@ -28,5 +28,13 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            steps {
+                withMaven(maven: 'M3', mavenSettingsConfig: 'd814f7db-b5d8-4373-9b57-d201ed66f6b5') {
+                    // To run Maven on a Windows agent, use
+                    bat "mvn -Dmaven.test.failure.ignore=true clean deploy"
+                }
+            }
+        }
     }
 }
