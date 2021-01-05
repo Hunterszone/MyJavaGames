@@ -125,4 +125,16 @@
 			<version>5.2</version>
 		</dependency>  -->
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>a0d5nnyyip5wa-artifactory-primary-0-releases</name>
+			<url>https://myjavagames.jfrog.io/artifactory/MyJavaGamesLocal</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>a0d5nnyyip5wa-artifactory-primary-0-snapshots</name>
+			<url>https://myjavagames.jfrog.io/artifactory/MyJavaGamesLocal</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
