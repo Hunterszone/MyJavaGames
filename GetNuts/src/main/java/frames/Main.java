@@ -30,15 +30,19 @@ public class Main {
 
     // Start game in fullscreen
     public void initGame(){
-        // add(new DrawScene());
+        // add(new Board()); // Generate level and JPanel
+        JFrame frame = new JFrame();
 
-        setResizable(true);
-        setUndecorated(true);
-        pack();
-        setTitle("GetNuts");
-        device.setFullScreenWindow(); // this or window
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false); // user can't resize
+        frame.setUndecorated(true);
+
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        frame.setSize(dim);
+        frame.setTitle("GetNuts");
+        device.setFullScreenWindow(frame); // this or window
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
     }
