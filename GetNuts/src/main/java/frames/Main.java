@@ -40,7 +40,7 @@ public class Main {
 
         frame.setSize(dim);
         frame.setTitle("GetNuts");
-        device.setFullScreenWindow(frame); // this or window
+        device.setFullScreenWindow(frame); // this or frame
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
