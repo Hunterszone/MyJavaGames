@@ -37,7 +37,7 @@ public class Main extends JFrame {
 
         setSize(dim);
         setTitle("GetNuts");
-        device.setFullScreenWindow(frame); // this or window
+        device.setFullScreenWindow(this);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
