@@ -54,3 +54,4 @@ public enum SoundEffects {
     };
 
     public abstract String getSound();
+}
