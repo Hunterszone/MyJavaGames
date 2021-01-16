@@ -1,7 +1,5 @@
 // frames.Main
 //
-// Author: talemache
-//
 
 package frames;
 
