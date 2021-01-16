@@ -4,20 +4,19 @@
 package frames;
 
 // import java libraries
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
 import java.net.URISyntaxException;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 // import game packages
-import game_engine.Area;
 import game_engine.Board;
-import game_engine.LevelsBgsEngine;
 
 // Main class
-public class Main {
+public class Main extends JFrame {
     private static final long serialVersionUID = 1L;
     static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
     public static Dimension dim;
@@ -28,25 +27,24 @@ public class Main {
 
     // Start game in fullscreen
     public void initGame(){
-        // add(new Board()); // Generate level and JPanel
-        JFrame frame = new JFrame();
+        Board board = new Board();
+        add(board); // Generate level and JPanel
 
-        frame.setResizable(false); // user can't resize
-        frame.setUndecorated(true);
+        setResizable(false); // user can't resize
+        setUndecorated(true);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-        frame.setSize(dim);
-        frame.setTitle("GetNuts");
+        setSize(dim);
+        setTitle("GetNuts");
         device.setFullScreenWindow(frame); // this or window
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     // Run Main class
     public static void main(String[] args) throws URISyntaxException {
-
+        Main sokoban = new Main();
+        sokoban.setVisible(true);
     }
 }
