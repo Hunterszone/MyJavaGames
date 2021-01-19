@@ -10,9 +10,10 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.net.URISyntaxException;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 // import game packages
+import enums.Images;
 import game_engine.Board;
 
 // Main class
@@ -28,8 +29,8 @@ public class Main extends JFrame {
     // Start game in fullscreen
     public void initGame(){
         Board board = new Board();
-        add(board); // Generate level and JPanel
 
+        add(board); // Generate level and JPanel
         setResizable(false); // user can't resize
         setUndecorated(true);
 
@@ -40,6 +41,9 @@ public class Main extends JFrame {
         device.setFullScreenWindow(this);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(Images.SOKOBAN.getImg())); // window image icon is a squirrel
+
+        ImageIcon tileIcon = new ImageIcon(("images/")); // not sure which image to use
     }
 
     // Run Main class
