@@ -7,7 +7,9 @@ To build the game, the following libraries (.jar) must be available for the proj
 - voice-cmu-slt-hsmm-5.2
 - marytts-lang-en-5.2
 - marytts-runtime-5.2-jar-with-dependencies
-- marytts-client-5.2-jar-with-dependencies
+- marytts-client-5.2-jar-with-dependencies  
+
+Menu buttons are built using https://www.photopea.com/  
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
