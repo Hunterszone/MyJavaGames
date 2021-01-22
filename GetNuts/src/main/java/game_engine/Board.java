@@ -1,8 +1,6 @@
 package game_engine;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -21,6 +19,10 @@ import entities.Nut;
 import entities.Player;
 import entities.Wall;
 import entities.Water;
+
+import enums.Images;
+// import enums.SoundEffects;
+
 import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
 
@@ -65,7 +67,33 @@ public class Board extends JPanel {
 		}
 	}
 
+	transient static Image baggage, bridge, holder, sokoban, terrain, wall; // enums.Images
+
 	public Board() {
+
+		// Make all images this width and height
+		// not sure which width or height
+		// int width = ;
+		// int height = ;
+
+		// Create images to place on screen
+		baggage = Toolkit.getDefaultToolkit().createImage(Images.BAGGAGE.getImg());
+		baggage = baggage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+		bridge = Toolkit.getDefaultToolkit().createImage(Images.BRIDGE.getImg());
+		bridge = bridge.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+		holder = Toolkit.getDefaultToolkit().createImage(Images.HOLDER.getImg());
+		holder = holder.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+		sokoban = Toolkit.getDefaultToolkit().createImage(Images.SOKOBAN.getImg());
+		sokoban = sokoban.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+		terrain = Toolkit.getDefaultToolkit().createImage(Images.TERRAIN.getImg());
+		terrain = terrain.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+		wall = Toolkit.getDefaultToolkit().createImage(Images.WALL.getImg());
+		wall = wall.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
 		addKeyListener(new TAdapter());
 		setFocusable(true);
