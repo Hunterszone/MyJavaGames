@@ -1,4 +1,4 @@
-package frames;
+package menu_engine;
 
 import java.awt.Desktop;
 import java.awt.Font;
@@ -28,6 +28,7 @@ import entities.ElonAnimation;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import extras.Manual;
 import game_engine.Difficulty;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;
@@ -35,8 +36,6 @@ import items.Gold;
 import items.HealthPack;
 import launcher.Launcher;
 import marytts.exceptions.MaryConfigurationException;
-import menu_engine.CanvasMenu;
-import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 import multiplayer_tbd.JoinGame;
 import util.ConsoleContent;

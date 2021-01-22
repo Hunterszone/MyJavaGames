@@ -1,4 +1,4 @@
-package frames;
+package extras;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.SwingUtilities;
 
+import main.Main;
 import util.AutoSuggestor;
 import util.ConsoleContent;
 

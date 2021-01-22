@@ -17,11 +17,11 @@ import java.net.URISyntaxException;
 
 // import game packages:
 import enums.SoundEffects;
-import frames.Main;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
 import launcher.Launcher;
+import main.Main;
 import menu_states.ControlsState;
 import menu_states.ExtrasState;
 import menu_states.ManualState;

@@ -22,15 +22,15 @@ import javax.swing.border.EmptyBorder;
 
 import entities.Alien;
 import entities.Dragon;
-import frames.ConsoleForm;
-import frames.GameMenuBar;
-import frames.Manual;
+import extras.ConsoleForm;
+import extras.Manual;
 import game_engine.Difficulty;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
+import menu_engine.GameMenuBar;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
 

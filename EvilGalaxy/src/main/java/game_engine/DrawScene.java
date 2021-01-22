@@ -22,7 +22,6 @@ import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
 import enums.Images;
-import frames.Main;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.FireBall;
@@ -32,6 +31,7 @@ import items.SaveSign;
 import items.ShipMissile;
 import items.ShipRocket;
 import items.VolBtn;
+import main.Main;
 import util.LoadSounds;
 import util.TextToSpeech;
 

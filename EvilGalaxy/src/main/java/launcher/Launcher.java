@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
-import frames.ConsoleForm;
+import extras.ConsoleForm;
 import marytts.exceptions.MaryConfigurationException;
 import util.TextToSpeech;
 

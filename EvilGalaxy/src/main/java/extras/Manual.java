@@ -1,4 +1,4 @@
-package frames;
+package extras;
 
 import java.awt.Color;
 import java.awt.Component;

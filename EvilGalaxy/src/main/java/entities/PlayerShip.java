@@ -16,10 +16,10 @@ import java.util.List;
 // import game packages:
 import enums.Images;
 import enums.SoundEffects;
-import frames.Main;
 import game_engine.SpritePattern;
 import items.ShipMissile;
 import items.ShipRocket;
+import main.Main;
 import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;

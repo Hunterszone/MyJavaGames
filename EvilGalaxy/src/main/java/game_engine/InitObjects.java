@@ -21,11 +21,11 @@ import entities.ElonAnimation;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
-import frames.Main;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
+import main.Main;
 import util.LoadSounds;
 import util.TextToSpeech;
 

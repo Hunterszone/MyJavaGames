@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import frames.ConsoleForm;
+import extras.ConsoleForm;
 
 public class JoinGame extends JFrame {
 
