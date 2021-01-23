@@ -8,29 +8,29 @@ import enums.Images;
 import game_engine.InitObjects;
 import game_engine.SpritePattern;
 
-public class ElonAnimation extends SpritePattern {
+public class TheEndAnimation extends SpritePattern {
 	
 	private static final long serialVersionUID = 1L;
-	public static List<ElonAnimation> elonAnimationsUp = new ArrayList<ElonAnimation>();
-	public static List<ElonAnimation> elonAnimationsDown = new ArrayList<ElonAnimation>();
+	public static List<TheEndAnimation> theEndAnimationsUp = new ArrayList<TheEndAnimation>();
+	public static List<TheEndAnimation> theEndAnimationsDown = new ArrayList<TheEndAnimation>();
 
-	public ElonAnimation(int x, int y) {
+	public TheEndAnimation(int x, int y) {
 		super(x, y);
-		drawElonsUp();
-		drawElonsDown();
+		drawTheEndUp();
+		drawTheEndDown();
 	}
 
 	private String imageName;
 
-	public Image drawElonsUp() {
-		imageName = Images.ELONSUPINIT.getImg();
+	public Image drawTheEndUp() {
+		imageName = Images.THEENDUPINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return loadImage(imageName);
 	}
 	
-	public Image drawElonsDown() {
-		imageName = Images.ELONSDOWNINIT.getImg();
+	public Image drawTheEndDown() {
+		imageName = Images.THEENDDOWNINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return loadImage(imageName);

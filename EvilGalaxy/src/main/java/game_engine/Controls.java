@@ -13,7 +13,7 @@ import entities.AsteroidsAnimation;
 import entities.AstronautAnimation;
 import entities.Crosshair;
 import entities.Dragon;
-import entities.ElonAnimation;
+import entities.TheEndAnimation;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
 import items.Gold;
@@ -290,16 +290,16 @@ public class Controls extends JFrame implements KeyListener {
 					asteroidsAnim = null;
 			}
 			AsteroidsAnimation.asteroidsAnimations.clear();
-			for (ElonAnimation elonAnimUp : ElonAnimation.elonAnimationsUp) {
+			for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
 				if (elonAnimUp != null)
 					elonAnimUp = null;
 			}
-			ElonAnimation.elonAnimationsUp.clear();
-			for (ElonAnimation elonAnimDown : ElonAnimation.elonAnimationsDown) {
+			TheEndAnimation.theEndAnimationsUp.clear();
+			for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
 				if (elonAnimDown != null)
 					elonAnimDown = null;
 			}
-			ElonAnimation.elonAnimationsDown.clear();
+			TheEndAnimation.theEndAnimationsDown.clear();
 			InitObjects.ingame = false;
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();

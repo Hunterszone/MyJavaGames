@@ -85,16 +85,16 @@ public enum Images {
 			return "images/asteroids.png";
 		}
 	},
-	ELONSUPINIT {
+	THEENDUPINIT {
 		@Override
 		public String getImg() {
-			return "images/elon.png";
+			return "images/theEnd.png";
 		}
 	},
-	ELONSDOWNINIT {
+	THEENDDOWNINIT {
 		@Override
 		public String getImg() {
-			return "images/elonDown.png";
+			return "images/theEndDown.png";
 		}
 	},
 	MYSHIPONFIRE {

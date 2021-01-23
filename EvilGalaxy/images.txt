@@ -62,6 +62,8 @@ strikehead.png
 strikehead2.png
 strikehead3.png
 tenor.jpg
+theEnd.png
+theEndDown.png
 volbutt.png
 _alien2.gif
 _shadow1.png

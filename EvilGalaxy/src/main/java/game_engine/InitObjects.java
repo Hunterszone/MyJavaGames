@@ -17,7 +17,7 @@ import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
-import entities.ElonAnimation;
+import entities.TheEndAnimation;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
@@ -104,19 +104,19 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 			asteroidsAnim.setVisible(true);
 		}
 		
-		ElonAnimation.elonAnimationsUp.add(new ElonAnimation(100, InitObjects.B_HEIGHT));
-		ElonAnimation.elonAnimationsDown.add(new ElonAnimation(300, 0));
-		ElonAnimation.elonAnimationsUp.add(new ElonAnimation(500, InitObjects.B_HEIGHT));
-		ElonAnimation.elonAnimationsDown.add(new ElonAnimation(700, 0));
-		ElonAnimation.elonAnimationsUp.add(new ElonAnimation(900, InitObjects.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(100, InitObjects.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(300, 0));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(500, InitObjects.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(700, 0));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, InitObjects.B_HEIGHT));
 		
-		for(ElonAnimation elonAnim : ElonAnimation.elonAnimationsUp) {			
-			elonAnim.drawElonsUp();
+		for(TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {			
+			elonAnim.drawTheEndUp();
 			elonAnim.setVisible(true);
 		}
 		
-		for(ElonAnimation elonAnim : ElonAnimation.elonAnimationsDown) {			
-			elonAnim.drawElonsDown();
+		for(TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsDown) {			
+			elonAnim.drawTheEndDown();
 			elonAnim.setVisible(true);
 		}
 
@@ -227,11 +227,11 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	        		asteroidsAnim.cycle();
 	        	}
 	        	
-	        	for(ElonAnimation elonsAnim : ElonAnimation.elonAnimationsUp) {	        		
+	        	for(TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsUp) {	        		
 	        		elonsAnim.cycleUp();
 	        	}
 	        	
-	        	for(ElonAnimation elonsAnim : ElonAnimation.elonAnimationsDown) {	        		
+	        	for(TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsDown) {	        		
 	        		elonsAnim.cycleDown();
 	        	}
 	        	
