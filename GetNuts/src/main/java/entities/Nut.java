@@ -3,6 +3,7 @@ package entities;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import enums.Images;
 import game_engine.Actor;
 
 public class Nut extends Actor {
@@ -12,7 +13,7 @@ public class Nut extends Actor {
 
 	public Nut(int x, int y) {
 		super(x, y);
-		img = "images/baggage.png";
+		img = Images.BAGGAGE.getImg();
 		image = Toolkit.getDefaultToolkit().createImage(img);
 		this.setImage(image);
 	}

@@ -18,6 +18,8 @@ import java.util.stream.Stream;
 
 import javax.imageio.ImageIO;
 
+import main.Main;
+
 public class LevelsBgsEngine {
 
 	static List<String> levels = new ArrayList<String>();
@@ -59,10 +61,12 @@ public class LevelsBgsEngine {
 		try {
 			Stream<Path> images = Files.list(Paths.get("backgrounds"));
 			long imagesCount = images.count();
+			int width = (int) Main.dim.getWidth();
+			int height = (int) Main.dim.getHeight();
 			for (int i = 0; i < imagesCount; i++) {
 				sourceImage = new File("backgrounds/bg" + i + ".jpg");
 				Image levelBG = ImageIO.read(sourceImage);
-				backgrounds.add(levelBG);
+				backgrounds.add(levelBG.getScaledInstance(width, height, Image.SCALE_SMOOTH));
 			}
 			images.close();
 		} catch (IOException e1) {

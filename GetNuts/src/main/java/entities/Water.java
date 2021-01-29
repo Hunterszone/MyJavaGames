@@ -3,6 +3,7 @@ package entities;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import enums.Images;
 import game_engine.Actor;
 
 public class Water extends Actor {
@@ -12,7 +13,7 @@ public class Water extends Actor {
 
 	public Water(int x, int y) {
 		super(x, y);
-		img = "images/terrain.png";
+		img = Images.TERRAIN.getImg();
 		image = Toolkit.getDefaultToolkit().createImage(img);
 		this.setImage(image);
 		return;

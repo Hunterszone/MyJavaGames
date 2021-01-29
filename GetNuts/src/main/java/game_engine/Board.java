@@ -1,6 +1,3 @@
-// game_engine.Board
-//
-
 package game_engine;
 
 import java.awt.*;
@@ -22,17 +19,15 @@ import entities.Nut;
 import entities.Player;
 import entities.Wall;
 import entities.Water;
-
-import enums.Images;
-// import enums.SoundEffects;
-
+import enums.SoundEffects;
+import main.Main;
 import sound_engine.LoadSounds;
 import sound_engine.PlayWave1st;
 
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private final int OFFSET = 50;
+	private final int OFFSET = 300;
 	private final int SPACE = 20;
 	private final double LEFT_COLLISION = 1;
 	private final double RIGHT_COLLISION = 2;
@@ -43,10 +38,10 @@ public class Board extends JPanel {
 	private ArrayList<Bridge> bridges = new ArrayList<Bridge>();
 	private ArrayList<Nut> nuts = new ArrayList<Nut>();
 	private ArrayList<Area> areas = new ArrayList<Area>();
-	private Font font = new Font("Helvetica", Font.BOLD, 14);
+	private Font font = new Font("Helvetica", Font.BOLD, 24);
 	private Player squirrel;
-	private int w = 0;
-	private int h = 0;
+	private int w = (int) Main.dim.getWidth();
+	private int h = (int) Main.dim.getHeight();
 	private int levelNum = 0;
 	private int myScore = 500;
 	private boolean completed = false;
@@ -185,26 +180,6 @@ public class Board extends JPanel {
 		world.addAll(nuts);
 		world.add(squirrel);
 
-		// Create images to place on screen
-		baggage = Toolkit.getDefaultToolkit().createImage(Images.BAGGAGE.getImg());
-		baggage = baggage.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-
-		bridge = Toolkit.getDefaultToolkit().createImage(Images.BRIDGE.getImg());
-		bridge = bridge.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-
-		holder = Toolkit.getDefaultToolkit().createImage(Images.HOLDER.getImg());
-		holder = holder.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-
-		sokoban = Toolkit.getDefaultToolkit().createImage(Images.SOKOBAN.getImg());
-		sokoban = sokoban.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-
-		terrain = Toolkit.getDefaultToolkit().createImage(Images.TERRAIN.getImg());
-		terrain = terrain.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-
-		wall = Toolkit.getDefaultToolkit().createImage(Images.WALL.getImg());
-		wall = wall.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-		///////////////////////////////////
-
 		for (int i = 0; i < world.size(); i++) {
 
 			Actor item = world.get(i);
@@ -239,17 +214,17 @@ public class Board extends JPanel {
 
 	private void drawScore(Graphics g) {
 
-		g.setColor(new Color(255, 0, 0));
+		g.setColor(new Color(220,20,60));
 		g.setFont(font);
-		g.drawString("Level: " + (levelNum + 1), 50, 20);
-		g.drawString("Moves left: " + myScore, 340, 20);
+		g.drawString("Level: " + (levelNum + 1), 650, 50);
+		g.drawString("     Moves left: " + myScore, 940, 50);
 
 		if (help == true) {
-			g.drawString("Shuffle ON", 195, 20);
+			g.drawString("Shuffle ON", 795, 50);
 		}
 
 		if (help == false) {
-			g.drawString("Shuffle OFF", 195, 20);
+			g.drawString("Shuffle OFF", 795, 50);
 		}
 
 		if (myScore == 0) {
@@ -320,90 +295,90 @@ public class Board extends JPanel {
 
 			if (key == KeyEvent.VK_LEFT) {
 				if (checkWallCollision(squirrel, LEFT_COLLISION)) {
-					new PlayWave1st("sounds/denied.wav").start();
+					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, LEFT_COLLISION)) {
-					new PlayWave1st("sounds/dead.wav").start();
+					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(LEFT_COLLISION)) {
-					new PlayWave1st("sounds/boing.wav").start();
+					new PlayWave1st(SoundEffects.BOING.getSound()).start();
 					return;
 				}
 
 				squirrel.move(-SPACE, 0);
 				myScore--;
-				new PlayWave1st("sounds/move.wav").start();
+				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
 
 			} else if (key == KeyEvent.VK_RIGHT) {
 
 				if (checkWallCollision(squirrel, RIGHT_COLLISION)) {
-					new PlayWave1st("sounds/denied.wav").start();
+					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, RIGHT_COLLISION)) {
-					new PlayWave1st("sounds/dead.wav").start();
+					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(RIGHT_COLLISION)) {
-					new PlayWave1st("sounds/boing.wav").start();
+					new PlayWave1st(SoundEffects.BOING.getSound()).start();
 					return;
 				}
 
 				squirrel.move(SPACE, 0);
 				myScore--;
-				new PlayWave1st("sounds/move.wav").start();
+				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
 
 			} else if (key == KeyEvent.VK_UP) {
 
 				if (checkWallCollision(squirrel, TOP_COLLISION)) {
-					new PlayWave1st("sounds/denied.wav").start();
+					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, TOP_COLLISION)) {
-					new PlayWave1st("sounds/dead.wav").start();
+					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(TOP_COLLISION)) {
-					new PlayWave1st("sounds/boing.wav").start();
+					new PlayWave1st(SoundEffects.BOING.getSound()).start();
 					return;
 				}
 
 				squirrel.move(0, -SPACE);
 				myScore--;
-				new PlayWave1st("sounds/move.wav").start();
+				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
 
 			} else if (key == KeyEvent.VK_DOWN) {
 
 				if (checkWallCollision(squirrel, BOTTOM_COLLISION)) {
-					new PlayWave1st("sounds/denied.wav").start();
+					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, BOTTOM_COLLISION)) {
-					new PlayWave1st("sounds/dead.wav").start();
+					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(BOTTOM_COLLISION)) {
-					new PlayWave1st("sounds/boing.wav").start();
+					new PlayWave1st(SoundEffects.BOING.getSound()).start();
 					return;
 				}
 
 				squirrel.move(0, SPACE);
 				myScore--;
-				new PlayWave1st("sounds/move.wav").start();
+				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
 
 			} else if (key == KeyEvent.VK_R) {
 				restartLevel();

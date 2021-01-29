@@ -1,6 +1,3 @@
-// enums.SoundEffects
-//
-
 package enums;
 
 public enum SoundEffects {
