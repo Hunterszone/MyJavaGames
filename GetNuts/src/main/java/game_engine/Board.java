@@ -1,3 +1,6 @@
+// game_engine.Board
+//
+
 package game_engine;
 
 import java.awt.*;
@@ -70,30 +73,6 @@ public class Board extends JPanel {
 	transient static Image baggage, bridge, holder, sokoban, terrain, wall; // enums.Images
 
 	public Board() {
-
-		// Make all images this width and height
-		// not sure which width or height
-		// int width = ;
-		// int height = ;
-
-		// Create images to place on screen
-		baggage = Toolkit.getDefaultToolkit().createImage(Images.BAGGAGE.getImg());
-		baggage = baggage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-		bridge = Toolkit.getDefaultToolkit().createImage(Images.BRIDGE.getImg());
-		bridge = bridge.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-		holder = Toolkit.getDefaultToolkit().createImage(Images.HOLDER.getImg());
-		holder = holder.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-		sokoban = Toolkit.getDefaultToolkit().createImage(Images.SOKOBAN.getImg());
-		sokoban = sokoban.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-		terrain = Toolkit.getDefaultToolkit().createImage(Images.TERRAIN.getImg());
-		terrain = terrain.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-		wall = Toolkit.getDefaultToolkit().createImage(Images.WALL.getImg());
-		wall = wall.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
 		addKeyListener(new TAdapter());
 		setFocusable(true);
@@ -205,6 +184,26 @@ public class Board extends JPanel {
 		world.addAll(areas);
 		world.addAll(nuts);
 		world.add(squirrel);
+
+		// Create images to place on screen
+		baggage = Toolkit.getDefaultToolkit().createImage(Images.BAGGAGE.getImg());
+		baggage = baggage.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+
+		bridge = Toolkit.getDefaultToolkit().createImage(Images.BRIDGE.getImg());
+		bridge = bridge.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+
+		holder = Toolkit.getDefaultToolkit().createImage(Images.HOLDER.getImg());
+		holder = holder.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+
+		sokoban = Toolkit.getDefaultToolkit().createImage(Images.SOKOBAN.getImg());
+		sokoban = sokoban.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+
+		terrain = Toolkit.getDefaultToolkit().createImage(Images.TERRAIN.getImg());
+		terrain = terrain.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+
+		wall = Toolkit.getDefaultToolkit().createImage(Images.WALL.getImg());
+		wall = wall.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+		///////////////////////////////////
 
 		for (int i = 0; i < world.size(); i++) {
 
