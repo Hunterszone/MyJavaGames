@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import enums.Images;
 import game_engine.Area;
 
 public class AreaTest {
@@ -22,7 +23,7 @@ public class AreaTest {
 	@Test
 	public void testArea() {
 		assertNotNull(area.getImage());
-		assertFalse("Area img name is empty", area.img.isEmpty());
+		assertFalse("Area img name is empty", Images.HOLDER.getImg().isEmpty());
 	}
 
 	@After

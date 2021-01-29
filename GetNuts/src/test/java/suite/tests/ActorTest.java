@@ -2,6 +2,7 @@ package suite.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Image;
@@ -10,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import enums.Images;
 import game_engine.Actor;
 
 public class ActorTest {
@@ -24,6 +26,8 @@ public class ActorTest {
 
 	@Test
 	public void testActor() {
+		assertNull(actor.getImage());
+		assertFalse("Actor img name is empty", Images.SOKOBAN.getImg().isEmpty());
 		assertTrue(actor instanceof Object);
 	}
 

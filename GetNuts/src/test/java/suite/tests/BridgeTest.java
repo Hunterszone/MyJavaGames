@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Bridge;
+import enums.Images;
 
 public class BridgeTest {
 
@@ -22,7 +23,7 @@ public class BridgeTest {
 	@Test
 	public void testBridge() {
 		assertNotNull(bridge.getImage());
-		assertFalse("Bridge img name is empty", bridge.img.isEmpty());
+		assertFalse("Bridge img name is empty", Images.BRIDGE.getImg().isEmpty());
 	}
 
 	@After
