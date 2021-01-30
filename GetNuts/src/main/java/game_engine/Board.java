@@ -43,7 +43,7 @@ public class Board extends JPanel {
 	private int w = (int) Main.dim.getWidth();
 	private int h = (int) Main.dim.getHeight();
 	private int levelNum = 0;
-	private int myScore = 500;
+	private int myScore = 1000;
 	private boolean completed = false;
 	private boolean help = false;
 	private boolean isPressed = false;
@@ -65,8 +65,6 @@ public class Board extends JPanel {
 		}
 	}
 
-	transient static Image baggage, bridge, holder, sokoban, terrain, wall; // enums.Images
-
 	public Board() {
 
 		addKeyListener(new TAdapter());
@@ -84,6 +82,10 @@ public class Board extends JPanel {
 
 	public int getBoardHeight() {
 		return this.h;
+	}
+	
+	public static Dimension getCoordinates() {
+		return Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 	}
 
 	// Shuffles the level string a.k.a random level generator:
@@ -161,13 +163,12 @@ public class Board extends JPanel {
 				} else {
 					g.drawImage(LevelsBgsEngine.backgrounds.get(levelNum), 0, 0, null);
 				}
-
 			} else {
 				g.setColor(new Color(255, 136, 0));
 				g.fillRect(0, 0, this.getWidth(), this.getHeight());
 				g.setColor(new Color(233, 233, 12));
 				g.setFont(font);
-				g.drawString("PRESS ENTER TO CONTINUE", 150, 250);
+				g.drawString("PRESS ENTER TO CONTINUE", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 100);
 				return;
 			}
 		}
@@ -198,7 +199,7 @@ public class Board extends JPanel {
 				g.setFont(font);
 				g.setColor(new Color(233, 233, 12));
 				if (levelNum <= LevelsBgsEngine.levels.size() - 2) {
-					g.drawString("LEVEL " + (levelNum + 1) + " COMPLETED!", 150, 200);
+					g.drawString("LEVEL " + (levelNum + 1) + " COMPLETED!", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 150);
 				}
 				if (levelNum > LevelsBgsEngine.levels.size() - 2) {
 					g.drawString("VICTORY!", 150, 200);
@@ -237,8 +238,8 @@ public class Board extends JPanel {
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(new Color(233, 233, 12));
 			g.setFont(font);
-			g.drawString("GAME OVER!", 150, 200);
-			g.drawString("PRESS ENTER TO CONTINUE", 150, 250);
+			g.drawString("GAME OVER!", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 150);
+			g.drawString("PRESS ENTER TO CONTINUE", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 100);
 			restartLevel();
 		}
 
@@ -288,6 +289,7 @@ public class Board extends JPanel {
 
 			// Cut some trees
 			if (key == KeyEvent.VK_C) {
+				myScore-=100;
 				for (int i = 0; i <= walls.size(); i++) {
 					walls.remove(walls.get(i));
 				}
@@ -640,7 +642,7 @@ public class Board extends JPanel {
 		walls.clear();
 		traps.clear();
 		bridges.clear();
-		myScore = (500 - 20 * levelNum);
+		myScore = (1000 - 20 * levelNum);
 		if (completed) {
 			completed = false;
 		}
