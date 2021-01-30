@@ -30,8 +30,8 @@ public class GameScene extends JPanel implements ActionListener {
  * The RAND_POS constant is used to calculate a random position for an apple.
  * The DELAY constant determines the speed of the game.
  * */
-    private final int B_WIDTH = 640;
-    private final int B_HEIGHT = 480;
+    private final int B_WIDTH = (int) Main.dim.getWidth();
+    private final int B_HEIGHT = (int) Main.dim.getHeight();
     private final int DOT_SIZE = 10;
     private final int ALL_DOTS = 900; //max size of the snake
     private final int RAND_POS = 29;
@@ -44,7 +44,6 @@ public class GameScene extends JPanel implements ActionListener {
     private int bodyLength;
     private int apple_x;
     private int apple_y;
-    //We need to declare a global variable to keep our score and to initialize it on 0
     private int myScore = 0;
     private int level = 1;
 
@@ -58,7 +57,6 @@ public class GameScene extends JPanel implements ActionListener {
     private Image bodySegment;
     private Image apple;
     private Image head;
-    private Image bg;
 
     public GameScene() {
 
@@ -83,13 +81,13 @@ public class GameScene extends JPanel implements ActionListener {
     private void loadImages() {
 
         ImageIcon snakeBody = new ImageIcon("res/dot.png");
-        bodySegment = snakeBody.getImage();
+        bodySegment = snakeBody.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
         ImageIcon itemToCollect = new ImageIcon("res/apple.png");
-        apple = itemToCollect.getImage();
+        apple = itemToCollect.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
         ImageIcon snakeHead = new ImageIcon("res/head.png");
-        head = snakeHead.getImage();
+        head = snakeHead.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
     }
 
     /* In the initGame() method we create the snake,
@@ -128,12 +126,12 @@ public class GameScene extends JPanel implements ActionListener {
             }
         	g.drawImage(apple, apple_x, apple_y, this);
 
-        	Font small = new Font("Helvetica", Font.BOLD, 16);
+        	Font small = new Font("Helvetica", Font.BOLD, 26);
             g.setColor(Color.white);
             g.setFont(small);
             // Here we will draw the score on the board
-        	g.drawString("Points: " + myScore, 530, 25);
-        	g.drawString("Level: " + level, 50, 25);
+            g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 25);
+        	g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 25);
 
 
             for (int i = 0; i < bodyLength; i++) {
@@ -159,7 +157,7 @@ public class GameScene extends JPanel implements ActionListener {
 
         String msg = "Game Over";
         String msg2 = "Press 'R' to restart";
-        Font small = new Font("Helvetica", Font.BOLD, 16);
+        Font small = new Font("Helvetica", Font.BOLD, 26);
         FontMetrics metr = getFontMetrics(small);
 
         g.setColor(Color.white);
@@ -224,7 +222,6 @@ public class GameScene extends JPanel implements ActionListener {
 
         // If the snake hits one of its joints with its head the game is over.
         for (int z = bodyLength; z > 0; z--) {
-
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
                 inGame = false;
             }
@@ -232,23 +229,23 @@ public class GameScene extends JPanel implements ActionListener {
 
         // The game is finished if the snake hits the bottom of the board.
         if (y[0] >= B_HEIGHT) {
-            inGame = false;
-//        	y[0] = 0;
+        	y[0] = 0;
+        	return;
         }
 
         if (y[0] <= 0) {
-            inGame = false;
-//        	y[0] = B_HEIGHT;
+        	y[0] = B_HEIGHT;
+        	return;
         }
 
         if (x[0] >= B_WIDTH) {
-            inGame = false;
-//        	x[0] = 0;
+        	x[0] = 0;
+        	return;
         }
 
         if (x[0] <= 0) {
-            inGame = false;
-//        	x[0] = B_WIDTH;
+        	x[0] = B_WIDTH;
+        	return;
         }
 
         if (!inGame) {
