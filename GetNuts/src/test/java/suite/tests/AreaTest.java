@@ -7,8 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.Area;
 import enums.Images;
-import game_engine.Area;
 
 public class AreaTest {
 
