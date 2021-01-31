@@ -15,7 +15,7 @@ public class Player extends Actor {
 		super(x, y);
 		img = Images.SOKOBAN.getImg();
 		sokoimage = Toolkit.getDefaultToolkit().createImage(img);
-		this.setImage(sokoimage);
+		this.setImage(sokoimage.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 	}
 
 	public void move(int x, int y) {

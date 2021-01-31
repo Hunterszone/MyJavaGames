@@ -15,7 +15,7 @@ public class Nut extends Actor {
 		super(x, y);
 		img = Images.BAGGAGE.getImg();
 		image = Toolkit.getDefaultToolkit().createImage(img);
-		this.setImage(image);
+		this.setImage(image.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 	}
 
 	public void move(int x, int y) {

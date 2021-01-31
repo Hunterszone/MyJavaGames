@@ -15,6 +15,6 @@ public class Wall extends Actor {
 		super(x, y);
 		img = Images.WALL.getImg();
 		image = Toolkit.getDefaultToolkit().createImage(img);
-		this.setImage(image);
+		this.setImage(image.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 	}
 }

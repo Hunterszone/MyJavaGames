@@ -1,9 +1,10 @@
-package game_engine;
+package entities;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import enums.Images;
+import game_engine.Actor;
 
 public class Area extends Actor {
 
@@ -14,6 +15,6 @@ public class Area extends Actor {
 		super(x, y);
 		img = Images.HOLDER.getImg();
 		image = Toolkit.getDefaultToolkit().createImage(img);
-		this.setImage(image);
+		this.setImage(image.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 	}
 }
