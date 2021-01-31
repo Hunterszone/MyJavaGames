@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
+import entities.Area;
 import entities.Bridge;
 import entities.Nut;
 import entities.Player;
@@ -619,6 +620,7 @@ public class Board extends JPanel {
 			for (int j = 0; j < num; j++) {
 				Area area = areas.get(j);
 				if (bag.x() == area.x() && bag.y() == area.y()) {
+					new PlayWave1st(SoundEffects.BOING.getSound()).start();
 					compl += 1;
 				}
 			}
