@@ -521,7 +521,6 @@ public class Board extends JPanel {
 							}
 						}
 						if (checkWallCollision(bag, LEFT_COLLISION)) {
-							// LoadSounds.correctHolder.play();
 							return true;
 						}
 					}
@@ -546,7 +545,6 @@ public class Board extends JPanel {
 							}
 						}
 						if (checkWallCollision(nut, RIGHT_COLLISION)) {
-							// LoadSounds.correctHolder.play();
 							return true;
 						}
 					}
@@ -571,7 +569,6 @@ public class Board extends JPanel {
 							}
 						}
 						if (checkWallCollision(bag, TOP_COLLISION)) {
-							// LoadSounds.correctHolder.play();
 							return true;
 						}
 					}
@@ -597,7 +594,6 @@ public class Board extends JPanel {
 							}
 						}
 						if (checkWallCollision(bag, BOTTOM_COLLISION)) {
-							// LoadSounds.correctHolder.play();
 							return true;
 						}
 					}
@@ -620,17 +616,15 @@ public class Board extends JPanel {
 			for (int j = 0; j < num; j++) {
 				Area area = areas.get(j);
 				if (bag.x() == area.x() && bag.y() == area.y()) {
-					new PlayWave1st(SoundEffects.BOING.getSound()).start();
 					compl += 1;
 				}
 			}
-
 		}
 
 		if (compl == num) {
 			completed = true;
 			LoadSounds.bgMusic.stop();
-			new PlayWave1st("sounds/highsc.wav").start();
+			new PlayWave1st(SoundEffects.HIGHSC.getSound()).start();
 			repaint();
 			return true;
 		}
