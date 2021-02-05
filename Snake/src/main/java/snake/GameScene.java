@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import util.LoadSounds;
+
 public class GameScene extends JPanel implements ActionListener {
 
 	/**
@@ -53,7 +55,7 @@ public class GameScene extends JPanel implements ActionListener {
 	private boolean downDirection = false;
 	private boolean inGame = true;
 	private boolean isPaused;
-	
+
 	private static Timer timer;
 	private Image bodySegment;
 	private Image apple;
@@ -121,7 +123,7 @@ public class GameScene extends JPanel implements ActionListener {
 	private void doDrawing(Graphics g) {
 
 		if (inGame) {
-			
+
 			if (isPaused) {
 				pauseGame(g);
 			} else {
@@ -137,8 +139,8 @@ public class GameScene extends JPanel implements ActionListener {
 				g.setColor(Color.white);
 				g.setFont(small);
 				// Here we will draw the score on the board
-				g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 25);
-				g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 25);
+				g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
+				g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
 
 				for (int i = 0; i < bodyLength; i++) {
 					if (i == 0) {
@@ -151,6 +153,8 @@ public class GameScene extends JPanel implements ActionListener {
 				Toolkit.getDefaultToolkit().sync();
 			}
 		} else {
+			LoadSounds.bgMusic.stop();
+			LoadSounds.die.play();
 			gameOver(g);
 		}
 	}
@@ -160,15 +164,16 @@ public class GameScene extends JPanel implements ActionListener {
 		setBackground(Color.black);
 
 		String msg = "Game Over";
-		String msg2 = "Press 'R' to restart";
+		String msg2 = "High score: ";
+		String msg3 = "Press 'R' to restart";
 		Font small = new Font("Helvetica", Font.BOLD, 26);
 		FontMetrics metr = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 20);
-		g.drawString("High score: " + myScore, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 + 10);
-		g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2 + 40);
+		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 80);
+		g.drawString(msg2 + myScore, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2 - 40);
+		g.drawString(msg3, (B_WIDTH - metr.stringWidth(msg3)) / 2, B_HEIGHT / 2);
 
 		level = 1;
 	}
@@ -178,12 +183,14 @@ public class GameScene extends JPanel implements ActionListener {
 		setBackground(Color.black);
 
 		String msg = "Paused";
+		String msg2 = "Press 'R' to resume";
 		Font small = new Font("Helvetica", Font.BOLD, 26);
 		FontMetrics metr = getFontMetrics(small);
 
 		g.setColor(Color.white);
 		g.setFont(small);
-		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 20);
+		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 40);
+		g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2);
 	}
 
 	/*
@@ -195,12 +202,15 @@ public class GameScene extends JPanel implements ActionListener {
 
 		if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
+			LoadSounds.bite.play();
 			bodyLength++;
 			// Here we will increment the score
 			myScore++;
 			locateApple();
-			if (myScore % 5 == 0)
+			if (myScore % 5 == 0) {
+				LoadSounds.levelUp.play();
 				level++;
+			}
 		}
 	}
 
@@ -287,6 +297,9 @@ public class GameScene extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (inGame) {
+			if(!isPaused) {				
+				LoadSounds.bgMusic.loop();
+			}
 			checkApple();
 			checkCollision();
 			move();
@@ -312,6 +325,7 @@ public class GameScene extends JPanel implements ActionListener {
 				// If game is over, we need to reassign 0 to myScore, so that we begin
 				// incrementing from zero
 				// the next time
+				LoadSounds.restart.play();
 				myScore = 0;
 				inGame = true; // setting in-game state
 				loadImages(); // reloading the images
@@ -334,6 +348,7 @@ public class GameScene extends JPanel implements ActionListener {
 			}
 
 			if (key == KeyEvent.VK_P) { // game pause
+				LoadSounds.bgMusic.stop();
 				isPaused = true;
 //				timer.stop();
 			}
