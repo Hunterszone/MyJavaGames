@@ -12,5 +12,6 @@ https://me4gaming.myjetbrains.com/
 
 ## Contributors:
 [talemache](https://github.com/talemache)  
+[Enthus-io](https://github.com/Enthus-io)
 
 *ENJOY RESPONSIBLY! :)*
