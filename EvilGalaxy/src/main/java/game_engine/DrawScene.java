@@ -24,7 +24,7 @@ import entities.SatelliteAnimation;
 import enums.Images;
 import items.BunkerBullet;
 import items.CanonBall;
-import items.FireBall;
+import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
@@ -371,7 +371,7 @@ public class DrawScene extends UpdateObjects {
 				EvilHead.evilHead.throwCanons();
 			}
 			if (timerMedium.isRunning() || timerHard.isRunning()) {
-				EvilHead.evilHead.throwFireballs();
+				EvilHead.evilHead.throwPlasmaBalls();
 			}
 		}
 
@@ -740,9 +740,9 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		List<FireBall> fireballs = EvilHead.evilHead.getEvilFireballs();
+		List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
-		for (FireBall n : fireballs) {
+		for (PlasmaBall n : plasmaBalls) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);

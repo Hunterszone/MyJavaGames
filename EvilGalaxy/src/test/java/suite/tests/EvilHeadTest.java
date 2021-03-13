@@ -35,7 +35,7 @@ public class EvilHeadTest {
 	@Test
 	public void testListsOfAmmos() {
 		assertFalse(evilHead.throwCanons().isEmpty());
-		assertFalse(evilHead.throwFireballs().isEmpty());
+		assertFalse(evilHead.throwPlasmaBalls().isEmpty());
 	}
 
 	@After

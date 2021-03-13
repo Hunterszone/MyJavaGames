@@ -3,21 +3,21 @@ package items;
 import enums.Images;
 import game_engine.SpritePattern;
 
-public class FireBall extends SpritePattern {
+public class PlasmaBall extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
 	private final int EVILGUN_SPEED_X = 9;
 	private final double EVILGUN_SPEED_Y = 2.5;
 	private String imageName;
 
-	public FireBall(int x, int y) {
+	public PlasmaBall(int x, int y) {
 		super(x, y);
 
 		initEvilGun();
 	}
 
 	public String initEvilGun() {
-		imageName = Images.FIREBALLINIT.getImg();
+		imageName = Images.PLASMABALLINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return imageName;

@@ -13,7 +13,7 @@ import entities.Dragon;
 import game_engine.Collisions;
 import items.BunkerBullet;
 import items.CanonBall;
-import items.FireBall;
+import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
 import items.ShipMissile;
@@ -26,7 +26,7 @@ public class CollisionsTest {
 	private Dragon dragon;
 	private CanonBall canon;
 	private BunkerBullet bullet;
-	private FireBall fireball;
+	private PlasmaBall plasmaBall;
 	private ShipRocket rocket;
 	private ShipMissile missile;
 	private int x, y;
@@ -41,7 +41,7 @@ public class CollisionsTest {
 		dragon = new Dragon(x, y);
 		canon = new CanonBall(x, y);
 		bullet = new BunkerBullet(x, y);
-		fireball = new FireBall(x, y);
+		plasmaBall = new PlasmaBall(x, y);
 		rocket = new ShipRocket(x, y);
 		missile = new ShipMissile(x, y);
 	}
@@ -59,9 +59,9 @@ public class CollisionsTest {
 	}
 
 	@Test
-	public void fireBallIntersectsShip() {
-		Rectangle fireballUnit = fireball.getBounds();
-		assertTrue("fireBallIntersectsShip", Collisions.fireBallIntersectsShip(fireball, fireballUnit, myship));
+	public void plasmaBallIntersectsShip() {
+		Rectangle plasmaBallUnit = plasmaBall.getBounds();
+		assertTrue("plasmaBallIntersectsShip", Collisions.plasmaBallIntersectsShip(plasmaBall, plasmaBallUnit, myship));
 	}
 
 	@Test
@@ -140,7 +140,7 @@ public class CollisionsTest {
 
 	@After
 	public void tearDown() {
-		Object[] objects = { myship, bunker, evilhead, alien, alienUnit, dragon, dragonUnit, canon, bullet, fireball,
+		Object[] objects = { myship, bunker, evilhead, alien, alienUnit, dragon, dragonUnit, canon, bullet, plasmaBall,
 				rocket, rocketUnit, missile, missileUnit };
 		for (Object obj : objects)
 			obj = null;

@@ -19,7 +19,7 @@ import entities.PlayerShip;
 import enums.SoundEffects;
 import items.BunkerBullet;
 import items.CanonBall;
-import items.FireBall;
+import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
 import items.ShipMissile;
@@ -135,13 +135,13 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<FireBall> fireballs = EvilHead.evilHead.getEvilFireballs();
+		List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
-		for (FireBall fireball : fireballs) {
-			if (fireball != null) {
-				Rectangle fireballUnit = fireball.getBounds();
+		for (PlasmaBall plasmaBall : plasmaBalls) {
+			if (plasmaBall != null) {
+				Rectangle plasmaBallUnit = plasmaBall.getBounds();
 				Rectangle ship = PlayerShip.playerOne.getBounds();
-				fireBallIntersectsShip(fireball, fireballUnit, ship);
+				plasmaBallIntersectsShip(plasmaBall, plasmaBallUnit, ship);
 			}
 		}
 
@@ -322,7 +322,7 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			missile.setVisible(false);
 			if (timerHard.isRunning() == true) {
-				EvilHead.evilHead.throwFireballs();
+				EvilHead.evilHead.throwPlasmaBalls();
 			} else if (missile.isVisible())
 				return false;
 			else {
@@ -358,7 +358,7 @@ public abstract class Collisions extends UpdateObjects {
 			
 			rocket.setVisible(false);
 			if (timerHard.isRunning() == true) {
-				EvilHead.evilHead.throwFireballs();
+				EvilHead.evilHead.throwPlasmaBalls();
 			} else if (rocket.isVisible())
 				return false;
 			else {
@@ -392,14 +392,14 @@ public abstract class Collisions extends UpdateObjects {
 		return true;
 	}
 
-	public static boolean fireBallIntersectsShip(FireBall fireball, Rectangle fireballUnit, Rectangle ship) {
+	public static boolean plasmaBallIntersectsShip(PlasmaBall plasmaBall, Rectangle plasmaBallUnit, Rectangle ship) {
 	
-		if (fireballUnit.intersects(ship)) {
+		if (plasmaBallUnit.intersects(ship)) {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
 			lifePlayerShip++;
-			fireball.setVisible(false);
+			plasmaBall.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
@@ -409,7 +409,7 @@ public abstract class Collisions extends UpdateObjects {
 				killedByAlien = false;
 				killedByEvilHead = true;
 			}
-			if (fireball.isVisible())
+			if (plasmaBall.isVisible())
 				return false;
 		}
 		return true;

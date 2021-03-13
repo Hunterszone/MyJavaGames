@@ -145,7 +145,7 @@ public enum Images {
 			return "images/canon2.png";
 		}
 	},
-	FIREBALLINIT {
+	PLASMABALLINIT {
 		@Override
 		public String getImg() {
 			return "images/fireball2.png";

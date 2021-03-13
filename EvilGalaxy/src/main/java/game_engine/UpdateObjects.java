@@ -12,7 +12,7 @@ import entities.PlayerShip;
 import enums.SoundEffects;
 import items.BunkerBullet;
 import items.CanonBall;
-import items.FireBall;
+import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
 import items.ShipMissile;
@@ -35,7 +35,7 @@ public abstract class UpdateObjects extends InitObjects {
 		updateMyShip();
 		updateMyCrosshair();
 		updateMyShipMissiles();
-		updateEHFireballs();
+		updateEHPlasmaBalls();
 		updateEHCanons();
 		updateRockets();
 		updateAliens();
@@ -118,30 +118,30 @@ public abstract class UpdateObjects extends InitObjects {
 		});
 	}
 
-	private void updateEHFireballs() {
+	private void updateEHPlasmaBalls() {
 
-		List<FireBall> fireballs = EvilHead.evilHead.getEvilFireballs();
+		List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
-		fireballs.removeIf(fireball -> fireball.isVisible() == false);
+		plasmaBalls.removeIf(plasmaBall -> plasmaBall.isVisible() == false);
 
-		fireballs.stream().filter(fireball -> fireball.isVisible()).forEach(fireball -> {
+		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
 			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
 				if (Gold.goldstack.isEmpty() && lifePlayerShip <= 3) {
-					fireball.evilShotDiagUp();
-					if (fireball.y < 0) {
-						fireball.y = 0;
-						fireball.evilShot();
+					plasmaBall.evilShotDiagUp();
+					if (plasmaBall.y < 0) {
+						plasmaBall.y = 0;
+						plasmaBall.evilShot();
 					}
 				}
 				if (Gold.goldstack.size() > 0 && lifePlayerShip <= 3) {
-					fireball.evilShotDiagDown();
-					if (fireball.y > 768) {
-						fireball.y = 768;
-						fireball.evilShot();
+					plasmaBall.evilShotDiagDown();
+					if (plasmaBall.y > 768) {
+						plasmaBall.y = 768;
+						plasmaBall.evilShot();
 					}
 				}
 			} else {
-				fireball.evilShot();
+				plasmaBall.evilShot();
 			}
 		});
 	}

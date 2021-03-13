@@ -7,26 +7,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import items.FireBall;
+import items.PlasmaBall;
 
-public class FireBallTest {
+public class PlasmaBallTest {
 
-	private FireBall fireBall;
+	private PlasmaBall plasmaBall;
 	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		fireBall = new FireBall(x, y);
+		plasmaBall = new PlasmaBall(x, y);
 	}
 
 	@Test
-	public void testFireBallUnit() {
-		assertNotNull(fireBall.loadImage(fireBall.initEvilGun()));
-		assertFalse(fireBall.initEvilGun().isEmpty());
+	public void testPlasmaBallUnit() {
+		assertNotNull(plasmaBall.loadImage(plasmaBall.initEvilGun()));
+		assertFalse(plasmaBall.initEvilGun().isEmpty());
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		fireBall = null;
+		plasmaBall = null;
 	}
 }

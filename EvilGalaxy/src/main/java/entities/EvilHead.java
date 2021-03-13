@@ -8,7 +8,7 @@ import java.util.List;
 import enums.Images;
 import game_engine.SpritePattern;
 import items.CanonBall;
-import items.FireBall;
+import items.PlasmaBall;
 import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
@@ -20,7 +20,7 @@ public class EvilHead extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	private String imageName;
 	private double speedX, speedY;
-	private List<FireBall> fireballs;
+	private List<PlasmaBall> plasmaBalls;
 	private List<CanonBall> canons;
 
 	public EvilHead(int x, int y) {
@@ -44,7 +44,7 @@ public class EvilHead extends SpritePattern {
 	}
 
 	private void initAmmo() {
-		fireballs = new ArrayList<>();
+		plasmaBalls = new ArrayList<>();
 		canons = new ArrayList<>();
 	}
 
@@ -178,18 +178,18 @@ public class EvilHead extends SpritePattern {
 
 	}
 
-	public List<FireBall> getEvilFireballs() {
-		return fireballs;
+	public List<PlasmaBall> getEvilPlasmaBalls() {
+		return plasmaBalls;
 	}
 
 	public List<CanonBall> getCanons() {
 		return canons;
 	}
 
-	public List<FireBall> throwFireballs() {
-		fireballs.add(new FireBall(x + width, y + height / 2));
+	public List<PlasmaBall> throwPlasmaBalls() {
+		plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing2.wav").start();
-		return fireballs;
+		return plasmaBalls;
 	}
 
 	public List<CanonBall> throwCanons() {
