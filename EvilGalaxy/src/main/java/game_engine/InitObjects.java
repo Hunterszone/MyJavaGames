@@ -32,7 +32,7 @@ import util.TextToSpeech;
 
 public class InitObjects extends JPanel implements ActionListener, Runnable {
 
-	private Thread animator;
+	private Thread animator = new Thread(this);
 
 	public static Dimension getCoordinates() {
 		return Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -264,7 +264,13 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	public void addNotify() {
 		super.addNotify();
 
-		animator = new Thread(this);
 		animator.start();
+	}
+
+	@Override
+	public void removeNotify() {
+		super.removeNotify();
+
+		animator.interrupt();
 	}
 }
