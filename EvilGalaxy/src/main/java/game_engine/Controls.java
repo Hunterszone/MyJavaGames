@@ -43,7 +43,7 @@ public class Controls extends JFrame implements KeyListener {
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
 			LoadSounds.bgMusic.stop();
@@ -256,8 +256,8 @@ public class Controls extends JFrame implements KeyListener {
 			if (SaveSign.saveSign != null) {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
-				Random rand = new Random();
-				File file = new File("saves/save" + rand.nextInt() + ".txt");
+				final Random rand = new Random();
+				final File file = new File("saves/save" + rand.nextInt() + ".txt");
 				SaveGame.saveGameDataToFile(file);
 			}
 		} else {
@@ -305,7 +305,7 @@ public class Controls extends JFrame implements KeyListener {
 				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
 			MenuState.isOn = true;
-			CanvasMenu engine = new CanvasMenu();
+			final CanvasMenu engine = new CanvasMenu();
 			engine.start();
 		}
 
