@@ -10,11 +10,10 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import enums.SoundEffects;
-import items.BunkerBullet;
 import items.CanonBall;
-import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
+import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
 import sound_engine.PlayWave1st;
@@ -87,15 +86,15 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateBullets() {
 
-		List<BunkerBullet> bulletsGroupOne = Bunker.bunkerObj.getBulletsLeft();
-		List<BunkerBullet> bulletsGroupTwo = Bunker.bunkerObj.getBulletsRight();
+		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
+		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
-		if (bulletsGroupOne.removeIf(bullet -> bullet.isVisible() == false)
-				|| bulletsGroupTwo.removeIf(bullet -> bullet.isVisible() == false)) {
+		if (Bunker.bullets.removeIf(bullet -> bullet.isVisible() == false)
+				|| Bunker.bullets2.removeIf(bullet -> bullet.isVisible() == false)) {
 			LoadSounds.fuse.stop();
 		}
 
-		bulletsGroupOne.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		Bunker.bullets.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagLeft();
 			if (PlayerShip.playerOne.x > 200) {
 				bullet.moveDiagRight();
@@ -106,7 +105,7 @@ public abstract class UpdateObjects extends InitObjects {
 			}
 		});
 
-		bulletsGroupTwo.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		Bunker.bullets2.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagRight();
 			if (PlayerShip.playerOne.x > 200) {
 				bullet.moveDiagLeft();
@@ -238,18 +237,19 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateHealth() {
-		
+
 		if (HealthPack.healthpack.removeIf(healthPack -> healthPack.isVisible() == false)) {
 			new PlayWave1st("sounds/collect.wav").start();
 			if (lifePlayerShip > 3) {
 				lifePlayerShip--;
 			}
 		}
-		
+
 		if (HealthPack.healthpack.size() < 5 && lifePlayerShip > 3) {
 			HealthPack.healthpack.add(new HealthPack(EvilHead.evilHead.x, 0));
 		}
 
-		HealthPack.healthpack.stream().filter(healthPack -> healthPack.isVisible()).forEach(healthPack -> healthPack.move());
+		HealthPack.healthpack.stream().filter(healthPack -> healthPack.isVisible())
+				.forEach(healthPack -> healthPack.move());
 	}
 }

@@ -60,7 +60,7 @@ public class Difficulty {
 		InitObjects.timerHard.stop();
 		InitObjects.timerMedium.stop();
 		InitObjects.timerEasy.restart();
-		
+
 		LoadSounds.gameWon.play();
 		LoadSounds.gameLost.stop();
 		LoadSounds.bgMusic.loop();
@@ -112,7 +112,7 @@ public class Difficulty {
 		InitObjects.timerMedium.stop();
 		InitObjects.timerHard.stop();
 		InitObjects.timerEasy.restart();
-		
+
 		LoadSounds.gameWon.play();
 		LoadSounds.gameLost.stop();
 		LoadSounds.bgMusic.loop();

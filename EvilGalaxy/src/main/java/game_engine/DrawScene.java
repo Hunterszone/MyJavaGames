@@ -758,18 +758,18 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		List<BunkerBullet> bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 
-		for (BunkerBullet n : bulletsLeft) {
+		for (BunkerBullet n : Bunker.bullets) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		List<BunkerBullet> bulletsRight = Bunker.bunkerObj.getBulletsRight();
+		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
-		for (BunkerBullet n : bulletsRight) {
+		for (BunkerBullet n : Bunker.bullets2) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);

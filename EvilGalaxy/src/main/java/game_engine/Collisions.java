@@ -145,9 +145,9 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<BunkerBullet> bullets = Bunker.bunkerObj.getBulletsLeft();
+		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 
-		for (BunkerBullet bullet : bullets) {
+		for (BunkerBullet bullet : Bunker.bullets) {
 
 			if (bullet != null) {
 				Rectangle bulletUnit = bullet.getBounds();
@@ -156,9 +156,9 @@ public abstract class Collisions extends UpdateObjects {
 			}
 		}
 
-		List<BunkerBullet> bullets2 = Bunker.bunkerObj.getBulletsRight();
+		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
-		for (BunkerBullet bullet : bullets2) {
+		for (BunkerBullet bullet : Bunker.bullets2) {
 			if (bullet != null) {
 				Rectangle bulletUnit2 = bullet.getBounds();
 				Rectangle ship = PlayerShip.playerOne.getBounds();
