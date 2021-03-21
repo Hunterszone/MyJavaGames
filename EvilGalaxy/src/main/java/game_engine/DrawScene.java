@@ -52,6 +52,12 @@ public class DrawScene extends UpdateObjects {
 		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg());
 		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
+	
+	private void drawExplosion(Graphics g) {
+		for (int i = 0; i < explosions.size(); i++) {
+			explosions.get(i).draw(g);
+		}
+	}
 
 	private void drawAstronaut(Graphics g) {
 		AffineTransform backup = ((Graphics2D) g).getTransform();
@@ -613,6 +619,8 @@ public class DrawScene extends UpdateObjects {
 		if (lifePlayerShip < 3) {
 			g.drawString("GODMODE", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			PlayerShip.playerOne.godMode();
+			drawExplosion(g);
+			updateExplosions();
 		}
 
 		if (lifePlayerShip == 3) {
@@ -621,14 +629,20 @@ public class DrawScene extends UpdateObjects {
 
 		if (lifePlayerShip == 4) {
 			g.drawString("Health: 75%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			drawExplosion(g);
+			updateExplosions();
 		}
 
 		if (lifePlayerShip == 5) {
 			g.drawString("Health: 50%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			drawExplosion(g);
+			updateExplosions();
 		}
 
 		if (lifePlayerShip == 6) {
 			g.drawString("Health: 25%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			drawExplosion(g);
+			updateExplosions();
 		}
 
 		if (lifePlayerShip > 6) {

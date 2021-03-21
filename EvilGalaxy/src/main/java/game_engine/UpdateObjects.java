@@ -74,6 +74,11 @@ public abstract class UpdateObjects extends InitObjects {
 		}
 	}
 
+	protected void updateExplosions() {
+		explosions.removeIf(explosion -> explosion.getR() == 80);
+		explosions.forEach(explosion -> explosion.update());
+	}
+
 	private void updateMyShipMissiles() {
 
 		List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
@@ -169,9 +174,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateAliens() {
 
-		if (Alien.aliens.removeIf(alien -> alien.isVisible() == false)) {
-			SoundEffects.BLOOP.getSound();
-		}
+		Alien.aliens.removeIf(alien -> alien.isVisible() == false);
 
 		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
 			if (timerHard.isRunning()) {

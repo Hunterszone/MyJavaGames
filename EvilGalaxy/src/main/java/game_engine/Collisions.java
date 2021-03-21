@@ -19,9 +19,10 @@ import entities.PlayerShip;
 import enums.SoundEffects;
 import items.BunkerBullet;
 import items.CanonBall;
-import items.PlasmaBall;
+import items.Explosion;
 import items.Gold;
 import items.HealthPack;
+import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
 import sound_engine.PlayWave1st;
@@ -183,6 +184,7 @@ public abstract class Collisions extends UpdateObjects {
 
 			lifePlayerShip++;
 			alien.setVisible(false);
+			InitObjects.explosions.add(new Explosion(myship.getX(), myship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
@@ -205,6 +207,7 @@ public abstract class Collisions extends UpdateObjects {
 
 			lifePlayerShip++;
 			dragon.setVisible(false);
+			InitObjects.explosions.add(new Explosion(dragon.getX(), dragon.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			PlayerShip.playerOne.upsideDown();
 			killedByBunker = false;
@@ -221,7 +224,8 @@ public abstract class Collisions extends UpdateObjects {
 		if (myship.intersects(bunker)) {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
-
+			
+			InitObjects.explosions.add(new Explosion(myship.getX(), myship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
 			PlayerShip.playerOne.setVisible(false);
@@ -300,6 +304,7 @@ public abstract class Collisions extends UpdateObjects {
 
 //			FrameUtils.vibrate(MouseInputHandler.main);
 
+			InitObjects.explosions.add(new Explosion(myship.getX(), myship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			PlayerShip.playerOne.setVisible(false);
 			EvilHead.evilHead.setVisible(false);
@@ -400,6 +405,7 @@ public abstract class Collisions extends UpdateObjects {
 
 			lifePlayerShip++;
 			plasmaBall.setVisible(false);
+			InitObjects.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
@@ -423,6 +429,7 @@ public abstract class Collisions extends UpdateObjects {
 
 			lifePlayerShip++;
 			bullet.setVisible(false);
+			InitObjects.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
 			PlayerShip.playerOne.upsideDown();
@@ -450,6 +457,7 @@ public abstract class Collisions extends UpdateObjects {
 			bullet.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
+			InitObjects.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
@@ -473,6 +481,7 @@ public abstract class Collisions extends UpdateObjects {
 
 			lifePlayerShip++;
 			canon.setVisible(false);
+			InitObjects.explosions.add(new Explosion(myship.getX(), myship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.BURNED.getSound()).start();
 			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();

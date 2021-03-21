@@ -22,6 +22,7 @@ import entities.TheEndAnimation;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import items.Explosion;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
@@ -51,6 +52,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	final static int BUNKER_Y = (int) getCoordinates().getHeight() - 360;
 	final static int B_WIDTH = 1310;
 	public final static int B_HEIGHT = 1040;
+	public static List<Explosion> explosions;
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
@@ -85,7 +87,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		ingame = true;
 
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-
+		
+		explosions = new ArrayList<Explosion>();
+		
 		AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
 		AstronautAnimation.astronautAnim.drawAstronaut();
 		AstronautAnimation.astronautAnim.setVisible(true);
