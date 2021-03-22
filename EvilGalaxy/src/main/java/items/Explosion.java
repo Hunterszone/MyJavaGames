@@ -20,16 +20,12 @@ public class Explosion {
 		return r;
 	}
 
-	public boolean update() {
+	public void update() {
 		do {
 			r++;			
 		} while(r < maxRadius);
-		if(r >= maxRadius) {
-			return true;
-		}
-		return false;
 	}
-	
+
 	public void draw(Graphics g) {
 		g.setColor(new Color(255, 255, 255, 128));
 		g.drawOval((int)(x-r), (int)(y-r), 2*r, 2*r);
