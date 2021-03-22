@@ -48,8 +48,6 @@ public class MouseInputHandler implements MouseListener {
 		if (MenuState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
-					TextToSpeech.initVoice("Loading level 1...");
-					TextToSpeech.voiceInterruptor = true;
 					LoadSounds.menuMusic.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
@@ -66,6 +64,8 @@ public class MouseInputHandler implements MouseListener {
 						});
 					}
 					MenuState.isOn = true;
+					TextToSpeech.voiceInterruptor = true;
+					TextToSpeech.playVoice("Loading level 1...");
 				}
 				if (mouseY >= 215 && mouseY <= 265) {
 					new PlayWave1st(soundName).start();

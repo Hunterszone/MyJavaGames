@@ -32,7 +32,7 @@ public class SaveGame {
 				savedOnL3 = false;
 				savedOnL4 = false;
 				savedOnL1 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
@@ -44,7 +44,7 @@ public class SaveGame {
 				savedOnL3 = false;
 				savedOnL4 = false;
 				savedOnL2 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
@@ -57,7 +57,7 @@ public class SaveGame {
 				savedOnL1 = false;
 				savedOnL4 = false;
 				savedOnL3 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
@@ -69,7 +69,7 @@ public class SaveGame {
 				savedOnL2 = false;
 				savedOnL3 = false;
 				savedOnL4 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 

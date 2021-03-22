@@ -307,7 +307,7 @@ public class ConsoleContent extends OutputStream {
 							god = true;
 							UpdateObjects.lifePlayerShip = -999;
 							textArea.append("********GODMODE ON*********" + "\n");
-							TextToSpeech.initVoice("GODLIKE!");
+							TextToSpeech.playVoice("GODLIKE!");
 							return;
 						}
 						if (InitObjects.ingame == true && UpdateObjects.lifePlayerShip < 3) {
@@ -329,7 +329,7 @@ public class ConsoleContent extends OutputStream {
 							god = false;
 							UpdateObjects.lifePlayerShip = 3;
 							textArea.append("********GODMODE OFF*********" + "\n");
-							TextToSpeech.initVoice("Healthy!");
+							TextToSpeech.playVoice("Healthy!");
 							return;
 						}
 						if (InitObjects.ingame == true && UpdateObjects.lifePlayerShip >= 3) {
@@ -672,7 +672,7 @@ public class ConsoleContent extends OutputStream {
 							Alien.aliens.clear();
 							LoadSounds.roar.loop();
 							if (TextToSpeech.voiceInterruptor == false) {
-								TextToSpeech.initVoice("Level 2!");
+								TextToSpeech.playVoice("Level 2!");
 								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
@@ -703,7 +703,7 @@ public class ConsoleContent extends OutputStream {
 							Dragon.dragons.clear();
 							LoadSounds.roar.stop();
 							if (TextToSpeech.voiceInterruptor == false) {
-								TextToSpeech.initVoice("Level 3!");
+								TextToSpeech.playVoice("Level 3!");
 								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
@@ -735,7 +735,7 @@ public class ConsoleContent extends OutputStream {
 							LoadSounds.roar.stop();
 							UpdateObjects.lifeBunker = 50;
 							if (TextToSpeech.voiceInterruptor == false) {
-								TextToSpeech.initVoice("Level 4!");
+								TextToSpeech.playVoice("Level 4!");
 								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
@@ -770,7 +770,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL1 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -788,7 +788,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL2 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -806,7 +806,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL1 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL3 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -823,7 +823,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL2 = false;
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {

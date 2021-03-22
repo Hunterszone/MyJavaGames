@@ -116,8 +116,8 @@ public class Launcher extends JFrame {
 		}
 	}
 
-	JProgressBar progressBar;
-	JProgressBar oprogressBar;
+	private JProgressBar progressBar;
+	private JProgressBar oprogressBar;
 	int i = 0;
 	List<Thread> threads = new ArrayList<Thread>();
 	long lastTime = 0;
@@ -137,7 +137,7 @@ public class Launcher extends JFrame {
 		add(oprogressBar);
 		progressBar.setValue(0);
 		oprogressBar.setValue(0);
-		TextToSpeech.initVoice("Updating...");
+		TextToSpeech.playVoice("Updating...");
 		needDownload();
 
 		{

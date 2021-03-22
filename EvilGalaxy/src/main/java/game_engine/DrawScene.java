@@ -229,7 +229,7 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByAlien == true) {
 					if (InitObjects.ingame == false) {
-						TextToSpeech.initVoice("Killed by an alien!");
+						TextToSpeech.playVoice("Killed by an alien!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByAlien = false;
 						return;
@@ -238,7 +238,7 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByDragon == true) {
 					if (InitObjects.ingame == false) {
-						TextToSpeech.initVoice("Killed by a dragon!");
+						TextToSpeech.playVoice("Killed by a dragon!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByDragon = false;
 						return;
@@ -247,7 +247,7 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByBunker == true) {
 					if (InitObjects.ingame == false) {
-						TextToSpeech.initVoice("Killed by the bunker!");
+						TextToSpeech.playVoice("Killed by the bunker!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByBunker = false;
 						return;
@@ -256,7 +256,7 @@ public class DrawScene extends UpdateObjects {
 
 				if (Collisions.killedByEvilHead == true) {
 					if (InitObjects.ingame == false) {
-						TextToSpeech.initVoice("Killed by the Evil Head!");
+						TextToSpeech.playVoice("Killed by the Evil Head!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByEvilHead = false;
 						return;

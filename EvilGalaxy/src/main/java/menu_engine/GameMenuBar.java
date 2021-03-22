@@ -193,7 +193,7 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerMedium.stop();
 				InitObjects.timerHard.stop();
 				if (InitObjects.ingame == false) {
-					TextToSpeech.initVoice("Loading main menu...");
+					TextToSpeech.playVoice("Loading main menu...");
 					TextToSpeech.voiceInterruptor = true;
 				}
 				if(SatelliteAnimation.starAnim != null) SatelliteAnimation.starAnim = null;
@@ -254,7 +254,7 @@ public class GameMenuBar extends JFrame {
 						savedOnL3 = false;
 						savedOnL4 = false;
 						savedOnL1 = true;
-						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.playVoice("Game saved!");
 						TextToSpeech.voiceInterruptor = true;
 					}
 
@@ -266,7 +266,7 @@ public class GameMenuBar extends JFrame {
 						savedOnL3 = false;
 						savedOnL4 = false;
 						savedOnL2 = true;
-						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.playVoice("Game saved!");
 						TextToSpeech.voiceInterruptor = true;
 					}
 
@@ -279,7 +279,7 @@ public class GameMenuBar extends JFrame {
 						savedOnL1 = false;
 						savedOnL4 = false;
 						savedOnL3 = true;
-						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.playVoice("Game saved!");
 						TextToSpeech.voiceInterruptor = true;
 					}
 
@@ -291,7 +291,7 @@ public class GameMenuBar extends JFrame {
 						savedOnL2 = false;
 						savedOnL3 = false;
 						savedOnL4 = true;
-						TextToSpeech.initVoice("Game saved!");
+						TextToSpeech.playVoice("Game saved!");
 						TextToSpeech.voiceInterruptor = true;
 					}
 

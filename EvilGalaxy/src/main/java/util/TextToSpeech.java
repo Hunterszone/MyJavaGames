@@ -17,7 +17,7 @@ public class TextToSpeech {
 	private static MaryInterface marytts = null;
 	static Set<String> voices = null;
 
-	public static void initVoice(String message) {
+	public static void initVoice() {
 
 		try {
 			marytts = new LocalMaryInterface();
@@ -25,21 +25,28 @@ public class TextToSpeech {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		if(marytts != null) {			
+
+		if (marytts != null) {
 			voices = marytts.getAvailableVoices();
 		}
 
 		System.out.println("Available voices: " + voices);
 
 		if (voices != null && !voices.isEmpty()) {
-			marytts.setVoice(voices.iterator().next());
+			for (String voice : voices) {
+				if (voice != null && !voice.isEmpty()) {
+					marytts.setVoice(voice);
+				}
+			}
 		}
+	}
 
-		if (message.isEmpty()) {
+	public static void playVoice(String message) {
+
+		if (message == null || message.isEmpty()) {
 			return;
 		}
-
+		
 		try {
 			AudioInputStream audio = marytts.generateAudio(message);
 			final AudioPlayer player = new AudioPlayer(audio);

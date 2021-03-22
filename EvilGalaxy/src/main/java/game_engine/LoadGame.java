@@ -107,7 +107,7 @@ public class LoadGame {
 
 		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -134,7 +134,7 @@ public class LoadGame {
 
 		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -162,7 +162,7 @@ public class LoadGame {
 
 		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -184,7 +184,7 @@ public class LoadGame {
 
 		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
