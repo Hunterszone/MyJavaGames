@@ -36,7 +36,7 @@ public class TextToSpeech {
 			for (final String voice : voices) {
 				if (voice != null && !voice.isEmpty()) {
 					marytts.setVoice(voice);
-					marytts.setAudioEffects("JetPilot");
+//					marytts.setAudioEffects("JetPilot");
 				}
 			}
 		}
