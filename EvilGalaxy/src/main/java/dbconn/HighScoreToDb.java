@@ -59,7 +59,7 @@ public class HighScoreToDb {
 			// STEP 4: Clean-up environment
 			preparedStatement.close();
 			conn.close();
-		} catch (Exception se) {
+		} catch (final Exception se) {
 			// Handle errors for JDBC
 			se.printStackTrace();
 		} finally {
@@ -69,7 +69,7 @@ public class HighScoreToDb {
 			try {
 				if (conn != null)
 					conn.close();
-			} catch (SQLException se) {
+			} catch (final SQLException se) {
 				se.printStackTrace();
 			} // end finally try
 		} // end try

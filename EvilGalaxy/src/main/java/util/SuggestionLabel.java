@@ -21,7 +21,7 @@ class SuggestionLabel extends JLabel {
 	private final JWindow autoSuggestionsPopUpWindow;
 	private final JTextField textField;
 	private final AutoSuggestor autoSuggestor;
-	private Color suggestionsTextColor, suggestionBorderColor;
+	private final Color suggestionsTextColor, suggestionBorderColor;
 
 	public SuggestionLabel(String string, final Color borderColor, Color suggestionsTextColor,
 			AutoSuggestor autoSuggestor) {
@@ -79,11 +79,11 @@ class SuggestionLabel extends JLabel {
 	}
 
 	private void replaceWithSuggestedText() {
-		String suggestedWord = getText();
-		String text = textField.getText();
-		String typedWord = autoSuggestor.getCurrentlyTypedWord();
-		String t = text.substring(0, text.lastIndexOf(typedWord));
-		String tmp = t + text.substring(text.lastIndexOf(typedWord)).replace(typedWord, suggestedWord);
+		final String suggestedWord = getText();
+		final String text = textField.getText();
+		final String typedWord = autoSuggestor.getCurrentlyTypedWord();
+		final String t = text.substring(0, text.lastIndexOf(typedWord));
+		final String tmp = t + text.substring(text.lastIndexOf(typedWord)).replace(typedWord, suggestedWord);
 		textField.setText(tmp + "");
 	}
 }

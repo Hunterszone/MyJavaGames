@@ -36,14 +36,14 @@ import util.TextToSpeech;
 public class MouseInputHandler implements MouseListener {
 
 	public static Main main;
-	private String soundName = SoundEffects.CLICK.getSound();
-	private String forbidden = SoundEffects.FORBIDDEN.getSound();
+	private final String soundName = SoundEffects.CLICK.getSound();
+	private final String forbidden = SoundEffects.FORBIDDEN.getSound();
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 
-		int mouseX = e.getX();
-		int mouseY = e.getY();
+		final int mouseX = e.getX();
+		final int mouseY = e.getY();
 
 		if (MenuState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
@@ -157,9 +157,9 @@ public class MouseInputHandler implements MouseListener {
 					new PlayWave1st(soundName).start();
 					try {
 						Desktop.getDesktop().browse(new URI("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy"));
-					} catch (IOException e1) {
+					} catch (final IOException e1) {
 						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
+					} catch (final URISyntaxException e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -167,9 +167,9 @@ public class MouseInputHandler implements MouseListener {
 					new PlayWave1st(soundName).start();
 					try {
 						Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
-					} catch (IOException e1) {
+					} catch (final IOException e1) {
 						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
+					} catch (final URISyntaxException e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -204,7 +204,7 @@ public class MouseInputHandler implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Point point = e.getPoint();
+		final Point point = e.getPoint();
 		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
 				&& (point.getX() >= 790 && point.getX() <= 790 + Constants.LOAD_ASSETS.myShip.getWidth(null))) {
 			if (point.getY() >= 280 && point.getY() <= 280 + Constants.LOAD_ASSETS.myShip.getHeight(null)) {

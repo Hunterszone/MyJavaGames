@@ -110,7 +110,7 @@ public class CanvasMenu implements Runnable {
 		try {
 			this.isRunning = false;
 			this.thread.join();
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

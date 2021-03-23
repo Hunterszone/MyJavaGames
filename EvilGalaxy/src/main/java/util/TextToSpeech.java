@@ -21,7 +21,7 @@ public class TextToSpeech {
 
 		try {
 			marytts = new LocalMaryInterface();
-		} catch (MaryConfigurationException e1) {
+		} catch (final MaryConfigurationException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -33,9 +33,10 @@ public class TextToSpeech {
 		System.out.println("Available voices: " + voices);
 
 		if (voices != null && !voices.isEmpty()) {
-			for (String voice : voices) {
+			for (final String voice : voices) {
 				if (voice != null && !voice.isEmpty()) {
 					marytts.setVoice(voice);
+					marytts.setAudioEffects("JetPilot");
 				}
 			}
 		}
@@ -48,10 +49,10 @@ public class TextToSpeech {
 		}
 		
 		try {
-			AudioInputStream audio = marytts.generateAudio(message);
+			final AudioInputStream audio = marytts.generateAudio(message);
 			final AudioPlayer player = new AudioPlayer(audio);
 			player.start();
-		} catch (SynthesisException e) {
+		} catch (final SynthesisException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

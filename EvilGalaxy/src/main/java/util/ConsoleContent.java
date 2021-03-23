@@ -51,7 +51,7 @@ public class ConsoleContent extends OutputStream {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		JScrollPane scrollPane = new JScrollPane();
+		final JScrollPane scrollPane = new JScrollPane();
 
 		setTextField(new JTextField());
 		getTextField().setFont(getTextField().getFont().deriveFont(14f));
@@ -60,7 +60,7 @@ public class ConsoleContent extends OutputStream {
 			@Override
 			public void keyPressed(KeyEvent e) {
 
-				int key = e.getKeyCode();
+				final int key = e.getKeyCode();
 
 				if (key == KeyEvent.VK_ENTER && textArea.getText().trim().length() == 0) {
 					textArea.append(getTextField().getText().toUpperCase() + "\n");
@@ -98,7 +98,7 @@ public class ConsoleContent extends OutputStream {
 
 						// Create operating system process from arpe.bat file
 						// command
-						ProcessBuilder pb = new ProcessBuilder("arpe.bat");
+						final ProcessBuilder pb = new ProcessBuilder("arpe.bat");
 						String out = "";
 
 						pb.redirectErrorStream();
@@ -107,11 +107,11 @@ public class ConsoleContent extends OutputStream {
 						Process p = null;
 						try {
 							p = pb.start();
-						} catch (IOException e1) {
+						} catch (final IOException e1) {
 							e1.printStackTrace();
 						}
 
-						BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+						final BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 						// String out is used to store output of this
 						// command(process)
@@ -120,7 +120,7 @@ public class ConsoleContent extends OutputStream {
 							String l = null;
 							try {
 								l = br.readLine();
-							} catch (IOException ex) {
+							} catch (final IOException ex) {
 							}
 							if (l == null)
 								break;
@@ -128,13 +128,13 @@ public class ConsoleContent extends OutputStream {
 						}
 
 						// A compiled representation of a regular expression
-						Pattern pattern = Pattern.compile(".*\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
+						final Pattern pattern = Pattern.compile(".*\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
 
 						/*
 						 * An engine that performs match operations on a character sequence by
 						 * interpreting a Pattern
 						 */
-						Matcher match = pattern.matcher(out);
+						final Matcher match = pattern.matcher(out);
 
 						out = "";
 						String pLoc;
@@ -159,7 +159,7 @@ public class ConsoleContent extends OutputStream {
 							}
 							try {
 								br.close();
-							} catch (IOException ex) {
+							} catch (final IOException ex) {
 							}
 						}
 
@@ -858,7 +858,7 @@ public class ConsoleContent extends OutputStream {
 			}
 		});
 		getTextField().setColumns(10);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		final GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
 				.addComponent(getTextField(), GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE));

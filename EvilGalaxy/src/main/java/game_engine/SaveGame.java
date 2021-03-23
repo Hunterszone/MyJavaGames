@@ -74,8 +74,8 @@ public class SaveGame {
 			}
 
 			try {
-				FileOutputStream fileStream = new FileOutputStream(savefile);
-				ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+				final FileOutputStream fileStream = new FileOutputStream(savefile);
+				final ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
 
 				objectStream.writeObject(PlayerShip.playerOne);
 				objectStream.writeObject(EvilHead.evilHead);
@@ -94,7 +94,7 @@ public class SaveGame {
 
 //				JOptionPane.showConfirmDialog(frame, "Saved game state successfully.", "Save game",
 //						JOptionPane.DEFAULT_OPTION);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 //				JOptionPane.showConfirmDialog(frame, e.toString() + "\nFail to save game state.", "Save game",
 //						JOptionPane.DEFAULT_OPTION);
 			}

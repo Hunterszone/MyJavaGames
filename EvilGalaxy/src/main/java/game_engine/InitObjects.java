@@ -33,7 +33,7 @@ import util.TextToSpeech;
 
 public class InitObjects extends JPanel implements ActionListener, Runnable {
 
-	private Thread animator = new Thread(this);
+	private final Thread animator = new Thread(this);
 
 	public static Dimension getCoordinates() {
 		return Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,7 +104,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(600, 500));
 		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(800, 320));
 
-		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 			asteroidsAnim.drawAsteroids();
 			asteroidsAnim.setVisible(true);
 		}
@@ -115,12 +115,12 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(700, 0));
 		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, InitObjects.B_HEIGHT));
 
-		for (TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {
+		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {
 			elonAnim.drawTheEndUp();
 			elonAnim.setVisible(true);
 		}
 
-		for (TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsDown) {
+		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsDown) {
 			elonAnim.drawTheEndDown();
 			elonAnim.setVisible(true);
 		}
@@ -173,7 +173,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public static List<Dragon> initDragons() {
 		Dragon.dragons = new ArrayList<Dragon>();
-		IntStream.range(0, 30).mapToObj(i -> new Dragon((int) posDragon[i][0], (int) posDragon[i][1]))
+		IntStream.range(0, 30).mapToObj(i -> new Dragon(posDragon[i][0], posDragon[i][1]))
 				.forEach(dragon -> {
 					Dragon.dragons.add(dragon);
 					dragon.setVisible(false);
@@ -207,7 +207,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	}
 
 	public static List<String> getEnemyNames() {
-		List<String> enemyNames = new ArrayList<String>();
+		final List<String> enemyNames = new ArrayList<String>();
 		enemyNames.add(Alien.class.getName());
 		enemyNames.add(Dragon.class.getName());
 		return enemyNames;
@@ -230,15 +230,15 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 				AstronautAnimation.astronautAnim.cycle();
 			}
 
-			for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 				asteroidsAnim.cycle();
 			}
 
-			for (TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsUp) {
+			for (final TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsUp) {
 				elonsAnim.cycleUp();
 			}
 
-			for (TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsDown) {
+			for (final TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsDown) {
 				elonsAnim.cycleDown();
 			}
 
@@ -253,9 +253,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 			try {
 				Thread.sleep(sleep);
-			} catch (InterruptedException e) {
+			} catch (final InterruptedException e) {
 
-				String msg = String.format("Thread interrupted: %s", e.getMessage());
+				final String msg = String.format("Thread interrupted: %s", e.getMessage());
 
 				JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
 			}

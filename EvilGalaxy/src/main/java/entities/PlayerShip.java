@@ -190,7 +190,7 @@ public class PlayerShip extends SpritePattern {
 
 	public void keyPressed(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = -7.5;
@@ -215,7 +215,7 @@ public class PlayerShip extends SpritePattern {
 
 	public void keyReleased(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
 			speedX = 0;

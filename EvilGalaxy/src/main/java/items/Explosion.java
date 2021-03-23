@@ -5,8 +5,9 @@ import java.awt.Graphics;
 
 public class Explosion {
 	
-	private double x, y;
-	private int r, maxRadius;
+	private final double x, y;
+	private int r;
+	private final int maxRadius;
 	
 	public Explosion(double x, double y, int r, int maxRadius) {
 		super();

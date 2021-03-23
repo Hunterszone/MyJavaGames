@@ -59,16 +59,16 @@ public class GameMenuBar extends JFrame {
 	private void createMenu() {
 
 		// Menu Bar
-		JMenuBar menubar = new JMenuBar();
+		final JMenuBar menubar = new JMenuBar();
 		setJMenuBar(menubar);
-		JMenu game = new JMenu("Game");
+		final JMenu game = new JMenu("Game");
 		game.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menubar.add(game);
-		JMenuItem newgame = new JMenuItem("Restart      R");
+		final JMenuItem newgame = new JMenuItem("Restart      R");
 		newgame.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem pause = new JMenuItem("Pause      P");
+		final JMenuItem pause = new JMenuItem("Pause      P");
 		pause.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem save = new JMenuItem("Save Game");
+		final JMenuItem save = new JMenuItem("Save Game");
 		save.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		save.setMnemonic(KeyEvent.VK_Z);
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
@@ -76,9 +76,9 @@ public class GameMenuBar extends JFrame {
 //		load.setFont(new Font("Segoe UI", Font.BOLD, 14));
 //		load.setMnemonic(KeyEvent.VK_C);
 //		load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
-		JMenuItem join = new JMenuItem("Join game");
+		final JMenuItem join = new JMenuItem("Join game");
 		join.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem exit = new JMenuItem("Exit           Esc");
+		final JMenuItem exit = new JMenuItem("Exit           Esc");
 		exit.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		game.add(newgame);
 		game.addSeparator();
@@ -91,16 +91,16 @@ public class GameMenuBar extends JFrame {
 		game.add(join);
 		game.addSeparator();
 		game.add(exit);
-		JMenu levels = new JMenu("Levels");
+		final JMenu levels = new JMenu("Levels");
 		levels.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menubar.add(levels);
-		JMenuItem level1 = new JMenuItem("Level 1 (or key 1)");
+		final JMenuItem level1 = new JMenuItem("Level 1 (or key 1)");
 		level1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem level2 = new JMenuItem("Level 2 (or key 2)");
+		final JMenuItem level2 = new JMenuItem("Level 2 (or key 2)");
 		level2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem level3 = new JMenuItem("Level 3 (or key 3)");
+		final JMenuItem level3 = new JMenuItem("Level 3 (or key 3)");
 		level3.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem level4 = new JMenuItem("Level 4 (or key 4)");
+		final JMenuItem level4 = new JMenuItem("Level 4 (or key 4)");
 		level4.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		levels.add(level1);
 		levels.addSeparator();
@@ -109,59 +109,59 @@ public class GameMenuBar extends JFrame {
 		levels.add(level3);
 		levels.addSeparator();
 		levels.add(level4);
-		JMenu difficulty = new JMenu("Difficulty");
+		final JMenu difficulty = new JMenu("Difficulty");
 		difficulty.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menubar.add(difficulty);
-		JMenuItem easy = new JMenuItem("Easy           E");
+		final JMenuItem easy = new JMenuItem("Easy           E");
 		easy.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem medium = new JMenuItem("Medium    M");
+		final JMenuItem medium = new JMenuItem("Medium    M");
 		medium.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		JMenuItem hard = new JMenuItem("Hard         H");
+		final JMenuItem hard = new JMenuItem("Hard         H");
 		hard.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		difficulty.add(easy);
 		difficulty.addSeparator();
 		difficulty.add(medium);
 		difficulty.addSeparator();
 		difficulty.add(hard);
-		JMenu help = new JMenu("Help");
+		final JMenu help = new JMenu("Help");
 		help.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menubar.add(help);
-		JMenuItem manual = new JMenuItem("Manual    O");
+		final JMenuItem manual = new JMenuItem("Manual    O");
 		manual.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		help.add(manual);
-		JMenu about = new JMenu("About");
+		final JMenu about = new JMenu("About");
 		about.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menubar.add(about);
-		JMenuItem gamerepo = new JMenuItem("Game repo");
+		final JMenuItem gamerepo = new JMenuItem("Game repo");
 		gamerepo.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		about.add(gamerepo);
 		about.addSeparator();
 		gamerepo.addActionListener(e -> {
 			try {
 				Desktop.getDesktop().browse(new URI("https://github.com/Hunterszone/EvilGalaxy"));
-			} catch (IOException e1) {
+			} catch (final IOException e1) {
 				e1.printStackTrace();
-			} catch (URISyntaxException e1) {
+			} catch (final URISyntaxException e1) {
 				e1.printStackTrace();
 			}
 		});
-		JMenuItem gamesite = new JMenuItem("Game webpage");
+		final JMenuItem gamesite = new JMenuItem("Game webpage");
 		gamesite.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		about.add(gamesite);
 		gamesite.addActionListener(e -> {
 			try {
 				Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
-			} catch (IOException e1) {
+			} catch (final IOException e1) {
 				e1.printStackTrace();
-			} catch (URISyntaxException e1) {
+			} catch (final URISyntaxException e1) {
 				e1.printStackTrace();
 			}
 		});
 
-		JMenu tools = new JMenu("Tools");
+		final JMenu tools = new JMenu("Tools");
 		tools.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menubar.add(tools);
-		JMenuItem launcher = new JMenuItem("Updater");
+		final JMenuItem launcher = new JMenuItem("Updater");
 		launcher.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		tools.add(launcher);
 //		tools.addSeparator();
@@ -215,7 +215,7 @@ public class GameMenuBar extends JFrame {
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;
 				MenuState.isOn = true;
-				CanvasMenu engine = new CanvasMenu();
+				final CanvasMenu engine = new CanvasMenu();
 				engine.start();
 			}
 		}
@@ -296,8 +296,8 @@ public class GameMenuBar extends JFrame {
 					}
 
 					try {
-						FileOutputStream fileStream = new FileOutputStream(savefile);
-						ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+						final FileOutputStream fileStream = new FileOutputStream(savefile);
+						final ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
 
 						objectStream.writeObject(PlayerShip.playerOne);
 						objectStream.writeObject(EvilHead.evilHead);
@@ -316,7 +316,7 @@ public class GameMenuBar extends JFrame {
 
 //						JOptionPane.showConfirmDialog(frame, "Saved game state successfully.", "Save game",
 //								JOptionPane.DEFAULT_OPTION);
-					} catch (Exception e) {
+					} catch (final Exception e) {
 //						JOptionPane.showConfirmDialog(frame, e.toString() + "\nFail to save game state.", "Save game",
 //								JOptionPane.DEFAULT_OPTION);
 					}
@@ -327,11 +327,11 @@ public class GameMenuBar extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Random rand = new Random();
-				File file = new File("saves/save" + rand.nextInt() + ".txt");
+				final Random rand = new Random();
+				final File file = new File("saves/save" + rand.nextInt() + ".txt");
 				try {
 					saveGameDataToFile(file);
-				} catch (MaryConfigurationException e) {
+				} catch (final MaryConfigurationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -541,7 +541,7 @@ public class GameMenuBar extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JoinGame joingame = new JoinGame();
+				final JoinGame joingame = new JoinGame();
 				joingame.setVisible(true);
 			}
 
@@ -550,7 +550,7 @@ public class GameMenuBar extends JFrame {
 		class InvokeManual implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Manual manual = new Manual();
+				final Manual manual = new Manual();
 
 				if (!ConsoleContent.manualON) {
 					manual.setVisible(true);

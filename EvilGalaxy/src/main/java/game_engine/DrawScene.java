@@ -24,6 +24,7 @@ import entities.SatelliteAnimation;
 import enums.Images;
 import items.BunkerBullet;
 import items.CanonBall;
+import items.Explosion;
 import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
@@ -39,12 +40,12 @@ public class DrawScene extends UpdateObjects {
 
 	transient static Image bg1, bg2, bg3;
 	private static final long serialVersionUID = 1L;
-	private String difficulty = "Difficulty: ";
+	private final String difficulty = "Difficulty: ";
 
 	public DrawScene() {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) Main.dim.getWidth();
-		int height = (int) Main.dim.getHeight();
+		final int width = (int) Main.dim.getWidth();
+		final int height = (int) Main.dim.getHeight();
 		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		bg1 = bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		bg2 = Toolkit.getDefaultToolkit().createImage(Images.BG2.getImg());
@@ -54,13 +55,13 @@ public class DrawScene extends UpdateObjects {
 	}
 	
 	private void drawExplosion(Graphics g) {
-		for (int i = 0; i < explosions.size(); i++) {
-			explosions.get(i).draw(g);
+		for (final Explosion explosion : explosions) {
+			explosion.draw(g);
 		}
 	}
 
 	private void drawAstronaut(Graphics g) {
-		AffineTransform backup = ((Graphics2D) g).getTransform();
+		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
 		a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX() / 2,
 				AstronautAnimation.astronautAnim.getY() / 2);
@@ -80,8 +81,8 @@ public class DrawScene extends UpdateObjects {
 	private void drawSatellite(Graphics g) {
 		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
 				SatelliteAnimation.starAnim.getY(), this);
-		AffineTransform backup = ((Graphics2D) g).getTransform();
-		AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
+		final AffineTransform backup = ((Graphics2D) g).getTransform();
+		final AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
 		a.rotate(Math.toRadians(Math.ceil(Math.random())), SatelliteAnimation.starAnim.getX() / 2,
 				SatelliteAnimation.starAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
@@ -92,21 +93,21 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawAsteroids(Graphics g) {
-		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
 
 	private void drawElonsUp(Graphics g) {
-		for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
+		for (final TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
 			g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
 
 	private void drawElonsDown(Graphics g) {
-		for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
+		for (final TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
 			g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
@@ -265,7 +266,7 @@ public class DrawScene extends UpdateObjects {
 
 				try {
 					HighScoreToDb.initDbConn();
-				} catch (SQLException e) {
+				} catch (final SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -737,35 +738,35 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawObjects(Graphics g) {
 
-		List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
+		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
 
-		for (ShipMissile m : missiles) {
+		for (final ShipMissile m : missiles) {
 
 			if (m.isVisible()) {
 				g.drawImage(m.getImage(), m.getX(), m.getY(), this);
 			}
 		}
 
-		List<ShipRocket> rs = PlayerShip.playerOne.getRockets();
+		final List<ShipRocket> rs = PlayerShip.playerOne.getRockets();
 
-		for (ShipRocket r : rs) {
+		for (final ShipRocket r : rs) {
 			if (r.isVisible()) {
 				g.drawImage(r.getImage(), r.getX(), r.getY(), this);
 			}
 		}
 
-		List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
+		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
-		for (PlasmaBall n : plasmaBalls) {
+		for (final PlasmaBall n : plasmaBalls) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		List<CanonBall> canons = EvilHead.evilHead.getCanons();
+		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
 
-		for (CanonBall n : canons) {
+		for (final CanonBall n : canons) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
@@ -774,7 +775,7 @@ public class DrawScene extends UpdateObjects {
 
 		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 
-		for (BunkerBullet n : Bunker.bullets) {
+		for (final BunkerBullet n : Bunker.bullets) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
@@ -783,27 +784,27 @@ public class DrawScene extends UpdateObjects {
 
 		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
-		for (BunkerBullet n : Bunker.bullets2) {
+		for (final BunkerBullet n : Bunker.bullets2) {
 
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		for (Alien alien : Alien.aliens) {
+		for (final Alien alien : Alien.aliens) {
 			if (alien.isVisible()) {
 				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
 			}
 		}
 
-		for (Dragon dragon : Dragon.dragons) {
+		for (final Dragon dragon : Dragon.dragons) {
 			if (dragon.isVisible()) {
 				g.drawImage(dragon.getImage(), dragon.getX(), dragon.getY(), this);
 			}
 		}
 
 		if (UpdateObjects.lifeBunker >= 50) {
-			for (Gold gold : Gold.goldstack) {
+			for (final Gold gold : Gold.goldstack) {
 				if (gold.isVisible()) {
 					g.drawImage(gold.getImage(), gold.getX(), gold.getY(), this);
 				}
@@ -811,7 +812,7 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (Dragon.dragons.isEmpty() && (UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty())) {
-			for (HealthPack health : HealthPack.healthpack) {
+			for (final HealthPack health : HealthPack.healthpack) {
 				if (health.isVisible()) {
 					g.drawImage(health.getImage(), health.getX(), health.getY(), this);
 				}
@@ -871,7 +872,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGameOver(Graphics g) {
-		String msg = "Game Over!";
+		final String msg = "Game Over!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X + 30, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
@@ -892,44 +893,44 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawCollectGold(Graphics g) {
-		String msg = "Collect all the gold!";
+		final String msg = "Collect all the gold!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
-		String msg = "Destroy the bunker!";
+		final String msg = "Destroy the bunker!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 
 	}
 
 	private void drawKillTheHead(Graphics g) {
-		String msg = "Finally..Kill the evil head!";
+		final String msg = "Finally..Kill the evil head!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawYouWon(Graphics g) {
-		String msg = "You Won!";
+		final String msg = "You Won!";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawOuttaControl(Graphics g) {
-		String msg = "Dragons invasion brings the ship outta control...";
+		final String msg = "Dragons invasion brings the ship outta control...";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X - 100, ((int) getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void setFontStyle(Graphics g) {
-		Font small = new Font("Papyrus", Font.BOLD, 22);
+		final Font small = new Font("Papyrus", Font.BOLD, 22);
 		g.setColor(Color.YELLOW);
 		g.setFont(small);
 	}
 
 	private void drawGamePaused(Graphics g) {
-		String msg = "Game paused";
+		final String msg = "Game paused";
 		setFontStyle(g);
 		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
 	}

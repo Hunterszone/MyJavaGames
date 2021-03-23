@@ -59,9 +59,9 @@ public class DisplayCanvas {
         canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         canvas.setVisible(true);
         
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Image image = toolkit.getImage("images/cursor.png");
-		Cursor c = toolkit.createCustomCursor(image, new Point(DisplayCanvas.canvas.getX(), 
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		final Image image = toolkit.getImage("images/cursor.png");
+		final Cursor c = toolkit.createCustomCursor(image, new Point(DisplayCanvas.canvas.getX(), 
 				DisplayCanvas.canvas.getY()), "img");
 		DisplayCanvas.canvas.setCursor(c);
 

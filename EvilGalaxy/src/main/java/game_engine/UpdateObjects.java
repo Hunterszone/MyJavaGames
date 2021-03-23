@@ -81,7 +81,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateMyShipMissiles() {
 
-		List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
+		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
 
 		missiles.removeIf(missile -> missile.isVisible() == false);
 
@@ -124,7 +124,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateEHPlasmaBalls() {
 
-		List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
+		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
 		plasmaBalls.removeIf(plasmaBall -> plasmaBall.isVisible() == false);
 
@@ -152,7 +152,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateEHCanons() {
 
-		List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
+		final List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
 
 		canonballs.removeIf(canon -> canon.isVisible() == false);
 
@@ -165,7 +165,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateRockets() {
 
-		List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
+		final List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
 
 		rocketStack.removeIf(rocket -> rocket.isVisible() == false);
 
