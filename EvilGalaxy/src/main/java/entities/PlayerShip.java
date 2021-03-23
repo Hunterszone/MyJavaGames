@@ -142,15 +142,15 @@ public class PlayerShip extends SpritePattern {
 //			escapeForbidden();
 		} 
 		
-		if (x > Main.dim.getWidth() - 390) {
-			x = (int) Main.dim.getWidth() - 390;
+		if (x > Main.dim.getWidth() - 340) {
+			x = (int) Main.dim.getWidth() - 340;
 		}
 
 		if (y < 0) {
 			y = 0;
 //			escapeForbidden();
-		} else if (y > Main.dim.getHeight() - 350) {
-			y = (int) (Main.dim.getHeight() - 350);
+		} else if (y > Main.dim.getHeight() - 260) {
+			y = (int) (Main.dim.getHeight() - 260);
 //			escapeForbidden();
 		}
 	}

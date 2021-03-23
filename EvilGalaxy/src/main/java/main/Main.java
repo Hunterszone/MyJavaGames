@@ -37,7 +37,7 @@ public final class Main extends JFrame {
 //		setShape(new RoundRectangle2D.Double(60, 80, 1200, 1200, 100, 100));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIPONFIRE.getImg()));
 		final ImageIcon tileIcon = new ImageIcon("images/shadow1.png");
-		getRootPane().setBorder(BorderFactory.createMatteBorder(150, 150, 150, 150, tileIcon));
+		getRootPane().setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100, tileIcon));
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 	}
