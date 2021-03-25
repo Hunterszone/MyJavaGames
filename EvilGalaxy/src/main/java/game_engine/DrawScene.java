@@ -348,7 +348,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGameStateL3(Graphics g) {
-		drawScene3(g);
+		drawScene3And4(g);
 		drawL3Labels(g);
 		drawObjects(g);
 		drawLifeBunker(g);
@@ -364,14 +364,14 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGameStateL4(Graphics g) {
-		drawScene4(g);
+		drawScene3And4(g);
 		drawL4Labels(g);
 		drawObjects(g);
 		drawlifePlayerShip(g);
 	}
 
 	private void drawGameStateL5(Graphics g) {
-		drawScene4(g);
+		drawScene3And4(g);
 		drawL5Labels(g);
 		drawObjects(g);
 		drawlifePlayerShip(g);
@@ -713,7 +713,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void drawScene3(Graphics g) {
+	private void drawScene3And4(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
 			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
@@ -728,23 +728,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
-
-	private void drawScene4(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
-				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
-					this);
-			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
-			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
-			EvilHead.evilHead.renderEvilHead(g);
-			g.drawImage(VolBtn.volButt.getImage(), VolBtn.volButt.getX(), VolBtn.volButt.getY(), this);
-			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
-		}
-		if (SaveSign.saveSign.isVisible()) {
-			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
-		}
-	}
-
+	
 	private void drawGameOver(Graphics g) {
 		final String msg = "Game Over!";
 		setFontStyle(g);
