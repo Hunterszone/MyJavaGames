@@ -53,7 +53,7 @@ public class DrawScene extends UpdateObjects {
 		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg());
 		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
-	
+
 	private void drawExplosion(Graphics g) {
 		for (final Explosion explosion : explosions) {
 			explosion.draw(g);
@@ -118,56 +118,11 @@ public class DrawScene extends UpdateObjects {
 		super.paintComponent(g);
 
 		if (ingame && Alien.aliens.size() > 0) {
-
-			drawScene1(g);
-			drawObjects(g);
-			drawL1Labels(g);
-			drawCountGold(g);
-			drawlifePlayerShip(g);
-			drawAsteroids(g);
-
-			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-					|| InitObjects.timerHard.isRunning())) {
-				drawGamePaused(g);
-			}
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == true && voiceInterruptor == true) {
-			 * GameMenuBar.savedOnL2 = false; GameMenuBar.savedOnL3 = false;
-			 * GameMenuBar.savedOnL4 = false; GameMenuBar.savedOnL1 = true;
-			 * initVoice("Autosave: ON!"); voiceInterruptor = false; }
-			 */
-
+			drawGameStateL1(g);
 		}
 
-		if (ingame && Alien.aliens.isEmpty()) {
-
-			drawScene2(g);
-			setFontStyle(g);
-			drawSatellite(g);
-			drawL2Labels(g);
-			drawObjects(g);
-			drawCountGold(g);
-			drawlifePlayerShip(g);
-
-			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-					|| InitObjects.timerHard.isRunning())) {
-				drawGamePaused(g);
-			}
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == true) { //
-			 * g.drawString("Autosave: ON", 1000, 20); GameMenuBar.savedOnL1 = false;
-			 * GameMenuBar.savedOnL3 = false; GameMenuBar.savedOnL4 = false;
-			 * GameMenuBar.savedOnL2 = true; if (voiceInterruptor == true) {
-			 * initVoice("Autosave: ON!"); voiceInterruptor = false; return; } }
-			 */
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == false) { //
-			 * g.drawString("Autosave: OFF", 1000, 20); voiceInterruptor = true; }
-			 */
-
+		if (ingame && Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
+			drawGameStateL2(g);
 		}
 
 		if (ingame && Dragon.dragons.isEmpty()) {
@@ -225,8 +180,10 @@ public class DrawScene extends UpdateObjects {
 				drawGameOver(g);
 				drawKilledBy(g);
 				g.drawString("Monsters left: " + 0, 5, 20);
-				g.drawString("Gold: " + 0, 200, 20);
-				g.drawString("Health: 0%", 300, 20);
+				g.drawString("Health: 0%", 200, 20);
+				if (lifeBunker >= 50) {
+					g.drawString("Gold: " + 0, 340, 20);
+				}
 
 				if (Collisions.killedByAlien == true) {
 					if (InitObjects.ingame == false) {
@@ -293,7 +250,7 @@ public class DrawScene extends UpdateObjects {
 			}
 
 			if (lifeEvilHead == 50) {
-				
+
 				drawElonsUp(g);
 				drawElonsDown(g);
 
@@ -310,8 +267,8 @@ public class DrawScene extends UpdateObjects {
 			return;
 		}
 
-		drawGameStateL1(g);
-		drawGameStateL2(g);
+//		drawGameStateL1(g);
+//		drawGameStateL2(g);
 		drawGameStateL3(g);
 		drawGameStateL4(g);
 		drawGameStateBoss(g);
@@ -368,7 +325,8 @@ public class DrawScene extends UpdateObjects {
 	private void evilHeadBehaviour() {
 
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50
-				&& (EvilHead.evilHead.x - PlayerShip.playerOne.x == 100 || EvilHead.evilHead.x - PlayerShip.playerOne.x == 200
+				&& (EvilHead.evilHead.x - PlayerShip.playerOne.x == 100
+						|| EvilHead.evilHead.x - PlayerShip.playerOne.x == 200
 						|| EvilHead.evilHead.x - PlayerShip.playerOne.x == 300
 						|| EvilHead.evilHead.x - PlayerShip.playerOne.x == 400)) {
 
@@ -394,129 +352,41 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGameStateL1(Graphics g) {
-		if (Alien.aliens.size() > 0 && ingame) {
+		drawScene1(g);
+		drawL1Labels(g);
+		drawObjects(g);
+		drawlifePlayerShip(g);
+		drawAsteroids(g);
 
-			setFontStyle(g);
-
-			g.drawString("Aliens left: " + Alien.aliens.size(), 5, 20);
-			g.drawString("Level: " + 1, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Locked", 630, 20);
-			g.drawString(difficulty, 820, 20);
-
-			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 820, 20);
-			}
-
-			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Medium", 820, 20);
-			}
-
-			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 820, 20);
-			}
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == true) { //
-			 * g.drawString("Autosave: ON", 1020, 20);
-			 * 
-			 * }
-			 */
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == false) { //
-			 * g.drawString("Autosave: OFF", 1020, 20); voiceInterruptor = true; }
-			 */
-
+		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning())) {
+			drawGamePaused(g);
 		}
 	}
 
 	private void drawGameStateL2(Graphics g) {
-		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty() && ingame) {
+		drawScene2(g);
+		drawL2Labels(g);
+		drawObjects(g);
+		drawlifePlayerShip(g);
+		drawSatellite(g);
 
-			if (Dragon.dragons.size() > 0) {
-				g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
-			}
-			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-				g.drawString("Dragonzz: Yes", 5, 20);
-			}
-
-			g.drawString("Level: " + 2, 310, 20);
-			g.drawString("Missiles: Locked", 410, 20);
-			g.drawString("Rockets: Unlocked", 600, 20);
-			g.drawString(difficulty, 810, 20);
-
-			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 810, 20);
-			}
-
-			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Medium", 810, 20);
-			}
-
-			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 810, 20);
-			}
+		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning())) {
+			drawGamePaused(g);
 		}
 	}
 
 	private void drawGameStateL3(Graphics g) {
-
 		if (Dragon.dragons.isEmpty() && lifeBunker < 50 && ingame) {
-
-			if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-					|| InitObjects.timerHard.isRunning()) {
-				drawKillTheBunker(g);
-			}
-
-			g.drawString("Missiles: Locked", 270, 20);
-			g.drawString("Rockets: Unlocked", 470, 20);
-			g.drawString(difficulty, 680, 20);
-			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
-
-			if (timerEasy.isRunning()) {
-
-				g.drawString("Difficulty: Easy", 680, 20);
-			}
-
-			if (timerMedium.isRunning()) {
-
-				g.drawString("Difficulty: Medium", 680, 20);
-			}
-
-			if (timerHard.isRunning()) {
-
-				g.drawString("Difficulty: Hard", 680, 20);
-			}
+			drawL3Labels(g);
 		}
 	}
 
 	private void drawGameStateL4(Graphics g) {
-
 		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0 && ingame) {
-
-			if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-					|| InitObjects.timerHard.isRunning()) {
-				drawCollectGold(g);
-			}
-
-			g.drawString("Missiles: Locked", 260, 20);
-			g.drawString("Rockets: Locked", 450, 20);
-			g.drawString(difficulty, 640, 20);
-
-			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 640, 20);
-			}
-
-			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Medium", 640, 20);
-			}
-
-			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 640, 20);
-			}
+			drawL4Labels(g);
 		}
-
 	}
 
 	private void drawGameStateBoss(Graphics g) {
@@ -546,68 +416,105 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawL1Labels(Graphics g) {
 
-		if (Alien.aliens.size() > 0) {
+		setFontStyle(g);
 
-			setFontStyle(g);
+		g.drawString("Aliens left: " + Alien.aliens.size(), 5, 20);
+		g.drawString("Level: " + 1, 200, 20);
+		g.drawString("Missiles: Unlocked", 310, 20);
+		g.drawString("Rockets: Locked", 530, 20);
+		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
-			g.drawString("Aliens left: " + Alien.aliens.size(), 5, 20);
-			g.drawString("Level: " + 1, 310, 20);
-			g.drawString("Missiles: Unlocked", 410, 20);
-			g.drawString("Rockets: Locked", 630, 20);
-			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
+		if (timerEasy.isRunning()) {
+			g.drawString("Difficulty: Easy", 720, 20);
+		}
 
-			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 820, 20);
-			}
+		if (timerMedium.isRunning()) {
+			g.drawString("Difficulty: Medium", 720, 20);
+		}
 
-			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Medium", 820, 20);
-			}
-
-			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 820, 20);
-			}
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == true) { //
-			 * g.drawString("Autosave: ON", 1020, 20); }
-			 */
-
-			/*
-			 * if (GameMenuBar.autosave.isSelected() == false) { //
-			 * g.drawString("Autosave: OFF", 1020, 20); voiceInterruptor = true; }
-			 */
+		if (timerHard.isRunning()) {
+			g.drawString("Difficulty: Hard", 720, 20);
 		}
 	}
 
 	private void drawL2Labels(Graphics g) {
 
-		if (Dragon.dragons.size() > 0) {
-			g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
-			g.drawString("Level: " + 2, 310, 20);
-			g.drawString("Missiles: Locked", 410, 20);
-			g.drawString("Rockets: Unlocked", 600, 20);
-			g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
+		setFontStyle(g);
 
-			if (timerEasy.isRunning()) {
-				g.drawString("Difficulty: Easy", 810, 20);
-			}
+		g.drawString("Dragonzz: " + Dragon.dragons.size(), 5, 20);
+		g.drawString("Level: " + 2, 180, 20);
+		g.drawString("Missiles: Locked", 310, 20);
+		g.drawString("Rockets: Unlocked", 500, 20);
+		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
-			if (timerMedium.isRunning()) {
-				g.drawString("Difficulty: Medium", 810, 20);
-			}
+		if (timerEasy.isRunning()) {
+			g.drawString("Difficulty: Easy", 710, 20);
+		}
 
-			if (timerHard.isRunning()) {
-				g.drawString("Difficulty: Hard", 810, 20);
-				drawOuttaControl(g);
-				PlayerShip.playerOne.shipShaked();
-				Crosshair.crosshair.crosShaked();
-			}
+		if (timerMedium.isRunning()) {
+			g.drawString("Difficulty: Medium", 710, 20);
+		}
+
+		if (timerHard.isRunning()) {
+			g.drawString("Difficulty: Hard", 710, 20);
+			drawOuttaControl(g);
+			PlayerShip.playerOne.shipShaked();
+			Crosshair.crosshair.crosShaked();
 		}
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
 			UpdateObjects.updateDragons();
 			LoadSounds.roar.loop();
+		}
+	}
+
+	private void drawL3Labels(Graphics g) {
+
+		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning()) {
+			drawKillTheBunker(g);
+		}
+
+		g.drawString("Level: " + 3, 5, 20);
+		g.drawString("Missiles: Locked", 100, 20);
+		g.drawString("Rockets: Unlocked", 300, 20);
+		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
+
+		if (timerEasy.isRunning()) {
+			g.drawString("Difficulty: Easy", 510, 20);
+		}
+
+		if (timerMedium.isRunning()) {
+			g.drawString("Difficulty: Medium", 510, 20);
+		}
+
+		if (timerHard.isRunning()) {
+			g.drawString("Difficulty: Hard", 510, 20);
+		}
+
+	}
+
+	private void drawL4Labels(Graphics g) {
+
+		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning()) {
+			drawCollectGold(g);
+		}
+
+		g.drawString("Missiles: Locked", 260, 20);
+		g.drawString("Rockets: Locked", 450, 20);
+		g.drawString(difficulty, 640, 20);
+
+		if (timerEasy.isRunning()) {
+			g.drawString("Difficulty: Easy", 640, 20);
+		}
+
+		if (timerMedium.isRunning()) {
+			g.drawString("Difficulty: Medium", 640, 20);
+		}
+
+		if (timerHard.isRunning()) {
+			g.drawString("Difficulty: Hard", 640, 20);
 		}
 	}
 
@@ -647,6 +554,8 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifePlayerShip > 6) {
+			Alien.aliens.clear();
+			Dragon.dragons.clear();
 			ingame = false;
 		}
 
@@ -691,11 +600,6 @@ public class DrawScene extends UpdateObjects {
 			g.drawString("Health: 20%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (lifeBunker < 50) {
-//			g.drawString("Dragonzz: Yes", 5, 20);
-			g.drawString("Level: " + 3, 160, 20);
-		}
-
 		if (lifeBunker == 50) {
 
 			setFontStyle(g);
@@ -728,10 +632,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawCountGold(Graphics g) {
-		if (!Alien.aliens.isEmpty() || !Dragon.dragons.isEmpty()) {
-			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 170, 20);
-		}
-		if (Dragon.dragons.isEmpty()) {
+		if (lifeBunker >= 50) {
 			g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 5, 20);
 		}
 	}
@@ -829,7 +730,8 @@ public class DrawScene extends UpdateObjects {
 	private void drawScene1(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg1, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(), this);
+			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
+					this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			EvilHead.evilHead.renderEvilHead(g);
@@ -844,7 +746,8 @@ public class DrawScene extends UpdateObjects {
 	private void drawScene2(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg2, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(), this);
+			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
+					this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			EvilHead.evilHead.renderEvilHead(g);
@@ -859,7 +762,8 @@ public class DrawScene extends UpdateObjects {
 	private void drawScene3(Graphics g) {
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(), this);
+			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
+					this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			EvilHead.evilHead.renderEvilHead(g);
