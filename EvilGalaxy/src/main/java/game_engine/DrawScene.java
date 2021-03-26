@@ -22,6 +22,12 @@ import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
 import enums.Images;
+import icons.AlienIcon;
+import icons.DifficultyIcon;
+import icons.DragonIcon;
+import icons.GoldIcon;
+import icons.LaserIcon;
+import icons.RocketIcon;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Explosion;
@@ -401,22 +407,29 @@ public class DrawScene extends UpdateObjects {
 		setFontStyle(g);
 
 		g.drawString("Level: " + 1, 5, 20);
-		g.drawString("Aliens left: " + Alien.aliens.size(), 100, 20);
-		g.drawString("Missiles: Unlocked", 275, 20);
-		g.drawString("Rockets: Locked", 495, 20);
-		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
+		g.drawImage(AlienIcon.alienIcon.getImage(), 100, 5, null);
+		g.drawString(": " + Alien.aliens.size(), 140, 20);
+		g.drawImage(LaserIcon.laserIcon.getImage(), 200, 5, null);
+		g.drawString(": Unlocked", 240, 20);
+		g.drawImage(RocketIcon.rocketIcon.getImage(), 360, 5, null);
+		g.drawString(": Locked", 400, 20);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 685, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
+			g.drawString(": EASY", 540, 20);
 		}
 
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 685, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
+			g.drawString(": MEDIUM", 540, 20);
 		}
 
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 685, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
+			g.drawString(": HARD", 540, 20);
 		}
+		
+		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
 	private void drawL2Labels(Graphics g) {
@@ -424,25 +437,32 @@ public class DrawScene extends UpdateObjects {
 		setFontStyle(g);
 
 		g.drawString("Level: " + 2, 5, 20);
-		g.drawString("Dragonzz: " + Dragon.dragons.size(), 100, 20);
-		g.drawString("Missiles: Locked", 275, 20);
-		g.drawString("Rockets: Unlocked", 465, 20);
-		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
+		g.drawImage(DragonIcon.dragonIcon.getImage(), 100, 5, null);
+		g.drawString(": " + Dragon.dragons.size(), 140, 20);
+		g.drawImage(LaserIcon.laserIcon.getImage(), 190, 5, null);
+		g.drawString(": Locked", 230, 20);
+		g.drawImage(RocketIcon.rocketIcon.getImage(), 335, 5, null);
+		g.drawString(": Unlocked", 375, 20);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 685, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
+			g.drawString(": EASY", 540, 20);
 		}
 
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 685, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
+			g.drawString(": MEDIUM", 540, 20);
 		}
 
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 685, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
+			g.drawString(": HARD", 540, 20);
 			drawOuttaControl(g);
 			PlayerShip.playerOne.shipShaked();
 			Crosshair.crosshair.crosShaked();
 		}
+
+		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
 			UpdateObjects.updateDragons();
@@ -460,22 +480,27 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		g.drawString("Level: " + 3, 5, 20);
-		g.drawString("Missiles: Locked", 100, 20);
-		g.drawString("Rockets: Unlocked", 300, 20);
-		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
+		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
+		g.drawString(": Locked", 135, 20);
+		g.drawImage(RocketIcon.rocketIcon.getImage(), 235, 5, null);
+		g.drawString(": Unlocked", 275, 20);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 510, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
+			g.drawString(": EASY", 440, 20);
 		}
 
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 510, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
+			g.drawString(": MEDIUM", 440, 20);
 		}
 
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 510, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
+			g.drawString(": HARD", 440, 20);
 		}
 
+		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
 	private void drawL4Labels(Graphics g) {
@@ -483,20 +508,26 @@ public class DrawScene extends UpdateObjects {
 		setFontStyle(g);
 
 		g.drawString("Level: " + 4, 5, 20);
-		g.drawString("Gold: " + (-(Gold.goldstack.size() - 12)) + "/12", 100, 20);
-		g.drawString("Missiles: Locked", 240, 20);
-		g.drawString("Rockets: Locked", 430, 20);
+		g.drawImage(GoldIcon.goldIcon.getImage(), 100, 5, null);
+		g.drawString(": " + (-(Gold.goldstack.size() - 12)) + "/12", 140, 20);
+		g.drawImage(LaserIcon.laserIcon.getImage(), 225, 5, null);
+		g.drawString(": Locked", 265, 20);
+		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
+		g.drawString(": Locked", 405, 20);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 620, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
+			g.drawString(": EASY", 530, 20);
 		}
 
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 620, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
+			g.drawString(": MEDIUM", 530, 20);
 		}
 
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 620, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
+			g.drawString(": HARD", 530, 20);
 		}
 
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
@@ -516,17 +547,24 @@ public class DrawScene extends UpdateObjects {
 		setFontStyle(g);
 
 		g.drawString("Level: " + 4, 5, 20);
-		g.drawString("Missiles: Unlocked", 100, 20);
-		g.drawString("Rockets: Unlocked", 320, 20);
+		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
+		g.drawString(": Unlocked", 135, 20);
+		g.drawImage(RocketIcon.rocketIcon.getImage(), 255, 5, null);
+		g.drawString(": Unlocked", 295, 20);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 540, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
+			g.drawString(": EASY", 460, 20);
 		}
+
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 540, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
+			g.drawString(": MEDIUM", 460, 20);
 		}
+
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 540, 20);
+			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
+			g.drawString(": HARD", 460, 20);
 		}
 
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()

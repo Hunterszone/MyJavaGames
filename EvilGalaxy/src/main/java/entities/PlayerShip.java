@@ -74,23 +74,6 @@ public class PlayerShip extends SpritePattern {
 		return loadImage(imageName);
 	}
 
-	public Image escapeForbidden() {
-
-		imageName = Images.MYSHIPESCAPE.getImg();
-		loadImage(imageName);
-		getImageDimensions();
-		return loadImage(imageName);
-
-	}
-
-	public Image shipDamaged() {
-
-		imageName = Images.MYSHIPDAMAGED.getImg();
-		loadImage(imageName);
-		getImageDimensions();
-		return loadImage(imageName);
-	}
-
 	public void shipShaked() {
 
 		x += speedX;

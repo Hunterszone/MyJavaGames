@@ -25,6 +25,42 @@ public enum Images {
 			return "images/alien.gif";
 		}
 	},
+	ALIEN_ICON {
+		@Override
+		public String getImg() {
+			return "images/alienIcon.png";
+		}
+	},
+	LASER_ICON {
+		@Override
+		public String getImg() {
+			return "images/laserIcon.png";
+		}
+	},
+	ROCKET_ICON {
+		@Override
+		public String getImg() {
+			return "images/rocketIcon.png";
+		}
+	},
+	DIFF_ICON {
+		@Override
+		public String getImg() {
+			return "images/difficulty.png";
+		}
+	},
+	DRAGON_ICON {
+		@Override
+		public String getImg() {
+			return "images/dragonIcon.png";
+		}
+	},
+	GOLD_ICON {
+		@Override
+		public String getImg() {
+			return "images/gold.png";
+		}
+	},
 	BUNKER {
 		@Override
 		public String getImg() {
@@ -118,7 +154,7 @@ public enum Images {
 	MYSHIPESCAPE {
 		@Override
 		public String getImg() {
-			return "images/alien3.gif";
+			return "images/craft.png";
 		}
 	},
 	MYSHIPDAMAGED {

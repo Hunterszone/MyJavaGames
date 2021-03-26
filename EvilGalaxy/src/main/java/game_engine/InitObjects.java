@@ -19,6 +19,12 @@ import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
 import entities.TheEndAnimation;
+import icons.AlienIcon;
+import icons.DifficultyIcon;
+import icons.DragonIcon;
+import icons.GoldIcon;
+import icons.LaserIcon;
+import icons.RocketIcon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
@@ -90,6 +96,15 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		
 		explosions = new ArrayList<Explosion>();
 		
+		// Icons
+		AlienIcon.alienIcon = new AlienIcon(0, 0);
+		LaserIcon.laserIcon = new LaserIcon(0, 0);
+		RocketIcon.rocketIcon = new RocketIcon(0, 0);
+		DifficultyIcon.difficultyIcon = new DifficultyIcon(0, 0);
+		DragonIcon.dragonIcon = new DragonIcon(0, 0);
+		GoldIcon.goldIcon = new GoldIcon(0, 0);
+		
+		// Animations
 		AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
 		AstronautAnimation.astronautAnim.drawAstronaut();
 		AstronautAnimation.astronautAnim.setVisible(true);
