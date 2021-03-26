@@ -789,7 +789,7 @@ public class DrawScene extends UpdateObjects {
 	
 	private void setFontStyle(Graphics g) {
 		final Font small = new Font("Papyrus", Font.BOLD, 22);
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.ORANGE);
 		g.setFont(small);
 	}
 }
