@@ -517,17 +517,17 @@ public class DrawScene extends UpdateObjects {
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(": EASY", 530, 20);
+			g.drawString(": EASY", 540, 20);
 		}
 
 		if (timerMedium.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(": MEDIUM", 530, 20);
+			g.drawString(": MEDIUM", 540, 20);
 		}
 
 		if (timerHard.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(": HARD", 530, 20);
+			g.drawString(": HARD", 540, 20);
 		}
 
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
