@@ -144,8 +144,27 @@ public class DrawScene extends UpdateObjects {
 			timerEasy.stop();
 			timerMedium.stop();
 			timerHard.stop();
-			g.drawImage(bg1, 0, 0, null);
+			
+			if (Alien.aliens.size() > 0) {
+				g.drawImage(bg1, 0, 0, null);
+			}
 
+			if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
+				g.drawImage(bg2, 0, 0, null);
+			}
+
+			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+				g.drawImage(bg3, 0, 0, null);
+			}
+
+			if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
+				g.drawImage(bg3, 0, 0, null);
+			}
+
+			if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+				g.drawImage(bg3, 0, 0, null);
+			}
+			
 			if (lifePlayerShip > 6) {
 
 				if (TextToSpeech.finMusicIsPlayed == false) {
@@ -382,21 +401,21 @@ public class DrawScene extends UpdateObjects {
 		setFontStyle(g);
 
 		g.drawString("Level: " + 1, 5, 20);
-		g.drawString("Aliens left: " + Alien.aliens.size(), 120, 20);
-		g.drawString("Missiles: Unlocked", 310, 20);
-		g.drawString("Rockets: Locked", 530, 20);
+		g.drawString("Aliens left: " + Alien.aliens.size(), 100, 20);
+		g.drawString("Missiles: Unlocked", 275, 20);
+		g.drawString("Rockets: Locked", 495, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 720, 20);
+			g.drawString("Difficulty: Easy", 685, 20);
 		}
 
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 720, 20);
+			g.drawString("Difficulty: Medium", 685, 20);
 		}
 
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 720, 20);
+			g.drawString("Difficulty: Hard", 685, 20);
 		}
 	}
 
@@ -405,21 +424,21 @@ public class DrawScene extends UpdateObjects {
 		setFontStyle(g);
 
 		g.drawString("Level: " + 2, 5, 20);
-		g.drawString("Dragonzz: " + Dragon.dragons.size(), 120, 20);
-		g.drawString("Missiles: Locked", 310, 20);
-		g.drawString("Rockets: Unlocked", 500, 20);
+		g.drawString("Dragonzz: " + Dragon.dragons.size(), 100, 20);
+		g.drawString("Missiles: Locked", 275, 20);
+		g.drawString("Rockets: Unlocked", 465, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 		if (timerEasy.isRunning()) {
-			g.drawString("Difficulty: Easy", 710, 20);
+			g.drawString("Difficulty: Easy", 685, 20);
 		}
 
 		if (timerMedium.isRunning()) {
-			g.drawString("Difficulty: Medium", 710, 20);
+			g.drawString("Difficulty: Medium", 685, 20);
 		}
 
 		if (timerHard.isRunning()) {
-			g.drawString("Difficulty: Hard", 710, 20);
+			g.drawString("Difficulty: Hard", 685, 20);
 			drawOuttaControl(g);
 			PlayerShip.playerOne.shipShaked();
 			Crosshair.crosshair.crosShaked();
