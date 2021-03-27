@@ -1,7 +1,6 @@
 package game_engine;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
-import main.Main;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -41,23 +40,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	private final Thread animator = new Thread(this);
 
-	public static Dimension getCoordinates() {
-		return Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-	}
 
-	// Constants
-	final static int MYSHIP_X = 40;
-	final static int MYSHIP_Y = 180;
-	final static int MYCROSSHAIR_X = 250;
-	final static int MYCROSSHAIR_Y = 170;
-	final static int EVILHEAD_X = 640;
-	final static int EVILHEAD_Y = 180;
-	final static int VOLBUT_X = (int) getCoordinates().getWidth() - 300;
-	final static int VOLBUT_Y = 10;
-	final static int BUNKER_X = ((int) getCoordinates().getWidth() - 400) / 2;
-	final static int BUNKER_Y = (int) getCoordinates().getHeight() - 260;
-	final static int B_WIDTH = 1310;
-	public final static int B_HEIGHT = 1040;
 	public static List<Explosion> explosions;
 
 	public static boolean ingame;
@@ -92,7 +75,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		setFocusable(true);
 		ingame = true;
 
-		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
 		
 		explosions = new ArrayList<Explosion>();
 		
@@ -124,11 +107,11 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 			asteroidsAnim.setVisible(true);
 		}
 
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(100, InitObjects.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(100, Constants.B_HEIGHT));
 		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(300, 0));
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(500, InitObjects.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(500, Constants.B_HEIGHT));
 		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(700, 0));
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, InitObjects.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, Constants.B_HEIGHT));
 
 		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {
 			elonAnim.drawTheEndUp();
@@ -140,23 +123,23 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 			elonAnim.setVisible(true);
 		}
 
-		PlayerShip.playerOne = new PlayerShip(MYSHIP_X, MYSHIP_Y);
+		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 		PlayerShip.playerOne.setVisible(true);
 
-		Crosshair.crosshair = new Crosshair(MYCROSSHAIR_X, MYCROSSHAIR_Y);
+		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
 		Crosshair.crosshair.setVisible(true);
 
-		EvilHead.evilHead = new EvilHead(EVILHEAD_X, EVILHEAD_Y);
+		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 		EvilHead.evilHead.AIOnEasy();
 		EvilHead.evilHead.setVisible(true);
 
-		VolBtn.volButt = new VolBtn(VOLBUT_X, VOLBUT_Y);
+		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
 		VolBtn.volButt.setVisible(true);
 
-		Bunker.bunkerObj = new Bunker(BUNKER_X, BUNKER_Y);
+		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
 		Bunker.bunkerObj.setVisible(true);
 
-		SaveSign.saveSign = new SaveSign(BUNKER_X + 30, (int) getCoordinates().getHeight() - 700);
+		SaveSign.saveSign = new SaveSign(Constants.BUNKER_X + 30, (int) Constants.getCoordinates().getHeight() - 700);
 		SaveSign.saveSign.setVisible(false);
 
 		initAliens();

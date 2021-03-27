@@ -86,7 +86,6 @@ public abstract class UpdateObjects extends InitObjects {
 		missiles.removeIf(missile -> missile.isVisible() == false);
 
 		missiles.stream().filter(missile -> missile.isVisible()).forEach(missile -> missile.moveMissile());
-
 	}
 
 	private void updateBullets() {
@@ -159,6 +158,8 @@ public abstract class UpdateObjects extends InitObjects {
 		canonballs.stream().filter(canon -> canon.isVisible()).forEach(canon -> {
 			if (EvilHead.evilHead.x - PlayerShip.playerOne.x > 0) {
 				canon.moveCanonLeft();
+			} else {
+				canon.moveCanonRight();
 			}
 		});
 	}

@@ -17,10 +17,10 @@ import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
-import entities.TheEndAnimation;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import entities.TheEndAnimation;
 import enums.Images;
 import icons.AlienIcon;
 import icons.DifficultyIcon;
@@ -31,14 +31,15 @@ import icons.RocketIcon;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Explosion;
-import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
+import items.PlasmaBall;
 import items.SaveSign;
 import items.ShipMissile;
 import items.ShipRocket;
 import items.VolBtn;
 import main.Main;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -393,6 +394,11 @@ public class DrawScene extends UpdateObjects {
 		drawL4Labels(g);
 		drawObjects(g);
 		drawlifePlayerShip(g);
+		
+		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning())) {
+			drawGamePaused(g);
+		}
 	}
 
 	private void drawGameStateL5(Graphics g) {
@@ -400,6 +406,11 @@ public class DrawScene extends UpdateObjects {
 		drawL5Labels(g);
 		drawObjects(g);
 		drawlifePlayerShip(g);
+		
+		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
+				|| InitObjects.timerHard.isRunning())) {
+			drawGamePaused(g);
+		}
 	}
 
 	private void drawL1Labels(Graphics g) {
@@ -789,7 +800,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawGameOver(Graphics g) {
 		final String msg = "Game Over!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X + 30, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X + 30, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawKilledBy(Graphics g) {
@@ -804,44 +815,44 @@ public class DrawScene extends UpdateObjects {
 			msg = "Killed by the Evil Head!";
 
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 125);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.getCoordinates().getHeight() / 2) - 125);
 	}
 
 	private void drawCollectGold(Graphics g) {
 		final String msg = "Collect all the gold!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
 		final String msg = "Destroy the bunker!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 
 	}
 
 	private void drawKillTheHead(Graphics g) {
 		final String msg = "Finally..Kill the evil head!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawYouWon(Graphics g) {
 		final String msg = "You Won!";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawOuttaControl(Graphics g) {
 		final String msg = "Dragons invasion brings the ship outta control...";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X - 100, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X - 100, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 	}
 
 	private void drawGamePaused(Graphics g) {
 		final String msg = "Game paused";
 		setFontStyle(g);
-		g.drawString(msg, InitObjects.BUNKER_X, ((int) getCoordinates().getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
 	}
 	
 	private void setFontStyle(Graphics g) {
