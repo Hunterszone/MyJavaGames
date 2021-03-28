@@ -31,7 +31,7 @@ public class CanonBall extends SpritePattern {
 	
 	public void moveCanonRight() {
 		x += CANON_SPEED;
-		if(x > Constants.B_WIDTH - 30) {
+		if(x > Constants.B_WIDTH + 130) {
 			this.setVisible(false);
 		}
 	}
