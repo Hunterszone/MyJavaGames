@@ -298,7 +298,10 @@ public class Board extends JPanel {
 
 			if (key == KeyEvent.VK_LEFT) {
 				if (checkWallCollision(squirrel, LEFT_COLLISION)) {
-					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
+					LoadSounds.negative.play();
+					if(e.isConsumed()) {
+						LoadSounds.negative.stop();	
+					}
 					return;
 				}
 
@@ -320,7 +323,10 @@ public class Board extends JPanel {
 			} else if (key == KeyEvent.VK_RIGHT) {
 
 				if (checkWallCollision(squirrel, RIGHT_COLLISION)) {
-					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
+					LoadSounds.negative.play();
+					if(e.isConsumed()) {
+						LoadSounds.negative.stop();	
+					}
 					return;
 				}
 
@@ -342,7 +348,10 @@ public class Board extends JPanel {
 			} else if (key == KeyEvent.VK_UP) {
 
 				if (checkWallCollision(squirrel, TOP_COLLISION)) {
-					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
+					LoadSounds.negative.play();
+					if(e.isConsumed()) {
+						LoadSounds.negative.stop();	
+					}
 					return;
 				}
 
@@ -364,7 +373,10 @@ public class Board extends JPanel {
 			} else if (key == KeyEvent.VK_DOWN) {
 
 				if (checkWallCollision(squirrel, BOTTOM_COLLISION)) {
-					new PlayWave1st(SoundEffects.DENIED.getSound()).start();
+					LoadSounds.negative.play();
+					if(e.isConsumed()) {
+						LoadSounds.negative.stop();	
+					}
 					return;
 				}
 
