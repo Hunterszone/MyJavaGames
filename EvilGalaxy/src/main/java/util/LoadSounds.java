@@ -10,5 +10,6 @@ public abstract class LoadSounds {
 	public static PlayWave2nd gameLost = new PlayWave2nd(SoundEffects.FIN.getSound());
 	public static PlayWave2nd gameWon = new PlayWave2nd(SoundEffects.HIGHSC.getSound());
 	public static PlayWave2nd gotHealthPack = new PlayWave2nd(SoundEffects.MAGIC.getSound());
+	public static PlayWave2nd gotGoldBar = new PlayWave2nd(SoundEffects.COLLECT.getSound());
 	public static PlayWave2nd fuse = new PlayWave2nd(SoundEffects.FUSE.getSound());
 }

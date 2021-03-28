@@ -225,26 +225,20 @@ public class Controls extends JFrame implements KeyListener {
 		if (key == KeyEvent.VK_G) {
 
 			if (!ConsoleContent.god) {
-
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = true;
 					UpdateObjects.lifePlayerShip = -999;
 					TextToSpeech.playVoice("GODLIKE!");
 					return;
 				}
-			}
-
-			else {
-
+			} else {
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = false;
 					UpdateObjects.lifePlayerShip = 3;
 					TextToSpeech.playVoice("Healthy!");
 					return;
 				}
-
 			}
-
 		}
 
 		if (((key == KeyEvent.VK_Z)

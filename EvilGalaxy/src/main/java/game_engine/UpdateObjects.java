@@ -16,7 +16,6 @@ import items.HealthPack;
 import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
-import sound_engine.PlayWave1st;
 import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects {
@@ -129,15 +128,15 @@ public abstract class UpdateObjects extends InitObjects {
 
 		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
 			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
+				plasmaBall.evilShotDiagUp();
+				plasmaBall.evilShotDiagDown();
 				if (Gold.goldstack.isEmpty() && lifePlayerShip <= 3) {
-					plasmaBall.evilShotDiagUp();
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
 						plasmaBall.evilShot();
 					}
 				}
 				if (Gold.goldstack.size() > 0 && lifePlayerShip <= 3) {
-					plasmaBall.evilShotDiagDown();
 					if (plasmaBall.y > 768) {
 						plasmaBall.y = 768;
 						plasmaBall.evilShot();
@@ -233,9 +232,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateGold() {
 
-		if (Gold.goldstack.removeIf(goldBar -> goldBar.isVisible() == false)) {
-			new PlayWave1st("sounds/collect.wav").start();
-		}
+		Gold.goldstack.removeIf(goldBar -> goldBar.isVisible() == false);
 
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
@@ -243,7 +240,6 @@ public abstract class UpdateObjects extends InitObjects {
 	private void updateHealth() {
 
 		if (HealthPack.healthpack.removeIf(healthPack -> healthPack.isVisible() == false)) {
-			new PlayWave1st("sounds/collect.wav").start();
 			if (lifePlayerShip > 3) {
 				lifePlayerShip--;
 			}
