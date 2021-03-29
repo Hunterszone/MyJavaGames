@@ -175,8 +175,8 @@ public class ConsoleContent extends OutputStream {
 							InitObjects.timerEasy.stop();
 							InitObjects.timerMedium.stop();
 							InitObjects.timerHard.stop();
-							LoadSounds.bgMusic.stop();
-							LoadSounds.roar.stop();
+							LoadSounds.BG_MUSIC.stop();
+							LoadSounds.TAUNT.stop();
 							textArea.append("********Game was paused!*********" + "\n");
 						}
 						if (!InitObjects.ingame) {
@@ -192,7 +192,7 @@ public class ConsoleContent extends OutputStream {
 							InitObjects.timerMedium.stop();
 							InitObjects.timerHard.stop();
 							InitObjects.timerEasy.start();
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							return;
 						}
 						if (InitObjects.ingame == true && InitObjects.timerEasy.isRunning() == true) {
@@ -215,7 +215,7 @@ public class ConsoleContent extends OutputStream {
 							InitObjects.timerEasy.stop();
 							InitObjects.timerHard.stop();
 							InitObjects.timerMedium.start();
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							return;
 						}
 						if (InitObjects.ingame == true && InitObjects.timerMedium.isRunning() == true) {
@@ -237,7 +237,7 @@ public class ConsoleContent extends OutputStream {
 							InitObjects.timerEasy.stop();
 							InitObjects.timerMedium.stop();
 							InitObjects.timerHard.start();
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							return;
 						}
 						if (InitObjects.ingame == true && InitObjects.timerHard.isRunning() == true) {
@@ -256,9 +256,9 @@ public class ConsoleContent extends OutputStream {
 					else if (COMMANDS[7].trim().equalsIgnoreCase(textArea.getText().trim())) {
 //						System.exit(0);
 						MenuState.isOn = false;
-						LoadSounds.bgMusic.stop();
-						LoadSounds.fuse.stop();
-						LoadSounds.roar.stop();
+						LoadSounds.BG_MUSIC.stop();
+						LoadSounds.HIT.stop();
+						LoadSounds.TAUNT.stop();
 						InitObjects.ingame = false;
 						if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 						MouseInputHandler.main = null;
@@ -271,7 +271,7 @@ public class ConsoleContent extends OutputStream {
 					else if (COMMANDS[8].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) {
-							LoadSounds.bgMusic.stop();
+							LoadSounds.BG_MUSIC.stop();
 							textArea.append("********MUSIC IS OFF*********" + "\n");
 							return;
 						}
@@ -288,7 +288,7 @@ public class ConsoleContent extends OutputStream {
 					else if (COMMANDS[9].trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) {
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							textArea.append("********MUSIC IS ON*********" + "\n");
 							return;
 						}
@@ -670,7 +670,7 @@ public class ConsoleContent extends OutputStream {
 
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
-							LoadSounds.roar.loop();
+							LoadSounds.TAUNT.loop();
 							if (TextToSpeech.voiceInterruptor == false) {
 								TextToSpeech.playVoice("Level 2!");
 								TextToSpeech.voiceInterruptor = true;
@@ -701,7 +701,7 @@ public class ConsoleContent extends OutputStream {
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
-							LoadSounds.roar.stop();
+							LoadSounds.TAUNT.stop();
 							if (TextToSpeech.voiceInterruptor == false) {
 								TextToSpeech.playVoice("Level 3!");
 								TextToSpeech.voiceInterruptor = true;
@@ -732,7 +732,7 @@ public class ConsoleContent extends OutputStream {
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
-							LoadSounds.roar.stop();
+							LoadSounds.TAUNT.stop();
 							UpdateObjects.lifeBunker = 50;
 							if (TextToSpeech.voiceInterruptor == false) {
 								TextToSpeech.playVoice("Level 4!");

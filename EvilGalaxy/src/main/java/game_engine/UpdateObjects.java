@@ -94,7 +94,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 		if (Bunker.bullets.removeIf(bullet -> bullet.isVisible() == false)
 				|| Bunker.bullets2.removeIf(bullet -> bullet.isVisible() == false)) {
-			LoadSounds.fuse.stop();
+			LoadSounds.HIT.stop();
 		}
 
 		Bunker.bullets.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {

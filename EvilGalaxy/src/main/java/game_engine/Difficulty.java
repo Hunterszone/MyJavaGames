@@ -62,10 +62,10 @@ public class Difficulty {
 		InitObjects.timerMedium.stop();
 		InitObjects.timerEasy.restart();
 
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	public static void easy() {
@@ -114,10 +114,10 @@ public class Difficulty {
 		InitObjects.timerHard.stop();
 		InitObjects.timerEasy.restart();
 
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	public static void medium() {
@@ -166,10 +166,10 @@ public class Difficulty {
 		InitObjects.timerHard.stop();
 		InitObjects.timerMedium.restart();
 
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	public static void hard() {
@@ -218,9 +218,9 @@ public class Difficulty {
 		InitObjects.timerMedium.stop();
 		InitObjects.timerHard.restart();
 
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 }

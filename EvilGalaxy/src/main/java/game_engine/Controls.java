@@ -46,13 +46,13 @@ public class Controls extends JFrame implements KeyListener {
 		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
-			LoadSounds.bgMusic.stop();
+			LoadSounds.BG_MUSIC.stop();
 		}
 
 		if (key == KeyEvent.VK_A) {
 			if (InitObjects.timerEasy.isRunning() || InitObjects.timerHard.isRunning()
 					|| InitObjects.timerMedium.isRunning()) {
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_MUSIC.loop();
 			}
 		}
 
@@ -60,8 +60,8 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
-			LoadSounds.bgMusic.stop();
-			LoadSounds.roar.stop();
+			LoadSounds.BG_MUSIC.stop();
+			LoadSounds.TAUNT.stop();
 		}
 
 		if (InitObjects.ingame == true
@@ -77,7 +77,7 @@ public class Controls extends JFrame implements KeyListener {
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			PlayerShip.playerOne.gunLocked();
+			PlayerShip.playerOne.gunLocked(e);
 		}
 
 		if (InitObjects.ingame == true
@@ -95,7 +95,7 @@ public class Controls extends JFrame implements KeyListener {
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			PlayerShip.playerOne.gunLocked();
+			PlayerShip.playerOne.gunLocked(e);
 		}
 
 		if (key == KeyEvent.VK_1) {
@@ -147,10 +147,10 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
@@ -170,10 +170,10 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
@@ -193,10 +193,10 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
@@ -215,10 +215,10 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 		}
 
@@ -267,9 +267,9 @@ public class Controls extends JFrame implements KeyListener {
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			MenuState.isOn = false;
-			LoadSounds.bgMusic.stop();
-			LoadSounds.fuse.stop();
-			LoadSounds.roar.stop();
+			LoadSounds.BG_MUSIC.stop();
+			LoadSounds.HIT.stop();
+			LoadSounds.TAUNT.stop();
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();

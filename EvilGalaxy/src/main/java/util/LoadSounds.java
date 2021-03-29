@@ -4,12 +4,13 @@ import enums.SoundEffects;
 import sound_engine.PlayWave2nd;
 
 public abstract class LoadSounds {
-	public static PlayWave2nd bgMusic = new PlayWave2nd(SoundEffects.BGMUSIC.getSound());
-	public static PlayWave2nd menuMusic = new PlayWave2nd(SoundEffects.MENUMUSIC.getSound());
-	public static PlayWave2nd roar = new PlayWave2nd(SoundEffects.TAUNT.getSound());
-	public static PlayWave2nd gameLost = new PlayWave2nd(SoundEffects.FIN.getSound());
-	public static PlayWave2nd gameWon = new PlayWave2nd(SoundEffects.HIGHSC.getSound());
-	public static PlayWave2nd gotHealthPack = new PlayWave2nd(SoundEffects.MAGIC.getSound());
-	public static PlayWave2nd gotGoldBar = new PlayWave2nd(SoundEffects.COLLECT.getSound());
-	public static PlayWave2nd fuse = new PlayWave2nd(SoundEffects.FUSE.getSound());
+	public static final PlayWave2nd BG_MUSIC = new PlayWave2nd(SoundEffects.BGMUSIC.getSound());
+	public static final PlayWave2nd MENU_MUSIC = new PlayWave2nd(SoundEffects.MENUMUSIC.getSound());
+	public static final PlayWave2nd TAUNT = new PlayWave2nd(SoundEffects.TAUNT.getSound());
+	public static final PlayWave2nd FIN = new PlayWave2nd(SoundEffects.FIN.getSound());
+	public static final PlayWave2nd HIGHSC = new PlayWave2nd(SoundEffects.HIGHSC.getSound());
+	public static final PlayWave2nd GOT_HP = new PlayWave2nd(SoundEffects.MAGIC.getSound());
+	public static final PlayWave2nd GOT_GOLD = new PlayWave2nd(SoundEffects.COLLECT.getSound());
+	public static final PlayWave2nd HIT = new PlayWave2nd(SoundEffects.FUSE.getSound());
+	public static final PlayWave2nd DENIED = new PlayWave2nd(SoundEffects.DENIED.getSound());
 }

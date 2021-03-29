@@ -65,7 +65,7 @@ public class DisplayCanvas {
 				DisplayCanvas.canvas.getY()), "img");
 		DisplayCanvas.canvas.setCursor(c);
 
-		LoadSounds.menuMusic.loop();
+		LoadSounds.MENU_MUSIC.loop();
 
         frame.add(canvas);
         frame.pack();

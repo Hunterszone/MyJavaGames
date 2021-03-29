@@ -24,6 +24,7 @@ import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.LoadSounds;
 
 public class PlayerShip extends SpritePattern {
 
@@ -165,9 +166,12 @@ public class PlayerShip extends SpritePattern {
 		return rockets;
 	}
 
-	public String gunLocked() {
+	public String gunLocked(KeyEvent e) {
 		soundName = SoundEffects.DENIED.getSound();
-		new PlayWave1st(soundName).start();
+		LoadSounds.DENIED.play();
+		if(e.isConsumed()) {
+			LoadSounds.DENIED.stop();	
+		}
 		return soundName;
 	}
 

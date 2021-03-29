@@ -48,7 +48,7 @@ public class MouseInputHandler implements MouseListener {
 		if (MenuState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
-					LoadSounds.menuMusic.stop();
+					LoadSounds.MENU_MUSIC.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
 					UpdateObjects.lifePlayerShip = 3;
@@ -145,7 +145,7 @@ public class MouseInputHandler implements MouseListener {
 		if (ExtrasState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
-					LoadSounds.menuMusic.stop();
+					LoadSounds.MENU_MUSIC.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
 					DisplayCanvas.frame.remove(DisplayCanvas.canvas);
@@ -236,7 +236,7 @@ public class MouseInputHandler implements MouseListener {
 				&& (point.getX() >= 1100 && point.getX() <= 1100 + Constants.LOAD_ASSETS.volume.getWidth(null))) {
 			if ((point.getY() >= 32 && point.getY() <= 32 + Constants.LOAD_ASSETS.volume.getHeight(null))) {
 				new PlayWave1st(soundName).start();
-				LoadSounds.menuMusic.stop();
+				LoadSounds.MENU_MUSIC.stop();
 			}
 		} else {
 			if (!(point.getY() >= 115 && point.getY() <= 165) && 
@@ -250,7 +250,7 @@ public class MouseInputHandler implements MouseListener {
 							&& point.getY() <= 380 + Constants.LOAD_ASSETS.evilHead.getHeight(null))
 					&& !(ManualState.isOn && point.getY() >= 475
 							&& point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
-				LoadSounds.menuMusic.loop();
+				LoadSounds.MENU_MUSIC.loop();
 		}
 	}
 

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.event.KeyEvent;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,8 +62,8 @@ public class MyShipTest {
 	}
 
 	@Test
-	public void testGunLockedSound() {
-		PlayWave1st sound = new PlayWave1st(playerOne.gunLocked());
+	public void testGunLockedSound(KeyEvent e) {
+		PlayWave1st sound = new PlayWave1st(playerOne.gunLocked(e));
 		assertTrue(sound.doesFileExists());
 	}
 

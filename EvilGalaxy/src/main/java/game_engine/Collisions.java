@@ -244,7 +244,7 @@ public abstract class Collisions extends UpdateObjects {
 	public static boolean shipIntersectsGold(Rectangle myship, Gold gold, Rectangle goldUnit) {
 		if (myship.intersects(goldUnit) && UpdateObjects.lifeBunker >= 50) {
 			gold.setVisible(false);
-			LoadSounds.gotGoldBar.play();
+			LoadSounds.GOT_GOLD.play();
 			if (gold.isVisible())
 				return false;
 		}
@@ -254,7 +254,7 @@ public abstract class Collisions extends UpdateObjects {
 	public static boolean shipIntersectsHealth(Rectangle myship, HealthPack health, Rectangle healthUnit) {
 		if (myship.intersects(healthUnit) && Dragon.dragons.isEmpty() && (UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty())) {
 			health.setVisible(false);
-			LoadSounds.gotHealthPack.play();
+			LoadSounds.GOT_HP.play();
 			if (health.isVisible())
 				return false;
 		}
@@ -288,7 +288,7 @@ public abstract class Collisions extends UpdateObjects {
 			Bunker.bunkerObj.loadBullet2();
 			missile.setVisible(false);
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
-			LoadSounds.fuse.play();
+			LoadSounds.HIT.play();
 			lifeBunker++;
 			if (missile.isVisible())
 				return false;
@@ -387,7 +387,7 @@ public abstract class Collisions extends UpdateObjects {
 			Bunker.bunkerObj.loadBullet2();
 			rocket.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			LoadSounds.fuse.play();
+			LoadSounds.HIT.play();
 			lifeBunker++;
 			if (rocket.isVisible())
 				return false;

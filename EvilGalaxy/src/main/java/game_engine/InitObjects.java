@@ -154,8 +154,8 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		timerMedium = new Timer(DELAY, this);
 		timerHard = new Timer(DELAY, this);
 		timerEasy.start();
-		LoadSounds.gameWon.play();
-		LoadSounds.bgMusic.loop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.BG_MUSIC.loop();
 	}
 
 	public static List<Alien> initAliens() {

@@ -145,9 +145,9 @@ public class DrawScene extends UpdateObjects {
 				drawGameStateL5(g);
 			}
 		} else {
-			LoadSounds.bgMusic.stop();
-			LoadSounds.fuse.stop();
-			LoadSounds.roar.stop();
+			LoadSounds.BG_MUSIC.stop();
+			LoadSounds.HIT.stop();
+			LoadSounds.TAUNT.stop();
 			timerEasy.stop();
 			timerMedium.stop();
 			timerHard.stop();
@@ -175,7 +175,7 @@ public class DrawScene extends UpdateObjects {
 			if (lifePlayerShip > 6) {
 
 				if (TextToSpeech.finMusicIsPlayed == false) {
-					LoadSounds.gameLost.play();
+					LoadSounds.FIN.play();
 					TextToSpeech.finMusicIsPlayed = true;
 				}
 
@@ -257,7 +257,7 @@ public class DrawScene extends UpdateObjects {
 				drawElonsDown(g);
 
 				if (TextToSpeech.finMusicIsPlayed == false) {
-					LoadSounds.gameWon.play();
+					LoadSounds.HIGHSC.play();
 					TextToSpeech.finMusicIsPlayed = true;
 				}
 
@@ -290,11 +290,11 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifeEvilHead >= 30 && lifeEvilHead < 35) {
-			LoadSounds.roar.loop();
+			LoadSounds.TAUNT.loop();
 		}
 
 		if (lifeEvilHead >= 35) {
-			LoadSounds.roar.stop();
+			LoadSounds.TAUNT.stop();
 		}
 
 		if (lifeEvilHead >= 30 && lifeEvilHead < 40) {
@@ -302,11 +302,11 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifeEvilHead >= 40 && lifeEvilHead < 45) {
-			LoadSounds.roar.loop();
+			LoadSounds.TAUNT.loop();
 		}
 
 		if (lifeEvilHead >= 45) {
-			LoadSounds.roar.stop();
+			LoadSounds.TAUNT.stop();
 		}
 
 		if (lifeEvilHead >= 40 && lifeEvilHead < 50) {
@@ -386,7 +386,7 @@ public class DrawScene extends UpdateObjects {
 			drawGamePaused(g);
 		}
 
-		LoadSounds.roar.stop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	private void drawGameStateL4(Graphics g) {
@@ -477,7 +477,7 @@ public class DrawScene extends UpdateObjects {
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
 			UpdateObjects.updateDragons();
-			LoadSounds.roar.loop();
+			LoadSounds.TAUNT.loop();
 		}
 	}
 
@@ -640,11 +640,11 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifeBunker >= 30 && lifeBunker < 35) {
-			LoadSounds.roar.loop();
+			LoadSounds.TAUNT.loop();
 		}
 
 		if (lifeBunker >= 35) {
-			LoadSounds.roar.stop();
+			LoadSounds.TAUNT.stop();
 		}
 
 		if (lifeBunker >= 30 && lifeBunker < 40 && Gold.goldstack.size() > 0) {
@@ -652,11 +652,11 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (lifeBunker >= 40 && lifeBunker < 45) {
-			LoadSounds.roar.loop();
+			LoadSounds.TAUNT.loop();
 		}
 
 		if (lifeBunker >= 45) {
-			LoadSounds.roar.stop();
+			LoadSounds.TAUNT.stop();
 		}
 
 		if (lifeBunker >= 40 && lifeBunker < 50 && Gold.goldstack.size() > 0) {

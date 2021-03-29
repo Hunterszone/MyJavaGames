@@ -44,7 +44,7 @@ public class LoadGame {
 
 	private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
-		LoadSounds.menuMusic.stop();
+		LoadSounds.MENU_MUSIC.stop();
 		
 		try {
 			final FileInputStream fileStream = new FileInputStream(loadfile);

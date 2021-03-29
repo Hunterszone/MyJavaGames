@@ -186,9 +186,9 @@ public class GameMenuBar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MenuState.isOn = false;
-				LoadSounds.bgMusic.stop();
-				LoadSounds.fuse.stop();
-				LoadSounds.roar.stop();
+				LoadSounds.BG_MUSIC.stop();
+				LoadSounds.HIT.stop();
+				LoadSounds.TAUNT.stop();
 				InitObjects.timerEasy.stop();
 				InitObjects.timerMedium.stop();
 				InitObjects.timerHard.stop();
@@ -235,8 +235,8 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerHard.stop();
 				InitObjects.timerMedium.stop();
 
-				LoadSounds.bgMusic.stop();
-				LoadSounds.roar.stop();
+				LoadSounds.BG_MUSIC.stop();
+				LoadSounds.TAUNT.stop();
 			}
 		}
 
@@ -615,9 +615,9 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerMedium.stop();
 				InitObjects.timerHard.stop();
 				InitObjects.timerEasy.start();
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_MUSIC.loop();
 				if (Alien.aliens.isEmpty()) {
-					LoadSounds.roar.loop();
+					LoadSounds.TAUNT.loop();
 				}
 				if (!InitObjects.ingame) {
 					Difficulty.easy();
@@ -634,9 +634,9 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerEasy.stop();
 				InitObjects.timerHard.stop();
 				InitObjects.timerMedium.start();
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_MUSIC.loop();
 				if (Alien.aliens.isEmpty()) {
-					LoadSounds.roar.loop();
+					LoadSounds.TAUNT.loop();
 				}
 				if (!InitObjects.ingame) {
 					Difficulty.medium();
@@ -652,9 +652,9 @@ public class GameMenuBar extends JFrame {
 				InitObjects.timerEasy.stop();
 				InitObjects.timerMedium.stop();
 				InitObjects.timerHard.start();
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_MUSIC.loop();
 				if (Alien.aliens.isEmpty()) {
-					LoadSounds.roar.loop();
+					LoadSounds.TAUNT.loop();
 				}
 				if (!InitObjects.ingame) {
 					Difficulty.hard();
