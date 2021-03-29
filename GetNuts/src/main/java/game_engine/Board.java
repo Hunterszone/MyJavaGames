@@ -20,10 +20,8 @@ import entities.Nut;
 import entities.Player;
 import entities.Wall;
 import entities.Water;
-import enums.SoundEffects;
 import main.Main;
 import sound_engine.LoadSounds;
-import sound_engine.PlayWave1st;
 
 public class Board extends JPanel {
 
@@ -112,7 +110,7 @@ public class Board extends JPanel {
 		Nut b;
 		Area a;
 
-		LoadSounds.bgMusic.loop();
+		LoadSounds.BG_MUSIC.loop();
 
 		for (int i = 0; i < LevelsBgsEngine.levels.get(levelNum).length(); i++) {
 
@@ -298,102 +296,102 @@ public class Board extends JPanel {
 
 			if (key == KeyEvent.VK_LEFT) {
 				if (checkWallCollision(squirrel, LEFT_COLLISION)) {
-					LoadSounds.negative.play();
+					LoadSounds.NEGATIVE.play();
 					if(e.isConsumed()) {
-						LoadSounds.negative.stop();	
+						LoadSounds.NEGATIVE.stop();	
 					}
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, LEFT_COLLISION)) {
-					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
+					LoadSounds.DEAD.play();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(LEFT_COLLISION)) {
-					new PlayWave1st(SoundEffects.BOING.getSound()).start();
+					LoadSounds.BOING.play();
 					return;
 				}
 
 				squirrel.move(-SPACE, 0);
 				myScore--;
-				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
+				LoadSounds.MOVE.play();
 
 			} else if (key == KeyEvent.VK_RIGHT) {
 
 				if (checkWallCollision(squirrel, RIGHT_COLLISION)) {
-					LoadSounds.negative.play();
+					LoadSounds.NEGATIVE.play();
 					if(e.isConsumed()) {
-						LoadSounds.negative.stop();	
+						LoadSounds.NEGATIVE.stop();	
 					}
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, RIGHT_COLLISION)) {
-					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
+					LoadSounds.DEAD.play();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(RIGHT_COLLISION)) {
-					new PlayWave1st(SoundEffects.BOING.getSound()).start();
+					LoadSounds.BOING.play();
 					return;
 				}
 
 				squirrel.move(SPACE, 0);
 				myScore--;
-				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
+				LoadSounds.MOVE.play();
 
 			} else if (key == KeyEvent.VK_UP) {
 
 				if (checkWallCollision(squirrel, TOP_COLLISION)) {
-					LoadSounds.negative.play();
+					LoadSounds.NEGATIVE.play();
 					if(e.isConsumed()) {
-						LoadSounds.negative.stop();	
+						LoadSounds.NEGATIVE.stop();	
 					}
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, TOP_COLLISION)) {
-					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
+					LoadSounds.DEAD.play();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(TOP_COLLISION)) {
-					new PlayWave1st(SoundEffects.BOING.getSound()).start();
+					LoadSounds.BOING.play();
 					return;
 				}
 
 				squirrel.move(0, -SPACE);
 				myScore--;
-				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
+				LoadSounds.MOVE.play();
 
 			} else if (key == KeyEvent.VK_DOWN) {
 
 				if (checkWallCollision(squirrel, BOTTOM_COLLISION)) {
-					LoadSounds.negative.play();
+					LoadSounds.NEGATIVE.play();
 					if(e.isConsumed()) {
-						LoadSounds.negative.stop();	
+						LoadSounds.NEGATIVE.stop();	
 					}
 					return;
 				}
 
 				if (checkWaterCollision(squirrel, BOTTOM_COLLISION)) {
-					new PlayWave1st(SoundEffects.DEAD.getSound()).start();
+					LoadSounds.DEAD.play();
 					restartLevel();
 					return;
 				}
 
 				if (checkBagCollision(BOTTOM_COLLISION)) {
-					new PlayWave1st(SoundEffects.BOING.getSound()).start();
+					LoadSounds.BOING.play();
 					return;
 				}
 
 				squirrel.move(0, SPACE);
 				myScore--;
-				new PlayWave1st(SoundEffects.MOVE.getSound()).start();
+				LoadSounds.MOVE.play();
 
 			} else if (key == KeyEvent.VK_R) {
 				restartLevel();
@@ -415,9 +413,9 @@ public class Board extends JPanel {
 					}
 				}
 			} else if (key == KeyEvent.VK_S) {
-				LoadSounds.bgMusic.stop();
+				LoadSounds.BG_MUSIC.stop();
 			} else if (key == KeyEvent.VK_A) {
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_MUSIC.loop();
 			} else if (key == KeyEvent.VK_ESCAPE) {
 				System.exit(0);
 			}
@@ -635,8 +633,8 @@ public class Board extends JPanel {
 
 		if (compl == num) {
 			completed = true;
-			LoadSounds.bgMusic.stop();
-			new PlayWave1st(SoundEffects.HIGHSC.getSound()).start();
+			LoadSounds.BG_MUSIC.stop();
+			LoadSounds.HIGHSC.play();
 			repaint();
 			return true;
 		}
