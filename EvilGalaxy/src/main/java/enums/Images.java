@@ -100,7 +100,7 @@ public enum Images {
 	MYSHIPINIT {
 		@Override
 		public String getImg() {
-			return "images/craft.gif";
+			return "images/spaceship.gif";
 		}
 	},
 	ASTRONAUTINIT {
