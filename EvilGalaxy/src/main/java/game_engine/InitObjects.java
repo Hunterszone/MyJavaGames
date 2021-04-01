@@ -40,7 +40,6 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	private final Thread animator = new Thread(this);
 
-
 	public static List<Explosion> explosions;
 
 	public static boolean ingame;

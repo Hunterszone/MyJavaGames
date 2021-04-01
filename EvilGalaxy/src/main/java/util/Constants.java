@@ -12,7 +12,7 @@ public class Constants {
 	public final static int MYSHIP_X = 40;
 	public final static int MYSHIP_Y = 180;
 	public final static int MYCROSSHAIR_X = 250;
-	public final static int MYCROSSHAIR_Y = 170;
+	public final static int MYCROSSHAIR_Y = 165;
 	public final static int EVILHEAD_X = 640;
 	public final static int EVILHEAD_Y = 180;
 	public final static int VOLBUT_X = (int) getCoordinates().getWidth() - 300;

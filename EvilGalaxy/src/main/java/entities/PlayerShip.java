@@ -154,7 +154,7 @@ public class PlayerShip extends SpritePattern {
 
 	public List<ShipMissile> loadMissiles() {
 		soundName = SoundEffects.LASER.getSound();
-		missiles.add(new ShipMissile(x + width, y + height / 2));
+		missiles.add(new ShipMissile(x + width, y-15 + height / 2));
 		new PlayWave1st(soundName).start();
 		return missiles;
 	}
