@@ -4,17 +4,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import util.ConsoleContent;
+import enums.Commands;
 
 public class ConsoleContentClassTest {
 
 	@Test
 	public void testCommmands() {
-		final String[] commands = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit", "voloff", "volon",
-				"god", "dog", "stats", "restart", "level2", "level3", "level4" };
+		
 		int counter = 0;
-		for (String command : commands) {
-			assertTrue(ConsoleContent.COMMANDS[counter].equals(command));
+		for (Commands command : Commands.values()) {
+			assertTrue(Commands.values()[counter].equals(command));
 			counter++;
 		}
 	}
