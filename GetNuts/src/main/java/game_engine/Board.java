@@ -238,7 +238,7 @@ public class Board extends JPanel {
 			g.setColor(new Color(233, 233, 12));
 			g.setFont(font);
 			g.drawString("GAME OVER!", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 150);
-			g.drawString("PRESS ENTER TO CONTINUE", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 100);
+			g.drawString("PRESS ANY KEY TO RESTART", ((int) getCoordinates().getWidth() - 400) / 2, ((int) getCoordinates().getHeight() / 2) - 100);
 			restartLevel();
 		}
 
