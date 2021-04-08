@@ -1,6 +1,10 @@
 package game_engine;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -8,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JPanel;
 
@@ -101,21 +106,22 @@ public class Board extends JPanel {
 
 	public final void initWorld() {
 
-		int x = OFFSET;
-		int y = OFFSET;
-
-		Wall wall;
-		Water terrain;
-		Bridge bridge;
-		Nut b;
-		Area a;
-
 		LoadSounds.BG_MUSIC.loop();
+		
+		String nextLevel = LevelsBgsEngine.levels.get(levelNum);
+		List<Character> charsInLevel = nextLevel.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
 
-		for (int i = 0; i < LevelsBgsEngine.levels.get(levelNum).length(); i++) {
+		charsInLevel.forEach(item -> {
 
-			char item = LevelsBgsEngine.levels.get(levelNum).charAt(i);
+			int x = OFFSET;
+			int y = OFFSET;
 
+			Wall wall;
+			Water terrain;
+			Bridge bridge;
+			Nut b;
+			Area a;
+			
 			if (item == '\n') {
 				y += SPACE;
 				if (this.w < x) {
@@ -150,7 +156,7 @@ public class Board extends JPanel {
 			}
 
 			h = y;
-		}
+		});
 	}
 
 	public void buildWorld(Graphics g) {
