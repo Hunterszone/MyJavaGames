@@ -227,7 +227,7 @@ public class Board extends JPanel {
 			g.drawString("Shuffle OFF", 795, 50);
 		}
 
-		if (myScore == 0) {
+		if (myScore <= 0) {
 			voiceInterruptor = true;
 			if (voiceInterruptor == true) {
 				initVoice("Game over!");
