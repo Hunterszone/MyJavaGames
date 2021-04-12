@@ -16,3 +16,4 @@ saves/
 .eclipse
 /.gitignore
 /bin/
+/target/

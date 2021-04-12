@@ -22,11 +22,11 @@ public class HeroEntity extends Entity {
 			System.out.println("Hero intersects HealthEntity");
 			return Game.notifyHpCollected(new HeroEntity(sprite, x, y), other);
 		}
-		if (other instanceof TreasureEntity) {
+		else if (other instanceof TreasureEntity) {
 			System.out.println("Hero intersects TreasureEntity");
 			return Game.notifyTreasuresCollected(new HeroEntity(sprite, x, y), other);
 		}
-		if (other instanceof EnemyEntity)
+		else if (other instanceof EnemyEntity)
 			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
 		return false;
 	}
@@ -38,12 +38,12 @@ public class HeroEntity extends Entity {
 			enemy.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(enemy);
 		}
-		if (other instanceof TreasureEntity) {
+		else if (other instanceof TreasureEntity) {
 			hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
 			treasure.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(treasure);
 		}
-		if (other instanceof HealthEntity) {
+		else if (other instanceof HealthEntity) {
 			hero.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
 			health.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			return hero.intersects(health);
