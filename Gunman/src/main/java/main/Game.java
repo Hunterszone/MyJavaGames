@@ -201,73 +201,59 @@ public class Game {
 
 	public static TreasureEntity initTreasures(MySprite sprite) {
 		Random r = new Random();
-		/*for (int i = 0; i < MAX_LEVELS; i++) {
+		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<TreasureEntity> objectsOnALevel = new ArrayList<TreasureEntity>();
 			for (int j = 0; j < TREASURES_ON_LEVEL; j++) {
-				treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				objectsOnALevel.add(treasure);
+			objectsOnALevel.stream().map(t -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()), 
+												r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
+				/*treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));*/
+				//objectsOnALevel.add(treasure);
 			}
-			if (treasures != null)
-				treasures.put(i, objectsOnALevel);
+			/*if (treasures != null)
+				treasures.put(i, objectsOnALevel);*/
+			objectsOnALevel.removeIf(t -> t == null);
+			treasures.put(i, objectsOnALevel);
 		}
-		return treasure;*/
-		ArrayList<TreasureEntity> objectsOnALevel = new ArrayList<TreasureEntity>();
-		objectsOnALevel.stream();
-		for (int i = 0; i < MAX_LEVELS; i++) {
-			objectsOnALevel.range(0, TREASURES_ON_LEVEL).mapToObj(t -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))).forEach(treasure -> {
-							objectsOnALevel.add(treasure);
-							});
-		}
-		
-		objectsOnALevel.removeIf(treasure -> {
-			Objects.isNull(treasure);
-		});
-		
 		return treasure;
+		
 	}
 
 	public static HealthEntity initHealth(MySprite sprite) {
 		Random r = new Random();
-		/*for (int i = 0; i < MAX_LEVELS; i++) {
+		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<HealthEntity> objectsOnALevel = new ArrayList<HealthEntity>();
 			for (int j = 0; j < MINES_ON_LEVEL; j++) {
-				healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+				/*healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				objectsOnALevel.add(healthpack);
+				objectsOnALevel.add(healthpack);*/
+				objectsOnALevel.stream().map(h ->new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
 			}
-			if (healthpacks != null)
-				healthpacks.put(i, objectsOnALevel);
-		}*/
-		ArrayList<HealthEntity> objectsOnALevel = new ArrayList<HealthEntity>();
-		for(int i = 0; i < MAX_LEVELS; i++) {
-			IntStream.range(0, MINES_ON_LEVEL).mapToObj(h -> new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))).forEach(health -> {
-							objectsOnALevel.add(health);
-						});
+			/*if (healthpacks != null)
+				healthpacks.put(i, objectsOnALevel);*/
+			objectsOnALevel.removeIf(h -> h == null);
+			healthpacks.put(i, objectsOnALevel);
 		}
 		return healthpack;
 	}
 
 	public static EnemyEntity initEnemies(MySprite enemyTexture) {
 		Random r = new Random();
-		/*for (int i = 0; i < MAX_LEVELS; i++) {
+		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
 			for (int j = 0; j < ENEMIES_ON_LEVEL; j++) {
-				enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
+				/*enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
-				objectsOnALevel.add(enemy);
+				objectsOnALevel.add(enemy);*/
+				objectsOnALevel.stream().map( e -> new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight())));
 			}
-			if (enemies != null)
-				enemies.put(i, objectsOnALevel);
-		}*/
-		for(int i = 0; i < MAX_LEVELS; i++) {
-			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
-			IntStream.range(0, ENEMIES_ON_LEVEL).mapToObj(e -> new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
-					r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()))).forEach(enemy -> {
-						objectsOnALevel.add(enemy);
-					});
+			/*if (enemies != null)
+				enemies.put(i, objectsOnALevel);*/
+			objectsOnALevel.removeIf(e -> e == null);
+			enemies.put(i, objectsOnALevel);
+			
 		}
 		return enemy;
 	}

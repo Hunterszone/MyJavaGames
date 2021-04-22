@@ -23,8 +23,7 @@ public class EnemyEntity extends Entity {
 			if (hero.intersects(enemy))
 				return true;
 		}
-		//Added else if instead of just if to perhaps speed up this check process
-		else if (other instanceof Crosshair) {
+		if (other instanceof Crosshair) {
 			enemy.setBounds(x, y, sprite.getWidth(), sprite.getHeight());
 			crosshair.setBounds(other.x, other.y, other.sprite.getWidth(), other.sprite.getHeight());
 			if (crosshair.intersects(enemy))
@@ -39,7 +38,7 @@ public class EnemyEntity extends Entity {
 			System.out.println("Hero intersects EnemyEntity");
 			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
 		}
-		else if (other instanceof Crosshair) {
+		if (other instanceof Crosshair) {
 			System.out.println("Crosshair intersects EnemyEntity");
 			return Game.notifyCrosshairUsed(new Crosshair(sprite, x, y), other);
 		}
