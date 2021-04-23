@@ -252,178 +252,6 @@ public class Board extends JPanel {
 		drawScore(g);
 	}
 
-	class TAdapter extends KeyAdapter {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-
-			if (completed) {
-				return;
-			}
-
-			int key = e.getKeyCode();
-
-			if (key == KeyEvent.VK_H) {
-				if (help == false) {
-					help = true;
-					if (help == true) {
-						Collections.shuffle(LevelsBgsEngine.levels); // changes
-																		// order of
-																		// levels
-						Collections.shuffle(LevelsBgsEngine.backgrounds); // changes
-																			// order
-																			// of
-																			// bgs
-						LevelsBgsEngine.levels.add(shuffleString(LevelsBgsEngine.levels.get(levelNum))); // adds
-						// random
-						// levels
-						// to
-						// levels-ArrayList
-					}
-				} else {
-					help = false;
-				}
-				// levelNum++;
-			}
-
-			// Cut some trees
-			if (key == KeyEvent.VK_C) {
-				myScore-=100;
-				for (int i = 0; i <= walls.size(); i++) {
-					walls.remove(walls.get(i));
-				}
-			}
-
-			if (key == KeyEvent.VK_LEFT) {
-				if (checkWallCollision(squirrel, LEFT_COLLISION)) {
-					LoadSounds.NEGATIVE.play();
-					if(e.isConsumed()) {
-						LoadSounds.NEGATIVE.stop();	
-					}
-					return;
-				}
-
-				if (checkWaterCollision(squirrel, LEFT_COLLISION)) {
-					LoadSounds.DEAD.play();
-					restartLevel();
-					return;
-				}
-
-				if (checkBagCollision(LEFT_COLLISION)) {
-					LoadSounds.BOING.play();
-					return;
-				}
-
-				squirrel.move(-SPACE, 0);
-				myScore--;
-				LoadSounds.MOVE.play();
-
-			} else if (key == KeyEvent.VK_RIGHT) {
-
-				if (checkWallCollision(squirrel, RIGHT_COLLISION)) {
-					LoadSounds.NEGATIVE.play();
-					if(e.isConsumed()) {
-						LoadSounds.NEGATIVE.stop();	
-					}
-					return;
-				}
-
-				if (checkWaterCollision(squirrel, RIGHT_COLLISION)) {
-					LoadSounds.DEAD.play();
-					restartLevel();
-					return;
-				}
-
-				if (checkBagCollision(RIGHT_COLLISION)) {
-					LoadSounds.BOING.play();
-					return;
-				}
-
-				squirrel.move(SPACE, 0);
-				myScore--;
-				LoadSounds.MOVE.play();
-
-			} else if (key == KeyEvent.VK_UP) {
-
-				if (checkWallCollision(squirrel, TOP_COLLISION)) {
-					LoadSounds.NEGATIVE.play();
-					if(e.isConsumed()) {
-						LoadSounds.NEGATIVE.stop();	
-					}
-					return;
-				}
-
-				if (checkWaterCollision(squirrel, TOP_COLLISION)) {
-					LoadSounds.DEAD.play();
-					restartLevel();
-					return;
-				}
-
-				if (checkBagCollision(TOP_COLLISION)) {
-					LoadSounds.BOING.play();
-					return;
-				}
-
-				squirrel.move(0, -SPACE);
-				myScore--;
-				LoadSounds.MOVE.play();
-
-			} else if (key == KeyEvent.VK_DOWN) {
-
-				if (checkWallCollision(squirrel, BOTTOM_COLLISION)) {
-					LoadSounds.NEGATIVE.play();
-					if(e.isConsumed()) {
-						LoadSounds.NEGATIVE.stop();	
-					}
-					return;
-				}
-
-				if (checkWaterCollision(squirrel, BOTTOM_COLLISION)) {
-					LoadSounds.DEAD.play();
-					restartLevel();
-					return;
-				}
-
-				if (checkBagCollision(BOTTOM_COLLISION)) {
-					LoadSounds.BOING.play();
-					return;
-				}
-
-				squirrel.move(0, SPACE);
-				myScore--;
-				LoadSounds.MOVE.play();
-
-			} else if (key == KeyEvent.VK_R) {
-				restartLevel();
-				help = false;
-			} else if (key == KeyEvent.VK_ENTER) {
-				if (!isPressed) {
-					LevelsBgsEngine.addLevels();
-					completed = false;
-					isPressed = true;
-				} else {
-					if (isCompleted())
-						completed = true;
-					isPressed = false;
-					try {
-						Runtime.getRuntime().exec("cls");
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			} else if (key == KeyEvent.VK_S) {
-				LoadSounds.BG_MUSIC.stop();
-			} else if (key == KeyEvent.VK_A) {
-				LoadSounds.BG_MUSIC.loop();
-			} else if (key == KeyEvent.VK_ESCAPE) {
-				System.exit(0);
-			}
-
-			repaint();
-		}
-	}
-
 	private boolean checkWaterCollision(Actor actor, double type) {
 		if (type == LEFT_COLLISION) {
 
@@ -653,5 +481,177 @@ public class Board extends JPanel {
 			completed = false;
 		}
 		initWorld();
+	}
+	
+	class TAdapter extends KeyAdapter {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+
+			if (completed) {
+				return;
+			}
+
+			int key = e.getKeyCode();
+
+			if (key == KeyEvent.VK_H) {
+				if (help == false) {
+					help = true;
+					if (help == true) {
+						Collections.shuffle(LevelsBgsEngine.levels); // changes
+																		// order of
+																		// levels
+						Collections.shuffle(LevelsBgsEngine.backgrounds); // changes
+																			// order
+																			// of
+																			// bgs
+						LevelsBgsEngine.levels.add(shuffleString(LevelsBgsEngine.levels.get(levelNum))); // adds
+						// random
+						// levels
+						// to
+						// levels-ArrayList
+					}
+				} else {
+					help = false;
+				}
+				// levelNum++;
+			}
+
+			// Cut some trees
+			if (key == KeyEvent.VK_C) {
+				myScore-=100;
+				for (int i = 0; i <= walls.size(); i++) {
+					walls.remove(walls.get(i));
+				}
+			}
+
+			if (key == KeyEvent.VK_LEFT) {
+				if (checkWallCollision(squirrel, LEFT_COLLISION)) {
+					LoadSounds.NEGATIVE.play();
+					if(e.isConsumed()) {
+						LoadSounds.NEGATIVE.stop();	
+					}
+					return;
+				}
+
+				if (checkWaterCollision(squirrel, LEFT_COLLISION)) {
+					LoadSounds.DEAD.play();
+					restartLevel();
+					return;
+				}
+
+				if (checkBagCollision(LEFT_COLLISION)) {
+					LoadSounds.BOING.play();
+					return;
+				}
+
+				squirrel.move(-SPACE, 0);
+				myScore--;
+				LoadSounds.MOVE.play();
+
+			} else if (key == KeyEvent.VK_RIGHT) {
+
+				if (checkWallCollision(squirrel, RIGHT_COLLISION)) {
+					LoadSounds.NEGATIVE.play();
+					if(e.isConsumed()) {
+						LoadSounds.NEGATIVE.stop();	
+					}
+					return;
+				}
+
+				if (checkWaterCollision(squirrel, RIGHT_COLLISION)) {
+					LoadSounds.DEAD.play();
+					restartLevel();
+					return;
+				}
+
+				if (checkBagCollision(RIGHT_COLLISION)) {
+					LoadSounds.BOING.play();
+					return;
+				}
+
+				squirrel.move(SPACE, 0);
+				myScore--;
+				LoadSounds.MOVE.play();
+
+			} else if (key == KeyEvent.VK_UP) {
+
+				if (checkWallCollision(squirrel, TOP_COLLISION)) {
+					LoadSounds.NEGATIVE.play();
+					if(e.isConsumed()) {
+						LoadSounds.NEGATIVE.stop();	
+					}
+					return;
+				}
+
+				if (checkWaterCollision(squirrel, TOP_COLLISION)) {
+					LoadSounds.DEAD.play();
+					restartLevel();
+					return;
+				}
+
+				if (checkBagCollision(TOP_COLLISION)) {
+					LoadSounds.BOING.play();
+					return;
+				}
+
+				squirrel.move(0, -SPACE);
+				myScore--;
+				LoadSounds.MOVE.play();
+
+			} else if (key == KeyEvent.VK_DOWN) {
+
+				if (checkWallCollision(squirrel, BOTTOM_COLLISION)) {
+					LoadSounds.NEGATIVE.play();
+					if(e.isConsumed()) {
+						LoadSounds.NEGATIVE.stop();	
+					}
+					return;
+				}
+
+				if (checkWaterCollision(squirrel, BOTTOM_COLLISION)) {
+					LoadSounds.DEAD.play();
+					restartLevel();
+					return;
+				}
+
+				if (checkBagCollision(BOTTOM_COLLISION)) {
+					LoadSounds.BOING.play();
+					return;
+				}
+
+				squirrel.move(0, SPACE);
+				myScore--;
+				LoadSounds.MOVE.play();
+
+			} else if (key == KeyEvent.VK_R) {
+				restartLevel();
+				help = false;
+			} else if (key == KeyEvent.VK_ENTER) {
+				if (!isPressed) {
+					LevelsBgsEngine.addLevels();
+					completed = false;
+					isPressed = true;
+				} else {
+					if (isCompleted())
+						completed = true;
+					isPressed = false;
+					try {
+						Runtime.getRuntime().exec("cls");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			} else if (key == KeyEvent.VK_S) {
+				LoadSounds.BG_MUSIC.stop();
+			} else if (key == KeyEvent.VK_A) {
+				LoadSounds.BG_MUSIC.loop();
+			} else if (key == KeyEvent.VK_ESCAPE) {
+				System.exit(0);
+			}
+
+			repaint();
+		}
 	}
 }
