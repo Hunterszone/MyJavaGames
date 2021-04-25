@@ -12,7 +12,7 @@ public class UpdateLogger {
 	private FileHandler fh = null;
 
 	{
-		File f = new File("logs/");
+		final File f = new File("logs/");
 		if (!f.exists()) {
 			if (!f.mkdir()) {
 				System.out.println("Unable to create dir!!");
@@ -27,11 +27,11 @@ public class UpdateLogger {
 
 	public UpdateLogger() {
 		// just to make our log file nicer :)
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			fh = new FileHandler(System.getProperty("user.dir") + "/logs/UpdateLog_"
 					+ format.format(Calendar.getInstance().getTime()) + ".log");
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 

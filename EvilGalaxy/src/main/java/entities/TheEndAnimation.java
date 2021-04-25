@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import enums.Images;
-import game_engine.InitObjects;
 import game_engine.SpritePattern;
+import util.Constants;
 
 public class TheEndAnimation extends SpritePattern {
 	
@@ -41,7 +41,7 @@ public class TheEndAnimation extends SpritePattern {
         y -= 3;
 
         if (y < -400) {
-            y = InitObjects.B_HEIGHT;
+            y = Constants.B_HEIGHT;
         }
     }
 	
@@ -49,7 +49,7 @@ public class TheEndAnimation extends SpritePattern {
 
       y += 3;
 
-      if (y > InitObjects.B_HEIGHT) {
+      if (y > Constants.B_HEIGHT) {
           y = 0;
       }
   }

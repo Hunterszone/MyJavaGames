@@ -11,13 +11,13 @@ public class ListIPs {
 	public static void main(String []args)throws Exception	
 	{
 			// Create operating system process from arpe.bat file command
-			ProcessBuilder pb = new ProcessBuilder("arpe.bat");  
+			final ProcessBuilder pb = new ProcessBuilder("arpe.bat");  
  
 			pb.redirectErrorStream();
 			// Starts a new process using the attributes of this process builder                            
-			Process p = pb.start();				
+			final Process p = pb.start();				
 				 
-			BufferedReader br = new BufferedReader (new InputStreamReader(p.getInputStream()));
+			final BufferedReader br = new BufferedReader (new InputStreamReader(p.getInputStream()));
  
 			// String out is used to store output of this command(process)
 			String out="";                                              		    	     
@@ -29,18 +29,18 @@ public class ListIPs {
 				{
 					l = br.readLine();
 				} 
-				catch (IOException ex) {}
+				catch (final IOException ex) {}
 				if(l==null)
 					break;
 				out+="\n"+l;
 			}
  
 			// A compiled representation of a regular expression
-			Pattern pattern = 
+			final Pattern pattern = 
 Pattern.compile(".*\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"); 
  
 			/* An engine that performs match operations on a character sequence by interpreting a Pattern */
-			Matcher match = pattern.matcher(out);			
+			final Matcher match = pattern.matcher(out);			
  
 			out="";
 			String pLoc;
@@ -64,7 +64,7 @@ Pattern.compile(".*\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
 				{
 					br.close();
 				} 
-				catch (IOException ex) {}
+				catch (final IOException ex) {}
 			}
  
 			// Printing IP Addresses of all computers in our network

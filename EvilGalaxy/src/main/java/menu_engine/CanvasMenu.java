@@ -10,6 +10,7 @@ import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
 import util.Constants;
+import util.TextToSpeech;
 
 public class CanvasMenu implements Runnable {
 
@@ -21,21 +22,21 @@ public class CanvasMenu implements Runnable {
 	public static boolean isPause;
 	public static ColorSwitcher color;
 	public static ColorSwitcher color2;
+	public static StateManager State;
 
 	private MenuState mainMenu;
 	private ControlsState controlsMenu;
 	private SettingsState settingsMenu;
 	private ExtrasState extrasMenu;
 	private ManualState manualMenu;
-	
-	public static StateManager State;
 
 	public CanvasMenu() {}
 
 	private void init() {
 
-		Constants.LOAD_ASSETS.init();
-
+		Constants.LOAD_ASSETS.init(); // initialize game assets
+		TextToSpeech.initVoice(); // initialize supported voices
+		
 		display = new DisplayCanvas();
 		display.getCanvas().addMouseListener(new MouseInputHandler());
 
@@ -109,7 +110,7 @@ public class CanvasMenu implements Runnable {
 		try {
 			this.isRunning = false;
 			this.thread.join();
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

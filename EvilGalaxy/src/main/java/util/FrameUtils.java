@@ -24,7 +24,7 @@ public class FrameUtils {
         frame.setLocation(originalX, originalY);
       } 
     } 
-    catch (Exception err) { 
+    catch (final Exception err) { 
       err.printStackTrace(); 
     } 
   }

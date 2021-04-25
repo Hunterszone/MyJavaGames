@@ -36,7 +36,7 @@ public class GameScene extends JPanel implements ActionListener {
 	private final int B_HEIGHT = (int) Main.dim.getHeight();
 	private final int DOT_SIZE = 10;
 	private final int ALL_DOTS = 900; // max size of the snake
-	private final int RAND_POS = 29;
+	private final int RAND_POS = 100;
 	private final int DELAY = 140;
 
 	// These two arrays store the x and y coordinates of all joints of the snake.

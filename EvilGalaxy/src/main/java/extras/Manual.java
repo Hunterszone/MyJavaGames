@@ -23,16 +23,16 @@ import javax.swing.text.StyleContext;
 public class Manual extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPane;
 
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(() -> {
 			try {
-				Manual readme = new Manual();
+				final Manual readme = new Manual();
 				readme.setVisible(true);
 				readme.setResizable(true);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace();
 			}
 		});
@@ -51,9 +51,9 @@ public class Manual extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JScrollPane scrollPane = new JScrollPane();
+		final JScrollPane scrollPane = new JScrollPane();
 
-		JTextPane readme = new JTextPane();
+		final JTextPane readme = new JTextPane();
 
 		readme.setBackground(SystemColor.controlHighlight);
 		readme.setFont(new Font("Arial", Font.BOLD | Font.PLAIN, 18));
@@ -70,7 +70,7 @@ public class Manual extends JFrame {
 						+ "\n" + "Use 'ESC' to quit the game.",
 				Color.MAGENTA);
 
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		final GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(scrollPane,
 				GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -87,13 +87,13 @@ public class Manual extends JFrame {
 	}
 
 	private void appendToPane(JTextPane tp, String msg, Color c) {
-		StyleContext sc = StyleContext.getDefaultStyleContext();
+		final StyleContext sc = StyleContext.getDefaultStyleContext();
 		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
 
 		aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Lucida Console");
 		aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
 
-		int len = tp.getDocument().getLength();
+		final int len = tp.getDocument().getLength();
 		tp.setCaretPosition(len);
 		tp.setCharacterAttributes(aset, false);
 		tp.replaceSelection(msg);
