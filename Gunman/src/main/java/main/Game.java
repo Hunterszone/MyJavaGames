@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -57,8 +60,8 @@ public class Game {
 	private static final int AVATAR_START_POS_X = 50;
 	private static final int AVATAR_START_POS_Y = 50;
 	private static final int TREASURES_ON_LEVEL = 5;
-	private static final int HP_ON_LEVEL = 3;
-	private static final int ENEMIES_ON_LEVEL = 10;
+//	private static final int HP_ON_LEVEL = 3;
+//	private static final int ENEMIES_ON_LEVEL = 10;
 	private static final int MAX_LIVES = 3;
 	private static final int MAX_JUMP = 70;
 	private boolean isJumping = false;
@@ -206,78 +209,74 @@ public class Game {
 
 	public static TreasureEntity initTreasures(MySprite sprite) {
 		Random r = new Random();
-		treasuresOnLevel = new ArrayList<TreasureEntity>();
-		treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-				r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			for (int j = 0; j < TREASURES_ON_LEVEL; j++) {
-				treasuresOnLevel.add(treasure);
-				/*
-				 * treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH -
-				 * sprite.getWidth()), r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				 */
-				// objectsOnALevel.add(treasure);
-			}
-			treasuresOnLevel.stream()
-			.map(t -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-					r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
-			/*
-			 * if (treasures != null) treasures.put(i, objectsOnALevel);
-			 */
+			Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
+			);
+			treasuresOnLevel = treasuresStream.get().collect(Collectors.toList());
 			treasuresOnLevel.removeIf(t -> t == null);
-			treasures.put(i, treasuresOnLevel);
+			if (treasures != null)
+				treasures.put(i, treasuresOnLevel);
 		}
 		return treasure;
-
 	}
 
 	public static HealthEntity initHealth(MySprite sprite) {
 		Random r = new Random();
-		hpOnLevel = new ArrayList<HealthEntity>();
-		healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-				r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			for (int j = 0; j < HP_ON_LEVEL; j++) {
-				hpOnLevel.add(healthpack);
-				/*
-				 * healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH -
-				 * sprite.getWidth()), r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				 * objectsOnALevel.add(healthpack);
-				 */
-			}
-			hpOnLevel.stream().map(h -> new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-					r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
-			/*
-			 * if (healthpacks != null) healthpacks.put(i, objectsOnALevel);
-			 */
+			Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
+			);
+			
+			hpOnLevel = hpStream.get().collect(Collectors.toList());
+
 			hpOnLevel.removeIf(h -> h == null);
-			healthpacks.put(i, hpOnLevel);
+			if (healthpacks != null)
+				healthpacks.put(i, hpOnLevel);
 		}
 		return healthpack;
 	}
 
-	public static EnemyEntity initEnemies(MySprite enemyTexture) {
+	public static EnemyEntity initEnemies(MySprite sprite) {
 		Random r = new Random();
 		enemiesOnLevel = new ArrayList<EnemyEntity>();
-		enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
-				r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			for (int j = 0; j < ENEMIES_ON_LEVEL; j++) {
-				enemiesOnLevel.add(enemy);
-				/*
-				 * enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH -
-				 * enemyTexture.getWidth()), r.nextInt(SCREEN_SIZE_HEIGHT -
-				 * enemyTexture.getHeight())); objectsOnALevel.add(enemy);
-				 */
-			}
-			enemiesOnLevel.stream()
-			.map(e -> enemy);
-			/*
-			 * if (enemies != null) enemies.put(i, objectsOnALevel);
-			 */
+			Supplier<Stream<EnemyEntity>> enemyStream = () -> Stream.of(
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
+			);
+			
+			enemiesOnLevel = enemyStream.get().collect(Collectors.toList());
+			
 			enemiesOnLevel.removeIf(e -> e == null);
-			enemies.put(i, enemiesOnLevel);
-
+			if (enemies != null)
+				enemies.put(i, enemiesOnLevel);
 		}
 		return enemy;
 	}
