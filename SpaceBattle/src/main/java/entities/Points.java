@@ -22,11 +22,7 @@ public class Points extends GameObject {
 		}
 	}
 
-	public int incrementPoints(Integer smth) {
-		if (smth != null) {
-			points++;
-			smth = new Integer(points);
-		}
-		return smth;
+	public int incrementPoints() {
+		return points++;
 	}
 }

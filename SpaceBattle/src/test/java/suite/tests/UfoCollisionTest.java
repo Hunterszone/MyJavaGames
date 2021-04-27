@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -13,27 +14,28 @@ import javax.imageio.ImageIO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.newdawn.slick.geom.Ellipse;
+import org.newdawn.slick.Image;
 
 import entities.AdvUfo;
 import entities.ShotShip;
+import entities.Spaceship;
+import entities.Ufo;
 import game_engine.Images;
 
-public class AdvUfoTest {
+public class UfoCollisionTest {
 
+	private Ufo ufo;
 	private AdvUfo advUfo;
 	private ShotShip shotShip;
 	private int x, y;
 	private BufferedImage image;
+	private Image img;
+	private Spaceship ship;
 
 	@Before
 	public void setUp() throws Exception {
 		advUfo = new AdvUfo(x, y, image);
-	}
-
-	@Test
-	public void testAdvUfo() {
-		assertNotNull(advUfo.collisionSurface = new Ellipse(x, y, 60, 60));
+		ufo = new Ufo(x, y, img);
 	}
 
 	@Test
@@ -51,9 +53,17 @@ public class AdvUfoTest {
 	}
 
 	@Test
-	public void testCheckCollision() {
+	public void testShotShipToUfoCollision() {
 		shotShip = new ShotShip(x, y, image);
-		assertFalse(advUfo.checkCollision(shotShip));
+		assertTrue("Ufo colides with shot", ufo.checkCollision(shotShip));
+		assertFalse("AdvUfo colides with shot", advUfo.checkCollision(shotShip));
+	}
+	
+	@Test
+	public void testShipToUfoCollision() {
+		ship = new Spaceship(x, y, img);
+		assertTrue("Ufo colides with ship", ufo.checkCollision(ship));
+		assertFalse("AdvUfo colides with ship", advUfo.checkCollision(ship));
 	}
 
 	@After
