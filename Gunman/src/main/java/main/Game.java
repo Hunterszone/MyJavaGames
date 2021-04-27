@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -57,9 +60,7 @@ public class Game {
 	private static final int AVATAR_START_POS_X = 50;
 	private static final int AVATAR_START_POS_Y = 50;
 	private static final int TREASURES_ON_LEVEL = 5;
-	private static final int MINES_ON_LEVEL = 3;
-	private static final int ENEMIES_ON_LEVEL = 10;
-	private static final int MAX_LIVES = 3;
+	private static final int MAX_LIVES = 5;
 	private static final int MAX_JUMP = 70;
 	private boolean isJumping = false;
 	private static boolean isNotified = false;
@@ -73,7 +74,6 @@ public class Game {
 	private static int currentLevel = 0;
 	private static int enemiesKilled = 0;
 	private static int treasuresFound = 0;
-	private static int treasuresSum = 0;
 	private static int lives = 3;
 
 	private LevelTile levels[] = new LevelTile[MAX_LEVELS];
@@ -82,9 +82,9 @@ public class Game {
 	private static HealthEntity healthpack;
 	private static Crosshair crosshair;
 	private static TreasureEntity treasure;
-	private static HashMap<Integer, ArrayList<TreasureEntity>> treasures;
-	private static HashMap<Integer, ArrayList<HealthEntity>> healthpacks;
-	private static HashMap<Integer, ArrayList<EnemyEntity>> enemies;
+	private static HashMap<Integer, List<TreasureEntity>> treasures;
+	private static HashMap<Integer, List<HealthEntity>> healthpacks;
+	private static HashMap<Integer, List<EnemyEntity>> enemies;
 
 	// HashMap objectType;
 	private static List<HealthEntity> hpOnLevel;
@@ -159,17 +159,17 @@ public class Game {
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
 			initHero(heroSprite);
 			// Treasures
-			treasures = new HashMap<Integer, ArrayList<TreasureEntity>>();
+			treasures = new HashMap<Integer, List<TreasureEntity>>();
 			treasureSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
 			initTreasures(treasureSprite);
 			// Healthpacks
-			healthpacks = new HashMap<Integer, ArrayList<HealthEntity>>();
+			healthpacks = new HashMap<Integer, List<HealthEntity>>();
 			mineSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
 			initHealth(mineSprite);
 			// Enemies
-			enemies = new HashMap<Integer, ArrayList<EnemyEntity>>();
+			enemies = new HashMap<Integer, List<EnemyEntity>>();
 			enemyTexture = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
 			initEnemies(enemyTexture);
@@ -194,8 +194,7 @@ public class Game {
 	}
 
 	public static Crosshair initCrosshair(MySprite sprite) {
-		crosshair = new Crosshair(sprite, SCREEN_SIZE_WIDTH - sprite.getWidth(),
-				SCREEN_SIZE_HEIGHT - sprite.getHeight());
+		crosshair = new Crosshair(sprite, AVATAR_START_POS_X+200, AVATAR_START_POS_Y);
 		return crosshair;
 	}
 
@@ -207,14 +206,22 @@ public class Game {
 	public static TreasureEntity initTreasures(MySprite sprite) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			ArrayList<TreasureEntity> objectsOnALevel = new ArrayList<TreasureEntity>();
-			for (int j = 0; j < TREASURES_ON_LEVEL; j++) {
-				treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				objectsOnALevel.add(treasure);
-			}
+			Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
+			);
+			treasuresOnLevel = treasuresStream.get().collect(Collectors.toList());
+			treasuresOnLevel.removeIf(t -> t == null);
 			if (treasures != null)
-				treasures.put(i, objectsOnALevel);
+				treasures.put(i, treasuresOnLevel);
 		}
 		return treasure;
 	}
@@ -222,29 +229,46 @@ public class Game {
 	public static HealthEntity initHealth(MySprite sprite) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			ArrayList<HealthEntity> objectsOnALevel = new ArrayList<HealthEntity>();
-			for (int j = 0; j < MINES_ON_LEVEL; j++) {
-				healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				objectsOnALevel.add(healthpack);
-			}
+			Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
+			);
+			
+			hpOnLevel = hpStream.get().collect(Collectors.toList());
+
+			hpOnLevel.removeIf(h -> h == null);
 			if (healthpacks != null)
-				healthpacks.put(i, objectsOnALevel);
+				healthpacks.put(i, hpOnLevel);
 		}
 		return healthpack;
 	}
 
-	public static EnemyEntity initEnemies(MySprite enemyTexture) {
+	public static EnemyEntity initEnemies(MySprite sprite) {
 		Random r = new Random();
+		enemiesOnLevel = new ArrayList<EnemyEntity>();
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
-			for (int j = 0; j < ENEMIES_ON_LEVEL; j++) {
-				enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
-				objectsOnALevel.add(enemy);
-			}
+			Supplier<Stream<EnemyEntity>> enemyStream = () -> Stream.of(
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
+					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
+			);
+			
+			enemiesOnLevel = enemyStream.get().collect(Collectors.toList());
+			
+			enemiesOnLevel.removeIf(e -> e == null);
 			if (enemies != null)
-				enemies.put(i, objectsOnALevel);
+				enemies.put(i, enemiesOnLevel);
 		}
 		return enemy;
 	}
@@ -401,8 +425,6 @@ public class Game {
 				denied.play(1, 0.2f);
 				if (currentLevel + 1 < MAX_LEVELS && treasures.get(currentLevel).isEmpty()
 						&& enemies.get(currentLevel).isEmpty()) {
-					treasuresSum += treasuresFound;
-					treasuresSum /= 2;
 					treasuresFound = 0;
 					currentLevel++;
 					hero.setX(0);
@@ -467,7 +489,7 @@ public class Game {
 	private void checkForHp(HealthEntity item, HeroEntity gunman, List<HealthEntity> hpOnLevel) {
 		for (int jj = 0; jj < hpOnLevel.size(); jj++) {
 			item = hpOnLevel.get(jj);
-			if (gunman.collidesWith(item)) {
+			if (gunman.collidesWith(item) && lives < MAX_LIVES) {
 				gunman.removedByHero(item);
 				lives++;
 				healthy.play(1, 0.2f);
@@ -481,7 +503,6 @@ public class Game {
 			if (gunman.collidesWith(item)) {
 				gunman.removedByHero(item);
 				treasuresFound++;
-				treasuresSum++;
 				collect.play(1, 0.2f);
 			}
 		}
@@ -546,9 +567,9 @@ public class Game {
 //		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
 		font.drawString(10, 10, String.format("Treasures found: %d/%d", treasuresFound, TREASURES_ON_LEVEL),
 				Color.white);
-		font.drawString(455, 10, String.format("Killed: %d", enemiesKilled, Color.white));
-		font.drawString(825, 10, String.format("Level: %d", currentLevel + 1, Color.white));
-		font.drawString(1150, 10, String.format("Lives: %d", lives, MAX_LIVES), Color.white);
+		font.drawString(455, 10, String.format("Killed: %d", enemiesKilled), Color.white);
+		font.drawString(825, 10, String.format("Level: %d/%d", currentLevel + 1, MAX_LEVELS), Color.white);
+		font.drawString(1150, 10, String.format("Lives: %d/%d", lives, MAX_LIVES), Color.white);
 //		font.drawString( SCREEN_SIZE_WIDTH-(int)(awtFont.getStringBounds(livesText, frc).getWidth())-10, 10, livesText, Color.white);
 
 	}
@@ -590,8 +611,6 @@ public class Game {
 
 	private static void gameRestart() {
 
-		System.out.println("Num of treasures: " + treasuresSum);
-
 		try {
 			HighScoreToDb.init();
 		} catch (SQLException e) {
@@ -611,7 +630,7 @@ public class Game {
 		MySprite enemiesSprite;
 
 		// Enemies
-		enemies = new HashMap<Integer, ArrayList<EnemyEntity>>();
+		enemies = new HashMap<Integer, List<EnemyEntity>>();
 		try {
 			enemiesSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
@@ -622,7 +641,7 @@ public class Game {
 		}
 
 		// Treasures
-		treasures = new HashMap<Integer, ArrayList<TreasureEntity>>();
+		treasures = new HashMap<Integer, List<TreasureEntity>>();
 		try {
 			treasureSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
@@ -633,7 +652,7 @@ public class Game {
 		}
 
 		// Mines
-		healthpacks = new HashMap<Integer, ArrayList<HealthEntity>>();
+		healthpacks = new HashMap<Integer, List<HealthEntity>>();
 		try {
 			mineSprite = new MySprite(
 					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
@@ -659,7 +678,7 @@ public class Game {
 	}
 
 	public static boolean notifyEnemyHit(Entity heroEntity, Object object) {
-		ArrayList<EnemyEntity> objectsOnLevel;
+		List<EnemyEntity> objectsOnLevel;
 		if (object instanceof HeroEntity) {
 			isNotified = true;
 			objectsOnLevel = null;
@@ -705,6 +724,6 @@ public class Game {
 	}
 
 	public static String[] getTreasuresAndKilledCount() {
-		return new String[] { Integer.toString(treasuresSum), Integer.toString(enemiesKilled) };
+		return new String[] { Integer.toString(treasuresFound), Integer.toString(enemiesKilled) };
 	}
 }
