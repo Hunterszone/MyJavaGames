@@ -38,6 +38,7 @@ public class GiftTest {
 		assertNotNull(gift.collisionSurface = new Ellipse(x, y, 60, 60));
 	}
 
+	@Test
 	public void testDraw() {
 		try {
 			assertNotNull(ImageIO.read(new FileInputStream(Images.GIFT1.getImg())));
