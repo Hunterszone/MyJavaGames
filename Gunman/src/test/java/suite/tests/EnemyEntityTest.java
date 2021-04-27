@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -19,7 +18,6 @@ import entities.HeroEntity;
 import game_engine.MySprite;
 import main.Game;
 
-@Ignore
 public class EnemyEntityTest {
 
 	private MySprite hero, crosshair, enemy;
@@ -51,18 +49,18 @@ public class EnemyEntityTest {
 	@Test
 	public void testCollidedWithHero() {
 		if (heroRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemy).collidesWith(heroEntity));
+			assertTrue(Game.initEnemies(enemy).iterator().next().collidesWith(heroEntity));
 	}
 
 	@Test
 	public void testCollidedWithCrosshair() {
 		if (crosshRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemy).collidesWith(crosshairEntity));
+			assertTrue(Game.initEnemies(enemy).iterator().next().collidesWith(crosshairEntity));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initEnemies(enemy).removedByHero(heroEntity));
+		assertTrue(Game.initEnemies(enemy).iterator().next().removedByHero(heroEntity));
 	}
 
 	@After
