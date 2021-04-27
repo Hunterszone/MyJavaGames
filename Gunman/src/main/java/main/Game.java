@@ -3,7 +3,6 @@ package main;
 import java.awt.Font;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -203,7 +202,7 @@ public class Game {
 		return hero;
 	}
 
-	public static TreasureEntity initTreasures(MySprite sprite) {
+	public static List<TreasureEntity> initTreasures(MySprite sprite) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(
@@ -223,10 +222,10 @@ public class Game {
 			if (treasures != null)
 				treasures.put(i, treasuresOnLevel);
 		}
-		return treasure;
+		return treasuresOnLevel;
 	}
 
-	public static HealthEntity initHealth(MySprite sprite) {
+	public static List<HealthEntity> initHealth(MySprite sprite) {
 		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(
@@ -244,12 +243,11 @@ public class Game {
 			if (healthpacks != null)
 				healthpacks.put(i, hpOnLevel);
 		}
-		return healthpack;
+		return hpOnLevel;
 	}
 
-	public static EnemyEntity initEnemies(MySprite sprite) {
+	public static List<EnemyEntity> initEnemies(MySprite sprite) {
 		Random r = new Random();
-		enemiesOnLevel = new ArrayList<EnemyEntity>();
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			Supplier<Stream<EnemyEntity>> enemyStream = () -> Stream.of(
 					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
@@ -270,7 +268,7 @@ public class Game {
 			if (enemies != null)
 				enemies.put(i, enemiesOnLevel);
 		}
-		return enemy;
+		return enemiesOnLevel;
 	}
 
 	private void initGL(int width, int height) {
