@@ -22,7 +22,7 @@ import entities.ShotUfo;
 import entities.Spaceship;
 import game_engine.Images;
 
-public class SpaceshipTest {
+public class ShipCollisionTest {
 
 	private Spaceship spaceship;
 	private ShotUfo shotUfo;
