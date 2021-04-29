@@ -204,11 +204,11 @@ public class Game {
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<TreasureEntity> objectsOnALevel = new ArrayList<TreasureEntity>();
 			for (int j = 0; j < TREASURES_ON_LEVEL; j++) {
-			objectsOnALevel.stream().map(t -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()), 
-												r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
-				/*treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));*/
-				//objectsOnALevel.add(treasure);
+			//objectsOnALevel.stream().map(t -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()), 
+			//									r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
+				treasure = new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
+				objectsOnALevel.add(treasure);
 			}
 			/*if (treasures != null)
 				treasures.put(i, objectsOnALevel);*/
@@ -224,11 +224,11 @@ public class Game {
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<HealthEntity> objectsOnALevel = new ArrayList<HealthEntity>();
 			for (int j = 0; j < MINES_ON_LEVEL; j++) {
-				/*healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+				healthpack = new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()));
-				objectsOnALevel.add(healthpack);*/
-				objectsOnALevel.stream().map(h ->new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
+				objectsOnALevel.add(healthpack);
+				//objectsOnALevel.stream().map(h ->new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+					//	r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
 			}
 			/*if (healthpacks != null)
 				healthpacks.put(i, objectsOnALevel);*/
@@ -243,11 +243,11 @@ public class Game {
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			ArrayList<EnemyEntity> objectsOnALevel = new ArrayList<EnemyEntity>();
 			for (int j = 0; j < ENEMIES_ON_LEVEL; j++) {
-				/*enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
+				enemy = new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight()));
-				objectsOnALevel.add(enemy);*/
-				objectsOnALevel.stream().map( e -> new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight())));
+				objectsOnALevel.add(enemy);
+				//objectsOnALevel.stream().map( e -> new EnemyEntity(enemyTexture, r.nextInt(SCREEN_SIZE_WIDTH - enemyTexture.getWidth()),
+					//	r.nextInt(SCREEN_SIZE_HEIGHT - enemyTexture.getHeight())));
 			}
 			/*if (enemies != null)
 				enemies.put(i, objectsOnALevel);*/
