@@ -3,6 +3,7 @@ package main;
 import java.awt.Font;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -59,7 +60,8 @@ public class Game {
 	private static final int AVATAR_START_POS_X = 50;
 	private static final int AVATAR_START_POS_Y = 50;
 	private static final int TREASURES_ON_LEVEL = 5;
-	private static final int MAX_LIVES = 5;
+	private static final int MAX_LIVES = 3;
+	private static final int MAX_ENEMIES = 5;
 	private static final int MAX_JUMP = 70;
 	private boolean isJumping = false;
 	private static boolean isNotified = false;
@@ -193,7 +195,7 @@ public class Game {
 	}
 
 	public static Crosshair initCrosshair(MySprite sprite) {
-		crosshair = new Crosshair(sprite, AVATAR_START_POS_X+200, AVATAR_START_POS_Y);
+		crosshair = new Crosshair(sprite, AVATAR_START_POS_X + 200, AVATAR_START_POS_Y);
 		return crosshair;
 	}
 
@@ -202,43 +204,56 @@ public class Game {
 		return hero;
 	}
 
-	public static List<TreasureEntity> initTreasures(MySprite sprite) {
+	@SuppressWarnings("unchecked")
+	private static <T> List<T> initEntitiesHelper(MySprite sprite, Entity entity) {
 		Random r = new Random();
+		if (entity instanceof TreasureEntity) {
+			List<TreasureEntity> trsOnLevel = new ArrayList<TreasureEntity>();
+			for (int i = 0; i < TREASURES_ON_LEVEL; i++) {
+				trsOnLevel.add(new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
+			}
+			return (List<T>) trsOnLevel;
+		}
+		if (entity instanceof HealthEntity) {
+			List<HealthEntity> hpOnLevel = new ArrayList<HealthEntity>();
+			for (int i = 0; i < MAX_LIVES; i++) {
+				hpOnLevel.add(new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
+			}
+			return (List<T>) hpOnLevel;
+		}
+		if (entity instanceof EnemyEntity) {
+			List<EnemyEntity> enemiesOnLevel = new ArrayList<EnemyEntity>();
+			for (int i = 0; i < MAX_ENEMIES; i++) {
+				enemiesOnLevel.add(new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
+			}
+			return (List<T>) enemiesOnLevel;
+		}
+		return new ArrayList<T>();
+	}
+
+	public static List<TreasureEntity> initTreasures(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(
-					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
-			);
+			List<TreasureEntity> trsOnLevel = initEntitiesHelper(sprite, new TreasureEntity());
+			Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(trsOnLevel.get(0), trsOnLevel.get(1),
+					trsOnLevel.get(2), trsOnLevel.get(3), trsOnLevel.get(4));
 			treasuresOnLevel = treasuresStream.get().collect(Collectors.toList());
 			treasuresOnLevel.removeIf(t -> t == null);
-			if (treasures != null)
+			if (treasures != null) {
 				treasures.put(i, treasuresOnLevel);
+			}
 		}
 		return treasuresOnLevel;
 	}
 
 	public static List<HealthEntity> initHealth(MySprite sprite) {
-		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(
-					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
-			);
-			
+			List<HealthEntity> hpsOnLevel = initEntitiesHelper(sprite, new HealthEntity());
+			Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(hpsOnLevel.get(0), hpsOnLevel.get(1),
+					hpsOnLevel.get(2));
 			hpOnLevel = hpStream.get().collect(Collectors.toList());
-
 			hpOnLevel.removeIf(h -> h == null);
 			if (healthpacks != null)
 				healthpacks.put(i, hpOnLevel);
@@ -247,23 +262,12 @@ public class Game {
 	}
 
 	public static List<EnemyEntity> initEnemies(MySprite sprite) {
-		Random r = new Random();
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			Supplier<Stream<EnemyEntity>> enemyStream = () -> Stream.of(
-					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())),
-					new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight()))
-			);
-			
+			List<EnemyEntity> enemiezOnLevel = initEntitiesHelper(sprite, new EnemyEntity());
+			Supplier<Stream<EnemyEntity>> enemyStream = () -> Stream.of(enemiezOnLevel.get(0), enemiezOnLevel.get(1),
+					enemiezOnLevel.get(2), enemiezOnLevel.get(3), enemiezOnLevel.get(4));
 			enemiesOnLevel = enemyStream.get().collect(Collectors.toList());
-			
+
 			enemiesOnLevel.removeIf(e -> e == null);
 			if (enemies != null)
 				enemies.put(i, enemiesOnLevel);
@@ -661,8 +665,8 @@ public class Game {
 		}
 	}
 
-	public static boolean notifyCrosshairUsed(Entity crossh, Object object) {
-		if (object instanceof EnemyEntity) {
+	public static boolean notifyCrosshairUsed(Entity entity) {
+		if (entity instanceof EnemyEntity) {
 			enemiesOnLevel = null;
 			isNotified = true;
 			if (enemies != null) {
@@ -675,9 +679,9 @@ public class Game {
 		return isNotified;
 	}
 
-	public static boolean notifyEnemyHit(Entity heroEntity, Object object) {
+	public static boolean notifyEnemyHit(Entity entity) {
 		List<EnemyEntity> objectsOnLevel;
-		if (object instanceof HeroEntity) {
+		if (entity instanceof HeroEntity) {
 			isNotified = true;
 			objectsOnLevel = null;
 			if (enemies != null) {
@@ -692,12 +696,12 @@ public class Game {
 		return isNotified;
 	}
 
-	public static boolean notifyTreasuresCollected(Entity heroEntity, Object object) {
-		if (object instanceof TreasureEntity) {
+	public static boolean notifyTreasuresCollected(Entity entity) {
+		if (entity instanceof TreasureEntity) {
 			isNotified = true;
 			if (treasures != null) {
 				treasuresOnLevel = treasures.get(currentLevel);
-				TreasureEntity treasure = (TreasureEntity) object;
+				TreasureEntity treasure = (TreasureEntity) entity;
 				treasure.setVisible(false);
 				treasuresOnLevel.remove(treasure);
 			}
@@ -708,12 +712,12 @@ public class Game {
 		return isNotified;
 	}
 
-	public static boolean notifyHpCollected(Entity heroEntity, Object object) {
-		if (object instanceof HealthEntity) {
+	public static boolean notifyHpCollected(Entity entity) {
+		if (entity instanceof HealthEntity) {
 			isNotified = true;
 			if (healthpacks != null) {
 				hpOnLevel = healthpacks.get(currentLevel);
-				healthpack = (HealthEntity) object;
+				healthpack = (HealthEntity) entity;
 				healthpack.setVisible(false);
 				hpOnLevel.remove(healthpack);
 			}

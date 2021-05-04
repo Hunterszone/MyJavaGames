@@ -14,9 +14,13 @@ public class TreasureEntity extends Entity {
 		super(sprite, x, y);
 	}
 
+	public TreasureEntity() {
+		super(null, 0, 0);
+	}
+
 	@Override
-	public boolean removedByHero(Entity other) {
-		return Game.notifyTreasuresCollected(new HeroEntity(sprite, x, y), other);
+	public boolean removedByHero(Entity entity) {
+		return Game.notifyTreasuresCollected(entity);
 	}
 
 	@Override

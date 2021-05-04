@@ -24,7 +24,7 @@ public class Crosshair extends Entity {
 	}
 
 	@Override
-	public boolean removedByHero(Entity other) {
-		return Game.notifyCrosshairUsed(new Crosshair(sprite, x, y), other);
+	public boolean removedByHero(Entity entity) {
+		return Game.notifyCrosshairUsed(entity);
 	}
 }

@@ -17,17 +17,17 @@ public class HeroEntity extends Entity {
 	}
 
 	@Override
-	public boolean removedByHero(Entity other) {
-		if (other instanceof HealthEntity) {
+	public boolean removedByHero(Entity entity) {
+		if (entity instanceof HealthEntity) {
 			System.out.println("Hero intersects HealthEntity");
-			return Game.notifyHpCollected(new HeroEntity(sprite, x, y), other);
+			return Game.notifyHpCollected(entity);
 		}
-		if (other instanceof TreasureEntity) {
+		if (entity instanceof TreasureEntity) {
 			System.out.println("Hero intersects TreasureEntity");
-			return Game.notifyTreasuresCollected(new HeroEntity(sprite, x, y), other);
+			return Game.notifyTreasuresCollected(entity);
 		}
-		if (other instanceof EnemyEntity)
-			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
+		if (entity instanceof EnemyEntity)
+			return Game.notifyEnemyHit(entity);
 		return false;
 	}
 
