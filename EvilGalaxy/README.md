@@ -9,7 +9,7 @@ To build the game, the following libraries (.jar) must be available for the proj
 - marytts-runtime-5.2-jar-with-dependencies
 - marytts-client-5.2-jar-with-dependencies  
 
-Menu buttons are built using https://www.photopea.com/  
+Menu buttons are created by using https://www.photopea.com/  
 
 ## HOW TO LAUNCH, USING LAUNCHER:
 
@@ -33,13 +33,15 @@ grant {
 };
 ```
 
-## HOW TO INSTALL/LAUNCH (manually):
+## HOW TO LAUNCH MANUALLY:
 
 ### *For WINDOWS users:*   
-Launch the game from the EvilGalaxy.exe WITHIN its folder or from a shortcut on your desktop. If you remove the .exe file outside the folder, the game resources won't be found, which will result in a failure to execute the game.
+Launch the game from the EvilGalaxy.exe WITHIN its folder or from a shortcut on your desktop.  
+IMPORTANT: If you remove the .exe file outside the folder, the game resources won't be found, which will result in a failure to run the game.
 
 ### *For NON-WINDOWS users:*   
-Launch the game from the EvilGalaxy.jar WITHIN its folder or from a shortcut on your desktop. If you remove the .jar file outside the folder, the game resources won't be found, which will result in a failure to execute the game.
+Launch the game from the EvilGalaxy.jar WITHIN its folder or from a shortcut on your desktop.  
+IMPORTANT: If you remove the .jar file outside the folder, the game resources won't be found, which will result in a failure to run the game.
 
 
 
