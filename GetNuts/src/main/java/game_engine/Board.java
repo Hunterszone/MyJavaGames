@@ -32,12 +32,12 @@ public class Board extends JPanel {
 	private final double RIGHT_COLLISION = 2;
 	private final double TOP_COLLISION = 3;
 	private final double BOTTOM_COLLISION = 4;
-	private ArrayList<Wall> walls = new ArrayList<Wall>();
-	private ArrayList<Water> traps = new ArrayList<Water>();
-	private ArrayList<Bridge> bridges = new ArrayList<Bridge>();
-	private ArrayList<Nut> nuts = new ArrayList<Nut>();
-	private ArrayList<Area> areas = new ArrayList<Area>();
-	private Font font = new Font("Helvetica", Font.BOLD, 24);
+	private final ArrayList<Wall> walls = new ArrayList<Wall>();
+	private final ArrayList<Water> traps = new ArrayList<Water>();
+	private final ArrayList<Bridge> bridges = new ArrayList<Bridge>();
+	private final ArrayList<Nut> nuts = new ArrayList<Nut>();
+	private final ArrayList<Area> areas = new ArrayList<Area>();
+	private final Font font = new Font("Helvetica", Font.BOLD, 24);
 	private Player squirrel;
 	private int w = (int) Main.dim.getWidth();
 	private int h = (int) Main.dim.getHeight();
@@ -54,7 +54,7 @@ public class Board extends JPanel {
 
 	public static void initVoice(String message) {
 
-		VoiceManager vm = VoiceManager.getInstance();
+		final VoiceManager vm = VoiceManager.getInstance();
 		voice = vm.getVoice(VOICENAME);
 		voice.allocate();
 		voice.speak(message);
@@ -89,10 +89,10 @@ public class Board extends JPanel {
 
 	// Shuffles the level string a.k.a random level generator:
 	public String shuffleString(String string) {
-		List<String> symbols = Arrays.asList(string.split("\\r?\\n"));
+		final List<String> symbols = Arrays.asList(string.split("\\r?\\n"));
 		Collections.shuffle(symbols);
 		String shuffled = "";
-		for (String symbol : symbols) {
+		for (final String symbol : symbols) {
 			shuffled += (symbol + "\n");
 			shuffled.trim();
 		}
@@ -114,7 +114,7 @@ public class Board extends JPanel {
 
 		for (int i = 0; i < LevelsBgsEngine.levels.get(levelNum).length(); i++) {
 
-			char item = LevelsBgsEngine.levels.get(levelNum).charAt(i);
+			final char item = LevelsBgsEngine.levels.get(levelNum).charAt(i);
 
 			if (item == '\n') {
 				y += SPACE;
@@ -172,7 +172,7 @@ public class Board extends JPanel {
 			}
 		}
 
-		ArrayList<Actor> world = new ArrayList<Actor>();
+		final ArrayList<Actor> world = new ArrayList<Actor>();
 		world.addAll(walls);
 		world.addAll(traps);
 		world.addAll(bridges);
@@ -182,7 +182,7 @@ public class Board extends JPanel {
 
 		for (int i = 0; i < world.size(); i++) {
 
-			Actor item = world.get(i);
+			final Actor item = world.get(i);
 
 			if ((item instanceof Player) || (item instanceof Nut)) {
 				g.drawImage(item.getImage(), item.x() + 2, item.y() + 2, this);
@@ -256,7 +256,7 @@ public class Board extends JPanel {
 		if (type == LEFT_COLLISION) {
 
 			for (int i = 0; i < traps.size(); i++) {
-				Water terrain = traps.get(i);
+				final Water terrain = traps.get(i);
 				if (actor.isLeftCollision(terrain)) {
 					return true;
 				}
@@ -266,7 +266,7 @@ public class Board extends JPanel {
 		} else if (type == RIGHT_COLLISION) {
 
 			for (int i = 0; i < traps.size(); i++) {
-				Water terrain = traps.get(i);
+				final Water terrain = traps.get(i);
 				if (actor.isRightCollision(terrain)) {
 					return true;
 				}
@@ -276,7 +276,7 @@ public class Board extends JPanel {
 		} else if (type == TOP_COLLISION) {
 
 			for (int i = 0; i < traps.size(); i++) {
-				Water terrain = traps.get(i);
+				final Water terrain = traps.get(i);
 				if (actor.isTopCollision(terrain)) {
 					return true;
 				}
@@ -286,7 +286,7 @@ public class Board extends JPanel {
 		} else if (type == BOTTOM_COLLISION) {
 
 			for (int i = 0; i < traps.size(); i++) {
-				Water terrain = traps.get(i);
+				final Water terrain = traps.get(i);
 				if (actor.isBottomCollision(terrain)) {
 					return true;
 				}
@@ -302,7 +302,7 @@ public class Board extends JPanel {
 		if (type == LEFT_COLLISION) {
 
 			for (int i = 0; i < walls.size(); i++) {
-				Wall wall = walls.get(i);
+				final Wall wall = walls.get(i);
 				if (actor.isLeftCollision(wall)) {
 					return true;
 				}
@@ -312,7 +312,7 @@ public class Board extends JPanel {
 		} else if (type == RIGHT_COLLISION) {
 
 			for (int i = 0; i < walls.size(); i++) {
-				Wall wall = walls.get(i);
+				final Wall wall = walls.get(i);
 				if (actor.isRightCollision(wall)) {
 					return true;
 				}
@@ -322,7 +322,7 @@ public class Board extends JPanel {
 		} else if (type == TOP_COLLISION) {
 
 			for (int i = 0; i < walls.size(); i++) {
-				Wall wall = walls.get(i);
+				final Wall wall = walls.get(i);
 				if (actor.isTopCollision(wall)) {
 					return true;
 				}
@@ -332,7 +332,7 @@ public class Board extends JPanel {
 		} else if (type == BOTTOM_COLLISION) {
 
 			for (int i = 0; i < walls.size(); i++) {
-				Wall wall = walls.get(i);
+				final Wall wall = walls.get(i);
 				if (actor.isBottomCollision(wall)) {
 					return true;
 				}
@@ -348,11 +348,11 @@ public class Board extends JPanel {
 
 			for (int i = 0; i < nuts.size(); i++) {
 
-				Nut bag = nuts.get(i);
+				final Nut bag = nuts.get(i);
 				if (squirrel.isLeftCollision(bag)) {
 
 					for (int j = 0; j < nuts.size(); j++) {
-						Nut item = nuts.get(j);
+						final Nut item = nuts.get(j);
 						if (!bag.equals(item)) {
 							if (bag.isLeftCollision(item)) {
 								return true;
@@ -372,11 +372,11 @@ public class Board extends JPanel {
 
 			for (int i = 0; i < nuts.size(); i++) {
 
-				Nut nut = nuts.get(i);
+				final Nut nut = nuts.get(i);
 				if (squirrel.isRightCollision(nut)) {
 					for (int j = 0; j < nuts.size(); j++) {
 
-						Nut item = nuts.get(j);
+						final Nut item = nuts.get(j);
 						if (!nut.equals(item)) {
 							if (nut.isRightCollision(item)) {
 								return true;
@@ -396,11 +396,11 @@ public class Board extends JPanel {
 
 			for (int i = 0; i < nuts.size(); i++) {
 
-				Nut bag = nuts.get(i);
+				final Nut bag = nuts.get(i);
 				if (squirrel.isTopCollision(bag)) {
 					for (int j = 0; j < nuts.size(); j++) {
 
-						Nut item = nuts.get(j);
+						final Nut item = nuts.get(j);
 						if (!bag.equals(item)) {
 							if (bag.isTopCollision(item)) {
 								return true;
@@ -421,11 +421,11 @@ public class Board extends JPanel {
 
 			for (int i = 0; i < nuts.size(); i++) {
 
-				Nut bag = nuts.get(i);
+				final Nut bag = nuts.get(i);
 				if (squirrel.isBottomCollision(bag)) {
 					for (int j = 0; j < nuts.size(); j++) {
 
-						Nut item = nuts.get(j);
+						final Nut item = nuts.get(j);
 						if (!bag.equals(item)) {
 							if (bag.isBottomCollision(item)) {
 								return true;
@@ -446,13 +446,13 @@ public class Board extends JPanel {
 
 	public boolean isCompleted() {
 
-		int num = nuts.size();
+		final int num = nuts.size();
 		int compl = 0;
 
 		for (int i = 0; i < num; i++) {
-			Nut bag = nuts.get(i);
+			final Nut bag = nuts.get(i);
 			for (int j = 0; j < num; j++) {
-				Area area = areas.get(j);
+				final Area area = areas.get(j);
 				if (bag.x() == area.x() && bag.y() == area.y()) {
 					compl += 1;
 				}
@@ -492,7 +492,7 @@ public class Board extends JPanel {
 				return;
 			}
 
-			int key = e.getKeyCode();
+			final int key = e.getKeyCode();
 
 			if (key == KeyEvent.VK_H) {
 				if (help == false) {
@@ -638,7 +638,7 @@ public class Board extends JPanel {
 					isPressed = false;
 					try {
 						Runtime.getRuntime().exec("cls");
-					} catch (IOException e1) {
+					} catch (final IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
