@@ -33,7 +33,7 @@ public class LoadResourcesTest {
 				assertNotNull(LevelsBgsEngine.readFile(path, encoding));
 			}
 			if (Files.exists(Paths.get("backgrounds"))) {
-				sourceImage = new File("someFile");
+				sourceImage = new File(Paths.get("backgrounds").toString());
 				assertTrue("File " + sourceImage.toString() + " does not exist",
 						Files.exists(Paths.get(sourceImage.toString())));
 				assertFalse("Image name is empty",
