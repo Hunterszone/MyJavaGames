@@ -11,6 +11,7 @@ import enums.Images;
 import items.VolBtn;
 import main.Main;
 import util.ConsoleContent;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -37,19 +38,19 @@ public class Difficulty {
 		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 		PlayerShip.playerOne.isVisible();
-		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
+		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
+		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
-		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, InitObjects.BUNKER_Y);
+		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, InitObjects.VOLBUT_Y);
+		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -60,11 +61,11 @@ public class Difficulty {
 		InitObjects.timerHard.stop();
 		InitObjects.timerMedium.stop();
 		InitObjects.timerEasy.restart();
-		
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	public static void easy() {
@@ -80,8 +81,8 @@ public class Difficulty {
 		TextToSpeech.finMusicIsPlayed = false;
 
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) Main.dim.getWidth();
-		int height = (int) Main.dim.getHeight();
+		final int width = (int) Main.dim.getWidth();
+		final int height = (int) Main.dim.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
@@ -89,19 +90,19 @@ public class Difficulty {
 		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 		PlayerShip.playerOne.isVisible();
-		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
+		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
+		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnEasy();
 
-		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, InitObjects.BUNKER_Y);
+		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, InitObjects.VOLBUT_Y);
+		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -112,11 +113,11 @@ public class Difficulty {
 		InitObjects.timerMedium.stop();
 		InitObjects.timerHard.stop();
 		InitObjects.timerEasy.restart();
-		
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	public static void medium() {
@@ -132,8 +133,8 @@ public class Difficulty {
 		TextToSpeech.finMusicIsPlayed = false;
 
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) Main.dim.getWidth();
-		int height = (int) Main.dim.getHeight();
+		final int width = (int) Main.dim.getWidth();
+		final int height = (int) Main.dim.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
@@ -141,19 +142,19 @@ public class Difficulty {
 		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 		PlayerShip.playerOne.isVisible();
-		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
+		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
+		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnMedium();
 
-		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, InitObjects.BUNKER_Y);
+		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, InitObjects.VOLBUT_Y);
+		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -165,10 +166,10 @@ public class Difficulty {
 		InitObjects.timerHard.stop();
 		InitObjects.timerMedium.restart();
 
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 
 	public static void hard() {
@@ -184,8 +185,8 @@ public class Difficulty {
 		TextToSpeech.finMusicIsPlayed = false;
 
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) Main.dim.getWidth();
-		int height = (int) Main.dim.getHeight();
+		final int width = (int) Main.dim.getWidth();
+		final int height = (int) Main.dim.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
 		DrawScene.bg1 = DrawScene.bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
@@ -193,19 +194,19 @@ public class Difficulty {
 		UpdateObjects.lifePlayerShip = 3;
 		UpdateObjects.lifeBunker = 3;
 
-		PlayerShip.playerOne = new PlayerShip(InitObjects.MYSHIP_X, InitObjects.MYSHIP_Y);
+		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 		PlayerShip.playerOne.isVisible();
-		Crosshair.crosshair = new Crosshair(InitObjects.MYCROSSHAIR_X, InitObjects.MYCROSSHAIR_Y);
+		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
 		Crosshair.crosshair.isVisible();
 
-		EvilHead.evilHead = new EvilHead(InitObjects.EVILHEAD_X, InitObjects.EVILHEAD_Y);
+		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 		EvilHead.evilHead.isVisible();
 		EvilHead.evilHead.AIOnHard();
 
-		Bunker.bunkerObj = new Bunker(InitObjects.BUNKER_X, InitObjects.BUNKER_Y);
+		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
 		Bunker.bunkerObj.isVisible();
 
-		VolBtn.volButt = new VolBtn(InitObjects.VOLBUT_X, InitObjects.VOLBUT_Y);
+		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
 		VolBtn.volButt.isVisible();
 
 		InitObjects.initAliens();
@@ -217,9 +218,9 @@ public class Difficulty {
 		InitObjects.timerMedium.stop();
 		InitObjects.timerHard.restart();
 
-		LoadSounds.gameWon.play();
-		LoadSounds.gameLost.stop();
-		LoadSounds.bgMusic.loop();
-		LoadSounds.roar.stop();
+		LoadSounds.HIGHSC.play();
+		LoadSounds.FIN.stop();
+		LoadSounds.BG_MUSIC.loop();
+		LoadSounds.TAUNT.stop();
 	}
 }

@@ -84,7 +84,7 @@ public class Crosshair extends SpritePattern {
 
 	public void keyPressed(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = -7.5;
@@ -109,7 +109,7 @@ public class Crosshair extends SpritePattern {
 
 	public void keyReleased(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = 0;

@@ -43,16 +43,16 @@ public class Controls extends JFrame implements KeyListener {
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
-			LoadSounds.bgMusic.stop();
+			LoadSounds.BG_MUSIC.stop();
 		}
 
 		if (key == KeyEvent.VK_A) {
 			if (InitObjects.timerEasy.isRunning() || InitObjects.timerHard.isRunning()
 					|| InitObjects.timerMedium.isRunning()) {
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_MUSIC.loop();
 			}
 		}
 
@@ -60,8 +60,8 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
-			LoadSounds.bgMusic.stop();
-			LoadSounds.roar.stop();
+			LoadSounds.BG_MUSIC.stop();
+			LoadSounds.TAUNT.stop();
 		}
 
 		if (InitObjects.ingame == true
@@ -77,7 +77,7 @@ public class Controls extends JFrame implements KeyListener {
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			PlayerShip.playerOne.gunLocked();
+			PlayerShip.playerOne.gunLocked(e);
 		}
 
 		if (InitObjects.ingame == true
@@ -95,24 +95,24 @@ public class Controls extends JFrame implements KeyListener {
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			PlayerShip.playerOne.gunLocked();
+			PlayerShip.playerOne.gunLocked(e);
 		}
 
 		if (key == KeyEvent.VK_1) {
-			TextToSpeech.initVoice("Loading level 1...");
+			TextToSpeech.playVoice("Loading level 1...");
 			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_2) {
-			TextToSpeech.initVoice("Loading level 2...");
+			TextToSpeech.playVoice("Loading level 2...");
 			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 			Alien.aliens.clear();
 		}
 
 		if (key == KeyEvent.VK_3) {
-			TextToSpeech.initVoice("Loading level 3...");
+			TextToSpeech.playVoice("Loading level 3...");
 			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 			Alien.aliens.clear();
@@ -120,7 +120,7 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_4) {
-			TextToSpeech.initVoice("Loading level 4...");
+			TextToSpeech.playVoice("Loading level 4...");
 			TextToSpeech.voiceInterruptor = true;
 			Difficulty.restart();
 			Alien.aliens.clear();
@@ -133,7 +133,7 @@ public class Controls extends JFrame implements KeyListener {
 			isMPressed = false;
 			isHPressed = false;
 			if (InitObjects.ingame == false) {
-				TextToSpeech.initVoice("Loading level 1...");
+				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
 			}
 			Difficulty.restart();
@@ -147,14 +147,14 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
-					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.playVoice("Loading level 1...");
 					TextToSpeech.voiceInterruptor = true;
 				}
 				Difficulty.easy();
@@ -170,14 +170,14 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
-					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.playVoice("Loading level 1...");
 					TextToSpeech.voiceInterruptor = true;
 				}
 				Difficulty.medium();
@@ -193,14 +193,14 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 			if (!InitObjects.ingame) {
 				if (InitObjects.ingame == false) {
-					TextToSpeech.initVoice("Loading level 1...");
+					TextToSpeech.playVoice("Loading level 1...");
 					TextToSpeech.voiceInterruptor = true;
 				}
 				Difficulty.hard();
@@ -215,36 +215,30 @@ public class Controls extends JFrame implements KeyListener {
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
-			LoadSounds.bgMusic.loop();
+			LoadSounds.BG_MUSIC.loop();
 
 			if (Alien.aliens.isEmpty()) {
-				LoadSounds.roar.loop();
+				LoadSounds.TAUNT.loop();
 			}
 		}
 
 		if (key == KeyEvent.VK_G) {
 
 			if (!ConsoleContent.god) {
-
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = true;
 					UpdateObjects.lifePlayerShip = -999;
-					TextToSpeech.initVoice("GODLIKE!");
+					TextToSpeech.playVoice("GODLIKE!");
 					return;
 				}
-			}
-
-			else {
-
+			} else {
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = false;
 					UpdateObjects.lifePlayerShip = 3;
-					TextToSpeech.initVoice("Healthy!");
+					TextToSpeech.playVoice("Healthy!");
 					return;
 				}
-
 			}
-
 		}
 
 		if (((key == KeyEvent.VK_Z)
@@ -256,8 +250,8 @@ public class Controls extends JFrame implements KeyListener {
 			if (SaveSign.saveSign != null) {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
-				Random rand = new Random();
-				File file = new File("saves/save" + rand.nextInt() + ".txt");
+				final Random rand = new Random();
+				final File file = new File("saves/save" + rand.nextInt() + ".txt");
 				SaveGame.saveGameDataToFile(file);
 			}
 		} else {
@@ -273,13 +267,13 @@ public class Controls extends JFrame implements KeyListener {
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			MenuState.isOn = false;
-			LoadSounds.bgMusic.stop();
-			LoadSounds.fuse.stop();
-			LoadSounds.roar.stop();
+			LoadSounds.BG_MUSIC.stop();
+			LoadSounds.HIT.stop();
+			LoadSounds.TAUNT.stop();
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.stop();
-			TextToSpeech.initVoice("Loading main menu...");
+			TextToSpeech.playVoice("Loading main menu...");
 			TextToSpeech.voiceInterruptor = true;
 			if (AstronautAnimation.astronautAnim != null)
 				AstronautAnimation.astronautAnim = null;
@@ -305,7 +299,7 @@ public class Controls extends JFrame implements KeyListener {
 				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
 			MenuState.isOn = true;
-			CanvasMenu engine = new CanvasMenu();
+			final CanvasMenu engine = new CanvasMenu();
 			engine.start();
 		}
 

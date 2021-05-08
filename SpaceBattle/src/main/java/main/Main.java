@@ -228,6 +228,10 @@ public class Main extends BasicGame {
 				}
 
 			}
+			
+			if (ufo1.checkCollision(spaceship) || ufo2.checkCollision(spaceship)) {
+				deadShipByUfo(container);
+			}
 
 			for (int i = 0; i < shipbullets.size(); i++) {
 				ShotShip shot = shipbullets.get(i);
@@ -253,7 +257,7 @@ public class Main extends BasicGame {
 				ShotUfo shot = ufobullets.get(i);
 				shot.update(delta);
 				if (spaceship.checkCollision(shot)) {
-					deadShipByUfo(container, shot);
+					deadShipByUfoShot(container, shot);
 				}
 			}
 
@@ -416,9 +420,14 @@ public class Main extends BasicGame {
 		gameOver.setGameOver(true);
 	}
 
-	private void deadShipByUfo(GameContainer container, ShotUfo shot) throws SlickException {
+	private void deadShipByUfoShot(GameContainer container, ShotUfo shot) throws SlickException {
 		ufobullets.remove(shot);
 		shot.disappear();
+		soundExplosion.play();
+		gameOver.setGameOver(true);
+	}
+	
+	private void deadShipByUfo(GameContainer container) throws SlickException {
 		soundExplosion.play();
 		gameOver.setGameOver(true);
 	}

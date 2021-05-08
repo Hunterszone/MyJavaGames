@@ -24,23 +24,17 @@ public class PlasmaBall extends SpritePattern {
 	}
 
 	public void evilShot() {
-
 		x -= EVILGUN_SPEED_X;
-
 	}
 
 	public void evilShotDiagUp() {
-
 		x -= EVILGUN_SPEED_X;
 		y -= EVILGUN_SPEED_Y;
-
 	}
 
 	public void evilShotDiagDown() {
-
 		x -= EVILGUN_SPEED_X;
 		y += EVILGUN_SPEED_Y;
-
 	}
 
 }

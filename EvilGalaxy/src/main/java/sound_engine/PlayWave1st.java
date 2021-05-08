@@ -14,10 +14,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class PlayWave1st extends Thread {
 
-	private String filename;
+	private final String filename;
 	private File soundFile;
 
-	private Position curPosition;
+	private final Position curPosition;
 
 	private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
 
@@ -52,31 +52,31 @@ public class PlayWave1st extends Thread {
 		AudioInputStream audioInputStream = null;
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-		} catch (UnsupportedAudioFileException e1) {
+		} catch (final UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 			return;
-		} catch (IOException e1) {
+		} catch (final IOException e1) {
 			e1.printStackTrace();
 			return;
 		}
 
-		AudioFormat format = audioInputStream.getFormat();
+		final AudioFormat format = audioInputStream.getFormat();
 		SourceDataLine auline = null;
-		DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+		final DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 
 		try {
 			auline = (SourceDataLine) AudioSystem.getLine(info);
 			auline.open(format);
-		} catch (LineUnavailableException e) {
+		} catch (final LineUnavailableException e) {
 			e.printStackTrace();
 			return;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return;
 		}
 
 		if (auline.isControlSupported(FloatControl.Type.PAN)) {
-			FloatControl pan = (FloatControl) auline.getControl(FloatControl.Type.PAN);
+			final FloatControl pan = (FloatControl) auline.getControl(FloatControl.Type.PAN);
 			if (curPosition == Position.RIGHT)
 				pan.setValue(1.0f);
 			else if (curPosition == Position.LEFT)
@@ -85,7 +85,7 @@ public class PlayWave1st extends Thread {
 
 		auline.start();
 		int nBytesRead = 0;
-		byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+		final byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
 
 		try {
 			while (nBytesRead != -1) {
@@ -93,7 +93,7 @@ public class PlayWave1st extends Thread {
 				if (nBytesRead >= 0)
 					auline.write(abData, 0, nBytesRead);
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		} finally {

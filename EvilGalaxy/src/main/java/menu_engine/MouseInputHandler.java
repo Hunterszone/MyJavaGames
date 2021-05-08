@@ -36,21 +36,19 @@ import util.TextToSpeech;
 public class MouseInputHandler implements MouseListener {
 
 	public static Main main;
-	private String soundName = SoundEffects.CLICK.getSound();
-	private String forbidden = SoundEffects.FORBIDDEN.getSound();
+	private final String soundName = SoundEffects.CLICK.getSound();
+	private final String forbidden = SoundEffects.FORBIDDEN.getSound();
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 
-		int mouseX = e.getX();
-		int mouseY = e.getY();
+		final int mouseX = e.getX();
+		final int mouseY = e.getY();
 
 		if (MenuState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
-					TextToSpeech.initVoice("Loading level 1...");
-					TextToSpeech.voiceInterruptor = true;
-					LoadSounds.menuMusic.stop();
+					LoadSounds.MENU_MUSIC.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
 					UpdateObjects.lifePlayerShip = 3;
@@ -66,6 +64,8 @@ public class MouseInputHandler implements MouseListener {
 						});
 					}
 					MenuState.isOn = true;
+					TextToSpeech.voiceInterruptor = true;
+					TextToSpeech.playVoice("Loading level 1...");
 				}
 				if (mouseY >= 215 && mouseY <= 265) {
 					new PlayWave1st(soundName).start();
@@ -145,7 +145,7 @@ public class MouseInputHandler implements MouseListener {
 		if (ExtrasState.isOn) {
 			if (mouseX >= 430 && mouseX <= 770) {
 				if (mouseY >= 150 && mouseY <= 200) {
-					LoadSounds.menuMusic.stop();
+					LoadSounds.MENU_MUSIC.stop();
 					new PlayWave1st(soundName).start();
 					MenuState.isOn = false;
 					DisplayCanvas.frame.remove(DisplayCanvas.canvas);
@@ -157,9 +157,9 @@ public class MouseInputHandler implements MouseListener {
 					new PlayWave1st(soundName).start();
 					try {
 						Desktop.getDesktop().browse(new URI("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy"));
-					} catch (IOException e1) {
+					} catch (final IOException e1) {
 						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
+					} catch (final URISyntaxException e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -167,9 +167,9 @@ public class MouseInputHandler implements MouseListener {
 					new PlayWave1st(soundName).start();
 					try {
 						Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
-					} catch (IOException e1) {
+					} catch (final IOException e1) {
 						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
+					} catch (final URISyntaxException e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -204,7 +204,7 @@ public class MouseInputHandler implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Point point = e.getPoint();
+		final Point point = e.getPoint();
 		if ((CanvasMenu.State.getState() == StateManager.STATES.SETTINGS)
 				&& (point.getX() >= 790 && point.getX() <= 790 + Constants.LOAD_ASSETS.myShip.getWidth(null))) {
 			if (point.getY() >= 280 && point.getY() <= 280 + Constants.LOAD_ASSETS.myShip.getHeight(null)) {
@@ -236,7 +236,7 @@ public class MouseInputHandler implements MouseListener {
 				&& (point.getX() >= 1100 && point.getX() <= 1100 + Constants.LOAD_ASSETS.volume.getWidth(null))) {
 			if ((point.getY() >= 32 && point.getY() <= 32 + Constants.LOAD_ASSETS.volume.getHeight(null))) {
 				new PlayWave1st(soundName).start();
-				LoadSounds.menuMusic.stop();
+				LoadSounds.MENU_MUSIC.stop();
 			}
 		} else {
 			if (!(point.getY() >= 115 && point.getY() <= 165) && 
@@ -250,7 +250,7 @@ public class MouseInputHandler implements MouseListener {
 							&& point.getY() <= 380 + Constants.LOAD_ASSETS.evilHead.getHeight(null))
 					&& !(ManualState.isOn && point.getY() >= 475
 							&& point.getY() <= 475 + Constants.LOAD_ASSETS.manual.getHeight(null)))
-				LoadSounds.menuMusic.loop();
+				LoadSounds.MENU_MUSIC.loop();
 		}
 	}
 

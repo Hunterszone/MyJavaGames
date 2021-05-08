@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.awt.*;
 
 public class ColorSwitcher {
-    private ArrayList<Color> colorsList;
+    private final ArrayList<Color> colorsList;
     private int currentColor;
 
     public ColorSwitcher() {
@@ -44,7 +44,7 @@ public class ColorSwitcher {
     }
 
     private boolean equalColors(Color otherColor) {
-        double distance = (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) * (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) +
+        final double distance = (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) * (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) +
                 (otherColor.getGreen() - this.colorsList.get(currentColor).getGreen())*(otherColor.getGreen() - this.colorsList.get(currentColor).getGreen()) +
                 (otherColor.getBlue() - this.colorsList.get(currentColor).getBlue())*(otherColor.getBlue() - this.colorsList.get(currentColor).getBlue()) +
                 (otherColor.getAlpha() - this.colorsList.get(currentColor).getAlpha())*(otherColor.getAlpha() - this.colorsList.get(currentColor).getAlpha());

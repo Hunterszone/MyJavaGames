@@ -44,11 +44,11 @@ public class LoadGame {
 
 	private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
-		LoadSounds.menuMusic.stop();
+		LoadSounds.MENU_MUSIC.stop();
 		
 		try {
-			FileInputStream fileStream = new FileInputStream(loadfile);
-			ObjectInputStream objectStream = new ObjectInputStream(fileStream);
+			final FileInputStream fileStream = new FileInputStream(loadfile);
+			final ObjectInputStream objectStream = new ObjectInputStream(fileStream);
 
 			savedShip = (PlayerShip) objectStream.readObject();
 			savedHead = (EvilHead) objectStream.readObject();
@@ -79,7 +79,7 @@ public class LoadGame {
 
 			objectStream.close();
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -91,7 +91,7 @@ public class LoadGame {
 				MouseInputHandler.main = new Main();
 				try {
 					initSavedAssets();
-				} catch (MaryConfigurationException e) {
+				} catch (final MaryConfigurationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -107,7 +107,7 @@ public class LoadGame {
 
 		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -120,7 +120,7 @@ public class LoadGame {
 
 			Alien.aliens = new ArrayList<>();
 			for (int i = 0; i < 40 - Collisions.alienKilled; i++) {
-				Alien born = new Alien((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800));
+				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800));
 				Alien.aliens.add(born);
 			}
 
@@ -134,7 +134,7 @@ public class LoadGame {
 
 		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -148,7 +148,7 @@ public class LoadGame {
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
 			for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
-				Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700), (int) Math.ceil(Math.random() * 800));
+				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700), (int) Math.ceil(Math.random() * 800));
 				Dragon.dragons.add(born);
 			}
 
@@ -162,7 +162,7 @@ public class LoadGame {
 
 		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -184,7 +184,7 @@ public class LoadGame {
 
 		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -215,18 +215,18 @@ public class LoadGame {
 
 	public void openFileChooser() {
 
-		JFileChooser chooser = new JFileChooser(new File("./saves"));
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
-		int returnVal = chooser.showOpenDialog(null);
+		final JFileChooser chooser = new JFileChooser(new File("./saves"));
+		final FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
+		final int returnVal = chooser.showOpenDialog(null);
 
 		chooser.setFileFilter(filter);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				loadGameDataFromFile(chooser.getSelectedFile());
-			} catch (ClassNotFoundException e) {
+			} catch (final ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

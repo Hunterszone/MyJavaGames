@@ -10,14 +10,12 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import enums.SoundEffects;
-import items.BunkerBullet;
 import items.CanonBall;
-import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
+import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
-import sound_engine.PlayWave1st;
 import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects {
@@ -75,27 +73,31 @@ public abstract class UpdateObjects extends InitObjects {
 		}
 	}
 
+	protected void updateExplosions() {
+		explosions.removeIf(explosion -> explosion.getR() == 80);
+		explosions.forEach(explosion -> explosion.update());
+	}
+
 	private void updateMyShipMissiles() {
 
-		List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
+		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
 
 		missiles.removeIf(missile -> missile.isVisible() == false);
 
 		missiles.stream().filter(missile -> missile.isVisible()).forEach(missile -> missile.moveMissile());
-
 	}
 
 	private void updateBullets() {
 
-		List<BunkerBullet> bulletsGroupOne = Bunker.bunkerObj.getBulletsLeft();
-		List<BunkerBullet> bulletsGroupTwo = Bunker.bunkerObj.getBulletsRight();
+		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
+		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
-		if (bulletsGroupOne.removeIf(bullet -> bullet.isVisible() == false)
-				|| bulletsGroupTwo.removeIf(bullet -> bullet.isVisible() == false)) {
-			LoadSounds.fuse.stop();
+		if (Bunker.bullets.removeIf(bullet -> bullet.isVisible() == false)
+				|| Bunker.bullets2.removeIf(bullet -> bullet.isVisible() == false)) {
+			LoadSounds.HIT.stop();
 		}
 
-		bulletsGroupOne.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		Bunker.bullets.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagLeft();
 			if (PlayerShip.playerOne.x > 200) {
 				bullet.moveDiagRight();
@@ -106,7 +108,7 @@ public abstract class UpdateObjects extends InitObjects {
 			}
 		});
 
-		bulletsGroupTwo.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		Bunker.bullets2.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagRight();
 			if (PlayerShip.playerOne.x > 200) {
 				bullet.moveDiagLeft();
@@ -120,21 +122,21 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateEHPlasmaBalls() {
 
-		List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
+		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
 		plasmaBalls.removeIf(plasmaBall -> plasmaBall.isVisible() == false);
 
 		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
 			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
+				plasmaBall.evilShotDiagUp();
+				plasmaBall.evilShotDiagDown();
 				if (Gold.goldstack.isEmpty() && lifePlayerShip <= 3) {
-					plasmaBall.evilShotDiagUp();
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
 						plasmaBall.evilShot();
 					}
 				}
 				if (Gold.goldstack.size() > 0 && lifePlayerShip <= 3) {
-					plasmaBall.evilShotDiagDown();
 					if (plasmaBall.y > 768) {
 						plasmaBall.y = 768;
 						plasmaBall.evilShot();
@@ -148,20 +150,22 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateEHCanons() {
 
-		List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
+		final List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
 
 		canonballs.removeIf(canon -> canon.isVisible() == false);
 
 		canonballs.stream().filter(canon -> canon.isVisible()).forEach(canon -> {
 			if (EvilHead.evilHead.x - PlayerShip.playerOne.x > 0) {
 				canon.moveCanonLeft();
+			} else {
+				canon.moveCanonRight();
 			}
 		});
 	}
 
 	private void updateRockets() {
 
-		List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
+		final List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
 
 		rocketStack.removeIf(rocket -> rocket.isVisible() == false);
 
@@ -170,9 +174,7 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateAliens() {
 
-		if (Alien.aliens.removeIf(alien -> alien.isVisible() == false)) {
-			SoundEffects.BLOOP.getSound();
-		}
+		Alien.aliens.removeIf(alien -> alien.isVisible() == false);
 
 		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
 			if (timerHard.isRunning()) {
@@ -230,26 +232,24 @@ public abstract class UpdateObjects extends InitObjects {
 
 	private void updateGold() {
 
-		if (Gold.goldstack.removeIf(goldBar -> goldBar.isVisible() == false)) {
-			new PlayWave1st("sounds/collect.wav").start();
-		}
+		Gold.goldstack.removeIf(goldBar -> goldBar.isVisible() == false);
 
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 
 	private void updateHealth() {
-		
+
 		if (HealthPack.healthpack.removeIf(healthPack -> healthPack.isVisible() == false)) {
-			new PlayWave1st("sounds/collect.wav").start();
 			if (lifePlayerShip > 3) {
 				lifePlayerShip--;
 			}
 		}
-		
+
 		if (HealthPack.healthpack.size() < 5 && lifePlayerShip > 3) {
 			HealthPack.healthpack.add(new HealthPack(EvilHead.evilHead.x, 0));
 		}
 
-		HealthPack.healthpack.stream().filter(healthPack -> healthPack.isVisible()).forEach(healthPack -> healthPack.move());
+		HealthPack.healthpack.stream().filter(healthPack -> healthPack.isVisible())
+				.forEach(healthPack -> healthPack.move());
 	}
 }

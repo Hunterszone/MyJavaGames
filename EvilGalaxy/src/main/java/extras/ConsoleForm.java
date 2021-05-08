@@ -23,11 +23,11 @@ public final class ConsoleForm extends ConsoleContent {
 			if (ConsoleContent.console == null) {
 				ConsoleContent.console = new ConsoleForm();
 			}
-			Main ex = new Main();
+			final Main ex = new Main();
 			ex.setVisible(true);
 			try {
 				ConsoleContent.console.close();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		});
@@ -44,6 +44,7 @@ public final class ConsoleForm extends ConsoleContent {
 		frame.setVisible(true);
 
 		new AutoSuggestor(textField, frame, null, Color.WHITE.brighter(), Color.BLUE, Color.RED, 0.75f) {
+			@Override
 			protected boolean wordTyped(String typedWord) {
 				setDictionary(textField.getText());
 				return super.wordTyped(typedWord);

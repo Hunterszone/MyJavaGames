@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import entities.Alien;
 import entities.Dragon;
+import enums.Commands;
 import extras.ConsoleForm;
 import extras.Manual;
 import game_engine.Difficulty;
@@ -36,10 +37,6 @@ import menu_states.MenuState;
 
 public class ConsoleContent extends OutputStream {
 
-	// Constants
-	public static final String[] COMMANDS = { "help", "cls", "refresh", "pause", "easy", "med", "hard", "exit",
-			"voloff", "volon", "god", "dog", "stats", "restart", "level2", "level3", "level4", "save"/*, "autosave"*/ };
-
 	public static ConsoleForm console;
 	public static Manual manual;
 	public static boolean consoleON, manualON, god;
@@ -51,7 +48,7 @@ public class ConsoleContent extends OutputStream {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		JScrollPane scrollPane = new JScrollPane();
+		final JScrollPane scrollPane = new JScrollPane();
 
 		setTextField(new JTextField());
 		getTextField().setFont(getTextField().getFont().deriveFont(14f));
@@ -60,7 +57,7 @@ public class ConsoleContent extends OutputStream {
 			@Override
 			public void keyPressed(KeyEvent e) {
 
-				int key = e.getKeyCode();
+				final int key = e.getKeyCode();
 
 				if (key == KeyEvent.VK_ENTER && textArea.getText().trim().length() == 0) {
 					textArea.append(getTextField().getText().toUpperCase() + "\n");
@@ -68,7 +65,7 @@ public class ConsoleContent extends OutputStream {
 					getTextField().requestFocusInWindow();
 
 					// HELP
-					if (COMMANDS[0].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					if (Commands.HELP.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						textArea.append("********HERE IS A LIST OF ALL AVAILABLE COMMANDS:*********" + "\n"
 								+ "HELP - show this list" + "\n"
 								+ "EASY - restart/resume (if not in a game), or switch to EASY" + "\n"
@@ -84,7 +81,7 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// CLOSE CONSOLE
-					else if (COMMANDS[1].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.CLS.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						consoleON = false;
 						if(ConsoleForm.frame != null) ConsoleForm.frame.dispose();
 						ConsoleForm.frame = null;
@@ -94,11 +91,11 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// REFRESH IPs
-					else if (COMMANDS[2].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.REFRESH.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						// Create operating system process from arpe.bat file
 						// command
-						ProcessBuilder pb = new ProcessBuilder("arpe.bat");
+						final ProcessBuilder pb = new ProcessBuilder("arpe.bat");
 						String out = "";
 
 						pb.redirectErrorStream();
@@ -107,11 +104,11 @@ public class ConsoleContent extends OutputStream {
 						Process p = null;
 						try {
 							p = pb.start();
-						} catch (IOException e1) {
+						} catch (final IOException e1) {
 							e1.printStackTrace();
 						}
 
-						BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+						final BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 						// String out is used to store output of this
 						// command(process)
@@ -120,7 +117,7 @@ public class ConsoleContent extends OutputStream {
 							String l = null;
 							try {
 								l = br.readLine();
-							} catch (IOException ex) {
+							} catch (final IOException ex) {
 							}
 							if (l == null)
 								break;
@@ -128,13 +125,13 @@ public class ConsoleContent extends OutputStream {
 						}
 
 						// A compiled representation of a regular expression
-						Pattern pattern = Pattern.compile(".*\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
+						final Pattern pattern = Pattern.compile(".*\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
 
 						/*
 						 * An engine that performs match operations on a character sequence by
 						 * interpreting a Pattern
 						 */
-						Matcher match = pattern.matcher(out);
+						final Matcher match = pattern.matcher(out);
 
 						out = "";
 						String pLoc;
@@ -159,7 +156,7 @@ public class ConsoleContent extends OutputStream {
 							}
 							try {
 								br.close();
-							} catch (IOException ex) {
+							} catch (final IOException ex) {
 							}
 						}
 
@@ -170,13 +167,13 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// PAUSE
-					else if (COMMANDS[3].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.PAUSE.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true) {
 							InitObjects.timerEasy.stop();
 							InitObjects.timerMedium.stop();
 							InitObjects.timerHard.stop();
-							LoadSounds.bgMusic.stop();
-							LoadSounds.roar.stop();
+							LoadSounds.BG_MUSIC.stop();
+							LoadSounds.TAUNT.stop();
 							textArea.append("********Game was paused!*********" + "\n");
 						}
 						if (!InitObjects.ingame) {
@@ -186,13 +183,13 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// EASY
-					else if (COMMANDS[4].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.EASY.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true && !InitObjects.timerEasy.isRunning()) {
 							textArea.append("********Game switched to easy!*********" + "\n");
 							InitObjects.timerMedium.stop();
 							InitObjects.timerHard.stop();
 							InitObjects.timerEasy.start();
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							return;
 						}
 						if (InitObjects.ingame == true && InitObjects.timerEasy.isRunning() == true) {
@@ -209,13 +206,13 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// MEDIUM
-					else if (COMMANDS[5].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.MED.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true && !InitObjects.timerMedium.isRunning()) {
 							textArea.append("********Game switched to medium!*********" + "\n");
 							InitObjects.timerEasy.stop();
 							InitObjects.timerHard.stop();
 							InitObjects.timerMedium.start();
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							return;
 						}
 						if (InitObjects.ingame == true && InitObjects.timerMedium.isRunning() == true) {
@@ -231,13 +228,13 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// HARD
-					else if (COMMANDS[6].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.HARD.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true && !InitObjects.timerHard.isRunning()) {
 							textArea.append("********Game switched to hard!*********" + "\n");
 							InitObjects.timerEasy.stop();
 							InitObjects.timerMedium.stop();
 							InitObjects.timerHard.start();
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							return;
 						}
 						if (InitObjects.ingame == true && InitObjects.timerHard.isRunning() == true) {
@@ -253,12 +250,12 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// EXIT
-					else if (COMMANDS[7].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.EXIT.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 //						System.exit(0);
 						MenuState.isOn = false;
-						LoadSounds.bgMusic.stop();
-						LoadSounds.fuse.stop();
-						LoadSounds.roar.stop();
+						LoadSounds.BG_MUSIC.stop();
+						LoadSounds.HIT.stop();
+						LoadSounds.TAUNT.stop();
 						InitObjects.ingame = false;
 						if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 						MouseInputHandler.main = null;
@@ -268,10 +265,10 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// VOLUME OFF
-					else if (COMMANDS[8].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.VOLOFF.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) {
-							LoadSounds.bgMusic.stop();
+							LoadSounds.BG_MUSIC.stop();
 							textArea.append("********MUSIC IS OFF*********" + "\n");
 							return;
 						}
@@ -285,10 +282,10 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// VOLUME ON
-					else if (COMMANDS[9].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.VOLON.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) {
-							LoadSounds.bgMusic.loop();
+							LoadSounds.BG_MUSIC.loop();
 							textArea.append("********MUSIC IS ON*********" + "\n");
 							return;
 						}
@@ -301,13 +298,13 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// GODMODE ON
-					else if (COMMANDS[10].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.GOD.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip >= 3) {
 							god = true;
 							UpdateObjects.lifePlayerShip = -999;
 							textArea.append("********GODMODE ON*********" + "\n");
-							TextToSpeech.initVoice("GODLIKE!");
+							TextToSpeech.playVoice("GODLIKE!");
 							return;
 						}
 						if (InitObjects.ingame == true && UpdateObjects.lifePlayerShip < 3) {
@@ -323,13 +320,13 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// GODMODE OFF
-					else if (COMMANDS[11].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.GODOFF.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip < 3) {
 							god = false;
 							UpdateObjects.lifePlayerShip = 3;
 							textArea.append("********GODMODE OFF*********" + "\n");
-							TextToSpeech.initVoice("Healthy!");
+							TextToSpeech.playVoice("Healthy!");
 							return;
 						}
 						if (InitObjects.ingame == true && UpdateObjects.lifePlayerShip >= 3) {
@@ -345,7 +342,7 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// STATS
-					else if (COMMANDS[12].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.STATS.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if (InitObjects.ingame == true) {
 							if (Alien.aliens.size() > 0) {
 								if (InitObjects.timerEasy.isRunning() == true) {
@@ -655,7 +652,7 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// RESTART a.k.a. LEVEL 1
-					else if (COMMANDS[13].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.RESTART.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						textArea.append("********Game initialized!*********" + "\n");
 						if(MouseInputHandler.main != null) Difficulty.restart();
@@ -663,16 +660,16 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// LEVEL 2
-					else if (COMMANDS[14].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.LEVEL2.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
 							textArea.append("********Level 2 was loaded!*********" + "\n");
 
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
-							LoadSounds.roar.loop();
+							LoadSounds.TAUNT.loop();
 							if (TextToSpeech.voiceInterruptor == false) {
-								TextToSpeech.initVoice("Level 2!");
+								TextToSpeech.playVoice("Level 2!");
 								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
@@ -695,15 +692,15 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// LEVEL 3
-					else if (COMMANDS[15].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.LEVEL3.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
-							LoadSounds.roar.stop();
+							LoadSounds.TAUNT.stop();
 							if (TextToSpeech.voiceInterruptor == false) {
-								TextToSpeech.initVoice("Level 3!");
+								TextToSpeech.playVoice("Level 3!");
 								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
@@ -726,16 +723,16 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// LEVEL 4
-					else if (COMMANDS[16].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.LEVEL4.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.ingame == true) {
 							if(MouseInputHandler.main != null) Difficulty.restart();
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
-							LoadSounds.roar.stop();
+							LoadSounds.TAUNT.stop();
 							UpdateObjects.lifeBunker = 50;
 							if (TextToSpeech.voiceInterruptor == false) {
-								TextToSpeech.initVoice("Level 4!");
+								TextToSpeech.playVoice("Level 4!");
 								TextToSpeech.voiceInterruptor = true;
 								return;
 							}
@@ -758,7 +755,7 @@ public class ConsoleContent extends OutputStream {
 					}
 
 					// SAVE
-					else if (COMMANDS[17].trim().equalsIgnoreCase(textArea.getText().trim())) {
+					else if (Commands.SAVE.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						TextToSpeech.voiceInterruptor = false;
 
@@ -770,7 +767,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL1 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -788,7 +785,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL2 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -806,7 +803,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL1 = false;
 								GameMenuBar.savedOnL4 = false;
 								GameMenuBar.savedOnL3 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -823,7 +820,7 @@ public class ConsoleContent extends OutputStream {
 								GameMenuBar.savedOnL2 = false;
 								GameMenuBar.savedOnL3 = false;
 								GameMenuBar.savedOnL4 = true;
-								TextToSpeech.initVoice("Game saved!");
+								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
 								if (SaveSign.saveSign != null) {
@@ -858,7 +855,7 @@ public class ConsoleContent extends OutputStream {
 			}
 		});
 		getTextField().setColumns(10);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		final GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
 				.addComponent(getTextField(), GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE));

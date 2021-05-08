@@ -24,6 +24,7 @@ import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.LoadSounds;
 
 public class PlayerShip extends SpritePattern {
 
@@ -69,23 +70,6 @@ public class PlayerShip extends SpritePattern {
 	public Image godMode() {
 
 		imageName = Images.MYSHIPGOD.getImg();
-		loadImage(imageName);
-		getImageDimensions();
-		return loadImage(imageName);
-	}
-
-	public Image escapeForbidden() {
-
-		imageName = Images.MYSHIPESCAPE.getImg();
-		loadImage(imageName);
-		getImageDimensions();
-		return loadImage(imageName);
-
-	}
-
-	public Image shipDamaged() {
-
-		imageName = Images.MYSHIPDAMAGED.getImg();
 		loadImage(imageName);
 		getImageDimensions();
 		return loadImage(imageName);
@@ -142,15 +126,15 @@ public class PlayerShip extends SpritePattern {
 //			escapeForbidden();
 		} 
 		
-		if (x > Main.dim.getWidth() - 390) {
-			x = (int) Main.dim.getWidth() - 390;
+		if (x > Main.dim.getWidth() - 340) {
+			x = (int) Main.dim.getWidth() - 340;
 		}
 
 		if (y < 0) {
 			y = 0;
 //			escapeForbidden();
-		} else if (y > Main.dim.getHeight() - 350) {
-			y = (int) (Main.dim.getHeight() - 350);
+		} else if (y > Main.dim.getHeight() - 260) {
+			y = (int) (Main.dim.getHeight() - 260);
 //			escapeForbidden();
 		}
 	}
@@ -170,7 +154,7 @@ public class PlayerShip extends SpritePattern {
 
 	public List<ShipMissile> loadMissiles() {
 		soundName = SoundEffects.LASER.getSound();
-		missiles.add(new ShipMissile(x + width, y + height / 2));
+		missiles.add(new ShipMissile(x + width, y-15 + height / 2));
 		new PlayWave1st(soundName).start();
 		return missiles;
 	}
@@ -182,15 +166,18 @@ public class PlayerShip extends SpritePattern {
 		return rockets;
 	}
 
-	public String gunLocked() {
+	public String gunLocked(KeyEvent e) {
 		soundName = SoundEffects.DENIED.getSound();
-		new PlayWave1st(soundName).start();
+		LoadSounds.DENIED.play();
+		if(e.isConsumed()) {
+			LoadSounds.DENIED.stop();	
+		}
 		return soundName;
 	}
 
 	public void keyPressed(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT) {
 			speedX = -7.5;
@@ -215,7 +202,7 @@ public class PlayerShip extends SpritePattern {
 
 	public void keyReleased(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
 			speedX = 0;
