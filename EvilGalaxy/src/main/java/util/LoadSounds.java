@@ -13,4 +13,5 @@ public abstract class LoadSounds {
 	public static final PlayWave2nd GOT_GOLD = new PlayWave2nd(SoundEffects.COLLECT.getSound());
 	public static final PlayWave2nd HIT = new PlayWave2nd(SoundEffects.FUSE.getSound());
 	public static final PlayWave2nd DENIED = new PlayWave2nd(SoundEffects.DENIED.getSound());
+	public static final PlayWave2nd HOVER = new PlayWave2nd(SoundEffects.HOVER.getSound());
 }
