@@ -16,11 +16,10 @@ public class ShipRocket extends SpritePattern {
 		initRocket();
 	}
 
-	public String initRocket() {
+	public void initRocket() {
 		imageName = Images.ROCKETINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void moveRocket() {

@@ -13,10 +13,9 @@ public class SaveSign extends SpritePattern {
 		super(x, y);
 	}
 
-	public String initSave() {
+	public void initSave() {
 		imageName = Images.SAVESIGNINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 }

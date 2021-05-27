@@ -15,11 +15,10 @@ public class CanonBall extends SpritePattern {
 		initCanon();
 	}
 
-	public String initCanon() {
+	public void initCanon() {
 		imageName = Images.CANONINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void moveCanonLeft() {

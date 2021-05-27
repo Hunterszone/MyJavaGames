@@ -16,11 +16,10 @@ public class PlasmaBall extends SpritePattern {
 		initEvilGun();
 	}
 
-	public String initEvilGun() {
+	public void initEvilGun() {
 		imageName = Images.PLASMABALLINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void evilShot() {
