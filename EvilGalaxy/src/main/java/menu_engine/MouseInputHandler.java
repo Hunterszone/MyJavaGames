@@ -252,80 +252,8 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		final int mouseX = e.getX();
-		final int mouseY = e.getY();
 		playWave1st = new PlayWave1st(hoverSound);
 		playWave1st.start();
-		
-		if (MenuState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
-				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
-					LoadSounds.HOVER.play();
-					System.out.println("Mouse moved!");
-				}
-				if (mouseY >= 215 && mouseY <= 265) {
-					LoadSounds.HOVER.play();
-					System.out.println("Mouse moved!");
-				}
-				if (mouseY >= 315 && mouseY <= 365 && MenuState.isOn) {
-					LoadSounds.HOVER.play();
-					System.out.println("Mouse moved!");
-				}
-				if (mouseY >= 415 && mouseY <= 465 && MenuState.isOn) {
-					LoadSounds.HOVER.play();
-					System.out.println("Mouse moved!");
-				}
-				if (mouseY >= 515 && mouseY <= 565 && MenuState.isOn) {
-					LoadSounds.HOVER.play();
-					System.out.println("Mouse moved!");
-				}
-				if (mouseY >= 615 && mouseY <= 665 && MenuState.isOn) {
-					LoadSounds.HOVER.play();
-					System.out.println("Mouse moved!");
-				}
-			}
-		}
-
-		if (ControlsState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 150 && mouseY <= 200) {
-					LoadSounds.HOVER.play();
-				}
-			}
-		}
-
-		if (SettingsState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 150 && mouseY <= 200) {
-					LoadSounds.HOVER.play();
-				}
-			}
-		}
-
-		if (ManualState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 150 && mouseY <= 200) {
-					LoadSounds.HOVER.play();
-				}
-			}
-		}
-
-		if (ExtrasState.isOn) {
-			if (mouseX >= 430 && mouseX <= 770) {
-				if (mouseY >= 150 && mouseY <= 200) {
-					LoadSounds.HOVER.play();
-				}
-				if (mouseY >= 250 && mouseY <= 300) {
-					LoadSounds.HOVER.play();
-				}
-				if (mouseY >= 350 && mouseY <= 400) {
-					LoadSounds.HOVER.play();
-				}
-				if (mouseY >= 450 && mouseY <= 500) {
-					LoadSounds.HOVER.play();
-				}
-			}
-		}
 	}
 
 	@Override
