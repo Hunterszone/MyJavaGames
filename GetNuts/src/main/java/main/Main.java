@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import javax.swing.JFrame;
 
 import game_engine.Board;
+import menu_engine.CanvasMenu;
 
 // Main class
 public class Main extends JFrame {
@@ -35,7 +36,7 @@ public class Main extends JFrame {
 
     // Run Main class
     public static void main(String[] args) throws URISyntaxException {
-    	Main sokoban = new Main();
-		sokoban.setVisible(true);
+    	final CanvasMenu engine = new CanvasMenu();
+		engine.start();
     }
 }

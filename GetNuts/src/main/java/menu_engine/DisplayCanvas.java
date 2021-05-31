@@ -1,7 +1,10 @@
 package menu_engine;
 
 import java.awt.Canvas;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -19,6 +22,10 @@ public class DisplayCanvas {
 	public static Canvas canvas;
 	
 	static Dimension dim;
+	
+	public DisplayCanvas() {
+        init();
+    }
 	
 	public JFrame getFrame() {
 		return frame;
@@ -52,7 +59,10 @@ public class DisplayCanvas {
         canvas.setVisible(true);
         
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
-        
+        final Image image = toolkit.getImage("images/cursor.png");
+		final Cursor c = toolkit.createCustomCursor(image, new Point(DisplayCanvas.canvas.getX(), 
+				DisplayCanvas.canvas.getY()), "img");
+		DisplayCanvas.canvas.setCursor(c);
         
         LoadSounds.BG_MUSIC.loop();
         

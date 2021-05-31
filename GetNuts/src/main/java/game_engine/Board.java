@@ -21,6 +21,9 @@ import entities.Player;
 import entities.Wall;
 import entities.Water;
 import main.Main;
+import menu_engine.CanvasMenu;
+import menu_engine.MouseInputHandler;
+import menu_states.MenuState;
 import sound_engine.LoadSounds;
 
 public class Board extends JPanel {
@@ -648,7 +651,16 @@ public class Board extends JPanel {
 			} else if (key == KeyEvent.VK_A) {
 				LoadSounds.BG_MUSIC.loop();
 			} else if (key == KeyEvent.VK_ESCAPE) {
-				System.exit(0);
+				MenuState.isOn = false;
+				LoadSounds.BG_MUSIC.stop();
+//				TextToSpeech.playVoice("Loading main menu...");
+//				TextToSpeech.voiceInterruptor = true;
+				if (MouseInputHandler.main != null)
+					MouseInputHandler.main.dispose();
+				MouseInputHandler.main = null;
+				MenuState.isOn = true;
+				final CanvasMenu engine = new CanvasMenu();
+				engine.start();
 			}
 
 			repaint();
