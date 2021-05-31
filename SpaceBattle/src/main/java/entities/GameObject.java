@@ -2,13 +2,15 @@ package entities;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Shape;
 
 public abstract class GameObject {
 
 	protected int x;
 	protected int y;
 	protected Image image;
-
+	protected Shape collisionSurface;
+	
 	public abstract void draw(Graphics g);
 
 	public void update(int delta) {
@@ -46,5 +48,10 @@ public abstract class GameObject {
 	public void setY(int y) {
 		this.y = y;
 	};
-
+	
+	public boolean checkCollision(GameObject gameObject) {
+		if (collisionSurface != null)
+			return collisionSurface.contains(gameObject.getX(), gameObject.getY());
+		return false;
+	}
 }

@@ -91,6 +91,12 @@ public enum SoundEffects {
 			return "sounds/reload.wav";
 		}
 	},
+	HOVER {
+		@Override
+		public String getSound() {
+			return "sounds/hover.wav";
+		}
+	},
 	MAGIC {
 		@Override
 		public String getSound() {

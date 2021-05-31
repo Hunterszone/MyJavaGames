@@ -399,7 +399,7 @@ public class Main extends BasicGame {
 		ufo1.setX(random.nextInt(container.getWidth()));
 		ufo1.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 		soundExplosion.play();
-		points.incrementPoints(new Integer(Points.points));
+		points.incrementPoints();
 	}
 
 	private void newAdvUfo(GameContainer container, ShotShip shot) {
@@ -410,7 +410,7 @@ public class Main extends BasicGame {
 		ufo2.setX(random.nextInt(container.getWidth()));
 		ufo2.setY(random.nextInt((int) (container.getHeight() * 0.7)));
 		soundExplosion.play();
-		points.incrementPoints(new Integer(Points.points));
+		points.incrementPoints();
 	}
 
 	private void deadShipByMoon(GameContainer container, ShotMoon shot) throws SlickException {

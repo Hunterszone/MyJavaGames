@@ -148,7 +148,7 @@ public enum Images {
 	MYSHIPGOD {
 		@Override
 		public String getImg() {
-			return "images/alien2.gif";
+			return "images/spaceshipGod.gif";
 		}
 	},
 	MYSHIPESCAPE {

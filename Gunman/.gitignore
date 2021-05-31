@@ -1,19 +1,1 @@
-# Eclipse Core      
-.project
-.settings
-
-# JDT-specific (Eclipse Java Development Tools)     
-.classpath
-
-# Saves folder and its content
-saves/
-
-# Target folder and its attributes
-*/target/**
-
-# Other
-.idea/
-.eclipse
-/.gitignore
-/bin/
 /target/

@@ -18,11 +18,10 @@ public class Crosshair extends SpritePattern {
 		drawCrosshair();
 	}
 
-	public String drawCrosshair() {
+	public void drawCrosshair() {
 		imageName = Images.CROSSHAIR.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void move() {

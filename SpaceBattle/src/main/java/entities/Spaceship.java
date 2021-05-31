@@ -22,7 +22,7 @@ public class Spaceship extends GameObject {
 		collisionSurface = new Ellipse(x, y, 30, 45);
 	}
 
-	public Spaceship(int x, int y, Image image) {
+	public Spaceship(int x, int y, Image img) {
 		// TODO Auto-generated constructor stub
 	}
 

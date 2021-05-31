@@ -17,11 +17,10 @@ public class BunkerBullet extends SpritePattern {
 		initBullet();
 	}
 
-	public String initBullet() {
+	public void initBullet() {
 		imageName = Images.BULLETINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void moveLeft() {

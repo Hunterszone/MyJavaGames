@@ -15,11 +15,10 @@ public class ShipMissile extends SpritePattern {
 		initMissile();
 	}
 
-	public String initMissile() {
+	public void initMissile() {
 		imageName = Images.MISSILEINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void moveMissile() {

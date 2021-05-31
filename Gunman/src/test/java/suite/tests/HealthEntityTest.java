@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -19,7 +18,6 @@ import entities.HeroEntity;
 import game_engine.MySprite;
 import main.Game;
 
-@Ignore
 public class HealthEntityTest {
 
 	private MySprite healthpack, hero;
@@ -47,13 +45,13 @@ public class HealthEntityTest {
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initHealth(healthpack).removedByHero(healthpackEntity));
+		assertTrue(Game.initHealth(healthpack).iterator().next().removedByHero(healthpackEntity));
 	}
 
 	@Test
 	public void testCollidesWithHero() {
 		if (heroRect.intersects(healthRect))
-			assertTrue(Game.initHealth(healthpack).collidesWith(heroEntity));
+			assertTrue(Game.initHealth(healthpack).iterator().next().collidesWith(heroEntity));
 	}
 
 	@After

@@ -27,13 +27,13 @@ public class LoadResourcesTest {
 		assertTrue("Folder 'backgrounds' does not exist", Files.exists(Paths.get("backgrounds")));
 		try {
 			if (Files.exists(Paths.get("levels"))) {
-				path = LevelsBgsEngine.addLevels();
+				path = Paths.get("levels").toString();
 				assertTrue("File " + path + " does not exist", Files.exists(Paths.get(path)));
 				assertFalse(LevelsBgsEngine.readFile(path, encoding).isEmpty());
 				assertNotNull(LevelsBgsEngine.readFile(path, encoding));
 			}
 			if (Files.exists(Paths.get("backgrounds"))) {
-				sourceImage = LevelsBgsEngine.addBackgrounds();
+				sourceImage = new File(Paths.get("backgrounds").toString());
 				assertTrue("File " + sourceImage.toString() + " does not exist",
 						Files.exists(Paths.get(sourceImage.toString())));
 				assertFalse("Image name is empty",

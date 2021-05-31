@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -19,7 +18,6 @@ import entities.TreasureEntity;
 import game_engine.MySprite;
 import main.Game;
 
-@Ignore
 public class TreasureEntityTest {
 
 	private MySprite sprite;
@@ -45,13 +43,13 @@ public class TreasureEntityTest {
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initTreasures(sprite).removedByHero(treasure));
+		assertTrue(Game.initTreasures(sprite).iterator().next().removedByHero(treasure));
 	}
 
 	@Test
 	public void testCollidesWithHero() {
 		if (heroRect.intersects(treasureRect))
-			assertTrue(Game.initTreasures(sprite).collidesWith(hero));
+			assertTrue(Game.initTreasures(sprite).iterator().next().collidesWith(hero));
 	}
 
 	@After
