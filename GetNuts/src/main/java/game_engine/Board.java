@@ -653,8 +653,8 @@ public class Board extends JPanel {
 			} else if (key == KeyEvent.VK_ESCAPE) {
 				MenuState.isOn = false;
 				LoadSounds.BG_MUSIC.stop();
-//				TextToSpeech.playVoice("Loading main menu...");
-//				TextToSpeech.voiceInterruptor = true;
+				initVoice("Loading menu...");
+				voiceInterruptor = true;
 				if (MouseInputHandler.main != null)
 					MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;

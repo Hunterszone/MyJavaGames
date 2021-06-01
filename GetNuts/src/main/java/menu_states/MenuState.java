@@ -21,11 +21,11 @@ public class MenuState {
 		g.drawImage(Constants.LOAD_ASSETS.volume, 1100, 32, null);
 		g.drawImage(Constants.LOAD_ASSETS.header, 428, 32, 352, 49, null);
         g.drawImage(Constants.LOAD_ASSETS.headerBackground, 180, 0, 802, 105, null);
-		g.drawImage(Constants.LOAD_ASSETS.playGame, 410, 115, 388, 89, null);
-		g.drawImage(Constants.LOAD_ASSETS.controlsButton, 410, 215, 388, 89, null);
-		g.drawImage(Constants.LOAD_ASSETS.settingsButton, 410, 315, 388, 89, null);
-		g.drawImage(Constants.LOAD_ASSETS.extrasButton, 410, 415, 388, 89, null);
-		g.drawImage(Constants.LOAD_ASSETS.quitGame, 410, 515, 388, 89, null);
+		g.drawImage(Constants.LOAD_ASSETS.playGame, 410, 125, 388, 89, null);
+		g.drawImage(Constants.LOAD_ASSETS.controlsButton, 410, 225, 388, 89, null);
+		g.drawImage(Constants.LOAD_ASSETS.settingsButton, 410, 325, 388, 89, null);
+		g.drawImage(Constants.LOAD_ASSETS.extrasButton, 410, 425, 388, 89, null);
+		g.drawImage(Constants.LOAD_ASSETS.quitGame, 410, 525, 388, 89, null);
 		g.drawImage(Constants.LOAD_ASSETS.header, 428, 732, 352, 49, null);
 		g.drawImage(Constants.LOAD_ASSETS.headerBackground, 180, 700, 802, 105, null);
 	}
