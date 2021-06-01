@@ -99,11 +99,11 @@ public class MouseInputHandler implements MouseListener {
 					SettingsState.isOn = false;
 					MenuState.isOn = true;
 					CanvasMenu.state.setState(StateManager.STATES.MENU);
-				}
-			} else {
-				if ((mouseX < 800 || mouseX > 790 + Constants.LOAD_ASSETS.manual.getWidth(null))
-						&& !(mouseY >= 150 && mouseY <= 200)) {
-					LoadSounds.NEGATIVE.play();
+				} else {
+					if ((mouseX < 800 || mouseX > 790 + Constants.LOAD_ASSETS.manual.getWidth(null))
+							&& !(mouseY >= 150 && mouseY <= 200)) {
+						LoadSounds.NEGATIVE.play();
+					}
 				}
 			}
 		}
@@ -114,6 +114,8 @@ public class MouseInputHandler implements MouseListener {
 				SettingsState.isOn = false;
 				ManualState.isOn = true;
 				CanvasMenu.state.setState(StateManager.STATES.MANUAL);
+			} else {
+				LoadSounds.NEGATIVE.play();
 			}
 		}
 
@@ -124,9 +126,9 @@ public class MouseInputHandler implements MouseListener {
 					ManualState.isOn = false;
 					SettingsState.isOn = true;
 					CanvasMenu.state.setState(StateManager.STATES.SETTINGS);
+				} else {
+					LoadSounds.NEGATIVE.play();
 				}
-			} else {
-				LoadSounds.NEGATIVE.play();
 			}
 		}
 
@@ -209,10 +211,7 @@ public class MouseInputHandler implements MouseListener {
 					&& !(SettingsState.isOn && point.getY() >= 380
 							&& point.getY() <= 380 /* + Constants.LOAD_ASSETS.evilHead.getHeight(null) */)
 					&& !(ManualState.isOn && point.getY() >= 475
-							&& point.getY() <= 475 /* + Constants.LOAD_ASSETS.manual.getHeight(null) */))
-				;
-//				LoadSounds.MENU_MUSIC.loop();
+							&& point.getY() <= 475 /* + Constants.LOAD_ASSETS.manual.getHeight(null) */));
 		}
 	}
-
 }
