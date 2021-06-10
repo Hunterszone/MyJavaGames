@@ -4,12 +4,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.PixelFormat;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
@@ -26,16 +26,21 @@ public class CrosshairTest {
 	private int x, y;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		try {
 			Display.create();
-		} catch (org.lwjgl.LWJGLException e) {}
-		crosshair = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
-		enemyEntity = new EnemyEntity(
-				new MySprite(
-						TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png"))),
-				x, y);
+			crosshair = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
+			enemyEntity = new EnemyEntity(
+					new MySprite(
+							TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png"))),
+					x, y);
+		} catch (org.lwjgl.LWJGLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		enemyRect = new Rectangle();
 		crosshRect = new Rectangle();
 	}

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,16 +27,21 @@ public class EnemyEntityTest {
 	private int x, y;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		try {
 			Display.create();
-		} catch (org.lwjgl.LWJGLException e) {}
-		hero = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
-		crosshair = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
-		enemy = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
+			hero = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
+			crosshair = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
+			enemy = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
+		} catch (org.lwjgl.LWJGLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		heroEntity = new HeroEntity(hero, x, y);
 		crosshairEntity = new Crosshair(crosshair, x, y);
 		heroRect = new Rectangle();

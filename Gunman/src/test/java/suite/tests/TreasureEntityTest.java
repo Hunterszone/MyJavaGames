@@ -4,11 +4,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.OpenGLException;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
@@ -26,12 +28,17 @@ public class TreasureEntityTest {
 	private int x, y;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws OpenGLException {
 		try {
 			Display.create();
-		} catch (org.lwjgl.LWJGLException e) {}
-		sprite = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
+			sprite = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
+		} catch (org.lwjgl.LWJGLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		heroRect = new Rectangle();
 		treasureRect = new Rectangle();
 		treasure = new TreasureEntity(sprite, x, y);

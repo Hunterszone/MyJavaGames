@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,14 +27,19 @@ public class HealthEntityTest {
 	private int x, y;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		try {
 			Display.create();
-		} catch (org.lwjgl.LWJGLException e) {}
-		healthpack = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
-		hero = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
+			healthpack = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
+			hero = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
+		} catch (org.lwjgl.LWJGLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		heroRect = new Rectangle();
 		healthRect = new Rectangle();
 		healthpackEntity = new HealthEntity(healthpack, x, y);
