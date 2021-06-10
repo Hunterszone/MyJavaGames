@@ -28,7 +28,9 @@ public class HeroEntityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Display.create();
+		try {
+			Display.create();
+		} catch (org.lwjgl.LWJGLException e) {}
 		hero = new MySprite(
 				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
 		enemy = new MySprite(

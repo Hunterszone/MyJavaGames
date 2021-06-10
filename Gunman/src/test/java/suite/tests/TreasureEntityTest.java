@@ -27,7 +27,9 @@ public class TreasureEntityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Display.create();
+		try {
+			Display.create();
+		} catch (org.lwjgl.LWJGLException e) {}
 		sprite = new MySprite(
 				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
 		heroRect = new Rectangle();

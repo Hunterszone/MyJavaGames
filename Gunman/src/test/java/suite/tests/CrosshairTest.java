@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.PixelFormat;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
@@ -26,7 +27,9 @@ public class CrosshairTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Display.create();
+		try {
+			Display.create();
+		} catch (org.lwjgl.LWJGLException e) {}
 		crosshair = new MySprite(
 				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
 		enemyEntity = new EnemyEntity(
