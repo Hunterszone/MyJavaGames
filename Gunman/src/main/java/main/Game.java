@@ -207,10 +207,8 @@ public class Game {
 	@SuppressWarnings("unchecked")
 	private static <T> List<T> initEntitiesHelper(MySprite sprite, Entity entity) {
 		Random r = new Random();
-		treasuresOnLevel = new ArrayList<TreasureEntity>();
-		hpOnLevel = new ArrayList<HealthEntity>();
-		enemiesOnLevel = new ArrayList<EnemyEntity>();
 		if (entity instanceof TreasureEntity) {
+			treasuresOnLevel = new ArrayList<TreasureEntity>();
 			for (int i = 0; i < TREASURES_ON_LEVEL; i++) {
 				treasuresOnLevel.add(new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
@@ -218,6 +216,7 @@ public class Game {
 			return (List<T>) treasuresOnLevel;
 		}
 		if (entity instanceof HealthEntity) {
+			hpOnLevel = new ArrayList<HealthEntity>();
 			for (int i = 0; i < MAX_LIVES; i++) {
 				hpOnLevel.add(new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
@@ -225,6 +224,7 @@ public class Game {
 			return (List<T>) hpOnLevel;
 		}
 		if (entity instanceof EnemyEntity) {
+			enemiesOnLevel = new ArrayList<EnemyEntity>();
 			for (int i = 0; i < MAX_ENEMIES; i++) {
 				enemiesOnLevel.add(new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
