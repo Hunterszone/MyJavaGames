@@ -208,15 +208,15 @@ public class Game {
 	private static <T> List<T> initEntitiesHelper(MySprite sprite, Entity entity) {
 		Random r = new Random();
 		if (entity instanceof TreasureEntity) {
-			List<TreasureEntity> trsOnLevel = new ArrayList<TreasureEntity>();
+			treasuresOnLevel = new ArrayList<TreasureEntity>();
 			for (int i = 0; i < TREASURES_ON_LEVEL; i++) {
-				trsOnLevel.add(new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+				treasuresOnLevel.add(new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
 			}
-			return (List<T>) trsOnLevel;
+			return (List<T>) treasuresOnLevel;
 		}
 		if (entity instanceof HealthEntity) {
-			List<HealthEntity> hpOnLevel = new ArrayList<HealthEntity>();
+			hpOnLevel = new ArrayList<HealthEntity>();
 			for (int i = 0; i < MAX_LIVES; i++) {
 				hpOnLevel.add(new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
@@ -224,7 +224,7 @@ public class Game {
 			return (List<T>) hpOnLevel;
 		}
 		if (entity instanceof EnemyEntity) {
-			List<EnemyEntity> enemiesOnLevel = new ArrayList<EnemyEntity>();
+			enemiesOnLevel = new ArrayList<EnemyEntity>();
 			for (int i = 0; i < MAX_ENEMIES; i++) {
 				enemiesOnLevel.add(new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
