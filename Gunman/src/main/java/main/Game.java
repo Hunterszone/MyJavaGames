@@ -667,7 +667,6 @@ public class Game {
 
 	public static boolean notifyCrosshairUsed(Entity entity) {
 		if (entity instanceof EnemyEntity) {
-			enemiesOnLevel = null;
 			isNotified = true;
 			if (enemies != null) {
 				enemiesOnLevel = enemies.get(currentLevel);
