@@ -236,7 +236,8 @@ public class Game {
 
 	public static List<TreasureEntity> initTreasures(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			if(initEntitiesHelper(sprite, new TreasureEntity()) != null) {				
+			if(initEntitiesHelper(sprite, new TreasureEntity()) != null && 
+					!initEntitiesHelper(sprite, new TreasureEntity()).isEmpty()) {				
 				List<TreasureEntity> trsOnLevel = initEntitiesHelper(sprite, new TreasureEntity());
 				Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(trsOnLevel.get(0), trsOnLevel.get(1),
 						trsOnLevel.get(2), trsOnLevel.get(3), trsOnLevel.get(4));
@@ -252,7 +253,8 @@ public class Game {
 
 	public static List<HealthEntity> initHealth(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			if(initEntitiesHelper(sprite, new HealthEntity()) != null) {				
+			if(initEntitiesHelper(sprite, new HealthEntity()) != null && 
+					!initEntitiesHelper(sprite, new HealthEntity()).isEmpty()) {				
 				List<HealthEntity> hpsOnLevel = initEntitiesHelper(sprite, new HealthEntity());
 				Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(hpsOnLevel.get(0), hpsOnLevel.get(1),
 						hpsOnLevel.get(2));
@@ -268,7 +270,8 @@ public class Game {
 	public static List<EnemyEntity> initEnemies(MySprite sprite) {
 		Supplier<Stream<EnemyEntity>> enemyStream = null;
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			if(initEntitiesHelper(sprite, new EnemyEntity()) != null) {				
+			if(initEntitiesHelper(sprite, new EnemyEntity()) != null && 
+					!initEntitiesHelper(sprite, new EnemyEntity()).isEmpty()) {				
 				List<EnemyEntity> enemiezOnLevel = initEntitiesHelper(sprite, new EnemyEntity());
 				enemyStream = () -> Stream.of(enemiezOnLevel.get(0), enemiezOnLevel.get(1),
 						enemiezOnLevel.get(2), enemiezOnLevel.get(3), enemiezOnLevel.get(4));
