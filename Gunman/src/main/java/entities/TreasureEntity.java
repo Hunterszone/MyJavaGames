@@ -2,8 +2,8 @@ package entities;
 
 import java.awt.Rectangle;
 
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class TreasureEntity extends Entity {
 
@@ -20,7 +20,7 @@ public class TreasureEntity extends Entity {
 
 	@Override
 	public boolean removedByHero(Entity entity) {
-		return Game.notifyTreasuresCollected(entity);
+		return Logic.notifyTreasuresCollected(entity);
 	}
 
 	@Override

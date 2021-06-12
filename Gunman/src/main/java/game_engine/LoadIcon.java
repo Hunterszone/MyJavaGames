@@ -8,11 +8,9 @@ import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
 
-import main.Game;
-
 public class LoadIcon {
 
-	public static ByteBuffer[] loadIcon(String filepath, Game app) {
+	public static ByteBuffer[] loadIcon(String filepath, Logic newGame) {
 		BufferedImage image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 
 		try {

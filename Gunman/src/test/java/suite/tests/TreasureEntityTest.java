@@ -17,8 +17,8 @@ import org.newdawn.slick.util.ResourceLoader;
 import entities.Entity;
 import entities.HeroEntity;
 import entities.TreasureEntity;
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class TreasureEntityTest {
 
@@ -47,18 +47,18 @@ public class TreasureEntityTest {
 
 	@Test
 	public void testTreasureEntity() {
-		assertNotNull(Game.initTreasures(sprite));
+		assertNotNull(Logic.initTreasures(sprite));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initTreasures(sprite).iterator().next().removedByHero(treasure));
+		assertTrue(Logic.initTreasures(sprite).iterator().next().removedByHero(treasure));
 	}
 
 	@Test
 	public void testCollidesWithHero() {
 		if (heroRect.intersects(treasureRect))
-			assertTrue(Game.initTreasures(sprite).iterator().next().collidesWith(hero));
+			assertTrue(Logic.initTreasures(sprite).iterator().next().collidesWith(hero));
 	}
 
 	@After

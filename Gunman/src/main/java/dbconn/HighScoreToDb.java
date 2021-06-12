@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import main.Game;
+import game_engine.Logic;
 
 public class HighScoreToDb {
 
@@ -40,7 +40,7 @@ public class HighScoreToDb {
 			preparedStatement.close();
 
 			// STEP 3: Execute a query
-			getTreasuresAndKilledCount = Game.getTreasuresAndKilledCount();
+			getTreasuresAndKilledCount = Logic.getTreasuresAndKilledCount();
 			preparedStatement = conn.prepareStatement("INSERT INTO highscores (TREASURES, ENEMIES) " + "VALUES (?,?)");
 			preparedStatement.setString(1, getTreasuresAndKilledCount[0]);
 			System.out.println("TREASURES added: " + getTreasuresAndKilledCount[0]);

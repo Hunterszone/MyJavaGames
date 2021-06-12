@@ -2,8 +2,8 @@ package entities;
 
 import java.awt.Rectangle;
 
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class EnemyEntity extends Entity {
 
@@ -40,11 +40,11 @@ public class EnemyEntity extends Entity {
 	public boolean removedByHero(Entity entity) {
 		if (entity instanceof HeroEntity) {
 			System.out.println("Hero intersects EnemyEntity");
-			return Game.notifyEnemyHit(entity);
+			return Logic.notifyEnemyHit(entity);
 		}
 		if (entity instanceof Crosshair) {
 			System.out.println("Crosshair intersects EnemyEntity");
-			return Game.notifyCrosshairUsed(entity);
+			return Logic.notifyCrosshairUsed(entity);
 		}
 		return false;
 	}

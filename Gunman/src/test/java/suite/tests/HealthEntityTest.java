@@ -16,8 +16,8 @@ import org.newdawn.slick.util.ResourceLoader;
 import entities.Entity;
 import entities.HealthEntity;
 import entities.HeroEntity;
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class HealthEntityTest {
 
@@ -48,18 +48,18 @@ public class HealthEntityTest {
 
 	@Test
 	public void testHealthEntity() {
-		assertNotNull(Game.initHealth(healthpack));
+		assertNotNull(Logic.initHealth(healthpack));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initHealth(healthpack).iterator().next().removedByHero(healthpackEntity));
+		assertTrue(Logic.initHealth(healthpack).iterator().next().removedByHero(healthpackEntity));
 	}
 
 	@Test
 	public void testCollidesWithHero() {
 		if (heroRect.intersects(healthRect))
-			assertTrue(Game.initHealth(healthpack).iterator().next().collidesWith(heroEntity));
+			assertTrue(Logic.initHealth(healthpack).iterator().next().collidesWith(heroEntity));
 	}
 
 	@After

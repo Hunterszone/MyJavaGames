@@ -17,8 +17,8 @@ import entities.EnemyEntity;
 import entities.Entity;
 import entities.HealthEntity;
 import entities.TreasureEntity;
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class HeroEntityTest {
 
@@ -56,40 +56,40 @@ public class HeroEntityTest {
 
 	@Test
 	public void testHeroEntity() {
-		assertNotNull(Game.initHero(hero));
+		assertNotNull(Logic.initHero(hero));
 	}
 
 	@Test
 	public void testCollidesWithEnemy() {
 		if (heroRect.intersects(enemyRect))
-			assertTrue(Game.initHero(hero).collidesWith(enemyEntity));
+			assertTrue(Logic.initHero(hero).collidesWith(enemyEntity));
 	}
 
 	@Test
 	public void testCollidesWithTreasure() {
 		if (heroRect.intersects(treasureRect))
-			assertTrue(Game.initHero(hero).collidesWith(treasureEntity));
+			assertTrue(Logic.initHero(hero).collidesWith(treasureEntity));
 	}
 
 	@Test
 	public void testCollidesWithHealth() {
 		if (heroRect.intersects(healthRect))
-			assertTrue(Game.initHero(hero).collidesWith(healthpackEntity));
+			assertTrue(Logic.initHero(hero).collidesWith(healthpackEntity));
 	}
 
 	@Test
 	public void testRemoveEnemy() {
-		assertTrue(Game.initHero(hero).removedByHero(enemyEntity));
+		assertTrue(Logic.initHero(hero).removedByHero(enemyEntity));
 	}
 
 	@Test
 	public void testRemoveTreasure() {
-		assertTrue(Game.initHero(hero).removedByHero(treasureEntity));
+		assertTrue(Logic.initHero(hero).removedByHero(treasureEntity));
 	}
 
 	@Test
 	public void testRemoveHealth() {
-		assertTrue(Game.initHero(hero).removedByHero(healthpackEntity));
+		assertTrue(Logic.initHero(hero).removedByHero(healthpackEntity));
 	}
 
 	@After

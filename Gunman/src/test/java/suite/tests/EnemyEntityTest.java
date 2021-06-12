@@ -16,8 +16,8 @@ import org.newdawn.slick.util.ResourceLoader;
 import entities.Crosshair;
 import entities.Entity;
 import entities.HeroEntity;
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class EnemyEntityTest {
 
@@ -51,24 +51,24 @@ public class EnemyEntityTest {
 
 	@Test
 	public void testEnemyEntity() {
-		assertNotNull(Game.initEnemies(enemy));
+		assertNotNull(Logic.initEnemies(enemy));
 	}
 
 	@Test
 	public void testCollidedWithHero() {
 		if (heroRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemy).iterator().next().collidesWith(heroEntity));
+			assertTrue(Logic.initEnemies(enemy).iterator().next().collidesWith(heroEntity));
 	}
 
 	@Test
 	public void testCollidedWithCrosshair() {
 		if (crosshRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemy).iterator().next().collidesWith(crosshairEntity));
+			assertTrue(Logic.initEnemies(enemy).iterator().next().collidesWith(crosshairEntity));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initEnemies(enemy).iterator().next().removedByHero(heroEntity));
+		assertTrue(Logic.initEnemies(enemy).iterator().next().removedByHero(heroEntity));
 	}
 
 	@After

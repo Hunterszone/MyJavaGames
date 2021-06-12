@@ -2,8 +2,8 @@ package entities;
 
 import java.awt.Rectangle;
 
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class HealthEntity extends Entity {
 
@@ -20,7 +20,7 @@ public class HealthEntity extends Entity {
 
 	@Override
 	public boolean removedByHero(Entity entity) {
-		return Game.notifyHpCollected(entity);
+		return Logic.notifyHpCollected(entity);
 	}
 
 	@Override
