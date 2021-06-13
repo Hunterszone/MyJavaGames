@@ -12,5 +12,6 @@ https://me4gaming.myjetbrains.com/
 
 ## Contributors:
 [talemache](https://github.com/talemache)  
+[emendez](https://github.com/emendez0309)  
 
 *ENJOY RESPONSIBLY! :)*
