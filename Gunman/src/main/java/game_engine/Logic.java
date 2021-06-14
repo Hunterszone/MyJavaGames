@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -182,27 +181,24 @@ public class Logic {
 	private static <T> List<T> initEntitiesHelper(MySprite sprite, Entity entity) {
 		Random r = new Random();
 		if (entity instanceof TreasureEntity) {
-			treasuresOnLevel = new ArrayList<TreasureEntity>();
-			for (int i = 0; i < TREASURES_ON_LEVEL; i++) {
-				treasuresOnLevel.add(new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
-			}
+			treasuresOnLevel = IntStream.range(0, TREASURES_ON_LEVEL)
+				.mapToObj(i -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
+				.collect(Collectors.toList());
 			return (List<T>) treasuresOnLevel;
 		}
 		if (entity instanceof HealthEntity) {
-			hpOnLevel = new ArrayList<HealthEntity>();
-			for (int i = 0; i < MAX_LIVES; i++) {
-				hpOnLevel.add(new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
-			}
+			hpOnLevel = IntStream.range(0, MAX_LIVES)
+					.mapToObj(i -> new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
+					.collect(Collectors.toList());
 			return (List<T>) hpOnLevel;
 		}
 		if (entity instanceof EnemyEntity) {
-			enemiesOnLevel = new ArrayList<EnemyEntity>();
-			for (int i = 0; i < MAX_ENEMIES; i++) {
-				enemiesOnLevel.add(new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())));
-			}
+			enemiesOnLevel = IntStream.range(0, MAX_ENEMIES)
+					.mapToObj(i -> new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
+					.collect(Collectors.toList());
 			return (List<T>) enemiesOnLevel;
 		}
 		return new ArrayList<T>();
@@ -210,13 +206,7 @@ public class Logic {
 
 	public static List<TreasureEntity> initTreasures(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			if (initEntitiesHelper(sprite, new TreasureEntity()) != null
-					&& !initEntitiesHelper(sprite, new TreasureEntity()).isEmpty()) {
-				List<TreasureEntity> trsOnLevel = initEntitiesHelper(sprite, new TreasureEntity());
-				Supplier<Stream<TreasureEntity>> treasuresStream = () -> Stream.of(trsOnLevel.get(0), trsOnLevel.get(1),
-						trsOnLevel.get(2), trsOnLevel.get(3), trsOnLevel.get(4));
-				treasuresOnLevel = treasuresStream.get().collect(Collectors.toList());
-			}
+			initEntitiesHelper(sprite, new TreasureEntity());
 			treasuresOnLevel.removeIf(t -> t == null);
 			if (treasures != null) {
 				treasures.put(i, treasuresOnLevel);
@@ -227,13 +217,7 @@ public class Logic {
 
 	public static List<HealthEntity> initHealth(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			if (initEntitiesHelper(sprite, new HealthEntity()) != null
-					&& !initEntitiesHelper(sprite, new HealthEntity()).isEmpty()) {
-				List<HealthEntity> hpsOnLevel = initEntitiesHelper(sprite, new HealthEntity());
-				Supplier<Stream<HealthEntity>> hpStream = () -> Stream.of(hpsOnLevel.get(0), hpsOnLevel.get(1),
-						hpsOnLevel.get(2));
-				hpOnLevel = hpStream.get().collect(Collectors.toList());
-			}
+			initEntitiesHelper(sprite, new HealthEntity());
 			hpOnLevel.removeIf(h -> h == null);
 			if (healthpacks != null)
 				healthpacks.put(i, hpOnLevel);
@@ -242,15 +226,8 @@ public class Logic {
 	}
 
 	public static List<EnemyEntity> initEnemies(MySprite sprite) {
-		Supplier<Stream<EnemyEntity>> enemyStream = null;
 		for (int i = 0; i < MAX_LEVELS; i++) {
-			if (initEntitiesHelper(sprite, new EnemyEntity()) != null
-					&& !initEntitiesHelper(sprite, new EnemyEntity()).isEmpty()) {
-				List<EnemyEntity> enemiezOnLevel = initEntitiesHelper(sprite, new EnemyEntity());
-				enemyStream = () -> Stream.of(enemiezOnLevel.get(0), enemiezOnLevel.get(1), enemiezOnLevel.get(2),
-						enemiezOnLevel.get(3), enemiezOnLevel.get(4));
-				enemiesOnLevel = enemyStream.get().collect(Collectors.toList());
-			}
+			initEntitiesHelper(sprite, new EnemyEntity());
 			enemiesOnLevel.removeIf(e -> e == null);
 			if (enemies != null)
 				enemies.put(i, enemiesOnLevel);
