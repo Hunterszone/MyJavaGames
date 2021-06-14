@@ -52,7 +52,12 @@ public class TreasureEntityTest {
 
 	@Test
 	public void testRemove() {
-		assertTrue(Logic.initTreasures(sprite).iterator().next().removedByHero(treasure));
+		try {
+			assertTrue(Logic.initTreasures(sprite).iterator().next().removedByHero(treasure));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test

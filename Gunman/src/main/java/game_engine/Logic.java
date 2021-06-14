@@ -182,9 +182,9 @@ public class Logic {
 		Random r = new Random();
 		if (entity instanceof TreasureEntity) {
 			treasuresOnLevel = IntStream.range(0, TREASURES_ON_LEVEL)
-				.mapToObj(i -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
-						r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
-				.collect(Collectors.toList());
+					.mapToObj(i -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
+							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
+					.collect(Collectors.toList());
 			return (List<T>) treasuresOnLevel;
 		}
 		if (entity instanceof HealthEntity) {
@@ -271,8 +271,10 @@ public class Logic {
 
 	/**
 	 * Runs the game (the "main loop")
+	 * 
+	 * @throws IOException
 	 */
-	private void run() {
+	private void run() throws IOException {
 		while (!finished) {
 			// Always call Window.update(), all the time
 			Display.update();
@@ -340,8 +342,10 @@ public class Logic {
 
 	/**
 	 * Do all calculations, handle input, etc.
+	 * 
+	 * @throws IOException
 	 */
-	private void logic() {
+	private void logic() throws IOException {
 
 		int posY = hero.getY();
 		int posX = hero.getX();
@@ -429,8 +433,9 @@ public class Logic {
 			footsteps();
 		}
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_R))
+		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
 			gameRestart();
+		}
 
 		// Collision
 		treasuresOnLevel = treasures.get(currentLevel);
@@ -448,7 +453,7 @@ public class Logic {
 			footsteps.play(1, 0.2f);
 	}
 
-	private void checkForHp(HealthEntity item, HeroEntity gunman, List<HealthEntity> hpOnLevel) {
+	private void checkForHp(HealthEntity item, HeroEntity gunman, List<HealthEntity> hpOnLevel) throws IOException {
 		for (int jj = 0; jj < hpOnLevel.size(); jj++) {
 			item = hpOnLevel.get(jj);
 			if (gunman.collidesWith(item) && lives < MAX_LIVES) {
@@ -459,7 +464,7 @@ public class Logic {
 		}
 	}
 
-	private void checkForTreasures(TreasureEntity item, HeroEntity gunman, List<TreasureEntity> treasuresOnLevel) {
+	private void checkForTreasures(TreasureEntity item, HeroEntity gunman, List<TreasureEntity> treasuresOnLevel) throws IOException {
 		for (int jj = 0; jj < treasuresOnLevel.size(); jj++) {
 			item = treasuresOnLevel.get(jj);
 			if (gunman.collidesWith(item)) {
@@ -470,7 +475,7 @@ public class Logic {
 		}
 	}
 
-	private void crosshairCheckForEnemies(EnemyEntity enemy, Crosshair crosshair, List<EnemyEntity> enemiesOnLevel) {
+	private void crosshairCheckForEnemies(EnemyEntity enemy, Crosshair crosshair, List<EnemyEntity> enemiesOnLevel) throws IOException {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (crosshair.collidesWith(enemy)) {
@@ -483,7 +488,7 @@ public class Logic {
 		}
 	}
 
-	private void heroCheckForEnemies(EnemyEntity enemy, HeroEntity gunman, List<EnemyEntity> enemiesOnLevel) {
+	private void heroCheckForEnemies(EnemyEntity enemy, HeroEntity gunman, List<EnemyEntity> enemiesOnLevel) throws IOException {
 		for (int jj = 0; jj < enemiesOnLevel.size(); jj++) {
 			enemy = enemiesOnLevel.get(jj);
 			if (gunman.collidesWith(enemy)) {
@@ -571,7 +576,7 @@ public class Logic {
 		}
 	}
 
-	private static void gameRestart() {
+	private static void gameRestart() throws IOException {
 
 		lives = 3;
 		currentLevel = 0;
@@ -581,37 +586,22 @@ public class Logic {
 		restart.play();
 
 		// Enemies
-		MySprite enemiesSprite;
 		enemies = new HashMap<Integer, List<EnemyEntity>>();
-		try {
-			enemiesSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
-			initEnemies(enemiesSprite);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		MySprite enemiesSprite = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
+		initEnemies(enemiesSprite);
 
 		// Treasures
-		MySprite treasureSprite;
 		treasures = new HashMap<Integer, List<TreasureEntity>>();
-		try {
-			treasureSprite = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
-			initTreasures(treasureSprite);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		MySprite treasureSprite = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
+		initTreasures(treasureSprite);
 
 		// HP
-		MySprite healthPack;
 		healthpacks = new HashMap<Integer, List<HealthEntity>>();
-		try {
-			healthPack = new MySprite(
-					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
-			initHealth(healthPack);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		MySprite healthPack = new MySprite(
+				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/health.png")));
+		initHealth(healthPack);
 
 		try {
 			HighScoreToDb.init();
@@ -634,7 +624,7 @@ public class Logic {
 		return isNotified;
 	}
 
-	public static boolean notifyEnemyHit(Entity entity) {
+	public static boolean notifyEnemyHit(Entity entity) throws IOException {
 		if (entity instanceof HeroEntity) {
 			isNotified = true;
 			if (enemies != null) {
@@ -643,13 +633,14 @@ public class Logic {
 				enemiesOnLevel.remove(enemy);
 			}
 			lives--;
-			if (lives == 0)
+			if (lives == 0) {
 				gameRestart();
+			}
 		}
 		return isNotified;
 	}
 
-	public static boolean notifyTreasuresCollected(Entity entity) {
+	public static boolean notifyTreasuresCollected(Entity entity) throws IOException {
 		if (entity instanceof TreasureEntity) {
 			isNotified = true;
 			if (treasures != null) {

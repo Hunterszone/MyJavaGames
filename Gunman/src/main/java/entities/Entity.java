@@ -1,9 +1,11 @@
 package entities;
 
+import java.io.IOException;
+
 import game_engine.MySprite;
 
 interface RemoveEntities {
-	boolean removedByHero(Entity other);
+	boolean removedByHero(Entity other) throws IOException;
 }
 
 interface CheckCollision {

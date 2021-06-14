@@ -68,7 +68,12 @@ public class EnemyEntityTest {
 
 	@Test
 	public void testRemove() {
-		assertTrue(Logic.initEnemies(enemy).iterator().next().removedByHero(heroEntity));
+		try {
+			assertTrue(Logic.initEnemies(enemy).iterator().next().removedByHero(heroEntity));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@After

@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import game_engine.Logic;
 import game_engine.MySprite;
@@ -17,7 +18,7 @@ public class HeroEntity extends Entity {
 	}
 
 	@Override
-	public boolean removedByHero(Entity entity) {
+	public boolean removedByHero(Entity entity) throws IOException {
 		if (entity instanceof HealthEntity) {
 			System.out.println("Hero intersects HealthEntity");
 			return Logic.notifyHpCollected(entity);

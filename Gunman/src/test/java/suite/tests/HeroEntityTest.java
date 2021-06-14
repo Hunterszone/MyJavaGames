@@ -79,17 +79,32 @@ public class HeroEntityTest {
 
 	@Test
 	public void testRemoveEnemy() {
-		assertTrue(Logic.initHero(hero).removedByHero(enemyEntity));
+		try {
+			assertTrue(Logic.initHero(hero).removedByHero(enemyEntity));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testRemoveTreasure() {
-		assertTrue(Logic.initHero(hero).removedByHero(treasureEntity));
+		try {
+			assertTrue(Logic.initHero(hero).removedByHero(treasureEntity));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testRemoveHealth() {
-		assertTrue(Logic.initHero(hero).removedByHero(healthpackEntity));
+		try {
+			assertTrue(Logic.initHero(hero).removedByHero(healthpackEntity));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@After

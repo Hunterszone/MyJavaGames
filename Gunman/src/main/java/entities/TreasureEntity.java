@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import game_engine.Logic;
 import game_engine.MySprite;
@@ -19,7 +20,7 @@ public class TreasureEntity extends Entity {
 	}
 
 	@Override
-	public boolean removedByHero(Entity entity) {
+	public boolean removedByHero(Entity entity) throws IOException {
 		return Logic.notifyTreasuresCollected(entity);
 	}
 
