@@ -185,6 +185,7 @@ public class Logic {
 					.mapToObj(i -> new TreasureEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
 					.collect(Collectors.toList());
+			treasuresOnLevel.removeIf(t -> t == null);
 			return (List<T>) treasuresOnLevel;
 		}
 		if (entity instanceof HealthEntity) {
@@ -192,6 +193,7 @@ public class Logic {
 					.mapToObj(i -> new HealthEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
 					.collect(Collectors.toList());
+			hpOnLevel.removeIf(hp -> hp == null);
 			return (List<T>) hpOnLevel;
 		}
 		if (entity instanceof EnemyEntity) {
@@ -199,6 +201,7 @@ public class Logic {
 					.mapToObj(i -> new EnemyEntity(sprite, r.nextInt(SCREEN_SIZE_WIDTH - sprite.getWidth()),
 							r.nextInt(SCREEN_SIZE_HEIGHT - sprite.getHeight())))
 					.collect(Collectors.toList());
+			enemiesOnLevel.removeIf(e -> e == null);
 			return (List<T>) enemiesOnLevel;
 		}
 		return new ArrayList<T>();
@@ -207,7 +210,6 @@ public class Logic {
 	public static List<TreasureEntity> initTreasures(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			initEntitiesHelper(sprite, new TreasureEntity());
-			treasuresOnLevel.removeIf(t -> t == null);
 			if (treasures != null) {
 				treasures.put(i, treasuresOnLevel);
 			}
@@ -218,7 +220,6 @@ public class Logic {
 	public static List<HealthEntity> initHealth(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			initEntitiesHelper(sprite, new HealthEntity());
-			hpOnLevel.removeIf(h -> h == null);
 			if (healthpacks != null)
 				healthpacks.put(i, hpOnLevel);
 		}
@@ -228,7 +229,6 @@ public class Logic {
 	public static List<EnemyEntity> initEnemies(MySprite sprite) {
 		for (int i = 0; i < MAX_LEVELS; i++) {
 			initEntitiesHelper(sprite, new EnemyEntity());
-			enemiesOnLevel.removeIf(e -> e == null);
 			if (enemies != null)
 				enemies.put(i, enemiesOnLevel);
 		}
