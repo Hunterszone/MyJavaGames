@@ -25,7 +25,7 @@ public class LoadResourcesTest {
 				sourceImage = Background.addBackgrounds();
 				assertTrue("File " + sourceImage.toString() + " does not exist",
 						Files.exists(Paths.get(sourceImage.toString())));
-				assertNotEquals("Image name is empty", ImageIO.read(sourceImage).getProperty(sourceImage.toString()).equals(""));
+				assertNotEquals("Image name is empty", sourceImage.getName(), "");
 				assertNotNull(ImageIO.read(sourceImage));
 			}
 		} catch (IOException e) {

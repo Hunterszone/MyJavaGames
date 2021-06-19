@@ -13,8 +13,9 @@ import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 
 public class Background {
-	
-	private Background() {}
+
+	private Background() {
+	}
 
 	static ArrayList<Image> backgrounds = new ArrayList<>();
 
@@ -28,18 +29,22 @@ public class Background {
 		Stream<Path> images = null;
 		try {
 			images = Files.list(Paths.get("backgrounds"));
-			long imagesCount = images.count();
-			int width = (int) Main.DIM.getWidth();
-			int height = (int) Main.DIM.getHeight();
-			for (int i = 0; i < imagesCount; i++) {
-				sourceImage = new File("backgrounds/bg" + i + ".jpg");
-				Image levelBG = ImageIO.read(sourceImage);
-				backgrounds.add(levelBG.getScaledInstance(width, height, Image.SCALE_SMOOTH));
+			if (images != null) {
+				long imagesCount = images.count();
+				int width = (int) Main.DIM.getWidth();
+				int height = (int) Main.DIM.getHeight();
+				for (int i = 0; i < imagesCount; i++) {
+					sourceImage = new File("backgrounds/bg" + i + ".jpg");
+					Image levelBG = ImageIO.read(sourceImage);
+					backgrounds.add(levelBG.getScaledInstance(width, height, Image.SCALE_SMOOTH));
+				}
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		} finally {			
-			images.close();
+		} finally {
+			if (images != null) {
+				images.close();
+			}
 		}
 		return sourceImage;
 	}

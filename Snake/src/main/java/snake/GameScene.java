@@ -40,6 +40,7 @@ public class GameScene extends JPanel implements ActionListener {
 	private static final int RAND_POS = 100;
 	private static final int DELAY = 140;
 	private static final Font HELVETICA = new Font("Helvetica", Font.BOLD, 26);
+	private static final Random rand = new Random();
 
 	// These two arrays store the x and y coordinates of all joints of the snake.
 	private final int jointsX[] = new int[ALL_DOTS];
@@ -297,10 +298,7 @@ public class GameScene extends JPanel implements ActionListener {
 	}
 
 	private void locateApple() {
-
-		Random r = new Random();
-
-		appleX = appleY = ((r.nextInt(RAND_POS) * DOT_SIZE));
+		appleX = appleY = ((rand.nextInt(RAND_POS) * DOT_SIZE));
 	}
 
 	@Override
