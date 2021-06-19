@@ -23,8 +23,9 @@ public class Backgrounds {
 
 	public static File addBackgrounds() {
 		File sourceImage = null;
+		Stream<Path> images = null;
 		try {
-			Stream<Path> images = Files.list(Paths.get("backgrounds"));
+			images = Files.list(Paths.get("backgrounds"));
 			long imagesCount = images.count();
 			int width = (int) Main.dim.getWidth();
 			int height = (int) Main.dim.getHeight();
@@ -33,10 +34,11 @@ public class Backgrounds {
 				Image levelBG = ImageIO.read(sourceImage);
 				backgrounds.add(levelBG.getScaledInstance(width, height, Image.SCALE_SMOOTH));
 			}
-			images.close();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} finally {			
+			images.close();
 		}
 		return sourceImage;
 	}
