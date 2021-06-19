@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -32,20 +33,21 @@ public class GameScene extends JPanel implements ActionListener {
 	 * (300*300)/(10*10)). The RAND_POS constant is used to calculate a random
 	 * position for an apple. The DELAY constant determines the speed of the game.
 	 */
-	private final int B_WIDTH = (int) Main.dim.getWidth();
-	private final int B_HEIGHT = (int) Main.dim.getHeight();
-	private final int DOT_SIZE = 10;
-	private final int ALL_DOTS = 900; // max size of the snake
-	private final int RAND_POS = 100;
-	private final int DELAY = 140;
+	private final int B_WIDTH = (int) Main.DIM.getWidth();
+	private final int B_HEIGHT = (int) Main.DIM.getHeight();
+	private static final int DOT_SIZE = 10;
+	private static final int ALL_DOTS = 900; // max size of the snake
+	private static final int RAND_POS = 100;
+	private static final int DELAY = 140;
+	private static final Font HELVETICA = new Font("Helvetica", Font.BOLD, 26);
 
 	// These two arrays store the x and y coordinates of all joints of the snake.
-	private final int x[] = new int[ALL_DOTS];
-	private final int y[] = new int[ALL_DOTS];
+	private final int jointsX[] = new int[ALL_DOTS];
+	private final int jointsY[] = new int[ALL_DOTS];
 
 	private int bodyLength;
-	private int apple_x;
-	private int apple_y;
+	private int appleX;
+	private int appleY;
 	private int myScore = 0;
 	private int level = 1;
 
@@ -57,9 +59,9 @@ public class GameScene extends JPanel implements ActionListener {
 	private boolean isPaused;
 
 	private static Timer timer;
-	private Image bodySegment;
-	private Image apple;
-	private Image head;
+	private transient Image bodySegment;
+	private transient Image apple;
+	private transient Image head;
 
 	public GameScene() {
 
@@ -68,7 +70,7 @@ public class GameScene extends JPanel implements ActionListener {
 
 	private void initBoard() {
 
-		Backgrounds.addBackgrounds();
+		Background.addBackgrounds();
 
 		addKeyListener(new TAdapter());
 		setFocusable(true);
@@ -103,8 +105,8 @@ public class GameScene extends JPanel implements ActionListener {
 		bodyLength = 3; // min size of the snake
 
 		for (int i = 0; i < bodyLength; i++) {
-			x[i] = 50 - i * 10;
-			y[i] = 50;
+			jointsX[i] = 50 - i * 10;
+			jointsY[i] = 50;
 		}
 
 		locateApple();
@@ -122,40 +124,52 @@ public class GameScene extends JPanel implements ActionListener {
 
 	private void doDrawing(Graphics g) {
 
-		if (inGame) {
-
-			if (isPaused) {
-				pauseGame(g);
-			} else {
-				for (int i = 0; i < Backgrounds.backgrounds.size(); i++) {
-					if (level >= Backgrounds.backgrounds.size())
-						g.drawImage(Backgrounds.backgrounds.get(0), 0, 0, null);
-					else
-						g.drawImage(Backgrounds.backgrounds.get(level - 1), 0, 0, null);
-				}
-				g.drawImage(apple, apple_x, apple_y, this);
-
-				Font small = new Font("Helvetica", Font.BOLD, 26);
-				g.setColor(Color.white);
-				g.setFont(small);
-				// Here we will draw the score on the board
-				g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
-				g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
-
-				for (int i = 0; i < bodyLength; i++) {
-					if (i == 0) {
-						g.drawImage(head, x[i], y[i], this);
-					} else {
-						g.drawImage(bodySegment, x[i], y[i], this);
-					}
-				}
-
-				Toolkit.getDefaultToolkit().sync();
-			}
-		} else {
+		int caseNumber = 0;
+		if(!inGame) {
+			caseNumber = 0;
+		}
+		if (inGame && isPaused) {
+			caseNumber = 1;
+		} 
+		if (inGame && !isPaused) {
+			caseNumber = 2;
+		} 
+		
+		switch (caseNumber) {
+		case 0:
 			LoadSounds.bgMusic.stop();
 			LoadSounds.die.play();
 			gameOver(g);
+			break;
+		case 1:
+			pauseGame(g);
+			break;
+		case 2:
+			for (int i = 0; i < Background.backgrounds.size(); i++) {
+				if (level >= Background.backgrounds.size())
+					g.drawImage(Background.backgrounds.get(0), 0, 0, null);
+				else
+					g.drawImage(Background.backgrounds.get(level - 1), 0, 0, null);
+			}
+			g.drawImage(apple, appleX, appleY, this);
+
+			g.setColor(Color.white);
+			g.setFont(HELVETICA);
+			// Here we will draw the score on the board
+			g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
+			g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
+
+			for (int i = 0; i < bodyLength; i++) {
+				if (i == 0) {
+					g.drawImage(head, jointsX[i], jointsY[i], this);
+				} else {
+					g.drawImage(bodySegment, jointsX[i], jointsY[i], this);
+				}
+			}
+			Toolkit.getDefaultToolkit().sync();
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -166,11 +180,10 @@ public class GameScene extends JPanel implements ActionListener {
 		String msg = "Game Over";
 		String msg2 = "High score: ";
 		String msg3 = "Press 'R' to restart";
-		Font small = new Font("Helvetica", Font.BOLD, 26);
-		FontMetrics metr = getFontMetrics(small);
+		FontMetrics metr = getFontMetrics(HELVETICA);
 
 		g.setColor(Color.white);
-		g.setFont(small);
+		g.setFont(HELVETICA);
 		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 80);
 		g.drawString(msg2 + myScore, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2 - 40);
 		g.drawString(msg3, (B_WIDTH - metr.stringWidth(msg3)) / 2, B_HEIGHT / 2);
@@ -184,11 +197,10 @@ public class GameScene extends JPanel implements ActionListener {
 
 		String msg = "Paused";
 		String msg2 = "Press 'R' to resume";
-		Font small = new Font("Helvetica", Font.BOLD, 26);
-		FontMetrics metr = getFontMetrics(small);
+		FontMetrics metr = getFontMetrics(HELVETICA);
 
 		g.setColor(Color.white);
-		g.setFont(small);
+		g.setFont(HELVETICA);
 		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 40);
 		g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2);
 	}
@@ -200,7 +212,7 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private void checkApple() {
 
-		if ((x[0] == apple_x) && (y[0] == apple_y)) {
+		if ((jointsX[0] == appleX) && (jointsY[0] == appleY)) {
 
 			LoadSounds.bite.play();
 			bodyLength++;
@@ -225,25 +237,25 @@ public class GameScene extends JPanel implements ActionListener {
 
 		// This code moves the joints up the chain.
 		for (int z = bodyLength; z > 0; z--) {
-			x[z] = x[(z - 1)];
-			y[z] = y[(z - 1)];
+			jointsX[z] = jointsX[(z - 1)];
+			jointsY[z] = jointsY[(z - 1)];
 		}
 
 		// Following lines moves the head to the desired direction.
 		if (leftDirection) {
-			x[0] -= DOT_SIZE;
+			jointsX[0] -= DOT_SIZE;
 		}
 
 		if (rightDirection) {
-			x[0] += DOT_SIZE;
+			jointsX[0] += DOT_SIZE;
 		}
 
 		if (upDirection) {
-			y[0] -= DOT_SIZE;
+			jointsY[0] -= DOT_SIZE;
 		}
 
 		if (downDirection) {
-			y[0] += DOT_SIZE;
+			jointsY[0] += DOT_SIZE;
 		}
 	}
 
@@ -253,51 +265,49 @@ public class GameScene extends JPanel implements ActionListener {
 
 		// If the snake hits one of its joints with its head the game is over.
 		for (int z = bodyLength; z > 0; z--) {
-			if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
+			if ((z > 4) && (jointsX[0] == jointsX[z]) && (jointsY[0] == jointsY[z])) {
 				inGame = false;
 			}
 		}
 
 		// The game is finished if the snake hits the bottom of the board.
-		if (y[0] >= B_HEIGHT) {
-			y[0] = 0;
+		if (jointsY[0] >= B_HEIGHT) {
+			jointsY[0] = 0;
 			return;
 		}
 
-		if (y[0] <= 0) {
-			y[0] = B_HEIGHT;
+		if (jointsY[0] <= 0) {
+			jointsY[0] = B_HEIGHT;
 			return;
 		}
 
-		if (x[0] >= B_WIDTH) {
-			x[0] = 0;
+		if (jointsX[0] >= B_WIDTH) {
+			jointsX[0] = 0;
 			return;
 		}
 
-		if (x[0] <= 0) {
-			x[0] = B_WIDTH;
+		if (jointsX[0] <= 0) {
+			jointsX[0] = B_WIDTH;
 			return;
 		}
 
-		if (inGame == false) {
+		if (!inGame) {
 			timer.stop();
 		}
 	}
 
 	private void locateApple() {
 
-		int r = (int) (Math.random() * RAND_POS);
-		apple_x = ((r * DOT_SIZE));
+		Random r = new Random();
 
-		r = (int) (Math.random() * RAND_POS);
-		apple_y = ((r * DOT_SIZE));
+		appleX = appleY = ((r.nextInt(RAND_POS) * DOT_SIZE));
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (inGame) {
-			if(!isPaused) {				
+			if (!isPaused) {
 				LoadSounds.bgMusic.loop();
 			}
 			checkApple();
@@ -320,7 +330,7 @@ public class GameScene extends JPanel implements ActionListener {
 
 			// as a bonus I will also add restart functionality for you:
 
-			if (key == KeyEvent.VK_R && inGame == false) { // restart when NOT in a game state
+			if (key == KeyEvent.VK_R && !inGame) { // restart when NOT in a game state
 
 				// If game is over, we need to reassign 0 to myScore, so that we begin
 				// incrementing from zero
@@ -333,8 +343,8 @@ public class GameScene extends JPanel implements ActionListener {
 
 				for (int i = 0; i < bodyLength; i++) {
 					// filling the X and Y arrays, based on the snake position
-					x[i] = 50 - i * 10;
-					y[i] = 50;
+					jointsX[i] = 50 - i * 10;
+					jointsY[i] = 50;
 				}
 
 				locateApple(); // adding randomly the apple on every eaten one
@@ -344,13 +354,11 @@ public class GameScene extends JPanel implements ActionListener {
 
 			if (key == KeyEvent.VK_R) { // restart when in a game state
 				isPaused = false;
-//				timer.restart();
 			}
 
 			if (key == KeyEvent.VK_P) { // game pause
 				LoadSounds.bgMusic.stop();
 				isPaused = true;
-//				timer.stop();
 			}
 
 			/*

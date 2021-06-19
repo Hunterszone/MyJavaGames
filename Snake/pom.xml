@@ -12,7 +12,6 @@
 		<relativePath>../../MyJavaGames/pom.xml</relativePath>
 	</parent>
 	<build>
-		<!--<sourceDirectory>scr/main/java</sourceDirectory> -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -55,7 +54,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13.1</version>
-			<!--<scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>net.sf.sociaal</groupId>

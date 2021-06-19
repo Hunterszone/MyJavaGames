@@ -19,11 +19,11 @@ public class PlayWave1st extends Thread {
 
 	private Position curPosition;
 
-	private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
+	private static final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
 
 	enum Position {
 		LEFT, RIGHT, NORMAL
-	};
+	}
 
 	public PlayWave1st(String wavfile) {
 		filename = wavfile;
@@ -52,10 +52,7 @@ public class PlayWave1st extends Thread {
 		AudioInputStream audioInputStream = null;
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-		} catch (UnsupportedAudioFileException e1) {
-			e1.printStackTrace();
-			return;
-		} catch (IOException e1) {
+		} catch (UnsupportedAudioFileException | IOException e1) {
 			e1.printStackTrace();
 			return;
 		}
@@ -68,9 +65,6 @@ public class PlayWave1st extends Thread {
 			auline = (SourceDataLine) AudioSystem.getLine(info);
 			auline.open(format);
 		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-			return;
-		} catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}
@@ -95,7 +89,6 @@ public class PlayWave1st extends Thread {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			return;
 		} finally {
 			auline.drain();
 			auline.close();
