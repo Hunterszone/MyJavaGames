@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -14,11 +15,11 @@ public class Main extends JFrame {
     public static final GraphicsDevice DEVICE = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
     public static final Dimension DIM = Toolkit.getDefaultToolkit().getScreenSize();
     
-	public Main() {
+	public Main() throws IOException {
 		initUI();
 	}
 
-	private void initUI() {
+	private void initUI() throws IOException {
 
 		add(new GameScene());
 
@@ -34,7 +35,13 @@ public class Main extends JFrame {
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(() -> {
-			JFrame ex = new Main();
+			JFrame ex = null;
+			try {
+				ex = new Main();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			ex.setVisible(true);
 		});
 	}

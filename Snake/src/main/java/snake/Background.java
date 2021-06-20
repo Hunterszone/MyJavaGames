@@ -24,27 +24,22 @@ public class Background {
 		return new String(encoded, encoding);
 	}
 
-	public static File addBackgrounds() {
+	public static File addBackgrounds() throws IOException {
 		File sourceImage = null;
-		Stream<Path> images = null;
+		Stream<Path> images = Files.list(Paths.get("backgrounds"));
 		try {
-			images = Files.list(Paths.get("backgrounds"));
-			if (images != null) {
-				long imagesCount = images.count();
-				int width = (int) Main.DIM.getWidth();
-				int height = (int) Main.DIM.getHeight();
-				for (int i = 0; i < imagesCount; i++) {
-					sourceImage = new File("backgrounds/bg" + i + ".jpg");
-					Image levelBG = ImageIO.read(sourceImage);
-					backgrounds.add(levelBG.getScaledInstance(width, height, Image.SCALE_SMOOTH));
-				}
+			long imagesCount = images.count();
+			int width = (int) Main.DIM.getWidth();
+			int height = (int) Main.DIM.getHeight();
+			for (int i = 0; i < imagesCount; i++) {
+				sourceImage = new File("backgrounds/bg" + i + ".jpg");
+				Image levelBG = ImageIO.read(sourceImage);
+				backgrounds.add(levelBG.getScaledInstance(width, height, Image.SCALE_SMOOTH));
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} finally {
-			if (images != null) {
-				images.close();
-			}
+			images.close();
 		}
 		return sourceImage;
 	}

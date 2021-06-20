@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -43,8 +44,8 @@ public class GameScene extends JPanel implements ActionListener {
 	private static final Random rand = new Random();
 
 	// These two arrays store the x and y coordinates of all joints of the snake.
-	private final int jointsX[] = new int[ALL_DOTS];
-	private final int jointsY[] = new int[ALL_DOTS];
+	private final int[] jointsX = new int[ALL_DOTS];
+	private final int[] jointsY = new int[ALL_DOTS];
 
 	private int bodyLength;
 	private int appleX;
@@ -59,17 +60,17 @@ public class GameScene extends JPanel implements ActionListener {
 	private boolean inGame = true;
 	private boolean isPaused;
 
-	private static Timer timer;
+	private Timer timer;
 	private transient Image bodySegment;
 	private transient Image apple;
 	private transient Image head;
 
-	public GameScene() {
+	public GameScene() throws IOException {
 
 		initBoard();
 	}
 
-	private void initBoard() {
+	private void initBoard() throws IOException {
 
 		Background.addBackgrounds();
 
@@ -298,7 +299,7 @@ public class GameScene extends JPanel implements ActionListener {
 	}
 
 	private void locateApple() {
-		appleX = appleY = ((rand.nextInt(RAND_POS) * DOT_SIZE));
+		appleX = appleY = (rand.nextInt(RAND_POS) * DOT_SIZE);
 	}
 
 	@Override

@@ -25,9 +25,9 @@ public class PlayWave2nd {
 				clip = AudioSystem.getClip();
 				clip.open(sound);
 			}
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {}
-
-		// play, stop, loop the sound clip
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void play() {
