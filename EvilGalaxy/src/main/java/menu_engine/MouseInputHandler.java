@@ -10,7 +10,9 @@ import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -162,7 +164,12 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					MenuState.isOn = false;
 					DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 					DisplayCanvas.frame.dispose();
-					Launcher.main(null);
+					try {
+						Launcher.main(null);
+					} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					MenuState.isOn = true;
 				}
 				if (mouseY >= 250 && mouseY <= 300) {

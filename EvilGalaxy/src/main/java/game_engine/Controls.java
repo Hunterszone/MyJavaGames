@@ -4,6 +4,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -13,9 +14,9 @@ import entities.AsteroidsAnimation;
 import entities.AstronautAnimation;
 import entities.Crosshair;
 import entities.Dragon;
-import entities.TheEndAnimation;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import entities.TheEndAnimation;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
@@ -30,7 +31,8 @@ public class Controls extends JFrame implements KeyListener {
 
 	public static boolean isEPressed, isMPressed, isHPressed;
 	private static final long serialVersionUID = 1L;
-
+	private Random rand = new Random();
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		PlayerShip.playerOne.keyReleased(e);
@@ -250,9 +252,12 @@ public class Controls extends JFrame implements KeyListener {
 			if (SaveSign.saveSign != null) {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
-				final Random rand = new Random();
 				final File file = new File("saves/save" + rand.nextInt() + ".txt");
-				SaveGame.saveGameDataToFile(file);
+				try {
+					SaveGame.saveGameDataToFile(file);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		} else {
 			if (SaveSign.saveSign != null) {

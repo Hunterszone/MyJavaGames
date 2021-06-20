@@ -6,9 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Random;
@@ -48,9 +50,11 @@ public class GameMenuBar extends JFrame {
 	public static Boolean savedOnL2 = false;
 	public static Boolean savedOnL3 = false;
 	public static Boolean savedOnL4 = false;
-	private static final long serialVersionUID = 1L;
-
 	public static JCheckBoxMenuItem autosave;
+
+	private static final long serialVersionUID = 1L;
+	private final Random rand = new Random();
+	
 
 	public GameMenuBar() {
 		createMenu();
@@ -176,7 +180,12 @@ public class GameMenuBar extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Launcher.main(null);
+				try {
+					Launcher.main(null);
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.exit(0);
 			}
 
@@ -242,7 +251,7 @@ public class GameMenuBar extends JFrame {
 
 		class SaveGame implements ActionListener {
 
-			public void saveGameDataToFile(File savefile) throws MaryConfigurationException {
+			public void saveGameDataToFile(File savefile) throws MaryConfigurationException, IOException {
 
 				TextToSpeech.voiceInterruptor = false;
 
@@ -295,10 +304,10 @@ public class GameMenuBar extends JFrame {
 						TextToSpeech.voiceInterruptor = true;
 					}
 
-					try {
-						final FileOutputStream fileStream = new FileOutputStream(savefile);
-						final ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+					final FileOutputStream fileStream = new FileOutputStream(savefile);
+					final ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
 
+					try {
 						objectStream.writeObject(PlayerShip.playerOne);
 						objectStream.writeObject(EvilHead.evilHead);
 						objectStream.writeObject(Bunker.bunkerObj);
@@ -310,15 +319,14 @@ public class GameMenuBar extends JFrame {
 						objectStream.writeObject(savedOnL2);
 						objectStream.writeObject(savedOnL3);
 						objectStream.writeObject(savedOnL4);
-
-						objectStream.close();
-						fileStream.close();
-
 //						JOptionPane.showConfirmDialog(frame, "Saved game state successfully.", "Save game",
 //								JOptionPane.DEFAULT_OPTION);
 					} catch (final Exception e) {
 //						JOptionPane.showConfirmDialog(frame, e.toString() + "\nFail to save game state.", "Save game",
 //								JOptionPane.DEFAULT_OPTION);
+					} finally {
+						objectStream.close();
+						fileStream.close();
 					}
 
 				}
@@ -327,11 +335,10 @@ public class GameMenuBar extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				final Random rand = new Random();
 				final File file = new File("saves/save" + rand.nextInt() + ".txt");
 				try {
 					saveGameDataToFile(file);
-				} catch (final MaryConfigurationException e) {
+				} catch (final MaryConfigurationException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

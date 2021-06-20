@@ -17,9 +17,6 @@ public class HighScoreToDb {
 	// JDBC driver name and database URL
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // for H2 is "org.h2.Driver"
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/evilgalaxy"; // for H2 is "jdbc:h2:file:" +
-																					// user.home +
-																					// "/IdeaProjects/demo-rest-api/DB_OUT";
-																					// //change to your DB_OUT path
 
 	// Database credentials
 	private static final String USER = "root";
@@ -55,24 +52,14 @@ public class HighScoreToDb {
 				System.out.println("Records inserted into table!");
 				counter++;
 			}
-
-			// STEP 4: Clean-up environment
-			preparedStatement.close();
-			conn.close();
 		} catch (final Exception se) {
 			// Handle errors for JDBC
 			se.printStackTrace();
 		} finally {
 			// finally block used to close resources
-			if (preparedStatement != null)
-				preparedStatement.close();
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (final SQLException se) {
-				se.printStackTrace();
-			} // end finally try
-		} // end try
+			preparedStatement.close();
+			conn.close();
+		}
 		System.out.println("Goodbye!");
 	}
 }

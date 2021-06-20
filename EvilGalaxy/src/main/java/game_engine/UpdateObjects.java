@@ -206,7 +206,7 @@ public abstract class UpdateObjects extends InitObjects {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnEasy();
 			}
-			if (Dragon.dragons.isEmpty() && Gold.goldstack.size() >= 0) {
+			if (Dragon.dragons.isEmpty()) {
 				EvilHead.evilHead.AIOnEasy();
 			}
 		}
@@ -215,7 +215,7 @@ public abstract class UpdateObjects extends InitObjects {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnMedium();
 			}
-			if (Dragon.dragons.isEmpty() && Gold.goldstack.size() >= 0) {
+			if (Dragon.dragons.isEmpty()) {
 				EvilHead.evilHead.AIOnMedium();
 			}
 		}
@@ -224,7 +224,7 @@ public abstract class UpdateObjects extends InitObjects {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnHard();
 			}
-			if (Dragon.dragons.isEmpty() && Gold.goldstack.size() >= 0) {
+			if (Dragon.dragons.isEmpty()) {
 				EvilHead.evilHead.AIOnHard();
 			}
 		}

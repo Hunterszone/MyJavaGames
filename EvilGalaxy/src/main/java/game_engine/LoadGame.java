@@ -45,11 +45,11 @@ public class LoadGame {
 	private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
 		LoadSounds.MENU_MUSIC.stop();
+
+		final FileInputStream fileStream = new FileInputStream(loadfile);
+		final ObjectInputStream objectStream = new ObjectInputStream(fileStream);
 		
 		try {
-			final FileInputStream fileStream = new FileInputStream(loadfile);
-			final ObjectInputStream objectStream = new ObjectInputStream(fileStream);
-
 			savedShip = (PlayerShip) objectStream.readObject();
 			savedHead = (EvilHead) objectStream.readObject();
 			savedBunker = (Bunker) objectStream.readObject();
@@ -74,13 +74,15 @@ public class LoadGame {
 			loadedAssets.add(savedOnL3);
 			loadedAssets.add(savedOnL4);
 
-
 			System.out.println(loadedAssets.toString());
 
 			objectStream.close();
 
 		} catch (final Exception e) {
 			e.printStackTrace();
+		} finally {
+			fileStream.close();
+			objectStream.close();
 		}
 		
 		MenuState.isOn = false;

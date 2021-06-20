@@ -111,6 +111,7 @@ public class CanvasMenu implements Runnable {
 			this.isRunning = false;
 			this.thread.join();
 		} catch (final InterruptedException e) {
+			Thread.currentThread().interrupt();
 			e.printStackTrace();
 		}
 	}

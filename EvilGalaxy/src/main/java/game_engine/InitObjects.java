@@ -251,10 +251,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 			try {
 				Thread.sleep(sleep);
 			} catch (final InterruptedException e) {
-
 				final String msg = String.format("Thread interrupted: %s", e.getMessage());
-
 				JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+			    Thread.currentThread().interrupt();
 			}
 
 			beforeTime = System.currentTimeMillis();

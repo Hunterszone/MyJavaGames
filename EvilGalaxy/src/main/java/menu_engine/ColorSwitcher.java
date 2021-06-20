@@ -44,10 +44,10 @@ public class ColorSwitcher {
     }
 
     private boolean equalColors(Color otherColor) {
-        final double distance = (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) * (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) +
-                (otherColor.getGreen() - this.colorsList.get(currentColor).getGreen())*(otherColor.getGreen() - this.colorsList.get(currentColor).getGreen()) +
-                (otherColor.getBlue() - this.colorsList.get(currentColor).getBlue())*(otherColor.getBlue() - this.colorsList.get(currentColor).getBlue()) +
-                (otherColor.getAlpha() - this.colorsList.get(currentColor).getAlpha())*(otherColor.getAlpha() - this.colorsList.get(currentColor).getAlpha());
+        final double distance = ((double)otherColor.getRed() - this.colorsList.get(currentColor).getRed()) * (otherColor.getRed() - this.colorsList.get(currentColor).getRed()) +
+                ((double)otherColor.getGreen() - this.colorsList.get(currentColor).getGreen())*(otherColor.getGreen() - this.colorsList.get(currentColor).getGreen()) +
+                ((double)otherColor.getBlue() - this.colorsList.get(currentColor).getBlue())*(otherColor.getBlue() - this.colorsList.get(currentColor).getBlue()) +
+                ((double)otherColor.getAlpha() - this.colorsList.get(currentColor).getAlpha())*(otherColor.getAlpha() - this.colorsList.get(currentColor).getAlpha());
         if(distance == 0){
             return true;
         }else{

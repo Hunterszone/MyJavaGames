@@ -69,14 +69,14 @@ public class DrawScene extends UpdateObjects {
 	private void drawAstronaut(Graphics g) {
 		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX() / 2,
-				AstronautAnimation.astronautAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double)AstronautAnimation.astronautAnim.getX() / 2,
+				(double)AstronautAnimation.astronautAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
 		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
 				AstronautAnimation.astronautAnim.getY(), this);
 		a = AffineTransform.getRotateInstance(181, 850, 700);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), AstronautAnimation.astronautAnim.getX() / 2,
-				AstronautAnimation.astronautAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double)AstronautAnimation.astronautAnim.getX() / 2,
+				(double)AstronautAnimation.astronautAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
 		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
 				AstronautAnimation.astronautAnim.getY(), this);
@@ -89,8 +89,8 @@ public class DrawScene extends UpdateObjects {
 				SatelliteAnimation.starAnim.getY(), this);
 		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		final AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), SatelliteAnimation.starAnim.getX() / 2,
-				SatelliteAnimation.starAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double)SatelliteAnimation.starAnim.getX() / 2,
+				(double)SatelliteAnimation.starAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
 		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
 				SatelliteAnimation.starAnim.getY(), this);
