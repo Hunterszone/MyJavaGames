@@ -39,7 +39,6 @@ public class Main extends JFrame {
 			try {
 				ex = new Main();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			ex.setVisible(true);

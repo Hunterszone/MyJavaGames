@@ -111,7 +111,7 @@ public class GameScene extends JPanel implements ActionListener {
 			jointsY[i] = 50;
 		}
 
-		locateApple();
+		setApple();
 
 		timer = new Timer(DELAY, this);
 		timer.start();
@@ -214,13 +214,13 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private void checkApple() {
 
-		if ((jointsX[0] == appleX) && (jointsY[0] == appleY)) {
-
+		if ((appleX-DOT_SIZE <= jointsX[0] && jointsX[0] <= appleX+DOT_SIZE) 
+				&& (appleY-DOT_SIZE <= jointsY[0] && jointsY[0] <= appleY+DOT_SIZE)) {
 			LoadSounds.bite.play();
 			bodyLength++;
 			// Here we will increment the score
 			myScore++;
-			locateApple();
+			setApple();
 			if (myScore % 5 == 0) {
 				LoadSounds.levelUp.play();
 				level++;
@@ -245,19 +245,19 @@ public class GameScene extends JPanel implements ActionListener {
 
 		// Following lines moves the head to the desired direction.
 		if (leftDirection) {
-			jointsX[0] -= DOT_SIZE;
+			jointsX[0] -= DOT_SIZE*2;
 		}
 
 		if (rightDirection) {
-			jointsX[0] += DOT_SIZE;
+			jointsX[0] += DOT_SIZE*2;
 		}
 
 		if (upDirection) {
-			jointsY[0] -= DOT_SIZE;
+			jointsY[0] -= DOT_SIZE*2;
 		}
 
 		if (downDirection) {
-			jointsY[0] += DOT_SIZE;
+			jointsY[0] += DOT_SIZE*2;
 		}
 	}
 
@@ -298,7 +298,7 @@ public class GameScene extends JPanel implements ActionListener {
 		}
 	}
 
-	private void locateApple() {
+	private void setApple() {
 		appleX = appleY = (rand.nextInt(RAND_POS) * DOT_SIZE);
 	}
 
@@ -346,7 +346,7 @@ public class GameScene extends JPanel implements ActionListener {
 					jointsY[i] = 50;
 				}
 
-				locateApple(); // adding randomly the apple on every eaten one
+				setApple(); // adding randomly the apple on every eaten one
 
 				timer.start(); // only starting the time, WITHOUT incrementing it !
 			}
