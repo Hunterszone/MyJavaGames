@@ -304,10 +304,12 @@ public class GameMenuBar extends JFrame {
 						TextToSpeech.voiceInterruptor = true;
 					}
 
-					final FileOutputStream fileStream = new FileOutputStream(savefile);
-					final ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+					FileOutputStream fileStream = null;
+					ObjectOutputStream objectStream = null;
 
 					try {
+						fileStream = new FileOutputStream(savefile);
+						objectStream = new ObjectOutputStream(fileStream);
 						objectStream.writeObject(PlayerShip.playerOne);
 						objectStream.writeObject(EvilHead.evilHead);
 						objectStream.writeObject(Bunker.bunkerObj);

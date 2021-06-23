@@ -119,6 +119,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
+	@SuppressWarnings("finally")
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -192,7 +193,13 @@ public class DrawScene extends UpdateObjects {
 						TextToSpeech.playVoice("Killed by an alien!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByAlien = false;
-						return;
+						try {
+							HighScoreToDb.initDbConn();
+						} catch (final SQLException e) {
+							e.printStackTrace();
+						} finally {							
+							return;
+						}
 					}
 				}
 
@@ -201,7 +208,13 @@ public class DrawScene extends UpdateObjects {
 						TextToSpeech.playVoice("Killed by a dragon!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByDragon = false;
-						return;
+						try {
+							HighScoreToDb.initDbConn();
+						} catch (final SQLException e) {
+							e.printStackTrace();
+						} finally {							
+							return;
+						}
 					}
 				}
 
@@ -210,7 +223,13 @@ public class DrawScene extends UpdateObjects {
 						TextToSpeech.playVoice("Killed by the bunker!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByBunker = false;
-						return;
+						try {
+							HighScoreToDb.initDbConn();
+						} catch (final SQLException e) {
+							e.printStackTrace();
+						} finally {							
+							return;
+						}
 					}
 				}
 
@@ -219,15 +238,14 @@ public class DrawScene extends UpdateObjects {
 						TextToSpeech.playVoice("Killed by the Evil Head!");
 						TextToSpeech.voiceInterruptor = true;
 						Collisions.killedByEvilHead = false;
-						return;
+						try {
+							HighScoreToDb.initDbConn();
+						} catch (final SQLException e) {
+							e.printStackTrace();
+						} finally {							
+							return;
+						}
 					}
-				}
-
-				try {
-					HighScoreToDb.initDbConn();
-				} catch (final SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 
 				if (AstronautAnimation.astronautAnim != null)

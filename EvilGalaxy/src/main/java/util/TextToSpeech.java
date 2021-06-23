@@ -28,15 +28,13 @@ public class TextToSpeech {
 
 		if (marytts != null) {
 			voices = marytts.getAvailableVoices();
-		}
-
-		System.out.println("Available voices: " + voices);
-
-		if (voices != null && !voices.isEmpty()) {
-			for (final String voice : voices) {
-				if (voice != null && !voice.isEmpty()) {
-					marytts.setVoice(voice);
+			System.out.println("Available voices: " + voices);
+			if (voices != null && !voices.isEmpty()) {
+				for (final String voice : voices) {
+					if (voice != null && !voice.isEmpty()) {
+						marytts.setVoice(voice);
 //					marytts.setAudioEffects("JetPilot");
+					}
 				}
 			}
 		}

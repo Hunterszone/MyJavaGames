@@ -45,11 +45,12 @@ public class LoadGame {
 	private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
 		LoadSounds.MENU_MUSIC.stop();
+		FileInputStream fileStream = null;
+		ObjectInputStream objectStream = null;
 
-		final FileInputStream fileStream = new FileInputStream(loadfile);
-		final ObjectInputStream objectStream = new ObjectInputStream(fileStream);
-		
 		try {
+			fileStream = new FileInputStream(loadfile);
+			objectStream = new ObjectInputStream(fileStream);
 			savedShip = (PlayerShip) objectStream.readObject();
 			savedHead = (EvilHead) objectStream.readObject();
 			savedBunker = (Bunker) objectStream.readObject();
@@ -73,20 +74,16 @@ public class LoadGame {
 			loadedAssets.add(savedOnL2);
 			loadedAssets.add(savedOnL3);
 			loadedAssets.add(savedOnL4);
-
 			System.out.println(loadedAssets.toString());
-
-			objectStream.close();
-
 		} catch (final Exception e) {
 			e.printStackTrace();
 		} finally {
 			fileStream.close();
 			objectStream.close();
 		}
-		
+
 		MenuState.isOn = false;
-		if(MouseInputHandler.main == null) {
+		if (MouseInputHandler.main == null) {
 			DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 			DisplayCanvas.frame.dispose();
 			EventQueue.invokeLater(() -> {
@@ -122,7 +119,8 @@ public class LoadGame {
 
 			Alien.aliens = new ArrayList<>();
 			for (int i = 0; i < 40 - Collisions.alienKilled; i++) {
-				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800));
+				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000),
+						(int) Math.ceil(Math.random() * 800));
 				Alien.aliens.add(born);
 			}
 
@@ -150,7 +148,8 @@ public class LoadGame {
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
 			for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
-				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700), (int) Math.ceil(Math.random() * 800));
+				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700),
+						(int) Math.ceil(Math.random() * 800));
 				Dragon.dragons.add(born);
 			}
 

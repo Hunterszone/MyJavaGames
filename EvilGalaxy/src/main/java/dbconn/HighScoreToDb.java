@@ -23,9 +23,8 @@ public class HighScoreToDb {
 	private static final String PASS = "root";
 
 	public static void initDbConn() throws SQLException {
+		
 		Connection conn = null;
-		PreparedStatement preparedStatement = null;
-		int counter = 0;
 		try {
 			// STEP 1: Register JDBC driver
 			Class.forName(JDBC_DRIVER);
@@ -34,7 +33,14 @@ public class HighScoreToDb {
 			System.out.println("Connecting to a selected database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("Connected database successfully...");
-
+		} catch (final Exception se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		}
+		
+		PreparedStatement preparedStatement = null;
+		int counter = 0;
+		try {
 			// Empty DB before operations
 			preparedStatement = conn.prepareStatement("DELETE FROM highscores WHERE 1");
 			preparedStatement.executeUpdate();

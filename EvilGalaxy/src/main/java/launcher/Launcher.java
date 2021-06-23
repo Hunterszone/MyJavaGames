@@ -67,11 +67,14 @@ public class Launcher extends JFrame {
 			URL location;
 			URL verfile;
 			String inputLine;
-			final PrintStream printStream = new PrintStream(new ConsoleForm());
-			File filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
-			PrintWriter writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
+			PrintStream printStream = null;
+			File filename = null;
+			PrintWriter writer = null;
 
 			try {
+				printStream = new PrintStream(new ConsoleForm());
+				filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
+				writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
 				location = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy");
 				verfile = new URL(
 						"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/version.txt");
@@ -401,10 +404,12 @@ public class Launcher extends JFrame {
 		System.out.println("\nDownloading from\n\t " + source + "\nTo\n\t " + destination + "\n");
 		updlog.logger.logp(Level.INFO, "Downloading from\n\t " + source + "\nTo\n\t " + destination + "\n", "", "");
 		final URL url = new URL(source);
-		final InputStream input = url.openStream();
-		final FileOutputStream fos = new FileOutputStream(ofile);
+		InputStream input = null;
+		FileOutputStream fos = null;
 		
 		try {
+			input = url.openStream();
+			fos = new FileOutputStream(ofile);
 			if (ofile.exists())
 				ofile.delete();
 			if (!ofile.createNewFile()) {
