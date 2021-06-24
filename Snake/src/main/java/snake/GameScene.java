@@ -36,9 +36,9 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private final int B_WIDTH = (int) Main.DIM.getWidth();
 	private final int B_HEIGHT = (int) Main.DIM.getHeight();
-	private static final int DOT_SIZE = 10;
+	private static double DOT_SIZE = 10;
 	private static final int ALL_DOTS = 900; // max size of the snake
-	private static final int RAND_POS = 100;
+//	private static final int RAND_POS = 100;
 	private static final int DELAY = 140;
 	private static final Font HELVETICA = new Font("Helvetica", Font.BOLD, 26);
 	private static final Random rand = new Random();
@@ -48,8 +48,8 @@ public class GameScene extends JPanel implements ActionListener {
 	private final int[] jointsY = new int[ALL_DOTS];
 
 	private int bodyLength;
-	private int appleX;
-	private int appleY;
+	private double appleX;
+	private double appleY;
 	private int myScore = 0;
 	private int level = 1;
 
@@ -104,7 +104,7 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private void initGame() {
 
-		bodyLength = 3; // min size of the snake
+		bodyLength = 8; // min size of the snake
 
 		for (int i = 0; i < bodyLength; i++) {
 			jointsX[i] = 50 - i * 10;
@@ -153,7 +153,7 @@ public class GameScene extends JPanel implements ActionListener {
 				else
 					g.drawImage(Background.backgrounds.get(level - 1), 0, 0, null);
 			}
-			g.drawImage(apple, appleX, appleY, this);
+			g.drawImage(apple, (int)appleX, (int)appleY, this);
 
 			g.setColor(Color.white);
 			g.setFont(HELVETICA);
@@ -218,8 +218,8 @@ public class GameScene extends JPanel implements ActionListener {
 				&& (appleY-DOT_SIZE <= jointsY[0] && jointsY[0] <= appleY+DOT_SIZE)) {
 			LoadSounds.bite.play();
 			bodyLength++;
-			// Here we will increment the score
 			myScore++;
+			DOT_SIZE+=0.5;
 			setApple();
 			if (myScore % 5 == 0) {
 				LoadSounds.levelUp.play();
@@ -299,7 +299,8 @@ public class GameScene extends JPanel implements ActionListener {
 	}
 
 	private void setApple() {
-		appleX = appleY = (rand.nextInt(RAND_POS) * DOT_SIZE);
+		appleX = rand.nextInt(B_WIDTH-50) + 50;
+		appleY = rand.nextInt(B_HEIGHT-50) + 50;
 	}
 
 	@Override
@@ -338,7 +339,8 @@ public class GameScene extends JPanel implements ActionListener {
 				myScore = 0;
 				inGame = true; // setting in-game state
 				loadImages(); // reloading the images
-				bodyLength = 3; // reseting the snake initial size
+				bodyLength = 8; // reseting the snake initial size
+				DOT_SIZE = 10;
 
 				for (int i = 0; i < bodyLength; i++) {
 					// filling the X and Y arrays, based on the snake position
