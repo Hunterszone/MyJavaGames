@@ -2,8 +2,8 @@ package entities;
 
 import java.awt.Rectangle;
 
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class Crosshair extends Entity {
 
@@ -24,7 +24,7 @@ public class Crosshair extends Entity {
 	}
 
 	@Override
-	public boolean removedByHero(Entity other) {
-		return Game.notifyCrosshairUsed(new Crosshair(sprite, x, y), other);
+	public boolean removedByHero(Entity entity) {
+		return Logic.notifyCrosshairUsed(entity);
 	}
 }

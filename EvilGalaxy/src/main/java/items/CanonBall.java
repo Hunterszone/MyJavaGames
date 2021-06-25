@@ -2,6 +2,7 @@ package items;
 
 import enums.Images;
 import game_engine.SpritePattern;
+import util.Constants;
 
 public class CanonBall extends SpritePattern {
 
@@ -14,14 +15,23 @@ public class CanonBall extends SpritePattern {
 		initCanon();
 	}
 
-	public String initCanon() {
+	public void initCanon() {
 		imageName = Images.CANONINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void moveCanonLeft() {
 		x -= CANON_SPEED;
+		if(x < Constants.B_WIDTH - 1280) {
+			this.setVisible(false);
+		}
+	}
+	
+	public void moveCanonRight() {
+		x += CANON_SPEED;
+		if(x > Constants.B_WIDTH + 130) {
+			this.setVisible(false);
+		}
 	}
 }

@@ -17,34 +17,40 @@ public class TextToSpeech {
 	private static MaryInterface marytts = null;
 	static Set<String> voices = null;
 
-	public static void initVoice(String message) {
+	public static void initVoice() {
 
 		try {
 			marytts = new LocalMaryInterface();
-		} catch (MaryConfigurationException e1) {
+		} catch (final MaryConfigurationException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		if(marytts != null) {			
+
+		if (marytts != null) {
 			voices = marytts.getAvailableVoices();
+			System.out.println("Available voices: " + voices);
+			if (voices != null && !voices.isEmpty()) {
+				for (final String voice : voices) {
+					if (voice != null && !voice.isEmpty()) {
+						marytts.setVoice(voice);
+//					marytts.setAudioEffects("JetPilot");
+					}
+				}
+			}
 		}
+	}
 
-		System.out.println("Available voices: " + voices);
+	public static void playVoice(String message) {
 
-		if (voices != null && !voices.isEmpty()) {
-			marytts.setVoice(voices.iterator().next());
-		}
-
-		if (message.isEmpty()) {
+		if (message == null || message.isEmpty()) {
 			return;
 		}
-
+		
 		try {
-			AudioInputStream audio = marytts.generateAudio(message);
+			final AudioInputStream audio = marytts.generateAudio(message);
 			final AudioPlayer player = new AudioPlayer(audio);
 			player.start();
-		} catch (SynthesisException e) {
+		} catch (final SynthesisException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

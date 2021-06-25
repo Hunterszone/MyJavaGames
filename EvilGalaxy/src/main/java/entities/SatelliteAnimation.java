@@ -3,8 +3,8 @@ package entities;
 import java.awt.Image;
 
 import enums.Images;
-import game_engine.InitObjects;
 import game_engine.SpritePattern;
+import util.Constants;
 
 public class SatelliteAnimation extends SpritePattern {
 	
@@ -32,7 +32,7 @@ public class SatelliteAnimation extends SpritePattern {
         x += 3;
         y += 3;
 
-        if (y > InitObjects.B_HEIGHT) {
+        if (y > Constants.B_HEIGHT) {
 
             y = INITIAL_Y;
             x = INITIAL_X;

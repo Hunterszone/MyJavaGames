@@ -17,21 +17,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import enums.Commands;
 
 public class AutoSuggestor {
 
 	// Constants
 	private static final ArrayList<String> DICTIONARY = new ArrayList<>();
 
-	private JTextField textField;
-	private JPanel suggestionsPanel;
-	private JWindow autoSuggestionPopUpWindow;
-	private Window container;
+	private final JTextField textField;
+	private final JPanel suggestionsPanel;
+	private final JWindow autoSuggestionPopUpWindow;
+	private final Window container;
 	private String typedWord;
 	private int currentIndexOfSpace, tW, tH;
-	private DocumentListener documentListener = new DocumentListener() {
+	private final DocumentListener documentListener = new DocumentListener() {
 
 		@Override
 		public void insertUpdate(DocumentEvent de) {
@@ -107,12 +110,12 @@ public class AutoSuggestor {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 
-				List<SuggestionLabel> sls = getAddedSuggestionLabels();
-				int max = sls.size();
+				final List<SuggestionLabel> sls = getAddedSuggestionLabels();
+				final int max = sls.size();
 
 				if (max > 1) { // more than 1 suggestion
 					for (int i = 0; i < max; i++) {
-						SuggestionLabel sl = sls.get(i);
+						final SuggestionLabel sl = sls.get(i);
 						if (sl.isFocused()) {
 							if (lastFocusableIndex == max - 1) {
 								lastFocusableIndex = 0;
@@ -160,7 +163,7 @@ public class AutoSuggestor {
 			}
 		}*/
 		sls = sls.stream()
-				 .filter(sl -> sl.getComponent(SuggestionLabel.NEXT) instanceof SuggestionLabel)
+				 .filter(sl -> sl.getComponent(SwingConstants.NEXT) instanceof SuggestionLabel)
 				 .collect(Collectors.toList());
 		
 		return sls;
@@ -175,7 +178,7 @@ public class AutoSuggestor {
 		tW = 0;
 		tH = 0;
 
-		boolean added = wordTyped(typedWord);
+		final boolean added = wordTyped(typedWord);
 
 		if (!added) {
 			if (autoSuggestionPopUpWindow.isVisible()) {
@@ -188,7 +191,7 @@ public class AutoSuggestor {
 	}
 
 	protected void addWordToSuggestions(String word) {
-		SuggestionLabel suggestionLabel = new SuggestionLabel(word, suggestionFocusedColor, suggestionsTextColor, this);
+		final SuggestionLabel suggestionLabel = new SuggestionLabel(word, suggestionFocusedColor, suggestionsTextColor, this);
 
 		calculatePopUpWindowSize(suggestionLabel);
 
@@ -196,10 +199,10 @@ public class AutoSuggestor {
 	}
 
 	public String getCurrentlyTypedWord() {
-		String text = textField.getText();
+		final String text = textField.getText();
 		String wordBeingTyped = "";
 		if (text.contains(" ")) {
-			int tmp = text.lastIndexOf(" ");
+			final int tmp = text.lastIndexOf(" ");
 			if (tmp >= currentIndexOfSpace) {
 				currentIndexOfSpace = tmp;
 				wordBeingTyped = text.substring(text.lastIndexOf(" "));
@@ -246,13 +249,13 @@ public class AutoSuggestor {
 	public void setDictionary(String lookFor) {
 		lookFor = lookFor.toLowerCase();
 		DICTIONARY.clear();
-		if (ConsoleContent.COMMANDS == null) {
+		if (Commands.values() == null) {
 			return; // so we can call constructor with null value for dictionary without exception
 					// thrown
 		}
-		for (String word : ConsoleContent.COMMANDS) {
-			if (word.contains(lookFor)) {
-				DICTIONARY.add(word);
+		for (final Commands command : Commands.values()) {
+			if (command.name().contains(lookFor)) {
+				DICTIONARY.add(command.name());
 				// getTextField().setText(word);
 			}
 
@@ -284,7 +287,7 @@ public class AutoSuggestor {
 
 		boolean suggestionAdded = false;
 
-		for (String word : DICTIONARY) { // get commands in the dictionary which we added
+		for (final String word : DICTIONARY) { // get commands in the dictionary which we added
 			boolean fullymatches = true;
 			for (int i = 0; i < typedWord.length(); i++) { // each string in the word
 				if (!typedWord.toLowerCase().startsWith(String.valueOf(word.toLowerCase().charAt(i)), i)) { // check for

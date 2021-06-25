@@ -1,9 +1,10 @@
 package entities;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class TreasureEntity extends Entity {
 
@@ -14,9 +15,13 @@ public class TreasureEntity extends Entity {
 		super(sprite, x, y);
 	}
 
+	public TreasureEntity() {
+		super(null, 0, 0);
+	}
+
 	@Override
-	public boolean removedByHero(Entity other) {
-		return Game.notifyTreasuresCollected(new HeroEntity(sprite, x, y), other);
+	public boolean removedByHero(Entity entity) throws IOException {
+		return Logic.notifyTreasuresCollected(entity);
 	}
 
 	@Override

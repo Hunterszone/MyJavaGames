@@ -1,9 +1,10 @@
 package entities;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
 public class EnemyEntity extends Entity {
 
@@ -13,6 +14,10 @@ public class EnemyEntity extends Entity {
 
 	public EnemyEntity(MySprite sprite, int x, int y) {
 		super(sprite, x, y);
+	}
+
+	public EnemyEntity() {
+		super(null, 0, 0);
 	}
 
 	@Override
@@ -33,14 +38,14 @@ public class EnemyEntity extends Entity {
 	}
 
 	@Override
-	public boolean removedByHero(Entity other) {
-		if (other instanceof HeroEntity) {
+	public boolean removedByHero(Entity entity) throws IOException {
+		if (entity instanceof HeroEntity) {
 			System.out.println("Hero intersects EnemyEntity");
-			return Game.notifyEnemyHit(new HeroEntity(sprite, x, y), other);
+			return Logic.notifyEnemyHit(entity);
 		}
-		if (other instanceof Crosshair) {
+		if (entity instanceof Crosshair) {
 			System.out.println("Crosshair intersects EnemyEntity");
-			return Game.notifyCrosshairUsed(new Crosshair(sprite, x, y), other);
+			return Logic.notifyCrosshairUsed(entity);
 		}
 		return false;
 	}

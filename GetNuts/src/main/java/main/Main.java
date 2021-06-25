@@ -1,33 +1,42 @@
 package main;
 
+// import java libraries
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.net.URISyntaxException;
 
 import javax.swing.JFrame;
 
 import game_engine.Board;
+import menu_engine.CanvasMenu;
 
-public final class Main extends JFrame {
+// Main class
+public class Main extends JFrame {
+    private static final long serialVersionUID = 1L;
+    public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+    public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-	private static final long serialVersionUID = 1L;
+    public Main(){
+        initGame();
+    }
 
-	public Main() {
-		InitUI();
-	}
+    // Start game in fullscreen
+    public void initGame(){
+    	add(new Board()); // Generate level and JPanel
+        setResizable(false); // user can't resize
+        setUndecorated(true);
+        setTitle("GetNuts");
+        device.setFullScreenWindow(this); // this or frame
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+    }
 
-	public void InitUI() {
-		Board board = new Board();
-		add(board);
-
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500, 500);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setTitle("GetNuts");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images/sokoban.png"));
-	}
-
-	public static void main(String[] args) {
-		Main sokoban = new Main();
-		sokoban.setVisible(true);
-	}
+    // Run Main class
+    public static void main(String[] args) throws URISyntaxException {
+    	final CanvasMenu engine = new CanvasMenu();
+		engine.start();
+    }
 }

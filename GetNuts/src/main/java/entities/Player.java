@@ -3,6 +3,7 @@ package entities;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import enums.Images;
 import game_engine.Actor;
 
 public class Player extends Actor {
@@ -12,9 +13,9 @@ public class Player extends Actor {
 
 	public Player(int x, int y) {
 		super(x, y);
-		img = "images/sokoban.png";
+		img = Images.SOKOBAN.getImg();
 		sokoimage = Toolkit.getDefaultToolkit().createImage(img);
-		this.setImage(sokoimage);
+		this.setImage(sokoimage.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 	}
 
 	public void move(int x, int y) {

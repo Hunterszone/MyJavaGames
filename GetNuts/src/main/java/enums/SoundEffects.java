@@ -1,6 +1,3 @@
-// enums.SoundEffects
-//
-
 package enums;
 
 public enum SoundEffects {
@@ -10,14 +7,18 @@ public enum SoundEffects {
             return "sounds/backmusic.wav";
         }
     },
-
     BOING {
         @Override
         public String getSound() {
             return "sounds/boing.wav";
         }
     },
-
+    CLICK {
+        @Override
+        public String getSound() {
+            return "sounds/click.wav";
+        }
+    },
     CORRECT {
         @Override
         public String getSound() {
@@ -31,27 +32,23 @@ public enum SoundEffects {
             return "sounds/dead.wav";
         }
     },
-
     DENIED {
         @Override
         public String getSound() {
             return "sounds/denied.wav";
         }
     },
-
     HIGHSC {
         @Override
         public String getSound() {
             return "sounds/highsc.wav";
         }
     },
-
     MOVE {
         @Override
         public String getSound() {
             return "sounds/move.wav";
         }
     };
-
     public abstract String getSound();
 }

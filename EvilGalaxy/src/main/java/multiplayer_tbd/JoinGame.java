@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import frames.ConsoleForm;
+import extras.ConsoleForm;
 
 public class JoinGame extends JFrame {
 
@@ -19,26 +19,26 @@ public class JoinGame extends JFrame {
 		setSize(400, 400);
 		setPreferredSize(new Dimension(950, 381));
 		// submit button
-		JButton joinbutt = new JButton("Join");
+		final JButton joinbutt = new JButton("Join");
 		joinbutt.setBounds(150, 100, 150, 30);
 		joinbutt.setFont(joinbutt.getFont().deriveFont(14f));
-		JButton refrbutt = new JButton("Refresh");
+		final JButton refrbutt = new JButton("Refresh");
 		refrbutt.setBounds(150, 140, 150, 30);
 		refrbutt.setFont(refrbutt.getFont().deriveFont(14f));
 		// enter name label
-		JLabel label = new JLabel();
+		final JLabel label = new JLabel();
 		label.setText("Enter IP address:");
 		label.setBounds(10, 10, 130, 100);
 		label.setFont(label.getFont().deriveFont(14f));
 		// empty label which will show event after button clicked
-		JLabel label1 = new JLabel();
+		final JLabel label1 = new JLabel();
 		label1.setBounds(10, 180, 30000, 100);
 		label1.setFont(label1.getFont().deriveFont(14f));
-		JLabel label2 = new JLabel();
+		final JLabel label2 = new JLabel();
 		label2.setBounds(10, 160, 200, 100);
 		label2.setFont(label2.getFont().deriveFont(14f));
 		// textfield to enter name
-		JTextField textfield = new JTextField();
+		final JTextField textfield = new JTextField();
 		textfield.setBounds(150, 50, 150, 30);
 		textfield.setFont(textfield.getFont().deriveFont(14f));
 		// add to frame

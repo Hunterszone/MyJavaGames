@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Wall;
+import enums.Images;
 
 public class WallTest {
 
@@ -22,7 +23,7 @@ public class WallTest {
 	@Test
 	public void testWall() {
 		assertNotNull(wall.getImage());
-		assertFalse("Wall img name is empty", wall.img.isEmpty());
+		assertFalse("Wall img name is empty", Images.WALL.getImg().isEmpty());
 	}
 
 	@After

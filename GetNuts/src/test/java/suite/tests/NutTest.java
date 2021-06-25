@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Nut;
+import enums.Images;
 
 public class NutTest {
 
@@ -22,7 +23,7 @@ public class NutTest {
 	@Test
 	public void testNut() {
 		assertNotNull(nut.getImage());
-		assertFalse("Nut img name is empty", nut.img.isEmpty());
+		assertFalse("Nut img name is empty", Images.BAGGAGE.getImg().isEmpty());
 	}
 
 	@After

@@ -4,10 +4,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -16,10 +16,9 @@ import org.newdawn.slick.util.ResourceLoader;
 import entities.Crosshair;
 import entities.Entity;
 import entities.HeroEntity;
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
-@Ignore
 public class EnemyEntityTest {
 
 	private MySprite hero, crosshair, enemy;
@@ -28,14 +27,21 @@ public class EnemyEntityTest {
 	private int x, y;
 
 	@Before
-	public void setUp() throws Exception {
-		Display.create();
-		hero = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
-		crosshair = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
-		enemy = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
+	public void setUp() {
+		try {
+			Display.create();
+			hero = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/gunman.png")));
+			crosshair = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/pointer.png")));
+			enemy = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/bird.png")));
+		} catch (org.lwjgl.LWJGLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		heroEntity = new HeroEntity(hero, x, y);
 		crosshairEntity = new Crosshair(crosshair, x, y);
 		heroRect = new Rectangle();
@@ -45,24 +51,33 @@ public class EnemyEntityTest {
 
 	@Test
 	public void testEnemyEntity() {
-		assertNotNull(Game.initEnemies(enemy));
+		try {			
+			assertNotNull(Logic.initEnemies(enemy));
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+		}
 	}
 
 	@Test
 	public void testCollidedWithHero() {
 		if (heroRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemy).collidesWith(heroEntity));
+			assertTrue(Logic.initEnemies(enemy).iterator().next().collidesWith(heroEntity));
 	}
 
 	@Test
 	public void testCollidedWithCrosshair() {
 		if (crosshRect.intersects(enemyRect))
-			assertTrue(Game.initEnemies(enemy).collidesWith(crosshairEntity));
+			assertTrue(Logic.initEnemies(enemy).iterator().next().collidesWith(crosshairEntity));
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initEnemies(enemy).removedByHero(heroEntity));
+		try {
+			assertTrue(Logic.initEnemies(enemy).iterator().next().removedByHero(heroEntity));
+		} catch (NullPointerException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@After

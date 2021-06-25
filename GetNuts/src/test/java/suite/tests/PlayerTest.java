@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Player;
+import enums.Images;
 
 public class PlayerTest {
 
@@ -22,7 +23,7 @@ public class PlayerTest {
 	@Test
 	public void testPlayer() {
 		assertNotNull(player.getImage());
-		assertFalse("Player img name is empty", player.img.isEmpty());
+		assertFalse("Player img name is empty", Images.SOKOBAN.getImg().isEmpty());
 	}
 
 	@After

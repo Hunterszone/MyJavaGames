@@ -16,9 +16,9 @@ import entities.Bunker;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
-import frames.Main;
 import items.Gold;
 import items.HealthPack;
+import main.Main;
 import marytts.exceptions.MaryConfigurationException;
 import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
@@ -44,12 +44,13 @@ public class LoadGame {
 
 	private void loadGameDataFromFile(File loadfile) throws ClassNotFoundException, IOException {
 
-		LoadSounds.menuMusic.stop();
-		
-		try {
-			FileInputStream fileStream = new FileInputStream(loadfile);
-			ObjectInputStream objectStream = new ObjectInputStream(fileStream);
+		LoadSounds.MENU_MUSIC.stop();
+		FileInputStream fileStream = null;
+		ObjectInputStream objectStream = null;
 
+		try {
+			fileStream = new FileInputStream(loadfile);
+			objectStream = new ObjectInputStream(fileStream);
 			savedShip = (PlayerShip) objectStream.readObject();
 			savedHead = (EvilHead) objectStream.readObject();
 			savedBunker = (Bunker) objectStream.readObject();
@@ -73,25 +74,23 @@ public class LoadGame {
 			loadedAssets.add(savedOnL2);
 			loadedAssets.add(savedOnL3);
 			loadedAssets.add(savedOnL4);
-
-
 			System.out.println(loadedAssets.toString());
-
-			objectStream.close();
-
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
+		} finally {
+			fileStream.close();
+			objectStream.close();
 		}
-		
+
 		MenuState.isOn = false;
-		if(MouseInputHandler.main == null) {
+		if (MouseInputHandler.main == null) {
 			DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 			DisplayCanvas.frame.dispose();
 			EventQueue.invokeLater(() -> {
 				MouseInputHandler.main = new Main();
 				try {
 					initSavedAssets();
-				} catch (MaryConfigurationException e) {
+				} catch (final MaryConfigurationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -107,7 +106,7 @@ public class LoadGame {
 
 		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -120,7 +119,8 @@ public class LoadGame {
 
 			Alien.aliens = new ArrayList<>();
 			for (int i = 0; i < 40 - Collisions.alienKilled; i++) {
-				Alien born = new Alien((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800));
+				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000),
+						(int) Math.ceil(Math.random() * 800));
 				Alien.aliens.add(born);
 			}
 
@@ -134,7 +134,7 @@ public class LoadGame {
 
 		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -148,7 +148,8 @@ public class LoadGame {
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
 			for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
-				Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700), (int) Math.ceil(Math.random() * 800));
+				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700),
+						(int) Math.ceil(Math.random() * 800));
 				Dragon.dragons.add(born);
 			}
 
@@ -162,7 +163,7 @@ public class LoadGame {
 
 		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -184,7 +185,7 @@ public class LoadGame {
 
 		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && TextToSpeech.voiceInterruptor == false) {
 
-			TextToSpeech.initVoice("Game loaded!");
+			TextToSpeech.playVoice("Game loaded!");
 
 			if (Controls.isEPressed == true)
 				Difficulty.easy();
@@ -215,18 +216,18 @@ public class LoadGame {
 
 	public void openFileChooser() {
 
-		JFileChooser chooser = new JFileChooser(new File("./saves"));
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
-		int returnVal = chooser.showOpenDialog(null);
+		final JFileChooser chooser = new JFileChooser(new File("./saves"));
+		final FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
+		final int returnVal = chooser.showOpenDialog(null);
 
 		chooser.setFileFilter(filter);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				loadGameDataFromFile(chooser.getSelectedFile());
-			} catch (ClassNotFoundException e) {
+			} catch (final ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

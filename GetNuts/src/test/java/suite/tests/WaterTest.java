@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Water;
+import enums.Images;
 
 public class WaterTest {
 
@@ -22,7 +23,7 @@ public class WaterTest {
 	@Test
 	public void testWater() {
 		assertNotNull(water.getImage());
-		assertFalse("Water img name is empty", water.img.isEmpty());
+		assertFalse("Water img name is empty", Images.TERRAIN.getImg().isEmpty());
 	}
 
 	@After

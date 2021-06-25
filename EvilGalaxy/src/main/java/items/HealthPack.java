@@ -17,11 +17,10 @@ public class HealthPack extends SpritePattern {
 		initHealth();
 	}
 
-	public String initHealth() {
+	public void initHealth() {
 		imageName = Images.HEALTHINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void move() {

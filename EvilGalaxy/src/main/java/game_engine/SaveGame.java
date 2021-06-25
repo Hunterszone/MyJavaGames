@@ -2,6 +2,7 @@ package game_engine;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import entities.Alien;
@@ -20,31 +21,27 @@ public class SaveGame {
 	public static Boolean savedOnL3 = false;
 	public static Boolean savedOnL4 = false;
 	
-	public static void saveGameDataToFile(File savefile) {
+	public static void saveGameDataToFile(File savefile) throws IOException {
 
 		TextToSpeech.voiceInterruptor = false;
 
 		if (InitObjects.ingame == true) {
-
 			if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
-
 				savedOnL2 = false;
 				savedOnL3 = false;
 				savedOnL4 = false;
 				savedOnL1 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
 			TextToSpeech.voiceInterruptor = false;
-
 			if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0 && TextToSpeech.voiceInterruptor == false) {
-
 				savedOnL1 = false;
 				savedOnL3 = false;
 				savedOnL4 = false;
 				savedOnL2 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
@@ -52,31 +49,31 @@ public class SaveGame {
 
 			if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
 					&& TextToSpeech.voiceInterruptor == false) {
-
 				savedOnL2 = false;
 				savedOnL1 = false;
 				savedOnL4 = false;
 				savedOnL3 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
 			TextToSpeech.voiceInterruptor = false;
 
 			if (UpdateObjects.lifeBunker == 50 && TextToSpeech.voiceInterruptor == false) {
-
 				savedOnL1 = false;
 				savedOnL2 = false;
 				savedOnL3 = false;
 				savedOnL4 = true;
-				TextToSpeech.initVoice("Game saved!");
+				TextToSpeech.playVoice("Game saved!");
 				TextToSpeech.voiceInterruptor = true;
 			}
 
-			try {
-				FileOutputStream fileStream = new FileOutputStream(savefile);
-				ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+			FileOutputStream fileStream = null;
+			ObjectOutputStream objectStream = null;
 
+			try {
+				fileStream = new FileOutputStream(savefile);
+				objectStream = new ObjectOutputStream(fileStream);
 				objectStream.writeObject(PlayerShip.playerOne);
 				objectStream.writeObject(EvilHead.evilHead);
 				objectStream.writeObject(Bunker.bunkerObj);
@@ -88,15 +85,14 @@ public class SaveGame {
 				objectStream.writeObject(savedOnL2);
 				objectStream.writeObject(savedOnL3);
 				objectStream.writeObject(savedOnL4);
-
-				objectStream.close();
-				fileStream.close();
-
 //				JOptionPane.showConfirmDialog(frame, "Saved game state successfully.", "Save game",
 //						JOptionPane.DEFAULT_OPTION);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 //				JOptionPane.showConfirmDialog(frame, e.toString() + "\nFail to save game state.", "Save game",
 //						JOptionPane.DEFAULT_OPTION);
+			} finally {
+				objectStream.close();
+				fileStream.close();
 			}
 
 		}

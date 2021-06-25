@@ -4,22 +4,22 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.OpenGLException;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import entities.Entity;
 import entities.HeroEntity;
 import entities.TreasureEntity;
+import game_engine.Logic;
 import game_engine.MySprite;
-import main.Game;
 
-@Ignore
 public class TreasureEntityTest {
 
 	private MySprite sprite;
@@ -28,10 +28,17 @@ public class TreasureEntityTest {
 	private int x, y;
 
 	@Before
-	public void setUp() throws Exception {
-		Display.create();
-		sprite = new MySprite(
-				TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
+	public void setUp() throws OpenGLException {
+		try {
+			Display.create();
+			sprite = new MySprite(
+					TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/images/chest.png")));
+		} catch (org.lwjgl.LWJGLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		heroRect = new Rectangle();
 		treasureRect = new Rectangle();
 		treasure = new TreasureEntity(sprite, x, y);
@@ -40,18 +47,27 @@ public class TreasureEntityTest {
 
 	@Test
 	public void testTreasureEntity() {
-		assertNotNull(Game.initTreasures(sprite));
+		try {
+			assertNotNull(Logic.initTreasures(sprite));
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+		}
 	}
 
 	@Test
 	public void testRemove() {
-		assertTrue(Game.initTreasures(sprite).removedByHero(treasure));
+		try {
+			assertTrue(Logic.initTreasures(sprite).iterator().next().removedByHero(treasure));
+		} catch (NullPointerException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testCollidesWithHero() {
 		if (heroRect.intersects(treasureRect))
-			assertTrue(Game.initTreasures(sprite).collidesWith(hero));
+			assertTrue(Logic.initTreasures(sprite).iterator().next().collidesWith(hero));
 	}
 
 	@After

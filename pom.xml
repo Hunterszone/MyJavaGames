@@ -5,7 +5,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>./CityEngineGame</module>
+		<!-- <module>./CityEngineGame</module>  -->
 		<module>./EvilGalaxy</module>
 		<module>./GetNuts</module>
 		<module>./Gunman</module>
@@ -25,4 +25,19 @@
 			<url>https://myjavagames.jfrog.io/artifactory/MyJavaGamesLocal</url>
 		</snapshotRepository>
 	</distributionManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>TestFail.java</include>
+					</includes>
+					<testFailureIgnore>true</testFailureIgnore>
+					<forkCount>1</forkCount>
+					<reuseForks>false</reuseForks>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

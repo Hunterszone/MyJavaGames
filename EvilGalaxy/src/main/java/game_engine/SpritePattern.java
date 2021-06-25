@@ -30,8 +30,7 @@ public abstract class SpritePattern implements Serializable {
 	}
 
 	public Image loadImage(String imageName) {
-
-		ImageIcon ii = new ImageIcon(imageName);
+		final ImageIcon ii = new ImageIcon(imageName);
 		image = ii.getImage();
 		return image;
 	}

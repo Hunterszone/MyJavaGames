@@ -32,7 +32,7 @@ public class VolBtn extends SpritePattern {
 
 	public void keyPressed(KeyEvent e) {
 
-		int key = e.getKeyCode();
+		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
 			initMute();

@@ -4,10 +4,14 @@ Instructions for each individual game can be found in a **README** that is avail
 ## ARTIFACTORY: 
 https://myjavagames.jfrog.io/artifactory/MyJavaGamesLocal/
 
+## STORY BOARD: 
+https://me4gaming.myjetbrains.com/
+
 ## AUTHOR: 
 [Konstantin Drenski](https://github.com/Hunterszone)
 
-## Contributor:
+## Contributors:
 [talemache](https://github.com/talemache)  
+[emendez](https://github.com/emendez0309)  
 
 *ENJOY RESPONSIBLY! :)*
