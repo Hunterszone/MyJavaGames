@@ -56,7 +56,6 @@ public class GameScene extends JPanel implements ActionListener {
 	private boolean upDirection = false;
 	private boolean downDirection = false;
 	private boolean inGame = true;
-	private boolean isPaused;
 
 	private Timer timer;
 	private transient Image bodySegment;
@@ -64,7 +63,6 @@ public class GameScene extends JPanel implements ActionListener {
 	private transient Image head;
 
 	public GameScene() throws IOException {
-
 		initBoard();
 	}
 
@@ -113,63 +111,53 @@ public class GameScene extends JPanel implements ActionListener {
 
 		timer = new Timer(DELAY, this);
 		timer.start();
+
+		LoadSounds.bgMusic.loop();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		doDrawing(g);
 	}
 
 	private void doDrawing(Graphics g) {
 
-		int caseNumber = 0;
-		if(!inGame) {
-			caseNumber = 0;
-		}
-		if (inGame && isPaused) {
-			caseNumber = 1;
-		} 
-		if (inGame && !isPaused) {
-			caseNumber = 2;
-		} 
-		
-		switch (caseNumber) {
-		case 0:
+		if (!inGame) {
 			LoadSounds.bgMusic.stop();
 			LoadSounds.die.play();
 			gameOver(g);
-			break;
-		case 1:
-			pauseGame(g);
-			break;
-		case 2:
-			for (int i = 0; i < Background.backgrounds.size(); i++) {
-				if (level >= Background.backgrounds.size())
-					g.drawImage(Background.backgrounds.get(0), 0, 0, null);
-				else
-					g.drawImage(Background.backgrounds.get(level - 1), 0, 0, null);
+		} else {
+			if (!timer.isRunning()) {
+				pauseGame(g);
+			} else {
+				drawLevel(g);
 			}
-			g.drawImage(apple, (int)appleX, (int)appleY, this);
-
-			g.setColor(Color.white);
-			g.setFont(HELVETICA);
-			g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
-			g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
-
-			for (int i = 0; i < bodyLength; i++) {
-				if (i == 0) {
-					g.drawImage(head, jointsX[i], jointsY[i], this);
-				} else {
-					g.drawImage(bodySegment, jointsX[i], jointsY[i], this);
-				}
-			}
-			Toolkit.getDefaultToolkit().sync();
-			break;
-		default:
-			break;
 		}
+	}
+
+	private void drawLevel(Graphics g) {
+		for (int i = 0; i < Background.backgrounds.size(); i++) {
+			if (level >= Background.backgrounds.size())
+				g.drawImage(Background.backgrounds.get(0), 0, 0, null);
+			else
+				g.drawImage(Background.backgrounds.get(level - 1), 0, 0, null);
+		}
+		g.drawImage(apple, (int) appleX, (int) appleY, this);
+
+		g.setColor(Color.white);
+		g.setFont(HELVETICA);
+		g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
+		g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
+
+		for (int i = 0; i < bodyLength; i++) {
+			if (i == 0) {
+				g.drawImage(head, jointsX[i], jointsY[i], this);
+			} else {
+				g.drawImage(bodySegment, jointsX[i], jointsY[i], this);
+			}
+		}
+		Toolkit.getDefaultToolkit().sync();
 	}
 
 	private void gameOver(Graphics g) {
@@ -211,8 +199,8 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private void checkApple() {
 
-		if ((appleX-DOT_SIZE <= jointsX[0] && jointsX[0] <= appleX+DOT_SIZE) 
-				&& (appleY-DOT_SIZE <= jointsY[0] && jointsY[0] <= appleY+DOT_SIZE)) {
+		if ((appleX - DOT_SIZE <= jointsX[0] && jointsX[0] <= appleX + DOT_SIZE)
+				&& (appleY - DOT_SIZE <= jointsY[0] && jointsY[0] <= appleY + DOT_SIZE)) {
 			LoadSounds.bite.play();
 			bodyLength++;
 			myScore++;
@@ -241,19 +229,19 @@ public class GameScene extends JPanel implements ActionListener {
 
 		// Following lines moves the head to the desired direction.
 		if (leftDirection) {
-			jointsX[0] -= DOT_SIZE*2;
+			jointsX[0] -= DOT_SIZE * 2;
 		}
 
 		if (rightDirection) {
-			jointsX[0] += DOT_SIZE*2;
+			jointsX[0] += DOT_SIZE * 2;
 		}
 
 		if (upDirection) {
-			jointsY[0] -= DOT_SIZE*2;
+			jointsY[0] -= DOT_SIZE * 2;
 		}
 
 		if (downDirection) {
-			jointsY[0] += DOT_SIZE*2;
+			jointsY[0] += DOT_SIZE * 2;
 		}
 	}
 
@@ -292,22 +280,18 @@ public class GameScene extends JPanel implements ActionListener {
 	}
 
 	private void setApple() {
-		appleX = rand.nextInt(B_WIDTH-50);
-		appleY = rand.nextInt(B_HEIGHT-50);
+		appleX = rand.nextInt(B_WIDTH - 50);
+		appleY = rand.nextInt(B_HEIGHT - 50);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (inGame) {
-			if (!isPaused) {
-				LoadSounds.bgMusic.loop();
-			}
 			checkApple();
 			checkCollision();
 			move();
 		}
-
 		repaint();
 	}
 
@@ -335,17 +319,17 @@ public class GameScene extends JPanel implements ActionListener {
 				}
 
 				setApple(); // adding randomly the apple on every eaten one
-
-				timer.start(); // only starting the time, WITHOUT incrementing it !
+				timer.start();
 			}
 
 			if (key == KeyEvent.VK_R) { // restart when in a game state
-				isPaused = false;
+				timer.restart();
+				LoadSounds.bgMusic.loop();
 			}
 
 			if (key == KeyEvent.VK_P) { // game pause
+				timer.stop();
 				LoadSounds.bgMusic.stop();
-				isPaused = true;
 			}
 
 			/*
