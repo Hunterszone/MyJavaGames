@@ -101,30 +101,30 @@ public class Controls extends JFrame implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_1) {
+			Difficulty.restart();
 			TextToSpeech.playVoice("Loading level 1...");
 			TextToSpeech.voiceInterruptor = true;
-			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_2) {
+			Difficulty.restart();
 			TextToSpeech.playVoice("Loading level 2...");
 			TextToSpeech.voiceInterruptor = true;
-			Difficulty.restart();
 			Alien.aliens.clear();
 		}
 
 		if (key == KeyEvent.VK_3) {
+			Difficulty.restart();
 			TextToSpeech.playVoice("Loading level 3...");
 			TextToSpeech.voiceInterruptor = true;
-			Difficulty.restart();
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 		}
 
 		if (key == KeyEvent.VK_4) {
+			Difficulty.restart();
 			TextToSpeech.playVoice("Loading level 4...");
 			TextToSpeech.voiceInterruptor = true;
-			Difficulty.restart();
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 			UpdateObjects.lifeBunker = 50;

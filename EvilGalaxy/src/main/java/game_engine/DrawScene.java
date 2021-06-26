@@ -52,12 +52,12 @@ public class DrawScene extends UpdateObjects {
 		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
 		final int width = (int) Main.dim.getWidth();
 		final int height = (int) Main.dim.getHeight();
-		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg());
-		bg1 = bg1.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		bg2 = Toolkit.getDefaultToolkit().createImage(Images.BG2.getImg());
-		bg2 = bg2.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg());
-		bg3 = bg3.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg())
+				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		bg2 = Toolkit.getDefaultToolkit().createImage(Images.BG2.getImg())
+				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg())
+				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
 
 	private void drawExplosion(Graphics g) {
@@ -119,177 +119,207 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	@SuppressWarnings("finally")
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
 		if (ingame) {
-
-			if (Alien.aliens.size() > 0) {
-				drawGameStateL1(g);
-			}
-
-			if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
-				drawGameStateL2(g);
-			}
-
-			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-				drawGameStateL3(g);
-			}
-
-			if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
-				drawGameStateL4(g);
-			}
-
-			if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
-				drawGameStateL5(g);
-			}
+			drawGameStates(g);			
+			evilHeadBehaviour();
+			handleLifeEvilHead(g);
 		} else {
-			LoadSounds.BG_MUSIC.stop();
-			LoadSounds.HIT.stop();
-			LoadSounds.TAUNT.stop();
-			timerEasy.stop();
-			timerMedium.stop();
-			timerHard.stop();
-			
-			if (Alien.aliens.size() > 0) {
-				g.drawImage(bg1, 0, 0, null);
-			}
-
-			if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
-				g.drawImage(bg2, 0, 0, null);
-			}
-
-			if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
-				g.drawImage(bg3, 0, 0, null);
-			}
-
-			if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
-				g.drawImage(bg3, 0, 0, null);
-			}
-
-			if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
-				g.drawImage(bg3, 0, 0, null);
-			}
-			
-			if (lifePlayerShip > 6) {
-
-				if (TextToSpeech.finMusicIsPlayed == false) {
-					LoadSounds.FIN.play();
-					TextToSpeech.finMusicIsPlayed = true;
-				}
-
-				drawGameOver(g);
-				drawKilledBy(g);
-				g.drawString("Monsters left: " + 0, 5, 20);
-				g.drawString("Health: 0%", 200, 20);
-				if (lifeBunker >= 50) {
-					g.drawString("Gold: " + 0, 340, 20);
-				}
-
-				if (Collisions.killedByAlien == true) {
-					if (InitObjects.ingame == false) {
-						TextToSpeech.playVoice("Killed by an alien!");
-						TextToSpeech.voiceInterruptor = true;
-						Collisions.killedByAlien = false;
-						try {
-							HighScoreToDb.initDbConn();
-						} catch (final SQLException e) {
-							e.printStackTrace();
-						} finally {							
-							return;
-						}
-					}
-				}
-
-				if (Collisions.killedByDragon == true) {
-					if (InitObjects.ingame == false) {
-						TextToSpeech.playVoice("Killed by a dragon!");
-						TextToSpeech.voiceInterruptor = true;
-						Collisions.killedByDragon = false;
-						try {
-							HighScoreToDb.initDbConn();
-						} catch (final SQLException e) {
-							e.printStackTrace();
-						} finally {							
-							return;
-						}
-					}
-				}
-
-				if (Collisions.killedByBunker == true) {
-					if (InitObjects.ingame == false) {
-						TextToSpeech.playVoice("Killed by the bunker!");
-						TextToSpeech.voiceInterruptor = true;
-						Collisions.killedByBunker = false;
-						try {
-							HighScoreToDb.initDbConn();
-						} catch (final SQLException e) {
-							e.printStackTrace();
-						} finally {							
-							return;
-						}
-					}
-				}
-
-				if (Collisions.killedByEvilHead == true) {
-					if (InitObjects.ingame == false) {
-						TextToSpeech.playVoice("Killed by the Evil Head!");
-						TextToSpeech.voiceInterruptor = true;
-						Collisions.killedByEvilHead = false;
-						try {
-							HighScoreToDb.initDbConn();
-						} catch (final SQLException e) {
-							e.printStackTrace();
-						} finally {							
-							return;
-						}
-					}
-				}
-
-				if (AstronautAnimation.astronautAnim != null)
-					AstronautAnimation.astronautAnim = null;
-				if (SatelliteAnimation.starAnim != null)
-					SatelliteAnimation.starAnim = null;
-				for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-					if (asteroidsAnim != null)
-						asteroidsAnim = null;
-				}
-				AsteroidsAnimation.asteroidsAnimations.clear();
-				for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
-					if (elonAnimUp != null)
-						elonAnimUp = null;
-				}
-				TheEndAnimation.theEndAnimationsUp.clear();
-				for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
-					if (elonAnimDown != null)
-						elonAnimDown = null;
-				}
-				TheEndAnimation.theEndAnimationsDown.clear();
-			}
-
-			if (lifeEvilHead == 50) {
-
-				drawElonsUp(g);
-				drawElonsDown(g);
-
-				if (TextToSpeech.finMusicIsPlayed == false) {
-					LoadSounds.HIGHSC.play();
-					TextToSpeech.finMusicIsPlayed = true;
-				}
-
-				drawYouWon(g);
-				g.drawString("Monsters: Killed!", 5, 20);
-				g.drawString("Gold: Collected!", 210, 20);
-			}
-			return;
+			stopTimers();			
+			drawGameOverBgs(g);
+			handleGameOver(g);
+			handleGameWon(g);
 		}
 
-		evilHeadBehaviour();
-		handleLifeEvilHead(g);
-
 		Toolkit.getDefaultToolkit().sync();
+	}
+
+	private void drawGameOverBgs(Graphics g) {
+		if (Alien.aliens.size() > 0) {
+			g.drawImage(bg1, 0, 0, null);
+		}
+
+		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
+			g.drawImage(bg2, 0, 0, null);
+		}
+
+		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+			g.drawImage(bg3, 0, 0, null);
+		}
+
+		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
+			g.drawImage(bg3, 0, 0, null);
+		}
+
+		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+			g.drawImage(bg3, 0, 0, null);
+		}
+	}
+
+	private void stopTimers() {
+		LoadSounds.BG_MUSIC.stop();
+		LoadSounds.HIT.stop();
+		LoadSounds.TAUNT.stop();
+		timerEasy.stop();
+		timerMedium.stop();
+		timerHard.stop();
+	}
+
+	private void handleGameWon(Graphics g) {
+		if (lifeEvilHead == 50) {
+
+			drawElonsUp(g);
+			drawElonsDown(g);
+
+			if (TextToSpeech.finMusicIsPlayed == false) {
+				LoadSounds.HIGHSC.play();
+				TextToSpeech.finMusicIsPlayed = true;
+			}
+
+			drawYouWon(g);
+			g.drawString("Monsters: Killed!", 5, 20);
+			g.drawString("Gold: Collected!", 210, 20);
+		}
+	}
+
+	private void handleGameOver(Graphics g) {
+		if (lifePlayerShip > 6) {
+			if (TextToSpeech.finMusicIsPlayed == false) {
+				LoadSounds.FIN.play();
+				TextToSpeech.finMusicIsPlayed = true;
+			}
+			drawGameOver(g);
+			g.drawString("Monsters left: " + 0, 5, 20);
+			g.drawString("Health: 0%", 200, 20);
+			if (lifeBunker >= 50) {
+				g.drawString("Gold: " + 0, 340, 20);
+			}
+			drawKilledBy(g);
+			handleKilledByAlien();
+			handleKilledByDragon();
+			handleKilledByBunker();
+			handleKilledByEvilHead();
+			handleAnimations();
+		}
+	}
+
+	private void handleAnimations() {
+		if (AstronautAnimation.astronautAnim != null)
+			AstronautAnimation.astronautAnim = null;
+		if (SatelliteAnimation.starAnim != null)
+			SatelliteAnimation.starAnim = null;
+		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			if (asteroidsAnim != null)
+				asteroidsAnim = null;
+		}
+		AsteroidsAnimation.asteroidsAnimations.clear();
+		for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
+			if (elonAnimUp != null)
+				elonAnimUp = null;
+		}
+		TheEndAnimation.theEndAnimationsUp.clear();
+		for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
+			if (elonAnimDown != null)
+				elonAnimDown = null;
+		}
+		TheEndAnimation.theEndAnimationsDown.clear();
+	}
+
+	@SuppressWarnings("finally")
+	private void handleKilledByEvilHead() {
+		if (Collisions.killedByEvilHead == true) {
+			if (InitObjects.ingame == false) {
+				TextToSpeech.playVoice("Killed by the Evil Head!");
+				TextToSpeech.voiceInterruptor = true;
+				Collisions.killedByEvilHead = false;
+				try {
+					HighScoreToDb.initDbConn();
+				} catch (final SQLException e) {
+					e.printStackTrace();
+				} finally {							
+					return;
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("finally")
+	private void handleKilledByBunker() {
+		if (Collisions.killedByBunker == true) {
+			if (InitObjects.ingame == false) {
+				TextToSpeech.playVoice("Killed by the bunker!");
+				TextToSpeech.voiceInterruptor = true;
+				Collisions.killedByBunker = false;
+				try {
+					HighScoreToDb.initDbConn();
+				} catch (final SQLException e) {
+					e.printStackTrace();
+				} finally {							
+					return;
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("finally")
+	private void handleKilledByDragon() {
+		if (Collisions.killedByDragon == true) {
+			if (InitObjects.ingame == false) {
+				TextToSpeech.playVoice("Killed by a dragon!");
+				TextToSpeech.voiceInterruptor = true;
+				Collisions.killedByDragon = false;
+				try {
+					HighScoreToDb.initDbConn();
+				} catch (final SQLException e) {
+					e.printStackTrace();
+				} finally {							
+					return;
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("finally")
+	private void handleKilledByAlien() {
+		if (Collisions.killedByAlien == true) {
+			if (InitObjects.ingame == false) {
+				TextToSpeech.playVoice("Killed by an alien!");
+				TextToSpeech.voiceInterruptor = true;
+				Collisions.killedByAlien = false;
+				try {
+					HighScoreToDb.initDbConn();
+				} catch (final SQLException e) {
+					e.printStackTrace();
+				} finally {							
+					return;
+				}
+			}
+		}
+	}
+
+	private void drawGameStates(Graphics g) {
+		if (Alien.aliens.size() > 0) {
+			drawGameStateL1(g);
+		}
+
+		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
+			drawGameStateL2(g);
+		}
+
+		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+			drawGameStateL3(g);
+		}
+
+		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
+			drawGameStateL4(g);
+		}
+
+		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+			drawGameStateL5(g);
+		}
 	}
 
 	private void handleLifeEvilHead(Graphics g) {
@@ -439,23 +469,23 @@ public class DrawScene extends UpdateObjects {
 		g.drawImage(AlienIcon.alienIcon.getImage(), 100, 5, null);
 		g.drawString(": " + Alien.aliens.size(), 140, 20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 200, 5, null);
-		g.drawString(": Unlocked", 240, 20);
+		g.drawString(Constants.UNLOCKED, 240, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 360, 5, null);
 		g.drawString(": Locked", 400, 20);
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(": EASY", 540, 20);
+			g.drawString(Constants.EASY, 540, 20);
 		}
 
 		if (timerMedium.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(": MEDIUM", 540, 20);
+			g.drawString(Constants.MEDIUM, 540, 20);
 		}
 
 		if (timerHard.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(": HARD", 540, 20);
+			g.drawString(Constants.HARD, 540, 20);
 		}
 		
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
@@ -471,21 +501,21 @@ public class DrawScene extends UpdateObjects {
 		g.drawImage(LaserIcon.laserIcon.getImage(), 190, 5, null);
 		g.drawString(": Locked", 230, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 335, 5, null);
-		g.drawString(": Unlocked", 375, 20);
+		g.drawString(Constants.UNLOCKED, 375, 20);
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(": EASY", 540, 20);
+			g.drawString(Constants.EASY, 540, 20);
 		}
 
 		if (timerMedium.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(": MEDIUM", 540, 20);
+			g.drawString(Constants.MEDIUM, 540, 20);
 		}
 
 		if (timerHard.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(": HARD", 540, 20);
+			g.drawString(Constants.HARD, 540, 20);
 			drawOuttaControl(g);
 			PlayerShip.playerOne.shipShaked();
 			Crosshair.crosshair.crosShaked();
@@ -512,21 +542,21 @@ public class DrawScene extends UpdateObjects {
 		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
 		g.drawString(": Locked", 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 235, 5, null);
-		g.drawString(": Unlocked", 275, 20);
+		g.drawString(Constants.UNLOCKED, 275, 20);
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
-			g.drawString(": EASY", 440, 20);
+			g.drawString(Constants.EASY, 440, 20);
 		}
 
 		if (timerMedium.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
-			g.drawString(": MEDIUM", 440, 20);
+			g.drawString(Constants.MEDIUM, 440, 20);
 		}
 
 		if (timerHard.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
-			g.drawString(": HARD", 440, 20);
+			g.drawString(Constants.HARD, 440, 20);
 		}
 
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
@@ -546,17 +576,17 @@ public class DrawScene extends UpdateObjects {
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(": EASY", 540, 20);
+			g.drawString(Constants.EASY, 540, 20);
 		}
 
 		if (timerMedium.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(": MEDIUM", 540, 20);
+			g.drawString(Constants.MEDIUM, 540, 20);
 		}
 
 		if (timerHard.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(": HARD", 540, 20);
+			g.drawString(Constants.HARD, 540, 20);
 		}
 
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
@@ -577,23 +607,23 @@ public class DrawScene extends UpdateObjects {
 
 		g.drawString("Level: " + 4, 5, 20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
-		g.drawString(": Unlocked", 135, 20);
+		g.drawString(Constants.UNLOCKED, 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 255, 5, null);
-		g.drawString(": Unlocked", 295, 20);
+		g.drawString(Constants.UNLOCKED, 295, 20);
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
-			g.drawString(": EASY", 460, 20);
+			g.drawString(Constants.EASY, 460, 20);
 		}
 
 		if (timerMedium.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
-			g.drawString(": MEDIUM", 460, 20);
+			g.drawString(Constants.MEDIUM, 460, 20);
 		}
 
 		if (timerHard.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
-			g.drawString(": HARD", 460, 20);
+			g.drawString(Constants.HARD, 460, 20);
 		}
 
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()

@@ -86,57 +86,8 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		DragonIcon.dragonIcon = new DragonIcon(0, 0);
 		GoldIcon.goldIcon = new GoldIcon(0, 0);
 		
-		// Animations
-		AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
-		AstronautAnimation.astronautAnim.drawAstronaut();
-		AstronautAnimation.astronautAnim.setVisible(true);
-
-		SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
-		SatelliteAnimation.starAnim.drawSatellite();
-		SatelliteAnimation.starAnim.setVisible(true);
-
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 0));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 200));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(300, 300));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(600, 500));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(800, 320));
-
-		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-			asteroidsAnim.drawAsteroids();
-			asteroidsAnim.setVisible(true);
-		}
-
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(100, Constants.B_HEIGHT));
-		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(300, 0));
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(500, Constants.B_HEIGHT));
-		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(700, 0));
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, Constants.B_HEIGHT));
-
-		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {
-			elonAnim.drawTheEndUp();
-			elonAnim.setVisible(true);
-		}
-
-		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsDown) {
-			elonAnim.drawTheEndDown();
-			elonAnim.setVisible(true);
-		}
-
-		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
-		PlayerShip.playerOne.setVisible(true);
-
-		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
-		Crosshair.crosshair.setVisible(true);
-
-		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
-		EvilHead.evilHead.AIOnEasy();
-		EvilHead.evilHead.setVisible(true);
-
-		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
-		VolBtn.volButt.setVisible(true);
-
-		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
-		Bunker.bunkerObj.setVisible(true);
+		initAnimations();
+		initEntities();
 
 		SaveSign.saveSign = new SaveSign(Constants.BUNKER_X + 30, (int) Constants.getCoordinates().getHeight() - 700);
 		SaveSign.saveSign.setVisible(false);
@@ -155,6 +106,57 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		timerEasy.start();
 		LoadSounds.HIGHSC.play();
 		LoadSounds.BG_MUSIC.loop();
+	}
+
+	public static void initEntities() {
+		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
+		PlayerShip.playerOne.setVisible(true);
+
+		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
+		Crosshair.crosshair.setVisible(true);
+
+		EvilHead.evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
+		EvilHead.evilHead.AIOnEasy();
+		EvilHead.evilHead.setVisible(true);
+
+		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
+		VolBtn.volButt.setVisible(true);
+
+		Bunker.bunkerObj = new Bunker(Constants.BUNKER_X, Constants.BUNKER_Y);
+		Bunker.bunkerObj.setVisible(true);
+	}
+
+	public static void initAnimations() {
+		// Animations
+		AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
+		AstronautAnimation.astronautAnim.setVisible(true);
+
+		SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
+		SatelliteAnimation.starAnim.setVisible(true);
+
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 0));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 200));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(300, 300));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(600, 500));
+		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(800, 320));
+
+		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			asteroidsAnim.setVisible(true);
+		}
+
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(100, Constants.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(300, 0));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(500, Constants.B_HEIGHT));
+		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(700, 0));
+		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, Constants.B_HEIGHT));
+
+		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {
+			elonAnim.setVisible(true);
+		}
+
+		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsDown) {
+			elonAnim.setVisible(true);
+		}
 	}
 
 	public static List<Alien> initAliens() {
