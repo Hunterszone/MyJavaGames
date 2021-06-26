@@ -31,15 +31,13 @@ public class GameScene extends JPanel implements ActionListener {
 	 * The B_WIDTH and B_HEIGHT constants determine the size of the board. The
 	 * DOT_SIZE is the size of the apple and the dot of the snake. The ALL_DOTS
 	 * constant defines the maximum number of possible dots on the board (900 =
-	 * (300*300)/(10*10)). The RAND_POS constant is used to calculate a random
-	 * position for an apple. The DELAY constant determines the speed of the game.
+	 * (300*300)/(10*10)). The DELAY constant determines the speed of the game.
 	 */
 	private final int B_WIDTH = (int) Main.DIM.getWidth();
 	private final int B_HEIGHT = (int) Main.DIM.getHeight();
 	private static double DOT_SIZE = 10;
 	private static final int ALL_DOTS = 900; // max size of the snake
-//	private static final int RAND_POS = 100;
-	private static final int DELAY = 140;
+	private static int DELAY = 35;
 	private static final Font HELVETICA = new Font("Helvetica", Font.BOLD, 26);
 	private static final Random rand = new Random();
 
@@ -104,7 +102,7 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private void initGame() {
 
-		bodyLength = 8; // min size of the snake
+		bodyLength = 10; // min size of the snake
 
 		for (int i = 0; i < bodyLength; i++) {
 			jointsX[i] = 50 - i * 10;
@@ -157,7 +155,6 @@ public class GameScene extends JPanel implements ActionListener {
 
 			g.setColor(Color.white);
 			g.setFont(HELVETICA);
-			// Here we will draw the score on the board
 			g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
 			g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
 
@@ -219,7 +216,6 @@ public class GameScene extends JPanel implements ActionListener {
 			LoadSounds.bite.play();
 			bodyLength++;
 			myScore++;
-			DOT_SIZE+=0.5;
 			setApple();
 			if (myScore % 5 == 0) {
 				LoadSounds.levelUp.play();
@@ -261,10 +257,7 @@ public class GameScene extends JPanel implements ActionListener {
 		}
 	}
 
-	// In the checkCollision() method, we determine if the snake has hit itself or
-	// one of the walls.
 	private void checkCollision() {
-
 		// If the snake hits one of its joints with its head the game is over.
 		for (int z = bodyLength; z > 0; z--) {
 			if ((z > 4) && (jointsX[0] == jointsX[z]) && (jointsY[0] == jointsY[z])) {
@@ -299,8 +292,8 @@ public class GameScene extends JPanel implements ActionListener {
 	}
 
 	private void setApple() {
-		appleX = rand.nextInt(B_WIDTH-50) + 50;
-		appleY = rand.nextInt(B_HEIGHT-50) + 50;
+		appleX = rand.nextInt(B_WIDTH-50);
+		appleY = rand.nextInt(B_HEIGHT-50);
 	}
 
 	@Override
@@ -328,20 +321,13 @@ public class GameScene extends JPanel implements ActionListener {
 			if (key == KeyEvent.VK_ESCAPE)
 				System.exit(0);
 
-			// as a bonus I will also add restart functionality for you:
-
 			if (key == KeyEvent.VK_R && !inGame) { // restart when NOT in a game state
-
-				// If game is over, we need to reassign 0 to myScore, so that we begin
-				// incrementing from zero
-				// the next time
 				LoadSounds.restart.play();
 				myScore = 0;
 				inGame = true; // setting in-game state
 				loadImages(); // reloading the images
-				bodyLength = 8; // reseting the snake initial size
-				DOT_SIZE = 10;
-
+				bodyLength = 10; // reseting the snake initial size
+				DELAY = 80;
 				for (int i = 0; i < bodyLength; i++) {
 					// filling the X and Y arrays, based on the snake position
 					jointsX[i] = 50 - i * 10;
