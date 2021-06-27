@@ -7,7 +7,6 @@ package menu_engine;
 
 // import java libraries:
 import java.awt.Desktop;
-import java.awt.EventQueue;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
@@ -16,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
 // import game packages:
@@ -64,7 +64,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					if (main == null) {
 						DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 						DisplayCanvas.frame.dispose();
-						EventQueue.invokeLater(() -> {
+						SwingUtilities.invokeLater(() -> {
 							main = new Main();
 							main.setVisible(true);
 						});

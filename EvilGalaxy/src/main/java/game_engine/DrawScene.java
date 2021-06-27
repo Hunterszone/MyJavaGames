@@ -192,11 +192,6 @@ public class DrawScene extends UpdateObjects {
 				TextToSpeech.finMusicIsPlayed = true;
 			}
 			drawGameOver(g);
-			g.drawString("Monsters left: " + 0, 5, 20);
-			g.drawString("Health: 0%", 200, 20);
-			if (lifeBunker >= 50) {
-				g.drawString("Gold: " + 0, 340, 20);
-			}
 			drawKilledBy(g);
 			handleKilledByAlien();
 			handleKilledByDragon();
@@ -849,10 +844,17 @@ public class DrawScene extends UpdateObjects {
 		final String msg = "Game Over!";
 		setFontStyle(g);
 		g.drawString(msg, Constants.BUNKER_X + 30, ((int) Constants.getCoordinates().getHeight() / 2) - 150);
+		g.drawString("Monsters left: " + 0, 5, 20);
+		g.drawString("Health: 0%", 200, 20);
+		if (lifeBunker >= 50) {
+			g.drawString("Gold: " + 0, 340, 20);
+		}
 	}
 
 	private void drawKilledBy(Graphics g) {
+		
 		String msg = null;
+		
 		if (Collisions.killedByAlien == true)
 			msg = "Killed by an alien!";
 		if (Collisions.killedByDragon == true)

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 import javax.swing.JOptionPane;
@@ -44,6 +45,8 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
+
+	private static Random rand = new Random();
 	private static final long serialVersionUID = 1L;
 	private final int DELAY = 15;
 
@@ -75,9 +78,9 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		ingame = true;
 
 		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
-		
+
 		explosions = new ArrayList<Explosion>();
-		
+
 		// Icons
 		AlienIcon.alienIcon = new AlienIcon(0, 0);
 		LaserIcon.laserIcon = new LaserIcon(0, 0);
@@ -85,7 +88,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		DifficultyIcon.difficultyIcon = new DifficultyIcon(0, 0);
 		DragonIcon.dragonIcon = new DragonIcon(0, 0);
 		GoldIcon.goldIcon = new GoldIcon(0, 0);
-		
+
 		initAnimations();
 		initEntities();
 
@@ -128,33 +131,34 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public static void initAnimations() {
 		// Animations
-		AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
-		AstronautAnimation.astronautAnim.setVisible(true);
-
-		SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
-		SatelliteAnimation.starAnim.setVisible(true);
-
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 0));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(0, 200));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(300, 300));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(600, 500));
-		AsteroidsAnimation.asteroidsAnimations.add(new AsteroidsAnimation(800, 320));
-
-		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-			asteroidsAnim.setVisible(true);
+		if (AstronautAnimation.astronautAnim == null) {
+			AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
+			AstronautAnimation.astronautAnim.setVisible(true);
 		}
 
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(100, Constants.B_HEIGHT));
-		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(300, 0));
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(500, Constants.B_HEIGHT));
-		TheEndAnimation.theEndAnimationsDown.add(new TheEndAnimation(700, 0));
-		TheEndAnimation.theEndAnimationsUp.add(new TheEndAnimation(900, Constants.B_HEIGHT));
+		if (SatelliteAnimation.starAnim == null) {
+			SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
+			SatelliteAnimation.starAnim.setVisible(true);
+		}
 
-		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsUp) {
+		while (AsteroidsAnimation.asteroidsAnimations.size() < 5) {
+			final AsteroidsAnimation asteroidsAnim = new AsteroidsAnimation(rand.nextInt(Constants.B_WIDTH), 
+					rand.nextInt(Constants.B_HEIGHT));
+			AsteroidsAnimation.asteroidsAnimations.add(asteroidsAnim);
+			asteroidsAnim.setVisible(true);
+		}
+		
+		while (TheEndAnimation.theEndAnimationsDown.size() < 2) {
+			TheEndAnimation elonAnim = new TheEndAnimation(400, Constants.B_HEIGHT);
+			TheEndAnimation.theEndAnimationsDown.add(elonAnim);
+			elonAnim.drawTheEndDown();
 			elonAnim.setVisible(true);
 		}
 
-		for (final TheEndAnimation elonAnim : TheEndAnimation.theEndAnimationsDown) {
+		while (TheEndAnimation.theEndAnimationsUp.size() < 3) {
+			TheEndAnimation elonAnim = new TheEndAnimation(800, Constants.B_HEIGHT);
+			TheEndAnimation.theEndAnimationsUp.add(elonAnim);
+			elonAnim.drawTheEndUp();
 			elonAnim.setVisible(true);
 		}
 	}
@@ -172,11 +176,10 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public static List<Dragon> initDragons() {
 		Dragon.dragons = new ArrayList<Dragon>();
-		IntStream.range(0, 30).mapToObj(i -> new Dragon(posDragon[i][0], posDragon[i][1]))
-				.forEach(dragon -> {
-					Dragon.dragons.add(dragon);
-					dragon.setVisible(false);
-				});
+		IntStream.range(0, 30).mapToObj(i -> new Dragon(posDragon[i][0], posDragon[i][1])).forEach(dragon -> {
+			Dragon.dragons.add(dragon);
+			dragon.setVisible(false);
+		});
 		return Dragon.dragons;
 	}
 
@@ -255,7 +258,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 			} catch (final InterruptedException e) {
 				final String msg = String.format("Thread interrupted: %s", e.getMessage());
 				JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
-			    Thread.currentThread().interrupt();
+				Thread.currentThread().interrupt();
 			}
 
 			beforeTime = System.currentTimeMillis();
