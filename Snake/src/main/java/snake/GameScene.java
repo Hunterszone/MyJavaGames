@@ -18,7 +18,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import menu_engine.CanvasMenu;
+import menu_engine.MouseInputHandler;
+import menu_states.MenuState;
 import util.LoadSounds;
+import util.TextToSpeech;
 
 public class GameScene extends JPanel implements ActionListener {
 
@@ -84,13 +88,13 @@ public class GameScene extends JPanel implements ActionListener {
 	 */
 	private void loadImages() {
 
-		ImageIcon snakeBody = new ImageIcon("res/dot.png");
+		ImageIcon snakeBody = new ImageIcon("images/dot.png");
 		bodySegment = snakeBody.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
-		ImageIcon itemToCollect = new ImageIcon("res/apple.png");
+		ImageIcon itemToCollect = new ImageIcon("images/apple.png");
 		apple = itemToCollect.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
-		ImageIcon snakeHead = new ImageIcon("res/head.png");
+		ImageIcon snakeHead = new ImageIcon("images/head.png");
 		head = snakeHead.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 	}
 
@@ -112,7 +116,7 @@ public class GameScene extends JPanel implements ActionListener {
 		timer = new Timer(DELAY, this);
 		timer.start();
 
-		LoadSounds.bgMusic.loop();
+		LoadSounds.BG_SOUND.loop();
 	}
 
 	@Override
@@ -124,8 +128,8 @@ public class GameScene extends JPanel implements ActionListener {
 	private void doDrawing(Graphics g) {
 
 		if (!inGame) {
-			LoadSounds.bgMusic.stop();
-			LoadSounds.die.play();
+			LoadSounds.BG_SOUND.stop();
+			LoadSounds.GAME_OVER.play();
 			gameOver(g);
 		} else {
 			if (!timer.isRunning()) {
@@ -201,12 +205,12 @@ public class GameScene extends JPanel implements ActionListener {
 
 		if ((appleX - DOT_SIZE <= jointsX[0] && jointsX[0] <= appleX + DOT_SIZE)
 				&& (appleY - DOT_SIZE <= jointsY[0] && jointsY[0] <= appleY + DOT_SIZE)) {
-			LoadSounds.bite.play();
+			LoadSounds.BITE.play();
 			bodyLength++;
 			myScore++;
 			setApple();
 			if (myScore % 5 == 0) {
-				LoadSounds.levelUp.play();
+				LoadSounds.LEVEL_UP.play();
 				level++;
 			}
 		}
@@ -302,11 +306,20 @@ public class GameScene extends JPanel implements ActionListener {
 
 			int key = e.getKeyCode();
 
-			if (key == KeyEvent.VK_ESCAPE)
-				System.exit(0);
+			if (key == KeyEvent.VK_ESCAPE) {
+				MenuState.isOn = false;
+				LoadSounds.BG_SOUND.stop();
+				TextToSpeech.playVoice("Loading main menu...");
+				TextToSpeech.voiceInterruptor = true;
+				if (MouseInputHandler.main != null) MouseInputHandler.main.dispose();
+				MouseInputHandler.main = null;
+				MenuState.isOn = true;
+				final CanvasMenu engine = new CanvasMenu();
+				engine.start();
+			}
 
 			if (key == KeyEvent.VK_R && !inGame) { // restart when NOT in a game state
-				LoadSounds.restart.play();
+				LoadSounds.RESTART.play();
 				myScore = 0;
 				inGame = true; // setting in-game state
 				loadImages(); // reloading the images
@@ -324,12 +337,12 @@ public class GameScene extends JPanel implements ActionListener {
 
 			if (key == KeyEvent.VK_R) { // restart when in a game state
 				timer.restart();
-				LoadSounds.bgMusic.loop();
+				LoadSounds.BG_SOUND.loop();
 			}
 
 			if (key == KeyEvent.VK_P) { // game pause
 				timer.stop();
-				LoadSounds.bgMusic.stop();
+				LoadSounds.BG_SOUND.stop();
 			}
 
 			/*

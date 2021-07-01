@@ -2,6 +2,24 @@ package enums;
 
 public enum SoundEffects {
 
+	CLICK {
+		@Override
+		public String getSound() {
+			return "sounds/reload.wav";
+		}
+	},
+	FORBIDDEN {
+		@Override
+		public String getSound() {
+			return "sounds/forbidden.wav";
+		}
+	},
+	HOVER {
+		@Override
+		public String getSound() {
+			return "sounds/hover.wav";
+		}
+	},
 	BITE {
 		@Override
 		public String getSound() {

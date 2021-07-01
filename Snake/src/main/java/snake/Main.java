@@ -1,13 +1,16 @@
 package snake;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.swing.JFrame;
+
+import enums.Images;
+import menu_engine.CanvasMenu;
 
 public class Main extends JFrame {
 
@@ -29,19 +32,12 @@ public class Main extends JFrame {
 		DEVICE.setFullScreenWindow(this); // this or frame
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(Images.ICON.getImg()));
         this.setLocation(DIM.width / 2 - this.getSize().width / 2, DIM.height / 2 - this.getSize().height / 2);
 	}
 
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(() -> {
-			JFrame ex = null;
-			try {
-				ex = new Main();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			ex.setVisible(true);
-		});
+	public static void main(String[] args) throws URISyntaxException {
+		final CanvasMenu engine = new CanvasMenu();
+		engine.start();
 	}
 }
