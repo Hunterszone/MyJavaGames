@@ -37,11 +37,11 @@ public class GameScene extends JPanel implements ActionListener {
 	 * constant defines the maximum number of possible dots on the board (900 =
 	 * (300*300)/(10*10)). The DELAY constant determines the speed of the game.
 	 */
-	private final int B_WIDTH = (int) Main.DIM.getWidth();
-	private final int B_HEIGHT = (int) Main.DIM.getHeight();
-	private static double DOT_SIZE = 10;
+	private static final double B_WIDTH = Main.DIM.getWidth();
+	private static final double B_HEIGHT = Main.DIM.getHeight();
+	private static final double DOT_SIZE = 10;
 	private static final int ALL_DOTS = 900; // max size of the snake
-	private static int DELAY = 35;
+	private static final int DELAY = 35;
 	private static final Font HELVETICA = new Font("Helvetica", Font.BOLD, 26);
 	private static final Random rand = new Random();
 
@@ -77,7 +77,7 @@ public class GameScene extends JPanel implements ActionListener {
 		addKeyListener(new TAdapter());
 		setFocusable(true);
 
-		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+		setPreferredSize(new Dimension((int)B_WIDTH, (int)B_HEIGHT));
 		loadImages();
 		initGame();
 	}
@@ -151,8 +151,8 @@ public class GameScene extends JPanel implements ActionListener {
 
 		g.setColor(Color.white);
 		g.setFont(HELVETICA);
-		g.drawString("Level: " + level, (B_WIDTH / 2) - 150, 35);
-		g.drawString("Points: " + myScore, (B_WIDTH / 2) + 100, 35);
+		g.drawString("Level: " + level, (int) ((B_WIDTH / 2) - 150), 35);
+		g.drawString("Points: " + myScore, (int) ((B_WIDTH / 2) + 100), 35);
 
 		for (int i = 0; i < bodyLength; i++) {
 			if (i == 0) {
@@ -175,9 +175,9 @@ public class GameScene extends JPanel implements ActionListener {
 
 		g.setColor(Color.white);
 		g.setFont(HELVETICA);
-		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 80);
-		g.drawString(msg2 + myScore, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2 - 40);
-		g.drawString(msg3, (B_WIDTH - metr.stringWidth(msg3)) / 2, B_HEIGHT / 2);
+		g.drawString(msg, ((int)B_WIDTH - metr.stringWidth(msg)) / 2, (int)B_HEIGHT / 2 - 80);
+		g.drawString(msg2 + myScore, ((int)B_WIDTH - metr.stringWidth(msg2)) / 2, (int)B_HEIGHT / 2 - 40);
+		g.drawString(msg3, ((int)B_WIDTH - metr.stringWidth(msg3)) / 2, (int)B_HEIGHT / 2);
 
 		level = 1;
 	}
@@ -192,8 +192,8 @@ public class GameScene extends JPanel implements ActionListener {
 
 		g.setColor(Color.white);
 		g.setFont(HELVETICA);
-		g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2 - 40);
-		g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2, B_HEIGHT / 2);
+		g.drawString(msg, ((int)B_WIDTH - metr.stringWidth(msg)) / 2, (int)B_HEIGHT / 2 - 40);
+		g.drawString(msg2, ((int)B_WIDTH - metr.stringWidth(msg2)) / 2, (int)B_HEIGHT / 2);
 	}
 
 	/*
@@ -264,7 +264,7 @@ public class GameScene extends JPanel implements ActionListener {
 		}
 
 		if (jointsY[0] <= 0) {
-			jointsY[0] = B_HEIGHT;
+			jointsY[0] = (int)B_HEIGHT;
 			return;
 		}
 
@@ -274,7 +274,7 @@ public class GameScene extends JPanel implements ActionListener {
 		}
 
 		if (jointsX[0] <= 0) {
-			jointsX[0] = B_WIDTH;
+			jointsX[0] = (int)B_WIDTH;
 			return;
 		}
 
@@ -284,8 +284,8 @@ public class GameScene extends JPanel implements ActionListener {
 	}
 
 	private void setApple() {
-		appleX = rand.nextInt(B_WIDTH - 50);
-		appleY = rand.nextInt(B_HEIGHT - 50);
+		appleX = rand.nextInt((int)B_WIDTH - 50);
+		appleY = rand.nextInt((int)B_HEIGHT - 50);
 	}
 
 	@Override
@@ -324,7 +324,6 @@ public class GameScene extends JPanel implements ActionListener {
 				inGame = true; // setting in-game state
 				loadImages(); // reloading the images
 				bodyLength = 10; // reseting the snake initial size
-				DELAY = 80;
 				for (int i = 0; i < bodyLength; i++) {
 					// filling the X and Y arrays, based on the snake position
 					jointsX[i] = 50 - i * 10;
