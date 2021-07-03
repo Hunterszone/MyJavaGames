@@ -33,7 +33,7 @@ public class Main extends JFrame {
 		DEVICE.setFullScreenWindow(this); // this or frame
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(Images.ICON.getImg()));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(Images.APPLE.getImg()));
         this.setLocation(DIM.width / 2 - this.getSize().width / 2, DIM.height / 2 - this.getSize().height / 2);
 	}
 

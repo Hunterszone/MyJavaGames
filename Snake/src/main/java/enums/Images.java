@@ -1,10 +1,28 @@
 package enums;
 
 public enum Images {
-	ICON {
+	APPLE {
 		@Override
 		public String getImg() {
 			return "images/apple.png";
+		}
+	},
+	HEAD {
+		@Override
+		public String getImg() {
+			return "images/head.png";
+		}
+	},
+	DOT {
+		@Override
+		public String getImg() {
+			return "images/dot.png";
+		}
+	},
+	CURSOR {
+		@Override
+		public String getImg() {
+			return "images/cursor.png";
 		}
 	},
 	VOLUMEINIT {

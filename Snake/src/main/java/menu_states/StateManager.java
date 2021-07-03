@@ -12,15 +12,13 @@ public class StateManager {
 	}
 
 	public STATES getState() {
-
-		return State;
+		return state;
 	}
 
 	public void setState(STATES state) {
-
-		State = state;
+		this.state = state;
 	}
 
-	private STATES State = STATES.MENU;
+	private STATES state = STATES.MENU;
 
 }

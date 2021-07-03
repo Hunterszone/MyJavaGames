@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import enums.Images;
 import main.Main;
 import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
@@ -80,13 +81,13 @@ public class GameLogic extends JPanel implements ActionListener {
 	 */
 	private void loadImages() {
 
-		ImageIcon snakeBody = new ImageIcon("images/dot.png");
+		ImageIcon snakeBody = new ImageIcon(Images.DOT.getImg());
 		bodySegment = snakeBody.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
-		ImageIcon itemToCollect = new ImageIcon("images/apple.png");
+		ImageIcon itemToCollect = new ImageIcon(Images.APPLE.getImg());
 		apple = itemToCollect.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 
-		ImageIcon snakeHead = new ImageIcon("images/head.png");
+		ImageIcon snakeHead = new ImageIcon(Images.HEAD.getImg());
 		head = snakeHead.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 	}
 

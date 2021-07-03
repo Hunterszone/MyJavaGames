@@ -15,28 +15,25 @@ import util.LoadSounds;
 public class DisplayCanvas {
 
     public static final int WIDTH = 1200;
-    public static final int HEIGHT = 800;
+    public static final int HEIGHT = 800;    
+    public static final JFrame frame = new JFrame("Evil Menu");
+    public static final Canvas canvas = new Canvas();
+//	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+    static Dimension dim;
     
-    public JFrame getFrame() {
-
-        return frame;
+    public DisplayCanvas() {
+    	init();
     }
 
-    public static JFrame frame;
-    public static Canvas canvas;
-//	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-	static Dimension dim;
-	
-    public DisplayCanvas() {
-        init();
+    public JFrame getFrame() {
+        return frame;
     }
 
     public Canvas getCanvas() {
         return canvas;
     }
 
-    private void init() {
-        frame = new JFrame("Evil Menu");
+    private static void init() {
         frame.setUndecorated(true);
 //        device.setFullScreenWindow(frame); 
         frame.setVisible(true);
@@ -50,9 +47,7 @@ public class DisplayCanvas {
         frame.setLocationRelativeTo(null);
         dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
-
-        canvas = new Canvas();
-
+        
         canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
