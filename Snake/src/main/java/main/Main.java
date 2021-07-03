@@ -1,4 +1,4 @@
-package snake;
+package main;
 
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import javax.swing.JFrame;
 
 import enums.Images;
+import game_engine.GameLogic;
 import menu_engine.CanvasMenu;
 
 public class Main extends JFrame {
@@ -24,7 +25,7 @@ public class Main extends JFrame {
 
 	private void initUI() throws IOException {
 
-		add(new GameScene());
+		add(new GameLogic());
 
 		setResizable(false);
         setUndecorated(true);

@@ -1,4 +1,4 @@
-package snake;
+package game_engine;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,25 +18,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import main.Main;
 import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
 import menu_states.MenuState;
+import util.Background;
 import util.LoadSounds;
 import util.TextToSpeech;
 
-public class GameScene extends JPanel implements ActionListener {
+public class GameLogic extends JPanel implements ActionListener {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
-	// First we will define the constants used in our game.
-	/*
-	 * The B_WIDTH and B_HEIGHT constants determine the size of the board. The
-	 * DOT_SIZE is the size of the apple and the dot of the snake. The ALL_DOTS
-	 * constant defines the maximum number of possible dots on the board (900 =
-	 * (300*300)/(10*10)). The DELAY constant determines the speed of the game.
-	 */
 	private static final double B_WIDTH = Main.DIM.getWidth();
 	private static final double B_HEIGHT = Main.DIM.getHeight();
 	private static final double DOT_SIZE = 10;
@@ -66,7 +58,7 @@ public class GameScene extends JPanel implements ActionListener {
 	private transient Image apple;
 	private transient Image head;
 
-	public GameScene() throws IOException {
+	public GameLogic() throws IOException {
 		initBoard();
 	}
 

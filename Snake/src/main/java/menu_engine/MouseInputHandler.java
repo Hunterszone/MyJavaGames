@@ -21,12 +21,12 @@ import javax.swing.event.MouseInputAdapter;
 // import game packages:
 import enums.SoundEffects;
 import launcher.Launcher;
+import main.Main;
 import menu_states.ControlsState;
 import menu_states.ExtrasState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
-import snake.Main;
 import sound_engine.PlayWave1st;
 import util.Constants;
 import util.LoadSounds;

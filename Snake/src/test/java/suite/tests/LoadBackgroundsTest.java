@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import org.junit.Assert;
 import org.junit.Test;
 
-import snake.Background;
+import util.Background;
 
 public class LoadBackgroundsTest {
 	

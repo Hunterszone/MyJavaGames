@@ -13,13 +13,13 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import snake.GameScene;
+import game_engine.GameLogic;
 
 public class GameSceneTest {
 	
 	@Test
 	public void testBoardWidthIsFullscreen() {
-		GameScene mockedObj = Mockito.mock(GameScene.class);
+		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 	    Mockito.when(mockedObj.getWidth()).thenReturn(1920);
 
 	    int boardWidth = mockedObj.getWidth();
@@ -30,21 +30,21 @@ public class GameSceneTest {
 	
 	@Test
 	public void testBoardWidthIsNaN() {
-		GameScene mockedObj = Mockito.mock(GameScene.class);
+		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 		assertFalse("Board width is NaN!", Double.isNaN(mockedObj.getWidth()));
 		Mockito.verify(mockedObj).getWidth();
 	}
 	
 	@Test
 	public void testBoardWidthIsNotNegative() {
-		GameScene mockedObj = Mockito.mock(GameScene.class);
+		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 		assertFalse("Board width is negative!", mockedObj.getWidth() < 0);
 		Mockito.verify(mockedObj).getWidth();
 	}
 	
 	@Test
 	public void testBoardHeightIsFullscreen() {
-		GameScene mockedObj = Mockito.mock(GameScene.class);
+		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 	    Mockito.when(mockedObj.getHeight()).thenReturn(1080);
 
 	    int boardHeight = mockedObj.getHeight();
@@ -55,14 +55,14 @@ public class GameSceneTest {
 	
 	@Test
 	public void testBoardHeigthIsNaN() {
-		GameScene mockedObj = Mockito.mock(GameScene.class);
+		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 		assertFalse("Board width is NaN!", Double.isNaN(mockedObj.getHeight()));
 		Mockito.verify(mockedObj).getHeight();
 	}
 	
 	@Test
 	public void testBoardHeigthIsNotNegative() {
-		GameScene mockedObj = Mockito.mock(GameScene.class);
+		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 		assertFalse("Board width is negative!", mockedObj.getHeight() < 0);
 		Mockito.verify(mockedObj).getHeight();
 	}

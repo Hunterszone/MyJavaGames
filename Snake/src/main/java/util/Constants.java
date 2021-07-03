@@ -2,7 +2,7 @@ package util;
 
 import java.awt.Dimension;
 
-import snake.Main;
+import main.Main;
 
 public class Constants {
 	
