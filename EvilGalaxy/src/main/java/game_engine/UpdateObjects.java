@@ -1,6 +1,7 @@
 package game_engine;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import entities.Alien;
@@ -18,7 +19,7 @@ import items.ShipMissile;
 import items.ShipRocket;
 import util.LoadSounds;
 
-public abstract class UpdateObjects extends InitObjects {
+public abstract class UpdateObjects extends InitObjects implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	public static int lifeEvilHead = 3;
@@ -49,7 +50,6 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void inGame() {
-
 		if (!ingame) {
 			timerEasy.stop();
 			timerMedium.stop();
@@ -58,14 +58,12 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateMyShip() {
-
 		if (PlayerShip.playerOne.isVisible()) {
 			PlayerShip.playerOne.move();
 		}
 	}
 
 	private void updateMyCrosshair() {
-
 		if (Crosshair.crosshair.isVisible()) {
 			Crosshair.crosshair.move();
 		} else {

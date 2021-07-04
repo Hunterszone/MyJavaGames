@@ -29,7 +29,7 @@ import util.LoadSounds;
 public class PlayerShip extends SpritePattern {
 
 	public static PlayerShip playerOne;
-	double speedX, speedY;
+	public static double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;
 	private List<ShipRocket> rockets;

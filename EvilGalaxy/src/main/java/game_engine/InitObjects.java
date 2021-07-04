@@ -69,6 +69,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public InitObjects() {
 		initBoard();
+//		new XboxControls().initControls();
 	}
 
 	private void initBoard() {
