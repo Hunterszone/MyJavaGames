@@ -21,5 +21,5 @@ public class Constants {
 	}
 	
 	public static final List<String> allImageFiles = Arrays.asList(Images.APPLE.getImg(), Images.CURSOR.getImg(), 
-			Images.DOT.getImg(), Images.HEAD.getImg(), Images.VOLUMEINIT.getImg(), Images.VOLUMEMUTE.getImg());
+			Images.DOT.getImg(), Images.HEAD.getImg(), Images.VOLUMEMUTE.getImg());
 }

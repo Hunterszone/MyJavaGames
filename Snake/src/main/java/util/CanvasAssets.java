@@ -2,6 +2,8 @@ package util;
 
 import java.awt.Image;
 
+import enums.Images;
+
 public class CanvasAssets extends SpritePattern {
 
 	private static final long serialVersionUID = 1L;
@@ -62,7 +64,7 @@ public class CanvasAssets extends SpritePattern {
         header = loadImage("images/title.png");
         manual = loadImage("images/manual.png");
         manualText = loadImage("images/manualText.png");
-//        volume = loadImage(Images.VOLUMEMUTE.getImg());
+        volume = loadImage(Images.VOLUMEMUTE.getImg());
 		getImageDimensions();
 	}
 }

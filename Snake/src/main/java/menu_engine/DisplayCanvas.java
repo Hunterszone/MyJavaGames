@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import enums.Images;
 import util.LoadSounds;
 
 public class DisplayCanvas {
@@ -54,7 +55,7 @@ public class DisplayCanvas {
         canvas.setVisible(true);
         
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
-		final Image image = toolkit.getImage("images/cursor.png");
+		final Image image = toolkit.getImage(Images.CURSOR.getImg());
 		final Cursor c = toolkit.createCustomCursor(image, new Point(DisplayCanvas.canvas.getX(), 
 				DisplayCanvas.canvas.getY()), "img");
 		DisplayCanvas.canvas.setCursor(c);

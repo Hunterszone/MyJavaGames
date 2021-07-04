@@ -25,12 +25,6 @@ public enum Images {
 			return "images/cursor.png";
 		}
 	},
-	VOLUMEINIT {
-		@Override
-		public String getImg() {
-			return "images/volbutt.png";
-		}
-	},
 	VOLUMEMUTE {
 		@Override
 		public String getImg() {
