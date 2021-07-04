@@ -2,13 +2,6 @@ package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -65,38 +58,5 @@ public class GameSceneTest {
 		GameLogic mockedObj = Mockito.mock(GameLogic.class);
 		assertFalse("Board width is negative!", mockedObj.getHeight() < 0);
 		Mockito.verify(mockedObj).getHeight();
-	}
-	
-	@Test
-	public void loadSnakeBodyImg() throws IOException {
-		ImageIcon mockedObj = Mockito.mock(ImageIcon.class);
-		Mockito.when(mockedObj.getImage()).thenReturn(ImageIO.read(new File("images/dot.png")));
-
-	    Image snakeBody = mockedObj.getImage();
-
-	    Assert.assertNotNull("Image is null!", snakeBody);
-	    Mockito.verify(mockedObj).getImage();
-	}
-	
-	@Test
-	public void loadItemToCollectImg() throws IOException {
-		ImageIcon mockedObj = Mockito.mock(ImageIcon.class);
-		Mockito.when(mockedObj.getImage()).thenReturn(ImageIO.read(new File("images/apple.png")));
-
-	    Image itemToCollect = mockedObj.getImage();
-
-	    Assert.assertNotNull("Image is null!", itemToCollect);
-	    Mockito.verify(mockedObj).getImage();
-	}
-	
-	@Test
-	public void loadSnakeHeadImg() throws IOException {
-		ImageIcon mockedObj = Mockito.mock(ImageIcon.class);
-		Mockito.when(mockedObj.getImage()).thenReturn(ImageIO.read(new File("images/head.png")));
-
-	    Image snakeHead = mockedObj.getImage();
-
-	    Assert.assertNotNull("Image is null!", snakeHead);
-	    Mockito.verify(mockedObj).getImage();
 	}
 }
