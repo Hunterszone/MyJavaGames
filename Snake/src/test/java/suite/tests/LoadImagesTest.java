@@ -4,10 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.Test;
 
-import util.Constants;
+import enums.Images;
 
 public class LoadImagesTest {
 
@@ -15,8 +16,8 @@ public class LoadImagesTest {
 	public void testReadImageFiles() {
 		assertTrue("Folder 'images' does not exist!", Files.exists(Paths.get("images")));
 		if (Files.exists(Paths.get("images"))) {
-			Constants.allImageFiles.stream().forEach(imageName -> {
-				assertTrue("File " + imageName + " does not exist!", Files.exists(Paths.get(imageName)));
+			Arrays.asList(Images.values()).stream().forEach(imageName -> {
+				assertTrue("File " + imageName + " does not exist!", Files.exists(Paths.get(imageName.getImg())));
 			});
 		}
 	}

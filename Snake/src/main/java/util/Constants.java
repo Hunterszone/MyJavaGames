@@ -1,10 +1,7 @@
 package util;
 
 import java.awt.Dimension;
-import java.util.Arrays;
-import java.util.List;
 
-import enums.Images;
 import main.Main;
 
 public class Constants {
@@ -19,7 +16,4 @@ public class Constants {
 	public static Dimension getCoordinates() {
 		return Main.DIM;
 	}
-	
-	public static final List<String> allImageFiles = Arrays.asList(Images.APPLE.getImg(), Images.CURSOR.getImg(), 
-			Images.DOT.getImg(), Images.HEAD.getImg(), Images.VOLUMEMUTE.getImg());
 }

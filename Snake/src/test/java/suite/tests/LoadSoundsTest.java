@@ -4,10 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.Test;
 
-import util.LoadSounds;
+import enums.SoundEffects;
 
 public class LoadSoundsTest {
 
@@ -15,8 +16,8 @@ public class LoadSoundsTest {
 	public void testReadSoundFiles() {
 		assertTrue("Folder 'sounds' does not exist!", Files.exists(Paths.get("sounds")));
 		if (Files.exists(Paths.get("sounds"))) {
-			LoadSounds.allSoundFiles.stream().forEach(soundName -> {
-				assertTrue("File " + soundName + " does not exist!", Files.exists(Paths.get(soundName)));
+			Arrays.asList(SoundEffects.values()).stream().forEach(soundName -> {
+				assertTrue("File " + soundName + " does not exist!", Files.exists(Paths.get(soundName.getSound())));
 			});
 		}
 	}
