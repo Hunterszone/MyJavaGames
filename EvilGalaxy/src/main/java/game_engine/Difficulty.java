@@ -4,8 +4,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import enums.Images;
-import main.Main;
 import util.ConsoleContent;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -62,9 +62,9 @@ public class Difficulty {
 
 		TextToSpeech.finMusicIsPlayed = false;
 
-		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		final int width = (int) Main.dim.getWidth();
-		final int height = (int) Main.dim.getHeight();
+		final int width = (int) Constants.DIMENSION.getWidth();
+		final int height = (int) Constants.DIMENSION.getHeight();
+
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg())
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
@@ -101,9 +101,8 @@ public class Difficulty {
 
 		TextToSpeech.finMusicIsPlayed = false;
 
-		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		final int width = (int) Main.dim.getWidth();
-		final int height = (int) Main.dim.getHeight();
+		final int width = (int) Constants.DIMENSION.getWidth();
+		final int height = (int) Constants.DIMENSION.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg())
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
@@ -139,9 +138,8 @@ public class Difficulty {
 
 		TextToSpeech.finMusicIsPlayed = false;
 
-		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		final int width = (int) Main.dim.getWidth();
-		final int height = (int) Main.dim.getHeight();
+		final int width = (int) Constants.DIMENSION.getWidth();
+		final int height = (int) Constants.DIMENSION.getHeight();
 		DrawScene.bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg())
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;

@@ -8,7 +8,6 @@ package entities;
 // import java libraries:
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ import enums.SoundEffects;
 import game_engine.SpritePattern;
 import items.ShipMissile;
 import items.ShipRocket;
-import main.Main;
 import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
@@ -116,8 +114,6 @@ public class PlayerShip extends SpritePattern {
 
 	public void move() {
 		
-		Main.dim = Toolkit.getDefaultToolkit().getScreenSize();
-		
 		x += speedX;
 		y += speedY;
 
@@ -126,15 +122,15 @@ public class PlayerShip extends SpritePattern {
 //			escapeForbidden();
 		} 
 		
-		if (x > Main.dim.getWidth() - 340) {
-			x = (int) Main.dim.getWidth() - 340;
+		if (x > Constants.DIMENSION.getWidth() - 340) {
+			x = (int) Constants.DIMENSION.getWidth() - 340;
 		}
 
 		if (y < 0) {
 			y = 0;
 //			escapeForbidden();
-		} else if (y > Main.dim.getHeight() - 260) {
-			y = (int) (Main.dim.getHeight() - 260);
+		} else if (y > Constants.DIMENSION.getHeight() - 260) {
+			y = (int) (Constants.DIMENSION.getHeight() - 260);
 //			escapeForbidden();
 		}
 	}

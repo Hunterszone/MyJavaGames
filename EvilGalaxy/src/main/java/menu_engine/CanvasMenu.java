@@ -3,6 +3,7 @@ package menu_engine;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import loading.LoadingAnimation;
 import menu_states.ControlsState;
 import menu_states.ExtrasState;
 import menu_states.ManualState;
@@ -15,25 +16,26 @@ import util.TextToSpeech;
 public class CanvasMenu implements Runnable {
 
 	public static DisplayCanvas display;
+	public static ColorSwitcher color;
+	public static ColorSwitcher color2;
+	public static StateManager State;
+	
 	private BufferStrategy bs;
 	private Graphics g;
 	private Thread thread;
 	private boolean isRunning;
 	public static boolean isPause;
-	public static ColorSwitcher color;
-	public static ColorSwitcher color2;
-	public static StateManager State;
-
 	private MenuState mainMenu;
 	private ControlsState controlsMenu;
 	private SettingsState settingsMenu;
 	private ExtrasState extrasMenu;
 	private ManualState manualMenu;
-
+	private LoadingAnimation loading;
+	
 	public CanvasMenu() {}
 
 	private void init() {
-
+		
 		Constants.LOAD_ASSETS.init(); // initialize game assets
 		TextToSpeech.initVoice(); // initialize supported voices
 		
@@ -50,6 +52,7 @@ public class CanvasMenu implements Runnable {
 		color = new ColorSwitcher();
 		color2 = new ColorSwitcher();
 		color2.nextColor(color.getColor());
+		
 	}
 
 	private void render() {
@@ -90,10 +93,12 @@ public class CanvasMenu implements Runnable {
 
 	@Override
 	public void run() {
+
 		this.init();
 
 		while (isRunning && display.getCanvas().isDisplayable()) {
 			this.render();
+			loading.dispose();
 		}
 
 		this.stop();
@@ -104,6 +109,9 @@ public class CanvasMenu implements Runnable {
 
 		this.isRunning = true;
 		this.thread.start();
+		
+		loading = new LoadingAnimation();		
+		loading.init();
 	}
 
 	public synchronized void stop() {
@@ -114,6 +122,7 @@ public class CanvasMenu implements Runnable {
 			Thread.currentThread().interrupt();
 			e.printStackTrace();
 		}
+
 	}
 
 }

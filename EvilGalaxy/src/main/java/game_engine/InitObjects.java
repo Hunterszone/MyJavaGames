@@ -93,7 +93,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		initAnimations();
 		initEntities();
 
-		SaveSign.saveSign = new SaveSign(Constants.BUNKER_X + 30, (int) Constants.getCoordinates().getHeight() - 700);
+		SaveSign.saveSign = new SaveSign(Constants.BUNKER_X + 30, (int) Constants.DIMENSION.getHeight() - 700);
 		SaveSign.saveSign.setVisible(false);
 
 		initAliens();
