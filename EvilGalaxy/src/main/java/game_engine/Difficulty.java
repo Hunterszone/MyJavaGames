@@ -29,7 +29,7 @@ public class Difficulty {
 
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 4;
 		UpdateObjects.lifeBunker = 3;
 
 		InitObjects.initEntities();
@@ -69,7 +69,7 @@ public class Difficulty {
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 4;
 		UpdateObjects.lifeBunker = 3;
 
 		InitObjects.initEntities();
@@ -107,7 +107,7 @@ public class Difficulty {
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 4;
 		UpdateObjects.lifeBunker = 3;
 
 		InitObjects.initEntities();
@@ -144,7 +144,7 @@ public class Difficulty {
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		InitObjects.ingame = true;
 		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 4;
 		UpdateObjects.lifeBunker = 3;
 
 		InitObjects.initEntities();

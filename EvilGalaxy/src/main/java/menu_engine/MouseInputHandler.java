@@ -57,7 +57,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					LoadSounds.MENU_MUSIC.stop();
 					playWave1st.start();
 					MenuState.isOn = false;
-					UpdateObjects.lifePlayerShip = 3;
+					UpdateObjects.lifePlayerShip = 4;
 					UpdateObjects.lifeEvilHead = 3;
 					UpdateObjects.lifeBunker = 3;
 					InitObjects.ingame = true;

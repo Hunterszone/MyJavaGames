@@ -184,7 +184,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void handleGameOver(Graphics g) {
-		if (lifePlayerShip > 6) {
+		if (lifePlayerShip <= 0) {
 			if (TextToSpeech.finMusicIsPlayed == false) {
 				LoadSounds.FIN.play();
 				TextToSpeech.finMusicIsPlayed = true;
@@ -627,41 +627,37 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawlifePlayerShip(Graphics g) {
 
-		if (lifePlayerShip >= 3) {
+		if (lifePlayerShip > 0) {
 			PlayerShip.playerOne.renderShip(g);
+		} else {
+			ingame = false;	
 		}
 
-		if (lifePlayerShip < 3) {
+		if (lifePlayerShip > 4) {
 			g.drawString("GODMODE", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			PlayerShip.playerOne.godMode();
-			drawExplosion(g);
-			updateExplosions();
-		}
-
-		if (lifePlayerShip == 3) {
-			g.drawString("Health: 100%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 		}
 
 		if (lifePlayerShip == 4) {
+			g.drawString("Health: 100%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+		}
+
+		if (lifePlayerShip == 3) {
 			g.drawString("Health: 75%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
 		}
 
-		if (lifePlayerShip == 5) {
+		if (lifePlayerShip == 2) {
 			g.drawString("Health: 50%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
 		}
 
-		if (lifePlayerShip == 6) {
+		if (lifePlayerShip == 1) {
 			g.drawString("Health: 25%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
-		}
-
-		if (lifePlayerShip > 6) {
-			ingame = false;
 		}
 	}
 

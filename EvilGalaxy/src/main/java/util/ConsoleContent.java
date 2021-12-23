@@ -300,9 +300,9 @@ public class ConsoleContent extends OutputStream {
 					// GODMODE ON
 					else if (Commands.GOD.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip >= 3) {
+								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip > 0) {
 							god = true;
-							UpdateObjects.lifePlayerShip = -999;
+							UpdateObjects.lifePlayerShip = 999;
 							textArea.append("********GODMODE ON*********" + "\n");
 							TextToSpeech.playVoice("GODLIKE!");
 							return;

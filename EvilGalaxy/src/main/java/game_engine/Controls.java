@@ -229,14 +229,14 @@ public class Controls extends JFrame implements KeyListener {
 			if (!ConsoleContent.god) {
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = true;
-					UpdateObjects.lifePlayerShip = -999;
+					UpdateObjects.lifePlayerShip = 999;
 					TextToSpeech.playVoice("GODLIKE!");
 					return;
 				}
 			} else {
 				if (InitObjects.ingame == true) {
 					ConsoleContent.god = false;
-					UpdateObjects.lifePlayerShip = 3;
+					UpdateObjects.lifePlayerShip = 4;
 					TextToSpeech.playVoice("Healthy!");
 					return;
 				}

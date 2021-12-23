@@ -128,7 +128,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
 				plasmaBall.evilShotDiagUp();
 				plasmaBall.evilShotDiagDown();
-				if (Gold.goldstack.isEmpty() && lifePlayerShip <= 3) {
+				if (Gold.goldstack.isEmpty() && lifePlayerShip > 0) {
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
 						plasmaBall.evilShot();
@@ -191,7 +191,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 				dragon.move();
 			} else {
 				SoundEffects.BLOOP.getSound();
-				Collisions.dragonKilled++;
 				Dragon.dragons.remove(dragon);
 			}
 		});
@@ -238,12 +237,12 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	private void updateHealth() {
 
 		if (HealthPack.healthpack.removeIf(healthPack -> healthPack.isVisible() == false)) {
-			if (lifePlayerShip > 3) {
-				lifePlayerShip--;
+			if (lifePlayerShip > 0 && lifePlayerShip < 4) {
+				lifePlayerShip++;
 			}
 		}
 
-		if (HealthPack.healthpack.size() < 5 && lifePlayerShip > 3) {
+		if (HealthPack.healthpack.size() < 5 && lifePlayerShip < 4) {
 			HealthPack.healthpack.add(new HealthPack(EvilHead.evilHead.x, 0));
 		}
 
