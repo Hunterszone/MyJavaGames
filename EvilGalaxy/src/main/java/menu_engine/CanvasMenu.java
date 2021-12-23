@@ -109,8 +109,11 @@ public class CanvasMenu implements Runnable {
 
 		this.isRunning = true;
 		this.thread.start();
+
+		if(loading == null) {			
+			loading = new LoadingAnimation();		
+		}
 		
-		loading = new LoadingAnimation();		
 		loading.init();
 	}
 
