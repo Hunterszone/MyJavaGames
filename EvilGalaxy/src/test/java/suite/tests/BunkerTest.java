@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -8,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Bunker;
+import enums.Images;
 
 public class BunkerTest {
 
@@ -21,14 +23,16 @@ public class BunkerTest {
 
 	@Test
 	public void testBunkerUnit() {
-		assertNotNull(bunker.loadImage(bunker.drawBunker()));
-		assertFalse(bunker.drawBunker().isEmpty());
+		String drawBunker = bunker.drawBunker();
+		assertNotNull("Image file not found!", drawBunker);
+		assertEquals(Images.BUNKER.getImg(), drawBunker);
 	}
 
 	@Test
 	public void testBunkerUnitHit() {
-		assertNotNull(bunker.loadImage(bunker.drawBunkerHit()));
-		assertFalse(bunker.drawBunkerHit().isEmpty());
+		String drawBunkerHit = bunker.drawBunkerHit();
+		assertNotNull("Image file not found!", drawBunkerHit);
+		assertEquals(Images.BUNKERHIT.getImg(), drawBunkerHit);
 	}
 
 	@Test

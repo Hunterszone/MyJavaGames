@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -8,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Dragon;
+import enums.Images;
 import game_engine.InitObjects;
 
 public class DragonTest {
@@ -22,8 +24,9 @@ public class DragonTest {
 
 	@Test
 	public void testDragonUnit() {
-		assertNotNull(dragon.loadImage(dragon.drawDragon()));
-		assertFalse(dragon.drawDragon().isEmpty());
+		String drawDragon = dragon.drawDragon();
+		assertNotNull("Image file not found!", drawDragon);
+		assertEquals(Images.DRAGON.getImg(), drawDragon);
 	}
 
 	@Test

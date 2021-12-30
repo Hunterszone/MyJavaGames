@@ -26,13 +26,14 @@ public class DrawSceneTest {
 	@Test
 	public void testDrawGameStateL1() {
 		Alien.aliens.add(new Alien(0, 0));
-		Assert.assertTrue(Alien.aliens.size() > 0);
+		Assert.assertFalse(Alien.aliens.isEmpty());
 	}
 	
 	@Test
 	public void testDrawGameStateL2() {
 		Assert.assertTrue(Alien.aliens.isEmpty());
-		Assert.assertTrue(Dragon.dragons.add(new Dragon(0, 0)));
+		Dragon.dragons.add(new Dragon(0, 0));
+		Assert.assertFalse(Dragon.dragons.isEmpty());
 	}
 	
 	@Test
@@ -46,7 +47,8 @@ public class DrawSceneTest {
 	public void testDrawGameStateL4() {
 		UpdateObjects.lifeBunker = 50;
 		Assert.assertTrue(Dragon.dragons.isEmpty());
-		Assert.assertTrue(Gold.goldstack.add(new Gold(0, 0)));
+		Gold.goldstack.add(new Gold(0, 0));
+		Assert.assertFalse(Gold.goldstack.isEmpty());
 	}
 	
 	@Test
@@ -60,5 +62,6 @@ public class DrawSceneTest {
 	public void tearDown() throws Exception {
 		Alien.aliens = null;
 		Dragon.dragons = null;
+		Gold.goldstack = null;
 	}
 }

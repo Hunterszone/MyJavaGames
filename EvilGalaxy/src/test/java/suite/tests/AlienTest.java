@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Alien;
+import enums.Images;
 import game_engine.InitObjects;
 
 public class AlienTest {
@@ -24,7 +26,7 @@ public class AlienTest {
 	@Test
 	public void testAlienUnit() {
 		assertNotNull("Image file not found!", alien.drawAlien());
-		assertNotEquals("Image name is empty!", "", alien.drawAlien());
+		assertEquals(Images.ALIEN.getImg(), alien.drawAlien());
 	}
 
 	@Test

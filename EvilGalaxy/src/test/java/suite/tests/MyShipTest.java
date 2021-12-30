@@ -1,5 +1,6 @@
 package suite.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -34,8 +35,9 @@ public class MyShipTest {
 
 	@Test
 	public void testMyShipUnit() {
-		assertNotNull(playerOne.loadImage(Images.MYSHIPINIT.getImg()));
-		assertFalse(Images.MYSHIPINIT.getImg().isEmpty());
+		String drawShip = playerOne.drawShip();
+		assertNotNull("Image file not found!", drawShip);
+		assertEquals(Images.MYSHIPINIT.getImg(), drawShip);
 	}
 
 	@Test
@@ -45,12 +47,16 @@ public class MyShipTest {
 
 	@Test
 	public void testMyShipUpsideDown() {
-		assertNotNull(Images.MYSHIPLIFEBAR.getImg());
+		String upsideDown = playerOne.upsideDown();
+		assertNotNull("Image file not found!", upsideDown);
+		assertEquals(Images.MYSHIPLIFEBAR.getImg(), upsideDown);
 	}
 
 	@Test
 	public void testMyShipFired() {
-		assertNotNull(Images.MYSHIPONFIRE.getImg());
+		String shipOnFire = playerOne.shipOnFire();
+		assertNotNull("Image file not found!", shipOnFire);
+		assertEquals(Images.MYSHIPONFIRE.getImg(), shipOnFire);
 	}
 
 	@Test
@@ -60,7 +66,9 @@ public class MyShipTest {
 
 	@Test
 	public void testMyShipGodMode() {
-		assertNotNull(Images.MYSHIPGOD.getImg());
+		String godMode = playerOne.godMode();
+		assertNotNull("Image file not found!", godMode);
+		assertEquals(Images.MYSHIPGOD.getImg(), godMode);
 	}
 
 	@Test

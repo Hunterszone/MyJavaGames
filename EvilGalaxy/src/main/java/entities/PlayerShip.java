@@ -7,7 +7,6 @@ package entities;
 
 // import java libraries:
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,36 +40,32 @@ public class PlayerShip extends SpritePattern {
 		initAmmo();
 	}
 
-	public Image drawShip() {
-
+	public String drawShip() {
 		imageName = Images.MYSHIPINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
+		return imageName;
 	}
 
-	public Image shipOnFire() {
-
+	public String shipOnFire() {
 		imageName = Images.MYSHIPONFIRE.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
+		return imageName;
 	}
 
-	public Image upsideDown() {
-
+	public String upsideDown() {
 		imageName = Images.MYSHIPLIFEBAR.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
+		return imageName;
 	}
 
-	public Image godMode() {
-
+	public String godMode() {
 		imageName = Images.MYSHIPGOD.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
+		return imageName;
 	}
 
 	public void shipShaked() {
