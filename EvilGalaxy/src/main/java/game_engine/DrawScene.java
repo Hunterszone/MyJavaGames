@@ -38,6 +38,8 @@ import items.SaveSign;
 import items.ShipMissile;
 import items.ShipRocket;
 import items.VolBtn;
+import map.PlayerPosition;
+import map.PlayerSign;
 import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
@@ -46,6 +48,8 @@ public class DrawScene extends UpdateObjects {
 
 	transient static Image bg1, bg2, bg3;
 	private static final long serialVersionUID = 1L;
+	private PlayerPosition playerPos;
+	private PlayerSign playerSign;
 
 	public DrawScene() {
 		final int width = (int) Constants.DIMENSION.getWidth();
@@ -56,6 +60,8 @@ public class DrawScene extends UpdateObjects {
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg())
 				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		playerPos = new PlayerPosition();
+		playerSign = new PlayerSign();
 	}
 
 	private void drawExplosion(Graphics g) {
@@ -636,28 +642,38 @@ public class DrawScene extends UpdateObjects {
 		if (lifePlayerShip > 4) {
 			g.drawString("GODMODE", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			PlayerShip.playerOne.godMode();
+			playerPos.draw(g);
+			playerSign.draw(g);
 		}
 
 		if (lifePlayerShip == 4) {
 			g.drawString("Health: 100%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			playerPos.draw(g);
+			playerSign.draw(g);
 		}
 
 		if (lifePlayerShip == 3) {
 			g.drawString("Health: 75%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
+			playerPos.draw(g);
+			playerSign.draw(g);
 		}
 
 		if (lifePlayerShip == 2) {
 			g.drawString("Health: 50%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
+			playerPos.draw(g);
+			playerSign.draw(g);
 		}
 
 		if (lifePlayerShip == 1) {
 			g.drawString("Health: 25%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
+			playerPos.draw(g);
+			playerSign.draw(g);
 		}
 	}
 
