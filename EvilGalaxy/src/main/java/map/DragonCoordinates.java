@@ -24,13 +24,13 @@ public class DragonCoordinates extends JLabel {
 	private int limitX() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
-				if (dragon.getX() > Constants.BUNKER_X - 300) {
+				if (dragon.getX() > Constants.BUNKER_X + 300) {
 					return Constants.BUNKER_X + 700;
 				}
-				if (dragon.getX() > Constants.BUNKER_X - 600 && dragon.getX() < Constants.BUNKER_X - 300) {
+				if (dragon.getX() > Constants.BUNKER_X && dragon.getX() < Constants.BUNKER_X + 300) {
 					return Constants.BUNKER_X + 625;
 				}
-				if (dragon.getX() > Constants.BUNKER_X - 900 && dragon.getX() < Constants.BUNKER_X - 600) {
+				if (dragon.getX() > Constants.BUNKER_X - 300 && dragon.getX() < Constants.BUNKER_X) {
 					return Constants.BUNKER_X + 550;
 				}
 			}

@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import javax.swing.JFrame;
-
 import entities.Alien;
 import entities.AsteroidsAnimation;
 import entities.AstronautAnimation;
@@ -27,10 +25,9 @@ import util.ConsoleContent;
 import util.LoadSounds;
 import util.TextToSpeech;
 
-public class Controls extends JFrame implements KeyListener {
+public class Controls implements KeyListener {
 
 	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible;
-	private static final long serialVersionUID = 1L;
 	private Random rand = new Random();
 	
 	@Override
