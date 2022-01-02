@@ -87,11 +87,12 @@ public class LoadGame {
 			DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 			DisplayCanvas.frame.dispose();
 			EventQueue.invokeLater(() -> {
-				MouseInputHandler.main = new Main();
 				try {
+					MouseInputHandler.main = new Main();
 					initSavedAssets();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				} catch (final MaryConfigurationException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				MouseInputHandler.main.setVisible(true);

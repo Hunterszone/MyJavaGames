@@ -34,17 +34,17 @@ public class PlayerCoordinates extends JLabel {
 	}
 
 	private int limitY() {
-		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 730
-				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 530) {
+		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 630
+				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 430) {
 			return Constants.BUNKER_Y - 150;
 		}
-		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 530
-				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 330) {
+		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 430
+				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 230) {
 			return Constants.BUNKER_Y - 75;
 		}
-		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 330) {
+		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 230) {
 			return Constants.BUNKER_Y;
 		}
-		return Constants.BUNKER_Y;
+		return Constants.BUNKER_Y - 150;
 	}
 }

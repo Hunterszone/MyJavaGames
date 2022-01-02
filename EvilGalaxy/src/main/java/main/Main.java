@@ -3,6 +3,7 @@ package main;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.swing.BorderFactory;
@@ -19,11 +20,11 @@ public final class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
 	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	
-	public Main() {
+	public Main() throws IOException {
 		initGame();
 	}
 
-	public void initGame() {
+	public void initGame() throws IOException {
 		add(new DrawScene());
 		setResizable(false);
 		setUndecorated(true);

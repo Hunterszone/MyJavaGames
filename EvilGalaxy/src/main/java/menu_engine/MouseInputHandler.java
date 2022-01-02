@@ -65,7 +65,11 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 						DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 						DisplayCanvas.frame.dispose();
 						SwingUtilities.invokeLater(() -> {
-							main = new Main();
+							try {
+								main = new Main();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 							main.setVisible(true);
 						});
 					}

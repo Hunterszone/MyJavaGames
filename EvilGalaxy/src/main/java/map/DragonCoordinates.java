@@ -16,7 +16,7 @@ public class DragonCoordinates extends JLabel {
 	public void draw(Graphics g) {
 		g.setColor(new Color(255, 255, 255, 128));
 		for (int i = 0; i < Dragon.dragons.size(); i++) {			
-			g.drawImage(Dragon.dragons.get(i).getImage(), limitX(), limitY(), 30, 30, this);
+			g.drawImage(Dragon.dragons.get(i).getImage(), limitX(), limitY(), 40, 40, this);
 		}
 		repaint();
 	}

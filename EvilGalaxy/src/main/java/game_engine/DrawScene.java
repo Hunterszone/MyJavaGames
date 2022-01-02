@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class DrawScene extends UpdateObjects {
 	private AlienCoordinates alienSign;
 	private DragonCoordinates dragonSign;
 
-	public DrawScene() {
+	public DrawScene() throws IOException {
 		final int width = (int) Constants.DIMENSION.getWidth();
 		final int height = (int) Constants.DIMENSION.getHeight();
 		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg())
@@ -404,7 +405,7 @@ public class DrawScene extends UpdateObjects {
 		drawScene1(g);
 		drawL1Labels(g);
 		drawObjects(g);
-		drawlifePlayerShip(g);
+		drawLifePlayerShip(g);
 		drawAsteroids(g);
 
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
@@ -417,7 +418,7 @@ public class DrawScene extends UpdateObjects {
 		drawScene2(g);
 		drawL2Labels(g);
 		drawObjects(g);
-		drawlifePlayerShip(g);
+		drawLifePlayerShip(g);
 		drawSatellite(g);
 
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
@@ -431,7 +432,7 @@ public class DrawScene extends UpdateObjects {
 		drawL3Labels(g);
 		drawObjects(g);
 		drawLifeBunker(g);
-		drawlifePlayerShip(g);
+		drawLifePlayerShip(g);
 		drawAstronaut(g);
 
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
@@ -446,7 +447,7 @@ public class DrawScene extends UpdateObjects {
 		drawScene3And4(g);
 		drawL4Labels(g);
 		drawObjects(g);
-		drawlifePlayerShip(g);
+		drawLifePlayerShip(g);
 		
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
@@ -458,7 +459,7 @@ public class DrawScene extends UpdateObjects {
 		drawScene3And4(g);
 		drawL5Labels(g);
 		drawObjects(g);
-		drawlifePlayerShip(g);
+		drawLifePlayerShip(g);
 		
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
@@ -637,7 +638,7 @@ public class DrawScene extends UpdateObjects {
 		}
 	}
 
-	private void drawlifePlayerShip(Graphics g) {
+	private void drawLifePlayerShip(Graphics g) {
 
 		if (lifePlayerShip > 0) {
 			PlayerShip.playerOne.renderShip(g);
@@ -648,58 +649,43 @@ public class DrawScene extends UpdateObjects {
 		if (lifePlayerShip > 4) {
 			g.drawString("GODMODE", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			PlayerShip.playerOne.godMode();
-			if (Controls.isMapVisible) {
-				mapEntity.draw(g);
-				playerSign.draw(g);
-				alienSign.draw(g);
-				dragonSign.draw(g);
-			}
+			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 4) {
 			g.drawString("Health: 100%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
-			if (Controls.isMapVisible) {
-				mapEntity.draw(g);
-				playerSign.draw(g);
-				alienSign.draw(g);
-				dragonSign.draw(g);
-			}
+			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 3) {
 			g.drawString("Health: 75%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
-			if (Controls.isMapVisible) {
-				mapEntity.draw(g);
-				playerSign.draw(g);
-				alienSign.draw(g);
-				dragonSign.draw(g);
-			}
+			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 2) {
 			g.drawString("Health: 50%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
-			if (Controls.isMapVisible) {
-				mapEntity.draw(g);
-				playerSign.draw(g);
-				alienSign.draw(g);
-				dragonSign.draw(g);
-			}
+			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 1) {
 			g.drawString("Health: 25%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
 			drawExplosion(g);
 			updateExplosions();
-			if (Controls.isMapVisible) {
-				mapEntity.draw(g);
-				playerSign.draw(g);
-				alienSign.draw(g);
-				dragonSign.draw(g);
-			}
+			drawNaviMap(g);
+		}
+	}
+
+	private void drawNaviMap(Graphics g) {
+		if (Controls.isMapVisible) {
+//			g.setColor(Color.BLACK);
+			mapEntity.draw(g);
+			playerSign.draw(g);
+			alienSign.draw(g);
+			dragonSign.draw(g);
 		}
 	}
 

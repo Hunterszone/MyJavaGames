@@ -23,7 +23,13 @@ public final class ConsoleForm extends ConsoleContent {
 			if (ConsoleContent.console == null) {
 				ConsoleContent.console = new ConsoleForm();
 			}
-			final Main ex = new Main();
+			Main ex = null;
+			try {
+				ex = new Main();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			ex.setVisible(true);
 			try {
 				ConsoleContent.console.close();
