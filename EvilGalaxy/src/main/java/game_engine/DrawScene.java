@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import dbconn.HighScoreToDb;
@@ -478,6 +480,7 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(Constants.UNLOCKED, 240, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 360, 5, null);
 		g.drawString(": Locked", 400, 20);
+		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
@@ -508,7 +511,8 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 230, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 335, 5, null);
 		g.drawString(Constants.UNLOCKED, 375, 20);
-
+		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
+		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
 			g.drawString(Constants.EASY, 540, 20);
@@ -538,7 +542,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawL3Labels(Graphics g) {
 
 		setFontStyle(g);
-
+		
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning()) {
 			drawKillTheBunker(g);
@@ -549,7 +553,8 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 235, 5, null);
 		g.drawString(Constants.UNLOCKED, 275, 20);
-
+		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
+		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
 			g.drawString(Constants.EASY, 440, 20);
@@ -579,7 +584,8 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 265, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
 		g.drawString(": Locked", 405, 20);
-
+		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
+		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
 			g.drawString(Constants.EASY, 540, 20);
@@ -610,13 +616,14 @@ public class DrawScene extends UpdateObjects {
 	private void drawL5Labels(Graphics g) {
 		
 		setFontStyle(g);
-
+		
 		g.drawString("Level: " + 4, 5, 20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
 		g.drawString(Constants.UNLOCKED, 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 255, 5, null);
 		g.drawString(Constants.UNLOCKED, 295, 20);
-
+		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
+		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
 			g.drawString(Constants.EASY, 460, 20);
