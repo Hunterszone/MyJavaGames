@@ -24,7 +24,6 @@ public final class Main extends JFrame {
 	}
 
 	public void initGame() {
-
 		add(new DrawScene());
 		setResizable(false);
 		setUndecorated(true);

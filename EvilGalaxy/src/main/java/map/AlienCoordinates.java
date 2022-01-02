@@ -23,36 +23,36 @@ public class AlienCoordinates extends JLabel {
 	private int limitX() {
 		if (Alien.aliens.size() > 0) {
 			for (Alien alien : Alien.aliens) {
-				if (alien.getX() > Constants.B_WIDTH - 300) {
-					return Constants.B_WIDTH + 350;
+				if (alien.getX() > Constants.BUNKER_X + 300) {
+					return Constants.BUNKER_X + 700;
 				}
-				if (alien.getX() > Constants.B_WIDTH - 600 && alien.getX() < Constants.B_WIDTH - 300) {
-					return Constants.B_WIDTH + 275;
+				if (alien.getX() > Constants.BUNKER_X && alien.getX() < Constants.B_WIDTH + 300) {
+					return Constants.BUNKER_X + 625;
 				}
-				if (alien.getX() > Constants.B_WIDTH - 900 && alien.getX() < Constants.B_WIDTH - 600) {
-					return Constants.B_WIDTH + 200;
+				if (alien.getX() > Constants.BUNKER_X - 300 && alien.getX() < Constants.BUNKER_X) {
+					return Constants.BUNKER_X + 550;
 				}
 			}
 		}
-		return Constants.B_WIDTH + 350;
+		return Constants.BUNKER_X + 700;
 	}
 
 	private int limitY() {
 		if (Alien.aliens.size() > 0) {
 			for (Alien alien : Alien.aliens) {
-				if (alien.getY() > Constants.B_HEIGHT - 930
-						&& alien.getY() < Constants.B_HEIGHT - 730) {
-					return Constants.B_HEIGHT - 380;
+				if (alien.getY() > Constants.BUNKER_Y - 730
+						&& alien.getY() < Constants.BUNKER_Y - 530) {
+					return Constants.BUNKER_Y - 150;
 				}
-				if (alien.getY() > Constants.B_HEIGHT - 730
-						&& alien.getY() < Constants.B_HEIGHT - 530) {
-					return Constants.B_HEIGHT - 305;
+				if (alien.getY() > Constants.BUNKER_Y - 530
+						&& alien.getY() < Constants.BUNKER_Y - 330) {
+					return Constants.BUNKER_Y - 75;
 				}
-				if (alien.getY() > Constants.B_HEIGHT - 530) {
-					return Constants.B_HEIGHT - 230;
+				if (alien.getY() > Constants.BUNKER_Y - 330) {
+					return Constants.BUNKER_Y;
 				}				
 			}
 		}
-		return Constants.B_HEIGHT - 380;
+		return Constants.BUNKER_Y - 180;
 	}
 }

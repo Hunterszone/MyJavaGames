@@ -17,34 +17,34 @@ public class PlayerCoordinates extends JLabel {
 		g.drawImage(PlayerShip.playerOne.getImage(), limitX(), limitY(), 50, 50, this);
 		repaint();
 	}
-	
+
 	private int limitX() {
-		if (PlayerShip.playerOne.getX() > Constants.B_WIDTH-300) {
-			return Constants.B_WIDTH+350;
+		if (PlayerShip.playerOne.getX() > Constants.BUNKER_X + 300) {
+			return Constants.BUNKER_X + 700;
 		}
-		if (PlayerShip.playerOne.getX() > Constants.B_WIDTH-600 
-				&& PlayerShip.playerOne.getX() < Constants.B_WIDTH-300) {
-			return Constants.B_WIDTH+275;
+		if (PlayerShip.playerOne.getX() > Constants.BUNKER_X
+				&& PlayerShip.playerOne.getX() < Constants.BUNKER_X + 300) {
+			return Constants.BUNKER_X + 625;
 		}
-		if (PlayerShip.playerOne.getX() > Constants.B_WIDTH-900 
-				&& PlayerShip.playerOne.getX() < Constants.B_WIDTH-600) {
-			return Constants.B_WIDTH+200;
+		if (PlayerShip.playerOne.getX() > Constants.BUNKER_X - 300
+				&& PlayerShip.playerOne.getX() < Constants.BUNKER_X) {
+			return Constants.BUNKER_X + 550;
 		}
-		return Constants.B_WIDTH+200;
+		return Constants.BUNKER_X + 550;
 	}
-	
+
 	private int limitY() {
-		if (PlayerShip.playerOne.getY() > Constants.B_HEIGHT-930
-				&& PlayerShip.playerOne.getY() < Constants.B_HEIGHT-730) {
-			return Constants.B_HEIGHT-380;
+		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 730
+				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 530) {
+			return Constants.BUNKER_Y - 150;
 		}
-		if (PlayerShip.playerOne.getY() > Constants.B_HEIGHT-730
-				&& PlayerShip.playerOne.getY() < Constants.B_HEIGHT-530) {
-			return Constants.B_HEIGHT-305;
+		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 530
+				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 330) {
+			return Constants.BUNKER_Y - 75;
 		}
-		if (PlayerShip.playerOne.getY() > Constants.B_HEIGHT-530) {
-			return Constants.B_HEIGHT-230;
+		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 330) {
+			return Constants.BUNKER_Y;
 		}
-		return Constants.B_HEIGHT-380;
+		return Constants.BUNKER_Y;
 	}
 }

@@ -24,38 +24,38 @@ public class DragonCoordinates extends JLabel {
 	private int limitX() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
-				if (dragon.getX() > Constants.B_WIDTH - 300) {
-					return Constants.B_WIDTH + 350;
+				if (dragon.getX() > Constants.BUNKER_X - 300) {
+					return Constants.BUNKER_X + 700;
 				}
-				if (dragon.getX() > Constants.B_WIDTH - 600 && dragon.getX() < Constants.B_WIDTH - 300) {
-					return Constants.B_WIDTH + 275;
+				if (dragon.getX() > Constants.BUNKER_X - 600 && dragon.getX() < Constants.BUNKER_X - 300) {
+					return Constants.BUNKER_X + 625;
 				}
-				if (dragon.getX() > Constants.B_WIDTH - 900 && dragon.getX() < Constants.B_WIDTH - 600) {
-					return Constants.B_WIDTH + 200;
+				if (dragon.getX() > Constants.BUNKER_X - 900 && dragon.getX() < Constants.BUNKER_X - 600) {
+					return Constants.BUNKER_X + 550;
 				}
 			}
-			return Constants.B_WIDTH + 350;
+			return Constants.BUNKER_X + 700;
 		}
-		return 0;
+		return -50;
 	}
 
 	private int limitY() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
-				if (dragon.getY() > Constants.B_HEIGHT - 930
-						&& dragon.getY() < Constants.B_HEIGHT - 730) {
-					return Constants.B_HEIGHT - 380;
+				if (dragon.getY() > Constants.BUNKER_Y - 730
+						&& dragon.getY() < Constants.BUNKER_Y - 530) {
+					return Constants.BUNKER_Y - 150;
 				}
-				if (dragon.getY() > Constants.B_HEIGHT - 730
-						&& dragon.getY() < Constants.B_HEIGHT - 530) {
-					return Constants.B_HEIGHT - 305;
+				if (dragon.getY() > Constants.BUNKER_Y - 530
+						&& dragon.getY() < Constants.BUNKER_Y - 330) {
+					return Constants.BUNKER_Y - 75;
 				}
-				if (dragon.getY() > Constants.B_HEIGHT - 530) {
-					return Constants.B_HEIGHT - 230;
+				if (dragon.getY() > Constants.BUNKER_Y - 330) {
+					return Constants.BUNKER_Y;
 				}				
 			}
-			return Constants.B_HEIGHT - 380;
+			return Constants.BUNKER_Y - 380;
 		}
-		return 0;
+		return -50;
 	}
 }

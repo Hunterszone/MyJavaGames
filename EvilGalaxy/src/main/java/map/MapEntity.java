@@ -11,7 +11,7 @@ public class MapEntity extends JPanel {
 	private static final long serialVersionUID = 2735514298436311987L;
 	
 	public void draw(Graphics g) {
-		g.drawRoundRect(Constants.B_WIDTH+200, Constants.B_HEIGHT-380, 200, 200, 5, 5);
+		g.drawRoundRect(Constants.BUNKER_X+550, Constants.BUNKER_Y-150, 200, 200, 5, 5);
 		repaint();
 	}
 }
