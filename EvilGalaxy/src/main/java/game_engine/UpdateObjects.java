@@ -77,7 +77,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateMyShipMissiles() {
-
 		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
 
 		missiles.removeIf(missile -> missile.isVisible() == false);
@@ -86,7 +85,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateBullets() {
-
 		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
@@ -119,7 +117,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateEHPlasmaBalls() {
-
 		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
 		plasmaBalls.removeIf(plasmaBall -> plasmaBall.isVisible() == false);
@@ -147,7 +144,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateEHCanons() {
-
 		final List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
 
 		canonballs.removeIf(canon -> canon.isVisible() == false);
@@ -162,7 +158,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateRockets() {
-
 		final List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
 
 		rocketStack.removeIf(rocket -> rocket.isVisible() == false);
@@ -171,9 +166,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateAliens() {
-
 		Alien.aliens.removeIf(alien -> alien.isVisible() == false);
-
 		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
 			if (timerHard.isRunning()) {
 				alien.moveFaster();
@@ -183,7 +176,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	protected static int updateDragons() {
-
 		Dragon.dragons.stream().forEach(dragon -> {
 			dragon.setVisible(true);
 			Collisions.checkCollisions();

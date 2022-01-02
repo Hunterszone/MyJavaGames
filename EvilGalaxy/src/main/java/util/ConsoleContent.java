@@ -39,7 +39,7 @@ public class ConsoleContent extends OutputStream {
 
 	public static ConsoleForm console;
 	public static Manual manual;
-	public static boolean consoleON, manualON, god;
+	public static boolean consoleON, manualON, isGod;
 	protected JPanel contentPane;
 	protected JTextField textField;
 	protected JTextArea textArea;
@@ -301,7 +301,7 @@ public class ConsoleContent extends OutputStream {
 					else if (Commands.GOD.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip > 0) {
-							god = true;
+							isGod = true;
 							UpdateObjects.lifePlayerShip = 999;
 							textArea.append("********GODMODE ON*********" + "\n");
 							TextToSpeech.playVoice("GODLIKE!");
@@ -323,7 +323,7 @@ public class ConsoleContent extends OutputStream {
 					else if (Commands.GODOFF.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 						if ((InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true) && UpdateObjects.lifePlayerShip < 3) {
-							god = false;
+							isGod = false;
 							UpdateObjects.lifePlayerShip = 3;
 							textArea.append("********GODMODE OFF*********" + "\n");
 							TextToSpeech.playVoice("Healthy!");

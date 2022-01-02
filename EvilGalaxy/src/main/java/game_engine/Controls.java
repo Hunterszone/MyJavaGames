@@ -29,7 +29,7 @@ import util.TextToSpeech;
 
 public class Controls extends JFrame implements KeyListener {
 
-	public static boolean isEPressed, isMPressed, isHPressed;
+	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible;
 	private static final long serialVersionUID = 1L;
 	private Random rand = new Random();
 	
@@ -223,19 +223,31 @@ public class Controls extends JFrame implements KeyListener {
 				LoadSounds.TAUNT.loop();
 			}
 		}
+		
+		if (key == KeyEvent.VK_N) {
+			if (InitObjects.ingame == true) {
+				if (isMapVisible == false) {
+					isMapVisible = true;
+					return;
+				} else {
+					isMapVisible = false;
+					return;
+				}
+			}
+		}
 
 		if (key == KeyEvent.VK_G) {
 
-			if (!ConsoleContent.god) {
+			if (!ConsoleContent.isGod) {
 				if (InitObjects.ingame == true) {
-					ConsoleContent.god = true;
+					ConsoleContent.isGod = true;
 					UpdateObjects.lifePlayerShip = 999;
 					TextToSpeech.playVoice("GODLIKE!");
 					return;
 				}
 			} else {
 				if (InitObjects.ingame == true) {
-					ConsoleContent.god = false;
+					ConsoleContent.isGod = false;
 					UpdateObjects.lifePlayerShip = 4;
 					TextToSpeech.playVoice("Healthy!");
 					return;
@@ -272,6 +284,7 @@ public class Controls extends JFrame implements KeyListener {
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			MenuState.isOn = false;
+			isMapVisible = false;
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.HIT.stop();
 			LoadSounds.TAUNT.stop();

@@ -8,13 +8,13 @@ import javax.swing.JLabel;
 import entities.PlayerShip;
 import util.Constants;
 
-public class PlayerSign extends JLabel {
+public class PlayerCoordinates extends JLabel {
 
 	private static final long serialVersionUID = 2735514298436311987L;
 
 	public void draw(Graphics g) {
 		g.setColor(new Color(255, 255, 255, 128));
-		g.drawRect(limitX(), limitY(), 50, 50);
+		g.drawImage(PlayerShip.playerOne.getImage(), limitX(), limitY(), 50, 50, this);
 		repaint();
 	}
 	

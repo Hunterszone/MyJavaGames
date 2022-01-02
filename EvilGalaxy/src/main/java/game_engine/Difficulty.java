@@ -17,14 +17,14 @@ public class Difficulty {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
-
+		
 		TextToSpeech.finMusicIsPlayed = false;
 
 //		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
-		if (ConsoleContent.god == true) {
-			ConsoleContent.god = false;
+		if (ConsoleContent.isGod == true) {
+			ConsoleContent.isGod = false;
 		}
 
 		InitObjects.ingame = true;
@@ -56,7 +56,7 @@ public class Difficulty {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
-
+		
 //		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
@@ -95,7 +95,7 @@ public class Difficulty {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
-
+		
 //		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
@@ -132,7 +132,7 @@ public class Difficulty {
 			Collisions.alienKilled = 0;
 			Collisions.dragonKilled = 0;
 		}
-
+		
 //		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
