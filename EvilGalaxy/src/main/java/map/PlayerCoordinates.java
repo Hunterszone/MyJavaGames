@@ -1,6 +1,5 @@
 package map;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -13,7 +12,6 @@ public class PlayerCoordinates extends JLabel {
 	private static final long serialVersionUID = 2735514298436311987L;
 
 	public void draw(Graphics g) {
-		g.setColor(new Color(255, 255, 255, 128));
 		g.drawImage(PlayerShip.playerOne.getImage(), limitX(), limitY(), 50, 50, this);
 		repaint();
 	}

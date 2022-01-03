@@ -1,6 +1,5 @@
 package map;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -13,7 +12,6 @@ public class AlienCoordinates extends JLabel {
 	private static final long serialVersionUID = -3143464978804920679L;
 
 	public void draw(Graphics g) {
-		g.setColor(new Color(255, 255, 255, 128));
 		for (int i = 0; i < Alien.aliens.size(); i++) {			
 			g.drawImage(Alien.aliens.get(i).getImage(), limitX(), limitY(), 20, 20, this);
 		}

@@ -480,7 +480,6 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(Constants.UNLOCKED, 240, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 360, 5, null);
 		g.drawString(": Locked", 400, 20);
-		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
@@ -511,7 +510,6 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 230, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 335, 5, null);
 		g.drawString(Constants.UNLOCKED, 375, 20);
-		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
@@ -553,7 +551,6 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 235, 5, null);
 		g.drawString(Constants.UNLOCKED, 275, 20);
-		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
@@ -584,7 +581,6 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 265, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
 		g.drawString(": Locked", 405, 20);
-		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
@@ -622,7 +618,6 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(Constants.UNLOCKED, 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 255, 5, null);
 		g.drawString(Constants.UNLOCKED, 295, 20);
-		g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 		
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
@@ -688,11 +683,12 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawNaviMap(Graphics g) {
 		if (Controls.isMapVisible) {
-//			g.setColor(Color.BLACK);
+			setFontStyle(g);
 			mapEntity.draw(g);
 			playerSign.draw(g);
 			alienSign.draw(g);
 			dragonSign.draw(g);
+			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
 		}
 	}
 

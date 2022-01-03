@@ -1,6 +1,5 @@
 package map;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -14,7 +13,6 @@ public class DragonCoordinates extends JLabel {
 	private static final long serialVersionUID = 2355593682440642728L;
 
 	public void draw(Graphics g) {
-		g.setColor(new Color(255, 255, 255, 128));
 		for (int i = 0; i < Dragon.dragons.size(); i++) {			
 			g.drawImage(Dragon.dragons.get(i).getImage(), limitX(), limitY(), 40, 40, this);
 		}
@@ -34,7 +32,7 @@ public class DragonCoordinates extends JLabel {
 					return Constants.BUNKER_X + 550;
 				}
 			}
-			return Constants.BUNKER_X + 700;
+			return Constants.BUNKER_X + 550;
 		}
 		return -50;
 	}
