@@ -8,10 +8,11 @@ import entities.Alien;
 import entities.Dragon;
 import util.Constants;
 
-public class DragonCoordinates extends JLabel {
+public class DragonCoordinates extends JLabel implements Coordinates {
 
 	private static final long serialVersionUID = 2355593682440642728L;
 
+	@Override
 	public void draw(Graphics g) {
 		for (int i = 0; i < Dragon.dragons.size(); i++) {			
 			g.drawImage(Dragon.dragons.get(i).getImage(), limitX(), limitY(), 40, 40, this);
@@ -19,7 +20,8 @@ public class DragonCoordinates extends JLabel {
 		repaint();
 	}
 
-	private int limitX() {
+	@Override
+	public int limitX() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
 				if (dragon.getX() > Constants.BUNKER_X + 300) {
@@ -37,7 +39,8 @@ public class DragonCoordinates extends JLabel {
 		return -50;
 	}
 
-	private int limitY() {
+	@Override
+	public int limitY() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
 				if (dragon.getY() > Constants.BUNKER_Y - 730

@@ -7,10 +7,11 @@ import javax.swing.JLabel;
 import entities.Alien;
 import util.Constants;
 
-public class AlienCoordinates extends JLabel {
+public class AlienCoordinates extends JLabel implements Coordinates {
 
 	private static final long serialVersionUID = -3143464978804920679L;
 
+	@Override
 	public void draw(Graphics g) {
 		for (int i = 0; i < Alien.aliens.size(); i++) {			
 			g.drawImage(Alien.aliens.get(i).getImage(), limitX(), limitY(), 20, 20, this);
@@ -18,7 +19,8 @@ public class AlienCoordinates extends JLabel {
 		repaint();
 	}
 
-	private int limitX() {
+	@Override
+	public int limitX() {
 		if (Alien.aliens.size() > 0) {
 			for (Alien alien : Alien.aliens) {
 				if (alien.getX() > Constants.BUNKER_X + 300) {
@@ -35,7 +37,8 @@ public class AlienCoordinates extends JLabel {
 		return Constants.BUNKER_X + 700;
 	}
 
-	private int limitY() {
+	@Override
+	public int limitY() {
 		if (Alien.aliens.size() > 0) {
 			for (Alien alien : Alien.aliens) {
 				if (alien.getY() > Constants.BUNKER_Y - 730

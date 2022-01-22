@@ -7,16 +7,18 @@ import javax.swing.JLabel;
 import entities.PlayerShip;
 import util.Constants;
 
-public class PlayerCoordinates extends JLabel {
+public class PlayerCoordinates extends JLabel implements Coordinates {
 
 	private static final long serialVersionUID = 2735514298436311987L;
 
+	@Override
 	public void draw(Graphics g) {
 		g.drawImage(PlayerShip.playerOne.getImage(), limitX(), limitY(), 50, 50, this);
 		repaint();
 	}
 
-	private int limitX() {
+	@Override
+	public int limitX() {
 		if (PlayerShip.playerOne.getX() > Constants.BUNKER_X + 300) {
 			return Constants.BUNKER_X + 700;
 		}
@@ -31,7 +33,8 @@ public class PlayerCoordinates extends JLabel {
 		return Constants.BUNKER_X + 550;
 	}
 
-	private int limitY() {
+	@Override
+	public int limitY() {
 		if (PlayerShip.playerOne.getY() > Constants.BUNKER_Y - 630
 				&& PlayerShip.playerOne.getY() < Constants.BUNKER_Y - 430) {
 			return Constants.BUNKER_Y - 150;

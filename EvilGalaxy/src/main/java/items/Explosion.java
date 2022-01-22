@@ -3,7 +3,9 @@ package items;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Explosion {
+import util.Drawable;
+
+public class Explosion implements Drawable {
 	
 	private final double x, y;
 	private int r;
@@ -27,6 +29,7 @@ public class Explosion {
 		} while(r < maxRadius);
 	}
 
+	@Override
 	public void draw(Graphics g) {
 		g.setColor(new Color(255, 255, 255, 128));
 		g.drawOval((int)(x-r), (int)(y-r), 2*r, 2*r);
