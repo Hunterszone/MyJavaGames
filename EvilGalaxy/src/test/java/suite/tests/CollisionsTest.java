@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,14 +25,14 @@ import items.ShipRocket;
 
 public class CollisionsTest {
 
-	private Rectangle myship, bunker, evilhead, missileUnit, rocketUnit, alienUnit, dragonUnit;
-	private Alien alien;
-	private Dragon dragon;
-	private CanonBall canon;
-	private BunkerBullet bullet;
-	private PlasmaBall plasmaBall;
-	private ShipRocket rocket;
-	private ShipMissile missile;
+	private static Rectangle myship, bunker, evilhead, missileUnit, rocketUnit, alienUnit, dragonUnit;
+	private static Alien alien;
+	private static Dragon dragon;
+	private static CanonBall canon;
+	private static BunkerBullet bullet;
+	private static PlasmaBall plasmaBall;
+	private static ShipRocket rocket;
+	private static ShipMissile missile;
 	private int x, y;
 
 	@Before
@@ -142,8 +142,8 @@ public class CollisionsTest {
 		assertTrue("shipIntersectsBunker", Collisions.shipIntersectsBunker(myship, bunker));
 	}
 
-	@After
-	public void tearDown() {
+	@AfterClass
+	public static void tearDown() {
 		List<Object> objects = new ArrayList<Object>(); 
 		objects.addAll(Arrays.asList(myship, bunker, evilhead, alien, alienUnit, dragon, dragonUnit, canon, bullet, plasmaBall,
 				rocket, rocketUnit, missile, missileUnit));
@@ -151,9 +151,9 @@ public class CollisionsTest {
 		while(iter.hasNext()) {
 			Object next = iter.next();
 			iter.remove();
-			if(objects.isEmpty()) {
-				objects = null;
-			}
+		}
+		if(objects.isEmpty()) {
+			objects = null;
 		}
 	}
 }
