@@ -18,11 +18,11 @@ public class Alien extends SpritePattern {
 		drawAlien();
 	}
 
-	public String drawAlien() {
+	public void drawAlien() {
 		imageName = Images.ALIEN.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void move() {

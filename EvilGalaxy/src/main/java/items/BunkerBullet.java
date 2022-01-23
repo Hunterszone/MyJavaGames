@@ -19,6 +19,7 @@ public class BunkerBullet extends SpritePattern {
 
 	public void initBullet() {
 		imageName = Images.BULLETINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}

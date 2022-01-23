@@ -18,6 +18,7 @@ public class PlasmaBall extends SpritePattern {
 
 	public void initEvilGun() {
 		imageName = Images.PLASMABALLINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}

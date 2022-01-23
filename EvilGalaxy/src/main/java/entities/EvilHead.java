@@ -1,7 +1,6 @@
 package entities;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,18 +28,18 @@ public class EvilHead extends SpritePattern {
 		initAmmo();
 	}
 
-	public Image drawHead() {
+	public void drawHead() {
 		imageName = Images.EVILHEAD.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
 	}
 	
-	public Image strikeHead() {
+	public void strikeHead() {
 		imageName = Images.STRIKEHEAD.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
 	}
 
 	private void initAmmo() {

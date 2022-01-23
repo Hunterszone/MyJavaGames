@@ -1,16 +1,12 @@
 package suite.tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import entities.Alien;
-import enums.Images;
 import game_engine.InitObjects;
 
 public class AlienTest {
@@ -21,12 +17,6 @@ public class AlienTest {
 	@Before
 	public void setUp() throws Exception {
 		alien = new Alien(x, y);
-	}
-
-	@Test
-	public void testAlienUnit() {
-		assertNotNull("Image file not found!", alien.drawAlien());
-		assertEquals(Images.ALIEN.getImg(), alien.drawAlien());
 	}
 
 	@Test

@@ -1,7 +1,5 @@
 package entities;
 
-import java.awt.Image;
-
 import enums.Images;
 import game_engine.SpritePattern;
 import util.Constants;
@@ -20,11 +18,11 @@ public class AstronautAnimation extends SpritePattern {
 
 	private String imageName;
 
-	public Image drawAstronaut() {
+	public void drawAstronaut() {
 		imageName = Images.ASTRONAUTINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
 	}
 	
 	public void cycle() {

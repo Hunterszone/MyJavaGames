@@ -18,6 +18,7 @@ public class ShipRocket extends SpritePattern {
 
 	public void initRocket() {
 		imageName = Images.ROCKETINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}

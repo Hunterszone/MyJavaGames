@@ -18,11 +18,11 @@ public class Dragon extends SpritePattern {
 		drawDragon();
 	}
 
-	public String drawDragon() {
+	public void drawDragon() {
 		imageName = Images.DRAGON.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void move() {

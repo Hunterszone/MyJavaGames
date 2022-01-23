@@ -17,6 +17,7 @@ public class CanonBall extends SpritePattern {
 
 	public void initCanon() {
 		imageName = Images.CANONINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}

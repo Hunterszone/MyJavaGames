@@ -3,6 +3,10 @@ package suite.tests;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,9 +17,9 @@ import entities.Dragon;
 import game_engine.Collisions;
 import items.BunkerBullet;
 import items.CanonBall;
-import items.PlasmaBall;
 import items.Gold;
 import items.HealthPack;
+import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
 
@@ -140,9 +144,16 @@ public class CollisionsTest {
 
 	@After
 	public void tearDown() {
-		Object[] objects = { myship, bunker, evilhead, alien, alienUnit, dragon, dragonUnit, canon, bullet, plasmaBall,
-				rocket, rocketUnit, missile, missileUnit };
-		for (Object obj : objects)
-			obj = null;
+		List<Object> objects = new ArrayList<Object>(); 
+		objects.addAll(Arrays.asList(myship, bunker, evilhead, alien, alienUnit, dragon, dragonUnit, canon, bullet, plasmaBall,
+				rocket, rocketUnit, missile, missileUnit));
+		Iterator<Object> iter = objects.iterator();
+		while(iter.hasNext()) {
+			Object next = iter.next();
+			iter.remove();
+			if(objects.isEmpty()) {
+				objects = null;
+			}
+		}
 	}
 }

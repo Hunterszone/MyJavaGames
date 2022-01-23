@@ -44,17 +44,17 @@ public class Bunker extends SpritePattern {
 		return bullets2;
 	}
 
-	public String drawBunker() {
+	public void drawBunker() {
 		imageName = Images.BUNKER.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
-	public String drawBunkerHit() {
+	public void drawBunkerHit() {
 		imageName = Images.BUNKERHIT.getImg();
+		assert imageName != null; 
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 }

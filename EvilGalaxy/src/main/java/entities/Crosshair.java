@@ -20,6 +20,7 @@ public class Crosshair extends SpritePattern {
 
 	public void drawCrosshair() {
 		imageName = Images.CROSSHAIR.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}

@@ -1,6 +1,5 @@
 package entities;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,18 +21,18 @@ public class TheEndAnimation extends SpritePattern {
 
 	private String imageName;
 
-	public Image drawTheEndUp() {
+	public void drawTheEndUp() {
 		imageName = Images.THEENDUPINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
 	}
 	
-	public Image drawTheEndDown() {
+	public void drawTheEndDown() {
 		imageName = Images.THEENDDOWNINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
 	}
 	
 	public void cycleUp() {

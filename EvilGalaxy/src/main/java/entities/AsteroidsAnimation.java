@@ -1,6 +1,5 @@
 package entities;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +21,11 @@ public class AsteroidsAnimation extends SpritePattern {
 
 	private String imageName;
 
-	public Image drawAsteroids() {
+	public void drawAsteroids() {
 		imageName = Images.ASTEROIDSINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return loadImage(imageName);
 	}
 	
 	public void cycle() {

@@ -18,11 +18,11 @@ public class Gold extends SpritePattern {
 		initGifts();
 	}
 
-	public String initGifts() {
+	public void initGifts() {
 		imageName = Images.GOLDINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void move() {

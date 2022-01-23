@@ -16,11 +16,11 @@ public class VolBtn extends SpritePattern {
 		initVol();
 	}
 
-	public String initVol() {
+	public void initVol() {
 		imageName = Images.VOLUMEINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public String initMute() {

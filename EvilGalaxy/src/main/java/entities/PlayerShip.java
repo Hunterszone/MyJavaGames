@@ -40,32 +40,32 @@ public class PlayerShip extends SpritePattern {
 		initAmmo();
 	}
 
-	public String drawShip() {
+	public void drawShip() {
 		imageName = Images.MYSHIPINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
-	public String shipOnFire() {
+	public void shipOnFire() {
 		imageName = Images.MYSHIPONFIRE.getImg();
+		Images.MYSHIPINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
-	public String upsideDown() {
+	public void upsideDown() {
 		imageName = Images.MYSHIPLIFEBAR.getImg();
+		Images.MYSHIPINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
-	public String godMode() {
+	public void godMode() {
 		imageName = Images.MYSHIPGOD.getImg();
+		Images.MYSHIPINIT.getImg();
 		loadImage(imageName);
 		getImageDimensions();
-		return imageName;
 	}
 
 	public void shipShaked() {
@@ -145,6 +145,7 @@ public class PlayerShip extends SpritePattern {
 
 	public List<ShipMissile> loadMissiles() {
 		soundName = SoundEffects.LASER.getSound();
+		assert soundName != null;
 		missiles.add(new ShipMissile(x + width, y-15 + height / 2));
 		new PlayWave1st(soundName).start();
 		return missiles;
@@ -152,18 +153,18 @@ public class PlayerShip extends SpritePattern {
 
 	public List<ShipRocket> loadRockets() {
 		soundName = SoundEffects.ROCKET.getSound();
+		assert soundName != null;
 		rockets.add(new ShipRocket(x + width, y + height / 2));
 		new PlayWave1st(soundName).start();
 		return rockets;
 	}
 
-	public String gunLocked(KeyEvent e) {
-		soundName = SoundEffects.DENIED.getSound();
+	public void gunLocked(KeyEvent e) {
+		assert SoundEffects.DENIED.getSound() != null;
 		LoadSounds.DENIED.play();
 		if(e.isConsumed()) {
 			LoadSounds.DENIED.stop();	
 		}
-		return soundName;
 	}
 
 	public void keyPressed(KeyEvent e) {

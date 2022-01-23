@@ -19,6 +19,7 @@ public class HealthPack extends SpritePattern {
 
 	public void initHealth() {
 		imageName = Images.HEALTHINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
