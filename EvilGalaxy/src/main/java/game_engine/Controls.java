@@ -29,7 +29,7 @@ public class Controls implements KeyListener {
 
 	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible;
 	private Random rand = new Random();
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		PlayerShip.playerOne.keyReleased(e);
@@ -147,18 +147,11 @@ public class Controls implements KeyListener {
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
 			LoadSounds.BG_MUSIC.loop();
-
-			if (Alien.aliens.isEmpty()) {
-				LoadSounds.TAUNT.loop();
-			}
 			if (!InitObjects.ingame) {
-				if (InitObjects.ingame == false) {
-					TextToSpeech.playVoice("Loading level 1...");
-					TextToSpeech.voiceInterruptor = true;
-				}
+				TextToSpeech.playVoice("Loading level 1...");
+				TextToSpeech.voiceInterruptor = true;
 				Difficulty.easy();
 			}
-
 		}
 
 		if (key == KeyEvent.VK_M) {
@@ -170,18 +163,11 @@ public class Controls implements KeyListener {
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.start();
 			LoadSounds.BG_MUSIC.loop();
-
-			if (Alien.aliens.isEmpty()) {
-				LoadSounds.TAUNT.loop();
-			}
 			if (!InitObjects.ingame) {
-				if (InitObjects.ingame == false) {
-					TextToSpeech.playVoice("Loading level 1...");
-					TextToSpeech.voiceInterruptor = true;
-				}
+				TextToSpeech.playVoice("Loading level 1...");
+				TextToSpeech.voiceInterruptor = true;
 				Difficulty.medium();
 			}
-
 		}
 
 		if (key == KeyEvent.VK_H) {
@@ -193,36 +179,15 @@ public class Controls implements KeyListener {
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.start();
 			LoadSounds.BG_MUSIC.loop();
-
-			if (Alien.aliens.isEmpty()) {
-				LoadSounds.TAUNT.loop();
-			}
 			if (!InitObjects.ingame) {
-				if (InitObjects.ingame == false) {
-					TextToSpeech.playVoice("Loading level 1...");
-					TextToSpeech.voiceInterruptor = true;
-				}
+				TextToSpeech.playVoice("Loading level 1...");
+				TextToSpeech.voiceInterruptor = true;
 				Difficulty.hard();
 			}
 		}
 
-		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-				|| InitObjects.timerHard.isRunning())
-				&& (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP
-						|| key == KeyEvent.VK_DOWN)) {
-			ConsoleContent.manualON = false;
-			InitObjects.timerHard.stop();
-			InitObjects.timerMedium.stop();
-			InitObjects.timerEasy.start();
-			LoadSounds.BG_MUSIC.loop();
-
-			if (Alien.aliens.isEmpty()) {
-				LoadSounds.TAUNT.loop();
-			}
-		}
-		
 		if (key == KeyEvent.VK_N) {
-			if (InitObjects.ingame == true) {
+			if (InitObjects.ingame) {
 				if (isMapVisible == false) {
 					isMapVisible = true;
 					return;
@@ -234,16 +199,13 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_G) {
-
-			if (!ConsoleContent.isGod) {
-				if (InitObjects.ingame == true) {
+			if (InitObjects.ingame) {
+				if (!ConsoleContent.isGod) {
 					ConsoleContent.isGod = true;
 					UpdateObjects.lifePlayerShip = 999;
 					TextToSpeech.playVoice("GODLIKE!");
 					return;
-				}
-			} else {
-				if (InitObjects.ingame == true) {
+				} else {
 					ConsoleContent.isGod = false;
 					UpdateObjects.lifePlayerShip = 4;
 					TextToSpeech.playVoice("Healthy!");

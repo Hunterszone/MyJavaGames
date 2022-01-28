@@ -37,7 +37,6 @@ public class CollisionsTest {
 
 	@Before
 	public void setUp() {
-
 		myship = new Rectangle();
 		bunker = new Rectangle();
 		evilhead = new Rectangle();
@@ -57,9 +56,9 @@ public class CollisionsTest {
 	}
 
 	@Test
-	public void bulletTwoIntersectsShip() {
-		Rectangle bulletUnit2 = bullet.getBounds();
-		assertTrue("bulletTwoIntersectsShip", Collisions.bulletTwoIntersectsShip(bullet, myship, bulletUnit2));
+	public void bulletIntersectsShip() {
+		Rectangle bulletUnit = bullet.getBounds();
+		assertTrue("bulletIntersectsShip", Collisions.bulletIntersectsShip(bullet, myship, bulletUnit));
 	}
 
 	@Test
@@ -94,12 +93,6 @@ public class CollisionsTest {
 	}
 
 	@Test
-	public void missileIntersectsBunker() {
-		missileUnit = missile.getBounds();
-		assertTrue("missileIntersectsBunker", Collisions.missileIntersectsBunker(bunker, missile, missileUnit));
-	}
-
-	@Test
 	public void rocketIntersectsDragon() {
 		rocketUnit = rocket.getBounds();
 		dragonUnit = dragon.getBounds();
@@ -116,11 +109,6 @@ public class CollisionsTest {
 	public void shipIntersectsDragon() {
 		dragonUnit = dragon.getBounds();
 		assertTrue("shipIntersectsBunker", Collisions.shipIntersectsDragon(myship, dragon, dragonUnit));
-	}
-
-	@Test
-	public void shipIntersectsHead() {
-		assertTrue("shipIntersectsHead", Collisions.shipIntersectsHead(myship, evilhead));
 	}
 
 	@Test

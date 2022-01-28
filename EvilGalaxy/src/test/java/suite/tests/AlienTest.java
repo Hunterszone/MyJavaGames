@@ -2,8 +2,6 @@ package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import entities.Alien;
@@ -14,11 +12,6 @@ public class AlienTest {
 	private Alien alien;
 	private int x, y;
 
-	@Before
-	public void setUp() throws Exception {
-		alien = new Alien(x, y);
-	}
-
 	@Test
 	public void testListOfAliens() {
 		assertFalse(InitObjects.initAliens().isEmpty());
@@ -26,12 +19,9 @@ public class AlienTest {
 
 	@Test
 	public void testAliensBorders() {
+		alien = new Alien(x, y);
 		assertFalse(alien.getX() < 0);
 		assertFalse(alien.getY() > 1200);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		alien = null;
-	}
 }
