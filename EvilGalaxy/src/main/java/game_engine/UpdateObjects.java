@@ -46,7 +46,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		Collisions.checkCollisions();
 
 		repaint();
-
 	}
 
 	private void inGame() {

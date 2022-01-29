@@ -83,7 +83,7 @@ public class CollisionsTest {
 	public void missileIntersectsAlien() {
 		missileUnit = missile.getBounds();
 		alienUnit = alien.getBounds();
-		assertTrue("missileIntersectsAlien", Collisions.missileIntersectsAlien(missile, missileUnit, alien, alienUnit));
+		assertTrue("missileIntersectsAlien", missileUnit.intersects(alienUnit));
 	}
 
 	@Test
@@ -96,7 +96,7 @@ public class CollisionsTest {
 	public void rocketIntersectsDragon() {
 		rocketUnit = rocket.getBounds();
 		dragonUnit = dragon.getBounds();
-		assertTrue("rocketIntersectsDragon", Collisions.rocketIntersectsDragon(rocket, rocketUnit, dragon, dragonUnit));
+		assertTrue("rocketIntersectsDragon", rocketUnit.intersects(dragonUnit));
 	}
 
 	@Test
@@ -123,11 +123,6 @@ public class CollisionsTest {
 		Gold gold = new Gold(x, y);
 		Rectangle goldUnit = gold.getBounds();
 		assertTrue("shipIntersectsGold", Collisions.shipIntersectsGold(myship, gold, goldUnit));
-	}
-
-	@Test
-	public void shipIntersectsBunker() {
-		assertTrue("shipIntersectsBunker", Collisions.shipIntersectsBunker(myship, bunker));
 	}
 
 	@AfterClass
