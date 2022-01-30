@@ -12,11 +12,10 @@ import game_engine.InitObjects;
 public class DragonTest {
 
 	private Dragon dragon;
-	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		dragon = new Dragon(x, y);
+		dragon = new Dragon(450, 450);
 	}
 
 	@Test
@@ -26,7 +25,9 @@ public class DragonTest {
 
 	@Test
 	public void testDragonsBorders() {
+		dragon.move();
 		assertFalse(dragon.getX() < 0);
+		assertFalse(dragon.getX() > 1200);
 	}
 
 	@After

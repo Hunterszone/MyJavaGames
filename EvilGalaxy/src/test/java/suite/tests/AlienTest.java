@@ -2,6 +2,7 @@ package suite.tests;
 
 import static org.junit.Assert.assertFalse;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import entities.Alien;
@@ -10,18 +11,28 @@ import game_engine.InitObjects;
 public class AlienTest {
 
 	private Alien alien;
-	private int x, y;
+	
+	@Before
+	public void setUp() throws Exception {
+		alien = new Alien(450, 450);
+	}
 
-	@Test
 	public void testListOfAliens() {
 		assertFalse(InitObjects.initAliens().isEmpty());
 	}
 
 	@Test
-	public void testAliensBorders() {
-		alien = new Alien(x, y);
-		assertFalse(alien.getX() < 0);
-		assertFalse(alien.getY() > 1200);
+	public void testAlienMove_standard() {
+		alien.move();
+		assertFalse(alien.getX() < 0 || alien.getX() > 1200);
+		assertFalse(alien.getY() < 0 || alien.getY() > 700);
+	}
+	
+	@Test
+	public void testAlienMove_faster() {
+		alien.moveFaster();
+		assertFalse(alien.getX() < 0 || alien.getX() > 1200);
+		assertFalse(alien.getY() < 0 || alien.getY() > 700);
 	}
 
 }

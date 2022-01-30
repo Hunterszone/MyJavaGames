@@ -174,9 +174,9 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			missile.setVisible(false);
 			if (timerHard.isRunning()) {
-				EvilHead.evilHead.throwPlasmaBalls();
+				EvilHead.evilHead.plasmaBalls();
 			} else {
-				EvilHead.evilHead.throwCanons();
+				EvilHead.evilHead.canons();
 			}
 			EvilHead.evilHead.strikeHead();
 			lifeEvilHead++;
@@ -199,9 +199,9 @@ public abstract class Collisions extends UpdateObjects {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			rocket.setVisible(false);
 			if (timerHard.isRunning()) {
-				EvilHead.evilHead.throwPlasmaBalls();
+				EvilHead.evilHead.plasmaBalls();
 			} else {
-				EvilHead.evilHead.throwCanons();
+				EvilHead.evilHead.canons();
 			}
 			EvilHead.evilHead.strikeHead();
 			lifeEvilHead++;

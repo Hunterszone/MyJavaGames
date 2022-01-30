@@ -104,7 +104,7 @@ public class EvilHead extends SpritePattern {
 
 		x -= 1;
 		if (y == 250 || y == 350 || y == 450) {
-			throwCanons();
+			canons();
 			strikeHead();
 		}
 
@@ -149,7 +149,7 @@ public class EvilHead extends SpritePattern {
 
 		x -= 1;
 		if (y == 250 || y == 350 || y == 450 || y == 550 || y == 650) {
-			throwCanons();
+			canons();
 			strikeHead();
 		}
 
@@ -185,13 +185,13 @@ public class EvilHead extends SpritePattern {
 		return canons;
 	}
 
-	public List<PlasmaBall> throwPlasmaBalls() {
+	public List<PlasmaBall> plasmaBalls() {
 		plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing2.wav").start();
 		return plasmaBalls;
 	}
 
-	public List<CanonBall> throwCanons() {
+	public List<CanonBall> canons() {
 		canons.add(new CanonBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing.wav").start();
 		return canons;

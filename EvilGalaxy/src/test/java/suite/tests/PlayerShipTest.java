@@ -11,11 +11,10 @@ import entities.PlayerShip;
 public class PlayerShipTest {
 
 	private PlayerShip playerOne;
-	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		playerOne = new PlayerShip(x, y);
+		playerOne = new PlayerShip(450, 450);
 	}
 
 	@Test
@@ -26,7 +25,8 @@ public class PlayerShipTest {
 
 	@Test
 	public void testMyShipBorders() {
-		assertFalse(playerOne.getX() < 0 || playerOne.getX() > 900);
+		playerOne.move();
+		assertFalse(playerOne.getX() < 0 || playerOne.getX() > 1200);
 		assertFalse(playerOne.getY() < 0 || playerOne.getY() > 700);
 	}
 

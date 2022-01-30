@@ -13,11 +13,31 @@ import enums.Images;
 public class EvilHeadTest {
 
 	private EvilHead evilHead;
-	private int x, y;
 
 	@Before
 	public void setUp() throws Exception {
-		evilHead = new EvilHead(x, y);
+		evilHead = new EvilHead(450, 450);
+	}
+	
+	@Test
+	public void testAIOnEasyBorders() {
+		evilHead.AIOnEasy();
+		assertFalse(evilHead.getX() < 0 || evilHead.getX() > 1200);
+		assertFalse(evilHead.getY() < 0 || evilHead.getY() > 700);
+	}
+	
+	@Test
+	public void testAIOnMediumBorders() {
+		evilHead.AIOnMedium();
+		assertFalse(evilHead.getX() < 0 || evilHead.getX() > 1200);
+		assertFalse(evilHead.getY() < 0 || evilHead.getY() > 700);
+	}
+	
+	@Test
+	public void testAIOnHardBorders() {
+		evilHead.AIOnHard();
+		assertFalse(evilHead.getX() < 0 || evilHead.getX() > 1200);
+		assertFalse(evilHead.getY() < 0 || evilHead.getY() > 700);
 	}
 
 	@Test
@@ -28,14 +48,14 @@ public class EvilHeadTest {
 	
 	@Test
 	public void testStrikeHead() {
+		evilHead.strikeHead();
 		assertNotNull(evilHead.loadImage(Images.STRIKEHEAD.getImg()));
-		assertFalse(Images.STRIKEHEAD.getImg().isEmpty());
 	}
 
 	@Test
 	public void testListsOfAmmos() {
-		assertFalse(evilHead.throwCanons().isEmpty());
-		assertFalse(evilHead.throwPlasmaBalls().isEmpty());
+		assertFalse(evilHead.canons().isEmpty());
+		assertFalse(evilHead.plasmaBalls().isEmpty());
 	}
 
 	@After

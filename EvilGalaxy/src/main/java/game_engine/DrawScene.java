@@ -385,10 +385,10 @@ public class DrawScene extends UpdateObjects {
 			EvilHead.evilHead.strikeHead();
 
 			if (timerEasy.isRunning()) {
-				EvilHead.evilHead.throwCanons();
+				EvilHead.evilHead.canons();
 			}
 			if (timerMedium.isRunning() || timerHard.isRunning()) {
-				EvilHead.evilHead.throwPlasmaBalls();
+				EvilHead.evilHead.plasmaBalls();
 			}
 		}
 
