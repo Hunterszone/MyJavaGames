@@ -4,8 +4,9 @@ import java.util.List;
 
 import enums.Images;
 import game_engine.SpritePattern;
+import util.Moveable;
 
-public class HealthPack extends SpritePattern {
+public class HealthPack extends SpritePattern implements Moveable {
 
 	public static List<HealthPack> healthpack;
 	private static final long serialVersionUID = 1L;
@@ -24,6 +25,7 @@ public class HealthPack extends SpritePattern {
 		getImageDimensions();
 	}
 
+	@Override
 	public void move() {
 
 		if (y > 1200) {

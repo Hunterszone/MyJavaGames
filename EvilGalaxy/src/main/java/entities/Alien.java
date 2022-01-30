@@ -4,8 +4,9 @@ import java.util.List;
 
 import enums.Images;
 import game_engine.SpritePattern;
+import util.Moveable;
 
-public class Alien extends SpritePattern {
+public class Alien extends SpritePattern implements Moveable {
 
 	public static List<Alien> aliens;
 	private static final long serialVersionUID = 1L;
@@ -25,6 +26,7 @@ public class Alien extends SpritePattern {
 		getImageDimensions();
 	}
 
+	@Override
 	public void move() {
 
 		if (x < 0) {

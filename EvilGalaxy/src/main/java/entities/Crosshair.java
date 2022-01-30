@@ -4,8 +4,9 @@ import java.awt.event.KeyEvent;
 
 import enums.Images;
 import game_engine.SpritePattern;
+import util.Moveable;
 
-public class Crosshair extends SpritePattern {
+public class Crosshair extends SpritePattern implements Moveable {
 
 	public static Crosshair crosshair;
 	public String imageName;
@@ -25,6 +26,7 @@ public class Crosshair extends SpritePattern {
 		getImageDimensions();
 	}
 
+	@Override
 	public void move() {
 		x += speedX;
 		y += speedY;

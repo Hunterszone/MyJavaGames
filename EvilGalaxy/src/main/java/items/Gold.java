@@ -4,8 +4,9 @@ import java.util.List;
 
 import enums.Images;
 import game_engine.SpritePattern;
+import util.Moveable;
 
-public class Gold extends SpritePattern {
+public class Gold extends SpritePattern implements Moveable {
 
 	public static List<Gold> goldstack;
 	private static final long serialVersionUID = 1L;
@@ -25,6 +26,7 @@ public class Gold extends SpritePattern {
 		getImageDimensions();
 	}
 
+	@Override
 	public void move() {
 
 		if (y < 0) {

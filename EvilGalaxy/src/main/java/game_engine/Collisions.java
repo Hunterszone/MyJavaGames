@@ -144,7 +144,7 @@ public abstract class Collisions extends UpdateObjects {
 		return health.isVisible();
 	}
 
-	public static boolean missileIntersectsAlien(ShipMissile missile, Rectangle missileUnit, Alien alien,
+	public static void missileIntersectsAlien(ShipMissile missile, Rectangle missileUnit, Alien alien,
 			Rectangle alienUnit) {
 		if (missileUnit.intersects(alienUnit)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
@@ -153,7 +153,6 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
 			alienKilled++;
 		}
-		return missile.isVisible();
 	}
 
 	public static void shipIntersectsHead(Rectangle myship, Rectangle evilhead) {
@@ -185,7 +184,7 @@ public abstract class Collisions extends UpdateObjects {
 		return missile.isVisible();
 	}
 
-	public static boolean rocketIntersectsDragon(ShipRocket rocket, Rectangle rocketUnit, Dragon dragon,
+	public static void rocketIntersectsDragon(ShipRocket rocket, Rectangle rocketUnit, Dragon dragon,
 			Rectangle dragonunit) {
 		if (rocketUnit.intersects(dragonunit)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
@@ -193,7 +192,6 @@ public abstract class Collisions extends UpdateObjects {
 			rocket.setVisible(false);
 			dragon.setVisible(false);
 		}
-		return rocket.isVisible();
 	}
 
 	public static boolean rocketIntersectsHead(Rectangle evilhead, ShipRocket rocket, Rectangle rocketUnit) {

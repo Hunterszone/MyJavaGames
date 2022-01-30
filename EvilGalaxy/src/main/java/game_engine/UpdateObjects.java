@@ -71,14 +71,14 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	protected void updateExplosions() {
-		explosions.removeIf(explosion -> explosion.getR() == 80);
+		explosions.removeIf(explosion -> explosion != null && explosion.getR() == 80);
 		explosions.forEach(explosion -> explosion.update());
 	}
 
 	private void updateMyShipMissiles() {
 		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
 
-		missiles.removeIf(missile -> missile.isVisible() == false);
+		missiles.removeIf(missile -> missile != null && !missile.isVisible());
 
 		missiles.stream().filter(missile -> missile.isVisible()).forEach(missile -> missile.moveMissile());
 	}
@@ -87,8 +87,8 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
-		if (Bunker.bullets.removeIf(bullet -> bullet.isVisible() == false)
-				|| Bunker.bullets2.removeIf(bullet -> bullet.isVisible() == false)) {
+		if (Bunker.bullets.removeIf(bullet -> bullet != null && !bullet.isVisible())
+				|| Bunker.bullets2.removeIf(bullet -> bullet != null && !bullet.isVisible())) {
 			LoadSounds.HIT.stop();
 		}
 
@@ -118,7 +118,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	private void updateEHPlasmaBalls() {
 		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
-		plasmaBalls.removeIf(plasmaBall -> plasmaBall.isVisible() == false);
+		plasmaBalls.removeIf(plasmaBall -> plasmaBall != null && !plasmaBall.isVisible());
 
 		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
 			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
@@ -145,7 +145,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	private void updateEHCanons() {
 		final List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
 
-		canonballs.removeIf(canon -> canon.isVisible() == false);
+		canonballs.removeIf(canon -> canon != null && !canon.isVisible());
 
 		canonballs.stream().filter(canon -> canon.isVisible()).forEach(canon -> {
 			if (EvilHead.evilHead.x - PlayerShip.playerOne.x > 0) {
@@ -159,13 +159,13 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	private void updateRockets() {
 		final List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
 
-		rocketStack.removeIf(rocket -> rocket.isVisible() == false);
+		rocketStack.removeIf(rocket -> rocket != null && !rocket.isVisible());
 
 		rocketStack.stream().filter(rocket -> rocket.isVisible()).forEach(rocket -> rocket.moveRocket());
 	}
 
 	private void updateAliens() {
-		Alien.aliens.removeIf(alien -> alien.isVisible() == false);
+		Alien.aliens.removeIf(alien -> alien != null && !alien.isVisible());
 		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
 			if (timerHard.isRunning()) {
 				alien.moveFaster();
@@ -176,6 +176,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 
 	protected static int updateDragons() {
 		Dragon.dragons.stream().forEach(dragon -> {
+			assert dragon != null;
 			dragon.setVisible(true);
 			Collisions.checkCollisions();
 			if (dragon.isVisible()) {
@@ -189,7 +190,10 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		return Collisions.dragonKilled;
 	}
 
-	private void updateEvilHead() {
+	private void updateEvilHead() {		
+		assert Alien.aliens != null;
+		assert Dragon.dragons != null;
+
 		if (EvilHead.evilHead.isVisible() && timerEasy.isRunning()) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnEasy();
@@ -227,7 +231,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 
 	private void updateHealth() {
 
-		if (HealthPack.healthpack.removeIf(healthPack -> healthPack.isVisible() == false)) {
+		if (HealthPack.healthpack.removeIf(healthPack -> healthPack != null && !healthPack.isVisible())) {
 			if (lifePlayerShip > 0 && lifePlayerShip < 4) {
 				lifePlayerShip++;
 			}

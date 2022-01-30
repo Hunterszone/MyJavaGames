@@ -22,8 +22,9 @@ import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
 import util.LoadSounds;
+import util.Moveable;
 
-public class PlayerShip extends SpritePattern {
+public class PlayerShip extends SpritePattern implements Moveable {
 
 	public static PlayerShip playerOne;
 	public static double speedX, speedY;
@@ -107,6 +108,7 @@ public class PlayerShip extends SpritePattern {
 		}
 	}
 
+	@Override
 	public void move() {
 		
 		x += speedX;
