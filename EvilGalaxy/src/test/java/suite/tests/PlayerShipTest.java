@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.PlayerShip;
+import util.Constants;
 
 public class PlayerShipTest {
 
@@ -14,7 +15,7 @@ public class PlayerShipTest {
 
 	@Before
 	public void setUp() throws Exception {
-		playerOne = new PlayerShip(450, 450);
+		playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 	}
 
 	@Test
@@ -26,8 +27,8 @@ public class PlayerShipTest {
 	@Test
 	public void testMyShipBorders() {
 		playerOne.move();
-		assertFalse(playerOne.getX() < 0 || playerOne.getX() > 1200);
-		assertFalse(playerOne.getY() < 0 || playerOne.getY() > 700);
+		assertFalse("Player X out of bounds!", playerOne.getX() < 0 || playerOne.getX() > 1200);
+		assertFalse("Player Y out of bounds!", playerOne.getY() < 0 || playerOne.getY() > 700);
 	}
 
 	@After

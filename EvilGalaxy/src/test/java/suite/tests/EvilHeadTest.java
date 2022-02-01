@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import entities.EvilHead;
 import enums.Images;
+import util.Constants;
 
 public class EvilHeadTest {
 
@@ -16,39 +17,37 @@ public class EvilHeadTest {
 
 	@Before
 	public void setUp() throws Exception {
-		evilHead = new EvilHead(450, 450);
+		evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 	}
 	
 	@Test
 	public void testAIOnEasyBorders() {
 		evilHead.AIOnEasy();
-		assertFalse(evilHead.getX() < 0 || evilHead.getX() > 1200);
-		assertFalse(evilHead.getY() < 0 || evilHead.getY() > 700);
+		assertFalse("EvilHead X out of bounds!", evilHead.getX() < 0 || evilHead.getX() > 1200);
+		assertFalse("EvilHead Y out of bounds!", evilHead.getY() < 0 || evilHead.getY() > 700);
 	}
 	
 	@Test
 	public void testAIOnMediumBorders() {
 		evilHead.AIOnMedium();
-		assertFalse(evilHead.getX() < 0 || evilHead.getX() > 1200);
-		assertFalse(evilHead.getY() < 0 || evilHead.getY() > 700);
+		assertFalse("EvilHead X out of bounds!", evilHead.getX() < 0 || evilHead.getX() > 1200);
+		assertFalse("EvilHead Y out of bounds!", evilHead.getY() < 0 || evilHead.getY() > 700);
 	}
 	
 	@Test
 	public void testAIOnHardBorders() {
 		evilHead.AIOnHard();
-		assertFalse(evilHead.getX() < 0 || evilHead.getX() > 1200);
-		assertFalse(evilHead.getY() < 0 || evilHead.getY() > 700);
+		assertFalse("EvilHead X out of bounds!", evilHead.getX() < 0 || evilHead.getX() > 1200);
+		assertFalse("EvilHead Y out of bounds!", evilHead.getY() < 0 || evilHead.getY() > 700);
 	}
 
 	@Test
 	public void testEvilHead() {
 		assertNotNull(evilHead.loadImage(Images.EVILHEAD.getImg()));
-		assertFalse(Images.EVILHEAD.getImg().isEmpty());
 	}
 	
 	@Test
 	public void testStrikeHead() {
-		evilHead.strikeHead();
 		assertNotNull(evilHead.loadImage(Images.STRIKEHEAD.getImg()));
 	}
 

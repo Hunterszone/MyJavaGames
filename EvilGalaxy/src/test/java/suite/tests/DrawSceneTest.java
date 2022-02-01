@@ -36,20 +36,20 @@ public class DrawSceneTest {
 	@Test
 	public void testDrawGameStateL3() {
 		UpdateObjects.lifeBunker = 45;
-		Assert.assertNotNull(Bunker.bunkerObj);
-		Assert.assertNotNull(HealthPack.healthpack);
+		Assert.assertNotNull("Bunker object is null", Bunker.bunkerObj);
+		Assert.assertNotNull("Healthpack is null L3", HealthPack.healthpack);
 	}
 	
 	@Test
 	public void testDrawGameStateL4() {
 		UpdateObjects.lifeBunker = 50;
-		Assert.assertNotNull(Gold.goldstack);
+		Assert.assertNotNull("Goldstack is null", Gold.goldstack);
 	}
 	
 	@Test
 	public void testDrawGameStateL5() {
 		UpdateObjects.lifeBunker = 50;
-		Assert.assertNotNull(HealthPack.healthpack);
+		Assert.assertNotNull("HealthPack is null L5", HealthPack.healthpack);
 	}
 
 	@After

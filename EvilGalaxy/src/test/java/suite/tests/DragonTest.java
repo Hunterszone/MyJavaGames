@@ -26,8 +26,8 @@ public class DragonTest {
 	@Test
 	public void testDragonsBorders() {
 		dragon.move();
-		assertFalse(dragon.getX() < 0);
-		assertFalse(dragon.getX() > 1200);
+		assertFalse("Dragon out of bounds!", dragon.getX() < 0);
+		assertFalse("Dragon out of bounds!", dragon.getX() > 1200);
 	}
 
 	@After

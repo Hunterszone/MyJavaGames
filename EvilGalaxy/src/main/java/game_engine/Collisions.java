@@ -77,7 +77,7 @@ public abstract class Collisions extends UpdateObjects {
 		checkCanonCollision(myship);
 	}
 
-	public static boolean shipIntersectsAlien(Rectangle myship, Alien alien, Rectangle alienUnit) {
+	public static void shipIntersectsAlien(Rectangle myship, Alien alien, Rectangle alienUnit) {
 		if (myship.intersects(alienUnit)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			lifePlayerShip--;
@@ -93,10 +93,9 @@ public abstract class Collisions extends UpdateObjects {
 			killedByEvilHead = false;
 			killedByAlien = true;
 		}
-		return alien.isVisible();
 	}
 
-	public static boolean shipIntersectsDragon(Rectangle myship, Dragon dragon, Rectangle dragonunit) {
+	public static void shipIntersectsDragon(Rectangle myship, Dragon dragon, Rectangle dragonunit) {
 		if (myship.intersects(dragonunit) && Alien.aliens.isEmpty()) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			lifePlayerShip--;
@@ -110,7 +109,6 @@ public abstract class Collisions extends UpdateObjects {
 			killedByAlien = false;
 			killedByDragon = true;
 		}
-		return dragon.isVisible();
 	}
 
 	public static void shipIntersectsBunker(Rectangle myship, Rectangle bunker) {
@@ -127,21 +125,19 @@ public abstract class Collisions extends UpdateObjects {
 		}
 	}
 
-	public static boolean shipIntersectsGold(Rectangle myship, Gold gold, Rectangle goldUnit) {
+	public static void shipIntersectsGold(Rectangle myship, Gold gold, Rectangle goldUnit) {
 		if (myship.intersects(goldUnit) && UpdateObjects.lifeBunker >= 50) {
 			gold.setVisible(false);
 			LoadSounds.GOT_GOLD.play();
 		}
-		return gold.isVisible();
 	}
 
-	public static boolean shipIntersectsHealth(Rectangle myship, HealthPack health, Rectangle healthUnit) {
+	public static void shipIntersectsHealth(Rectangle myship, HealthPack health, Rectangle healthUnit) {
 		if (myship.intersects(healthUnit) && Dragon.dragons.isEmpty()
 				&& (UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty())) {
 			health.setVisible(false);
 			LoadSounds.GOT_HP.play();
 		}
-		return health.isVisible();
 	}
 
 	public static void missileIntersectsAlien(ShipMissile missile, Rectangle missileUnit, Alien alien,
@@ -168,7 +164,7 @@ public abstract class Collisions extends UpdateObjects {
 		}
 	}
 
-	public static boolean missileIntersectsHead(Rectangle evilhead, ShipMissile missile, Rectangle missileUnit) {
+	public static void missileIntersectsHead(Rectangle evilhead, ShipMissile missile, Rectangle missileUnit) {
 		if (missileUnit.intersects(evilhead)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			new PlayWave1st(SoundEffects.BLOOP.getSound()).start();
@@ -181,7 +177,6 @@ public abstract class Collisions extends UpdateObjects {
 			EvilHead.evilHead.strikeHead();
 			lifeEvilHead++;
 		}
-		return missile.isVisible();
 	}
 
 	public static void rocketIntersectsDragon(ShipRocket rocket, Rectangle rocketUnit, Dragon dragon,
@@ -194,7 +189,7 @@ public abstract class Collisions extends UpdateObjects {
 		}
 	}
 
-	public static boolean rocketIntersectsHead(Rectangle evilhead, ShipRocket rocket, Rectangle rocketUnit) {
+	public static void rocketIntersectsHead(Rectangle evilhead, ShipRocket rocket, Rectangle rocketUnit) {
 		if (rocketUnit.intersects(evilhead)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			rocket.setVisible(false);
@@ -206,10 +201,9 @@ public abstract class Collisions extends UpdateObjects {
 			EvilHead.evilHead.strikeHead();
 			lifeEvilHead++;
 		}
-		return rocket.isVisible();
 	}
 
-	public static boolean rocketIntersectsBunker(Rectangle bunker, ShipRocket rocket, Rectangle rocketUnit) {
+	public static void rocketIntersectsBunker(Rectangle bunker, ShipRocket rocket, Rectangle rocketUnit) {
 		if (rocketUnit.intersects(bunker)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			Bunker.bunkerObj.drawBunkerHit();
@@ -220,10 +214,9 @@ public abstract class Collisions extends UpdateObjects {
 			LoadSounds.HIT.play();
 			lifeBunker++;
 		}
-		return rocket.isVisible();
 	}
 
-	public static boolean plasmaBallIntersectsShip(PlasmaBall plasmaBall, Rectangle plasmaBallUnit, Rectangle ship) {
+	public static void plasmaBallIntersectsShip(PlasmaBall plasmaBall, Rectangle plasmaBallUnit, Rectangle ship) {
 		if (plasmaBallUnit.intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			lifePlayerShip--;
@@ -238,10 +231,9 @@ public abstract class Collisions extends UpdateObjects {
 				killedByEvilHead = true;
 			}
 		}
-		return plasmaBall.isVisible();
 	}
 
-	public static boolean bulletIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit, Rectangle ship) {
+	public static void bulletIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit, Rectangle ship) {
 		if (bulletUnit.intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			lifePlayerShip--;
@@ -259,10 +251,9 @@ public abstract class Collisions extends UpdateObjects {
 				killedByBunker = true;
 			}
 		}
-		return bullet.isVisible();
 	}
 
-	public static boolean canonIntersectsShip(Rectangle myship, CanonBall canon, Rectangle canonUnit) {
+	public static void canonIntersectsShip(Rectangle myship, CanonBall canon, Rectangle canonUnit) {
 		if (canonUnit.intersects(myship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			lifePlayerShip--;
@@ -279,7 +270,6 @@ public abstract class Collisions extends UpdateObjects {
 				killedByEvilHead = true;
 			}
 		}
-		return canon.isVisible();
 	}
 
 	public static String[] getNameAndKilledCount(String enemyName) {

@@ -24,15 +24,15 @@ public class AlienTest {
 	@Test
 	public void testAlienMove_standard() {
 		alien.move();
-		assertFalse(alien.getX() < 0 || alien.getX() > 1200);
-		assertFalse(alien.getY() < 0 || alien.getY() > 700);
+		assertFalse("Alien X out of bounds!", alien.getX() < 0 || alien.getX() > 1200);
+		assertFalse("Alien Y out of bounds!", alien.getY() < 0 || alien.getY() > 700);
 	}
 	
 	@Test
 	public void testAlienMove_faster() {
 		alien.moveFaster();
-		assertFalse(alien.getX() < 0 || alien.getX() > 1200);
-		assertFalse(alien.getY() < 0 || alien.getY() > 700);
+		assertFalse("Alien X out of bounds!", alien.getX() < 0 || alien.getX() > 1200);
+		assertFalse("Alien Y out of bounds!", alien.getY() < 0 || alien.getY() > 700);
 	}
 
 }
