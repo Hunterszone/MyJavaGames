@@ -25,7 +25,7 @@ import items.ShipRocket;
 
 public class CollisionsTest {
 
-	private static Rectangle myship, bunker, evilhead, missileUnit, rocketUnit, alienUnit, dragonUnit;
+	private static Rectangle myship, bunker, evilhead, missileUnit, rocketUnit, alienUnit, dragonUnit, healthUnit, goldUnit;
 	private static Alien alien;
 	private static Dragon dragon;
 	private static CanonBall canon;
@@ -33,6 +33,8 @@ public class CollisionsTest {
 	private static PlasmaBall plasmaBall;
 	private static ShipRocket rocket;
 	private static ShipMissile missile;
+	private static HealthPack healthPack;
+	private static Gold goldStack;
 	private int x, y;
 
 	@Before
@@ -47,6 +49,8 @@ public class CollisionsTest {
 		plasmaBall = new PlasmaBall(x, y);
 		rocket = new ShipRocket(x, y);
 		missile = new ShipMissile(x, y);
+		healthPack = new HealthPack(x, y);
+		goldStack = new Gold(x, y);
 	}
 
 	@Test
@@ -113,15 +117,13 @@ public class CollisionsTest {
 
 	@Test
 	public void shipIntersectsHealth() {
-		HealthPack health = new HealthPack(x, y);
-		Rectangle healthUnit = health.getBounds();
+		healthUnit = healthPack.getBounds();
 		assertFalse("shipIntersectsHealth", healthUnit.intersects(myship));
 	}
 
 	@Test
 	public void shipIntersectsGold() {
-		Gold gold = new Gold(x, y);
-		Rectangle goldUnit = gold.getBounds();
+		goldUnit = goldStack.getBounds();
 		assertFalse("shipIntersectsGold", goldUnit.intersects(myship));
 	}
 
