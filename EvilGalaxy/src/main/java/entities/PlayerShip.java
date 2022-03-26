@@ -50,21 +50,21 @@ public class PlayerShip extends SpritePattern implements Moveable {
 
 	public void shipOnFire() {
 		imageName = Images.MYSHIPONFIRE.getImg();
-		Images.MYSHIPINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void upsideDown() {
 		imageName = Images.MYSHIPLIFEBAR.getImg();
-		Images.MYSHIPINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void godMode() {
 		imageName = Images.MYSHIPGOD.getImg();
-		Images.MYSHIPINIT.getImg();
+		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
