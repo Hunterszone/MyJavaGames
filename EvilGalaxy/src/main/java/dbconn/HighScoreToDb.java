@@ -15,38 +15,32 @@ public class HighScoreToDb {
 	private static List<String> enemyNames = InitObjects.getEnemyNames();
 
 	// JDBC driver name and database URL
-	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // for H2 is "org.h2.Driver"
+	private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // for H2 is "org.h2.Driver"
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/evilgalaxy"; // for H2 is "jdbc:h2:file:" +
 
 	// Database credentials
 	private static final String USER = "root";
 	private static final String PASS = "root";
+	
+	private static Connection conn;
+	
+	private static PreparedStatement preparedStatement;
 
-	public static void initDbConn() throws SQLException {
-		
-		Connection conn = null;
-		try {
-			// STEP 1: Register JDBC driver
-			Class.forName(JDBC_DRIVER);
+	// Execute insert query
+	public static boolean insertTable() throws SQLException {
 
-			// STEP 2: Open a connection
-			System.out.println("Connecting to a selected database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("Connected database successfully...");
-		} catch (final Exception se) {
-			// Handle errors for JDBC
-			se.printStackTrace();
-		}
+		// STEP 1: Register JDBC driver
+		registerDriver();
 		
-		PreparedStatement preparedStatement = null;
+		// STEP 2: Open a connection
+		openConnection();
+
+		// STEP 3: Empty DB table before operations
+		emptyTable(preparedStatement);
+		
 		int counter = 0;
 		try {
-			// Empty DB before operations
-			preparedStatement = conn.prepareStatement("DELETE FROM highscores WHERE 1");
-			preparedStatement.executeUpdate();
-
 			while (counter < enemyNames.size()) {
-				// STEP 3: Execute a query
 				enemyAndCount = Collisions.getNameAndKilledCount(enemyNames.get(counter));
 				preparedStatement = conn
 						.prepareStatement("INSERT INTO highscores (ENEMYNAME, COUNTKILLED) " + "VALUES (?,?)");
@@ -56,16 +50,46 @@ public class HighScoreToDb {
 				System.out.println("COUNTKILLED added: " + enemyAndCount[1]);
 				preparedStatement.executeUpdate();
 				System.out.println("Records inserted into table!");
-				counter++;
+				counter++;				
 			}
-		} catch (final Exception se) {
-			// Handle errors for JDBC
-			se.printStackTrace();
+			if (counter == 1 || counter == 2) {
+				System.out.println("Goodbye!");
+				return true;
+			}
+            return false;
+		} catch (final SQLException se) {
+            System.out.println(se.getMessage());
+            return false;	
 		} finally {
-			// finally block used to close resources
 			preparedStatement.close();
 			conn.close();
 		}
-		System.out.println("Goodbye!");
+	}
+
+	private static void registerDriver() {
+		try {
+			Class.forName(JDBC_DRIVER);
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println(cnfe.getMessage());
+		}
+	}
+
+	private static void openConnection() {
+		System.out.println("Connecting to a selected database...");
+		try {
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Connected database successfully...");
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+		}
+	}
+	
+	private static void emptyTable(PreparedStatement statement) {
+		try {
+			statement = conn.prepareStatement("DELETE FROM highscores WHERE 1");
+			statement.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+		}
 	}
 }

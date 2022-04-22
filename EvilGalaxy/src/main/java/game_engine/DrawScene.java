@@ -244,7 +244,7 @@ public class DrawScene extends UpdateObjects {
 				TextToSpeech.voiceInterruptor = true;
 				Collisions.killedByEvilHead = false;
 				try {
-					HighScoreToDb.initDbConn();
+					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {							
@@ -262,7 +262,7 @@ public class DrawScene extends UpdateObjects {
 				TextToSpeech.voiceInterruptor = true;
 				Collisions.killedByBunker = false;
 				try {
-					HighScoreToDb.initDbConn();
+					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {							
@@ -280,7 +280,7 @@ public class DrawScene extends UpdateObjects {
 				TextToSpeech.voiceInterruptor = true;
 				Collisions.killedByDragon = false;
 				try {
-					HighScoreToDb.initDbConn();
+					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {							
@@ -298,7 +298,7 @@ public class DrawScene extends UpdateObjects {
 				TextToSpeech.voiceInterruptor = true;
 				Collisions.killedByAlien = false;
 				try {
-					HighScoreToDb.initDbConn();
+					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {							
