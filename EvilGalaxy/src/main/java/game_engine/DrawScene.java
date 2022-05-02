@@ -682,7 +682,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawNaviMap(Graphics g) {
-		if (Controls.isMapVisible) {
+		if (Constants.isMapVisible) {
 			setFontStyle(g);
 			mapEntity.draw(g);
 			playerSign.draw(g);

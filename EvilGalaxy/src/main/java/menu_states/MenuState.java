@@ -6,8 +6,6 @@ import util.Constants;
 
 public class MenuState {
 
-	public static boolean isOn = true;
-
 	public void render(Graphics g) {
 		final Font titleFont = new Font("arial", Font.BOLD, 50);
 		g.setFont(titleFont);

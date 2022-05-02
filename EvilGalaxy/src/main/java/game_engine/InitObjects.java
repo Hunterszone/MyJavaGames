@@ -77,7 +77,8 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 		addKeyListener(new Controls());
 		setFocusable(true);
 		ingame = true;
-
+		Constants.isEPressed = true;
+		
 		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
 
 		explosions = new ArrayList<Explosion>();

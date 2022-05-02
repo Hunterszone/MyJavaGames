@@ -20,14 +20,13 @@ import items.SaveSign;
 import items.VolBtn;
 import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
-import menu_states.MenuState;
 import util.ConsoleContent;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
 public class Controls implements KeyListener {
 
-	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible;
 	private Random rand = new Random();
 
 	@Override
@@ -61,6 +60,26 @@ public class Controls implements KeyListener {
 			InitObjects.timerHard.stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
+		}
+		
+		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP
+						|| key == KeyEvent.VK_DOWN) {
+			ConsoleContent.manualON = false;
+			if (!InitObjects.timerHard.isRunning() && Constants.isHPressed) {
+				InitObjects.timerHard.start();
+			}
+			if (!InitObjects.timerMedium.isRunning() && Constants.isMPressed) {
+				InitObjects.timerMedium.start();
+			}
+			if (!InitObjects.timerEasy.isRunning() && Constants.isEPressed) {
+				InitObjects.timerEasy.start();
+			}
+			
+			LoadSounds.BG_MUSIC.loop();				
+
+			if (Alien.aliens.isEmpty()) {
+				LoadSounds.TAUNT.loop();
+			}
 		}
 
 		if (InitObjects.ingame == true
@@ -128,9 +147,9 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_R) {
-			isEPressed = false;
-			isMPressed = false;
-			isHPressed = false;
+			Constants.isEPressed = false;
+			Constants.isMPressed = false;
+			Constants.isHPressed = false;
 			if (InitObjects.ingame == false) {
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
@@ -139,9 +158,9 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_E) {
-			isMPressed = false;
-			isHPressed = false;
-			isEPressed = true;
+			Constants.isMPressed = false;
+			Constants.isHPressed = false;
+			Constants.isEPressed = true;
 			ConsoleContent.manualON = false;
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
@@ -155,9 +174,9 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_M) {
-			isEPressed = false;
-			isHPressed = false;
-			isMPressed = true;
+			Constants.isEPressed = false;
+			Constants.isHPressed = false;
+			Constants.isMPressed = true;
 			ConsoleContent.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerHard.stop();
@@ -171,9 +190,9 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_H) {
-			isEPressed = false;
-			isMPressed = false;
-			isHPressed = true;
+			Constants.isEPressed = false;
+			Constants.isMPressed = false;
+			Constants.isHPressed = true;
 			ConsoleContent.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
@@ -188,11 +207,11 @@ public class Controls implements KeyListener {
 
 		if (key == KeyEvent.VK_N) {
 			if (InitObjects.ingame) {
-				if (isMapVisible == false) {
-					isMapVisible = true;
+				if (Constants.isMapVisible == false) {
+					Constants.isMapVisible = true;
 					return;
 				} else {
-					isMapVisible = false;
+					Constants.isMapVisible = false;
 					return;
 				}
 			}
@@ -242,8 +261,8 @@ public class Controls implements KeyListener {
 		 */
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			MenuState.isOn = false;
-			isMapVisible = false;
+			Constants.isMenuOn = false;
+			Constants.isMapVisible = false;
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.HIT.stop();
 			LoadSounds.TAUNT.stop();
@@ -275,7 +294,7 @@ public class Controls implements KeyListener {
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
-			MenuState.isOn = true;
+			Constants.isMenuOn = true;
 			final CanvasMenu engine = new CanvasMenu();
 			engine.start();
 		}

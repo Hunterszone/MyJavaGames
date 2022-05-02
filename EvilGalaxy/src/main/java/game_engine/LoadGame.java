@@ -22,7 +22,7 @@ import main.Main;
 import marytts.exceptions.MaryConfigurationException;
 import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
-import menu_states.MenuState;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -82,7 +82,7 @@ public class LoadGame {
 			objectStream.close();
 		}
 
-		MenuState.isOn = false;
+		Constants.isMenuOn = false;
 		if (MouseInputHandler.main == null) {
 			DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 			DisplayCanvas.frame.dispose();
@@ -98,7 +98,7 @@ public class LoadGame {
 				MouseInputHandler.main.setVisible(true);
 			});
 		}
-		MenuState.isOn = true;
+		Constants.isMenuOn = true;
 	}
 
 	private void initSavedAssets() throws MaryConfigurationException {
@@ -109,11 +109,11 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Controls.isEPressed == true)
+			if (Constants.isEPressed == true)
 				Difficulty.easy();
-			else if (Controls.isMPressed == true)
+			else if (Constants.isMPressed == true)
 				Difficulty.medium();
-			else if (Controls.isHPressed == true)
+			else if (Constants.isHPressed == true)
 				Difficulty.hard();
 			else
 				Difficulty.restart();
@@ -137,11 +137,11 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Controls.isEPressed == true)
+			if (Constants.isEPressed == true)
 				Difficulty.easy();
-			else if (Controls.isMPressed == true)
+			else if (Constants.isMPressed == true)
 				Difficulty.medium();
-			else if (Controls.isHPressed == true)
+			else if (Constants.isHPressed == true)
 				Difficulty.hard();
 			else
 				Difficulty.restart();
@@ -166,11 +166,11 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Controls.isEPressed == true)
+			if (Constants.isEPressed == true)
 				Difficulty.easy();
-			else if (Controls.isMPressed == true)
+			else if (Constants.isMPressed == true)
 				Difficulty.medium();
-			else if (Controls.isHPressed == true)
+			else if (Constants.isHPressed == true)
 				Difficulty.hard();
 			else
 				Difficulty.restart();
@@ -188,11 +188,11 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Controls.isEPressed == true)
+			if (Constants.isEPressed == true)
 				Difficulty.easy();
-			else if (Controls.isMPressed == true)
+			else if (Constants.isMPressed == true)
 				Difficulty.medium();
-			else if (Controls.isHPressed == true)
+			else if (Constants.isHPressed == true)
 				Difficulty.hard();
 			else
 				Difficulty.restart();

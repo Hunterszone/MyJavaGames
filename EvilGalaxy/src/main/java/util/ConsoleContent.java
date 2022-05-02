@@ -33,7 +33,6 @@ import items.HealthPack;
 import items.SaveSign;
 import menu_engine.GameMenuBar;
 import menu_engine.MouseInputHandler;
-import menu_states.MenuState;
 
 public class ConsoleContent extends OutputStream {
 
@@ -252,14 +251,14 @@ public class ConsoleContent extends OutputStream {
 					// EXIT
 					else if (Commands.EXIT.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 //						System.exit(0);
-						MenuState.isOn = false;
+						Constants.isMenuOn = false;
 						LoadSounds.BG_MUSIC.stop();
 						LoadSounds.HIT.stop();
 						LoadSounds.TAUNT.stop();
 						InitObjects.ingame = false;
 						if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 						MouseInputHandler.main = null;
-						MenuState.isOn = true;
+						Constants.isMenuOn = true;
 						textArea.append("********Game exited!*********" + "\n");
 						return;
 					}

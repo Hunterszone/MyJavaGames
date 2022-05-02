@@ -26,10 +26,10 @@ import entities.Alien;
 import entities.AsteroidsAnimation;
 import entities.Bunker;
 import entities.Dragon;
-import entities.TheEndAnimation;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import entities.TheEndAnimation;
 import extras.Manual;
 import game_engine.Difficulty;
 import game_engine.InitObjects;
@@ -38,9 +38,9 @@ import items.Gold;
 import items.HealthPack;
 import launcher.Launcher;
 import marytts.exceptions.MaryConfigurationException;
-import menu_states.MenuState;
 import multiplayer_tbd.JoinGame;
 import util.ConsoleContent;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -194,7 +194,7 @@ public class GameMenuBar extends JFrame {
 		class ExitAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MenuState.isOn = false;
+				Constants.isMenuOn = false;
 				LoadSounds.BG_MUSIC.stop();
 				LoadSounds.HIT.stop();
 				LoadSounds.TAUNT.stop();
@@ -223,7 +223,7 @@ public class GameMenuBar extends JFrame {
 				InitObjects.ingame = false;
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;
-				MenuState.isOn = true;
+				Constants.isMenuOn = true;
 				final CanvasMenu engine = new CanvasMenu();
 				engine.start();
 			}

@@ -8,6 +8,8 @@ public class Constants {
 	public static final CanvasAssets LOAD_ASSETS = new CanvasAssets(0, 0);
 	public static final String VOICENAME = "kevin16";
 	public static final Dimension DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
+	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible;
+	public static boolean isMenuOn = true;
 	public static final int MYSHIP_X = 40;
 	public static final int MYSHIP_Y = 180;
 	public static final int MYCROSSHAIR_X = 250;

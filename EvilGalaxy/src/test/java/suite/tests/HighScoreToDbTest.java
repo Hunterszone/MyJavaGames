@@ -39,6 +39,7 @@ public class HighScoreToDbTest {
     	MockitoAnnotations.initMocks(this);
         when(driver.acceptsURL(HighScoreToDbTest.JDBC_DRIVER)).thenReturn(true);
         when(driver.connect(anyString(), Matchers.<Properties>any())).thenReturn(connection);
+        when(resultSet.next()).thenReturn(true);
     }
     
     @Test
@@ -56,7 +57,7 @@ public class HighScoreToDbTest {
     }
     
     @Test
-    public void shouldHandleSQLException() throws Exception {
+    public void shouldHandleSQLException() throws SQLException {
         when(connection.prepareCall(anyString()))
         	.thenThrow(new SQLException("Prepare call"));
         when(connection.isClosed()).thenReturn(true);
