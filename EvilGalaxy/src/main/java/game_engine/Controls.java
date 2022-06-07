@@ -147,8 +147,8 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_R) {
 			Constants.isMPressed = false;
 			Constants.isHPressed = false;
-			Constants.isEPressed = true;
 			if (!InitObjects.ingame) {
+				Constants.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
 			}
