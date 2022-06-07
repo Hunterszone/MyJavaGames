@@ -71,16 +71,14 @@ public class CanvasMenu implements Runnable {
 	    this.g.drawImage(Constants.LOAD_ASSETS.blackBG, 0,0, 1200, 800, null);
 
 		if (State.getState() == StateManager.STATES.MENU) {
-			this.mainMenu.render(this.g);
+			this.mainMenu.render(g);
 		} else if(State.getState() == StateManager.STATES.CONTROLS) {
             this.controlsMenu.render(g);
         } else if(State.getState() == StateManager.STATES.MANUAL) {
             this.manualMenu.render(g);
-        }
-        else if(State.getState() == StateManager.STATES.SETTINGS) {
+        } else if(State.getState() == StateManager.STATES.SETTINGS) {
             this.settingsMenu.render(g, color, color2);
-        }
-        else if(State.getState() == StateManager.STATES.EXTRAS) {
+        } else if(State.getState() == StateManager.STATES.EXTRAS) {
             this.extrasMenu.render(g);
         }
 
@@ -123,7 +121,7 @@ public class CanvasMenu implements Runnable {
 			this.thread.join();
 		} catch (final InterruptedException e) {
 			Thread.currentThread().interrupt();
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

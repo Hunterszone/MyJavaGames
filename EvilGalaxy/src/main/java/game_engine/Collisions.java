@@ -71,6 +71,7 @@ public abstract class Collisions extends UpdateObjects {
 
 		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 		iterateBunkerBullets(Bunker.bullets);
+
 		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 		iterateBunkerBullets(Bunker.bullets2);
 
@@ -285,71 +286,71 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	private static void iterateBunkerBullets(List<BunkerBullet> bullets) {
+		bullets = bullets.stream().filter(bullet -> bullet != null).collect(Collectors.toList());
+
+		final Rectangle ship = PlayerShip.playerOne.getBounds();
+
 		for (final BunkerBullet bullet : bullets) {
-			if (bullet != null) {
-				final Rectangle bulletUnit = bullet.getBounds();
-				final Rectangle ship = PlayerShip.playerOne.getBounds();
-				bulletIntersectsShip(bullet, bulletUnit, ship);
-			}
+			final Rectangle bulletUnit = bullet.getBounds();
+			bulletIntersectsShip(bullet, bulletUnit, ship);
 		}
 	}
-	
+
 	private static void checkCanonCollision(final Rectangle myship) {
-		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
+		final List<CanonBall> canons = EvilHead.evilHead.getCanons().stream().filter(canon -> canon != null)
+				.collect(Collectors.toList());
 
 		for (final CanonBall canon : canons) {
-			if (canon != null) {
-				final Rectangle canonUnit = canon.getBounds();
-				canonIntersectsShip(myship, canon, canonUnit);
-			}
+			final Rectangle canonUnit = canon.getBounds();
+			canonIntersectsShip(myship, canon, canonUnit);
 		}
 	}
 
 	private static void checkHealthCollision(final Rectangle myship) {
+		HealthPack.healthpack = HealthPack.healthpack.stream().filter(hp -> hp != null).collect(Collectors.toList());
+
 		for (final HealthPack health : HealthPack.healthpack) {
-			if (health != null) {
-				final Rectangle healthUnit = health.getBounds();
-				shipIntersectsHealth(myship, health, healthUnit);
-			}
+			final Rectangle healthUnit = health.getBounds();
+			shipIntersectsHealth(myship, health, healthUnit);
 		}
 	}
 
 	private static void checkGoldCollision(final Rectangle myship) {
+		Gold.goldstack = Gold.goldstack.stream().filter(gold -> gold != null).collect(Collectors.toList());
+
 		for (final Gold gold : Gold.goldstack) {
-			if (gold != null) {
-				final Rectangle goldUnit = gold.getBounds();
-				shipIntersectsGold(myship, gold, goldUnit);
-			}
+			final Rectangle goldUnit = gold.getBounds();
+			shipIntersectsGold(myship, gold, goldUnit);
 		}
 	}
 
 	private static void checkDragonCollision(final Rectangle myship) {
+		Dragon.dragons = Dragon.dragons.stream().filter(dragon -> dragon != null).collect(Collectors.toList());
+
 		for (final Dragon dragon : Dragon.dragons) {
-			if (dragon != null) {
-				final Rectangle dragonUnit = dragon.getBounds();
-				shipIntersectsDragon(myship, dragon, dragonUnit);
-			}
+			final Rectangle dragonUnit = dragon.getBounds();
+			shipIntersectsDragon(myship, dragon, dragonUnit);
 		}
 	}
 
 	private static void checkAlienCollision(final Rectangle myship) {
+		Alien.aliens = Alien.aliens.stream().filter(alien -> alien != null).collect(Collectors.toList());
+
 		for (final Alien alien : Alien.aliens) {
-			if (alien != null) {
-				final Rectangle alienUnit = alien.getBounds();
-				shipIntersectsAlien(myship, alien, alienUnit);
-			}
+			final Rectangle alienUnit = alien.getBounds();
+			shipIntersectsAlien(myship, alien, alienUnit);
 		}
 	}
 
 	private static void checkPlasmaCollision() {
-		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
+		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls().stream()
+				.filter(plasmaBall -> plasmaBall != null).collect(Collectors.toList());
+
+		final Rectangle ship = PlayerShip.playerOne.getBounds();
 
 		for (final PlasmaBall plasmaBall : plasmaBalls) {
-			if (plasmaBall != null) {
-				final Rectangle plasmaBallUnit = plasmaBall.getBounds();
-				final Rectangle ship = PlayerShip.playerOne.getBounds();
-				plasmaBallIntersectsShip(plasmaBall, plasmaBallUnit, ship);
-			}
+			final Rectangle plasmaBallUnit = plasmaBall.getBounds();
+			plasmaBallIntersectsShip(plasmaBall, plasmaBallUnit, ship);
 		}
 	}
 

@@ -67,11 +67,13 @@ public class Controls implements KeyListener {
 			ConsoleContent.manualON = false;
 			if (!InitObjects.timerHard.isRunning() && Constants.isHPressed) {
 				InitObjects.timerHard.start();
-			}
+			} 
 			if (!InitObjects.timerMedium.isRunning() && Constants.isMPressed) {
 				InitObjects.timerMedium.start();
-			}
-			if (!InitObjects.timerEasy.isRunning() && Constants.isEPressed) {
+			} 
+			if ((!InitObjects.timerEasy.isRunning() && Constants.isEPressed) && 
+					!(InitObjects.timerEasy.isRunning() && InitObjects.timerMedium.isRunning() && InitObjects.timerHard.isRunning()) && 
+					!Constants.isMPressed && !Constants.isHPressed) {
 				InitObjects.timerEasy.start();
 			}
 			
@@ -82,32 +84,28 @@ public class Controls implements KeyListener {
 			}
 		}
 
-		if (InitObjects.ingame == true
-				&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
+		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty()
 						&& (Dragon.dragons.size() > 0 || UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerOne.loadRockets();
 		}
 
-		if (InitObjects.ingame == true
-				&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
+		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerOne.gunLocked(e);
 		}
 
-		if (InitObjects.ingame == true
-				&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
+		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerOne.loadMissiles();
 		}
 
-		if (InitObjects.ingame == true
-				&& (InitObjects.timerEasy.isRunning() == true
+		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true
 						|| InitObjects.timerMedium.isRunning() == true || InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
@@ -147,10 +145,10 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_R) {
-			Constants.isEPressed = false;
 			Constants.isMPressed = false;
 			Constants.isHPressed = false;
-			if (InitObjects.ingame == false) {
+			Constants.isEPressed = true;
+			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
 			}

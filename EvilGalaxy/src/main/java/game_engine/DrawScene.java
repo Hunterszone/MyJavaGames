@@ -24,6 +24,7 @@ import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
 import entities.TheEndAnimation;
+import enums.Entity;
 import enums.Images;
 import icons.AlienIcon;
 import icons.DifficultyIcon;
@@ -61,12 +62,12 @@ public class DrawScene extends UpdateObjects {
 	public DrawScene() throws IOException {
 		final int width = (int) Constants.DIMENSION.getWidth();
 		final int height = (int) Constants.DIMENSION.getHeight();
-		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg())
-				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		bg2 = Toolkit.getDefaultToolkit().createImage(Images.BG2.getImg())
-				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg())
-				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg()).getScaledInstance(width, height,
+				Image.SCALE_SMOOTH);
+		bg2 = Toolkit.getDefaultToolkit().createImage(Images.BG2.getImg()).getScaledInstance(width, height,
+				Image.SCALE_SMOOTH);
+		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg()).getScaledInstance(width, height,
+				Image.SCALE_SMOOTH);
 		mapEntity = new MapEntity();
 		playerSign = new PlayerCoordinates();
 		alienSign = new AlienCoordinates();
@@ -82,14 +83,14 @@ public class DrawScene extends UpdateObjects {
 	private void drawAstronaut(Graphics g) {
 		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double)AstronautAnimation.astronautAnim.getX() / 2,
-				(double)AstronautAnimation.astronautAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.astronautAnim.getX() / 2,
+				(double) AstronautAnimation.astronautAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
 		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
 				AstronautAnimation.astronautAnim.getY(), this);
 		a = AffineTransform.getRotateInstance(181, 850, 700);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double)AstronautAnimation.astronautAnim.getX() / 2,
-				(double)AstronautAnimation.astronautAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.astronautAnim.getX() / 2,
+				(double) AstronautAnimation.astronautAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
 		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
 				AstronautAnimation.astronautAnim.getY(), this);
@@ -102,8 +103,8 @@ public class DrawScene extends UpdateObjects {
 				SatelliteAnimation.starAnim.getY(), this);
 		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		final AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double)SatelliteAnimation.starAnim.getX() / 2,
-				(double)SatelliteAnimation.starAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) SatelliteAnimation.starAnim.getX() / 2,
+				(double) SatelliteAnimation.starAnim.getY() / 2);
 		((Graphics2D) g).setTransform(a);
 		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
 				SatelliteAnimation.starAnim.getY(), this);
@@ -137,14 +138,14 @@ public class DrawScene extends UpdateObjects {
 		super.paintComponent(g);
 
 		if (ingame) {
-			drawGameStates(g);			
+			drawGameStates(g);
 			evilHeadBehaviour();
 			handleLifeEvilHead(g);
 		} else {
-			stopTimers();			
+			stopTimers();
 			drawGameOverBgs(g);
-			handleGameOver(g);
 			handleGameWon(g);
+			handleGameOver(g);
 		}
 
 		Toolkit.getDefaultToolkit().sync();
@@ -217,18 +218,22 @@ public class DrawScene extends UpdateObjects {
 	private void handleAnimations() {
 		if (AstronautAnimation.astronautAnim != null)
 			AstronautAnimation.astronautAnim = null;
+		
 		if (SatelliteAnimation.starAnim != null)
 			SatelliteAnimation.starAnim = null;
+		
 		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 			if (asteroidsAnim != null)
 				asteroidsAnim = null;
 		}
 		AsteroidsAnimation.asteroidsAnimations.clear();
+		
 		for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
 			if (elonAnimUp != null)
 				elonAnimUp = null;
 		}
 		TheEndAnimation.theEndAnimationsUp.clear();
+		
 		for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
 			if (elonAnimDown != null)
 				elonAnimDown = null;
@@ -247,7 +252,7 @@ public class DrawScene extends UpdateObjects {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
-				} finally {							
+				} finally {
 					return;
 				}
 			}
@@ -265,7 +270,7 @@ public class DrawScene extends UpdateObjects {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
-				} finally {							
+				} finally {
 					return;
 				}
 			}
@@ -283,7 +288,7 @@ public class DrawScene extends UpdateObjects {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
-				} finally {							
+				} finally {
 					return;
 				}
 			}
@@ -301,7 +306,7 @@ public class DrawScene extends UpdateObjects {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
 					e.printStackTrace();
-				} finally {							
+				} finally {
 					return;
 				}
 			}
@@ -409,11 +414,7 @@ public class DrawScene extends UpdateObjects {
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawAsteroids(g);
-
-		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-				|| InitObjects.timerHard.isRunning())) {
-			drawGamePaused(g);
-		}
+		drawGamePausedAndPressAnyKey(g);
 	}
 
 	private void drawGameStateL2(Graphics g) {
@@ -422,11 +423,7 @@ public class DrawScene extends UpdateObjects {
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawSatellite(g);
-
-		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-				|| InitObjects.timerHard.isRunning())) {
-			drawGamePaused(g);
-		}
+		drawGamePausedAndPressAnyKey(g);
 	}
 
 	private void drawGameStateL3(Graphics g) {
@@ -436,11 +433,7 @@ public class DrawScene extends UpdateObjects {
 		drawLifeBunker(g);
 		drawLifePlayerShip(g);
 		drawAstronaut(g);
-
-		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-				|| InitObjects.timerHard.isRunning())) {
-			drawGamePaused(g);
-		}
+		drawGamePausedAndPressAnyKey(g);
 
 		LoadSounds.TAUNT.stop();
 	}
@@ -450,10 +443,14 @@ public class DrawScene extends UpdateObjects {
 		drawL4Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
-		
+		drawGamePausedAndPressAnyKey(g);
+	}
+
+	private void drawGamePausedAndPressAnyKey(Graphics g) {
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
 			drawGamePaused(g);
+			drawPressAnyKey(g);
 		}
 	}
 
@@ -462,10 +459,11 @@ public class DrawScene extends UpdateObjects {
 		drawL5Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
-		
+
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
 			drawGamePaused(g);
+			drawPressAnyKey(g);
 		}
 	}
 
@@ -495,7 +493,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
 			g.drawString(Constants.HARD, 540, 20);
 		}
-		
+
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
@@ -510,7 +508,7 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 230, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 335, 5, null);
 		g.drawString(Constants.UNLOCKED, 375, 20);
-		
+
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
 			g.drawString(Constants.EASY, 540, 20);
@@ -540,7 +538,7 @@ public class DrawScene extends UpdateObjects {
 	private void drawL3Labels(Graphics g) {
 
 		setFontStyle(g);
-		
+
 		if (InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning()) {
 			drawKillTheBunker(g);
@@ -551,7 +549,7 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 235, 5, null);
 		g.drawString(Constants.UNLOCKED, 275, 20);
-		
+
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
 			g.drawString(Constants.EASY, 440, 20);
@@ -571,7 +569,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawL4Labels(Graphics g) {
-		
+
 		setFontStyle(g);
 
 		g.drawString("Level: " + 4, 5, 20);
@@ -581,7 +579,7 @@ public class DrawScene extends UpdateObjects {
 		g.drawString(": Locked", 265, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
 		g.drawString(": Locked", 405, 20);
-		
+
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
 			g.drawString(Constants.EASY, 540, 20);
@@ -610,15 +608,15 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawL5Labels(Graphics g) {
-		
+
 		setFontStyle(g);
-		
+
 		g.drawString("Level: " + 4, 5, 20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
 		g.drawString(Constants.UNLOCKED, 135, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 255, 5, null);
 		g.drawString(Constants.UNLOCKED, 295, 20);
-		
+
 		if (timerEasy.isRunning()) {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
 			g.drawString(Constants.EASY, 460, 20);
@@ -645,7 +643,7 @@ public class DrawScene extends UpdateObjects {
 		if (lifePlayerShip > 0) {
 			PlayerShip.playerOne.renderShip(g);
 		} else {
-			ingame = false;	
+			ingame = false;
 		}
 
 		if (lifePlayerShip > 4) {
@@ -693,7 +691,6 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawLifeBunker(Graphics g) {
-
 		if (lifeBunker < 10 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 100%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
@@ -738,7 +735,6 @@ public class DrawScene extends UpdateObjects {
 		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
 
 		for (final ShipMissile m : missiles) {
-
 			if (m.isVisible()) {
 				g.drawImage(m.getImage(), m.getX(), m.getY(), this);
 			}
@@ -755,7 +751,6 @@ public class DrawScene extends UpdateObjects {
 		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
 		for (final PlasmaBall n : plasmaBalls) {
-
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
@@ -764,7 +759,6 @@ public class DrawScene extends UpdateObjects {
 		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
 
 		for (final CanonBall n : canons) {
-
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
@@ -773,7 +767,6 @@ public class DrawScene extends UpdateObjects {
 		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
 
 		for (final BunkerBullet n : Bunker.bullets) {
-
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
@@ -782,7 +775,6 @@ public class DrawScene extends UpdateObjects {
 		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
 
 		for (final BunkerBullet n : Bunker.bullets2) {
-
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
@@ -864,7 +856,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(SaveSign.saveSign.getImage(), SaveSign.saveSign.getX(), SaveSign.saveSign.getY(), this);
 		}
 	}
-	
+
 	private void drawGameOver(Graphics g) {
 		final String msg = "Game Over!";
 		setFontStyle(g);
@@ -877,17 +869,17 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawKilledBy(Graphics g) {
-		
+
 		String msg = null;
-		
+
 		if (Collisions.killedByAlien == true)
-			msg = "Killed by an alien!";
+			msg = Entity.ALIEN.getMsg();
 		if (Collisions.killedByDragon == true)
-			msg = "Killed by a dragon!";
+			msg = Entity.DRAGON.getMsg();
 		if (Collisions.killedByBunker == true)
-			msg = "Killed by the bunker!";
+			msg = Entity.BUNKER.getMsg();
 		if (Collisions.killedByEvilHead == true)
-			msg = "Killed by the Evil Head!";
+			msg = Entity.EVILHEAD.getMsg();
 
 		setFontStyle(g);
 		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 125);
@@ -927,9 +919,15 @@ public class DrawScene extends UpdateObjects {
 	private void drawGamePaused(Graphics g) {
 		final String msg = "Game paused";
 		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+		g.drawString(msg, Constants.BUNKER_X+30, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 	}
 	
+	private void drawPressAnyKey(Graphics g) {
+		final String msg = "Press any key to continue";
+		setFontStyle(g);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 125);
+	}
+
 	private void setFontStyle(Graphics g) {
 		final Font small = new Font("Papyrus", Font.BOLD, 22);
 		g.setColor(Color.ORANGE);
