@@ -450,7 +450,6 @@ public class DrawScene extends UpdateObjects {
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
 			drawGamePaused(g);
-			drawPressAnyKey(g);
 		}
 	}
 
@@ -463,7 +462,6 @@ public class DrawScene extends UpdateObjects {
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
 			drawGamePaused(g);
-			drawPressAnyKey(g);
 		}
 	}
 
@@ -858,9 +856,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGameOver(Graphics g) {
-		final String msg = "Game Over!";
 		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X + 30, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 		g.drawString("Monsters left: " + 0, 5, 20);
 		g.drawString("Health: 0%", 200, 20);
 		if (lifeBunker >= 50) {
@@ -881,53 +877,48 @@ public class DrawScene extends UpdateObjects {
 		if (Collisions.killedByEvilHead == true)
 			msg = Entity.EVILHEAD.getMsg();
 
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 125);
+		formatMsg(g, msg);
 	}
 
 	private void drawCollectGold(Graphics g) {
 		final String msg = "Collect all the gold!";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+		formatMsg(g, msg);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
 		final String msg = "Destroy the bunker!";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
-
+		formatMsg(g, msg);
 	}
 
 	private void drawKillTheHead(Graphics g) {
 		final String msg = "Finally..Kill the evil head!";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+		formatMsg(g, msg);
 	}
 
 	private void drawYouWon(Graphics g) {
 		final String msg = "You Won!";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+		formatMsg(g, msg);
 	}
 
 	private void drawOuttaControl(Graphics g) {
 		final String msg = "Dragons invasion brings the ship outta control...";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X - 100, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+		formatMsg(g, msg);
 	}
 
 	private void drawGamePaused(Graphics g) {
-		final String msg = "Game paused";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X+30, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
-	}
-	
-	private void drawPressAnyKey(Graphics g) {
-		final String msg = "Press an arrow to continue";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 125);
+		final String msg = "Game paused. Press an arrow.";
+		formatMsg(g, msg);
 	}
 
+	private void formatMsg(Graphics g, final String msg) {
+		Color bgColor = Color.BLACK;
+		int width = g.getFontMetrics().stringWidth(msg);
+		g.setColor(bgColor);
+		g.fillRect(Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 180, width, 50);
+		setFontStyle(g);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+	}
+	
 	private void setFontStyle(Graphics g) {
 		final Font small = new Font("Papyrus", Font.BOLD, 22);
 		g.setColor(Color.ORANGE);
