@@ -151,8 +151,8 @@ public class Controls implements KeyListener {
 				Constants.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
+				Difficulty.restart();
 			}
-			Difficulty.restart();
 		}
 
 		if (key == KeyEvent.VK_E) {

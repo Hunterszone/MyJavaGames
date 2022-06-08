@@ -923,7 +923,7 @@ public class DrawScene extends UpdateObjects {
 	}
 	
 	private void drawPressAnyKey(Graphics g) {
-		final String msg = "Press any key to continue";
+		final String msg = "Press an arrow to continue";
 		setFontStyle(g);
 		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 125);
 	}
