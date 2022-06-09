@@ -23,7 +23,7 @@ public class Constants {
 	public static final int B_WIDTH = 1310;
 	public static final int B_HEIGHT = 1040;
 	public static final String HARD = ": HARD";
-	public static final String MEDIUM = ": MEDIUM";
+	public static final String MEDIUM = ": MEDI";
 	public static final String EASY = ": EASY";
 	public static final String UNLOCKED = ": Unlocked";
 }

@@ -34,6 +34,7 @@ import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
 import util.Constants;
+import util.IpJsonExtractor;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -45,6 +46,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
+	public static final String[] CITY_AND_COUNTRY = IpJsonExtractor.extractCityAndCountry();
 
 	private static Random rand = new Random();
 	private static final long serialVersionUID = 1L;

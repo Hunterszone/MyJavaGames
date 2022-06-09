@@ -492,6 +492,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString(Constants.HARD, 540, 20);
 		}
 
+		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
@@ -525,6 +526,7 @@ public class DrawScene extends UpdateObjects {
 			Crosshair.crosshair.crosShaked();
 		}
 
+		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
@@ -563,6 +565,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString(Constants.HARD, 440, 20);
 		}
 
+		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 550, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
@@ -598,6 +601,7 @@ public class DrawScene extends UpdateObjects {
 			drawCollectGold(g);
 		}
 
+		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
 		g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		Bunker.bunkerObj.drawBunkerHit();
@@ -634,6 +638,8 @@ public class DrawScene extends UpdateObjects {
 				|| InitObjects.timerHard.isRunning()) {
 			drawKillTheHead(g);
 		}
+		
+		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 570, 20);
 	}
 
 	private void drawLifePlayerShip(Graphics g) {
@@ -684,7 +690,7 @@ public class DrawScene extends UpdateObjects {
 			playerSign.draw(g);
 			alienSign.draw(g);
 			dragonSign.draw(g);
-			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 800, 23);
+			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 1010, 23);
 		}
 	}
 
@@ -879,7 +885,7 @@ public class DrawScene extends UpdateObjects {
 
 		formatMsg(g, msg);
 	}
-
+		
 	private void drawCollectGold(Graphics g) {
 		final String msg = "Collect all the gold!";
 		formatMsg(g, msg);
@@ -896,8 +902,9 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawYouWon(Graphics g) {
-		final String msg = "You Won!";
-		formatMsg(g, msg);
+		final String msg = "Victory!";
+		setFontStyle(g);
+		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 	}
 
 	private void drawOuttaControl(Graphics g) {
@@ -912,7 +919,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void formatMsg(Graphics g, final String msg) {
 		Color bgColor = Color.BLACK;
-		int width = g.getFontMetrics().stringWidth(msg);
+		int width = msg != null ? g.getFontMetrics().stringWidth(msg) : 0;
 		g.setColor(bgColor);
 		g.fillRect(Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 180, width, 50);
 		setFontStyle(g);
