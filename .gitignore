@@ -41,3 +41,4 @@
 /PotOGold/target/sonar/*.sonar_lock
 /PotOGold/target/sonar/*.txt
 /PotOGold/target/test-classes/suite/tests/*.class
+/EvilGalaxy/saves
