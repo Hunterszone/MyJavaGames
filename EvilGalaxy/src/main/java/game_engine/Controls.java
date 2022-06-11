@@ -47,10 +47,12 @@ public class Controls implements KeyListener {
 		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
+			Constants.isSPressed = true;
 			LoadSounds.BG_MUSIC.stop();
 		}
 
 		if (key == KeyEvent.VK_A) {
+			Constants.isSPressed = false;
 			if (InitObjects.timerEasy.isRunning() || InitObjects.timerHard.isRunning()
 					|| InitObjects.timerMedium.isRunning()) {
 				LoadSounds.BG_MUSIC.loop();
@@ -67,23 +69,31 @@ public class Controls implements KeyListener {
 		
 		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP
 						|| key == KeyEvent.VK_DOWN) {
-			ConsoleContent.manualON = false;
-			if (!InitObjects.timerHard.isRunning() && Constants.isHPressed) {
-				InitObjects.timerHard.start();
-			} 
-			if (!InitObjects.timerMedium.isRunning() && Constants.isMPressed) {
-				InitObjects.timerMedium.start();
-			} 
-			if ((!InitObjects.timerEasy.isRunning() && Constants.isEPressed) && 
-					!(InitObjects.timerEasy.isRunning() && InitObjects.timerMedium.isRunning() && InitObjects.timerHard.isRunning()) && 
-					!Constants.isMPressed && !Constants.isHPressed) {
-				InitObjects.timerEasy.start();
-			}
-			
-			LoadSounds.BG_MUSIC.loop();				
-
-			if (Alien.aliens.isEmpty()) {
-				LoadSounds.TAUNT.loop();
+			if (InitObjects.ingame) {
+				ConsoleContent.manualON = false;
+				if (!InitObjects.timerHard.isRunning() && Constants.isHPressed) {
+					InitObjects.timerHard.start();
+					if(!Constants.isSPressed) {
+						LoadSounds.BG_MUSIC.loop();								
+					}
+				} 
+				if (!InitObjects.timerMedium.isRunning() && Constants.isMPressed) {
+					InitObjects.timerMedium.start();
+					if(!Constants.isSPressed) {
+						LoadSounds.BG_MUSIC.loop();								
+					}
+				} 
+				if ((!InitObjects.timerEasy.isRunning() && Constants.isEPressed) && 
+						!(InitObjects.timerEasy.isRunning() && InitObjects.timerMedium.isRunning() && InitObjects.timerHard.isRunning()) && 
+						!Constants.isMPressed && !Constants.isHPressed) {
+					InitObjects.timerEasy.start();
+					if(!Constants.isSPressed) {
+						LoadSounds.BG_MUSIC.loop();								
+					}		
+				}
+				if (Alien.aliens.isEmpty()) {
+					LoadSounds.TAUNT.loop();
+				}
 			}
 		}
 

@@ -78,8 +78,5 @@ public class Difficulty {
 		InitObjects.initHealth();
 
 		LoadSounds.HIGHSC.play();
-		LoadSounds.FIN.stop();
-		LoadSounds.BG_MUSIC.loop();
-		LoadSounds.TAUNT.stop();
 	}
 }

@@ -143,6 +143,7 @@ public class DrawScene extends UpdateObjects {
 			handleLifeEvilHead(g);
 		} else {
 			stopTimers();
+			stopSounds();
 			drawGameOverBgs(g);
 			handleGameWon(g);
 			handleGameOver(g);
@@ -172,11 +173,15 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(bg3, 0, 0, null);
 		}
 	}
-
-	private void stopTimers() {
+	
+	private void stopSounds() {
 		LoadSounds.BG_MUSIC.stop();
 		LoadSounds.HIT.stop();
+		LoadSounds.FIN.stop();
 		LoadSounds.TAUNT.stop();
+	}
+
+	private void stopTimers() {
 		timerEasy.stop();
 		timerMedium.stop();
 		timerHard.stop();
@@ -491,7 +496,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString(Constants.HARD, 540, 20);
 		}
 
-		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
+		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
@@ -525,7 +530,7 @@ public class DrawScene extends UpdateObjects {
 			Crosshair.crosshair.crosShaked();
 		}
 
-		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
+		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
@@ -564,7 +569,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawString(Constants.HARD, 440, 20);
 		}
 
-		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 550, 20);
+		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 550, 20);
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 	}
 
@@ -600,7 +605,7 @@ public class DrawScene extends UpdateObjects {
 			drawCollectGold(g);
 		}
 
-		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
+		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);
 		g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		Bunker.bunkerObj.drawBunkerHit();
@@ -638,7 +643,7 @@ public class DrawScene extends UpdateObjects {
 			drawKillTheHead(g);
 		}
 		
-		g.drawString("LOCATION: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 570, 20);
+		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 570, 20);
 	}
 
 	private void drawLifePlayerShip(Graphics g) {
