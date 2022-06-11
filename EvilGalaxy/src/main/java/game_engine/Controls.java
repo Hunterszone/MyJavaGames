@@ -5,6 +5,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 import entities.Alien;
@@ -240,11 +243,13 @@ public class Controls implements KeyListener {
 			if (SaveSign.saveSign != null) {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
-				final File file = new File("saves/save" + rand.nextInt() + ".txt");
+				Path path = Paths.get("saves");
 				try {
+					Files.createDirectories(path);
+					final File file = new File("saves/save" + rand.nextInt() + ".txt");
 					SaveGame.saveGameDataToFile(file);
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				} catch (IOException ioe) {
+					ioe.getMessage();
 				}
 			}
 		} else {
