@@ -193,7 +193,6 @@ public class DrawScene extends UpdateObjects {
 				TextToSpeech.finMusicIsPlayed = true;
 			}
 
-			drawYouWon(g);
 			g.drawString("Monsters: Killed!", 5, 20);
 			g.drawString("Gold: Collected!", 210, 20);
 		}
@@ -899,12 +898,6 @@ public class DrawScene extends UpdateObjects {
 	private void drawKillTheHead(Graphics g) {
 		final String msg = "Finally..Kill the evil head!";
 		formatMsg(g, msg);
-	}
-
-	private void drawYouWon(Graphics g) {
-		final String msg = "Victory!";
-		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 	}
 
 	private void drawOuttaControl(Graphics g) {

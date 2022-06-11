@@ -59,10 +59,10 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	 */
 
 	private final static int[][] posDragon = { { 1380, 350 }, { 1580, 270 }, { 1680, 139 }, { 1390, 350 },
-			{ 1460, 480 }, { 1790, 490 }, { 1400, 359 }, { 1460, 290 }, { 1540, 150 }, { 1410, 220 }, { 1560, 150 },
-			{ 1740, 280 }, { 1420, 190 }, { 1590, 490 }, { 1700, 470 }, { 1380, 450 }, { 1580, 270 }, { 1680, 339 },
-			{ 1390, 350 }, { 1460, 280 }, { 1790, 490 }, { 1400, 259 }, { 1460, 390 }, { 1540, 450 }, { 1410, 320 },
-			{ 1560, 350 }, { 1740, 280 }, { 1420, 150 }, { 1590, 290 }, { 1700, 370 } };
+			{ 1560, 480 }, { 1290, 490 }, { 1100, 359 }, { 1460, 390 }, { 1540, 150 }, { 1410, 220 }, { 1560, 150 },
+			{ 1640, 280 }, { 1420, 190 }, { 1390, 490 }, { 1700, 470 }, { 1380, 450 }, { 1580, 270 }, { 1680, 339 },
+			{ 1690, 350 }, { 1760, 180 }, { 1290, 290 }, { 1400, 259 }, { 1460, 390 }, { 1540, 450 }, { 1410, 320 },
+			{ 1360, 350 }, { 1540, 280 }, { 1420, 150 }, { 1790, 290 }, { 1300, 370 } };
 
 	/*
 	 * private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, {
@@ -170,7 +170,7 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	public static List<Alien> initAliens() {
 		Alien.aliens = new ArrayList<Alien>();
 		IntStream.range(0, 40)
-				.mapToObj(i -> new Alien((int) Math.ceil(Math.random() * 7000), (int) Math.ceil(Math.random() * 800)))
+				.mapToObj(i -> new Alien((int) Math.ceil(Math.random() * 13000), (int) Math.ceil(Math.random() * 800)))
 				.forEach(alien -> {
 					Alien.aliens.add(alien);
 				});
