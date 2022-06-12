@@ -57,8 +57,8 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateMyShip() {
-		if (PlayerShip.playerOne.isVisible()) {
-			PlayerShip.playerOne.move();
+		if (PlayerShip.playerShip.isVisible()) {
+			PlayerShip.playerShip.move();
 		}
 	}
 
@@ -76,7 +76,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateMyShipMissiles() {
-		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
+		final List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles();
 
 		missiles.removeIf(missile -> missile != null && !missile.isVisible());
 
@@ -84,31 +84,31 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateBullets() {
-		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
-		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
+		Bunker.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+		Bunker.bulletsRight = Bunker.bunkerObj.getBulletsRight();
 
-		if (Bunker.bullets.removeIf(bullet -> bullet != null && !bullet.isVisible())
-				|| Bunker.bullets2.removeIf(bullet -> bullet != null && !bullet.isVisible())) {
+		if (Bunker.bulletsLeft.removeIf(bullet -> bullet != null && !bullet.isVisible())
+				|| Bunker.bulletsRight.removeIf(bullet -> bullet != null && !bullet.isVisible())) {
 			LoadSounds.HIT.stop();
 		}
 
-		Bunker.bullets.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		Bunker.bulletsLeft.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagLeft();
-			if (PlayerShip.playerOne.x > 200) {
+			if (PlayerShip.playerShip.x > 200) {
 				bullet.moveDiagRight();
 				bullet.moveRight();
-			} else if (PlayerShip.playerOne.y > 300) {
+			} else if (PlayerShip.playerShip.y > 300) {
 				bullet.moveDown();
 				bullet.moveLeft();
 			}
 		});
 
-		Bunker.bullets2.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		Bunker.bulletsRight.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagRight();
-			if (PlayerShip.playerOne.x > 200) {
+			if (PlayerShip.playerShip.x > 200) {
 				bullet.moveDiagLeft();
 				bullet.moveLeft();
-			} else if (PlayerShip.playerOne.y > 300) {
+			} else if (PlayerShip.playerShip.y > 300) {
 				bullet.moveDown();
 				bullet.moveLeft();
 			}
@@ -148,7 +148,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		canonballs.removeIf(canon -> canon != null && !canon.isVisible());
 
 		canonballs.stream().filter(canon -> canon.isVisible()).forEach(canon -> {
-			if (EvilHead.evilHead.x - PlayerShip.playerOne.x > 0) {
+			if (EvilHead.evilHead.x - PlayerShip.playerShip.x > 0) {
 				canon.moveCanonLeft();
 			} else {
 				canon.moveCanonRight();
@@ -157,7 +157,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateRockets() {
-		final List<ShipRocket> rocketStack = PlayerShip.playerOne.getRockets();
+		final List<ShipRocket> rocketStack = PlayerShip.playerShip.getRockets();
 
 		rocketStack.removeIf(rocket -> rocket != null && !rocket.isVisible());
 

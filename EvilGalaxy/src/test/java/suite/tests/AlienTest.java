@@ -1,6 +1,8 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,25 +16,33 @@ public class AlienTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		alien = new Alien(450, 450);
+		alien = new Alien(TestUtils.ALIEN_X, TestUtils.ALIEN_Y);
 	}
 
+	@Test
+	public void testAlienImg() {
+		assertNotNull(alien.getImage());
+	}
+	
+	@Test
 	public void testListOfAliens() {
+		assertNotNull(InitObjects.initAliens());
 		assertFalse(InitObjects.initAliens().isEmpty());
 	}
 
 	@Test
-	public void testAlienMove_standard() {
+	public void testAlienPositionOnEasyAndMedium() {
 		alien.move();
-		assertFalse("Alien X out of bounds!", alien.getX() < 0 || alien.getX() > 1200);
-		assertFalse("Alien Y out of bounds!", alien.getY() < 0 || alien.getY() > 700);
+		assertNotEquals("Alien is not X-moving on EASY and MEDIUM difficulty!", TestUtils.ALIEN_X, alien.getX());
+		assertNotEquals("Alien is not Y-moving on EASY and MEDIUM difficulty!", TestUtils.ALIEN_Y, alien.getY());
 	}
 	
 	@Test
-	public void testAlienMove_faster() {
+	public void testAlienPositionOnHard() {
 		alien.moveFaster();
-		assertFalse("Alien X out of bounds!", alien.getX() < 0 || alien.getX() > 1200);
-		assertFalse("Alien Y out of bounds!", alien.getY() < 0 || alien.getY() > 700);
+		assertNotEquals("Alien is not X-moving on HARD difficulty!", TestUtils.ALIEN_X, alien.getX());
+		alien.move();
+		assertNotEquals("Alien is not Y-moving on HARD difficulty!", TestUtils.ALIEN_Y, alien.getY());
 	}
-
+	
 }

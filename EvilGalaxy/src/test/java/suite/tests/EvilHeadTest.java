@@ -1,6 +1,7 @@
 package suite.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -8,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.EvilHead;
-import enums.Images;
 import util.Constants;
 
 public class EvilHeadTest {
@@ -21,39 +21,35 @@ public class EvilHeadTest {
 	}
 	
 	@Test
-	public void testAIOnEasyBorders() {
+	public void testEvilHeadPositionOnEasy() {
 		evilHead.AIOnEasy();
-		assertFalse("EvilHead X out of bounds!", evilHead.getX() < 0 || evilHead.getX() > 1200);
-		assertFalse("EvilHead Y out of bounds!", evilHead.getY() < 0 || evilHead.getY() > 700);
+		assertNotEquals("EvilHead is not X-moving on EASY difficulty!", Constants.EVILHEAD_X, evilHead.getX());
+		assertNotEquals("EvilHead is not Y-moving on EASY difficulty!", Constants.EVILHEAD_Y, evilHead.getY());
 	}
 	
 	@Test
-	public void testAIOnMediumBorders() {
+	public void testEvilHeadPositionOnMedium() {
 		evilHead.AIOnMedium();
-		assertFalse("EvilHead X out of bounds!", evilHead.getX() < 0 || evilHead.getX() > 1200);
-		assertFalse("EvilHead Y out of bounds!", evilHead.getY() < 0 || evilHead.getY() > 700);
+		assertNotEquals("EvilHead is not X-moving on MEDIUM difficulty!", Constants.EVILHEAD_X, evilHead.getX());
+		assertNotEquals("EvilHead is not Y-moving on MEDIUM difficulty!", Constants.EVILHEAD_Y, evilHead.getY());
 	}
 	
 	@Test
-	public void testAIOnHardBorders() {
+	public void testEvilHeadPositionOnHard() {
 		evilHead.AIOnHard();
-		assertFalse("EvilHead X out of bounds!", evilHead.getX() < 0 || evilHead.getX() > 1200);
-		assertFalse("EvilHead Y out of bounds!", evilHead.getY() < 0 || evilHead.getY() > 700);
-	}
-
-	@Test
-	public void testEvilHead() {
-		assertNotNull(evilHead.loadImage(Images.EVILHEAD.getImg()));
+		assertNotEquals("EvilHead is not X-moving on HARD difficulty!", Constants.EVILHEAD_X, evilHead.getX());
+		assertNotEquals("EvilHead is not Y-moving on HARD difficulty!", Constants.EVILHEAD_Y, evilHead.getY());
 	}
 	
 	@Test
-	public void testStrikeHead() {
-		assertNotNull(evilHead.loadImage(Images.STRIKEHEAD.getImg()));
-	}
-
-	@Test
-	public void testListsOfAmmos() {
+	public void testListsOfCanons() {
+		assertNotNull(evilHead.canons());
 		assertFalse(evilHead.canons().isEmpty());
+	}
+	
+	@Test
+	public void testListsOfPlasmaBalls() {
+		assertNotNull(evilHead.plasmaBalls());
 		assertFalse(evilHead.plasmaBalls().isEmpty());
 	}
 

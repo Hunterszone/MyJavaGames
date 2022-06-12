@@ -9,7 +9,7 @@ import items.BunkerBullet;
 
 public class Bunker extends SpritePattern {
 
-	public static List<BunkerBullet> bullets, bullets2;
+	public static List<BunkerBullet> bulletsLeft, bulletsRight;
 	public static Bunker bunkerObj;
 	private static final long serialVersionUID = 1L;
 	private String imageName;
@@ -22,26 +22,26 @@ public class Bunker extends SpritePattern {
 	}
 
 	private void initBullets() {
-		bullets = new ArrayList<>();
-		bullets2 = new ArrayList<>();
+		bulletsLeft = new ArrayList<>();
+		bulletsRight = new ArrayList<>();
 	}
 
-	public List<BunkerBullet> loadBullet() {
-		bullets.add(new BunkerBullet(x + width + 40, y - 50 + height / 2));
-		return bullets;
+	public List<BunkerBullet> loadBulletsLeft() {
+		bulletsLeft.add(new BunkerBullet(x + width + 40, y - 50 + height / 2));
+		return bulletsLeft;
 	}
 
-	public List<BunkerBullet> loadBullet2() {
-		bullets2.add(new BunkerBullet(x - width - 40, y - 50 + height / 2));
-		return bullets2;
+	public List<BunkerBullet> loadBulletsRight() {
+		bulletsRight.add(new BunkerBullet(x - width - 40, y - 50 + height / 2));
+		return bulletsRight;
 	}
 
 	public List<BunkerBullet> getBulletsLeft() {
-		return bullets;
+		return bulletsLeft;
 	}
 
 	public List<BunkerBullet> getBulletsRight() {
-		return bullets2;
+		return bulletsRight;
 	}
 
 	public void drawBunker() {

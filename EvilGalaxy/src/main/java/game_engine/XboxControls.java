@@ -47,29 +47,29 @@ public class XboxControls {
 			}
 			if (currState.dpadLeft || currState.leftStickClick) {
 				PlayerShip.speedX = -7.5;
-				if (PlayerShip.playerOne.isVisible()) {
-					PlayerShip.playerOne.move();
+				if (PlayerShip.playerShip.isVisible()) {
+					PlayerShip.playerShip.move();
 				}
 				System.out.println("\"dpadLeft\" on \"" + currState.controllerType + "\" is pressed");
 			}
 			if (currState.dpadRight || currState.rightStickClick) {
 				PlayerShip.speedX = 7.5;
-				if (PlayerShip.playerOne.isVisible()) {
-					PlayerShip.playerOne.move();
+				if (PlayerShip.playerShip.isVisible()) {
+					PlayerShip.playerShip.move();
 				}
 				System.out.println("\"dpadRight\" on \"" + currState.controllerType + "\" is pressed");
 			}
 			if (currState.dpadUp) {
 				PlayerShip.speedY = -7.5;
-				if (PlayerShip.playerOne.isVisible()) {
-					PlayerShip.playerOne.move();
+				if (PlayerShip.playerShip.isVisible()) {
+					PlayerShip.playerShip.move();
 				}
 				System.out.println("\"dpadUp\" on \"" + currState.controllerType + "\" is pressed");
 			}
 			if (currState.dpadDown) {
 				PlayerShip.speedY = 7.5;
-				if (PlayerShip.playerOne.isVisible()) {
-					PlayerShip.playerOne.move();
+				if (PlayerShip.playerShip.isVisible()) {
+					PlayerShip.playerShip.move();
 				}
 				System.out.println("\"dpadDown\" on \"" + currState.controllerType + "\" is pressed");
 			}
@@ -78,14 +78,14 @@ public class XboxControls {
 						&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true)
 						&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
-					PlayerShip.playerOne.loadMissiles();
+					PlayerShip.playerShip.loadMissiles();
 				}
 				if (InitObjects.ingame == true
 						&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 								|| InitObjects.timerHard.isRunning() == true)
 						&& (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0 || UpdateObjects.lifeBunker < 50
 								|| Gold.goldstack.isEmpty()))) {
-					PlayerShip.playerOne.loadRockets();
+					PlayerShip.playerShip.loadRockets();
 				}
 				System.out.println("\"A\" on \"" + currState.controllerType + "\" is pressed");
 			}

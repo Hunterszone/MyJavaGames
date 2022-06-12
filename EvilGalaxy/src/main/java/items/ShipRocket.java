@@ -28,7 +28,7 @@ public class ShipRocket extends SpritePattern {
 		x += ROCKET_SPEED_X;
 		y += ROCKET_SPEED_Y;
 
-		if (x > PlayerShip.playerOne.getX() + 320)
+		if (x > PlayerShip.playerShip.getX() + 320)
 			vis = false;
 	}
 }

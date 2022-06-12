@@ -26,7 +26,7 @@ import util.Moveable;
 
 public class PlayerShip extends SpritePattern implements Moveable {
 
-	public static PlayerShip playerOne;
+	public static PlayerShip playerShip;
 	public static double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;

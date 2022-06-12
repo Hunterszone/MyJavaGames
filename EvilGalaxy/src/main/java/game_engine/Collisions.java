@@ -43,7 +43,7 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static void checkCollisions() {
 
-		final Rectangle myship = PlayerShip.playerOne.getBounds();
+		final Rectangle myship = PlayerShip.playerShip.getBounds();
 
 		final Rectangle evilhead = EvilHead.evilHead.getBounds();
 
@@ -69,11 +69,11 @@ public abstract class Collisions extends UpdateObjects {
 
 		checkPlasmaCollision();
 
-		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
-		iterateBunkerBullets(Bunker.bullets);
+		Bunker.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+		iterateBunkerBullets(Bunker.bulletsLeft);
 
-		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
-		iterateBunkerBullets(Bunker.bullets2);
+		Bunker.bulletsRight = Bunker.bunkerObj.getBulletsRight();
+		iterateBunkerBullets(Bunker.bulletsRight);
 
 		checkCanonCollision(myship);
 	}
@@ -86,7 +86,7 @@ public abstract class Collisions extends UpdateObjects {
 			InitObjects.explosions.add(new Explosion(myship.getX(), myship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 //			PlayerShip.playerOne.upsideDown();
-			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
+			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
 			alienKilled++;
 			killedByBunker = false;
@@ -208,8 +208,8 @@ public abstract class Collisions extends UpdateObjects {
 		if (rocketUnit.intersects(bunker)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			Bunker.bunkerObj.drawBunkerHit();
-			Bunker.bunkerObj.loadBullet();
-			Bunker.bunkerObj.loadBullet2();
+			Bunker.bunkerObj.loadBulletsLeft();
+			Bunker.bunkerObj.loadBulletsRight();
 			rocket.setVisible(false);
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			LoadSounds.HIT.play();
@@ -224,7 +224,7 @@ public abstract class Collisions extends UpdateObjects {
 			plasmaBall.setVisible(false);
 			InitObjects.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
-			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
+			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			if (lifePlayerShip == 0) {
 				killedByBunker = false;
 				killedByDragon = false;
@@ -243,7 +243,7 @@ public abstract class Collisions extends UpdateObjects {
 			new PlayWave1st(SoundEffects.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffects.EXPLOSION.getSound()).start();
 //			PlayerShip.playerOne.upsideDown();
-			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
+			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
 			if (lifePlayerShip == 0) {
 				killedByDragon = false;
@@ -262,7 +262,7 @@ public abstract class Collisions extends UpdateObjects {
 			InitObjects.explosions.add(new Explosion(myship.getX(), myship.getY(), 30, 30));
 			new PlayWave1st(SoundEffects.BURNED.getSound()).start();
 //			PlayerShip.playerOne.upsideDown();
-			PlayerShip.playerOne.x = -PlayerShip.playerOne.getX();
+			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
 			if (lifePlayerShip == 0) {
 				killedByDragon = false;
@@ -288,7 +288,7 @@ public abstract class Collisions extends UpdateObjects {
 	private static void iterateBunkerBullets(List<BunkerBullet> bullets) {
 		bullets = bullets.stream().filter(bullet -> bullet != null).collect(Collectors.toList());
 
-		final Rectangle ship = PlayerShip.playerOne.getBounds();
+		final Rectangle ship = PlayerShip.playerShip.getBounds();
 
 		for (final BunkerBullet bullet : bullets) {
 			final Rectangle bulletUnit = bullet.getBounds();
@@ -346,7 +346,7 @@ public abstract class Collisions extends UpdateObjects {
 		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls().stream()
 				.filter(plasmaBall -> plasmaBall != null).collect(Collectors.toList());
 
-		final Rectangle ship = PlayerShip.playerOne.getBounds();
+		final Rectangle ship = PlayerShip.playerShip.getBounds();
 
 		for (final PlasmaBall plasmaBall : plasmaBalls) {
 			final Rectangle plasmaBallUnit = plasmaBall.getBounds();
@@ -355,7 +355,7 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	private static void checkRocketCollision(final Rectangle evilhead, final Rectangle bunker) {
-		List<ShipRocket> rockets = PlayerShip.playerOne.getRockets().stream().filter(rocket -> rocket != null)
+		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream().filter(rocket -> rocket != null)
 				.collect(Collectors.toList());
 		Dragon.dragons = Dragon.dragons.stream().filter(dragon -> dragon != null).collect(Collectors.toList());
 
@@ -375,7 +375,7 @@ public abstract class Collisions extends UpdateObjects {
 	}
 
 	private static void checkMissileCollision(final Rectangle evilhead) {
-		List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles().stream().filter(missile -> missile != null)
+		List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles().stream().filter(missile -> missile != null)
 				.collect(Collectors.toList());
 		Alien.aliens = Alien.aliens.stream().filter(alien -> alien != null).collect(Collectors.toList());
 

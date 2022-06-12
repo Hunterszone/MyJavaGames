@@ -386,10 +386,10 @@ public class DrawScene extends UpdateObjects {
 	private void evilHeadBehaviour() {
 
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50
-				&& (EvilHead.evilHead.x - PlayerShip.playerOne.x == 100
-						|| EvilHead.evilHead.x - PlayerShip.playerOne.x == 200
-						|| EvilHead.evilHead.x - PlayerShip.playerOne.x == 300
-						|| EvilHead.evilHead.x - PlayerShip.playerOne.x == 400)) {
+				&& (EvilHead.evilHead.x - PlayerShip.playerShip.x == 100
+						|| EvilHead.evilHead.x - PlayerShip.playerShip.x == 200
+						|| EvilHead.evilHead.x - PlayerShip.playerShip.x == 300
+						|| EvilHead.evilHead.x - PlayerShip.playerShip.x == 400)) {
 
 			EvilHead.evilHead.strikeHead();
 
@@ -402,12 +402,12 @@ public class DrawScene extends UpdateObjects {
 		}
 
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
-			if (EvilHead.evilHead.x - PlayerShip.playerOne.x > 810) {
-				PlayerShip.playerOne.shipShaked();
+			if (EvilHead.evilHead.x - PlayerShip.playerShip.x > 810) {
+				PlayerShip.playerShip.shipShaked();
 				Crosshair.crosshair.crosShaked();
-				PlayerShip.playerOne.y = EvilHead.evilHead.y + 70;
-				PlayerShip.playerOne.loadImage(Images.MYSHIPPULLED.getImg());
-				PlayerShip.playerOne.getImageDimensions();
+				PlayerShip.playerShip.y = EvilHead.evilHead.y + 70;
+				PlayerShip.playerShip.loadImage(Images.MYSHIPPULLED.getImg());
+				PlayerShip.playerShip.getImageDimensions();
 			}
 		}
 	}
@@ -526,7 +526,7 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
 			g.drawString(Constants.HARD, 540, 20);
 			drawOuttaControl(g);
-			PlayerShip.playerOne.shipShaked();
+			PlayerShip.playerShip.shipShaked();
 			Crosshair.crosshair.crosShaked();
 		}
 
@@ -649,38 +649,38 @@ public class DrawScene extends UpdateObjects {
 	private void drawLifePlayerShip(Graphics g) {
 
 		if (lifePlayerShip > 0) {
-			PlayerShip.playerOne.renderShip(g);
+			PlayerShip.playerShip.renderShip(g);
 		} else {
 			ingame = false;
 		}
 
 		if (lifePlayerShip > 4) {
-			g.drawString("GODMODE", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
-			PlayerShip.playerOne.godMode();
+			g.drawString("GODMODE", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
+			PlayerShip.playerShip.godMode();
 			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 4) {
-			g.drawString("Health: 100%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			g.drawString("Health: 100%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 3) {
-			g.drawString("Health: 75%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			g.drawString("Health: 75%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
 			updateExplosions();
 			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 2) {
-			g.drawString("Health: 50%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			g.drawString("Health: 50%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
 			updateExplosions();
 			drawNaviMap(g);
 		}
 
 		if (lifePlayerShip == 1) {
-			g.drawString("Health: 25%", PlayerShip.playerOne.x, PlayerShip.playerOne.y);
+			g.drawString("Health: 25%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
 			updateExplosions();
 			drawNaviMap(g);
@@ -740,7 +740,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawObjects(Graphics g) {
 
-		final List<ShipMissile> missiles = PlayerShip.playerOne.getMissiles();
+		final List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles();
 
 		for (final ShipMissile m : missiles) {
 			if (m.isVisible()) {
@@ -748,7 +748,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		final List<ShipRocket> rs = PlayerShip.playerOne.getRockets();
+		final List<ShipRocket> rs = PlayerShip.playerShip.getRockets();
 
 		for (final ShipRocket r : rs) {
 			if (r.isVisible()) {
@@ -772,17 +772,17 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		Bunker.bullets = Bunker.bunkerObj.getBulletsLeft();
+		Bunker.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
 
-		for (final BunkerBullet n : Bunker.bullets) {
+		for (final BunkerBullet n : Bunker.bulletsLeft) {
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		Bunker.bullets2 = Bunker.bunkerObj.getBulletsRight();
+		Bunker.bulletsRight = Bunker.bunkerObj.getBulletsRight();
 
-		for (final BunkerBullet n : Bunker.bullets2) {
+		for (final BunkerBullet n : Bunker.bulletsRight) {
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
@@ -818,9 +818,9 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawScene1(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
+		if (EvilHead.evilHead.isVisible() && PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg1, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
+			g.drawImage(PlayerShip.playerShip.getImage(), PlayerShip.playerShip.getX(), PlayerShip.playerShip.getY(),
 					this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
@@ -834,9 +834,9 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawScene2(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
+		if (EvilHead.evilHead.isVisible() && PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg2, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
+			g.drawImage(PlayerShip.playerShip.getImage(), PlayerShip.playerShip.getX(), PlayerShip.playerShip.getY(),
 					this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
@@ -850,9 +850,9 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawScene3And4(Graphics g) {
-		if (EvilHead.evilHead.isVisible() && PlayerShip.playerOne.isVisible() && Crosshair.crosshair.isVisible()
+		if (EvilHead.evilHead.isVisible() && PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
-			g.drawImage(PlayerShip.playerOne.getImage(), PlayerShip.playerOne.getX(), PlayerShip.playerOne.getY(),
+			g.drawImage(PlayerShip.playerShip.getImage(), PlayerShip.playerShip.getX(), PlayerShip.playerShip.getY(),
 					this);
 			g.drawImage(Crosshair.crosshair.getImage(), Crosshair.crosshair.getX(), Crosshair.crosshair.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);

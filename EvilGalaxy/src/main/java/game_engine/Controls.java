@@ -34,13 +34,13 @@ public class Controls implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		PlayerShip.playerOne.keyReleased(e);
+		PlayerShip.playerShip.keyReleased(e);
 		Crosshair.crosshair.keyReleased(e);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		PlayerShip.playerOne.keyPressed(e);
+		PlayerShip.playerShip.keyPressed(e);
 		Crosshair.crosshair.keyPressed(e);
 		VolBtn.volButt.keyPressed(e);
 
@@ -101,21 +101,21 @@ public class Controls implements KeyListener {
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty()
 						&& (Dragon.dragons.size() > 0 || UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty()))) {
-			PlayerShip.playerOne.loadRockets();
+			PlayerShip.playerShip.loadRockets();
 		}
 
 		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			PlayerShip.playerOne.gunLocked(e);
+			PlayerShip.playerShip.gunLocked(e);
 		}
 
 		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
 						|| InitObjects.timerHard.isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
-			PlayerShip.playerOne.loadMissiles();
+			PlayerShip.playerShip.loadMissiles();
 		}
 
 		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true
@@ -124,7 +124,7 @@ public class Controls implements KeyListener {
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
 						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
-			PlayerShip.playerOne.gunLocked(e);
+			PlayerShip.playerShip.gunLocked(e);
 		}
 
 		if (key == KeyEvent.VK_1) {

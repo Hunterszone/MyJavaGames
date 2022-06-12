@@ -26,7 +26,7 @@ public class ShipMissile extends SpritePattern {
 
 		x += MISSILE_SPEED;
 
-		if (x > PlayerShip.playerOne.getX() + 550)
+		if (x > PlayerShip.playerShip.getX() + 550)
 			vis = false;
 	}
 }

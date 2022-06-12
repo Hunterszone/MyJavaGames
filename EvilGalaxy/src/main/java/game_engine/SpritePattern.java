@@ -23,18 +23,6 @@ public abstract class SpritePattern implements Serializable {
 		vis = true;
 	}
 
-	protected void getImageDimensions() {
-
-		width = image.getWidth(null);
-		height = image.getHeight(null);
-	}
-
-	public Image loadImage(String imageName) {
-		final ImageIcon ii = new ImageIcon(imageName);
-		image = ii.getImage();
-		return image;
-	}
-
 	public Image getImage() {
 		return image;
 	}
@@ -57,6 +45,17 @@ public abstract class SpritePattern implements Serializable {
 
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
+	}
+	
+	protected void getImageDimensions() {
+		width = image.getWidth(null);
+		height = image.getHeight(null);
+	}
+
+	protected Image loadImage(String imageName) {
+		final ImageIcon ii = new ImageIcon(imageName);
+		image = ii.getImage();
+		return image;
 	}
 
 }

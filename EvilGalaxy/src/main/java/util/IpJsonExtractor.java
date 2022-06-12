@@ -24,12 +24,9 @@ public class IpJsonExtractor {
 			e.getMessage();
 		}
 		
-		Object city = null;
-		Object country = null;
-
 		if (json != null) {
-			city = json.get("city");			
-			country = json.get("country");
+			Object city = json.get("city");			
+			Object country = json.get("country");
 			return new String[] { city.toString(), country.toString() };			
 		}
 		

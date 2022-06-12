@@ -38,7 +38,7 @@ import util.IpJsonExtractor;
 import util.LoadSounds;
 import util.TextToSpeech;
 
-public class InitObjects extends JPanel implements ActionListener, Runnable {
+public abstract class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	private final Thread animator = new Thread(this);
 
@@ -116,8 +116,8 @@ public class InitObjects extends JPanel implements ActionListener, Runnable {
 	}
 
 	public static void initEntities() {
-		PlayerShip.playerOne = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
-		PlayerShip.playerOne.setVisible(true);
+		PlayerShip.playerShip = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
+		PlayerShip.playerShip.setVisible(true);
 
 		Crosshair.crosshair = new Crosshair(Constants.MYCROSSHAIR_X, Constants.MYCROSSHAIR_Y);
 		Crosshair.crosshair.setVisible(true);

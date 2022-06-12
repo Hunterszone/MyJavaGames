@@ -74,7 +74,7 @@ public class SaveGame {
 			try {
 				fileStream = new FileOutputStream(savefile);
 				objectStream = new ObjectOutputStream(fileStream);
-				objectStream.writeObject(PlayerShip.playerOne);
+				objectStream.writeObject(PlayerShip.playerShip);
 				objectStream.writeObject(EvilHead.evilHead);
 				objectStream.writeObject(Bunker.bunkerObj);
 				objectStream.writeObject(Alien.aliens);
