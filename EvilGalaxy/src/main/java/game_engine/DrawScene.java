@@ -50,7 +50,7 @@ import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
-public class DrawScene extends UpdateObjects {
+public class DrawScene extends Collisions {
 
 	transient static Image bg1, bg2, bg3;
 	private static final long serialVersionUID = 1L;
@@ -247,11 +247,11 @@ public class DrawScene extends UpdateObjects {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByEvilHead() {
-		if (Collisions.killedByEvilHead == true) {
+		if (killedByEvilHead == true) {
 			if (InitObjects.ingame == false) {
 				TextToSpeech.playVoice("Killed by the Evil Head!");
 				TextToSpeech.voiceInterruptor = true;
-				Collisions.killedByEvilHead = false;
+				killedByEvilHead = false;
 				try {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
@@ -265,11 +265,11 @@ public class DrawScene extends UpdateObjects {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByBunker() {
-		if (Collisions.killedByBunker == true) {
+		if (killedByBunker == true) {
 			if (InitObjects.ingame == false) {
 				TextToSpeech.playVoice("Killed by the bunker!");
 				TextToSpeech.voiceInterruptor = true;
-				Collisions.killedByBunker = false;
+				killedByBunker = false;
 				try {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
@@ -283,11 +283,11 @@ public class DrawScene extends UpdateObjects {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByDragon() {
-		if (Collisions.killedByDragon == true) {
+		if (killedByDragon == true) {
 			if (InitObjects.ingame == false) {
 				TextToSpeech.playVoice("Killed by a dragon!");
 				TextToSpeech.voiceInterruptor = true;
-				Collisions.killedByDragon = false;
+				killedByDragon = false;
 				try {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
@@ -301,11 +301,11 @@ public class DrawScene extends UpdateObjects {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByAlien() {
-		if (Collisions.killedByAlien == true) {
+		if (killedByAlien == true) {
 			if (InitObjects.ingame == false) {
 				TextToSpeech.playVoice("Killed by an alien!");
 				TextToSpeech.voiceInterruptor = true;
-				Collisions.killedByAlien = false;
+				killedByAlien = false;
 				try {
 					HighScoreToDb.insertTable();
 				} catch (final SQLException e) {
@@ -534,7 +534,7 @@ public class DrawScene extends UpdateObjects {
 		g.drawString("EvilHead", EvilHead.evilHead.x, EvilHead.evilHead.y);
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
-			UpdateObjects.updateDragons();
+			updateDragons();
 			LoadSounds.TAUNT.loop();
 		}
 	}
@@ -878,13 +878,13 @@ public class DrawScene extends UpdateObjects {
 
 		String msg = null;
 
-		if (Collisions.killedByAlien == true)
+		if (killedByAlien == true)
 			msg = Entity.ALIEN.getMsg();
-		if (Collisions.killedByDragon == true)
+		if (killedByDragon == true)
 			msg = Entity.DRAGON.getMsg();
-		if (Collisions.killedByBunker == true)
+		if (killedByBunker == true)
 			msg = Entity.BUNKER.getMsg();
-		if (Collisions.killedByEvilHead == true)
+		if (killedByEvilHead == true)
 			msg = Entity.EVILHEAD.getMsg();
 
 		formatMsg(g, msg);

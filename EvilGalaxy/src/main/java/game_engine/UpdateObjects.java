@@ -10,7 +10,6 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
-import enums.SoundEffects;
 import items.CanonBall;
 import items.Gold;
 import items.HealthPack;
@@ -46,6 +45,18 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		Collisions.checkCollisions();
 
 		repaint();
+	}
+
+	void updateDragons() {
+		Dragon.dragons.stream().forEach(dragon -> {
+			assert dragon != null;
+			Collisions.checkDragonCollision(dragon);
+			if (dragon.isVisible()) {
+				dragon.move();
+			} else {
+				Dragon.dragons.remove(dragon);
+			}
+		});
 	}
 
 	private void inGame() {
@@ -174,23 +185,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		});
 	}
 
-	protected static int updateDragons() {
-		Dragon.dragons.stream().forEach(dragon -> {
-			assert dragon != null;
-			dragon.setVisible(true);
-			Collisions.checkCollisions();
-			if (dragon.isVisible()) {
-				dragon.move();
-			} else {
-				SoundEffects.BLOOP.getSound();
-				Dragon.dragons.remove(dragon);
-			}
-		});
-
-		return Collisions.dragonKilled;
-	}
-
-	private void updateEvilHead() {		
+	private void updateEvilHead() {
 		assert Alien.aliens != null;
 		assert Dragon.dragons != null;
 
@@ -223,14 +218,11 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateGold() {
-
-		Gold.goldstack.removeIf(goldBar -> goldBar.isVisible() == false);
-
+		Gold.goldstack.removeIf(goldBar -> goldBar != null && !goldBar.isVisible());
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 
 	private void updateHealth() {
-
 		if (HealthPack.healthpack.removeIf(healthPack -> healthPack != null && !healthPack.isVisible())) {
 			if (lifePlayerShip > 0 && lifePlayerShip < 4) {
 				lifePlayerShip++;
