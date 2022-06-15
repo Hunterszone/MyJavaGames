@@ -46,7 +46,7 @@ public class DisplayCanvas {
         frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIPONFIRE.getImg()));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIP_ON_FIRE.getImg()));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         dim = Toolkit.getDefaultToolkit().getScreenSize();

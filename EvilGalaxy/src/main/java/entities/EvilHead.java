@@ -19,8 +19,6 @@ public class EvilHead extends SpritePattern {
 	private static final long serialVersionUID = 1L;
 	private String imageName;
 	private double speedX, speedY;
-	private List<PlasmaBall> plasmaBalls;
-	private List<CanonBall> canons;
 
 	public EvilHead(int x, int y) {
 		super(x, y);
@@ -43,8 +41,8 @@ public class EvilHead extends SpritePattern {
 	}
 
 	private void initAmmo() {
-		plasmaBalls = new ArrayList<>();
-		canons = new ArrayList<>();
+		PlasmaBall.plasmaBalls = new ArrayList<>();
+		CanonBall.canonBalls = new ArrayList<>();
 	}
 
 	// Simulated Artificial Intelligence on EASY
@@ -178,23 +176,23 @@ public class EvilHead extends SpritePattern {
 	}
 
 	public List<PlasmaBall> getEvilPlasmaBalls() {
-		return plasmaBalls;
+		return PlasmaBall.plasmaBalls;
 	}
 
 	public List<CanonBall> getCanons() {
-		return canons;
+		return CanonBall.canonBalls;
 	}
 
 	public List<PlasmaBall> plasmaBalls() {
-		plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
+		PlasmaBall.plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing2.wav").start();
-		return plasmaBalls;
+		return PlasmaBall.plasmaBalls;
 	}
 
 	public List<CanonBall> canons() {
-		canons.add(new CanonBall(x + width, y + height / 2));
+		CanonBall.canonBalls.add(new CanonBall(x + width, y + height / 2));
 		new PlayWave1st("sounds/boing.wav").start();
-		return canons;
+		return CanonBall.canonBalls;
 	}
 	
 	public void renderEvilHead(Graphics g) {

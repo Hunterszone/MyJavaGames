@@ -348,7 +348,7 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 1" + "\n");
 									textArea.append("Difficulty: Easy" + "\n");
 									textArea.append("Alien.aliens killed: " + (-(Alien.aliens.size() - 54)) + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -372,7 +372,7 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 1" + "\n");
 									textArea.append("Difficulty: Medium" + "\n");
 									textArea.append("Alien.aliens killed: " + (-(Alien.aliens.size() - 54)) + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -395,7 +395,7 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 1" + "\n");
 									textArea.append("Difficulty: Hard" + "\n");
 									textArea.append("Alien.aliens killed: " + (-(Alien.aliens.size() - 54)) + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -420,7 +420,7 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 2" + "\n");
 									textArea.append("Difficulty: Easy" + "\n");
 									textArea.append("Dragons killed: " + (-(Dragon.dragons.size() - 30)) + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -443,7 +443,7 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 2" + "\n");
 									textArea.append("Difficulty: Medium" + "\n");
 									textArea.append("Dragons killed: " + (-(Dragon.dragons.size() - 30)) + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -466,7 +466,7 @@ public class ConsoleContent extends OutputStream {
 									textArea.append("Level: 2" + "\n");
 									textArea.append("Difficulty: Hard" + "\n");
 									textArea.append("Dragons killed: " + (-(Dragon.dragons.size() - 30)) + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -490,7 +490,7 @@ public class ConsoleContent extends OutputStream {
 								if (InitObjects.timerEasy.isRunning() == true) {
 									textArea.append("Level: 3" + "\n");
 									textArea.append("Difficulty: Easy" + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -512,7 +512,7 @@ public class ConsoleContent extends OutputStream {
 								if (InitObjects.timerMedium.isRunning() == true) {
 									textArea.append("Level: 3" + "\n");
 									textArea.append("Difficulty: Medium" + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -534,7 +534,7 @@ public class ConsoleContent extends OutputStream {
 								if (InitObjects.timerHard.isRunning() == true) {
 									textArea.append("Level: 3" + "\n");
 									textArea.append("Difficulty: Hard" + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -559,7 +559,7 @@ public class ConsoleContent extends OutputStream {
 								if (InitObjects.timerEasy.isRunning() == true) {
 									textArea.append("Level: 4" + "\n");
 									textArea.append("Difficulty: Easy" + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (Gold.goldstack.isEmpty()) {
 										if (UpdateObjects.lifeEvilHead < 10) {
 											textArea.append("lifeEvilHead: 100 %" + "\n");
@@ -598,7 +598,7 @@ public class ConsoleContent extends OutputStream {
 								if (InitObjects.timerMedium.isRunning() == true) {
 									textArea.append("Level: 4" + "\n");
 									textArea.append("Difficulty: Medium" + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}
@@ -620,7 +620,7 @@ public class ConsoleContent extends OutputStream {
 								if (InitObjects.timerHard.isRunning() == true) {
 									textArea.append("Level: 4" + "\n");
 									textArea.append("Difficulty: Hard" + "\n");
-									textArea.append("Healthpacks left: " + HealthPack.healthpack.size() + "\n");
+									textArea.append("Healthpacks left: " + HealthPack.healthpacks.size() + "\n");
 									if (UpdateObjects.lifePlayerShip <= 4) {
 										textArea.append("Lifestats: Healthy");
 									}

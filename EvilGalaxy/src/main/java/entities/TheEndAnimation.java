@@ -22,14 +22,14 @@ public class TheEndAnimation extends SpritePattern {
 	private String imageName;
 
 	public void drawTheEndUp() {
-		imageName = Images.THEENDUPINIT.getImg();
+		imageName = Images.THEENDUP_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 	
 	public void drawTheEndDown() {
-		imageName = Images.THEENDDOWNINIT.getImg();
+		imageName = Images.THEENDDOWN_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

@@ -19,7 +19,7 @@ public class AstronautAnimation extends SpritePattern {
 	private String imageName;
 
 	public void drawAstronaut() {
-		imageName = Images.ASTRONAUTINIT.getImg();
+		imageName = Images.ASTRONAUT_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

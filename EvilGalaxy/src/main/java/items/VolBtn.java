@@ -17,14 +17,14 @@ public class VolBtn extends SpritePattern {
 	}
 
 	public void initVol() {
-		imageName = Images.VOLUMEINIT.getImg();
+		imageName = Images.VOLUME_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public String initMute() {
-		imageName = Images.VOLUMEMUTE.getImg();
+		imageName = Images.VOLUME_MUTE.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

@@ -20,7 +20,7 @@ public class Gold extends SpritePattern implements Moveable {
 	}
 
 	public void initGifts() {
-		imageName = Images.GOLDINIT.getImg();
+		imageName = Images.GOLD_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

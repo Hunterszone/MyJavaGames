@@ -316,7 +316,7 @@ public class GameMenuBar extends JFrame {
 						objectStream.writeObject(Alien.aliens);
 						objectStream.writeObject(Dragon.dragons);
 						objectStream.writeObject(Gold.goldstack);
-						objectStream.writeObject(HealthPack.healthpack);
+						objectStream.writeObject(HealthPack.healthpacks);
 						objectStream.writeObject(savedOnL1);
 						objectStream.writeObject(savedOnL2);
 						objectStream.writeObject(savedOnL3);

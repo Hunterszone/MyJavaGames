@@ -1,10 +1,14 @@
 package items;
 
+import java.util.List;
+
 import enums.Images;
 import game_engine.SpritePattern;
 import util.Constants;
 
 public class CanonBall extends SpritePattern {
+	
+	public static List<CanonBall> canonBalls;
 
 	private static final long serialVersionUID = 1L;
 	private final int CANON_SPEED = 8;
@@ -16,7 +20,7 @@ public class CanonBall extends SpritePattern {
 	}
 
 	public void initCanon() {
-		imageName = Images.CANONINIT.getImg();
+		imageName = Images.CANON_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

@@ -22,7 +22,7 @@ public class AsteroidsAnimation extends SpritePattern {
 	private String imageName;
 
 	public void drawAsteroids() {
-		imageName = Images.ASTEROIDSINIT.getImg();
+		imageName = Images.ASTEROIDS_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

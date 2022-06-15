@@ -30,8 +30,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	public static double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private List<ShipMissile> missiles;
-	private List<ShipRocket> rockets;
-
+	
 	private String imageName, soundName;
 
 	public PlayerShip(int x, int y) {
@@ -42,28 +41,28 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	}
 
 	public void drawShip() {
-		imageName = Images.MYSHIPINIT.getImg();
+		imageName = Images.MYSHIP_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void shipOnFire() {
-		imageName = Images.MYSHIPONFIRE.getImg();
+		imageName = Images.MYSHIP_ON_FIRE.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void upsideDown() {
-		imageName = Images.MYSHIPLIFEBAR.getImg();
+		imageName = Images.MYSHIP_LIFEBAR.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void godMode() {
-		imageName = Images.MYSHIPGOD.getImg();
+		imageName = Images.MYSHIP_GOD.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
@@ -134,7 +133,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 
 	private void initAmmo() {
 		missiles = new ArrayList<>();
-		rockets = new ArrayList<>();
+		ShipRocket.rockets = new ArrayList<>();
 	}
 
 	public List<ShipMissile> getMissiles() {
@@ -142,7 +141,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	}
 
 	public List<ShipRocket> getRockets() {
-		return rockets;
+		return ShipRocket.rockets;
 	}
 
 	public List<ShipMissile> loadMissiles() {
@@ -156,9 +155,9 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	public List<ShipRocket> loadRockets() {
 		soundName = SoundEffects.ROCKET.getSound();
 		assert soundName != null;
-		rockets.add(new ShipRocket(x + width, y + height / 2));
+		ShipRocket.rockets.add(new ShipRocket(x + width, y + height / 2));
 		new PlayWave1st(soundName).start();
-		return rockets;
+		return ShipRocket.rockets;
 	}
 
 	public void gunLocked(KeyEvent e) {

@@ -28,6 +28,7 @@ import icons.RocketIcon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import items.BunkerBullet;
 import items.Explosion;
 import items.Gold;
 import items.HealthPack;
@@ -95,6 +96,9 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 		initAnimations();
 		initEntities();
+
+		BunkerBullet.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+		BunkerBullet.bulletsRight = Bunker.bunkerObj.getBulletsRight();
 
 		SaveSign.saveSign = new SaveSign(Constants.BUNKER_X + 30, (int) Constants.DIMENSION.getHeight() - 700);
 		SaveSign.saveSign.setVisible(false);
@@ -198,13 +202,13 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 
 	public static List<HealthPack> initHealth() {
-		HealthPack.healthpack = new ArrayList<>();
+		HealthPack.healthpacks = new ArrayList<>();
 
 		for (int i = 0; i < 5; i++) {
-			HealthPack.healthpack
+			HealthPack.healthpacks
 					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
-		return HealthPack.healthpack;
+		return HealthPack.healthpacks;
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import util.Moveable;
 
 public class HealthPack extends SpritePattern implements Moveable {
 
-	public static List<HealthPack> healthpack;
+	public static List<HealthPack> healthpacks;
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_Y = 0;
 	private String imageName;
@@ -19,7 +19,7 @@ public class HealthPack extends SpritePattern implements Moveable {
 	}
 
 	public void initHealth() {
-		imageName = Images.HEALTHINIT.getImg();
+		imageName = Images.HEALTH_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

@@ -1,11 +1,15 @@
 package items;
 
+import java.util.List;
+
 import enums.Images;
 import game_engine.SpritePattern;
 
 public class BunkerBullet extends SpritePattern {
 
 	// Constants
+	public static List<BunkerBullet> bulletsLeft, bulletsRight;
+	
 	private static final double BULLET_SPEED_X = 8;
 	private static final double BULLET_SPEED_Y = 4;
 
@@ -18,7 +22,7 @@ public class BunkerBullet extends SpritePattern {
 	}
 
 	public void initBullet() {
-		imageName = Images.BULLETINIT.getImg();
+		imageName = Images.BULLET_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

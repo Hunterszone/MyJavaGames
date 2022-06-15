@@ -1,10 +1,14 @@
 package items;
 
+import java.util.List;
+
 import entities.PlayerShip;
 import enums.Images;
 import game_engine.SpritePattern;
 
 public class ShipRocket extends SpritePattern {
+
+	public static List<ShipRocket> rockets;
 
 	private static final long serialVersionUID = 1L;
 	private final double ROCKET_SPEED_X = 7;
@@ -17,7 +21,7 @@ public class ShipRocket extends SpritePattern {
 	}
 
 	public void initRocket() {
-		imageName = Images.ROCKETINIT.getImg();
+		imageName = Images.ROCKET_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

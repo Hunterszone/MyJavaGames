@@ -67,7 +67,7 @@ public enum Images {
 			return "images/bunker.png";
 		}
 	},
-	BUNKERHIT {
+	BUNKER_HIT {
 		@Override
 		public String getImg() {
 			return "images/bunker_hit.png";
@@ -97,133 +97,139 @@ public enum Images {
 			return "images/strikehead.png";
 		}
 	},
-	MYSHIPINIT {
+	MYSHIP_INIT {
 		@Override
 		public String getImg() {
 			return "images/spaceship.gif";
 		}
 	},
-	ASTRONAUTINIT {
+	ASTRONAUT_INIT {
 		@Override
 		public String getImg() {
 			return "images/astronaut.png";
 		}
 	},
-	SATELLITEINIT {
+	SATELLITE_INIT {
 		@Override
 		public String getImg() {
 			return "images/star.png";
 		}
 	},
-	ASTEROIDSINIT {
+	ASTEROIDS_INIT {
 		@Override
 		public String getImg() {
 			return "images/asteroids.png";
 		}
 	},
-	THEENDUPINIT {
+	THEENDUP_INIT {
 		@Override
 		public String getImg() {
 			return "images/theEnd.png";
 		}
 	},
-	THEENDDOWNINIT {
+	THEENDDOWN_INIT {
 		@Override
 		public String getImg() {
 			return "images/theEndDown.png";
 		}
 	},
-	MYSHIPONFIRE {
+	MYSHIP_ON_FIRE {
 		@Override
 		public String getImg() {
 			return "images/newship.png";
 		}
 	},
-	MYSHIPLIFEBAR {
+	BORDER_IMAGE {
+		@Override
+		public String getImg() {
+			return "images/shadow1.png";
+		}
+	},
+	MYSHIP_LIFEBAR {
 		@Override
 		public String getImg() {
 			return "images/lifebar.png";
 		}
 	},
-	MYSHIPGOD {
+	MYSHIP_GOD {
 		@Override
 		public String getImg() {
 			return "images/spaceshipGod.gif";
 		}
 	},
-	MYSHIPESCAPE {
+	MYSHIP_ESCAPE {
 		@Override
 		public String getImg() {
 			return "images/craft.png";
 		}
 	},
-	MYSHIPDAMAGED {
+	MYSHIP_DAMAGED {
 		@Override
 		public String getImg() {
 			return "images/hitcraft.gif";
 		}
 	},
-	MYSHIPPULLED {
+	MYSHIP_PULLED {
 		@Override
 		public String getImg() {
 			return "images/magnetic.png";
 		}
 	},
-	BULLETINIT {
+	BULLET_INIT {
 		@Override
 		public String getImg() {
 			return "images/bomber.png";
 		}
 	},
-	CANONINIT {
+	CANON_INIT {
 		@Override
 		public String getImg() {
 			return "images/canon2.png";
 		}
 	},
-	PLASMABALLINIT {
+	PLASMABALL_INIT {
 		@Override
 		public String getImg() {
 			return "images/fireball2.png";
 		}
 	},
-	GOLDINIT {
+	GOLD_INIT {
 		@Override
 		public String getImg() {
 			return "images/gold2.png";
 		}
 	},
-	HEALTHINIT {
+	HEALTH_INIT {
 		@Override
 		public String getImg() {
 			return "images/health2.png";
 		}
 	},
-	SAVESIGNINIT {
+	SAVESIGN_INIT {
 		@Override
 		public String getImg() {
 			return "images/saved.png";
 		}
 	},
-	MISSILEINIT {
+	MISSILE_INIT {
 		@Override
 		public String getImg() {
 			return "images/missile.png";
 		}
 	},
-	ROCKETINIT {
+	ROCKET_INIT {
 		@Override
 		public String getImg() {
 			return "images/rocket.png";
 		}
 	},
-	VOLUMEINIT {
+	VOLUME_INIT {
 		@Override
 		public String getImg() {
 			return "images/volbutt.png";
 		}
 	},
-	VOLUMEMUTE {
+	VOLUME_MUTE {
 		@Override
 		public String getImg() {
 			return "images/mute.png";

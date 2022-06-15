@@ -1,10 +1,14 @@
 package items;
 
+import java.util.List;
+
 import enums.Images;
 import game_engine.SpritePattern;
 
 public class PlasmaBall extends SpritePattern {
 
+	public static List<PlasmaBall> plasmaBalls;
+	
 	private static final long serialVersionUID = 1L;
 	private final int EVILGUN_SPEED_X = 9;
 	private final double EVILGUN_SPEED_Y = 2.5;
@@ -17,7 +21,7 @@ public class PlasmaBall extends SpritePattern {
 	}
 
 	public void initEvilGun() {
-		imageName = Images.PLASMABALLINIT.getImg();
+		imageName = Images.PLASMABALL_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

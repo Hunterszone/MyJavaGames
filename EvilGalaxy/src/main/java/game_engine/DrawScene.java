@@ -406,7 +406,7 @@ public class DrawScene extends Collisions {
 				PlayerShip.playerShip.shipShaked();
 				Crosshair.crosshair.crosShaked();
 				PlayerShip.playerShip.y = EvilHead.evilHead.y + 70;
-				PlayerShip.playerShip.loadImage(Images.MYSHIPPULLED.getImg());
+				PlayerShip.playerShip.loadImage(Images.MYSHIP_PULLED.getImg());
 				PlayerShip.playerShip.getImageDimensions();
 			}
 		}
@@ -772,17 +772,17 @@ public class DrawScene extends Collisions {
 			}
 		}
 
-		Bunker.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+		BunkerBullet.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
 
-		for (final BunkerBullet n : Bunker.bulletsLeft) {
+		for (final BunkerBullet n : BunkerBullet.bulletsLeft) {
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
 
-		Bunker.bulletsRight = Bunker.bunkerObj.getBulletsRight();
+		BunkerBullet.bulletsRight = Bunker.bunkerObj.getBulletsRight();
 
-		for (final BunkerBullet n : Bunker.bulletsRight) {
+		for (final BunkerBullet n : BunkerBullet.bulletsRight) {
 			if (n.isVisible()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
@@ -809,7 +809,7 @@ public class DrawScene extends Collisions {
 		}
 
 		if (Dragon.dragons.isEmpty() && (UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty())) {
-			for (final HealthPack health : HealthPack.healthpack) {
+			for (final HealthPack health : HealthPack.healthpacks) {
 				if (health.isVisible()) {
 					g.drawImage(health.getImage(), health.getX(), health.getY(), this);
 				}

@@ -10,6 +10,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
+import items.BunkerBullet;
 import items.CanonBall;
 import items.Gold;
 import items.HealthPack;
@@ -20,10 +21,11 @@ import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
 	public static int lifeEvilHead = 3;
 	public static int lifePlayerShip = 3;
 	public static int lifeBunker = 3;
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -42,7 +44,17 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		updateHealth();
 		updateBullets();
 
-		Collisions.checkCollisions();
+		Collisions.checkAlienCollision(PlayerShip.playerShip.getBounds());
+		Collisions.checkEvilHeadCollision(PlayerShip.playerShip.getBounds(), EvilHead.evilHead.getBounds());
+		Collisions.checkBunkerCollision(PlayerShip.playerShip.getBounds(), Bunker.bunkerObj.getBounds());
+		Collisions.checkGoldCollision(PlayerShip.playerShip.getBounds());
+		Collisions.checkHealthCollision(PlayerShip.playerShip.getBounds());
+		Collisions.checkMissileCollision(EvilHead.evilHead.getBounds());
+		Collisions.checkRocketCollision(EvilHead.evilHead.getBounds(), Bunker.bunkerObj.getBounds());
+		Collisions.checkPlasmaCollision(PlayerShip.playerShip.getBounds());
+		Collisions.checkCanonCollision(PlayerShip.playerShip.getBounds());
+		Collisions.checkBulletCollision(BunkerBullet.bulletsLeft);
+		Collisions.checkBulletCollision(BunkerBullet.bulletsRight);
 
 		repaint();
 	}
@@ -76,8 +88,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	private void updateMyCrosshair() {
 		if (Crosshair.crosshair.isVisible()) {
 			Crosshair.crosshair.move();
-		} else {
-			Crosshair.crosshair = null;
 		}
 	}
 
@@ -95,15 +105,15 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateBullets() {
-		Bunker.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
-		Bunker.bulletsRight = Bunker.bunkerObj.getBulletsRight();
+		BunkerBullet.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+		BunkerBullet.bulletsRight = Bunker.bunkerObj.getBulletsRight();
 
-		if (Bunker.bulletsLeft.removeIf(bullet -> bullet != null && !bullet.isVisible())
-				|| Bunker.bulletsRight.removeIf(bullet -> bullet != null && !bullet.isVisible())) {
+		if (BunkerBullet.bulletsLeft.removeIf(bullet -> bullet != null && !bullet.isVisible())
+				|| BunkerBullet.bulletsRight.removeIf(bullet -> bullet != null && !bullet.isVisible())) {
 			LoadSounds.HIT.stop();
 		}
 
-		Bunker.bulletsLeft.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		BunkerBullet.bulletsLeft.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagLeft();
 			if (PlayerShip.playerShip.x > 200) {
 				bullet.moveDiagRight();
@@ -114,7 +124,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 			}
 		});
 
-		Bunker.bulletsRight.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
+		BunkerBullet.bulletsRight.stream().filter(bullet -> bullet.isVisible()).forEach(bullet -> {
 			bullet.moveDiagRight();
 			if (PlayerShip.playerShip.x > 200) {
 				bullet.moveDiagLeft();
@@ -223,17 +233,17 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateHealth() {
-		if (HealthPack.healthpack.removeIf(healthPack -> healthPack != null && !healthPack.isVisible())) {
+		if (HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible())) {
 			if (lifePlayerShip > 0 && lifePlayerShip < 4) {
 				lifePlayerShip++;
 			}
 		}
 
-		if (HealthPack.healthpack.size() < 5 && lifePlayerShip < 4) {
-			HealthPack.healthpack.add(new HealthPack(EvilHead.evilHead.x, 0));
+		if (HealthPack.healthpacks.size() < 5 && lifePlayerShip < 4) {
+			HealthPack.healthpacks.add(new HealthPack(EvilHead.evilHead.x, 0));
 		}
 
-		HealthPack.healthpack.stream().filter(healthPack -> healthPack.isVisible())
+		HealthPack.healthpacks.stream().filter(healthPack -> healthPack.isVisible())
 				.forEach(healthPack -> healthPack.move());
 	}
 }

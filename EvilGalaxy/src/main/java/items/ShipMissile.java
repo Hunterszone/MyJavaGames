@@ -16,7 +16,7 @@ public class ShipMissile extends SpritePattern {
 	}
 
 	public void initMissile() {
-		imageName = Images.MISSILEINIT.getImg();
+		imageName = Images.MISSILE_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

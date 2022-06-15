@@ -19,7 +19,7 @@ public class SatelliteAnimation extends SpritePattern {
 	private String imageName;
 
 	public void drawSatellite() {
-		imageName = Images.SATELLITEINIT.getImg();
+		imageName = Images.SATELLITE_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

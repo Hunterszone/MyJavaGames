@@ -9,7 +9,6 @@ import items.BunkerBullet;
 
 public class Bunker extends SpritePattern {
 
-	public static List<BunkerBullet> bulletsLeft, bulletsRight;
 	public static Bunker bunkerObj;
 	private static final long serialVersionUID = 1L;
 	private String imageName;
@@ -22,26 +21,26 @@ public class Bunker extends SpritePattern {
 	}
 
 	private void initBullets() {
-		bulletsLeft = new ArrayList<>();
-		bulletsRight = new ArrayList<>();
+		BunkerBullet.bulletsLeft = new ArrayList<>();
+		BunkerBullet.bulletsRight = new ArrayList<>();
 	}
 
 	public List<BunkerBullet> loadBulletsLeft() {
-		bulletsLeft.add(new BunkerBullet(x + width + 40, y - 50 + height / 2));
-		return bulletsLeft;
+		BunkerBullet.bulletsLeft.add(new BunkerBullet(x + width + 40, y - 50 + height / 2));
+		return BunkerBullet.bulletsLeft;
 	}
 
 	public List<BunkerBullet> loadBulletsRight() {
-		bulletsRight.add(new BunkerBullet(x - width - 40, y - 50 + height / 2));
-		return bulletsRight;
+		BunkerBullet.bulletsRight.add(new BunkerBullet(x - width - 40, y - 50 + height / 2));
+		return BunkerBullet.bulletsRight;
 	}
 
 	public List<BunkerBullet> getBulletsLeft() {
-		return bulletsLeft;
+		return BunkerBullet.bulletsLeft;
 	}
 
 	public List<BunkerBullet> getBulletsRight() {
-		return bulletsRight;
+		return BunkerBullet.bulletsRight;
 	}
 
 	public void drawBunker() {
@@ -52,7 +51,7 @@ public class Bunker extends SpritePattern {
 	}
 
 	public void drawBunkerHit() {
-		imageName = Images.BUNKERHIT.getImg();
+		imageName = Images.BUNKER_HIT.getImg();
 		assert imageName != null; 
 		loadImage(imageName);
 		getImageDimensions();

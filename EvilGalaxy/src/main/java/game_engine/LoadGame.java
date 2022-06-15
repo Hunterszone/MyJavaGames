@@ -211,7 +211,7 @@ public class LoadGame {
 
 		Gold.goldstack.add(new Gold(150, 150));
 
-		HealthPack.healthpack.add(new HealthPack(400, 400));
+		HealthPack.healthpacks.add(new HealthPack(400, 400));
 
 	}
 
