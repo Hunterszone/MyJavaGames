@@ -51,7 +51,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 	private static Random rand = new Random();
 	private static final long serialVersionUID = 1L;
-	private final int DELAY = 15;
+	private static final int DELAY = 15;
 
 	/*
 	 * private final static int[][] posGold = { { 700, 1029 }, { 690, 1180 }, { 730,
@@ -194,7 +194,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public static List<Gold> initGold() {
 		Gold.goldstack = new ArrayList<>();
 
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < Collisions.goldCount; i++) {
 			Gold.goldstack.add(new Gold((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 

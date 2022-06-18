@@ -7,6 +7,7 @@ package game_engine;
 
 // import java libraries:
 import java.awt.Rectangle;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,7 @@ public abstract class Collisions extends UpdateObjects {
 		}
 		return new String[] { "" };
 	}
-	
+
 	public static void checkBulletCollision(List<BunkerBullet> bullets) {
 		bullets = bullets.stream().filter(bullet -> bullet != null).collect(Collectors.toList());
 
@@ -78,18 +79,12 @@ public abstract class Collisions extends UpdateObjects {
 		HealthPack.healthpacks = HealthPack.healthpacks.stream().filter(hp -> hp != null).collect(Collectors.toList());
 
 		for (final HealthPack health : HealthPack.healthpacks) {
-			final Rectangle healthUnit = health.getBounds();
-			shipIntersectsHealth(myship, health, healthUnit);
+			shipIntersectsHealth(myship, health, health.getBounds());
 		}
 	}
 
 	public static void checkGoldCollision(final Rectangle myship) {
-		Gold.goldstack = Gold.goldstack.stream().filter(gold -> gold != null).collect(Collectors.toList());
-
-		for (final Gold gold : Gold.goldstack) {
-			final Rectangle goldUnit = gold.getBounds();
-			shipIntersectsGold(myship, gold, goldUnit);
-		}
+		shipIntersectsGold(myship);
 	}
 
 	public static void checkAlienCollision(final Rectangle myship) {
@@ -100,7 +95,7 @@ public abstract class Collisions extends UpdateObjects {
 			shipIntersectsAlien(myship, alien, alienUnit);
 		}
 	}
-	
+
 	public static void checkEvilHeadCollision(final Rectangle myship, final Rectangle evilHead) {
 		shipIntersectsHead(myship, evilHead);
 	}
@@ -125,12 +120,14 @@ public abstract class Collisions extends UpdateObjects {
 		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream().filter(rocket -> rocket != null)
 				.collect(Collectors.toList());
 
-		for (final ShipRocket rocket : rockets) {
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
+			for (final ShipRocket rocket : rockets) {
 				rocketIntersectsHead(evilhead, rocket, rocket.getBounds());
 			}
+		}
 
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && lifeBunker < 50) {
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && lifeBunker < 50) {
+			for (final ShipRocket rocket : rockets) {
 				rocketIntersectsBunker(bunker, rocket, rocket.getBounds());
 			}
 		}
@@ -141,11 +138,16 @@ public abstract class Collisions extends UpdateObjects {
 				.collect(Collectors.toList());
 		Alien.aliens = Alien.aliens.stream().filter(alien -> alien != null).collect(Collectors.toList());
 
-		for (final ShipMissile missile : missiles) {
+		if (!Alien.aliens.isEmpty()) {
 			for (final Alien alien : Alien.aliens) {
-				missileIntersectsAlien(missile, missile.getBounds(), alien, alien.getBounds());
+				for (final ShipMissile missile : missiles) {
+					missileIntersectsAlien(missile, missile.getBounds(), alien, alien.getBounds());
+				}
 			}
-			if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
+		}
+
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
+			for (final ShipMissile missile : missiles) {
 				missileIntersectsHead(evilhead, missile, missile.getBounds());
 			}
 		}
@@ -210,10 +212,16 @@ public abstract class Collisions extends UpdateObjects {
 		}
 	}
 
-	private static void shipIntersectsGold(Rectangle myship, Gold gold, Rectangle goldUnit) {
-		if (myship.intersects(goldUnit) && UpdateObjects.lifeBunker >= 50) {
-			gold.setVisible(false);
-			LoadSounds.GOT_GOLD.play();
+	private static void shipIntersectsGold(Rectangle myship) {
+		Gold.goldstack = Gold.goldstack.stream().filter(gold -> gold != null).collect(Collectors.toList());
+		
+		for (Iterator<Gold> it = Gold.goldstack.iterator(); it.hasNext(); ) {
+			Gold gold = it.next();
+			if (myship.intersects(gold.getBounds()) && UpdateObjects.lifeBunker >= 50) {
+				gold.setVisible(false);
+				LoadSounds.GOT_GOLD.play();
+				it.remove();
+			}
 		}
 	}
 
@@ -222,6 +230,9 @@ public abstract class Collisions extends UpdateObjects {
 				&& (UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty())) {
 			health.setVisible(false);
 			LoadSounds.GOT_HP.play();
+			if (lifePlayerShip <= 3) {
+				lifePlayerShip++;
+			}
 		}
 	}
 
@@ -278,13 +289,13 @@ public abstract class Collisions extends UpdateObjects {
 	private static void rocketIntersectsHead(Rectangle evilhead, ShipRocket rocket, Rectangle rocketUnit) {
 		if (rocketUnit.intersects(evilhead)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			rocket.setVisible(false);
 			if (timerHard.isRunning()) {
 				EvilHead.evilHead.plasmaBalls();
 			} else {
 				EvilHead.evilHead.canons();
 			}
 			EvilHead.evilHead.strikeHead();
+			rocket.setVisible(false);
 			lifeEvilHead++;
 		}
 	}

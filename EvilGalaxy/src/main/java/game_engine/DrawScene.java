@@ -579,7 +579,7 @@ public class DrawScene extends Collisions {
 
 		g.drawString("Level: " + 4, 5, 20);
 		g.drawImage(GoldIcon.goldIcon.getImage(), 100, 5, null);
-		g.drawString(": " + (-(Gold.goldstack.size() - 12)) + "/12", 140, 20);
+		g.drawString(": " + (-(Gold.goldstack.size() - Collisions.goldCount)) + "/12", 140, 20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 225, 5, null);
 		g.drawString(": Locked", 265, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);

@@ -17,6 +17,7 @@ import items.HealthPack;
 import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
+import util.Constants;
 import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects implements ActionListener {
@@ -24,6 +25,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	public static int lifeEvilHead = 3;
 	public static int lifePlayerShip = 3;
 	public static int lifeBunker = 3;
+	public static int goldCount = 12;
 
 	private static final long serialVersionUID = 1L;
 
@@ -233,17 +235,17 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateHealth() {
-		if (HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible())) {
-			if (lifePlayerShip > 0 && lifePlayerShip < 4) {
-				lifePlayerShip++;
-			}
-		}
-
-		if (HealthPack.healthpacks.size() < 5 && lifePlayerShip < 4) {
+		if (HealthPack.healthpacks.size() < 5 && lifePlayerShip <= 3 && !Constants.hpIsEmpty) {
 			HealthPack.healthpacks.add(new HealthPack(EvilHead.evilHead.x, 0));
+		}
+		
+		if (HealthPack.healthpacks.isEmpty()) {
+			Constants.hpIsEmpty = true;
 		}
 
 		HealthPack.healthpacks.stream().filter(healthPack -> healthPack.isVisible())
 				.forEach(healthPack -> healthPack.move());
+		
+		HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible());
 	}
 }

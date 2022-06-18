@@ -29,7 +29,6 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	public static PlayerShip playerShip;
 	public static double speedX, speedY;
 	private static final long serialVersionUID = 1L;
-	private List<ShipMissile> missiles;
 	
 	private String imageName, soundName;
 
@@ -132,12 +131,12 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	}
 
 	private void initAmmo() {
-		missiles = new ArrayList<>();
+		ShipMissile.missiles = new ArrayList<>();
 		ShipRocket.rockets = new ArrayList<>();
 	}
 
 	public List<ShipMissile> getMissiles() {
-		return missiles;
+		return ShipMissile.missiles;
 	}
 
 	public List<ShipRocket> getRockets() {
@@ -147,9 +146,9 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	public List<ShipMissile> loadMissiles() {
 		soundName = SoundEffects.LASER.getSound();
 		assert soundName != null;
-		missiles.add(new ShipMissile(x + width, y-15 + height / 2));
+		ShipMissile.missiles.add(new ShipMissile(x + width, y-15 + height / 2));
 		new PlayWave1st(soundName).start();
-		return missiles;
+		return ShipMissile.missiles;
 	}
 
 	public List<ShipRocket> loadRockets() {

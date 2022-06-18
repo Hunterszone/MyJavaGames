@@ -10,6 +10,7 @@ public class Constants {
 	public static final Dimension DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
 	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible, isSPressed;
 	public static boolean isMenuOn = true;
+	public static boolean hpIsEmpty = false;
 	public static final int MYSHIP_X = 40;
 	public static final int MYSHIP_Y = 180;
 	public static final int MYCROSSHAIR_X = 250;
