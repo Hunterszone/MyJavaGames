@@ -37,7 +37,7 @@ public class DrawSceneTest {
 	public void testDrawGameStateL3() {
 		UpdateObjects.lifeBunker = 45;
 		Assert.assertNotNull("Bunker object is null", Bunker.bunkerObj);
-		Assert.assertNotNull("Healthpack is null L3", HealthPack.healthpack);
+		Assert.assertNotNull("Healthpack is null L3", HealthPack.healthpacks);
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class DrawSceneTest {
 	@Test
 	public void testDrawGameStateL5() {
 		UpdateObjects.lifeBunker = 50;
-		Assert.assertNotNull("HealthPack is null L5", HealthPack.healthpack);
+		Assert.assertNotNull("HealthPack is null L5", HealthPack.healthpacks);
 	}
 
 	@After

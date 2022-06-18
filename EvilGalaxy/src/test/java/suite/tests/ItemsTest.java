@@ -10,17 +10,17 @@ public class ItemsTest {
 
 	@Test
 	public void testBunkerBulletUnit() {
-		assertNotNull(Images.BULLETINIT.getImg());
+		assertNotNull(Images.BULLET_INIT.getImg());
 	}
 	
 	@Test
 	public void testPlasmaBallUnit() {
-		assertNotNull(Images.PLASMABALLINIT.getImg());
+		assertNotNull(Images.PLASMABALL_INIT.getImg());
 	}
 	
 	@Test
 	public void testCanonBallUnit() {
-		assertNotNull(Images.CANONINIT.getImg());
+		assertNotNull(Images.CANON_INIT.getImg());
 	}
 	
 	@Test
@@ -30,26 +30,26 @@ public class ItemsTest {
 	
 	@Test
 	public void testGoldUnit() {
-		assertNotNull(Images.GOLDINIT.getImg());
+		assertNotNull(Images.GOLD_INIT.getImg());
 	}
 	
 	@Test
 	public void testHealthUnit() {
-		assertNotNull(Images.HEALTHINIT.getImg());
+		assertNotNull(Images.HEALTH_INIT.getImg());
 	}
 	
 	@Test
 	public void testSaveSignUnit() {
-		assertNotNull(Images.SAVESIGNINIT.getImg());
+		assertNotNull(Images.SAVESIGN_INIT.getImg());
 	}
 	
 	@Test
 	public void testMissileUnit() {
-		assertNotNull(Images.MISSILEINIT.getImg());
+		assertNotNull(Images.MISSILE_INIT.getImg());
 	}
 	
 	@Test
 	public void testRocketUnit() {
-		assertNotNull(Images.ROCKETINIT.getImg());
+		assertNotNull(Images.ROCKET_INIT.getImg());
 	}
 }
