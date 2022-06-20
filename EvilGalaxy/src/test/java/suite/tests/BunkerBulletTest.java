@@ -3,6 +3,7 @@ package suite.tests;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class BunkerBulletTest {
 private BunkerBullet bunkerBullet;
 	
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		bunkerBullet = new BunkerBullet(TestUtils.BUNKER_BULLET_X, TestUtils.BUNKER_BULLET_Y);
 	}
 	
@@ -52,6 +53,11 @@ private BunkerBullet bunkerBullet;
 	public void testBunkerBulletPositionRight() {
 		bunkerBullet.moveRight();
 		assertNotEquals("BunkerBullet is not moving right!", TestUtils.BUNKER_BULLET_X, bunkerBullet.getX());
+	}
+	
+	@After
+	public void tearDown() {
+		bunkerBullet = null;
 	}
 	
 }

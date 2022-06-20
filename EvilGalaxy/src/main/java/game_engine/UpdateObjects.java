@@ -145,22 +145,22 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 
 		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
 			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
-				plasmaBall.evilShotDiagUp();
-				plasmaBall.evilShotDiagDown();
+				plasmaBall.movePlasmaBallDiagUp();
+				plasmaBall.movePlasmaBallDiagDown();
 				if (Gold.goldstack.isEmpty() && lifePlayerShip > 0) {
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
-						plasmaBall.evilShot();
+						plasmaBall.movePlasmaBallRight();
 					}
 				}
 				if (Gold.goldstack.size() > 0 && lifePlayerShip <= 3) {
 					if (plasmaBall.y > 768) {
 						plasmaBall.y = 768;
-						plasmaBall.evilShot();
+						plasmaBall.movePlasmaBallRight();
 					}
 				}
 			} else {
-				plasmaBall.evilShot();
+				plasmaBall.movePlasmaBallRight();
 			}
 		});
 	}

@@ -17,26 +17,26 @@ public class PlasmaBall extends SpritePattern {
 	public PlasmaBall(int x, int y) {
 		super(x, y);
 
-		initEvilGun();
+		initPlasmaBall();
 	}
 
-	public void initEvilGun() {
+	public void initPlasmaBall() {
 		imageName = Images.PLASMABALL_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
-	public void evilShot() {
+	public void movePlasmaBallRight() {
 		x -= EVILGUN_SPEED_X;
 	}
 
-	public void evilShotDiagUp() {
+	public void movePlasmaBallDiagUp() {
 		x -= EVILGUN_SPEED_X;
 		y -= EVILGUN_SPEED_Y;
 	}
 
-	public void evilShotDiagDown() {
+	public void movePlasmaBallDiagDown() {
 		x -= EVILGUN_SPEED_X;
 		y += EVILGUN_SPEED_Y;
 	}
