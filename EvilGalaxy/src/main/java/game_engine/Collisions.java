@@ -155,9 +155,12 @@ public abstract class Collisions extends UpdateObjects {
 
 	public static void checkDragonCollision(final Dragon dragon) {
 		dragon.setVisible(true);
+		
 		shipIntersectsDragon(PlayerShip.playerShip.getBounds(), dragon, dragon.getBounds());
+		
 		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream().filter(rocket -> rocket != null)
 				.collect(Collectors.toList());
+		
 		for (final ShipRocket rocket : rockets) {
 			rocketIntersectsDragon(rocket, rocket.getBounds(), dragon, dragon.getBounds());
 		}

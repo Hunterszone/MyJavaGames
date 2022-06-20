@@ -53,25 +53,29 @@ public class CollisionsTest {
 
 	@Test
 	public void shipIntersectsAlien() {
+		Collisions.alienKilled = 0;
+		
 		Collisions.checkAlienCollision(PlayerShip.playerShip.getBounds());
 
-		assertTrue("ship does not intersect alien", Collisions.alienKilled > 0);
+		assertTrue("ship does not intersect alien", Collisions.alienKilled == 1);
 	}
 
 	@Test
 	public void missileIntersectsAlien() {
+		Collisions.alienKilled = 0;
+				
 		Collisions.checkMissileCollision(EvilHead.evilHead.getBounds());
 
-		assertTrue("ship does not intersect alien", Collisions.alienKilled > 0);
+		assertTrue("ship does not intersect alien", Collisions.alienKilled == 1);
 	}
 
 	@Test
 	public void shipIntersectsDragon() {
-		Alien.aliens = new ArrayList<Alien>();
+		Collisions.dragonKilled = 0;
 
 		Collisions.checkDragonCollision(Dragon.dragons.get(0));
 
-		assertTrue("ship does not intersect dragon", Collisions.dragonKilled > 0);
+		assertTrue("ship does not intersect dragon", Collisions.dragonKilled == 1);
 	}
 
 	@Test
@@ -161,9 +165,11 @@ public class CollisionsTest {
 
 	@Test
 	public void rocketIntersectsDragon() {
+		Collisions.dragonKilled = 0;
+				
 		Collisions.checkDragonCollision(Dragon.dragons.get(0));
 
-		assertTrue("rocket does not intersect dragon", Collisions.dragonKilled > 0);
+		assertTrue("rocket does not intersect dragon", Collisions.dragonKilled == 1);
 	}
 	
 	@Test
