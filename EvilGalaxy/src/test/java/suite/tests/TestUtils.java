@@ -19,4 +19,8 @@ public class TestUtils {
 	public static final int SHIP_ROCKET_Y = 450;
 	public static final int BUNKER_BULLET_X = 450;
 	public static final int BUNKER_BULLET_Y = 450;
+	public static final int THE_END_ANIMATION_UP_X = 450;
+	public static final int THE_END_ANIMATION_UP_Y = 450;
+	public static final int THE_END_ANIMATION_DOWN_X = 450;
+	public static final int THE_END_ANIMATION_DOWN_Y = 450;
 }

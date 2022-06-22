@@ -29,7 +29,8 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
-import entities.TheEndAnimation;
+import entities.TheEndAnimationDown;
+import entities.TheEndAnimationUp;
 import extras.Manual;
 import game_engine.Difficulty;
 import game_engine.InitObjects;
@@ -210,16 +211,16 @@ public class GameMenuBar extends JFrame {
 					if(asteroidsAnim != null) asteroidsAnim = null;				
 				}
 				AsteroidsAnimation.asteroidsAnimations.clear();
-				for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
+				for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
 					if (elonAnimUp != null)
 						elonAnimUp = null;
 				}
-				TheEndAnimation.theEndAnimationsUp.clear();
-				for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
+				TheEndAnimationUp.theEndAnimationUpList.clear();
+				for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
 					if (elonAnimDown != null)
 						elonAnimDown = null;
 				}
-				TheEndAnimation.theEndAnimationsDown.clear();
+				TheEndAnimationDown.theEndAnimationDownList.clear();
 				InitObjects.ingame = false;
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;

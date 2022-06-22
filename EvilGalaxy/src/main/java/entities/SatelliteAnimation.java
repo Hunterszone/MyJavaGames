@@ -3,8 +3,9 @@ package entities;
 import enums.Images;
 import game_engine.SpritePattern;
 import util.Constants;
+import util.Cyclable;
 
-public class SatelliteAnimation extends SpritePattern {
+public class SatelliteAnimation extends SpritePattern implements Cyclable {
 	
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_X = 0;
@@ -25,6 +26,7 @@ public class SatelliteAnimation extends SpritePattern {
 		getImageDimensions();
 	}
 	
+	@Override
 	public void cycle() {
 
         x += 3;

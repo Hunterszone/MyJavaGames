@@ -18,7 +18,7 @@ import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
-import entities.TheEndAnimation;
+import entities.TheEndAnimationUp;
 import icons.AlienIcon;
 import icons.DifficultyIcon;
 import icons.DragonIcon;
@@ -28,6 +28,7 @@ import icons.RocketIcon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
+import entities.TheEndAnimationDown;
 import items.BunkerBullet;
 import items.Explosion;
 import items.Gold;
@@ -35,7 +36,7 @@ import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
 import util.Constants;
-import util.IpJsonExtractor;
+import util.LocationJsonExtractor;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -47,7 +48,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
-	public static final String[] CITY_AND_COUNTRY = IpJsonExtractor.extractCityAndCountry();
+	public static final String[] CITY_AND_COUNTRY = LocationJsonExtractor.extractCityAndCountry();
 
 	private static Random rand = new Random();
 	private static final long serialVersionUID = 1L;
@@ -156,16 +157,16 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 			asteroidsAnim.setVisible(true);
 		}
 		
-		while (TheEndAnimation.theEndAnimationsDown.size() < 2) {
-			TheEndAnimation elonAnim = new TheEndAnimation(400, Constants.B_HEIGHT);
-			TheEndAnimation.theEndAnimationsDown.add(elonAnim);
+		while (TheEndAnimationDown.theEndAnimationDownList.size() < 2) {
+			TheEndAnimationDown elonAnim = new TheEndAnimationDown(400, Constants.B_HEIGHT);
+			TheEndAnimationDown.theEndAnimationDownList.add(elonAnim);
 			elonAnim.drawTheEndDown();
 			elonAnim.setVisible(true);
 		}
 
-		while (TheEndAnimation.theEndAnimationsUp.size() < 3) {
-			TheEndAnimation elonAnim = new TheEndAnimation(800, Constants.B_HEIGHT);
-			TheEndAnimation.theEndAnimationsUp.add(elonAnim);
+		while (TheEndAnimationUp.theEndAnimationUpList.size() < 3) {
+			TheEndAnimationUp elonAnim = new TheEndAnimationUp(800, Constants.B_HEIGHT);
+			TheEndAnimationUp.theEndAnimationUpList.add(elonAnim);
 			elonAnim.drawTheEndUp();
 			elonAnim.setVisible(true);
 		}
@@ -243,13 +244,13 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 			for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 				asteroidsAnim.cycle();
 			}
-
-			for (final TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsUp) {
-				elonsAnim.cycleUp();
+			
+			for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.theEndAnimationUpList) {
+				endAnimationUp.cycle();
 			}
-
-			for (final TheEndAnimation elonsAnim : TheEndAnimation.theEndAnimationsDown) {
-				elonsAnim.cycleDown();
+			
+			for (final TheEndAnimationDown endAnimationDown : TheEndAnimationDown.theEndAnimationDownList) {
+				endAnimationDown.cycle();
 			}
 
 			repaint();

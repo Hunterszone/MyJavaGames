@@ -17,7 +17,8 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
-import entities.TheEndAnimation;
+import entities.TheEndAnimationDown;
+import entities.TheEndAnimationUp;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
@@ -293,16 +294,16 @@ public class Controls implements KeyListener {
 					asteroidsAnim = null;
 			}
 			AsteroidsAnimation.asteroidsAnimations.clear();
-			for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
+			for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
 				if (elonAnimUp != null)
 					elonAnimUp = null;
 			}
-			TheEndAnimation.theEndAnimationsUp.clear();
-			for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
+			TheEndAnimationUp.theEndAnimationUpList.clear();
+			for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
 				if (elonAnimDown != null)
 					elonAnimDown = null;
 			}
-			TheEndAnimation.theEndAnimationsDown.clear();
+			TheEndAnimationDown.theEndAnimationDownList.clear();
 			InitObjects.ingame = false;
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();

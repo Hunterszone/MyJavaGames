@@ -23,7 +23,8 @@ import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
 import entities.SatelliteAnimation;
-import entities.TheEndAnimation;
+import entities.TheEndAnimationDown;
+import entities.TheEndAnimationUp;
 import enums.Entity;
 import enums.Images;
 import icons.AlienIcon;
@@ -120,14 +121,14 @@ public class DrawScene extends Collisions {
 	}
 
 	private void drawElonsUp(Graphics g) {
-		for (final TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
+		for (final TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
 			g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
 
 	private void drawElonsDown(Graphics g) {
-		for (final TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
+		for (final TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
 			g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
@@ -232,17 +233,17 @@ public class DrawScene extends Collisions {
 		}
 		AsteroidsAnimation.asteroidsAnimations.clear();
 		
-		for (TheEndAnimation elonAnimUp : TheEndAnimation.theEndAnimationsUp) {
+		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
 			if (elonAnimUp != null)
 				elonAnimUp = null;
 		}
-		TheEndAnimation.theEndAnimationsUp.clear();
+		TheEndAnimationUp.theEndAnimationUpList.clear();
 		
-		for (TheEndAnimation elonAnimDown : TheEndAnimation.theEndAnimationsDown) {
+		for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
 			if (elonAnimDown != null)
 				elonAnimDown = null;
 		}
-		TheEndAnimation.theEndAnimationsDown.clear();
+		TheEndAnimationDown.theEndAnimationDownList.clear();
 	}
 
 	@SuppressWarnings("finally")
@@ -403,8 +404,8 @@ public class DrawScene extends Collisions {
 
 		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
 			if (EvilHead.evilHead.x - PlayerShip.playerShip.x > 810) {
-				PlayerShip.playerShip.shipShaked();
-				Crosshair.crosshair.crosShaked();
+				PlayerShip.playerShip.shakeShip();
+				Crosshair.crosshair.shakeCrosshair();
 				PlayerShip.playerShip.y = EvilHead.evilHead.y + 70;
 				PlayerShip.playerShip.loadImage(Images.MYSHIP_PULLED.getImg());
 				PlayerShip.playerShip.getImageDimensions();
@@ -526,8 +527,8 @@ public class DrawScene extends Collisions {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
 			g.drawString(Constants.HARD, 540, 20);
 			drawOuttaControl(g);
-			PlayerShip.playerShip.shipShaked();
-			Crosshair.crosshair.crosShaked();
+			PlayerShip.playerShip.shakeShip();
+			Crosshair.crosshair.shakeCrosshair();
 		}
 
 		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 650, 20);

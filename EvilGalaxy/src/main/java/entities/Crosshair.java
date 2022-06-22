@@ -44,7 +44,7 @@ public class Crosshair extends SpritePattern implements Moveable {
 		}
 	}
 
-	public void crosShaked() {
+	public void shakeCrosshair() {
 
 		x += speedX;
 		y += speedY;

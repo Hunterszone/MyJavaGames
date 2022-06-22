@@ -10,7 +10,8 @@ import java.net.URL;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class IpJsonExtractor {
+@SuppressWarnings("deprecation")
+public class LocationJsonExtractor {
 
 	public static String[] extractCityAndCountry() {
 		JSONParser parser = new JSONParser();
@@ -35,7 +36,7 @@ public class IpJsonExtractor {
 
 	private static String getJsonResponse() throws IOException {
 		// API URL
-		String sURL = "http://ip-api.com/json/".concat(getIpAddress());
+		String sURL = new String("http://ip-api.com/json/").concat(getIpAddress());
 
 		// GET response from API
 		URL obj = new URL(sURL);
@@ -50,7 +51,7 @@ public class IpJsonExtractor {
 		}
 		in.close();
 		String sResponse = response.toString();
-		System.out.println("JSON response from server: " + response.toString());
+		System.out.println("JSON response from server: " + sResponse);
 
 		return sResponse;
 	}

@@ -67,7 +67,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 		getImageDimensions();
 	}
 
-	public void shipShaked() {
+	public void shakeShip() {
 
 		x += speedX;
 		y += speedY;
