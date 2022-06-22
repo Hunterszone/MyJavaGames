@@ -18,7 +18,6 @@ private int x, y;
 	@Before
 	public void setUp() {
 		shipRocket = new ShipRocket(TestUtils.SHIP_ROCKET_X, TestUtils.SHIP_ROCKET_Y);
-		PlayerShip.playerShip = new PlayerShip(x, y);
 	}
 	
 	@Test
@@ -28,7 +27,10 @@ private int x, y;
 	
 	@Test
 	public void testShipRocketPosition() {
+		PlayerShip.playerShip = new PlayerShip(x, y);
+
 		shipRocket.moveRocket();
+		
 		assertNotEquals("ShipMissile is not X-moving left!", TestUtils.SHIP_ROCKET_X, shipRocket.getX());
 		assertNotEquals("ShipMissile is not Y-moving left!", TestUtils.SHIP_ROCKET_Y, shipRocket.getY());
 	}

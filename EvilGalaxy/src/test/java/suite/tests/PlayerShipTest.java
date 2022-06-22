@@ -43,7 +43,9 @@ public class PlayerShipTest {
 	public void testMyShipPositionX() throws IOException {
 		KeyEvent rightArrowKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, '\u2192');
 		playerShip.keyPressed(rightArrowKey);
+		
 		playerShip.move();
+		
 		assertNotEquals("MyShip is not X-moving!", Constants.MYSHIP_X, playerShip.getX());
 	}
 
@@ -51,7 +53,9 @@ public class PlayerShipTest {
 	public void testMyShipPositionY() throws IOException {
 		KeyEvent downArrowKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_DOWN, '\u2193');
 		playerShip.keyPressed(downArrowKey);
+
 		playerShip.move();
+		
 		assertNotEquals("MyShip is not Y-moving!", Constants.MYSHIP_Y, playerShip.getY());
 	}
 
