@@ -7,6 +7,13 @@ pipeline {
     }
 
     stages {
+        
+        stage('Sonar analyse') {
+            steps {
+                bat "mvn sonar:sonar"
+            }
+        }
+        
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
@@ -16,21 +23,23 @@ pipeline {
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn -Dmaven.test.failure.ignore=true clean install test surefire-report:report"
             }
 
             post {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                    junit '**/Gunman/target/surefire-reports/TEST-*.xml'
+                    junit allowEmptyResults: true,
+                    testResults: "${WORKSPACE}/target/surefire-reports/*.html"
                     archiveArtifacts '**/Gunman/target/*.jar'
                 }
             }
         }
+        
         stage('Deploy') {
             steps {
-                withMaven(maven: 'M3', mavenSettingsConfig: 'd814f7db-b5d8-4373-9b57-d201ed66f6b5') {
+                withMaven(maven: 'M3', mavenSettingsConfig: 'af3c897b-3a3e-4d72-a856-58f2aabc8259') {
                     // To run Maven on a Windows agent, use
                     bat "mvn -Dmaven.test.failure.ignore=true clean deploy"
                 }
