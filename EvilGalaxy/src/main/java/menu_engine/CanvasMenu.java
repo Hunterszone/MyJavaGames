@@ -19,74 +19,19 @@ public class CanvasMenu implements Runnable {
 	public static ColorSwitcher color;
 	public static ColorSwitcher color2;
 	public static StateManager State;
-	
+
 	private BufferStrategy bs;
 	private Graphics g;
 	private Thread thread;
 	private boolean isRunning;
-	public static boolean isPause;
 	private MenuState mainMenu;
 	private ControlsState controlsMenu;
 	private SettingsState settingsMenu;
 	private ExtrasState extrasMenu;
 	private ManualState manualMenu;
 	private LoadingAnimation loading;
-	
-	public CanvasMenu() {}
 
-	private void init() {
-		
-		Constants.LOAD_ASSETS.init(); // initialize game assets
-		TextToSpeech.initVoice(); // initialize supported voices
-		
-		display = new DisplayCanvas();
-		display.getCanvas().addMouseListener(new MouseInputHandler());
-
-		State = new StateManager();
-		this.mainMenu = new MenuState();
-		this.controlsMenu = new ControlsState();
-		this.settingsMenu = new SettingsState();
-		this.manualMenu = new ManualState();
-		this.extrasMenu = new ExtrasState();
-		
-		color = new ColorSwitcher();
-		color2 = new ColorSwitcher();
-		color2.nextColor(color.getColor());
-		
-	}
-
-	private void render() {
-		
-		this.bs = display.getCanvas().getBufferStrategy();
-
-		if (this.bs == null) {
-			display.getCanvas().createBufferStrategy(2);
-			return;
-		}
-		
-		this.g = this.bs.getDrawGraphics();
-		this.g.clearRect(0, 0, DisplayCanvas.WIDTH, DisplayCanvas.HEIGHT);
-
-        //Start Drawing
-	    this.g.drawImage(Constants.LOAD_ASSETS.blackBG, 0,0, 1200, 800, null);
-
-		if (State.getState() == StateManager.STATES.MENU) {
-			this.mainMenu.render(g);
-		} else if(State.getState() == StateManager.STATES.CONTROLS) {
-            this.controlsMenu.render(g);
-        } else if(State.getState() == StateManager.STATES.MANUAL) {
-            this.manualMenu.render(g);
-        } else if(State.getState() == StateManager.STATES.SETTINGS) {
-            this.settingsMenu.render(g, color, color2);
-        } else if(State.getState() == StateManager.STATES.EXTRAS) {
-            this.extrasMenu.render(g);
-        }
-
-		// Stop Drawing
-		this.g.dispose();
-		if(this.bs != null) {			
-			this.bs.show();
-		}
+	public CanvasMenu() {
 	}
 
 	@Override
@@ -108,10 +53,10 @@ public class CanvasMenu implements Runnable {
 		this.isRunning = true;
 		this.thread.start();
 
-		if(loading == null) {			
-			loading = new LoadingAnimation();		
+		if (loading == null) {
+			loading = new LoadingAnimation();
 		}
-		
+
 		loading.init();
 	}
 
@@ -126,4 +71,58 @@ public class CanvasMenu implements Runnable {
 
 	}
 
+	private void init() {
+
+		Constants.LOAD_ASSETS.init(); // initialize game assets
+		TextToSpeech.initVoice(); // initialize supported voices
+
+		display = new DisplayCanvas();
+		display.getCanvas().addMouseListener(new MouseInputHandler());
+
+		State = new StateManager();
+		this.mainMenu = new MenuState();
+		this.controlsMenu = new ControlsState();
+		this.settingsMenu = new SettingsState();
+		this.manualMenu = new ManualState();
+		this.extrasMenu = new ExtrasState();
+
+		color = new ColorSwitcher();
+		color2 = new ColorSwitcher();
+		color2.nextColor(color.getColor());
+
+	}
+
+	private void render() {
+
+		this.bs = display.getCanvas().getBufferStrategy();
+
+		if (this.bs == null) {
+			display.getCanvas().createBufferStrategy(2);
+			return;
+		}
+
+		this.g = this.bs.getDrawGraphics();
+		this.g.clearRect(0, 0, DisplayCanvas.WIDTH, DisplayCanvas.HEIGHT);
+
+		// Start Drawing
+		this.g.drawImage(Constants.LOAD_ASSETS.blackBG, 0, 0, 1200, 800, null);
+
+		if (State.getState() == StateManager.STATES.MENU) {
+			this.mainMenu.render(g);
+		} else if (State.getState() == StateManager.STATES.CONTROLS) {
+			this.controlsMenu.render(g);
+		} else if (State.getState() == StateManager.STATES.MANUAL) {
+			this.manualMenu.render(g);
+		} else if (State.getState() == StateManager.STATES.SETTINGS) {
+			this.settingsMenu.render(g, color, color2);
+		} else if (State.getState() == StateManager.STATES.EXTRAS) {
+			this.extrasMenu.render(g);
+		}
+
+		// Stop Drawing
+		this.g.dispose();
+		if (this.bs != null) {
+			this.bs.show();
+		}
+	}
 }

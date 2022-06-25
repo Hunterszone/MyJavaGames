@@ -17,11 +17,6 @@ public class DisplayCanvas {
 
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
-    
-    public JFrame getFrame() {
-
-        return frame;
-    }
 
     public static JFrame frame;
     public static Canvas canvas;
@@ -36,6 +31,10 @@ public class DisplayCanvas {
         return canvas;
     }
 
+    public JFrame getFrame() {
+        return frame;
+    }
+    
     private void init() {
         frame = new JFrame("Evil Menu");
         frame.setUndecorated(true);
