@@ -8,7 +8,7 @@ pipeline {
 
     stages {
         
-        stage('Sonar analyse') {
+        stage('Sonar analysis') {
             steps {
                 bat "mvn sonar:sonar"
             }
@@ -31,8 +31,8 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit allowEmptyResults: true,
-                    testResults: "${WORKSPACE}/target/surefire-reports/*.html"
-                    archiveArtifacts '**/Gunman/target/*.jar'
+                    testResults: "../Gunman/target/surefire-reports/*.html"
+                    // archiveArtifacts 'Gunman/target/*.jar'
                 }
             }
         }
