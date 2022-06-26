@@ -15,7 +15,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	public static void easy() {
+	public static void getEasyDiff() {
 
 		if (!InitObjects.ingame) {
 			InitObjects.ingame = true;
@@ -27,7 +27,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	public static void medium() {
+	public static void getMediumDiff() {
 
 		if (!InitObjects.ingame) {
 			InitObjects.ingame = true;
@@ -39,7 +39,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	public static void hard() {
+	public static void getHardDiff() {
 
 		if (!InitObjects.ingame) {
 			InitObjects.ingame = true;

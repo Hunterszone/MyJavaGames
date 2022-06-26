@@ -630,7 +630,7 @@ public class GameMenuBar extends JFrame {
 					LoadSounds.TAUNT.loop();
 				}
 				if (!InitObjects.ingame) {
-					Difficulty.easy();
+					Difficulty.getEasyDiff();
 					return;
 				}
 
@@ -649,7 +649,7 @@ public class GameMenuBar extends JFrame {
 					LoadSounds.TAUNT.loop();
 				}
 				if (!InitObjects.ingame) {
-					Difficulty.medium();
+					Difficulty.getMediumDiff();
 					return;
 				}
 			}
@@ -667,7 +667,7 @@ public class GameMenuBar extends JFrame {
 					LoadSounds.TAUNT.loop();
 				}
 				if (!InitObjects.ingame) {
-					Difficulty.hard();
+					Difficulty.getHardDiff();
 					return;
 				}
 			}

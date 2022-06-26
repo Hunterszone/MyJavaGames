@@ -197,7 +197,7 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.ingame) {
 							textArea.append("********Game initialized!*********" + "\n");
-							if(MouseInputHandler.main != null) Difficulty.easy();
+							if(MouseInputHandler.main != null) Difficulty.getEasyDiff();
 							return;
 						}
 
@@ -220,7 +220,7 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.ingame) {
 							textArea.append("********Game initialized!*********" + "\n");
-							if(MouseInputHandler.main != null) Difficulty.medium();
+							if(MouseInputHandler.main != null) Difficulty.getMediumDiff();
 							return;
 						}
 						return;
@@ -242,7 +242,7 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.ingame) {
 							textArea.append("********Game initialized!*********" + "\n");
-							if(MouseInputHandler.main != null) Difficulty.hard();
+							if(MouseInputHandler.main != null) Difficulty.getHardDiff();
 							return;
 						}
 						return;

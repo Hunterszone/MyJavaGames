@@ -181,7 +181,7 @@ public class Controls implements KeyListener {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
-				Difficulty.easy();
+				Difficulty.getEasyDiff();
 			}
 		}
 
@@ -197,7 +197,7 @@ public class Controls implements KeyListener {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
-				Difficulty.medium();
+				Difficulty.getMediumDiff();
 			}
 		}
 
@@ -213,7 +213,7 @@ public class Controls implements KeyListener {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
-				Difficulty.hard();
+				Difficulty.getHardDiff();
 			}
 		}
 

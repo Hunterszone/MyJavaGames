@@ -109,14 +109,24 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true)
-				Difficulty.easy();
-			else if (Constants.isMPressed == true)
-				Difficulty.medium();
-			else if (Constants.isHPressed == true)
-				Difficulty.hard();
-			else
-				Difficulty.restart();
+			if (Constants.isEPressed == true) {
+				Constants.isMPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getEasyDiff();
+			}
+			else if (Constants.isMPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getMediumDiff();
+			}
+			else if (Constants.isHPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isMPressed = false;
+				Difficulty.getHardDiff();
+			}
+			else {
+				Difficulty.restart();				
+			}
 
 			Alien.aliens = new ArrayList<>();
 			for (int i = 0; i < 40 - Collisions.alienKilled; i++) {
@@ -137,14 +147,24 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true)
-				Difficulty.easy();
-			else if (Constants.isMPressed == true)
-				Difficulty.medium();
-			else if (Constants.isHPressed == true)
-				Difficulty.hard();
-			else
-				Difficulty.restart();
+			if (Constants.isEPressed == true) {
+				Constants.isMPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getEasyDiff();
+			}
+			else if (Constants.isMPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getMediumDiff();
+			}
+			else if (Constants.isHPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isMPressed = false;
+				Difficulty.getHardDiff();
+			}
+			else {
+				Difficulty.restart();				
+			}
 
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
@@ -166,14 +186,24 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true)
-				Difficulty.easy();
-			else if (Constants.isMPressed == true)
-				Difficulty.medium();
-			else if (Constants.isHPressed == true)
-				Difficulty.hard();
-			else
-				Difficulty.restart();
+			if (Constants.isEPressed == true) {
+				Constants.isMPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getEasyDiff();
+			}
+			else if (Constants.isMPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getMediumDiff();
+			}
+			else if (Constants.isHPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isMPressed = false;
+				Difficulty.getHardDiff();
+			}
+			else {
+				Difficulty.restart();				
+			}
 
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
@@ -188,14 +218,24 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true)
-				Difficulty.easy();
-			else if (Constants.isMPressed == true)
-				Difficulty.medium();
-			else if (Constants.isHPressed == true)
-				Difficulty.hard();
-			else
-				Difficulty.restart();
+			if (Constants.isEPressed == true) {
+				Constants.isMPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getEasyDiff();
+			}
+			else if (Constants.isMPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isHPressed = false;
+				Difficulty.getMediumDiff();
+			}
+			else if (Constants.isHPressed == true) {
+				Constants.isEPressed = false;
+				Constants.isMPressed = false;
+				Difficulty.getHardDiff();
+			}
+			else {
+				Difficulty.restart();				
+			}
 
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
