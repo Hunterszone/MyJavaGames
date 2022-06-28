@@ -33,6 +33,8 @@ import icons.DragonIcon;
 import icons.GoldIcon;
 import icons.LaserIcon;
 import icons.RocketIcon;
+import items.Angel;
+import items.Balloon;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Explosion;
@@ -174,7 +176,7 @@ public class DrawScene extends Collisions {
 			g.drawImage(bg3, 0, 0, null);
 		}
 	}
-	
+
 	private void stopSounds() {
 		LoadSounds.BG_MUSIC.stop();
 		LoadSounds.HIT.stop();
@@ -223,22 +225,22 @@ public class DrawScene extends Collisions {
 	private void handleAnimations() {
 		if (AstronautAnimation.astronautAnim != null)
 			AstronautAnimation.astronautAnim = null;
-		
+
 		if (SatelliteAnimation.starAnim != null)
 			SatelliteAnimation.starAnim = null;
-		
+
 		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
 			if (asteroidsAnim != null)
 				asteroidsAnim = null;
 		}
 		AsteroidsAnimation.asteroidsAnimations.clear();
-		
+
 		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
 			if (elonAnimUp != null)
 				elonAnimUp = null;
 		}
 		TheEndAnimationUp.theEndAnimationUpList.clear();
-		
+
 		for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
 			if (elonAnimDown != null)
 				elonAnimDown = null;
@@ -419,7 +421,7 @@ public class DrawScene extends Collisions {
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawAsteroids(g);
-		drawGamePausedAndPressAnyKey(g);
+		drawGamePausedPressArrowKey(g);
 	}
 
 	private void drawGameStateL2(Graphics g) {
@@ -428,7 +430,7 @@ public class DrawScene extends Collisions {
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawSatellite(g);
-		drawGamePausedAndPressAnyKey(g);
+		drawGamePausedPressArrowKey(g);
 	}
 
 	private void drawGameStateL3(Graphics g) {
@@ -438,7 +440,7 @@ public class DrawScene extends Collisions {
 		drawLifeBunker(g);
 		drawLifePlayerShip(g);
 		drawAstronaut(g);
-		drawGamePausedAndPressAnyKey(g);
+		drawGamePausedPressArrowKey(g);
 
 		LoadSounds.TAUNT.stop();
 	}
@@ -448,10 +450,10 @@ public class DrawScene extends Collisions {
 		drawL4Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
-		drawGamePausedAndPressAnyKey(g);
+		drawGamePausedPressArrowKey(g);
 	}
 
-	private void drawGamePausedAndPressAnyKey(Graphics g) {
+	private void drawGamePausedPressArrowKey(Graphics g) {
 		if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
 				|| InitObjects.timerHard.isRunning())) {
 			drawGamePaused(g);
@@ -643,7 +645,7 @@ public class DrawScene extends Collisions {
 				|| InitObjects.timerHard.isRunning()) {
 			drawKillTheHead(g);
 		}
-		
+
 		g.drawString("IP FROM: " + InitObjects.CITY_AND_COUNTRY[0] + "/" + InitObjects.CITY_AND_COUNTRY[1], 570, 20);
 	}
 
@@ -792,13 +794,35 @@ public class DrawScene extends Collisions {
 		for (final Alien alien : Alien.aliens) {
 			if (alien.isVisible()) {
 				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
+			} else {
+				balloons.add(new Balloon(alien.getX(), alien.getY()));
 			}
+		}
+
+		for (Balloon balloon : balloons) {
+			if (balloon.getY() <= 0) {
+				balloon.setVisible(false);
+			}
+
+			g.drawImage(balloon.getImage(), balloon.getX(), balloon.getY(), this);
+
+			balloon.move();
 		}
 
 		for (final Dragon dragon : Dragon.dragons) {
 			if (dragon.isVisible()) {
 				g.drawImage(dragon.getImage(), dragon.getX(), dragon.getY(), this);
 			}
+		}
+
+		for (Angel angel : angels) {
+			if (angel.getY() <= 0) {
+				angel.setVisible(false);
+			}
+
+			g.drawImage(angel.getImage(), angel.getX(), angel.getY(), this);
+
+			angel.move();
 		}
 
 		if (UpdateObjects.lifeBunker >= 50) {
@@ -890,7 +914,7 @@ public class DrawScene extends Collisions {
 
 		formatMsg(g, msg);
 	}
-		
+
 	private void drawCollectGold(Graphics g) {
 		final String msg = "Collect all the gold!";
 		formatMsg(g, msg);
@@ -924,7 +948,7 @@ public class DrawScene extends Collisions {
 		setFontStyle(g);
 		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 	}
-	
+
 	private void setFontStyle(Graphics g) {
 		final Font small = new Font("Papyrus", Font.BOLD, 22);
 		g.setColor(Color.ORANGE);

@@ -10,6 +10,7 @@ import entities.Crosshair;
 import entities.Dragon;
 import entities.EvilHead;
 import entities.PlayerShip;
+import items.Angel;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Gold;
@@ -43,6 +44,8 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		updateAliens();
 		updateEvilHead();
 		updateGold();
+		updateBalloons();
+		updateAngels();
 		updateHealth();
 		updateBullets();
 
@@ -63,14 +66,17 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 
 	void updateDragons() {
 		Dragon.dragons.stream().forEach(dragon -> {
-			assert dragon != null;
-			Collisions.checkDragonCollision(dragon);
-			if (dragon.isVisible()) {
-				dragon.move();
-			} else {
-				Dragon.dragons.remove(dragon);
+			if (dragon != null) {
+				Collisions.checkDragonCollision(dragon);
+				if (dragon.isVisible()) {
+					dragon.move();
+				} else {
+					InitObjects.angels.add(new Angel(dragon.getX(), dragon.getY()));
+				}
 			}
 		});
+		
+		Dragon.dragons.removeIf(dragon -> dragon != null && !dragon.isVisible());
 	}
 
 	private void inGame() {
@@ -234,18 +240,26 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 
+	private void updateBalloons() {
+		balloons.removeIf(balloon -> balloon != null && !balloon.isVisible());
+	}
+
+	private void updateAngels() {
+		angels.removeIf(angel -> angel != null && !angel.isVisible());
+	}
+
 	private void updateHealth() {
 		if (HealthPack.healthpacks.size() < 5 && lifePlayerShip <= 3 && !Constants.hpIsEmpty) {
 			HealthPack.healthpacks.add(new HealthPack(EvilHead.evilHead.x, 0));
 		}
-		
+
 		if (HealthPack.healthpacks.isEmpty()) {
 			Constants.hpIsEmpty = true;
 		}
 
 		HealthPack.healthpacks.stream().filter(healthPack -> healthPack.isVisible())
 				.forEach(healthPack -> healthPack.move());
-		
+
 		HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible());
 	}
 }

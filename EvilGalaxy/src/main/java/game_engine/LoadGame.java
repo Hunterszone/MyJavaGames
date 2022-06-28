@@ -76,7 +76,7 @@ public class LoadGame {
 			loadedAssets.add(savedOnL4);
 			System.out.println(loadedAssets.toString());
 		} catch (final Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		} finally {
 			fileStream.close();
 			objectStream.close();
@@ -91,9 +91,9 @@ public class LoadGame {
 					MouseInputHandler.main = new Main();
 					initSavedAssets();
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				} catch (final MaryConfigurationException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 				MouseInputHandler.main.setVisible(true);
 			});
@@ -113,19 +113,16 @@ public class LoadGame {
 				Constants.isMPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getEasyDiff();
-			}
-			else if (Constants.isMPressed == true) {
+			} else if (Constants.isMPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getMediumDiff();
-			}
-			else if (Constants.isHPressed == true) {
+			} else if (Constants.isHPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isMPressed = false;
 				Difficulty.getHardDiff();
-			}
-			else {
-				Difficulty.restart();				
+			} else {
+				Difficulty.restart();
 			}
 
 			Alien.aliens = new ArrayList<>();
@@ -151,19 +148,16 @@ public class LoadGame {
 				Constants.isMPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getEasyDiff();
-			}
-			else if (Constants.isMPressed == true) {
+			} else if (Constants.isMPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getMediumDiff();
-			}
-			else if (Constants.isHPressed == true) {
+			} else if (Constants.isHPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isMPressed = false;
 				Difficulty.getHardDiff();
-			}
-			else {
-				Difficulty.restart();				
+			} else {
+				Difficulty.restart();
 			}
 
 			Alien.aliens.clear();
@@ -190,19 +184,16 @@ public class LoadGame {
 				Constants.isMPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getEasyDiff();
-			}
-			else if (Constants.isMPressed == true) {
+			} else if (Constants.isMPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getMediumDiff();
-			}
-			else if (Constants.isHPressed == true) {
+			} else if (Constants.isHPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isMPressed = false;
 				Difficulty.getHardDiff();
-			}
-			else {
-				Difficulty.restart();				
+			} else {
+				Difficulty.restart();
 			}
 
 			Alien.aliens.clear();
@@ -222,19 +213,16 @@ public class LoadGame {
 				Constants.isMPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getEasyDiff();
-			}
-			else if (Constants.isMPressed == true) {
+			} else if (Constants.isMPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isHPressed = false;
 				Difficulty.getMediumDiff();
-			}
-			else if (Constants.isHPressed == true) {
+			} else if (Constants.isHPressed == true) {
 				Constants.isEPressed = false;
 				Constants.isMPressed = false;
 				Difficulty.getHardDiff();
-			}
-			else {
-				Difficulty.restart();				
+			} else {
+				Difficulty.restart();
 			}
 
 			Alien.aliens.clear();

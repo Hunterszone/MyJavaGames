@@ -234,6 +234,19 @@ public enum Images {
 		public String getImg() {
 			return "images/mute.png";
 		}
+	},
+	TEN_POINTS {
+		@Override
+		public String getImg() {
+			return "images/balloon.png";
+		}
+	},
+	ANGEL {
+		@Override
+		public String getImg() {
+			return "images/angel.gif";
+		}
 	};
+
 	public abstract String getImg();
 }

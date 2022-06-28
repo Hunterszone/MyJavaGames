@@ -34,6 +34,8 @@ import items.Explosion;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
+import items.Angel;
+import items.Balloon;
 import items.VolBtn;
 import util.Constants;
 import util.LocationJsonExtractor;
@@ -45,6 +47,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	private final Thread animator = new Thread(this);
 
 	public static List<Explosion> explosions;
+	public static List<Balloon> balloons;
+	public static List<Angel> angels;
 
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
@@ -86,7 +90,9 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
 
 		explosions = new ArrayList<Explosion>();
-
+		balloons = new ArrayList<Balloon>();
+		angels = new ArrayList<Angel>();
+		
 		// Icons
 		AlienIcon.alienIcon = new AlienIcon(0, 0);
 		LaserIcon.laserIcon = new LaserIcon(0, 0);
