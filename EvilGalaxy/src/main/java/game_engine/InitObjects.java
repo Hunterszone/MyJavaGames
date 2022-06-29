@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,6 +17,10 @@ import entities.AstronautAnimation;
 import entities.Bunker;
 import entities.Crosshair;
 import entities.Dragon;
+import entities.EvilHead;
+import entities.PlayerShip;
+import entities.SatelliteAnimation;
+import entities.TheEndAnimationDown;
 import entities.TheEndAnimationUp;
 import icons.AlienIcon;
 import icons.DifficultyIcon;
@@ -25,21 +28,17 @@ import icons.DragonIcon;
 import icons.GoldIcon;
 import icons.LaserIcon;
 import icons.RocketIcon;
-import entities.EvilHead;
-import entities.PlayerShip;
-import entities.SatelliteAnimation;
-import entities.TheEndAnimationDown;
+import items.Angel;
+import items.Balloon;
 import items.BunkerBullet;
 import items.Explosion;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
-import items.Angel;
-import items.Balloon;
 import items.VolBtn;
 import util.Constants;
-import util.LocationJsonExtractor;
 import util.LoadSounds;
+import util.LocationJsonExtractor;
 import util.TextToSpeech;
 
 public abstract class InitObjects extends JPanel implements ActionListener, Runnable {
@@ -271,8 +270,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 			try {
 				Thread.sleep(sleep);
 			} catch (final InterruptedException e) {
-				final String msg = String.format("Thread interrupted: %s", e.getMessage());
-				JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+//				final String msg = String.format("Thread interrupted: %s", e.getMessage());
+//				JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
 				Thread.currentThread().interrupt();
 			}
 
@@ -284,7 +283,9 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public void addNotify() {
 		super.addNotify();
 
-		animator.start();
+		try {			
+			animator.start();
+		} catch (IllegalThreadStateException ite) {}
 	}
 
 	@Override
