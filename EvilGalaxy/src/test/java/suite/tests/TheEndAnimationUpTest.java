@@ -16,7 +16,7 @@ public class TheEndAnimationUpTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		theEndAnimationUp = new TheEndAnimationUp(TestUtils.THE_END_ANIMATION_UP_X, TestUtils.THE_END_ANIMATION_UP_Y);
+		theEndAnimationUp = new TheEndAnimationUp(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
 	}
 
 	@Test
@@ -38,6 +38,6 @@ public class TheEndAnimationUpTest {
 	@Test
 	public void testEndAnimationUpPosition() {
 		theEndAnimationUp.cycle();
-		assertNotEquals("TheEndAnimationUp is not Y-cycling", TestUtils.THE_END_ANIMATION_UP_Y, theEndAnimationUp.getY());
+		assertNotEquals("TheEndAnimationUp is not Y-cycling", TestUtils.DUMMY_POS_Y, theEndAnimationUp.getY());
 	}	
 }

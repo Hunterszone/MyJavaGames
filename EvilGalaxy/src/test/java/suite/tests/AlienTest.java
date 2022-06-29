@@ -16,7 +16,7 @@ public class AlienTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		alien = new Alien(TestUtils.ALIEN_X, TestUtils.ALIEN_Y);
+		alien = new Alien(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
 	}
 
 	@Test
@@ -33,16 +33,16 @@ public class AlienTest {
 	@Test
 	public void testAlienPositionOnEasyAndMedium() {
 		alien.move();
-		assertNotEquals("Alien is not X-moving on EASY and MEDIUM difficulty!", TestUtils.ALIEN_X, alien.getX());
-		assertNotEquals("Alien is not Y-moving on EASY and MEDIUM difficulty!", TestUtils.ALIEN_Y, alien.getY());
+		assertNotEquals("Alien is not X-moving on EASY and MEDIUM difficulty!", TestUtils.DUMMY_POS_X, alien.getX());
+		assertNotEquals("Alien is not Y-moving on EASY and MEDIUM difficulty!", TestUtils.DUMMY_POS_Y, alien.getY());
 	}
 	
 	@Test
 	public void testAlienPositionOnHard() {
 		alien.moveFaster();
-		assertNotEquals("Alien is not X-moving on HARD difficulty!", TestUtils.ALIEN_X, alien.getX());
+		assertNotEquals("Alien is not X-moving on HARD difficulty!", TestUtils.DUMMY_POS_X, alien.getX());
 		alien.move();
-		assertNotEquals("Alien is not Y-moving on HARD difficulty!", TestUtils.ALIEN_Y, alien.getY());
+		assertNotEquals("Alien is not Y-moving on HARD difficulty!", TestUtils.DUMMY_POS_Y, alien.getY());
 	}
 	
 }

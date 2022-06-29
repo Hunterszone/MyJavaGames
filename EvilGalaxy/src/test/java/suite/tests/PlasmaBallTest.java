@@ -27,21 +27,21 @@ private int x, y;
 	@Test
 	public void testPlasmaBallPositionRight() {
 		plasmaBall.movePlasmaBallRight();
-		assertNotEquals("PlasmaBall is not X-moving left!", TestUtils.PLASMA_BALL_X, plasmaBall.getX());
+		assertNotEquals("PlasmaBall is not X-moving left!", TestUtils.DUMMY_POS_X, plasmaBall.getX());
 	}
 	
 	@Test
 	public void testPlasmaBallPositionDiagUp() {
 		plasmaBall.movePlasmaBallDiagUp();
-		assertNotEquals("PlasmaBall is not X-moving left!", TestUtils.PLASMA_BALL_X, plasmaBall.getX());
-		assertNotEquals("PlasmaBall is not Y-moving left!", TestUtils.PLASMA_BALL_Y, plasmaBall.getY());
+		assertNotEquals("PlasmaBall is not X-moving left!", TestUtils.DUMMY_POS_X, plasmaBall.getX());
+		assertNotEquals("PlasmaBall is not Y-moving left!", TestUtils.DUMMY_POS_Y, plasmaBall.getY());
 	}
 	
 	@Test
 	public void testPlasmaBallPositionDiagDown() {
 		plasmaBall.movePlasmaBallDiagDown();
-		assertNotEquals("PlasmaBall is not X-moving left!", TestUtils.PLASMA_BALL_X, plasmaBall.getX());
-		assertNotEquals("PlasmaBall is not Y-moving left!", TestUtils.PLASMA_BALL_Y, plasmaBall.getY());
+		assertNotEquals("PlasmaBall is not X-moving left!", TestUtils.DUMMY_POS_X, plasmaBall.getX());
+		assertNotEquals("PlasmaBall is not Y-moving left!", TestUtils.DUMMY_POS_Y, plasmaBall.getY());
 	}
 	
 	@After

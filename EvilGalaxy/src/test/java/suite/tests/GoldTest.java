@@ -15,7 +15,7 @@ private Gold goldBar;
 	
 	@Before
 	public void setUp() {
-		goldBar = new Gold(TestUtils.GOLD_BAR_X, TestUtils.GOLD_BAR_Y);
+		goldBar = new Gold(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ private Gold goldBar;
 	@Test
 	public void testGoldBarPosition() {
 		goldBar.move();
-		assertNotEquals("GoldBar is not Y-moving left!", TestUtils.GOLD_BAR_Y, goldBar.getY());
+		assertNotEquals("GoldBar is not Y-moving!", TestUtils.DUMMY_POS_Y, goldBar.getY());
 	}
 	
 	@After

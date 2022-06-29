@@ -15,7 +15,7 @@ private CanonBall canonBall;
 	
 	@Before
 	public void setUp() {
-		canonBall = new CanonBall(TestUtils.CANON_BALL_X, TestUtils.CANON_BALL_Y);
+		canonBall = new CanonBall(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
 	}
 	
 	@Test
@@ -26,13 +26,13 @@ private CanonBall canonBall;
 	@Test
 	public void testCanonBallPositionLeft() {
 		canonBall.moveCanonLeft();
-		assertNotEquals("CanonBall is not X-moving left!", TestUtils.CANON_BALL_X, canonBall.getX());
+		assertNotEquals("CanonBall is not X-moving left!", TestUtils.DUMMY_POS_X, canonBall.getX());
 	}
 	
 	@Test
 	public void testCanonBallPositionRight() {
 		canonBall.moveCanonRight();
-		assertNotEquals("CanonBall is not X-moving left!", TestUtils.CANON_BALL_X, canonBall.getX());
+		assertNotEquals("CanonBall is not X-moving left!", TestUtils.DUMMY_POS_X, canonBall.getX());
 	}
 	
 	@After

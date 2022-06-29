@@ -17,7 +17,7 @@ public class DragonTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dragon = new Dragon(TestUtils.DRAGON_X, TestUtils.DRAGON_Y);
+		dragon = new Dragon(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
 	}
 
 	@Test
@@ -34,7 +34,7 @@ public class DragonTest {
 	@Test
 	public void testDragonPosition() {
 		dragon.move();
-		assertNotEquals("Dragon is not X-moving!", TestUtils.DRAGON_X, dragon.getX());
+		assertNotEquals("Dragon is not X-moving!", TestUtils.DUMMY_POS_X, dragon.getX());
 	}
 	
 	@After
