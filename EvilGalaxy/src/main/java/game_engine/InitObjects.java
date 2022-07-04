@@ -43,17 +43,15 @@ import util.TextToSpeech;
 
 public abstract class InitObjects extends JPanel implements ActionListener, Runnable {
 
-	private final Thread animator = new Thread(this);
-
 	public static List<Explosion> explosions;
 	public static List<Balloon> balloons;
 	public static List<Angel> angels;
-
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
 	public static final String[] CITY_AND_COUNTRY = LocationJsonExtractor.extractCityAndCountry();
 
-	private static Random rand = new Random();
+	Thread animator;
+	
 	private static final long serialVersionUID = 1L;
 	private static final int DELAY = 15;
 
@@ -83,11 +81,13 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 		addKeyListener(new Controls());
 		setFocusable(true);
+		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
+
+		// Constants
 		ingame = true;
 		Constants.isEPressed = true;
 		
-		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
-
+		// Collections
 		explosions = new ArrayList<Explosion>();
 		balloons = new ArrayList<Balloon>();
 		angels = new ArrayList<Angel>();
@@ -117,6 +117,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 //		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
+		animator = new Thread(this);
 		timerEasy = new Timer(DELAY, this);
 		timerMedium = new Timer(DELAY, this);
 		timerHard = new Timer(DELAY, this);
@@ -144,6 +145,9 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 
 	public static void initAnimations() {
+		
+		Random rand = new Random();
+
 		// Animations
 		if (AstronautAnimation.astronautAnim == null) {
 			AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
@@ -235,7 +239,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		long beforeTime, timeDiff, sleep;
 
 		beforeTime = System.currentTimeMillis();
-
+		
 		while (ingame) {
 
 			if (SatelliteAnimation.starAnim != null) {
@@ -246,16 +250,22 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 				AstronautAnimation.astronautAnim.cycle();
 			}
 
-			for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-				asteroidsAnim.cycle();
+			if (AsteroidsAnimation.asteroidsAnimations != null && !AsteroidsAnimation.asteroidsAnimations.isEmpty()) {				
+				for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+					asteroidsAnim.cycle();
+				}
 			}
-			
-			for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.theEndAnimationUpList) {
-				endAnimationUp.cycle();
+
+			if (TheEndAnimationUp.theEndAnimationUpList != null && !TheEndAnimationUp.theEndAnimationUpList.isEmpty()) {
+				for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.theEndAnimationUpList) {
+					endAnimationUp.cycle();
+				}	
 			}
-			
-			for (final TheEndAnimationDown endAnimationDown : TheEndAnimationDown.theEndAnimationDownList) {
-				endAnimationDown.cycle();
+
+			if (TheEndAnimationDown.theEndAnimationDownList != null && !TheEndAnimationDown.theEndAnimationDownList.isEmpty()) {
+				for (final TheEndAnimationDown endAnimationDown : TheEndAnimationDown.theEndAnimationDownList) {
+					endAnimationDown.cycle();
+				}
 			}
 
 			repaint();

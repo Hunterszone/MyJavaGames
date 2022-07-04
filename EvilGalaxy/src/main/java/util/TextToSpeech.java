@@ -14,16 +14,16 @@ public class TextToSpeech {
 
 	public static boolean finMusicIsPlayed;
 	public static boolean voiceInterruptor = false;
+	
 	private static MaryInterface marytts = null;
-	static Set<String> voices = null;
+	private static Set<String> voices = null;
 
 	public static void initVoice() {
 
 		try {
 			marytts = new LocalMaryInterface();
-		} catch (final MaryConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (final MaryConfigurationException mce) {
+			System.out.println(mce.getMessage());
 		}
 
 		if (marytts != null) {
@@ -50,9 +50,8 @@ public class TextToSpeech {
 			final AudioInputStream audio = marytts.generateAudio(message);
 			final AudioPlayer player = new AudioPlayer(audio);
 			player.start();
-		} catch (final SynthesisException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (final SynthesisException se) {
+			System.out.println(se.getMessage());
 		}
 	}
 

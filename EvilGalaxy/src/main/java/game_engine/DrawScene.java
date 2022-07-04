@@ -141,6 +141,10 @@ public class DrawScene extends Collisions {
 		super.paintComponent(g);
 
 		if (ingame) {
+			if (animator == null) {
+				animator = new Thread(this);
+				animator.start();
+			}
 			drawGameStates(g);
 			evilHeadBehaviour();
 			handleLifeEvilHead(g);
@@ -150,6 +154,7 @@ public class DrawScene extends Collisions {
 			drawGameOverBgs(g);
 			handleGameWon(g);
 			handleGameOver(g);
+			animator = null;
 		}
 
 		Toolkit.getDefaultToolkit().sync();
@@ -941,9 +946,8 @@ public class DrawScene extends Collisions {
 	}
 
 	private void formatMsg(Graphics g, final String msg) {
-		Color bgColor = Color.BLACK;
 		int width = msg != null ? g.getFontMetrics().stringWidth(msg) : 0;
-		g.setColor(bgColor);
+		g.setColor(Color.BLACK);
 		g.fillRect(Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 180, width, 50);
 		setFontStyle(g);
 		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);

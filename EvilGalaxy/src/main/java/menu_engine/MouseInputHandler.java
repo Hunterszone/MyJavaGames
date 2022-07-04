@@ -66,8 +66,8 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 						SwingUtilities.invokeLater(() -> {
 							try {
 								main = new Main();
-							} catch (IOException e1) {
-								e1.printStackTrace();
+							} catch (IOException ioe) {
+								System.out.println(ioe.getMessage());
 							}
 							main.setVisible(true);
 						});
@@ -169,9 +169,8 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					DisplayCanvas.frame.dispose();
 					try {
 						Launcher.main(null);
-					} catch (FileNotFoundException | UnsupportedEncodingException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					} catch (final FileNotFoundException | UnsupportedEncodingException e1) {
+						System.out.println(e1.getMessage());
 					}
 					Constants.isMenuOn = true;
 				}
@@ -180,20 +179,16 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					try {
 						Desktop.getDesktop()
 								.browse(new URI("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy"));
-					} catch (final IOException e1) {
-						e1.printStackTrace();
-					} catch (final URISyntaxException e1) {
-						e1.printStackTrace();
+					} catch (final IOException | URISyntaxException e1) {
+						System.out.println(e1.getMessage());
 					}
 				}
 				if (mouseY >= 350 && mouseY <= 400) {
 					playWave1st.start();
 					try {
 						Desktop.getDesktop().browse(new URI("http://me4gaming.com/index.php/en/gamedev/6-articles"));
-					} catch (final IOException e1) {
-						e1.printStackTrace();
-					} catch (final URISyntaxException e1) {
-						e1.printStackTrace();
+					} catch (final IOException | URISyntaxException e1) {
+						System.out.println(e1.getMessage());
 					}
 				}
 				if (mouseY >= 450 && mouseY <= 500) {
