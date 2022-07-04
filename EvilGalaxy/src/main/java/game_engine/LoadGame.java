@@ -253,12 +253,10 @@ public class LoadGame {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				loadGameDataFromFile(chooser.getSelectedFile());
-			} catch (final ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (final IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (final ClassNotFoundException cnf) {
+				System.out.println(cnf.getMessage());
+			} catch (final IOException ioe) {
+				System.out.println(ioe.getMessage());
 			}
 			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
 		}

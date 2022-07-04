@@ -31,8 +31,6 @@ import util.TextToSpeech;
 
 public class Controls implements KeyListener {
 
-	private Random rand = new Random();
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 		PlayerShip.playerShip.keyReleased(e);
@@ -255,6 +253,7 @@ public class Controls implements KeyListener {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
 				Path path = Paths.get("saves");
+				Random rand = new Random();
 				try {
 					Files.createDirectories(path);
 					final File file = new File("saves/save" + rand.nextInt() + ".txt");
