@@ -236,7 +236,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 		beforeTime = System.currentTimeMillis();
 
-		while (true) {
+		while (ingame) {
 
 			if (SatelliteAnimation.starAnim != null) {
 				SatelliteAnimation.starAnim.cycle();
