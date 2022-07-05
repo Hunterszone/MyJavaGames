@@ -141,10 +141,7 @@ public class DrawScene extends Collisions {
 		super.paintComponent(g);
 
 		if (ingame) {
-			if (animator == null) {
-				animator = new Thread(this);
-				animator.start();
-			}
+			startAnimations();
 			drawGameStates(g);
 			evilHeadBehaviour();
 			handleLifeEvilHead(g);
@@ -154,10 +151,16 @@ public class DrawScene extends Collisions {
 			drawGameOverBgs(g);
 			handleGameWon(g);
 			handleGameOver(g);
-			animator = null;
 		}
 
 		Toolkit.getDefaultToolkit().sync();
+	}
+
+	private void startAnimations() {
+		if (animator == null) {
+			animator = new Thread(this);
+			animator.start();
+		}
 	}
 
 	private void drawGameOverBgs(Graphics g) {
@@ -224,6 +227,7 @@ public class DrawScene extends Collisions {
 			handleKilledByBunker();
 			handleKilledByEvilHead();
 			handleAnimations();
+			animator = null;
 		}
 	}
 
