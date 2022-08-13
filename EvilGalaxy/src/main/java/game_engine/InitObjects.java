@@ -48,10 +48,9 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public static List<Angel> angels;
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
-	public static final String[] CITY_AND_COUNTRY = LocationJsonExtractor.extractCityAndCountry();
+	public static Thread animator;
 
-	Thread animator;
-	
+	public static final String[] CITY_AND_COUNTRY = LocationJsonExtractor.extractCityAndCountry();
 	private static final long serialVersionUID = 1L;
 	private static final int DELAY = 15;
 

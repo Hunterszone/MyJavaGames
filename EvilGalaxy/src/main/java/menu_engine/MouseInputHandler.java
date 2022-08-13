@@ -50,6 +50,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 		final int mouseY = e.getY();
 
 		if (Constants.isMenuOn) {
+			InitObjects.animator = null;
 			playWave1st = new PlayWave1st(clickSound);
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
