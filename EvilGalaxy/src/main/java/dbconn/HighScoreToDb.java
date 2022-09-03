@@ -11,19 +11,16 @@ import game_engine.InitObjects;
 
 public class HighScoreToDb {
 
-	private static String[] enemyAndCount;
-	private static List<String> enemyNames = InitObjects.getEnemyNames();
-
 	// JDBC driver name and database URL
 	private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // for H2 is "org.h2.Driver"
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/evilgalaxy"; // for H2 is "jdbc:h2:file:" +
-
 	// Database credentials
 	private static final String USER = "root";
 	private static final String PASS = "root";
 	
-	private static Connection conn;
-	
+	private static String[] enemyAndCount;
+	private static List<String> enemyNames = InitObjects.getEnemyNames();
+	private static Connection conn;	
 	private static PreparedStatement preparedStatement;
 
 	// Execute insert query
@@ -52,7 +49,7 @@ public class HighScoreToDb {
 				System.out.println("Records inserted into table!");
 				counter++;				
 			}
-			if (counter == 1 || counter == 2) {
+			if (counter <= 2) {
 				System.out.println("Goodbye!");
 				return true;
 			}

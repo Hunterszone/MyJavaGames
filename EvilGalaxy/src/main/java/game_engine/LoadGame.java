@@ -105,7 +105,8 @@ public class LoadGame {
 
 		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && TextToSpeech.voiceInterruptor == false) {
+		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && 
+				TextToSpeech.voiceInterruptor == false) {
 
 			TextToSpeech.playVoice("Game loaded!");
 
@@ -135,12 +136,14 @@ public class LoadGame {
 			System.out.println("Score after loading will be added to " + Alien.class.getName());
 			TextToSpeech.voiceInterruptor = true;
 			savedOnL1 = false;
+			
 			return;
 		}
 
 		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && TextToSpeech.voiceInterruptor == false) {
+		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && 
+				TextToSpeech.voiceInterruptor == false) {
 
 			TextToSpeech.playVoice("Game loaded!");
 
@@ -171,12 +174,14 @@ public class LoadGame {
 			System.out.println("Score after loading will be added to " + Dragon.class.getName());
 			TextToSpeech.voiceInterruptor = true;
 			savedOnL2 = false;
+			
 			return;
 		}
 
 		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && TextToSpeech.voiceInterruptor == false) {
+		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && 
+				TextToSpeech.voiceInterruptor == false) {
 
 			TextToSpeech.playVoice("Game loaded!");
 
@@ -200,12 +205,14 @@ public class LoadGame {
 			Dragon.dragons.clear();
 			TextToSpeech.voiceInterruptor = true;
 			savedOnL3 = false;
+			
 			return;
 		}
 
 		TextToSpeech.voiceInterruptor = false;
 
-		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && TextToSpeech.voiceInterruptor == false) {
+		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && 
+				TextToSpeech.voiceInterruptor == false) {
 
 			TextToSpeech.playVoice("Game loaded!");
 
@@ -230,6 +237,7 @@ public class LoadGame {
 			UpdateObjects.lifeBunker = 50;
 			TextToSpeech.voiceInterruptor = true;
 			savedOnL4 = false;
+		
 			return;
 		}
 
@@ -238,18 +246,17 @@ public class LoadGame {
 		EvilHead.evilHead.AIOnEasy();
 
 		Gold.goldstack.add(new Gold(150, 150));
-
 		HealthPack.healthpacks.add(new HealthPack(400, 400));
 
 	}
 
 	public void openFileChooser() {
-
 		final JFileChooser chooser = new JFileChooser(new File("./saves"));
 		final FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
 		final int returnVal = chooser.showOpenDialog(null);
 
 		chooser.setFileFilter(filter);
+		
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				loadGameDataFromFile(chooser.getSelectedFile());
