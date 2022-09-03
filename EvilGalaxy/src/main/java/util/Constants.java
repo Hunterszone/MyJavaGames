@@ -3,6 +3,8 @@ package util;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import menu_engine.CanvasMenu;
+
 public class Constants {
 	
 	public static final CanvasAssets LOAD_ASSETS = new CanvasAssets(0, 0);
@@ -27,4 +29,9 @@ public class Constants {
 	public static final String MEDIUM = ": MEDI";
 	public static final String EASY = ": EASY";
 	public static final String UNLOCKED = ": Unlocked";
+	
+	public static void initCanvas() {
+		final CanvasMenu engine = new CanvasMenu();
+		engine.start();
+	}
 }

@@ -204,7 +204,7 @@ public class DrawScene extends Collisions {
 			drawElonsUp(g);
 			drawElonsDown(g);
 
-			if (TextToSpeech.finMusicIsPlayed == false) {
+			if (!TextToSpeech.finMusicIsPlayed) {
 				LoadSounds.HIGHSC.play();
 				TextToSpeech.finMusicIsPlayed = true;
 			}
@@ -216,7 +216,7 @@ public class DrawScene extends Collisions {
 
 	private void handleGameOver(Graphics g) {
 		if (lifePlayerShip <= 0) {
-			if (TextToSpeech.finMusicIsPlayed == false) {
+			if (!TextToSpeech.finMusicIsPlayed) {
 				LoadSounds.FIN.play();
 				TextToSpeech.finMusicIsPlayed = true;
 			}
@@ -259,8 +259,8 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByEvilHead() {
-		if (killedByEvilHead == true) {
-			if (InitObjects.ingame == false) {
+		if (killedByEvilHead) {
+			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by the Evil Head!");
 				TextToSpeech.voiceInterruptor = true;
 				killedByEvilHead = false;
@@ -277,8 +277,8 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByBunker() {
-		if (killedByBunker == true) {
-			if (InitObjects.ingame == false) {
+		if (killedByBunker) {
+			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by the bunker!");
 				TextToSpeech.voiceInterruptor = true;
 				killedByBunker = false;
@@ -295,8 +295,8 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByDragon() {
-		if (killedByDragon == true) {
-			if (InitObjects.ingame == false) {
+		if (killedByDragon) {
+			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by a dragon!");
 				TextToSpeech.voiceInterruptor = true;
 				killedByDragon = false;
@@ -313,8 +313,8 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByAlien() {
-		if (killedByAlien == true) {
-			if (InitObjects.ingame == false) {
+		if (killedByAlien) {
+			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by an alien!");
 				TextToSpeech.voiceInterruptor = true;
 				killedByAlien = false;

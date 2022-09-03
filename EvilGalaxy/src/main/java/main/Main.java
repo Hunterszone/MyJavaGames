@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 
 import enums.Images;
 import game_engine.DrawScene;
-import menu_engine.CanvasMenu;
 import util.Constants;
 
 public final class Main extends JFrame {
@@ -41,7 +40,6 @@ public final class Main extends JFrame {
 	}
 
 	public static void main(String[] args) throws URISyntaxException {
-		final CanvasMenu engine = new CanvasMenu();
-		engine.start();
+		Constants.initCanvas();
 	}
 }

@@ -292,15 +292,17 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public void addNotify() {
 		super.addNotify();
 
-		try {			
+		if (animator != null) {			
 			animator.start();
-		} catch (IllegalThreadStateException ite) {}
+		}
 	}
 
 	@Override
 	public void removeNotify() {
 		super.removeNotify();
 
-		animator.interrupt();
+		if (animator != null) {
+			animator.interrupt();	
+		}
 	}
 }

@@ -22,7 +22,6 @@ import entities.TheEndAnimationUp;
 import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
-import menu_engine.CanvasMenu;
 import menu_engine.MouseInputHandler;
 import util.ConsoleContent;
 import util.Constants;
@@ -274,7 +273,6 @@ public class Controls implements KeyListener {
 		 */
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			Constants.isMenuOn = false;
 			Constants.isMapVisible = false;
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.HIT.stop();
@@ -307,11 +305,8 @@ public class Controls implements KeyListener {
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
-			Constants.isMenuOn = true;
-			final CanvasMenu engine = new CanvasMenu();
-			engine.start();
+			Constants.initCanvas();
 		}
-
 	}
 
 	@Override
