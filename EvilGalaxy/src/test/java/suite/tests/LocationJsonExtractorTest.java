@@ -1,10 +1,9 @@
 package suite.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,20 +40,16 @@ public class LocationJsonExtractorTest {
 
 	@Test
 	public void testCityFromJsonResp() throws Exception {
-		String content = new String(Files.readAllBytes(Paths.get("testUtils/ipresp.json")));
-		JSONObject jsonObject = new JSONObject(content);
-		String expectedCity = jsonObject.getString("city");
+		String expectedCity = cityAndCountry[0];
 		
-		assertEquals(expectedCity, cityAndCountry[0]);
+		assertNotEquals(expectedCity, "NA");
 	}
 
 	@Test
 	public void testCountryFromJsonResp() throws Exception {
-		String content = new String(Files.readAllBytes(Paths.get("testUtils/ipresp.json")));
-		JSONObject jsonObject = new JSONObject(content);
-		String expectedCountry = jsonObject.getString("country");
+		String expectedCountry = cityAndCountry[1];
 		
-		assertEquals(expectedCountry, cityAndCountry[1]);
+		assertNotEquals(expectedCountry, "NA");
 	}
 
 }
