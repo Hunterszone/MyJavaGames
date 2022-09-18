@@ -1,0 +1,16 @@
+{
+	"status": "success",
+	"country": "Bulgaria",
+	"countryCode": "BG",
+	"region": "22",
+	"regionName": "Sofia-Capital",
+	"city": "Sofia",
+	"zip": "1000",
+	"lat": 42.6951,
+	"lon": 23.325,
+	"timezone": "Europe/Sofia",
+	"isp": "NET1",
+	"org": "NET1 Ltd.",
+	"as": "AS8866 Bulgarian Telecommunications Company Plc.",
+	"query": "95.87.216.40"
+}
