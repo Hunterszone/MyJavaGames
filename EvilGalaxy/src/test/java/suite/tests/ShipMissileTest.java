@@ -15,7 +15,7 @@ private ShipMissile shipMissile;
 	
 	@Before
 	public void setUp() {
-		shipMissile = new ShipMissile(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
+		shipMissile = new ShipMissile(TestUtils.POS_X, TestUtils.POS_Y);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ private ShipMissile shipMissile;
 	@Test
 	public void testShipMissilePosition() {
 		shipMissile.moveMissile();
-		assertNotEquals("ShipMissile is not X-moving left!", TestUtils.DUMMY_POS_X, shipMissile.getX());
+		assertNotEquals("ShipMissile is not X-moving left!", TestUtils.POS_X, shipMissile.getX());
 	}
 	
 	@After

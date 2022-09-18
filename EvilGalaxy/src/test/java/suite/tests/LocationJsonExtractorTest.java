@@ -1,10 +1,10 @@
 package suite.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -12,11 +12,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
 
 import util.LocationJsonExtractor;
 
@@ -41,25 +39,23 @@ public class LocationJsonExtractorTest {
 		// Then
 		assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
 	}
-	
+
 	@Test
-	public void testJsonCityResponse() throws JSONException {
-		JSONObject actual = new JSONObject();
-		actual.put("city", cityAndCountry[0]);
+	public void testCityFromJsonResp() throws Exception {
+		String content = new String(Files.readAllBytes(Paths.get("testUtils/ipresp.json")));
+		JSONObject jsonObject = new JSONObject(content);
+		String expectedCity = jsonObject.getString("city");
 		
-		JSONAssert.assertEquals("{city:" + cityAndCountry[0] + "}", actual, true);
+		assertEquals(expectedCity, cityAndCountry[0]);
 	}
 
 	@Test
-	public void testJsonCountryResponse() throws JSONException {
-		JSONObject actual = new JSONObject();
-		actual.put("country", cityAndCountry[1]);
+	public void testCountryFromJsonResp() throws Exception {
+		String content = new String(Files.readAllBytes(Paths.get("testUtils/ipresp.json")));
+		JSONObject jsonObject = new JSONObject(content);
+		String expectedCountry = jsonObject.getString("country");
 		
-		JSONAssert.assertEquals("{country:" + cityAndCountry[1] + "}", actual, true);
+		assertEquals(expectedCountry, cityAndCountry[1]);
 	}
 
-	@Test
-	public void testThatCityAndCountryAreFetched() {
-		assertNotEquals("No city and country found!", Arrays.toString(cityAndCountry), "[NA, NA]");
-	}
 }

@@ -15,7 +15,7 @@ private Angel angel;
 	
 	@Before
 	public void setUp() {
-		angel = new Angel(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
+		angel = new Angel(TestUtils.POS_X, TestUtils.POS_Y);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ private Angel angel;
 	@Test
 	public void testAngelPosition() {
 		angel.move();
-		assertNotEquals("Angel is not Y-moving!", TestUtils.DUMMY_POS_Y, angel.getY());
+		assertNotEquals("Angel is not Y-moving!", TestUtils.POS_Y, angel.getY());
 	}
 	
 	@After

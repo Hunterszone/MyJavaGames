@@ -15,7 +15,7 @@ private Balloon balloon;
 	
 	@Before
 	public void setUp() {
-		balloon = new Balloon(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
+		balloon = new Balloon(TestUtils.POS_X, TestUtils.POS_Y);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ private Balloon balloon;
 	@Test
 	public void testAngelPosition() {
 		balloon.move();
-		assertNotEquals("Angel is not Y-moving!", TestUtils.DUMMY_POS_Y, balloon.getY());
+		assertNotEquals("Angel is not Y-moving!", TestUtils.POS_Y, balloon.getY());
 	}
 	
 	@After

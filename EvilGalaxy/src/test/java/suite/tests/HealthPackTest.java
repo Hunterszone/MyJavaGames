@@ -15,7 +15,7 @@ private HealthPack healthPack;
 	
 	@Before
 	public void setUp() {
-		healthPack = new HealthPack(TestUtils.DUMMY_POS_X, TestUtils.DUMMY_POS_Y);
+		healthPack = new HealthPack(TestUtils.POS_X, TestUtils.POS_Y);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ private HealthPack healthPack;
 	@Test
 	public void testHealthPackPosition() {
 		healthPack.move();
-		assertNotEquals("HealthPack is not Y-moving left!", TestUtils.DUMMY_POS_Y, healthPack.getY());
+		assertNotEquals("HealthPack is not Y-moving left!", TestUtils.POS_Y, healthPack.getY());
 	}
 	
 	@After
