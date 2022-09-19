@@ -49,6 +49,12 @@ public enum Images {
 			return "images/difficulty.png";
 		}
 	},
+	LOCATION_ICON {
+		@Override
+		public String getImg() {
+			return "images/location.png";
+		}
+	},
 	DRAGON_ICON {
 		@Override
 		public String getImg() {

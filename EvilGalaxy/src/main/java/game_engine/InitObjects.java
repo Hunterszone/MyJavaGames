@@ -27,6 +27,7 @@ import icons.DifficultyIcon;
 import icons.DragonIcon;
 import icons.GoldIcon;
 import icons.LaserIcon;
+import icons.LocationIcon;
 import icons.RocketIcon;
 import items.Angel;
 import items.Balloon;
@@ -96,6 +97,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		LaserIcon.laserIcon = new LaserIcon(0, 0);
 		RocketIcon.rocketIcon = new RocketIcon(0, 0);
 		DifficultyIcon.difficultyIcon = new DifficultyIcon(0, 0);
+		LocationIcon.locationIcon = new LocationIcon(0, 0);
 		DragonIcon.dragonIcon = new DragonIcon(0, 0);
 		GoldIcon.goldIcon = new GoldIcon(0, 0);
 

@@ -29,6 +29,9 @@ public class Constants {
 	public static final String MEDIUM = ": MEDI";
 	public static final String EASY = ": EASY";
 	public static final String UNLOCKED = ": Unlocked";
+	public static final String LOCKED = ": Locked";
+	public static final String COLON_WITH_SPACE = ": ";
+	public static final String LEVEL = "Level: ";
 	
 	public static void initCanvas() {
 		final CanvasMenu engine = new CanvasMenu();
