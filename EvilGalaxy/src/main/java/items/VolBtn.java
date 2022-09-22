@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import enums.Images;
 import game_engine.SpritePattern;
+import util.Constants;
 
 public class VolBtn extends SpritePattern {
 
@@ -13,22 +14,7 @@ public class VolBtn extends SpritePattern {
 
 	public VolBtn(int x, int y) {
 		super(x, y);
-		initVol();
-	}
-
-	public void initVol() {
-		imageName = Images.VOLUME_INIT.getImg();
-		assert imageName != null;
-		loadImage(imageName);
-		getImageDimensions();
-	}
-
-	public String initMute() {
-		imageName = Images.VOLUME_MUTE.getImg();
-		assert imageName != null;
-		loadImage(imageName);
-		getImageDimensions();
-		return imageName;
+		initMuteOrVol();
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -39,9 +25,32 @@ public class VolBtn extends SpritePattern {
 			initMute();
 		}
 
-		if (key == KeyEvent.VK_A || key == KeyEvent.VK_E || key == KeyEvent.VK_M || key == KeyEvent.VK_H) {
+		if (key == KeyEvent.VK_A) {
 			initVol();
 		}
 
 	}
+
+	private void initMuteOrVol() {
+		if (Constants.isSPressed) {
+			initMute();
+		} else {
+			initVol();
+		}
+	}
+
+	private void initVol() {
+		imageName = Images.VOLUME_INIT.getImg();
+		assert imageName != null;
+		loadImage(imageName);
+		getImageDimensions();
+	}
+
+	private void initMute() {
+		imageName = Images.VOLUME_MUTE.getImg();
+		assert imageName != null;
+		loadImage(imageName);
+		getImageDimensions();
+	}
+
 }
