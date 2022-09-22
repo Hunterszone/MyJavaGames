@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -228,10 +229,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 
 	public static List<String> getEnemyNames() {
-		final List<String> enemyNames = new ArrayList<String>();
-		enemyNames.add(Alien.class.getName());
-		enemyNames.add(Dragon.class.getName());
-		return enemyNames;
+		return Arrays.asList(Alien.class.getName(), Dragon.class.getName());
 	}
 
 	@Override
