@@ -48,6 +48,7 @@ import items.ShipRocket;
 import items.VolBtn;
 import map.AlienCoordinates;
 import map.DragonCoordinates;
+import map.EvilHeadCoordinates;
 import map.MapEntity;
 import map.PlayerCoordinates;
 import util.Constants;
@@ -60,6 +61,7 @@ public class DrawScene extends Collisions {
 	
 	private MapEntity mapEntity;
 	private PlayerCoordinates playerSign;
+	private EvilHeadCoordinates evilHeadSign;
 	private AlienCoordinates alienSign;
 	private DragonCoordinates dragonSign;
 
@@ -76,6 +78,7 @@ public class DrawScene extends Collisions {
 				Image.SCALE_SMOOTH);
 		mapEntity = new MapEntity();
 		playerSign = new PlayerCoordinates();
+		evilHeadSign = new EvilHeadCoordinates();
 		alienSign = new AlienCoordinates();
 		dragonSign = new DragonCoordinates();
 	}
@@ -714,6 +717,7 @@ public class DrawScene extends Collisions {
 			setFontStyle(g);
 			mapEntity.draw(g);
 			playerSign.draw(g);
+			evilHeadSign.draw(g);
 			alienSign.draw(g);
 			dragonSign.draw(g);
 			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 1010, 23);
