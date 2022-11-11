@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import enums.Images;
+import enums.SoundEffects;
 import game_engine.SpritePattern;
+import game_engine.UpdateObjects;
 import items.CanonBall;
 import items.PlasmaBall;
 import menu_engine.CanvasMenu;
@@ -32,7 +34,7 @@ public class EvilHead extends SpritePattern {
 		loadImage(imageName);
 		getImageDimensions();
 	}
-	
+
 	public void strikeHead() {
 		imageName = Images.STRIKEHEAD.getImg();
 		assert imageName != null;
@@ -102,7 +104,7 @@ public class EvilHead extends SpritePattern {
 
 		x -= 1;
 		if (y == 250 || y == 350 || y == 450) {
-			canons();
+			loadCanon();
 			strikeHead();
 		}
 
@@ -147,7 +149,7 @@ public class EvilHead extends SpritePattern {
 
 		x -= 1;
 		if (y == 250 || y == 350 || y == 450 || y == 550 || y == 650) {
-			canons();
+			loadCanon();
 			strikeHead();
 		}
 
@@ -183,19 +185,18 @@ public class EvilHead extends SpritePattern {
 		return CanonBall.canonBalls;
 	}
 
-	public List<PlasmaBall> plasmaBalls() {
+	public void loadPlasmaBall() {
 		PlasmaBall.plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
-		new PlayWave1st("sounds/boing2.wav").start();
-		return PlasmaBall.plasmaBalls;
+		if (UpdateObjects.lifeBunker >= 50) new PlayWave1st(SoundEffects.BOING_2.getSound()).start();
 	}
 
-	public List<CanonBall> canons() {
+	public void loadCanon() {
 		CanonBall.canonBalls.add(new CanonBall(x + width, y + height / 2));
-		new PlayWave1st("sounds/boing.wav").start();
-		return CanonBall.canonBalls;
+		if (UpdateObjects.lifeBunker >= 50) new PlayWave1st(SoundEffects.BOING.getSound()).start();
 	}
-	
+
 	public void renderEvilHead(Graphics g) {
-        g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.evilHead, CanvasMenu.color2.getColor()), Math.round(this.getX()), Math.round(this.getY()), null);
-    }
+		g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.evilHead, CanvasMenu.color2.getColor()),
+				Math.round(this.getX()), Math.round(this.getY()), null);
+	}
 }

@@ -31,6 +31,12 @@ public enum SoundEffects {
 			return "sounds/boing.wav";
 		}
 	},
+	BOING_2 {
+		@Override
+		public String getSound() {
+			return "sounds/boing2.wav";
+		}
+	},
 	BURNED {
 		@Override
 		public String getSound() {

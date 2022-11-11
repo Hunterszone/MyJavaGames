@@ -3,7 +3,10 @@ package entities;
 import java.util.List;
 
 import enums.Images;
+import enums.SoundEffects;
 import game_engine.SpritePattern;
+import items.CanonBall;
+import sound_engine.PlayWave1st;
 import util.Moveable;
 
 public class Alien extends SpritePattern implements Moveable {
@@ -48,5 +51,10 @@ public class Alien extends SpritePattern implements Moveable {
 		}
 
 		x -= 0.1;
+	}
+
+	public void loadCanon() {
+		CanonBall.canonBalls.add(new CanonBall(x + width, y + height / 2));
+		new PlayWave1st(SoundEffects.BOING.getSound()).start();
 	}
 }

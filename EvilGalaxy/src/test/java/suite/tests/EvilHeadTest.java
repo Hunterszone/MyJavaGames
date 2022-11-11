@@ -1,6 +1,5 @@
 package suite.tests;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -43,14 +42,12 @@ public class EvilHeadTest {
 	
 	@Test
 	public void testListsOfCanons() {
-		assertNotNull(evilHead.canons());
-		assertFalse(evilHead.canons().isEmpty());
+		assertNotNull(evilHead.getCanons());
 	}
 	
 	@Test
 	public void testListsOfPlasmaBalls() {
-		assertNotNull(evilHead.plasmaBalls());
-		assertFalse(evilHead.plasmaBalls().isEmpty());
+		assertNotNull(evilHead.getEvilPlasmaBalls());
 	}
 
 	@After
