@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import enums.Images;
@@ -54,7 +56,8 @@ public class Alien extends SpritePattern implements Moveable {
 	}
 
 	public void loadCanon() {
-		CanonBall.canonBalls.add(new CanonBall(x + width, y + height / 2));
-		new PlayWave1st(SoundEffects.BOING.getSound()).start();
+		CanonBall.canonBalls = new ArrayList<CanonBall>(Arrays.asList(new CanonBall(x + width, y + height / 2)));
+		if (!Alien.aliens.isEmpty()) new PlayWave1st(SoundEffects.BOING.getSound()).start();
 	}
+
 }

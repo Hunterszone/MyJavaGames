@@ -90,6 +90,9 @@ public class CollisionsTest {
 	@Test
 	public void plasmaBallIntersectsShip() {
 		Collisions.lifePlayerShip = 3;
+		Alien.aliens = new ArrayList<Alien>();
+		Dragon.dragons = new ArrayList<Dragon>();
+		Collisions.lifeBunker = 50;
 		
 		Collisions.checkPlasmaCollision(PlayerShip.playerShip.getBounds());
 
@@ -127,6 +130,10 @@ public class CollisionsTest {
 	
 	@Test
 	public void shipIntersectsEvilHead() {
+		Alien.aliens = new ArrayList<Alien>();
+		Dragon.dragons = new ArrayList<Dragon>();
+		Collisions.lifeBunker = 50;
+		
 		Collisions.checkEvilHeadCollision(PlayerShip.playerShip.getBounds(), EvilHead.evilHead.getBounds());
 
 		assertTrue("ship does not intersect EvilHead", Collisions.killedByEvilHead);

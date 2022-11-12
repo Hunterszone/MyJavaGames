@@ -778,7 +778,15 @@ public class DrawScene extends Collisions {
 		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
 
 		for (final CanonBall n : canons) {
-			if (n.isVisible() && (!Alien.aliens.isEmpty() || lifeBunker >= 50)) {
+			if (n.isVisible() && lifeBunker >= 50) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+		
+		final List<CanonBall> alienCanons = CanonBall.canonBalls;
+
+		for (final CanonBall n : alienCanons) {
+			if (n.isVisible() && !Alien.aliens.isEmpty()) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
