@@ -416,11 +416,6 @@ public class DrawScene extends Collisions {
 					|| EvilHead.evilHead.x - PlayerShip.playerShip.x == 400) {
 				EvilHead.evilHead.strikeHead();
 			}
-			if (timerHard.isRunning()) {
-				EvilHead.evilHead.loadPlasmaBall();
-			} else {
-				EvilHead.evilHead.loadCanon();
-			}
 		}
 	}
 
