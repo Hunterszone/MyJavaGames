@@ -10,6 +10,7 @@ import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -777,7 +778,7 @@ public class DrawScene extends Collisions {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
-		
+
 		final List<CanonBall> alienCanons = CanonBall.canonBalls;
 
 		for (final CanonBall n : alienCanons) {
@@ -806,7 +807,24 @@ public class DrawScene extends Collisions {
 			if (alien.isVisible()) {
 				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
 			} else {
-				balloons.add(new Balloon(alien.getX(), alien.getY()));
+//				balloons.add(new Balloon(alien.getX(), alien.getY()));
+				HealthPack.healthpacks.add(new HealthPack(alien.getX(), alien.getY()));
+			}
+		}
+
+		if (!Alien.aliens.isEmpty()) {
+			if (Alien.aliens.size() >= 40) {
+				HealthPack.healthpacks = new ArrayList<HealthPack>(5);
+			} else {
+				for (HealthPack hp : HealthPack.healthpacks) {
+					if (hp.getY() <= 0) {
+						hp.setVisible(false);
+					}
+
+					g.drawImage(hp.getImage(), hp.getX(), hp.getY(), this);
+
+					hp.moveUp();
+				}
 			}
 		}
 

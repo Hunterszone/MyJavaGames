@@ -75,7 +75,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 				}
 			}
 		});
-		
+
 		Dragon.dragons.removeIf(dragon -> dragon != null && !dragon.isVisible());
 	}
 
@@ -249,8 +249,10 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	}
 
 	private void updateHealth() {
-		if (HealthPack.healthpacks.size() < 5 && lifePlayerShip <= 3 && !Constants.hpIsEmpty) {
-			HealthPack.healthpacks.add(new HealthPack(EvilHead.evilHead.x, 0));
+		if (Alien.aliens.isEmpty() && HealthPack.healthpacks.size() < 5 && lifePlayerShip <= 3
+				&& !Constants.hpIsEmpty) {
+			HealthPack.healthpacks
+					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 
 		if (HealthPack.healthpacks.isEmpty()) {

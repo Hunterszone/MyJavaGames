@@ -213,14 +213,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		return Gold.goldstack;
 	}
 
-	public static List<HealthPack> initHealth() {
-		HealthPack.healthpacks = new ArrayList<>();
-
-		for (int i = 0; i < 5; i++) {
-			HealthPack.healthpacks
-					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
-		}
-		return HealthPack.healthpacks;
+	public static void initHealth() {
+		HealthPack.healthpacks = new ArrayList<>(5);
 	}
 
 	@Override

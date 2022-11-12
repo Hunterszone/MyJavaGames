@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import items.Angel;
 import items.Balloon;
+import items.HealthPack;
 import util.ConsoleContent;
 import util.LoadSounds;
 import util.TextToSpeech;
@@ -13,7 +14,8 @@ public class Difficulty {
 	public static void restart() {
 		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
-		
+		HealthPack.healthpacks = new ArrayList<>(5);
+
 		if (!InitObjects.ingame) {
 			InitObjects.ingame = true;
 		}
@@ -22,7 +24,7 @@ public class Difficulty {
 	}
 
 	public static void getEasyDiff() {
-		
+
 		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
 
@@ -37,7 +39,7 @@ public class Difficulty {
 	}
 
 	public static void getMediumDiff() {
-		
+
 		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
 
@@ -55,7 +57,7 @@ public class Difficulty {
 
 		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
-		
+
 		if (!InitObjects.ingame) {
 			InitObjects.ingame = true;
 			InitObjects.timerEasy.stop();
@@ -90,8 +92,16 @@ public class Difficulty {
 		InitObjects.initAliens();
 		InitObjects.initGold();
 		InitObjects.initDragons();
-		InitObjects.initHealth();
+
+		loadHealthPacks();
 
 		LoadSounds.HIGHSC.play();
+	}
+
+	private static void loadHealthPacks() {
+		for (int i = 0; i < 5; i++) {
+			HealthPack.healthpacks
+					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
+		}
 	}
 }
