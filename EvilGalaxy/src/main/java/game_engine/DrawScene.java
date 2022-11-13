@@ -273,7 +273,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByEvilHead = false;
 				try {
-					HighScoreToDb.insertTable();
+					HighScoreToDb.doInsert();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -291,7 +291,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByBunker = false;
 				try {
-					HighScoreToDb.insertTable();
+					HighScoreToDb.doInsert();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -309,7 +309,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByDragon = false;
 				try {
-					HighScoreToDb.insertTable();
+					HighScoreToDb.doInsert();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -327,7 +327,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByAlien = false;
 				try {
-					HighScoreToDb.insertTable();
+					HighScoreToDb.doInsert();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {

@@ -47,7 +47,7 @@ public class HighScoreToDbTest {
         when(connection.prepareStatement(eq(HighScoreToDbTest.INSERT_QUERY))).thenReturn(statement);
         when(statement.executeUpdate()).thenReturn(1);
 
-        assertTrue(HighScoreToDb.insertTable());
+        assertTrue(HighScoreToDb.doInsert());
     }
     
     @Test

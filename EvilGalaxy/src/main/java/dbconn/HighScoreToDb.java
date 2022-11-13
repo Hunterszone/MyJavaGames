@@ -24,7 +24,7 @@ public class HighScoreToDb {
 	private static PreparedStatement preparedStatement;
 
 	// Execute insert query
-	public static boolean insertTable() throws SQLException {
+	public static boolean doInsert() throws SQLException {
 
 		// STEP 1: Register JDBC driver
 		registerDriver();

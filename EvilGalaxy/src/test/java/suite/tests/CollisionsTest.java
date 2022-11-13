@@ -181,7 +181,6 @@ public class CollisionsTest {
 	
 	@Test
 	public void shipIntersectsHealthOnLevel3() {
-		Alien.aliens = new ArrayList<Alien>();
 		Dragon.dragons = new ArrayList<Dragon>();
 		Collisions.lifePlayerShip = 2;
 		
