@@ -44,7 +44,6 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		updateAliens();
 		updateEvilHead();
 		updateGold();
-		updateBalloons();
 		updateAngels();
 		updateHealth();
 		updateBullets();
@@ -240,17 +239,13 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 
-	private void updateBalloons() {
-		balloons.removeIf(balloon -> balloon != null && !balloon.isVisible());
-	}
-
 	private void updateAngels() {
 		angels.removeIf(angel -> angel != null && !angel.isVisible());
 	}
 
 	private void updateHealth() {
-		if (Alien.aliens.isEmpty() && HealthPack.healthpacks.size() < 5 && lifePlayerShip <= 3
-				&& !Constants.hpIsEmpty) {
+		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && 
+				Dragon.dragons.isEmpty() && lifePlayerShip <= 3 && !Constants.hpIsEmpty) {
 			HealthPack.healthpacks
 					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}

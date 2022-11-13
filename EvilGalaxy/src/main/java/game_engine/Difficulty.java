@@ -3,7 +3,6 @@ package game_engine;
 import java.util.ArrayList;
 
 import items.Angel;
-import items.Balloon;
 import items.HealthPack;
 import util.ConsoleContent;
 import util.LoadSounds;
@@ -12,7 +11,6 @@ import util.TextToSpeech;
 public class Difficulty {
 
 	public static void restart() {
-		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
 		HealthPack.healthpacks = new ArrayList<>(5);
 
@@ -25,7 +23,6 @@ public class Difficulty {
 
 	public static void getEasyDiff() {
 
-		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
 
 		if (!InitObjects.ingame) {
@@ -40,7 +37,6 @@ public class Difficulty {
 
 	public static void getMediumDiff() {
 
-		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
 
 		if (!InitObjects.ingame) {
@@ -55,7 +51,6 @@ public class Difficulty {
 
 	public static void getHardDiff() {
 
-		InitObjects.balloons = new ArrayList<Balloon>();
 		InitObjects.angels = new ArrayList<Angel>();
 
 		if (!InitObjects.ingame) {

@@ -31,7 +31,6 @@ import icons.LaserIcon;
 import icons.LocationIcon;
 import icons.RocketIcon;
 import items.Angel;
-import items.Balloon;
 import items.BunkerBullet;
 import items.Explosion;
 import items.Gold;
@@ -46,7 +45,6 @@ import util.TextToSpeech;
 public abstract class InitObjects extends JPanel implements ActionListener, Runnable {
 
 	public static List<Explosion> explosions;
-	public static List<Balloon> balloons;
 	public static List<Angel> angels;
 	public static boolean ingame;
 	public static Timer timerEasy, timerMedium, timerHard;
@@ -90,7 +88,6 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		
 		// Collections
 		explosions = new ArrayList<Explosion>();
-		balloons = new ArrayList<Balloon>();
 		angels = new ArrayList<Angel>();
 		
 		// Icons

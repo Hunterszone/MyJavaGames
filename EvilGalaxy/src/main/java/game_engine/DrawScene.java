@@ -36,7 +36,6 @@ import icons.LaserIcon;
 import icons.LocationIcon;
 import icons.RocketIcon;
 import items.Angel;
-import items.Balloon;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Explosion;
@@ -217,6 +216,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.finMusicIsPlayed = true;
 			}
 
+			setFontStyle(g);
 			g.drawString("Monsters: Killed!", 5, 20);
 			g.drawString("Gold: Collected!", 210, 20);
 		}
@@ -807,7 +807,6 @@ public class DrawScene extends Collisions {
 			if (alien.isVisible()) {
 				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
 			} else {
-//				balloons.add(new Balloon(alien.getX(), alien.getY()));
 				HealthPack.healthpacks.add(new HealthPack(alien.getX(), alien.getY()));
 			}
 		}
@@ -826,16 +825,6 @@ public class DrawScene extends Collisions {
 					hp.moveUp();
 				}
 			}
-		}
-
-		for (Balloon balloon : balloons) {
-			if (balloon.getY() <= 0) {
-				balloon.setVisible(false);
-			}
-
-			g.drawImage(balloon.getImage(), balloon.getX(), balloon.getY(), this);
-
-			balloon.move();
 		}
 
 		for (final Dragon dragon : Dragon.dragons) {
