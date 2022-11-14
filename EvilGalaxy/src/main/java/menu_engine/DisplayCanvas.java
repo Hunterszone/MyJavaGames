@@ -10,7 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import enums.Images;
+import enums.Sprite;
 import util.LoadSounds;
 
 public class DisplayCanvas {
@@ -45,7 +45,7 @@ public class DisplayCanvas {
         frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIP_ON_FIRE.getImg()));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Sprite.MYSHIP_ON_FIRE.getImg()));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         dim = Toolkit.getDefaultToolkit().getScreenSize();

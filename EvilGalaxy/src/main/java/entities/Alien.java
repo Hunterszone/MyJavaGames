@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import enums.Images;
-import enums.SoundEffects;
+import enums.Sprite;
+import enums.SoundEffect;
 import game_engine.SpritePattern;
 import items.CanonBall;
 import sound_engine.PlayWave1st;
@@ -25,7 +25,7 @@ public class Alien extends SpritePattern implements Moveable {
 	}
 
 	public void drawAlien() {
-		imageName = Images.ALIEN.getImg();
+		imageName = Sprite.ALIEN.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
@@ -57,7 +57,7 @@ public class Alien extends SpritePattern implements Moveable {
 
 	public void loadCanon() {
 		CanonBall.canonBalls = new ArrayList<CanonBall>(Arrays.asList(new CanonBall(x + width, y + height / 2)));
-		if (!Alien.aliens.isEmpty()) new PlayWave1st(SoundEffects.BOING.getSound()).start();
+		if (!Alien.aliens.isEmpty()) new PlayWave1st(SoundEffect.BOING.getSound()).start();
 	}
 
 }

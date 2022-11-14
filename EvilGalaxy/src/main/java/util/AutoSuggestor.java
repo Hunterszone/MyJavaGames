@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import enums.Commands;
+import enums.Command;
 
 public class AutoSuggestor {
 
@@ -249,11 +249,11 @@ public class AutoSuggestor {
 	public void setDictionary(String lookFor) {
 		lookFor = lookFor.toLowerCase();
 		DICTIONARY.clear();
-		if (Commands.values() == null) {
+		if (Command.values() == null) {
 			return; // so we can call constructor with null value for dictionary without exception
 					// thrown
 		}
-		for (final Commands command : Commands.values()) {
+		for (final Command command : Command.values()) {
 			if (command.name().contains(lookFor)) {
 				DICTIONARY.add(command.name());
 				// getTextField().setText(word);

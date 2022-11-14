@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Constants;
 
@@ -20,7 +20,7 @@ public class CanonBall extends SpritePattern {
 	}
 
 	public void initCanon() {
-		imageName = Images.CANON_INIT.getImg();
+		imageName = Sprite.CANON_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

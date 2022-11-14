@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Moveable;
 
@@ -19,7 +19,7 @@ public class HealthPack extends SpritePattern implements Moveable {
 	}
 
 	public void initHealth() {
-		imageName = Images.HEALTH_INIT.getImg();
+		imageName = Sprite.HEALTH_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

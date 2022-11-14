@@ -1,6 +1,6 @@
 package enums;
 
-public enum Commands {
+public enum Command {
 	
 	HELP, CLS, REFRESH, PAUSE, EASY, MED, HARD, EXIT, VOLOFF, VOLON, 
 	GOD, GODOFF, STATS, RESTART, LEVEL2, LEVEL3, LEVEL4, SAVE; /*, AUTOSAVE*/

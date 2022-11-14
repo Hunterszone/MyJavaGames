@@ -1,6 +1,6 @@
 package enums;
 
-public enum Images {
+public enum Sprite {
 	BG1 {
 		@Override
 		public String getImg() {

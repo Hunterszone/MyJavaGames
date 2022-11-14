@@ -2,7 +2,7 @@ package util;
 
 import java.awt.Image;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 
 public class CanvasAssets extends SpritePattern {
@@ -64,11 +64,11 @@ public class CanvasAssets extends SpritePattern {
 		info3 = loadImage("images/info3.png");
         headerBackground = loadImage("images/backgrounds/header.png");
         header = loadImage("images/header.png");
-        myShip = loadImage(Images.MYSHIP_INIT.getImg());
-        evilHead = loadImage(Images.EVILHEAD.getImg());
+        myShip = loadImage(Sprite.MYSHIP_INIT.getImg());
+        evilHead = loadImage(Sprite.EVILHEAD.getImg());
         manual = loadImage("images/manual.png");
         manualText = loadImage("images/manualText.png");
-        volume = loadImage(Images.VOLUME_MUTE.getImg());
+        volume = loadImage(Sprite.VOLUME_MUTE.getImg());
 		getImageDimensions();
 	}
 }

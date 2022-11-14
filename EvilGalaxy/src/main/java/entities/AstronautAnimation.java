@@ -1,6 +1,6 @@
 package entities;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Constants;
 import util.Cyclable;
@@ -20,7 +20,7 @@ public class AstronautAnimation extends SpritePattern implements Cyclable {
 	private String imageName;
 
 	public void drawAstronaut() {
-		imageName = Images.ASTRONAUT_INIT.getImg();
+		imageName = Sprite.ASTRONAUT_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

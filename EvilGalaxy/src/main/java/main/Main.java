@@ -10,7 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.DrawScene;
 import util.Constants;
 
@@ -33,8 +33,8 @@ public final class Main extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setShape(new RoundRectangle2D.Double(60, 80, 1200, 1200, 100, 100));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MYSHIP_ON_FIRE.getImg()));
-		final ImageIcon tileIcon = new ImageIcon(Images.BORDER_IMAGE.getImg());
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Sprite.MYSHIP_ON_FIRE.getImg()));
+		final ImageIcon tileIcon = new ImageIcon(Sprite.BORDER_IMAGE.getImg());
 		getRootPane().setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100, tileIcon));
 		this.setLocation(Constants.DIMENSION.width / 2 - this.getSize().width / 2, Constants.DIMENSION.height / 2 - this.getSize().height / 2);
 	}

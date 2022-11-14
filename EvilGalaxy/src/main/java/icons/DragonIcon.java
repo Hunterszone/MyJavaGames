@@ -2,7 +2,7 @@ package icons;
 
 import java.awt.Image;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 
 public class DragonIcon extends SpritePattern {
@@ -16,7 +16,7 @@ public class DragonIcon extends SpritePattern {
 	}
 
 	public Image drawIcon() {
-		String imageName = Images.DRAGON_ICON.getImg();
+		String imageName = Sprite.DRAGON_ICON.getImg();
 		Image img = loadImage(imageName);
 		getImageDimensions();
 		return img;

@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.event.KeyEvent;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Moveable;
 
@@ -20,7 +20,7 @@ public class Crosshair extends SpritePattern implements Moveable {
 	}
 
 	public void drawCrosshair() {
-		imageName = Images.CROSSHAIR.getImg();
+		imageName = Sprite.CROSSHAIR.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

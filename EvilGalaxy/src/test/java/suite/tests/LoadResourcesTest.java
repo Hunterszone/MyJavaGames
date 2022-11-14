@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
-import enums.Images;
-import enums.SoundEffects;
+import enums.Sprite;
+import enums.SoundEffect;
 
 public class LoadResourcesTest {
 
@@ -18,16 +18,16 @@ public class LoadResourcesTest {
 		assertTrue("Folder 'sounds' does not exist", Files.exists(Paths.get("sounds")));
 
 		if (Files.exists(Paths.get("images"))) {
-			for (int i = 0; i < Images.values().length; i++) {
-				assertTrue(Images.values()[i].toString() + " image file does not exist",
-						Files.exists(Paths.get(Images.values()[i].getImg())));
+			for (int i = 0; i < Sprite.values().length; i++) {
+				assertTrue(Sprite.values()[i].toString() + " image file does not exist",
+						Files.exists(Paths.get(Sprite.values()[i].getImg())));
 			}
 		}
 
 		if (Files.exists(Paths.get("sounds"))) {
-			for (int i = 0; i < SoundEffects.values().length; i++) {
-				assertTrue(SoundEffects.values()[i].toString() + " sound file does not exist",
-						Files.exists(Paths.get(SoundEffects.values()[i].getSound())));
+			for (int i = 0; i < SoundEffect.values().length; i++) {
+				assertTrue(SoundEffect.values()[i].toString() + " sound file does not exist",
+						Files.exists(Paths.get(SoundEffect.values()[i].getSound())));
 			}
 		}
 	}

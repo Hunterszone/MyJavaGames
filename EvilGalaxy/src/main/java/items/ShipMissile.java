@@ -3,7 +3,7 @@ package items;
 import java.util.List;
 
 import entities.PlayerShip;
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 
 public class ShipMissile extends SpritePattern {
@@ -20,7 +20,7 @@ public class ShipMissile extends SpritePattern {
 	}
 
 	public void initMissile() {
-		imageName = Images.MISSILE_INIT.getImg();
+		imageName = Sprite.MISSILE_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

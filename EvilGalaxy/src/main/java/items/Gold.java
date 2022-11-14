@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Moveable;
 
@@ -20,7 +20,7 @@ public class Gold extends SpritePattern implements Moveable {
 	}
 
 	public void initGifts() {
-		imageName = Images.GOLD_INIT.getImg();
+		imageName = Sprite.GOLD_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

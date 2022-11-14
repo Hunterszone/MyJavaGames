@@ -2,7 +2,7 @@ package entities;
 
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Moveable;
 
@@ -20,7 +20,7 @@ public class Dragon extends SpritePattern implements Moveable {
 	}
 
 	public void drawDragon() {
-		imageName = Images.DRAGON.getImg();
+		imageName = Sprite.DRAGON.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

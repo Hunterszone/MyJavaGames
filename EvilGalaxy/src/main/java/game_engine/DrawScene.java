@@ -27,7 +27,7 @@ import entities.SatelliteAnimation;
 import entities.TheEndAnimationDown;
 import entities.TheEndAnimationUp;
 import enums.Entity;
-import enums.Images;
+import enums.Sprite;
 import icons.AlienIcon;
 import icons.DifficultyIcon;
 import icons.DragonIcon;
@@ -70,11 +70,11 @@ public class DrawScene extends Collisions {
 	public DrawScene() throws IOException {
 		final int width = (int) Constants.DIMENSION.getWidth();
 		final int height = (int) Constants.DIMENSION.getHeight();
-		bg1 = Toolkit.getDefaultToolkit().createImage(Images.BG1.getImg()).getScaledInstance(width, height,
+		bg1 = Toolkit.getDefaultToolkit().createImage(Sprite.BG1.getImg()).getScaledInstance(width, height,
 				Image.SCALE_SMOOTH);
-		bg2 = Toolkit.getDefaultToolkit().createImage(Images.BG2.getImg()).getScaledInstance(width, height,
+		bg2 = Toolkit.getDefaultToolkit().createImage(Sprite.BG2.getImg()).getScaledInstance(width, height,
 				Image.SCALE_SMOOTH);
-		bg3 = Toolkit.getDefaultToolkit().createImage(Images.BG3.getImg()).getScaledInstance(width, height,
+		bg3 = Toolkit.getDefaultToolkit().createImage(Sprite.BG3.getImg()).getScaledInstance(width, height,
 				Image.SCALE_SMOOTH);
 		mapEntity = new MapEntity();
 		playerSign = new PlayerCoordinates();
@@ -408,7 +408,7 @@ public class DrawScene extends Collisions {
 				PlayerShip.playerShip.shakeShip();
 				Crosshair.crosshair.shakeCrosshair();
 				PlayerShip.playerShip.y = EvilHead.evilHead.y + 70;
-				PlayerShip.playerShip.loadImage(Images.MYSHIP_PULLED.getImg());
+				PlayerShip.playerShip.loadImage(Sprite.MYSHIP_PULLED.getImg());
 				PlayerShip.playerShip.getImageDimensions();
 			}
 			if (EvilHead.evilHead.x - PlayerShip.playerShip.x == 100

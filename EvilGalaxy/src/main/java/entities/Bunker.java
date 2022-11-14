@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import items.BunkerBullet;
 
@@ -44,14 +44,14 @@ public class Bunker extends SpritePattern {
 	}
 
 	public void drawBunker() {
-		imageName = Images.BUNKER.getImg();
+		imageName = Sprite.BUNKER.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void drawBunkerHit() {
-		imageName = Images.BUNKER_HIT.getImg();
+		imageName = Sprite.BUNKER_HIT.getImg();
 		assert imageName != null; 
 		loadImage(imageName);
 		getImageDimensions();

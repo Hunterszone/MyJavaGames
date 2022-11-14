@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import enums.Images;
-import enums.SoundEffects;
+import enums.Sprite;
+import enums.SoundEffect;
 import game_engine.SpritePattern;
 import game_engine.UpdateObjects;
 import items.CanonBall;
@@ -29,14 +29,14 @@ public class EvilHead extends SpritePattern {
 	}
 
 	public void drawHead() {
-		imageName = Images.EVILHEAD.getImg();
+		imageName = Sprite.EVILHEAD.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void strikeHead() {
-		imageName = Images.STRIKEHEAD.getImg();
+		imageName = Sprite.STRIKEHEAD.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
@@ -187,12 +187,12 @@ public class EvilHead extends SpritePattern {
 
 	public void loadPlasmaBall() {
 		PlasmaBall.plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
-		if (UpdateObjects.lifeBunker >= 50) new PlayWave1st(SoundEffects.BOING_2.getSound()).start();
+		if (UpdateObjects.lifeBunker >= 50) new PlayWave1st(SoundEffect.BOING_2.getSound()).start();
 	}
 
 	public void loadCanon() {
 		CanonBall.canonBalls.add(new CanonBall(x + width, y + height / 2));
-		if (UpdateObjects.lifeBunker >= 50) new PlayWave1st(SoundEffects.BOING.getSound()).start();
+		if (UpdateObjects.lifeBunker >= 50) new PlayWave1st(SoundEffect.BOING.getSound()).start();
 	}
 
 	public void renderEvilHead(Graphics g) {

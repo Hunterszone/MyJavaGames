@@ -2,7 +2,7 @@ package icons;
 
 import java.awt.Image;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 
 public class LaserIcon extends SpritePattern {
@@ -16,7 +16,7 @@ public class LaserIcon extends SpritePattern {
 	}
 
 	public Image drawIcon() {
-		String imageName = Images.LASER_ICON.getImg();
+		String imageName = Sprite.LASER_ICON.getImg();
 		Image img = loadImage(imageName);
 		getImageDimensions();
 		return img;

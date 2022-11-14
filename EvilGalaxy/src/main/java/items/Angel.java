@@ -1,6 +1,6 @@
 package items;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Moveable;
 
@@ -16,7 +16,7 @@ public class Angel extends SpritePattern implements Moveable {
 	}
 
 	public void initAngels() {
-		imageName = Images.ANGEL.getImg();
+		imageName = Sprite.ANGEL.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

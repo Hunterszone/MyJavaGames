@@ -1,6 +1,6 @@
 package enums;
 
-public enum SoundEffects {
+public enum SoundEffect {
 	ATTACK {
 		@Override
 		public String getSound() {

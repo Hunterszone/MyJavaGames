@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
 // import game packages:
-import enums.SoundEffects;
+import enums.SoundEffect;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
@@ -38,9 +38,9 @@ import util.TextToSpeech;
 public class MouseInputHandler extends MouseInputAdapter implements MouseListener {
 
 	public static Main main;
-	private final String hoverSound = SoundEffects.HOVER.getSound();
-	private final String clickSound = SoundEffects.CLICK.getSound();
-	private final String forbidden = SoundEffects.FORBIDDEN.getSound();
+	private final String hoverSound = SoundEffect.HOVER.getSound();
+	private final String clickSound = SoundEffect.CLICK.getSound();
+	private final String forbidden = SoundEffect.FORBIDDEN.getSound();
 	private PlayWave1st playWave1st;
 
 	@Override

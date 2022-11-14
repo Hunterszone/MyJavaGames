@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 
 public class PlasmaBall extends SpritePattern {
@@ -21,7 +21,7 @@ public class PlasmaBall extends SpritePattern {
 	}
 
 	public void initPlasmaBall() {
-		imageName = Images.PLASMABALL_INIT.getImg();
+		imageName = Sprite.PLASMABALL_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

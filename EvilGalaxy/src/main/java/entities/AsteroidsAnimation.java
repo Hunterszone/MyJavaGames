@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Constants;
 import util.Cyclable;
@@ -23,7 +23,7 @@ public class AsteroidsAnimation extends SpritePattern implements Cyclable {
 	private String imageName;
 
 	public void drawAsteroids() {
-		imageName = Images.ASTEROIDS_INIT.getImg();
+		imageName = Sprite.ASTEROIDS_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

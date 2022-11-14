@@ -1,6 +1,6 @@
 package items;
 
-import enums.Images;
+import enums.Sprite;
 import game_engine.SpritePattern;
 
 public class SaveSign extends SpritePattern {
@@ -14,7 +14,7 @@ public class SaveSign extends SpritePattern {
 	}
 
 	public void initSave() {
-		imageName = Images.SAVESIGN_INIT.getImg();
+		imageName = Sprite.SAVESIGN_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
