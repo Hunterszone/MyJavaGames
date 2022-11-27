@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import game_engine.Collisions;
 import game_engine.InitObjects;
+import util.KilledEnemies;
 
 public class HighScoreToDb {
 
@@ -24,7 +24,7 @@ public class HighScoreToDb {
 	private static PreparedStatement preparedStatement;
 
 	// Execute insert query
-	public static boolean doInsert() throws SQLException {
+	public static boolean isInserted() throws SQLException {
 
 		// STEP 1: Register JDBC driver
 		registerDriver();
@@ -38,7 +38,7 @@ public class HighScoreToDb {
 		int counter = 0;
 		try {
 			while (counter < enemyNames.size()) {
-				enemyAndCount = Collisions.getNameAndKilledCount(enemyNames.get(counter));
+				enemyAndCount = KilledEnemies.getEnemiesByTypeAndCount(enemyNames.get(counter));
 				preparedStatement = conn
 						.prepareStatement("INSERT INTO highscores (ENEMYNAME, COUNTKILLED) " + "VALUES (?,?)");
 				preparedStatement.setString(1, enemyAndCount[0]);

@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Alien;
-import game_engine.InitObjects;
 
 public class AlienTest {
 
@@ -26,8 +25,8 @@ public class AlienTest {
 	
 	@Test
 	public void testListOfAliens() {
-		assertNotNull(InitObjects.initAliens());
-		assertFalse(InitObjects.initAliens().isEmpty());
+		assertNotNull(Alien.aliens);
+		assertFalse(Alien.aliens.isEmpty());
 	}
 
 	@Test

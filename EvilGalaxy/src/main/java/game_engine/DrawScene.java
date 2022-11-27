@@ -82,6 +82,27 @@ public class DrawScene extends Collisions {
 		alienSign = new AlienCoordinates();
 		dragonSign = new DragonCoordinates();
 	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		if (ingame) {
+			startAnimations();
+			drawGameStates(g);
+			evilHeadBehaviour();
+			handleLifeEvilHead(g);
+			drawNaviMap(g);
+		} else {
+			stopTimers();
+			stopSounds();
+			drawGameOverBgs(g);
+			drawGameWon(g);
+			handleGameOver(g);
+		}
+
+		Toolkit.getDefaultToolkit().sync();
+	}
 
 	private void drawExplosion(Graphics g) {
 		for (final Explosion explosion : explosions) {
@@ -142,27 +163,6 @@ public class DrawScene extends Collisions {
 		}
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-
-		if (ingame) {
-			startAnimations();
-			drawGameStates(g);
-			evilHeadBehaviour();
-			handleLifeEvilHead(g);
-			drawNaviMap(g);
-		} else {
-			stopTimers();
-			stopSounds();
-			drawGameOverBgs(g);
-			handleGameWon(g);
-			handleGameOver(g);
-		}
-
-		Toolkit.getDefaultToolkit().sync();
-	}
-
 	private void startAnimations() {
 		if (animator == null) {
 			animator = new Thread(this);
@@ -205,7 +205,7 @@ public class DrawScene extends Collisions {
 		timerHard.stop();
 	}
 
-	private void handleGameWon(Graphics g) {
+	private void drawGameWon(Graphics g) {
 		if (lifeEvilHead == 50) {
 
 			drawElonsUp(g);
@@ -273,7 +273,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByEvilHead = false;
 				try {
-					HighScoreToDb.doInsert();
+					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -291,7 +291,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByBunker = false;
 				try {
-					HighScoreToDb.doInsert();
+					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -309,7 +309,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByDragon = false;
 				try {
-					HighScoreToDb.doInsert();
+					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -327,7 +327,7 @@ public class DrawScene extends Collisions {
 				TextToSpeech.voiceInterruptor = true;
 				killedByAlien = false;
 				try {
-					HighScoreToDb.doInsert();
+					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
 					e.printStackTrace();
 				} finally {

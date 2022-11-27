@@ -180,34 +180,29 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		}
 	}
 
-	public static List<Alien> initAliens() {
+	public static void initAliens() {
 		Alien.aliens = new ArrayList<Alien>();
 		IntStream.range(0, 40)
 				.mapToObj(i -> new Alien((int) Math.ceil(Math.random() * 13000), (int) Math.ceil(Math.random() * 800)))
 				.forEach(alien -> {
 					Alien.aliens.add(alien);
 				});
-
-		return Alien.aliens;
 	}
 
-	public static List<Dragon> initDragons() {
+	public static void initDragons() {
 		Dragon.dragons = new ArrayList<Dragon>();
 		IntStream.range(0, 30).mapToObj(i -> new Dragon(posDragon[i][0], posDragon[i][1])).forEach(dragon -> {
 			Dragon.dragons.add(dragon);
 			dragon.setVisible(false);
 		});
-		return Dragon.dragons;
 	}
 
-	public static List<Gold> initGold() {
+	public static void initGold() {
 		Gold.goldstack = new ArrayList<>();
 
 		for (int i = 0; i < Collisions.goldCount; i++) {
 			Gold.goldstack.add(new Gold((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
-
-		return Gold.goldstack;
 	}
 
 	public static void initHealth() {

@@ -42,18 +42,6 @@ public abstract class Collisions extends UpdateObjects {
 
 	private static final long serialVersionUID = 1L;
 
-	public static String[] getNameAndKilledCount(String enemyName) {
-		if (enemyName.equalsIgnoreCase(Alien.class.getName())) {
-			final Integer alienKilledd = alienKilled;
-			return new String[] { enemyName, alienKilledd.toString() };
-		}
-		if (enemyName.equalsIgnoreCase(Dragon.class.getName())) {
-			final Integer dragonKilledd = dragonKilled;
-			return new String[] { enemyName, dragonKilledd.toString() };
-		}
-		return new String[] { "" };
-	}
-
 	public static void checkBulletCollision(List<BunkerBullet> bullets) {
 		bullets = bullets.stream().filter(bullet -> bullet != null).collect(Collectors.toList());
 

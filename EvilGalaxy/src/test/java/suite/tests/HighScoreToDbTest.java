@@ -52,7 +52,7 @@ public class HighScoreToDbTest {
 		when(mockConnection.createStatement()).thenReturn(mockStatement);
 		when(mockConnection.createStatement().executeUpdate(Mockito.any())).thenReturn(1);
 		
-		boolean value = HighScoreToDb.doInsert();
+		boolean value = HighScoreToDb.isInserted();
 	    assertEquals(value, true);
 	    
 		verify(mockConnection, Mockito.times(1)).createStatement();

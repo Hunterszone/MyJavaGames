@@ -51,8 +51,9 @@ public class Controls implements KeyListener {
 
 		if (key == KeyEvent.VK_A) {
 			Constants.isSPressed = false;
-			if (InitObjects.timerEasy.isRunning() || InitObjects.timerHard.isRunning()
-					|| InitObjects.timerMedium.isRunning()) {
+			if (InitObjects.timerEasy.isRunning() || 
+					InitObjects.timerHard.isRunning() || 
+					InitObjects.timerMedium.isRunning()) {
 				LoadSounds.BG_MUSIC.loop();
 			}
 		}
@@ -65,8 +66,8 @@ public class Controls implements KeyListener {
 			LoadSounds.TAUNT.stop();
 		}
 		
-		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP
-						|| key == KeyEvent.VK_DOWN) {
+		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || 
+				key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
 			if (InitObjects.ingame) {
 				ConsoleContent.manualON = false;
 				if (!InitObjects.timerHard.isRunning() && Constants.isHPressed) {

@@ -27,8 +27,10 @@ public class DragonTest {
 	
 	@Test
 	public void testListOfDragons() {
-		assertNotNull(InitObjects.initDragons());
-		assertFalse(InitObjects.initDragons().isEmpty());
+		InitObjects.initDragons();
+		
+		assertNotNull(Dragon.dragons);
+		assertFalse(Dragon.dragons.isEmpty());
 	}
 
 	@Test
