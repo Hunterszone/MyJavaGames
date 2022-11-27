@@ -9,6 +9,7 @@ import entities.Alien;
 import entities.Bunker;
 import entities.Dragon;
 import game_engine.DrawScene;
+import game_engine.InitObjects;
 import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
@@ -26,30 +27,32 @@ public class DrawSceneTest {
 	@Test
 	public void testDrawGameStateL1() {
 		Assert.assertNotNull(Alien.aliens);
+		Assert.assertNotNull("Healthpacks not loaded for L1", HealthPack.healthpacks);
 	}
 
 	@Test
 	public void testDrawGameStateL2() {
 		Assert.assertNotNull(Dragon.dragons);
+		Assert.assertNotNull("Angels not loaded for L2", InitObjects.angels);
 	}
 		
 	@Test
 	public void testDrawGameStateL3() {
 		UpdateObjects.lifeBunker = 45;
 		Assert.assertNotNull("Bunker object is null", Bunker.bunkerObj);
-		Assert.assertNotNull("Healthpack is null L3", HealthPack.healthpacks);
+		Assert.assertNotNull("Healthpacks not loaded for L3", HealthPack.healthpacks);
 	}
 	
 	@Test
 	public void testDrawGameStateL4() {
 		UpdateObjects.lifeBunker = 50;
-		Assert.assertNotNull("Goldstack is null", Gold.goldstack);
+		Assert.assertNotNull("Goldstack not loaded for L4", Gold.goldstack);
 	}
 	
 	@Test
 	public void testDrawGameStateL5() {
 		UpdateObjects.lifeBunker = 50;
-		Assert.assertNotNull("HealthPack is null L5", HealthPack.healthpacks);
+		Assert.assertNotNull("HealthPacks not loaded for L5", HealthPack.healthpacks);
 	}
 
 	@After

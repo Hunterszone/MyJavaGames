@@ -12,10 +12,10 @@ public class Angel extends SpritePattern implements Moveable {
 	public Angel(int x, int y) {
 		super(x, y);
 
-		initAngels();
+		initAngel();
 	}
 
-	public void initAngels() {
+	public void initAngel() {
 		imageName = Sprite.ANGEL.getImg();
 		assert imageName != null;
 		loadImage(imageName);
