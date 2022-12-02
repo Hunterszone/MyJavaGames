@@ -41,7 +41,7 @@ import launcher.Launcher;
 import marytts.exceptions.MaryConfigurationException;
 import multiplayer_tbd.JoinGame;
 import util.ConsoleContent;
-import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -195,7 +195,7 @@ public class GameMenuBar extends JFrame {
 		class ExitAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Constants.isMenuOn = false;
+				Flags.isMenuOn = false;
 				LoadSounds.BG_MUSIC.stop();
 				LoadSounds.HIT.stop();
 				LoadSounds.TAUNT.stop();
@@ -224,7 +224,7 @@ public class GameMenuBar extends JFrame {
 				InitObjects.ingame = false;
 				if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 				MouseInputHandler.main = null;
-				Constants.isMenuOn = true;
+				Flags.isMenuOn = true;
 				final CanvasMenu engine = new CanvasMenu();
 				engine.start();
 			}

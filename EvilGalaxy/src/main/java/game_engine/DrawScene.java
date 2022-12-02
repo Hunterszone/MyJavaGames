@@ -52,10 +52,11 @@ import map.EvilHeadCoordinates;
 import map.MapEntity;
 import map.PlayerCoordinates;
 import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 import util.TextToSpeech;
 
-public class DrawScene extends Collisions {
+public class DrawScene extends UpdateObjects {
 
 	private static final long serialVersionUID = 1L;
 
@@ -87,7 +88,7 @@ public class DrawScene extends Collisions {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		if (ingame) {
+		if (UpdateObjects.ingame) {
 			startAnimations();
 			drawGameStates(g);
 			evilHeadBehaviour();
@@ -164,9 +165,9 @@ public class DrawScene extends Collisions {
 	}
 
 	private void startAnimations() {
-		if (animator == null) {
-			animator = new Thread(this);
-			animator.start();
+		if (UpdateObjects.animator == null) {
+			UpdateObjects.animator = new Thread(this);
+			UpdateObjects.animator.start();
 		}
 	}
 
@@ -179,15 +180,15 @@ public class DrawScene extends Collisions {
 			g.drawImage(bg2, 0, 0, null);
 		}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+		if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50) {
 			g.drawImage(bg3, 0, 0, null);
 		}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
+		if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0) {
 			g.drawImage(bg3, 0, 0, null);
 		}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+		if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
 			g.drawImage(bg3, 0, 0, null);
 		}
 	}
@@ -206,7 +207,7 @@ public class DrawScene extends Collisions {
 	}
 
 	private void drawGameWon(Graphics g) {
-		if (lifeEvilHead == 50) {
+		if (UpdateObjects.lifeEvilHead == 50) {
 
 			drawElonsUp(g);
 			drawElonsDown(g);
@@ -223,7 +224,7 @@ public class DrawScene extends Collisions {
 	}
 
 	private void handleGameOver(Graphics g) {
-		if (lifePlayerShip <= 0) {
+		if (UpdateObjects.lifePlayerShip <= 0) {
 			if (!TextToSpeech.finMusicIsPlayed) {
 				LoadSounds.FIN.play();
 				TextToSpeech.finMusicIsPlayed = true;
@@ -267,11 +268,11 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByEvilHead() {
-		if (killedByEvilHead) {
+		if (Flags.killedByEvilHead) {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by the Evil Head!");
 				TextToSpeech.voiceInterruptor = true;
-				killedByEvilHead = false;
+				Flags.killedByEvilHead = false;
 				try {
 					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
@@ -285,11 +286,11 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByBunker() {
-		if (killedByBunker) {
+		if (Flags.killedByBunker) {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by the bunker!");
 				TextToSpeech.voiceInterruptor = true;
-				killedByBunker = false;
+				Flags.killedByBunker = false;
 				try {
 					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
@@ -303,11 +304,11 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByDragon() {
-		if (killedByDragon) {
+		if (Flags.killedByDragon) {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by a dragon!");
 				TextToSpeech.voiceInterruptor = true;
-				killedByDragon = false;
+				Flags.killedByDragon = false;
 				try {
 					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
@@ -321,11 +322,11 @@ public class DrawScene extends Collisions {
 
 	@SuppressWarnings("finally")
 	private void handleKilledByAlien() {
-		if (killedByAlien) {
+		if (Flags.killedByAlien) {
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Killed by an alien!");
 				TextToSpeech.voiceInterruptor = true;
-				killedByAlien = false;
+				Flags.killedByAlien = false;
 				try {
 					HighScoreToDb.isInserted();
 				} catch (final SQLException e) {
@@ -346,64 +347,65 @@ public class DrawScene extends Collisions {
 			drawGameStateL2(g);
 		}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker < 50) {
+		if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50) {
 			drawGameStateL3(g);
 		}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.size() > 0) {
+		if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0) {
 			drawGameStateL4(g);
 		}
 
-		if (Dragon.dragons.isEmpty() && lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
+		if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()) {
 			drawGameStateL5(g);
 		}
 	}
 
 	private void handleLifeEvilHead(Graphics g) {
 
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50 && lifeEvilHead < 10) {
+		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.lifeBunker >= 50 && 
+				UpdateObjects.lifeEvilHead < 10) {
 			g.drawString("Health: 100%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (lifeEvilHead >= 10 && lifeEvilHead < 20) {
+		if (UpdateObjects.lifeEvilHead >= 10 && UpdateObjects.lifeEvilHead < 20) {
 			g.drawString("Health: 80%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (lifeEvilHead >= 20 && lifeEvilHead < 30) {
+		if (UpdateObjects.lifeEvilHead >= 20 && UpdateObjects.lifeEvilHead < 30) {
 			g.drawString("Health: 60%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (lifeEvilHead >= 30 && lifeEvilHead < 35) {
+		if (UpdateObjects.lifeEvilHead >= 30 && UpdateObjects.lifeEvilHead < 35) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (lifeEvilHead >= 35) {
+		if (UpdateObjects.lifeEvilHead >= 35) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (lifeEvilHead >= 30 && lifeEvilHead < 40) {
+		if (UpdateObjects.lifeEvilHead >= 30 && UpdateObjects.lifeEvilHead < 40) {
 			g.drawString("Health: 40%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (lifeEvilHead >= 40 && lifeEvilHead < 45) {
+		if (UpdateObjects.lifeEvilHead >= 40 && UpdateObjects.lifeEvilHead < 45) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (lifeEvilHead >= 45) {
+		if (UpdateObjects.lifeEvilHead >= 45) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (lifeEvilHead >= 40 && lifeEvilHead < 50) {
+		if (UpdateObjects.lifeEvilHead >= 40 && UpdateObjects.lifeEvilHead < 50) {
 			g.drawString("Health: 20%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (lifeEvilHead == 50) {
+		if (UpdateObjects.lifeEvilHead == 50) {
 			ingame = false;
 		}
 	}
 
 	private void evilHeadBehaviour() {
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && lifeBunker >= 50) {
+		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.lifeBunker >= 50) {
 			if (EvilHead.evilHead.x - PlayerShip.playerShip.x > 810) {
 				PlayerShip.playerShip.shakeShip();
 				Crosshair.crosshair.shakeCrosshair();
@@ -540,7 +542,7 @@ public class DrawScene extends Collisions {
 		drawLocation(g);
 
 		if (timerEasy.isRunning() || timerMedium.isRunning() || timerHard.isRunning()) {
-			updateDragons();
+			UpdateObjects.updateDragons();
 			LoadSounds.TAUNT.loop();
 		}
 	}
@@ -585,7 +587,7 @@ public class DrawScene extends Collisions {
 
 		g.drawString(Constants.LEVEL + 4, 5, 20);
 		g.drawImage(GoldIcon.goldIcon.getImage(), 100, 5, null);
-		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - Collisions.goldCount)) + "/12", 140, 20);
+		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - UpdateObjects.goldCount)) + "/12", 140, 20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 225, 5, null);
 		g.drawString(Constants.LOCKED, 265, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
@@ -659,42 +661,42 @@ public class DrawScene extends Collisions {
 
 	private void drawLifePlayerShip(Graphics g) {
 
-		if (lifePlayerShip > 0) {
+		if (UpdateObjects.lifePlayerShip > 0) {
 			PlayerShip.playerShip.renderShip(g);
 		} else {
 			ingame = false;
 		}
 
-		if (lifePlayerShip > 4) {
+		if (UpdateObjects.lifePlayerShip > 4) {
 			g.drawString("GODMODE", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			PlayerShip.playerShip.godMode();
 		}
 
-		if (lifePlayerShip == 4) {
+		if (UpdateObjects.lifePlayerShip == 4) {
 			g.drawString("Health: 100%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 		}
 
-		if (lifePlayerShip == 3) {
+		if (UpdateObjects.lifePlayerShip == 3) {
 			g.drawString("Health: 75%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
-			updateExplosions();
+			UpdateObjects.updateExplosions();
 		}
 
-		if (lifePlayerShip == 2) {
+		if (UpdateObjects.lifePlayerShip == 2) {
 			g.drawString("Health: 50%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
-			updateExplosions();
+			UpdateObjects.updateExplosions();
 		}
 
-		if (lifePlayerShip == 1) {
+		if (UpdateObjects.lifePlayerShip == 1) {
 			g.drawString("Health: 25%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
-			updateExplosions();
+			UpdateObjects.updateExplosions();
 		}
 	}
 
 	private void drawNaviMap(Graphics g) {
-		if (Constants.isMapVisible) {
+		if (Flags.isMapVisible) {
 			setFontStyle(g);
 			mapEntity.draw(g);
 			playerSign.draw(g);
@@ -706,40 +708,40 @@ public class DrawScene extends Collisions {
 	}
 
 	private void drawLifeBunker(Graphics g) {
-		if (lifeBunker < 10 && Gold.goldstack.size() > 0) {
+		if (UpdateObjects.lifeBunker < 10 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 100%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (lifeBunker >= 10 && lifeBunker < 20 && Gold.goldstack.size() > 0) {
+		if (UpdateObjects.lifeBunker >= 10 && UpdateObjects.lifeBunker < 20 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 80%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 
 		}
 
-		if (lifeBunker >= 20 && lifeBunker < 30 && Gold.goldstack.size() > 0) {
+		if (UpdateObjects.lifeBunker >= 20 && UpdateObjects.lifeBunker < 30 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 60%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (lifeBunker >= 30 && lifeBunker < 35) {
+		if (UpdateObjects.lifeBunker >= 30 && UpdateObjects.lifeBunker < 35) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (lifeBunker >= 35) {
+		if (UpdateObjects.lifeBunker >= 35) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (lifeBunker >= 30 && lifeBunker < 40 && Gold.goldstack.size() > 0) {
+		if (UpdateObjects.lifeBunker >= 30 && UpdateObjects.lifeBunker < 40 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 40%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (lifeBunker >= 40 && lifeBunker < 45) {
+		if (UpdateObjects.lifeBunker >= 40 && UpdateObjects.lifeBunker < 45) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (lifeBunker >= 45) {
+		if (UpdateObjects.lifeBunker >= 45) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (lifeBunker >= 40 && lifeBunker < 50 && Gold.goldstack.size() > 0) {
+		if (UpdateObjects.lifeBunker >= 40 && UpdateObjects.lifeBunker < 50 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 20%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
@@ -766,7 +768,7 @@ public class DrawScene extends Collisions {
 		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
 		for (final PlasmaBall n : plasmaBalls) {
-			if (n.isVisible() && lifeBunker >= 50) {
+			if (n.isVisible() && UpdateObjects.lifeBunker >= 50) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
@@ -774,7 +776,7 @@ public class DrawScene extends Collisions {
 		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
 
 		for (final CanonBall n : canons) {
-			if (n.isVisible() && lifeBunker >= 50) {
+			if (n.isVisible() && UpdateObjects.lifeBunker >= 50) {
 				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
 			}
 		}
@@ -920,7 +922,7 @@ public class DrawScene extends Collisions {
 		setFontStyle(g);
 		g.drawString("Monsters left: " + 0, 5, 20);
 		g.drawString("Health: 0%", 200, 20);
-		if (lifeBunker >= 50) {
+		if (UpdateObjects.lifeBunker >= 50) {
 			g.drawString("Gold: " + 0, 340, 20);
 		}
 	}
@@ -929,13 +931,13 @@ public class DrawScene extends Collisions {
 
 		String msg = null;
 
-		if (killedByAlien == true)
+		if (Flags.killedByAlien == true)
 			msg = Entity.ALIEN.getMsg();
-		if (killedByDragon == true)
+		if (Flags.killedByDragon == true)
 			msg = Entity.DRAGON.getMsg();
-		if (killedByBunker == true)
+		if (Flags.killedByBunker == true)
 			msg = Entity.BUNKER.getMsg();
-		if (killedByEvilHead == true)
+		if (Flags.killedByEvilHead == true)
 			msg = Entity.EVILHEAD.getMsg();
 
 		formatMsg(g, msg);

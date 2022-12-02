@@ -66,8 +66,8 @@ public class Difficulty {
 	private static void initObjects() {
 
 		if (!SaveGame.savedOnL1 && !SaveGame.savedOnL2) {
-			Collisions.alienKilled = 0;
-			Collisions.dragonKilled = 0;
+			UpdateObjects.alienKilled = 0;
+			UpdateObjects.dragonKilled = 0;
 		}
 
 		TextToSpeech.finMusicIsPlayed = false;

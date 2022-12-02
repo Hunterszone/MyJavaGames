@@ -19,6 +19,7 @@ import entities.EvilHead;
 import entities.PlayerShip;
 import game_engine.Collisions;
 import game_engine.InitObjects;
+import game_engine.UpdateObjects;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Explosion;
@@ -27,6 +28,7 @@ import items.HealthPack;
 import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
+import util.Flags;
 
 public class CollisionsTest {
 
@@ -53,90 +55,90 @@ public class CollisionsTest {
 
 	@Test
 	public void shipIntersectsAlien() {
-		Collisions.alienKilled = 0;
+		UpdateObjects.alienKilled = 0;
 		
 		Collisions.checkAlienCollision(PlayerShip.playerShip.getBounds());
 
-		assertTrue("ship does not intersect alien", Collisions.alienKilled == 1);
+		assertTrue("ship does not intersect alien", UpdateObjects.alienKilled == 1);
 	}
 
 	@Test
 	public void missileIntersectsAlien() {
-		Collisions.alienKilled = 0;
+		UpdateObjects.alienKilled = 0;
 				
 		Collisions.checkMissileCollision(EvilHead.evilHead.getBounds());
 
-		assertTrue("ship does not intersect alien", Collisions.alienKilled == 1);
+		assertTrue("ship does not intersect alien", UpdateObjects.alienKilled == 1);
 	}
 
 	@Test
 	public void shipIntersectsDragon() {
-		Collisions.dragonKilled = 0;
+		UpdateObjects.dragonKilled = 0;
 
 		Collisions.checkDragonCollision(Dragon.dragons.get(0));
 
-		assertTrue("ship does not intersect dragon", Collisions.dragonKilled == 1);
+		assertTrue("ship does not intersect dragon", UpdateObjects.dragonKilled == 1);
 	}
 
 	@Test
 	public void canonIntersectsShip() {
-		Collisions.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		
 		Collisions.checkCanonCollision(PlayerShip.playerShip.getBounds());
 
-		assertTrue("canon does not intersect ship", Collisions.lifePlayerShip == 2);
+		assertTrue("canon does not intersect ship", UpdateObjects.lifePlayerShip == 2);
 	}
 
 	@Test
 	public void plasmaBallIntersectsShip() {
-		Collisions.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		Alien.aliens = new ArrayList<Alien>();
 		Dragon.dragons = new ArrayList<Dragon>();
-		Collisions.lifeBunker = 50;
+		UpdateObjects.lifeBunker = 50;
 		
 		Collisions.checkPlasmaCollision(PlayerShip.playerShip.getBounds());
 
-		assertTrue("plasmaBall does not intersect ship", Collisions.lifePlayerShip == 2);
+		assertTrue("plasmaBall does not intersect ship", UpdateObjects.lifePlayerShip == 2);
 	}
 
 	@Test
 	public void bulletLeftIntersectsShip() {
-		Collisions.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		
 		Collisions.checkBulletCollision(BunkerBullet.bulletsLeft);
 
-		assertTrue("left bullet does not intersect ship", Collisions.lifePlayerShip == 2);
+		assertTrue("left bullet does not intersect ship", UpdateObjects.lifePlayerShip == 2);
 	}
 
 	@Test
 	public void bulletRightIntersectsShip() {
-		Collisions.lifePlayerShip = 3;
+		UpdateObjects.lifePlayerShip = 3;
 		
 		Collisions.checkBulletCollision(BunkerBullet.bulletsRight);
 
-		assertTrue("right bullet does not intersect ship", Collisions.lifePlayerShip == 2);
+		assertTrue("right bullet does not intersect ship", UpdateObjects.lifePlayerShip == 2);
 	}
 
 	@Test
 	public void shipIntersectsBunker() {
 		Alien.aliens = new ArrayList<Alien>();
 		Dragon.dragons = new ArrayList<Dragon>();
-		Collisions.lifeBunker = 3;
+		UpdateObjects.lifeBunker = 3;
 
 		Collisions.checkBunkerCollision(PlayerShip.playerShip.getBounds(), Bunker.bunkerObj.getBounds());
 
-		assertTrue("ship does not intersect bunker", Collisions.killedByBunker);
+		assertTrue("ship does not intersect bunker", Flags.killedByBunker);
 	}
 	
 	@Test
 	public void shipIntersectsEvilHead() {
 		Alien.aliens = new ArrayList<Alien>();
 		Dragon.dragons = new ArrayList<Dragon>();
-		Collisions.lifeBunker = 50;
+		UpdateObjects.lifeBunker = 50;
 		
 		Collisions.checkEvilHeadCollision(PlayerShip.playerShip.getBounds(), EvilHead.evilHead.getBounds());
 
-		assertTrue("ship does not intersect EvilHead", Collisions.killedByEvilHead);
+		assertTrue("ship does not intersect EvilHead", Flags.killedByEvilHead);
 	}
 
 	@Test
@@ -145,11 +147,11 @@ public class CollisionsTest {
 		Dragon.dragons = new ArrayList<Dragon>();
 		BunkerBullet.bulletsLeft = new ArrayList<BunkerBullet>();
 		BunkerBullet.bulletsRight = new ArrayList<BunkerBullet>();
-		Collisions.lifeBunker = 3;
+		UpdateObjects.lifeBunker = 3;
 
 		Collisions.checkRocketCollision(EvilHead.evilHead.getBounds(), Bunker.bunkerObj.getBounds());
 
-		assertTrue("rocket does not intersect bunker", Collisions.lifeBunker == 4);
+		assertTrue("rocket does not intersect bunker", UpdateObjects.lifeBunker == 4);
 	}
 
 	@Test
@@ -158,7 +160,7 @@ public class CollisionsTest {
 
 		Collisions.checkRocketCollision(EvilHead.evilHead.getBounds(), Bunker.bunkerObj.getBounds());
 
-		assertTrue("rocket does not intersect EvilHead", Collisions.lifeEvilHead == 4);
+		assertTrue("rocket does not intersect EvilHead", UpdateObjects.lifeEvilHead == 4);
 	}
 
 	@Test
@@ -167,43 +169,43 @@ public class CollisionsTest {
 		
 		Collisions.checkMissileCollision(EvilHead.evilHead.getBounds());
 		
-		assertTrue("missile does not intersect EvilHead", Collisions.lifeEvilHead == 4);
+		assertTrue("missile does not intersect EvilHead", UpdateObjects.lifeEvilHead == 4);
 	}
 
 	@Test
 	public void rocketIntersectsDragon() {
-		Collisions.dragonKilled = 0;
+		UpdateObjects.dragonKilled = 0;
 				
 		Collisions.checkDragonCollision(Dragon.dragons.get(0));
 
-		assertTrue("rocket does not intersect dragon", Collisions.dragonKilled == 1);
+		assertTrue("rocket does not intersect dragon", UpdateObjects.dragonKilled == 1);
 	}
 	
 	@Test
 	public void shipIntersectsHealthOnLevel3() {
 		Dragon.dragons = new ArrayList<Dragon>();
-		Collisions.lifePlayerShip = 2;
+		UpdateObjects.lifePlayerShip = 2;
 		
 		Collisions.checkHealthCollision(PlayerShip.playerShip.getBounds());
 		
-		assertTrue("ship does not intersect healthPack", Collisions.lifePlayerShip == 3);
+		assertTrue("ship does not intersect healthPack", UpdateObjects.lifePlayerShip == 3);
 	}
 
 	@Test
 	public void shipIntersectsHealthOnLevel5() {
 		triggerEvilHeadCollision();
-		Collisions.lifePlayerShip = 2;
+		UpdateObjects.lifePlayerShip = 2;
 
 		Collisions.checkHealthCollision(PlayerShip.playerShip.getBounds());
 		
-		assertTrue("ship does not intersect healthPack", Collisions.lifePlayerShip == 3);
+		assertTrue("ship does not intersect healthPack", UpdateObjects.lifePlayerShip == 3);
 	}
 
 	@Test
 	public void shipIntersectsGold() {
 		Alien.aliens = new ArrayList<Alien>();
 		Dragon.dragons = new ArrayList<Dragon>();
-		Collisions.lifeBunker = 50;
+		UpdateObjects.lifeBunker = 50;
 		
 		Collisions.checkGoldCollision(PlayerShip.playerShip.getBounds());
 		
@@ -236,8 +238,8 @@ public class CollisionsTest {
 		CanonBall.canonBalls = new ArrayList<CanonBall>();
 		BunkerBullet.bulletsLeft = new ArrayList<BunkerBullet>();
 		BunkerBullet.bulletsRight = new ArrayList<BunkerBullet>();
-		Collisions.lifeBunker = 50;
-		Collisions.lifeEvilHead = 3;
+		UpdateObjects.lifeBunker = 50;
+		UpdateObjects.lifeEvilHead = 3;
 		InitObjects.timerHard = new Timer(15, null);
 	}
 }

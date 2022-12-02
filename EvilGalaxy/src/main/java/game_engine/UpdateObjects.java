@@ -18,7 +18,7 @@ import items.HealthPack;
 import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
-import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects implements ActionListener {
@@ -27,6 +27,8 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 	public static int lifePlayerShip = 3;
 	public static int lifeBunker = 3;
 	public static int goldCount = 12;
+	public static int alienKilled = 0;
+	public static int dragonKilled = 0;
 
 	private static final long serialVersionUID = 1L;
 
@@ -63,7 +65,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		repaint();
 	}
 
-	void updateDragons() {
+	static void updateDragons() {
 		Dragon.dragons.stream().forEach(dragon -> {
 			if (dragon != null) {
 				Collisions.checkDragonCollision(dragon);
@@ -98,7 +100,7 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 		}
 	}
 
-	protected void updateExplosions() {
+	protected static void updateExplosions() {
 		explosions.removeIf(explosion -> explosion != null && explosion.getR() == 80);
 		explosions.forEach(explosion -> explosion.update());
 	}
@@ -245,13 +247,13 @@ public abstract class UpdateObjects extends InitObjects implements ActionListene
 
 	private void updateHealth() {
 		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && 
-				Dragon.dragons.isEmpty() && lifePlayerShip <= 3 && !Constants.hpIsEmpty) {
+				Dragon.dragons.isEmpty() && lifePlayerShip <= 3 && !Flags.hpIsEmpty) {
 			HealthPack.healthpacks
 					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 
 		if (HealthPack.healthpacks.isEmpty()) {
-			Constants.hpIsEmpty = true;
+			Flags.hpIsEmpty = true;
 		}
 
 		HealthPack.healthpacks.stream().filter(healthPack -> healthPack.isVisible())

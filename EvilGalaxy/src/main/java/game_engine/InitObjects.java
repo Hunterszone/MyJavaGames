@@ -37,7 +37,9 @@ import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
+import menu_engine.CanvasMenu;
 import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 import util.LocationJsonExtractor;
 import util.TextToSpeech;
@@ -84,7 +86,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 		// Constants
 		ingame = true;
-		Constants.isEPressed = true;
+		Flags.isEPressed = true;
 		
 		// Collections
 		explosions = new ArrayList<Explosion>();
@@ -200,13 +202,18 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public static void initGold() {
 		Gold.goldstack = new ArrayList<>();
 
-		for (int i = 0; i < Collisions.goldCount; i++) {
+		for (int i = 0; i < UpdateObjects.goldCount; i++) {
 			Gold.goldstack.add(new Gold((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 	}
 
 	public static void initHealth() {
 		HealthPack.healthpacks = new ArrayList<>(5);
+	}
+	
+	public static void initCanvas() {
+		final CanvasMenu engine = new CanvasMenu();
+		engine.start();
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 
 import enums.Sprite;
 import game_engine.SpritePattern;
-import util.Constants;
+import util.Flags;
 
 public class VolBtn extends SpritePattern {
 
@@ -32,7 +32,7 @@ public class VolBtn extends SpritePattern {
 	}
 
 	private void initMuteOrVol() {
-		if (Constants.isSPressed) {
+		if (Flags.isSPressed) {
 			initMute();
 		} else {
 			initVol();

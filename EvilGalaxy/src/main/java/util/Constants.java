@@ -3,16 +3,12 @@ package util;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import menu_engine.CanvasMenu;
-
 public class Constants {
 	
 	public static final CanvasAssets LOAD_ASSETS = new CanvasAssets(0, 0);
 	public static final String VOICENAME = "kevin16";
 	public static final Dimension DIMENSION = Toolkit.getDefaultToolkit().getScreenSize();
-	public static boolean isEPressed, isMPressed, isHPressed, isMapVisible, isSPressed;
-	public static boolean isMenuOn = true;
-	public static boolean hpIsEmpty = false;
+	
 	public static final int MYSHIP_X = 40;
 	public static final int MYSHIP_Y = 180;
 	public static final int MYCROSSHAIR_X = 250;
@@ -32,9 +28,4 @@ public class Constants {
 	public static final String LOCKED = ": Locked";
 	public static final String COLON_WITH_SPACE = ": ";
 	public static final String LEVEL = "Level: ";
-	
-	public static void initCanvas() {
-		final CanvasMenu engine = new CanvasMenu();
-		engine.start();
-	}
 }

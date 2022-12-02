@@ -24,7 +24,7 @@ import items.SaveSign;
 import items.VolBtn;
 import menu_engine.MouseInputHandler;
 import util.ConsoleContent;
-import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -45,12 +45,12 @@ public class Controls implements KeyListener {
 		final int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_S) {
-			Constants.isSPressed = true;
+			Flags.isSPressed = true;
 			LoadSounds.BG_MUSIC.stop();
 		}
 
 		if (key == KeyEvent.VK_A) {
-			Constants.isSPressed = false;
+			Flags.isSPressed = false;
 			if (InitObjects.timerEasy.isRunning() || 
 					InitObjects.timerHard.isRunning() || 
 					InitObjects.timerMedium.isRunning()) {
@@ -70,23 +70,23 @@ public class Controls implements KeyListener {
 				key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
 			if (InitObjects.ingame) {
 				ConsoleContent.manualON = false;
-				if (!InitObjects.timerHard.isRunning() && Constants.isHPressed) {
+				if (!InitObjects.timerHard.isRunning() && Flags.isHPressed) {
 					InitObjects.timerHard.start();
-					if(!Constants.isSPressed) {
+					if(!Flags.isSPressed) {
 						LoadSounds.BG_MUSIC.loop();								
 					}
 				} 
-				if (!InitObjects.timerMedium.isRunning() && Constants.isMPressed) {
+				if (!InitObjects.timerMedium.isRunning() && Flags.isMPressed) {
 					InitObjects.timerMedium.start();
-					if(!Constants.isSPressed) {
+					if(!Flags.isSPressed) {
 						LoadSounds.BG_MUSIC.loop();								
 					}
 				} 
-				if ((!InitObjects.timerEasy.isRunning() && Constants.isEPressed) && 
+				if ((!InitObjects.timerEasy.isRunning() && Flags.isEPressed) && 
 						!(InitObjects.timerEasy.isRunning() && InitObjects.timerMedium.isRunning() && InitObjects.timerHard.isRunning()) && 
-						!Constants.isMPressed && !Constants.isHPressed) {
+						!Flags.isMPressed && !Flags.isHPressed) {
 					InitObjects.timerEasy.start();
-					if(!Constants.isSPressed) {
+					if(!Flags.isSPressed) {
 						LoadSounds.BG_MUSIC.loop();								
 					}		
 				}
@@ -157,10 +157,10 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_R) {
-			Constants.isMPressed = false;
-			Constants.isHPressed = false;
+			Flags.isMPressed = false;
+			Flags.isHPressed = false;
 			if (!InitObjects.ingame) {
-				Constants.isEPressed = true;
+				Flags.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
 				Difficulty.restart();
@@ -168,14 +168,14 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_E) {
-			Constants.isMPressed = false;
-			Constants.isHPressed = false;
-			Constants.isEPressed = true;
+			Flags.isMPressed = false;
+			Flags.isHPressed = false;
+			Flags.isEPressed = true;
 			ConsoleContent.manualON = false;
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerEasy.start();
-			if (!Constants.isSPressed) {
+			if (!Flags.isSPressed) {
 				LoadSounds.BG_MUSIC.loop();
 			}
 			if (!InitObjects.ingame) {
@@ -189,14 +189,14 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_M) {
-			Constants.isEPressed = false;
-			Constants.isHPressed = false;
-			Constants.isMPressed = true;
+			Flags.isEPressed = false;
+			Flags.isHPressed = false;
+			Flags.isMPressed = true;
 			ConsoleContent.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerHard.stop();
 			InitObjects.timerMedium.start();
-			if (!Constants.isSPressed) {
+			if (!Flags.isSPressed) {
 				LoadSounds.BG_MUSIC.loop();
 			}
 			if (!InitObjects.ingame) {
@@ -210,14 +210,14 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_H) {
-			Constants.isEPressed = false;
-			Constants.isMPressed = false;
-			Constants.isHPressed = true;
+			Flags.isEPressed = false;
+			Flags.isMPressed = false;
+			Flags.isHPressed = true;
 			ConsoleContent.manualON = false;
 			InitObjects.timerEasy.stop();
 			InitObjects.timerMedium.stop();
 			InitObjects.timerHard.start();
-			if (!Constants.isSPressed) {
+			if (!Flags.isSPressed) {
 				LoadSounds.BG_MUSIC.loop();
 			}
 			if (!InitObjects.ingame) {
@@ -232,11 +232,11 @@ public class Controls implements KeyListener {
 
 		if (key == KeyEvent.VK_N) {
 			if (InitObjects.ingame) {
-				if (Constants.isMapVisible == false) {
-					Constants.isMapVisible = true;
+				if (Flags.isMapVisible == false) {
+					Flags.isMapVisible = true;
 					return;
 				} else {
-					Constants.isMapVisible = false;
+					Flags.isMapVisible = false;
 					return;
 				}
 			}
@@ -289,7 +289,7 @@ public class Controls implements KeyListener {
 		 */
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			Constants.isMapVisible = false;
+			Flags.isMapVisible = false;
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.HIT.stop();
 			LoadSounds.TAUNT.stop();
@@ -321,7 +321,7 @@ public class Controls implements KeyListener {
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;
-			Constants.initCanvas();
+			InitObjects.initCanvas();
 		}
 	}
 

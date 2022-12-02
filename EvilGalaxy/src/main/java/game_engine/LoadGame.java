@@ -22,7 +22,7 @@ import main.Main;
 import marytts.exceptions.MaryConfigurationException;
 import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
-import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -82,7 +82,7 @@ public class LoadGame {
 			objectStream.close();
 		}
 
-		Constants.isMenuOn = false;
+		Flags.isMenuOn = false;
 		if (MouseInputHandler.main == null) {
 			DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 			DisplayCanvas.frame.dispose();
@@ -98,7 +98,7 @@ public class LoadGame {
 				MouseInputHandler.main.setVisible(true);
 			});
 		}
-		Constants.isMenuOn = true;
+		Flags.isMenuOn = true;
 	}
 
 	private void initSavedAssets() throws MaryConfigurationException {
@@ -110,24 +110,24 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true) {
-				Constants.isMPressed = false;
-				Constants.isHPressed = false;
+			if (Flags.isEPressed == true) {
+				Flags.isMPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getEasyDiff();
-			} else if (Constants.isMPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isHPressed = false;
+			} else if (Flags.isMPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getMediumDiff();
-			} else if (Constants.isHPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isMPressed = false;
+			} else if (Flags.isHPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isMPressed = false;
 				Difficulty.getHardDiff();
 			} else {
 				Difficulty.restart();
 			}
 
 			Alien.aliens = new ArrayList<>();
-			for (int i = 0; i < 40 - Collisions.alienKilled; i++) {
+			for (int i = 0; i < 40 - UpdateObjects.alienKilled; i++) {
 				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000),
 						(int) Math.ceil(Math.random() * 800));
 				Alien.aliens.add(born);
@@ -147,17 +147,17 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true) {
-				Constants.isMPressed = false;
-				Constants.isHPressed = false;
+			if (Flags.isEPressed == true) {
+				Flags.isMPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getEasyDiff();
-			} else if (Constants.isMPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isHPressed = false;
+			} else if (Flags.isMPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getMediumDiff();
-			} else if (Constants.isHPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isMPressed = false;
+			} else if (Flags.isHPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isMPressed = false;
 				Difficulty.getHardDiff();
 			} else {
 				Difficulty.restart();
@@ -165,7 +165,7 @@ public class LoadGame {
 
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
-			for (int i = 0; i < 30 - Collisions.dragonKilled; i++) {
+			for (int i = 0; i < 30 - UpdateObjects.dragonKilled; i++) {
 				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700),
 						(int) Math.ceil(Math.random() * 800));
 				Dragon.dragons.add(born);
@@ -185,17 +185,17 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true) {
-				Constants.isMPressed = false;
-				Constants.isHPressed = false;
+			if (Flags.isEPressed == true) {
+				Flags.isMPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getEasyDiff();
-			} else if (Constants.isMPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isHPressed = false;
+			} else if (Flags.isMPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getMediumDiff();
-			} else if (Constants.isHPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isMPressed = false;
+			} else if (Flags.isHPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isMPressed = false;
 				Difficulty.getHardDiff();
 			} else {
 				Difficulty.restart();
@@ -216,17 +216,17 @@ public class LoadGame {
 
 			TextToSpeech.playVoice("Game loaded!");
 
-			if (Constants.isEPressed == true) {
-				Constants.isMPressed = false;
-				Constants.isHPressed = false;
+			if (Flags.isEPressed == true) {
+				Flags.isMPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getEasyDiff();
-			} else if (Constants.isMPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isHPressed = false;
+			} else if (Flags.isMPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isHPressed = false;
 				Difficulty.getMediumDiff();
-			} else if (Constants.isHPressed == true) {
-				Constants.isEPressed = false;
-				Constants.isMPressed = false;
+			} else if (Flags.isHPressed == true) {
+				Flags.isEPressed = false;
+				Flags.isMPressed = false;
 				Difficulty.getHardDiff();
 			} else {
 				Difficulty.restart();

@@ -251,14 +251,14 @@ public class ConsoleContent extends OutputStream {
 					// EXIT
 					else if (Command.EXIT.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 //						System.exit(0);
-						Constants.isMenuOn = false;
+						Flags.isMenuOn = false;
 						LoadSounds.BG_MUSIC.stop();
 						LoadSounds.HIT.stop();
 						LoadSounds.TAUNT.stop();
 						InitObjects.ingame = false;
 						if(MouseInputHandler.main != null) MouseInputHandler.main.dispose();
 						MouseInputHandler.main = null;
-						Constants.isMenuOn = true;
+						Flags.isMenuOn = true;
 						textArea.append("********Game exited!*********" + "\n");
 						return;
 					}

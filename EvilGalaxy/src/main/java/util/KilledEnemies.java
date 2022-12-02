@@ -2,18 +2,18 @@ package util;
 
 import entities.Alien;
 import entities.Dragon;
-import game_engine.Collisions;
+import game_engine.UpdateObjects;
 
 public class KilledEnemies {
 
 
 	public static String[] getEnemiesByTypeAndCount(String enemyName) {
 		if (enemyName.equalsIgnoreCase(Alien.class.getName())) {
-			final Integer alienKilledd = Collisions.alienKilled;
+			final Integer alienKilledd = UpdateObjects.alienKilled;
 			return new String[] { enemyName, alienKilledd.toString() };
 		}
 		if (enemyName.equalsIgnoreCase(Dragon.class.getName())) {
-			final Integer dragonKilledd = Collisions.dragonKilled;
+			final Integer dragonKilledd = UpdateObjects.dragonKilled;
 			return new String[] { enemyName, dragonKilledd.toString() };
 		}
 		return new String[] { "" };

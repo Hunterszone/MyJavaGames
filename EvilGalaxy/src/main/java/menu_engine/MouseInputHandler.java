@@ -32,6 +32,7 @@ import menu_states.SettingsState;
 import menu_states.StateManager;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.Flags;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -49,14 +50,14 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 		final int mouseX = e.getX();
 		final int mouseY = e.getY();
 
-		if (Constants.isMenuOn) {
+		if (Flags.isMenuOn) {
 			InitObjects.animator = null;
 			playWave1st = new PlayWave1st(clickSound);
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
 					LoadSounds.MENU_MUSIC.stop();
 					playWave1st.start();
-					Constants.isMenuOn = false;
+					Flags.isMenuOn = false;
 					UpdateObjects.lifePlayerShip = 4;
 					UpdateObjects.lifeEvilHead = 3;
 					UpdateObjects.lifeBunker = 3;
@@ -73,7 +74,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 							main.setVisible(true);
 						});
 					}
-					Constants.isMenuOn = true;
+					Flags.isMenuOn = true;
 					TextToSpeech.voiceInterruptor = true;
 					TextToSpeech.playVoice("Loading level 1...");
 				}
@@ -81,25 +82,25 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					playWave1st.start();
 					new LoadGame().openFileChooser();
 				}
-				if (mouseY >= 315 && mouseY <= 365 && Constants.isMenuOn) {
+				if (mouseY >= 315 && mouseY <= 365 && Flags.isMenuOn) {
 					playWave1st.start();
 					CanvasMenu.State.setState(StateManager.STATES.CONTROLS);
-					Constants.isMenuOn = false;
+					Flags.isMenuOn = false;
 					ControlsState.isOn = true;
 				}
-				if (mouseY >= 415 && mouseY <= 465 && Constants.isMenuOn) {
+				if (mouseY >= 415 && mouseY <= 465 && Flags.isMenuOn) {
 					playWave1st.start();
 					CanvasMenu.State.setState(StateManager.STATES.SETTINGS);
-					Constants.isMenuOn = false;
+					Flags.isMenuOn = false;
 					SettingsState.isOn = true;
 				}
-				if (mouseY >= 515 && mouseY <= 565 && Constants.isMenuOn) {
+				if (mouseY >= 515 && mouseY <= 565 && Flags.isMenuOn) {
 					playWave1st.start();
 					CanvasMenu.State.setState(StateManager.STATES.EXTRAS);
-					Constants.isMenuOn = false;
+					Flags.isMenuOn = false;
 					ExtrasState.isOn = true;
 				}
-				if (mouseY >= 615 && mouseY <= 665 && Constants.isMenuOn) {
+				if (mouseY >= 615 && mouseY <= 665 && Flags.isMenuOn) {
 					playWave1st.start();
 					System.exit(0);
 				}
@@ -115,7 +116,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					playWave1st = new PlayWave1st(clickSound);
 					playWave1st.start();
 					ControlsState.isOn = false;
-					Constants.isMenuOn = true;
+					Flags.isMenuOn = true;
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
 			} else {
@@ -130,7 +131,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					playWave1st = new PlayWave1st(clickSound);
 					playWave1st.start();
 					SettingsState.isOn = false;
-					Constants.isMenuOn = true;
+					Flags.isMenuOn = true;
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
 			} else {
@@ -165,7 +166,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 				if (mouseY >= 150 && mouseY <= 200) {
 					LoadSounds.MENU_MUSIC.stop();
 					playWave1st.start();
-					Constants.isMenuOn = false;
+					Flags.isMenuOn = false;
 					DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 					DisplayCanvas.frame.dispose();
 					try {
@@ -173,7 +174,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					} catch (final FileNotFoundException | UnsupportedEncodingException e1) {
 						System.out.println(e1.getMessage());
 					}
-					Constants.isMenuOn = true;
+					Flags.isMenuOn = true;
 				}
 				if (mouseY >= 250 && mouseY <= 300) {
 					playWave1st.start();
@@ -195,7 +196,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 				if (mouseY >= 450 && mouseY <= 500) {
 					playWave1st.start();
 					ExtrasState.isOn = false;
-					Constants.isMenuOn = true;
+					Flags.isMenuOn = true;
 					CanvasMenu.State.setState(StateManager.STATES.MENU);
 				}
 			} else {
@@ -230,7 +231,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 				CanvasMenu.State.setState(StateManager.STATES.MANUAL);
 			}
 		}
-		if ((Constants.isMenuOn || ControlsState.isOn || SettingsState.isOn || ManualState.isOn || ExtrasState.isOn)
+		if ((Flags.isMenuOn || ControlsState.isOn || SettingsState.isOn || ManualState.isOn || ExtrasState.isOn)
 				&& (mouseX >= 1100 && mouseX <= 1100 + Constants.LOAD_ASSETS.volume.getWidth(null))) {
 			if ((mouseY >= 32 && mouseY <= 32 + Constants.LOAD_ASSETS.volume.getHeight(null))) {
 				playWave1st = new PlayWave1st(clickSound);

@@ -24,24 +24,31 @@ public class AlienTest {
 	}
 	
 	@Test
-	public void testListOfAliens() {
+	public void testListOfAliensIsNotNull() {
 		assertNotNull(Alien.aliens);
+	}
+	
+	@Test
+	public void testListOfAliensIsNotEmpty() {
 		assertFalse(Alien.aliens.isEmpty());
 	}
 
 	@Test
-	public void testAlienPositionOnEasyAndMedium() {
+	public void testAlienPositionOnEasyAndMediumXAxis() {
 		alien.move();
 		assertNotEquals("Alien is not X-moving on EASY and MEDIUM difficulty!", TestUtils.POS_X, alien.getX());
-		assertNotEquals("Alien is not Y-moving on EASY and MEDIUM difficulty!", TestUtils.POS_Y, alien.getY());
+	}
+
+	@Test
+	public void testAlienPositionOnHardXAxis() {
+		alien.moveFaster();
+		assertNotEquals("Alien is not X-moving on HARD difficulty!", TestUtils.POS_X, alien.getX());
 	}
 	
 	@Test
-	public void testAlienPositionOnHard() {
-		alien.moveFaster();
-		assertNotEquals("Alien is not X-moving on HARD difficulty!", TestUtils.POS_X, alien.getX());
+	public void testAlienPositionYAxis() {
 		alien.move();
-		assertNotEquals("Alien is not Y-moving on HARD difficulty!", TestUtils.POS_Y, alien.getY());
+		assertNotEquals("Alien is not Y-moving on EASY and MEDIUM difficulty!", TestUtils.POS_Y, alien.getY());
 	}
 	
 }

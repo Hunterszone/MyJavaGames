@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import enums.Sprite;
 import game_engine.DrawScene;
+import game_engine.InitObjects;
 import util.Constants;
 
 public final class Main extends JFrame {
@@ -40,6 +41,6 @@ public final class Main extends JFrame {
 	}
 
 	public static void main(String[] args) throws URISyntaxException {
-		Constants.initCanvas();
+		InitObjects.initCanvas();
 	}
 }
