@@ -1,7 +1,6 @@
 package game_engine;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 import entities.Alien;
@@ -21,7 +20,7 @@ import items.ShipRocket;
 import util.Flags;
 import util.LoadSounds;
 
-public abstract class UpdateObjects extends InitObjects implements ActionListener {
+public abstract class UpdateObjects extends InitObjects {
 
 	public static int lifeEvilHead = 3;
 	public static int lifePlayerShip = 3;
