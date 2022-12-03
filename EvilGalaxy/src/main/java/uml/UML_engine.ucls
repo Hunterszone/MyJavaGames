@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="game_engine.Collisions" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/Collisions.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="537" width="430" x="151" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="game_engine.XboxControls" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/XboxControls.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="199" x="621" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="game_engine.SaveGame" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/SaveGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="203" x="1123" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="game_engine.UpdateObjects" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/UpdateObjects.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="501" width="223" x="860" y="676"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="game_engine.Controls" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/Controls.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="190" x="1366" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="game_engine.SpritePattern" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/SpritePattern.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="357" width="181" x="1596" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="game_engine.Difficulty" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/Difficulty.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="158" x="1817" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="game_engine.DrawScene" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/DrawScene.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1204" width="308" x="860" y="1217"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="game_engine.InitObjects" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/InitObjects.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="519" width="223" x="860" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="game_engine.LoadGame" project="EGMaven" 
+    file="/EGMaven/src/main/java/game_engine/LoadGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="218" x="2015" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
