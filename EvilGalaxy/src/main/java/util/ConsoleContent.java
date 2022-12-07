@@ -20,8 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import entities.Alien;
-import entities.Dragon;
+import enemy.Alien;
+import enemy.Dragon;
 import enums.Command;
 import extras.ConsoleForm;
 import extras.Manual;

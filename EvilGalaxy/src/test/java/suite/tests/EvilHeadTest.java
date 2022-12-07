@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.EvilHead;
+import enemy.EvilHead;
 import util.Constants;
 
 public class EvilHeadTest {

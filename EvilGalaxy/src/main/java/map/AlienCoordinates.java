@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import entities.Alien;
+import enemy.Alien;
 import util.Constants;
 
 public class AlienCoordinates extends JLabel implements Coordinates {

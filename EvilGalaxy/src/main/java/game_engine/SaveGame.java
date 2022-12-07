@@ -5,11 +5,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import entities.Alien;
-import entities.Bunker;
-import entities.Dragon;
-import entities.EvilHead;
-import entities.PlayerShip;
+import enemy.Alien;
+import enemy.Bunker;
+import enemy.Dragon;
+import enemy.EvilHead;
+import enemy.PlayerShip;
 import items.Gold;
 import items.HealthPack;
 import util.TextToSpeech;

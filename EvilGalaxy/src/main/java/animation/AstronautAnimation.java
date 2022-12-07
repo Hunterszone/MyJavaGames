@@ -1,26 +1,26 @@
-package entities;
+package animation;
 
 import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Constants;
 import util.Cyclable;
 
-public class SatelliteAnimation extends SpritePattern implements Cyclable {
+public class AstronautAnimation extends SpritePattern implements Cyclable {
 	
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_X = 0;
 	private final int INITIAL_Y = 0;
-	public static SatelliteAnimation starAnim;
+	public static AstronautAnimation astronautAnim;
 
-	public SatelliteAnimation(int x, int y) {
+	public AstronautAnimation(int x, int y) {
 		super(x, y);
-		drawSatellite();
+		drawAstronaut();
 	}
 
 	private String imageName;
 
-	public void drawSatellite() {
-		imageName = Sprite.SATELLITE_INIT.getImg();
+	public void drawAstronaut() {
+		imageName = Sprite.ASTRONAUT_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
@@ -29,8 +29,8 @@ public class SatelliteAnimation extends SpritePattern implements Cyclable {
 	@Override
 	public void cycle() {
 
-        x += 3;
-        y += 3;
+        x += 4;
+        y += 4;
 
         if (y > Constants.B_HEIGHT) {
 

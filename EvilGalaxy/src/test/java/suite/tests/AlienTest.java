@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Alien;
+import enemy.Alien;
 
 public class AlienTest {
 

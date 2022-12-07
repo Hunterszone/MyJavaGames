@@ -7,8 +7,8 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.TheEndAnimationDown;
-import entities.TheEndAnimationUp;
+import animation.TheEndAnimationDown;
+import animation.TheEndAnimationUp;
 import game_engine.InitObjects;
 
 public class TheEndAnimationDownTest {

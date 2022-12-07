@@ -1,7 +1,7 @@
 package util;
 
-import entities.Alien;
-import entities.Dragon;
+import enemy.Alien;
+import enemy.Dragon;
 import game_engine.UpdateObjects;
 
 public class KilledEnemies {

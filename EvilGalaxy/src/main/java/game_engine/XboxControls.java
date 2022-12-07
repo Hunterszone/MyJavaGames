@@ -3,9 +3,9 @@ package game_engine;
 import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
 
-import entities.Alien;
-import entities.Dragon;
-import entities.PlayerShip;
+import enemy.Alien;
+import enemy.Dragon;
+import enemy.PlayerShip;
 import items.Gold;
 import util.ConsoleContent;
 import util.LoadSounds;

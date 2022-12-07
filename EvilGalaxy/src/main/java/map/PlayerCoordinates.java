@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import entities.PlayerShip;
+import enemy.PlayerShip;
 import util.Constants;
 
 public class PlayerCoordinates extends JLabel implements Coordinates {

@@ -12,7 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.PlayerShip;
+import enemy.PlayerShip;
 import game_engine.DrawScene;
 import util.Constants;
 

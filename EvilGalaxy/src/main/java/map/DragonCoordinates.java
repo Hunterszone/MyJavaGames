@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import entities.Alien;
-import entities.Dragon;
+import enemy.Alien;
+import enemy.Dragon;
 import util.Constants;
 
 public class DragonCoordinates extends JLabel implements Coordinates {

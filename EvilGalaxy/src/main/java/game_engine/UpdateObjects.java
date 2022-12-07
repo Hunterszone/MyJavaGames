@@ -3,12 +3,12 @@ package game_engine;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
-import entities.Alien;
-import entities.Bunker;
-import entities.Crosshair;
-import entities.Dragon;
-import entities.EvilHead;
-import entities.PlayerShip;
+import enemy.Alien;
+import enemy.Bunker;
+import enemy.Crosshair;
+import enemy.Dragon;
+import enemy.EvilHead;
+import enemy.PlayerShip;
 import items.Angel;
 import items.BunkerBullet;
 import items.CanonBall;

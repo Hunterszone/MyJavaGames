@@ -3,7 +3,7 @@
 // Creator: Konstantin
 // 
 
-package entities;
+package enemy;
 
 // import java libraries:
 import java.awt.Graphics;

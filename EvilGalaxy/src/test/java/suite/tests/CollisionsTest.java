@@ -11,12 +11,12 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Alien;
-import entities.Bunker;
-import entities.Crosshair;
-import entities.Dragon;
-import entities.EvilHead;
-import entities.PlayerShip;
+import enemy.Alien;
+import enemy.Bunker;
+import enemy.Crosshair;
+import enemy.Dragon;
+import enemy.EvilHead;
+import enemy.PlayerShip;
 import game_engine.Collisions;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;

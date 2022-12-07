@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="entities.Alien" project="EGMaven" 
-    file="/EGMaven/src/main/java/entities/Alien.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="enemy.Alien" project="EGMaven" file="/EGMaven/src/main/java/enemy/Alien.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="135" y="273"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="entities.Bunker" project="EGMaven" 
-    file="/EGMaven/src/main/java/entities/Bunker.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="enemy.Bunker" project="EGMaven" file="/EGMaven/src/main/java/enemy/Bunker.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="419" y="265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="entities.Dragon" project="EGMaven" 
-    file="/EGMaven/src/main/java/entities/Dragon.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="enemy.Dragon" project="EGMaven" file="/EGMaven/src/main/java/enemy/Dragon.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="178" width="153" x="639" y="100"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

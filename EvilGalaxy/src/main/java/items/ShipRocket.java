@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-import entities.PlayerShip;
+import enemy.PlayerShip;
 import enums.Sprite;
 import game_engine.SpritePattern;
 

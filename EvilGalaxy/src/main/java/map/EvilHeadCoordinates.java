@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import entities.EvilHead;
+import enemy.EvilHead;
 import util.Constants;
 
 public class EvilHeadCoordinates extends JLabel implements Coordinates {

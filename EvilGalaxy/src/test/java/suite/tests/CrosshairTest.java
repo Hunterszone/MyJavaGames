@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Crosshair;
+import enemy.Crosshair;
 import game_engine.DrawScene;
 import util.Constants;
 

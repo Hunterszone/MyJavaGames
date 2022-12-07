@@ -1,4 +1,4 @@
-package entities;
+package enemy;
 
 import java.util.ArrayList;
 import java.util.List;

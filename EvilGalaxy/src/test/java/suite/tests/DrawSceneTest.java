@@ -5,9 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Alien;
-import entities.Bunker;
-import entities.Dragon;
+import enemy.Alien;
+import enemy.Bunker;
+import enemy.Dragon;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
 import game_engine.UpdateObjects;

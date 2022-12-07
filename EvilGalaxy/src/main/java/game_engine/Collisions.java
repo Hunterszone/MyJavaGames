@@ -11,13 +11,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// import game packages:
-import entities.Alien;
-import entities.Bunker;
-import entities.Crosshair;
-import entities.Dragon;
-import entities.EvilHead;
-import entities.PlayerShip;
+import enemy.Alien;
+import enemy.Bunker;
+import enemy.Crosshair;
+import enemy.Dragon;
+import enemy.EvilHead;
+import enemy.PlayerShip;
 import enums.SoundEffect;
 import items.BunkerBullet;
 import items.CanonBall;

@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Dragon;
+import enemy.Dragon;
 import game_engine.InitObjects;
 
 public class DragonTest {

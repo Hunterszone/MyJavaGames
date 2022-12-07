@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.PlayerShip;
+import enemy.PlayerShip;
 import items.ShipRocket;
 
 public class ShipRocketTest {
