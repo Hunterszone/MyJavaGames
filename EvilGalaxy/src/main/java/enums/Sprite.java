@@ -4,13 +4,13 @@ public enum Sprite {
 	BG1 {
 		@Override
 		public String getImg() {
-			return "images/tenor.jpg";
+			return "images/tenor.gif";
 		}
 	},
 	BG2 {
 		@Override
 		public String getImg() {
-			return "images/galaxy2.jpg";
+			return "images/galaxy2.gif";
 		}
 	},
 	BG3 {
