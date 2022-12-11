@@ -5,14 +5,13 @@ import enemy.Dragon;
 import game_engine.UpdateObjects;
 
 public class KilledEnemies {
-
-
 	public static String[] getEnemiesByTypeAndCount(String enemyName) {
-		if (enemyName.equalsIgnoreCase(Alien.class.getName())) {
+		
+		if (Alien.class.getName().equalsIgnoreCase(enemyName)) {
 			final Integer alienKilledd = UpdateObjects.alienKilled;
 			return new String[] { enemyName, alienKilledd.toString() };
 		}
-		if (enemyName.equalsIgnoreCase(Dragon.class.getName())) {
+		if (Dragon.class.getName().equalsIgnoreCase(enemyName)) {
 			final Integer dragonKilledd = UpdateObjects.dragonKilled;
 			return new String[] { enemyName, dragonKilledd.toString() };
 		}

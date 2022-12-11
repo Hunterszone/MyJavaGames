@@ -180,12 +180,13 @@ public class Controls implements KeyListener {
 			}
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
-				TextToSpeech.voiceInterruptor = true;
 				Difficulty.getEasyDiff();
+				InitObjects.timerEasy.stop();
+				LoadSounds.BG_MUSIC.stop();
 			} else {
 				TextToSpeech.playVoice("Easy diffuculty!");
-				TextToSpeech.voiceInterruptor = true;
 			}
+			TextToSpeech.voiceInterruptor = true;
 		}
 
 		if (key == KeyEvent.VK_M) {
@@ -201,12 +202,13 @@ public class Controls implements KeyListener {
 			}
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
-				TextToSpeech.voiceInterruptor = true;
 				Difficulty.getMediumDiff();
+				InitObjects.timerMedium.stop();
+				LoadSounds.BG_MUSIC.stop();
 			} else {
 				TextToSpeech.playVoice("Medium diffuculty!");
-				TextToSpeech.voiceInterruptor = true;
 			}
+			TextToSpeech.voiceInterruptor = true;
 		}
 
 		if (key == KeyEvent.VK_H) {
@@ -222,12 +224,13 @@ public class Controls implements KeyListener {
 			}
 			if (!InitObjects.ingame) {
 				TextToSpeech.playVoice("Loading level 1...");
-				TextToSpeech.voiceInterruptor = true;
 				Difficulty.getHardDiff();
+				InitObjects.timerHard.stop();
+				LoadSounds.BG_MUSIC.stop();
 			} else {
 				TextToSpeech.playVoice("Hard diffuculty!");
-				TextToSpeech.voiceInterruptor = true;
 			}
+			TextToSpeech.voiceInterruptor = true;
 		}
 
 		if (key == KeyEvent.VK_N) {

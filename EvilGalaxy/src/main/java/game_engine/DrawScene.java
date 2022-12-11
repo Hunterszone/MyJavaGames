@@ -700,9 +700,11 @@ public class DrawScene extends UpdateObjects {
 			setFontStyle(g);
 			mapEntity.draw(g);
 			playerSign.draw(g);
-			evilHeadSign.draw(g);
 			alienSign.draw(g);
 			dragonSign.draw(g);
+			if (lifeBunker >= 50) {
+				evilHeadSign.draw(g);
+			}
 			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 1010, 23);
 		}
 	}
@@ -933,11 +935,11 @@ public class DrawScene extends UpdateObjects {
 
 		if (Flags.killedByAlien == true)
 			msg = Entity.ALIEN.getMsg();
-		if (Flags.killedByDragon == true)
+		else if (Flags.killedByDragon == true)
 			msg = Entity.DRAGON.getMsg();
-		if (Flags.killedByBunker == true)
+		else if (Flags.killedByBunker == true)
 			msg = Entity.BUNKER.getMsg();
-		if (Flags.killedByEvilHead == true)
+		else if (Flags.killedByEvilHead == true)
 			msg = Entity.EVILHEAD.getMsg();
 
 		formatMsg(g, msg);
