@@ -204,22 +204,6 @@ public class Launcher extends JFrame {
 			try {
 				{
 					final URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/saves/save.txt");
-					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					conn.setRequestMethod("HEAD");
-					final File fi = new File("saves/save.txt");
-					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/saves/save.txt",
-								"saves/save.txt", conn.getContentLength());
-					} else {
-						System.out.println("No need to download saves.txt!");
-						updlog.logger.info("No need to download saves.txt!");
-					}
-				}
-
-				{
-					final URL url = new URL(
 							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images.txt");
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
