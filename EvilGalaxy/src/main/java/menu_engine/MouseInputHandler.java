@@ -68,10 +68,11 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 						SwingUtilities.invokeLater(() -> {
 							try {
 								main = new Main();
+								main.setVisible(true);
 							} catch (IOException ioe) {
 								System.out.println(ioe.getMessage());
 							}
-							main.setVisible(true);
+							InitObjects.timerEasy.stop();
 						});
 					}
 					Flags.isMenuOn = true;
@@ -279,4 +280,5 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 	@Override
 	public void mouseMoved(MouseEvent e) {
 	}
+	
 }

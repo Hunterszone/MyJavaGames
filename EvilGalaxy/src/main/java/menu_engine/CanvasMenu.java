@@ -24,12 +24,12 @@ public class CanvasMenu implements Runnable {
 	private Graphics g;
 	private Thread thread;
 	private boolean isRunning;
+	private LoadingAnimation loading;
 	private MenuState mainMenu;
 	private ControlsState controlsMenu;
 	private SettingsState settingsMenu;
 	private ExtrasState extrasMenu;
 	private ManualState manualMenu;
-	private LoadingAnimation loading;
 
 	public CanvasMenu() {
 	}

@@ -54,6 +54,7 @@ import map.PlayerCoordinates;
 import util.Constants;
 import util.Flags;
 import util.LoadSounds;
+import util.OpenAiApiImpl;
 import util.TextToSpeech;
 
 public class DrawScene extends UpdateObjects {
@@ -934,13 +935,13 @@ public class DrawScene extends UpdateObjects {
 		String msg = null;
 
 		if (Flags.killedByAlien == true)
-			msg = Entity.ALIEN.getMsg();
+			msg = OpenAiApiImpl.createCompletion(Entity.ALIEN.getMsg());
 		else if (Flags.killedByDragon == true)
-			msg = Entity.DRAGON.getMsg();
+			msg = OpenAiApiImpl.createCompletion(Entity.DRAGON.getMsg());
 		else if (Flags.killedByBunker == true)
-			msg = Entity.BUNKER.getMsg();
+			msg = OpenAiApiImpl.createCompletion(Entity.BUNKER.getMsg());
 		else if (Flags.killedByEvilHead == true)
-			msg = Entity.EVILHEAD.getMsg();
+			msg = OpenAiApiImpl.createCompletion(Entity.EVILHEAD.getMsg());
 
 		formatMsg(g, msg);
 	}
@@ -966,16 +967,27 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawGamePaused(Graphics g) {
-		final String msg = "Game paused. Press an arrow.";
+		final String msg = "Press an arrow to continue...";
 		formatMsg(g, msg);
 	}
 
 	private void formatMsg(Graphics g, final String msg) {
 		int width = msg != null ? g.getFontMetrics().stringWidth(msg) : 0;
+		String[] tokens = null;
 		g.setColor(Color.BLACK);
 		g.fillRect(Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 180, width, 50);
 		setFontStyle(g);
-		g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+		if (msg.contains("What")) {
+			tokens = msg.split("[?!.]");
+			if (tokens.length > 1) {
+				g.drawString("- " + tokens[0], Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 170);
+				g.drawString("- " + tokens[1], Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 140);
+			} else {
+				g.drawString("Game over!", Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+			}
+		} else {
+			g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);			
+		}
 	}
 
 	private void setFontStyle(Graphics g) {

@@ -2,8 +2,8 @@ package enums;
 
 public enum Entity {
 
-	ALIEN("Killed by an alien!"), DRAGON("Killed by a dragon!"), BUNKER("Killed by the bunker!"),
-	EVILHEAD("Killed by the Evil Head!");
+	ALIEN("What is an UFO?"), DRAGON("What is a dragon?"), BUNKER("What is a bunker?"),
+	EVILHEAD("What is the devil?");
 
 	private String msg;
 

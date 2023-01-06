@@ -18,8 +18,9 @@ import util.Constants;
 public final class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
 	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-	
+
 	public Main() throws IOException {
 		initGame();
 	}
@@ -30,17 +31,19 @@ public final class Main extends JFrame {
 		setUndecorated(true);
 		pack();
 		setTitle("EvilGalaxy");
-		device.setFullScreenWindow(this); 
+		device.setFullScreenWindow(this);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setShape(new RoundRectangle2D.Double(60, 80, 1200, 1200, 100, 100));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Sprite.MYSHIP_ON_FIRE.getImg()));
 		final ImageIcon tileIcon = new ImageIcon(Sprite.BORDER_IMAGE.getImg());
 		getRootPane().setBorder(BorderFactory.createMatteBorder(100, 100, 100, 100, tileIcon));
-		this.setLocation(Constants.DIMENSION.width / 2 - this.getSize().width / 2, Constants.DIMENSION.height / 2 - this.getSize().height / 2);
+		this.setLocation(Constants.DIMENSION.width / 2 - this.getSize().width / 2,
+				Constants.DIMENSION.height / 2 - this.getSize().height / 2);
 	}
 
 	public static void main(String[] args) throws URISyntaxException {
 		InitObjects.initCanvas();
 	}
+
 }
