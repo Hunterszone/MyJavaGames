@@ -3,6 +3,8 @@ package util;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 
+import retrofit2.HttpException;
+
 public class OpenAiApiImpl {
 	
     public static String createCompletion(String msg) {
@@ -16,8 +18,11 @@ public class OpenAiApiImpl {
                 .echo(true)
                 .user("testing")
                 .build();
-        service.createCompletion(completionRequest).getChoices().forEach(System.out::println);
-        
-        return service.createCompletion(completionRequest).getChoices().get(0).getText();
+//        service.createCompletion(completionRequest).getChoices().forEach(System.out::println);
+        try {
+        	return service.createCompletion(completionRequest).getChoices().get(0).getText();	
+        } catch (HttpException e) {
+			return msg;
+		}
     }
 }
