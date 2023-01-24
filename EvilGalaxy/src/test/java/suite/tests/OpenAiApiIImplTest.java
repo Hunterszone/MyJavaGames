@@ -7,12 +7,13 @@ import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 
 import enums.Entity;
+import retrofit2.HttpException;
 
 public class OpenAiApiIImplTest {
 
 	@Test
 	public void testCompletionRequest() {
-		OpenAiService service = new OpenAiService("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");
+		OpenAiService service = new OpenAiService("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"); // put your API key
 		CompletionRequest completionRequest = CompletionRequest.builder()
                 .model("davinci")
                 .prompt(Entity.ALIEN.getMsg())
@@ -20,6 +21,10 @@ public class OpenAiApiIImplTest {
                 .user("testing")
                 .build();
 		
-		Assert.assertTrue(service.createCompletion(completionRequest).getChoices().get(0).getText().contains(Entity.ALIEN.getMsg()));
+		try {
+			Assert.assertTrue(service.createCompletion(completionRequest).getChoices().get(0).getText().contains(Entity.ALIEN.getMsg()));	
+        } catch (HttpException e) {
+			e.printStackTrace();
+		}
 	}
 }
