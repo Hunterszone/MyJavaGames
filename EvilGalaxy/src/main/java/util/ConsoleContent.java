@@ -31,7 +31,6 @@ import game_engine.UpdateObjects;
 import items.Gold;
 import items.HealthPack;
 import items.SaveSign;
-import menu_engine.GameMenuBar;
 import menu_engine.MouseInputHandler;
 
 public class ConsoleContent extends OutputStream {
@@ -762,10 +761,6 @@ public class ConsoleContent extends OutputStream {
 
 							if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 
-								GameMenuBar.savedOnL2 = false;
-								GameMenuBar.savedOnL3 = false;
-								GameMenuBar.savedOnL4 = false;
-								GameMenuBar.savedOnL1 = true;
 								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
@@ -780,10 +775,6 @@ public class ConsoleContent extends OutputStream {
 							if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0
 									&& TextToSpeech.voiceInterruptor == false) {
 
-								GameMenuBar.savedOnL1 = false;
-								GameMenuBar.savedOnL3 = false;
-								GameMenuBar.savedOnL4 = false;
-								GameMenuBar.savedOnL2 = true;
 								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
@@ -798,10 +789,6 @@ public class ConsoleContent extends OutputStream {
 							if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
 									&& TextToSpeech.voiceInterruptor == false) {
 
-								GameMenuBar.savedOnL2 = false;
-								GameMenuBar.savedOnL1 = false;
-								GameMenuBar.savedOnL4 = false;
-								GameMenuBar.savedOnL3 = true;
 								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
@@ -815,10 +802,6 @@ public class ConsoleContent extends OutputStream {
 
 							if (UpdateObjects.lifeBunker == 50 && TextToSpeech.voiceInterruptor == false) {
 
-								GameMenuBar.savedOnL1 = false;
-								GameMenuBar.savedOnL2 = false;
-								GameMenuBar.savedOnL3 = false;
-								GameMenuBar.savedOnL4 = true;
 								TextToSpeech.playVoice("Game saved!");
 								TextToSpeech.voiceInterruptor = true;
 
