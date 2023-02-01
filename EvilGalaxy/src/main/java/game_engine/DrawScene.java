@@ -84,7 +84,7 @@ public class DrawScene extends UpdateObjects {
 		alienSign = new AlienCoordinates();
 		dragonSign = new DragonCoordinates();
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -363,8 +363,8 @@ public class DrawScene extends UpdateObjects {
 
 	private void handleLifeEvilHead(Graphics g) {
 
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.lifeBunker >= 50 && 
-				UpdateObjects.lifeEvilHead < 10) {
+		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.lifeBunker >= 50
+				&& UpdateObjects.lifeEvilHead < 10) {
 			g.drawString("Health: 100%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
@@ -588,7 +588,8 @@ public class DrawScene extends UpdateObjects {
 
 		g.drawString(Constants.LEVEL + 4, 5, 20);
 		g.drawImage(GoldIcon.goldIcon.getImage(), 100, 5, null);
-		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - UpdateObjects.goldCount)) + "/12", 140, 20);
+		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - UpdateObjects.goldCount)) + "/12", 140,
+				20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 225, 5, null);
 		g.drawString(Constants.LOCKED, 265, 20);
 		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
@@ -934,14 +935,23 @@ public class DrawScene extends UpdateObjects {
 
 		String msg = null;
 
-		if (Flags.killedByAlien == true)
-			msg = OpenAiApiImpl.createCompletion(Entity.ALIEN.getMsg());
-		else if (Flags.killedByDragon == true)
-			msg = OpenAiApiImpl.createCompletion(Entity.DRAGON.getMsg());
-		else if (Flags.killedByBunker == true)
-			msg = OpenAiApiImpl.createCompletion(Entity.BUNKER.getMsg());
-		else if (Flags.killedByEvilHead == true)
-			msg = OpenAiApiImpl.createCompletion(Entity.EVILHEAD.getMsg());
+		if (Flags.killedByAlien) {
+			String openAiMsgAlien = OpenAiApiImpl.createCompletion(Entity.ALIEN.getMsg()); 
+			msg = openAiMsgAlien == null || openAiMsgAlien.equals(Entity.ALIEN.getMsg()) 
+					? "Killed by an alien" : openAiMsgAlien;
+		} else if (Flags.killedByDragon) {			
+			String openAiMsgDragon = OpenAiApiImpl.createCompletion(Entity.DRAGON.getMsg());
+			msg = openAiMsgDragon == null || openAiMsgDragon.equals(Entity.DRAGON.getMsg()) 
+					? "Killed by a dragon" : openAiMsgDragon;
+		} else if (Flags.killedByBunker) {			
+			String openAiMsgBunker = OpenAiApiImpl.createCompletion(Entity.BUNKER.getMsg());
+			msg = openAiMsgBunker == null || openAiMsgBunker.equals(Entity.BUNKER.getMsg()) 
+					? "Killed by the bunker" : openAiMsgBunker;
+		} else if (Flags.killedByEvilHead) {			
+			String openAiMsgEvilHead = OpenAiApiImpl.createCompletion(Entity.EVILHEAD.getMsg());
+			msg = openAiMsgEvilHead == null || openAiMsgEvilHead.equals(Entity.EVILHEAD.getMsg()) 
+					? "Killed by the EvilHead" : openAiMsgEvilHead;
+		}
 
 		formatMsg(g, msg);
 	}
@@ -983,10 +993,10 @@ public class DrawScene extends UpdateObjects {
 				g.drawString("- " + tokens[0], Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 170);
 				g.drawString("- " + tokens[1], Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 140);
 			} else {
-				g.drawString("Game over!", Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
+				g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 			}
 		} else {
-			g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);			
+			g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 		}
 	}
 
