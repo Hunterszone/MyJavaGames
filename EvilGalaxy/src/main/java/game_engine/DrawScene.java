@@ -59,7 +59,11 @@ import util.TextToSpeech;
 
 public class DrawScene extends UpdateObjects {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 160473770719678686L;
+	private static final String KILLED_BY_THE_EVIL_HEAD = "Killed by the EvilHead";
+	private static final String KILLED_BY_THE_BUNKER = "Killed by the bunker";
+	private static final String KILLED_BY_A_DRAGON = "Killed by a dragon";
+	private static final String KILLED_BY_AN_ALIEN = "Killed by an alien";
 
 	private MapEntity mapEntity;
 	private PlayerCoordinates playerSign;
@@ -938,19 +942,19 @@ public class DrawScene extends UpdateObjects {
 		if (Flags.killedByAlien) {
 			String openAiMsgAlien = OpenAiApiImpl.createCompletion(Entity.ALIEN.getMsg()); 
 			msg = openAiMsgAlien == null || openAiMsgAlien.equals(Entity.ALIEN.getMsg()) 
-					? "Killed by an alien" : openAiMsgAlien;
+					? KILLED_BY_AN_ALIEN : openAiMsgAlien;
 		} else if (Flags.killedByDragon) {			
 			String openAiMsgDragon = OpenAiApiImpl.createCompletion(Entity.DRAGON.getMsg());
 			msg = openAiMsgDragon == null || openAiMsgDragon.equals(Entity.DRAGON.getMsg()) 
-					? "Killed by a dragon" : openAiMsgDragon;
+					? KILLED_BY_A_DRAGON : openAiMsgDragon;
 		} else if (Flags.killedByBunker) {			
 			String openAiMsgBunker = OpenAiApiImpl.createCompletion(Entity.BUNKER.getMsg());
 			msg = openAiMsgBunker == null || openAiMsgBunker.equals(Entity.BUNKER.getMsg()) 
-					? "Killed by the bunker" : openAiMsgBunker;
+					? KILLED_BY_THE_BUNKER : openAiMsgBunker;
 		} else if (Flags.killedByEvilHead) {			
 			String openAiMsgEvilHead = OpenAiApiImpl.createCompletion(Entity.EVILHEAD.getMsg());
 			msg = openAiMsgEvilHead == null || openAiMsgEvilHead.equals(Entity.EVILHEAD.getMsg()) 
-					? "Killed by the EvilHead" : openAiMsgEvilHead;
+					? KILLED_BY_THE_EVIL_HEAD : openAiMsgEvilHead;
 		}
 
 		formatMsg(g, msg);
