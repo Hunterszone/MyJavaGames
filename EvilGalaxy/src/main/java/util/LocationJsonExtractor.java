@@ -13,6 +13,9 @@ import org.json.simple.parser.ParseException;
 @SuppressWarnings("deprecation")
 public class LocationJsonExtractor {
 
+	private static final String ACCESS_TOKEN = "?token=2760f2eddca0f4";
+	private static final String IPINFO_API_ADDRESS = "https://ipinfo.io/";
+
 	public static String[] extractCityAndCountry() {
 		JSONParser parser = new JSONParser();
 		org.json.simple.JSONObject json = null;
@@ -36,7 +39,9 @@ public class LocationJsonExtractor {
 
 	private static String getJsonResponse() throws IOException {
 		// API URL
-		String sURL = new String("http://ip-api.com/json/").concat(getIpAddress());
+		String sURL = new String(IPINFO_API_ADDRESS)
+				.concat(getIpAddress())
+				.concat(ACCESS_TOKEN);
 
 		// GET response from API
 		URL obj = new URL(sURL);
