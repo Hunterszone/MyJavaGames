@@ -15,6 +15,8 @@ public class LocationJsonExtractor {
 
 	private static final String ACCESS_TOKEN = "?token=2760f2eddca0f4";
 	private static final String IPINFO_API_ADDRESS = "https://ipinfo.io/";
+	
+	private LocationJsonExtractor() {}
 
 	public static String[] extractCityAndCountry() {
 		JSONParser parser = new JSONParser();

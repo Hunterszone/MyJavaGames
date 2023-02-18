@@ -8,11 +8,11 @@ public class KilledEnemies {
 	public static String[] getEnemiesByTypeAndCount(String enemyName) {
 		
 		if (Alien.class.getName().equalsIgnoreCase(enemyName)) {
-			final Integer alienKilledd = UpdateObjects.alienKilled;
+			final Integer alienKilledd = UpdateObjects.getAlienKilled();
 			return new String[] { enemyName, alienKilledd.toString() };
 		}
 		if (Dragon.class.getName().equalsIgnoreCase(enemyName)) {
-			final Integer dragonKilledd = UpdateObjects.dragonKilled;
+			final Integer dragonKilledd = UpdateObjects.getDragonKilled();
 			return new String[] { enemyName, dragonKilledd.toString() };
 		}
 		return new String[] { "" };

@@ -51,41 +51,41 @@ public class Controls implements KeyListener {
 
 		if (key == KeyEvent.VK_A) {
 			Flags.isSPressed = false;
-			if (InitObjects.timerEasy.isRunning() || 
-					InitObjects.timerHard.isRunning() || 
-					InitObjects.timerMedium.isRunning()) {
+			if (InitObjects.getTimerEasy().isRunning() || 
+					InitObjects.getTimerHard().isRunning() || 
+					InitObjects.getTimerMedium().isRunning()) {
 				LoadSounds.BG_MUSIC.loop();
 			}
 		}
 
 		if (key == KeyEvent.VK_P) {
-			InitObjects.timerEasy.stop();
-			InitObjects.timerMedium.stop();
-			InitObjects.timerHard.stop();
+			InitObjects.getTimerEasy().stop();
+			InitObjects.getTimerMedium().stop();
+			InitObjects.getTimerHard().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		}
 		
 		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || 
 				key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
-			if (InitObjects.ingame) {
+			if (InitObjects.isIngame()) {
 				ConsoleContent.manualON = false;
-				if (!InitObjects.timerHard.isRunning() && Flags.isHPressed) {
-					InitObjects.timerHard.start();
+				if (!InitObjects.getTimerHard().isRunning() && Flags.isHPressed) {
+					InitObjects.getTimerHard().start();
 					if(!Flags.isSPressed) {
 						LoadSounds.BG_MUSIC.loop();								
 					}
 				} 
-				if (!InitObjects.timerMedium.isRunning() && Flags.isMPressed) {
-					InitObjects.timerMedium.start();
+				if (!InitObjects.getTimerMedium().isRunning() && Flags.isMPressed) {
+					InitObjects.getTimerMedium().start();
 					if(!Flags.isSPressed) {
 						LoadSounds.BG_MUSIC.loop();								
 					}
 				} 
-				if ((!InitObjects.timerEasy.isRunning() && Flags.isEPressed) && 
-						!(InitObjects.timerEasy.isRunning() && InitObjects.timerMedium.isRunning() && InitObjects.timerHard.isRunning()) && 
+				if ((!InitObjects.getTimerEasy().isRunning() && Flags.isEPressed) && 
+						!(InitObjects.getTimerEasy().isRunning() && InitObjects.getTimerMedium().isRunning() && InitObjects.getTimerHard().isRunning()) && 
 						!Flags.isMPressed && !Flags.isHPressed) {
-					InitObjects.timerEasy.start();
+					InitObjects.getTimerEasy().start();
 					if(!Flags.isSPressed) {
 						LoadSounds.BG_MUSIC.loop();								
 					}		
@@ -96,33 +96,33 @@ public class Controls implements KeyListener {
 			}
 		}
 
-		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-						|| InitObjects.timerHard.isRunning() == true)
+		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+						|| InitObjects.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty()
-						&& (Dragon.dragons.size() > 0 || UpdateObjects.lifeBunker < 50 || Gold.goldstack.isEmpty()))) {
+						&& (Dragon.dragons.size() > 0 || UpdateObjects.getLifeBunker() < 50 || Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerShip.loadRockets();
 		}
 
-		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-						|| InitObjects.timerHard.isRunning() == true)
+		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+						|| InitObjects.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
+						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerShip.gunLocked(e);
 		}
 
-		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-						|| InitObjects.timerHard.isRunning() == true)
+		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+						|| InitObjects.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
-				&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
+				&& (Alien.aliens.size() > 0 || (UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerShip.loadMissiles();
 		}
 
-		if (InitObjects.ingame && (InitObjects.timerEasy.isRunning() == true
-						|| InitObjects.timerMedium.isRunning() == true || InitObjects.timerHard.isRunning() == true)
+		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true
+						|| InitObjects.getTimerMedium().isRunning() == true || InitObjects.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50)
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker >= 50 && Gold.goldstack.size() > 0))) {
+						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50)
+						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerShip.gunLocked(e);
 		}
 
@@ -153,13 +153,13 @@ public class Controls implements KeyListener {
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
-			UpdateObjects.lifeBunker = 50;
+			UpdateObjects.setLifeBunker(50);
 		}
 
 		if (key == KeyEvent.VK_R) {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
-			if (!InitObjects.ingame) {
+			if (!InitObjects.isIngame()) {
 				Flags.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
@@ -172,16 +172,16 @@ public class Controls implements KeyListener {
 			Flags.isHPressed = false;
 			Flags.isEPressed = true;
 			ConsoleContent.manualON = false;
-			InitObjects.timerHard.stop();
-			InitObjects.timerMedium.stop();
-			InitObjects.timerEasy.start();
+			InitObjects.getTimerHard().stop();
+			InitObjects.getTimerMedium().stop();
+			InitObjects.getTimerEasy().start();
 			if (!Flags.isSPressed) {
 				LoadSounds.BG_MUSIC.loop();
 			}
-			if (!InitObjects.ingame) {
+			if (!InitObjects.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
 				Difficulty.getEasyDiff();
-				InitObjects.timerEasy.stop();
+				InitObjects.getTimerEasy().stop();
 				LoadSounds.BG_MUSIC.stop();
 			} else {
 				TextToSpeech.playVoice("Easy diffuculty!");
@@ -194,16 +194,16 @@ public class Controls implements KeyListener {
 			Flags.isHPressed = false;
 			Flags.isMPressed = true;
 			ConsoleContent.manualON = false;
-			InitObjects.timerEasy.stop();
-			InitObjects.timerHard.stop();
-			InitObjects.timerMedium.start();
+			InitObjects.getTimerEasy().stop();
+			InitObjects.getTimerHard().stop();
+			InitObjects.getTimerMedium().start();
 			if (!Flags.isSPressed) {
 				LoadSounds.BG_MUSIC.loop();
 			}
-			if (!InitObjects.ingame) {
+			if (!InitObjects.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
 				Difficulty.getMediumDiff();
-				InitObjects.timerMedium.stop();
+				InitObjects.getTimerMedium().stop();
 				LoadSounds.BG_MUSIC.stop();
 			} else {
 				TextToSpeech.playVoice("Medium diffuculty!");
@@ -216,16 +216,16 @@ public class Controls implements KeyListener {
 			Flags.isMPressed = false;
 			Flags.isHPressed = true;
 			ConsoleContent.manualON = false;
-			InitObjects.timerEasy.stop();
-			InitObjects.timerMedium.stop();
-			InitObjects.timerHard.start();
+			InitObjects.getTimerEasy().stop();
+			InitObjects.getTimerMedium().stop();
+			InitObjects.getTimerHard().start();
 			if (!Flags.isSPressed) {
 				LoadSounds.BG_MUSIC.loop();
 			}
-			if (!InitObjects.ingame) {
+			if (!InitObjects.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
 				Difficulty.getHardDiff();
-				InitObjects.timerHard.stop();
+				InitObjects.getTimerHard().stop();
 				LoadSounds.BG_MUSIC.stop();
 			} else {
 				TextToSpeech.playVoice("Hard diffuculty!");
@@ -234,7 +234,7 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_N) {
-			if (InitObjects.ingame) {
+			if (InitObjects.isIngame()) {
 				if (Flags.isMapVisible == false) {
 					Flags.isMapVisible = true;
 					return;
@@ -246,15 +246,15 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_G) {
-			if (InitObjects.ingame) {
+			if (InitObjects.isIngame()) {
 				if (!ConsoleContent.isGod) {
 					ConsoleContent.isGod = true;
-					UpdateObjects.lifePlayerShip = 999;
+					UpdateObjects.setLifePlayerShip(999);
 					TextToSpeech.playVoice("GODLIKE!");
 					return;
 				} else {
 					ConsoleContent.isGod = false;
-					UpdateObjects.lifePlayerShip = 4;
+					UpdateObjects.setLifePlayerShip(4);
 					TextToSpeech.playVoice("Healthy!");
 					return;
 				}
@@ -296,9 +296,9 @@ public class Controls implements KeyListener {
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.HIT.stop();
 			LoadSounds.TAUNT.stop();
-			InitObjects.timerEasy.stop();
-			InitObjects.timerMedium.stop();
-			InitObjects.timerHard.stop();
+			InitObjects.getTimerEasy().stop();
+			InitObjects.getTimerMedium().stop();
+			InitObjects.getTimerHard().stop();
 			TextToSpeech.playVoice("Loading main menu...");
 			TextToSpeech.voiceInterruptor = true;
 			if (AstronautAnimation.astronautAnim != null)
@@ -320,7 +320,7 @@ public class Controls implements KeyListener {
 					elonAnimDown = null;
 			}
 			TheEndAnimationDown.theEndAnimationDownList.clear();
-			InitObjects.ingame = false;
+			InitObjects.setIngame(false);
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();
 			MouseInputHandler.main = null;

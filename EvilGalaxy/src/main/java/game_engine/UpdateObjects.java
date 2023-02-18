@@ -22,13 +22,12 @@ import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects {
 
-	public static int lifeEvilHead = 3;
-	public static int lifePlayerShip = 3;
-	public static int lifeBunker = 3;
-	public static int goldCount = 12;
-	public static int alienKilled = 0;
-	public static int dragonKilled = 0;
-
+	private static int lifeEvilHead = 3;
+	private static int lifePlayerShip = 3;
+	private static int lifeBunker = 3;
+	private static int goldCount = 12;
+	private static int alienKilled = 0;
+	private static int dragonKilled = 0;
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -71,7 +70,7 @@ public abstract class UpdateObjects extends InitObjects {
 				if (dragon.isVisible()) {
 					dragon.move();
 				} else {
-					InitObjects.angels.add(new Angel(dragon.getX(), dragon.getY()));
+					InitObjects.getAngels().add(new Angel(dragon.getX(), dragon.getY()));
 				}
 			}
 		});
@@ -80,10 +79,10 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void inGame() {
-		if (!ingame) {
-			timerEasy.stop();
-			timerMedium.stop();
-			timerHard.stop();
+		if (!isIngame()) {
+			getTimerEasy().stop();
+			getTimerMedium().stop();
+			getTimerHard().stop();
 		}
 	}
 
@@ -100,8 +99,8 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	protected static void updateExplosions() {
-		explosions.removeIf(explosion -> explosion != null && explosion.getR() == 80);
-		explosions.forEach(explosion -> explosion.update());
+		getExplosions().removeIf(explosion -> explosion != null && explosion.getR() == 80);
+		getExplosions().forEach(explosion -> explosion.update());
 	}
 
 	private void updateMyShipMissiles() {
@@ -150,16 +149,16 @@ public abstract class UpdateObjects extends InitObjects {
 		plasmaBalls.removeIf(plasmaBall -> plasmaBall != null && !plasmaBall.isVisible());
 
 		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
-			if (Dragon.dragons.isEmpty() && timerHard.isRunning()) {
+			if (Dragon.dragons.isEmpty() && getTimerHard().isRunning()) {
 				plasmaBall.movePlasmaBallDiagUp();
 				plasmaBall.movePlasmaBallDiagDown();
-				if (Gold.goldstack.isEmpty() && lifePlayerShip > 0) {
+				if (Gold.goldstack.isEmpty() && getLifePlayerShip() > 0) {
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
 						plasmaBall.movePlasmaBallRight();
 					}
 				}
-				if (Gold.goldstack.size() > 0 && lifePlayerShip <= 3) {
+				if (Gold.goldstack.size() > 0 && getLifePlayerShip() <= 3) {
 					if (plasmaBall.y > 768) {
 						plasmaBall.y = 768;
 						plasmaBall.movePlasmaBallRight();
@@ -196,7 +195,7 @@ public abstract class UpdateObjects extends InitObjects {
 	private void updateAliens() {
 		Alien.aliens.removeIf(alien -> alien != null && !alien.isVisible());
 		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
-			if (timerHard.isRunning()) {
+			if (getTimerHard().isRunning()) {
 				alien.moveFaster();
 			}
 			alien.move();
@@ -207,7 +206,7 @@ public abstract class UpdateObjects extends InitObjects {
 		assert Alien.aliens != null;
 		assert Dragon.dragons != null;
 
-		if (EvilHead.evilHead.isVisible() && timerEasy.isRunning()) {
+		if (EvilHead.evilHead.isVisible() && getTimerEasy().isRunning()) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnEasy();
 			}
@@ -216,7 +215,7 @@ public abstract class UpdateObjects extends InitObjects {
 			}
 		}
 
-		if (EvilHead.evilHead.isVisible() && timerMedium.isRunning() == true) {
+		if (EvilHead.evilHead.isVisible() && getTimerMedium().isRunning() == true) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnMedium();
 			}
@@ -225,7 +224,7 @@ public abstract class UpdateObjects extends InitObjects {
 			}
 		}
 
-		if (EvilHead.evilHead.isVisible() && timerHard.isRunning() == true) {
+		if (EvilHead.evilHead.isVisible() && getTimerHard().isRunning() == true) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
 				EvilHead.evilHead.AIOnHard();
 			}
@@ -241,12 +240,12 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateAngels() {
-		angels.removeIf(angel -> angel != null && !angel.isVisible());
+		getAngels().removeIf(angel -> angel != null && !angel.isVisible());
 	}
 
 	private void updateHealth() {
 		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && 
-				Dragon.dragons.isEmpty() && lifePlayerShip <= 3 && !Flags.hpIsEmpty) {
+				Dragon.dragons.isEmpty() && getLifePlayerShip() <= 3 && !Flags.hpIsEmpty) {
 			HealthPack.healthpacks
 					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
@@ -259,5 +258,53 @@ public abstract class UpdateObjects extends InitObjects {
 				.forEach(healthPack -> healthPack.move());
 
 		HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible());
+	}
+
+	public static int getDragonKilled() {
+		return dragonKilled;
+	}
+
+	public static void setDragonKilled(int dragonKilled) {
+		UpdateObjects.dragonKilled = dragonKilled;
+	}
+
+	public static int getAlienKilled() {
+		return alienKilled;
+	}
+
+	public static void setAlienKilled(int alienKilled) {
+		UpdateObjects.alienKilled = alienKilled;
+	}
+
+	public static int getLifeEvilHead() {
+		return lifeEvilHead;
+	}
+
+	public static void setLifeEvilHead(int lifeEvilHead) {
+		UpdateObjects.lifeEvilHead = lifeEvilHead;
+	}
+
+	public static int getLifeBunker() {
+		return lifeBunker;
+	}
+
+	public static void setLifeBunker(int lifeBunker) {
+		UpdateObjects.lifeBunker = lifeBunker;
+	}
+
+	public static int getGoldCount() {
+		return goldCount;
+	}
+
+	public static void setGoldCount(int goldCount) {
+		UpdateObjects.goldCount = goldCount;
+	}
+
+	public static int getLifePlayerShip() {
+		return lifePlayerShip;
+	}
+
+	public static void setLifePlayerShip(int lifePlayerShip) {
+		UpdateObjects.lifePlayerShip = lifePlayerShip;
 	}
 }

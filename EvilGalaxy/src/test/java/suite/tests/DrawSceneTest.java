@@ -33,25 +33,25 @@ public class DrawSceneTest {
 	@Test
 	public void testDrawGameStateL2() {
 		Assert.assertNotNull(Dragon.dragons);
-		Assert.assertNotNull("Angels not loaded for L2", InitObjects.angels);
+		Assert.assertNotNull("Angels not loaded for L2", InitObjects.getAngels());
 	}
 		
 	@Test
 	public void testDrawGameStateL3() {
-		UpdateObjects.lifeBunker = 45;
+		UpdateObjects.setLifeBunker(45);
 		Assert.assertNotNull("Bunker object is null", Bunker.bunkerObj);
 		Assert.assertNotNull("Healthpacks not loaded for L3", HealthPack.healthpacks);
 	}
 	
 	@Test
 	public void testDrawGameStateL4() {
-		UpdateObjects.lifeBunker = 50;
+		UpdateObjects.setLifeBunker(50);
 		Assert.assertNotNull("Goldstack not loaded for L4", Gold.goldstack);
 	}
 	
 	@Test
 	public void testDrawGameStateL5() {
-		UpdateObjects.lifeBunker = 50;
+		UpdateObjects.setLifeBunker(50);
 		Assert.assertNotNull("HealthPacks not loaded for L5", HealthPack.healthpacks);
 	}
 

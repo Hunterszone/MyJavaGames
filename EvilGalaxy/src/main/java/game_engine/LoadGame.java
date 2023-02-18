@@ -124,7 +124,7 @@ public class LoadGame {
 
 	private void initSavedAssets() throws MaryConfigurationException {
 
-		InitObjects.ingame = false;
+		InitObjects.setIngame(false);
 
 		savedOnLevelOne();
 
@@ -153,7 +153,7 @@ public class LoadGame {
 
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
-			UpdateObjects.lifeBunker = 50;
+			UpdateObjects.setLifeBunker(50);
 			TextToSpeech.voiceInterruptor = true;
 			savedOnL4 = false;
 		
@@ -188,7 +188,7 @@ public class LoadGame {
 
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
-			for (int i = 0; i < 30 - UpdateObjects.dragonKilled; i++) {
+			for (int i = 0; i < 30 - UpdateObjects.getDragonKilled(); i++) {
 				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700),
 						(int) Math.ceil(Math.random() * 800));
 				Dragon.dragons.add(born);
@@ -211,7 +211,7 @@ public class LoadGame {
 			onLoadPerDifficulty();
 
 			Alien.aliens = new ArrayList<>();
-			for (int i = 0; i < 40 - UpdateObjects.alienKilled; i++) {
+			for (int i = 0; i < 40 - UpdateObjects.getAlienKilled(); i++) {
 				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000),
 						(int) Math.ceil(Math.random() * 800));
 				Alien.aliens.add(born);
@@ -232,21 +232,21 @@ public class LoadGame {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
 			Difficulty.getEasyDiff();
-			InitObjects.timerEasy.stop();
+			InitObjects.getTimerEasy().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		} else if (Flags.isMPressed == true) {
 			Flags.isEPressed = false;
 			Flags.isHPressed = false;
 			Difficulty.getMediumDiff();
-			InitObjects.timerMedium.stop();
+			InitObjects.getTimerMedium().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		} else if (Flags.isHPressed == true) {
 			Flags.isEPressed = false;
 			Flags.isMPressed = false;
 			Difficulty.getHardDiff();
-			InitObjects.timerHard.stop();
+			InitObjects.getTimerHard().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		} else {

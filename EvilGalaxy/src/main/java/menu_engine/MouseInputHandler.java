@@ -51,17 +51,17 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 		final int mouseY = e.getY();
 
 		if (Flags.isMenuOn) {
-			InitObjects.animator = null;
+			InitObjects.setAnimator(null);
 			playWave1st = new PlayWave1st(clickSound);
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
 					LoadSounds.MENU_MUSIC.stop();
 					playWave1st.start();
 					Flags.isMenuOn = false;
-					UpdateObjects.lifePlayerShip = 4;
-					UpdateObjects.lifeEvilHead = 3;
-					UpdateObjects.lifeBunker = 3;
-					InitObjects.ingame = true;
+					UpdateObjects.setLifePlayerShip(4);
+					UpdateObjects.setLifeEvilHead(3);
+					UpdateObjects.setLifeBunker(3);
+					InitObjects.setIngame(true);
 					if (main == null) {
 						DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 						DisplayCanvas.frame.dispose();
@@ -72,7 +72,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 							} catch (IOException ioe) {
 								System.out.println(ioe.getMessage());
 							}
-							InitObjects.timerEasy.stop();
+							InitObjects.getTimerEasy().stop();
 						});
 					}
 					Flags.isMenuOn = true;

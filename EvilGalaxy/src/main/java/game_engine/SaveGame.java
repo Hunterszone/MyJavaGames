@@ -25,7 +25,7 @@ public class SaveGame {
 
 		TextToSpeech.voiceInterruptor = false;
 
-		if (InitObjects.ingame == true) {
+		if (InitObjects.isIngame() == true) {
 			if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 				savedOnL2 = false;
 				savedOnL3 = false;
@@ -47,7 +47,7 @@ public class SaveGame {
 
 			TextToSpeech.voiceInterruptor = false;
 
-			if (Dragon.dragons.isEmpty() && UpdateObjects.lifeBunker < 50
+			if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50
 					&& TextToSpeech.voiceInterruptor == false) {
 				savedOnL2 = false;
 				savedOnL1 = false;
@@ -59,7 +59,7 @@ public class SaveGame {
 
 			TextToSpeech.voiceInterruptor = false;
 
-			if (UpdateObjects.lifeBunker == 50 && TextToSpeech.voiceInterruptor == false) {
+			if (UpdateObjects.getLifeBunker() == 50 && TextToSpeech.voiceInterruptor == false) {
 				savedOnL1 = false;
 				savedOnL2 = false;
 				savedOnL3 = false;

@@ -46,14 +46,14 @@ import util.TextToSpeech;
 
 public abstract class InitObjects extends JPanel implements ActionListener, Runnable {
 
-	public static List<Explosion> explosions;
-	public static List<Angel> angels;
-	public static boolean ingame;
-	public static Timer timerEasy, timerMedium, timerHard;
-	public static Thread animator;
-
-	public static final String[] CITY_AND_COUNTRY = LocationJsonExtractor.extractCityAndCountry();
-	private static final long serialVersionUID = 1L;
+	protected static final String[] CITY_AND_COUNTRY = getCityAndCountry();
+	
+	private static List<Explosion> explosions;
+	private static List<Angel> angels;
+	private static boolean isIngame;
+	private static Timer timerEasy, timerMedium, timerHard;
+	private static Thread animator;
+	private static final long serialVersionUID = 4553098009656808450L;
 	private static final int DELAY = 15;
 
 	/*
@@ -85,12 +85,12 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
 
 		// Constants
-		ingame = true;
+		setIngame(true);
 		Flags.isEPressed = true;
 		
 		// Collections
-		explosions = new ArrayList<Explosion>();
-		angels = new ArrayList<Angel>();
+		setExplosions(new ArrayList<Explosion>());
+		setAngels(new ArrayList<Angel>());
 		
 		// Icons
 		AlienIcon.alienIcon = new AlienIcon(0, 0);
@@ -118,11 +118,11 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 //		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
-		animator = new Thread(this);
-		timerEasy = new Timer(DELAY, this);
-		timerMedium = new Timer(DELAY, this);
-		timerHard = new Timer(DELAY, this);
-		timerEasy.start();
+		setAnimator(new Thread(this));
+		setTimerEasy(new Timer(DELAY, this));
+		setTimerMedium(new Timer(DELAY, this));
+		setTimerHard(new Timer(DELAY, this));
+		getTimerEasy().start();
 		LoadSounds.HIGHSC.play();
 		LoadSounds.BG_MUSIC.loop();
 	}
@@ -202,7 +202,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public static void initGold() {
 		Gold.goldstack = new ArrayList<>();
 
-		for (int i = 0; i < UpdateObjects.goldCount; i++) {
+		for (int i = 0; i < UpdateObjects.getGoldCount(); i++) {
 			Gold.goldstack.add(new Gold((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 	}
@@ -232,7 +232,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 		beforeTime = System.currentTimeMillis();
 		
-		while (ingame || animator != null) {
+		while (isIngame() || getAnimator() != null) {
 
 			if (SatelliteAnimation.starAnim != null) {
 				SatelliteAnimation.starAnim.cycle();
@@ -285,8 +285,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public void addNotify() {
 		super.addNotify();
 
-		if (animator != null) {			
-			animator.start();
+		if (getAnimator() != null) {			
+			getAnimator().start();
 		}
 	}
 
@@ -294,8 +294,69 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public void removeNotify() {
 		super.removeNotify();
 
-		if (animator != null) {
-			animator.interrupt();	
+		if (getAnimator() != null) {
+			getAnimator().interrupt();	
 		}
+	}
+
+	public static void setAnimator(Thread animator) {
+		InitObjects.animator = animator;
+	}
+
+	protected static Thread getAnimator() {
+		return animator;
+	}
+
+	
+	private static String[] getCityAndCountry() {
+		return LocationJsonExtractor.extractCityAndCountry();
+	}
+
+	public static Timer getTimerMedium() {
+		return timerMedium;
+	}
+
+	public static void setTimerMedium(Timer timerMedium) {
+		InitObjects.timerMedium = timerMedium;
+	}
+
+	public static Timer getTimerHard() {
+		return timerHard;
+	}
+
+	public static void setTimerHard(Timer timerHard) {
+		InitObjects.timerHard = timerHard;
+	}
+
+	public static Timer getTimerEasy() {
+		return timerEasy;
+	}
+
+	public static void setTimerEasy(Timer timerEasy) {
+		InitObjects.timerEasy = timerEasy;
+	}
+
+	public static boolean isIngame() {
+		return isIngame;
+	}
+
+	public static void setIngame(boolean isIngame) {
+		InitObjects.isIngame = isIngame;
+	}
+
+	public static List<Angel> getAngels() {
+		return angels;
+	}
+
+	public static void setAngels(List<Angel> angels) {
+		InitObjects.angels = angels;
+	}
+
+	public static List<Explosion> getExplosions() {
+		return explosions;
+	}
+
+	public static void setExplosions(List<Explosion> explosions) {
+		InitObjects.explosions = explosions;
 	}
 }

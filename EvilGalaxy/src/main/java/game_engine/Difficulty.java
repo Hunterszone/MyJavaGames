@@ -11,11 +11,11 @@ import util.TextToSpeech;
 public class Difficulty {
 
 	public static void restart() {
-		InitObjects.angels = new ArrayList<Angel>();
+		InitObjects.setAngels(new ArrayList<Angel>());
 		HealthPack.healthpacks = new ArrayList<>(5);
 
-		if (!InitObjects.ingame) {
-			InitObjects.ingame = true;
+		if (!InitObjects.isIngame()) {
+			InitObjects.setIngame(true);
 		}
 
 		initObjects();
@@ -23,13 +23,13 @@ public class Difficulty {
 
 	public static void getEasyDiff() {
 
-		InitObjects.angels = new ArrayList<Angel>();
+		InitObjects.setAngels(new ArrayList<Angel>());
 
-		if (!InitObjects.ingame) {
-			InitObjects.ingame = true;
-			InitObjects.timerMedium.stop();
-			InitObjects.timerHard.stop();
-			InitObjects.timerEasy.restart();
+		if (!InitObjects.isIngame()) {
+			InitObjects.setIngame(true);
+			InitObjects.getTimerMedium().stop();
+			InitObjects.getTimerHard().stop();
+			InitObjects.getTimerEasy().restart();
 		}
 
 		initObjects();
@@ -37,13 +37,13 @@ public class Difficulty {
 
 	public static void getMediumDiff() {
 
-		InitObjects.angels = new ArrayList<Angel>();
+		InitObjects.setAngels(new ArrayList<Angel>());
 
-		if (!InitObjects.ingame) {
-			InitObjects.ingame = true;
-			InitObjects.timerEasy.stop();
-			InitObjects.timerHard.stop();
-			InitObjects.timerMedium.restart();
+		if (!InitObjects.isIngame()) {
+			InitObjects.setIngame(true);
+			InitObjects.getTimerEasy().stop();
+			InitObjects.getTimerHard().stop();
+			InitObjects.getTimerMedium().restart();
 		}
 
 		initObjects();
@@ -51,13 +51,13 @@ public class Difficulty {
 
 	public static void getHardDiff() {
 
-		InitObjects.angels = new ArrayList<Angel>();
+		InitObjects.setAngels(new ArrayList<Angel>());
 
-		if (!InitObjects.ingame) {
-			InitObjects.ingame = true;
-			InitObjects.timerEasy.stop();
-			InitObjects.timerMedium.stop();
-			InitObjects.timerHard.restart();
+		if (!InitObjects.isIngame()) {
+			InitObjects.setIngame(true);
+			InitObjects.getTimerEasy().stop();
+			InitObjects.getTimerMedium().stop();
+			InitObjects.getTimerHard().restart();
 		}
 
 		initObjects();
@@ -66,8 +66,8 @@ public class Difficulty {
 	private static void initObjects() {
 
 		if (!SaveGame.savedOnL1 && !SaveGame.savedOnL2) {
-			UpdateObjects.alienKilled = 0;
-			UpdateObjects.dragonKilled = 0;
+			UpdateObjects.setAlienKilled(0);
+			UpdateObjects.setDragonKilled(0);
 		}
 
 		TextToSpeech.finMusicIsPlayed = false;
@@ -78,9 +78,9 @@ public class Difficulty {
 			ConsoleContent.isGod = false;
 		}
 
-		UpdateObjects.lifeEvilHead = 3;
-		UpdateObjects.lifePlayerShip = 4;
-		UpdateObjects.lifeBunker = 3;
+		UpdateObjects.setLifeEvilHead(3);
+		UpdateObjects.setLifePlayerShip(4);
+		UpdateObjects.setLifeBunker(3);
 
 		InitObjects.initEntities();
 		InitObjects.initAnimations();

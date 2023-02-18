@@ -25,20 +25,20 @@ public class XboxControls {
 			ControllerState currState = controllers.getState(0);
 
 			if (!currState.isConnected || currState.b) {
-				InitObjects.timerEasy.stop();
-				InitObjects.timerMedium.stop();
-				InitObjects.timerHard.stop();
+				InitObjects.getTimerEasy().stop();
+				InitObjects.getTimerMedium().stop();
+				InitObjects.getTimerHard().stop();
 				LoadSounds.BG_MUSIC.stop();
 				LoadSounds.TAUNT.stop();
 //				break;
 			}
-			if (!(InitObjects.timerEasy.isRunning() || InitObjects.timerMedium.isRunning()
-					|| InitObjects.timerHard.isRunning())
+			if (!(InitObjects.getTimerEasy().isRunning() || InitObjects.getTimerMedium().isRunning()
+					|| InitObjects.getTimerHard().isRunning())
 					&& (currState.dpadLeft || currState.dpadRight || currState.dpadUp || currState.dpadDown)) {
 				ConsoleContent.manualON = false;
-				InitObjects.timerHard.stop();
-				InitObjects.timerMedium.stop();
-				InitObjects.timerEasy.start();
+				InitObjects.getTimerHard().stop();
+				InitObjects.getTimerMedium().stop();
+				InitObjects.getTimerEasy().start();
 				LoadSounds.BG_MUSIC.loop();
 
 				if (Alien.aliens.isEmpty()) {
@@ -74,16 +74,16 @@ public class XboxControls {
 				System.out.println("\"dpadDown\" on \"" + currState.controllerType + "\" is pressed");
 			}
 			if (currState.a) {
-				if (InitObjects.ingame == true
-						&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-								|| InitObjects.timerHard.isRunning() == true)
-						&& (Alien.aliens.size() > 0 || (UpdateObjects.lifeBunker >= 50 && Gold.goldstack.isEmpty()))) {
+				if (InitObjects.isIngame() == true
+						&& (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+								|| InitObjects.getTimerHard().isRunning() == true)
+						&& (Alien.aliens.size() > 0 || (UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
 					PlayerShip.playerShip.loadMissiles();
 				}
-				if (InitObjects.ingame == true
-						&& (InitObjects.timerEasy.isRunning() == true || InitObjects.timerMedium.isRunning() == true
-								|| InitObjects.timerHard.isRunning() == true)
-						&& (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0 || UpdateObjects.lifeBunker < 50
+				if (InitObjects.isIngame() == true
+						&& (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+								|| InitObjects.getTimerHard().isRunning() == true)
+						&& (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0 || UpdateObjects.getLifeBunker() < 50
 								|| Gold.goldstack.isEmpty()))) {
 					PlayerShip.playerShip.loadRockets();
 				}
