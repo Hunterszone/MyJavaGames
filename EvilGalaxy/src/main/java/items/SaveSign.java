@@ -1,5 +1,7 @@
 package items;
 
+import java.util.Objects;
+
 import enums.Sprite;
 import game_engine.SpritePattern;
 
@@ -14,8 +16,7 @@ public class SaveSign extends SpritePattern {
 	}
 
 	public void initSave() {
-		imageName = Sprite.SAVESIGN_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.SAVESIGN_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

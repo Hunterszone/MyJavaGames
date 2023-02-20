@@ -1,6 +1,7 @@
 package items;
 
 import java.util.List;
+import java.util.Objects;
 
 import enums.Sprite;
 import game_engine.SpritePattern;
@@ -15,13 +16,11 @@ public class Gold extends SpritePattern implements Moveable {
 
 	public Gold(int x, int y) {
 		super(x, y);
-
 		initGifts();
 	}
 
 	public void initGifts() {
-		imageName = Sprite.GOLD_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.GOLD_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

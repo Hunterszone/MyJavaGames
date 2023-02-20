@@ -18,8 +18,7 @@ import util.Constants;
 public final class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
-	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+	private static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
 	public Main() throws IOException {
 		initGame();

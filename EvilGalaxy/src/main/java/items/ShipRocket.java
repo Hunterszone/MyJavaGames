@@ -1,6 +1,7 @@
 package items;
 
 import java.util.List;
+import java.util.Objects;
 
 import enemy.PlayerShip;
 import enums.Sprite;
@@ -21,8 +22,7 @@ public class ShipRocket extends SpritePattern {
 	}
 
 	public void initRocket() {
-		imageName = Sprite.ROCKET_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.ROCKET_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

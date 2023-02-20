@@ -1,5 +1,7 @@
 package items;
 
+import java.util.Objects;
+
 import enums.Sprite;
 import game_engine.SpritePattern;
 import util.Moveable;
@@ -11,13 +13,11 @@ public class Angel extends SpritePattern implements Moveable {
 
 	public Angel(int x, int y) {
 		super(x, y);
-
 		initAngel();
 	}
 
 	public void initAngel() {
-		imageName = Sprite.ANGEL.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.ANGEL.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

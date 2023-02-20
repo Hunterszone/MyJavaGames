@@ -1,6 +1,7 @@
 package items;
 
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 import enums.Sprite;
 import game_engine.SpritePattern;
@@ -40,15 +41,13 @@ public class VolBtn extends SpritePattern {
 	}
 
 	private void initVol() {
-		imageName = Sprite.VOLUME_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.VOLUME_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	private void initMute() {
-		imageName = Sprite.VOLUME_MUTE.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.VOLUME_MUTE.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

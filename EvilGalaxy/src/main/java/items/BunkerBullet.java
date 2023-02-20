@@ -1,6 +1,7 @@
 package items;
 
 import java.util.List;
+import java.util.Objects;
 
 import enums.Sprite;
 import game_engine.SpritePattern;
@@ -22,8 +23,7 @@ public class BunkerBullet extends SpritePattern {
 	}
 
 	public void initBullet() {
-		imageName = Sprite.BULLET_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.BULLET_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import animation.AsteroidsAnimation;
 import animation.AstronautAnimation;
@@ -60,10 +61,10 @@ import util.TextToSpeech;
 public class DrawScene extends UpdateObjects {
 
 	private static final long serialVersionUID = 160473770719678686L;
-	private static final String KILLED_BY_THE_EVIL_HEAD = "Killed by the EvilHead";
-	private static final String KILLED_BY_THE_BUNKER = "Killed by the bunker";
-	private static final String KILLED_BY_A_DRAGON = "Killed by a dragon";
-	private static final String KILLED_BY_AN_ALIEN = "Killed by an alien";
+	private final String KILLED_BY_THE_EVIL_HEAD = "Killed by the EvilHead";
+	private final String KILLED_BY_THE_BUNKER = "Killed by the bunker";
+	private final String KILLED_BY_A_DRAGON = "Killed by a dragon";
+	private final String KILLED_BY_AN_ALIEN = "Killed by an alien";
 
 	private MapEntity mapEntity;
 	private PlayerCoordinates playerSign;
@@ -71,16 +72,16 @@ public class DrawScene extends UpdateObjects {
 	private AlienCoordinates alienSign;
 	private DragonCoordinates dragonSign;
 
-	private transient static Image bg1, bg2, bg3;
+	private transient Image bg1, bg2, bg3;
 
 	public DrawScene() throws IOException {
 		final int width = (int) Constants.DIMENSION.getWidth();
 		final int height = (int) Constants.DIMENSION.getHeight();
-		bg1 = Toolkit.getDefaultToolkit().createImage(Sprite.BG1.getImg()).getScaledInstance(width, height,
+		bg1 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG1.getImg())).getScaledInstance(width, height,
 				Image.SCALE_SMOOTH);
-		bg2 = Toolkit.getDefaultToolkit().createImage(Sprite.BG2.getImg()).getScaledInstance(width, height,
+		bg2 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG2.getImg())).getScaledInstance(width, height,
 				Image.SCALE_SMOOTH);
-		bg3 = Toolkit.getDefaultToolkit().createImage(Sprite.BG3.getImg()).getScaledInstance(width, height,
+		bg3 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG3.getImg())).getScaledInstance(width, height,
 				Image.SCALE_SMOOTH);
 		mapEntity = new MapEntity();
 		playerSign = new PlayerCoordinates();

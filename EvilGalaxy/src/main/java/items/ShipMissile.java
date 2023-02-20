@@ -1,6 +1,7 @@
 package items;
 
 import java.util.List;
+import java.util.Objects;
 
 import enemy.PlayerShip;
 import enums.Sprite;
@@ -20,8 +21,7 @@ public class ShipMissile extends SpritePattern {
 	}
 
 	public void initMissile() {
-		imageName = Sprite.MISSILE_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.MISSILE_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}

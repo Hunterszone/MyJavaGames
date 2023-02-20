@@ -17,7 +17,6 @@ public abstract class SpritePattern implements Serializable {
 	transient protected Image image;
 
 	public SpritePattern(int x, int y) {
-
 		this.x = x;
 		this.y = y;
 		vis = true;

@@ -1,6 +1,7 @@
 package items;
 
 import java.util.List;
+import java.util.Objects;
 
 import enums.Sprite;
 import game_engine.SpritePattern;
@@ -16,13 +17,11 @@ public class PlasmaBall extends SpritePattern {
 
 	public PlasmaBall(int x, int y) {
 		super(x, y);
-
 		initPlasmaBall();
 	}
 
 	public void initPlasmaBall() {
-		imageName = Sprite.PLASMABALL_INIT.getImg();
-		assert imageName != null;
+		imageName = Objects.requireNonNull(Sprite.PLASMABALL_INIT.getImg());
 		loadImage(imageName);
 		getImageDimensions();
 	}
