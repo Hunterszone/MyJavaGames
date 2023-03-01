@@ -9,8 +9,8 @@ import enemy.Alien;
 import enemy.Bunker;
 import enemy.Dragon;
 import game_engine.DrawScene;
-import game_engine.InitObjects;
 import game_engine.UpdateObjects;
+import items.Angel;
 import items.Gold;
 import items.HealthPack;
 
@@ -33,7 +33,7 @@ public class DrawSceneTest {
 	@Test
 	public void testDrawGameStateL2() {
 		Assert.assertNotNull(Dragon.dragons);
-		Assert.assertNotNull("Angels not loaded for L2", InitObjects.getAngels());
+		Assert.assertNotNull("Angels not loaded for L2", Angel.angels);
 	}
 		
 	@Test
