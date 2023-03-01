@@ -2,11 +2,13 @@ package items;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 
 import util.Drawable;
 
 public class Explosion implements Drawable {
 	
+	public static List<Explosion> explosions;
 	private final double x, y;
 	private int r;
 	private final int maxRadius;

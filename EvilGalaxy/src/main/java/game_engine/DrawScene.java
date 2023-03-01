@@ -60,11 +60,17 @@ import util.TextToSpeech;
 
 public class DrawScene extends UpdateObjects {
 
+	private static final String COLLECT_ALL_THE_GOLD = "Collect all the gold!";
+	private static final String DESTROY_THE_BUNKER = "Destroy the bunker!";
+	private static final String KILL_THE_EVIL_HEAD = "Finally..Kill the evil head!";
+	private static final String SHIP_OUTTA_CONTROL = "Dragons invasion brings the ship outta control...";
+	private static final String FONT_PAPYRUS = "Papyrus";
 	private static final long serialVersionUID = 160473770719678686L;
-	private final String KILLED_BY_THE_EVIL_HEAD = "Killed by the EvilHead";
-	private final String KILLED_BY_THE_BUNKER = "Killed by the bunker";
-	private final String KILLED_BY_A_DRAGON = "Killed by a dragon";
-	private final String KILLED_BY_AN_ALIEN = "Killed by an alien";
+	private static final String PRESS_AN_ARROW_TO_CONTINUE = "Press an arrow to continue...";
+	private static final String KILLED_BY_THE_EVIL_HEAD = "Killed by the EvilHead!";
+	private static final String KILLED_BY_THE_BUNKER = "Killed by the bunker!";
+	private static final String KILLED_BY_A_DRAGON = "Killed by a dragon!";
+	private static final String KILLED_BY_AN_ALIEN = "Killed by an alien!";
 
 	private MapEntity mapEntity;
 	private PlayerCoordinates playerSign;
@@ -112,7 +118,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawExplosion(Graphics g) {
-		for (final Explosion explosion : getExplosions()) {
+		for (final Explosion explosion : Explosion.explosions) {
 			explosion.draw(g);
 		}
 	}
@@ -134,6 +140,13 @@ public class DrawScene extends UpdateObjects {
 		Toolkit.getDefaultToolkit().sync();
 		((Graphics2D) g).setTransform(backup);
 	}
+	
+	private void drawAsteroids(Graphics g) {
+		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
+			Toolkit.getDefaultToolkit().sync();
+		}
+	}
 
 	private void drawSatellite(Graphics g) {
 		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
@@ -147,13 +160,6 @@ public class DrawScene extends UpdateObjects {
 				SatelliteAnimation.starAnim.getY(), this);
 		Toolkit.getDefaultToolkit().sync();
 		((Graphics2D) g).setTransform(backup);
-	}
-
-	private void drawAsteroids(Graphics g) {
-		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
-			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
-			Toolkit.getDefaultToolkit().sync();
-		}
 	}
 
 	private void drawElonsUp(Graphics g) {
@@ -276,7 +282,7 @@ public class DrawScene extends UpdateObjects {
 	private void handleKilledByEvilHead() {
 		if (Flags.killedByEvilHead) {
 			if (!InitObjects.isIngame()) {
-				TextToSpeech.playVoice("Killed by the Evil Head!");
+				TextToSpeech.playVoice(KILLED_BY_THE_EVIL_HEAD);
 				TextToSpeech.voiceInterruptor = true;
 				Flags.killedByEvilHead = false;
 				try {
@@ -294,7 +300,7 @@ public class DrawScene extends UpdateObjects {
 	private void handleKilledByBunker() {
 		if (Flags.killedByBunker) {
 			if (!InitObjects.isIngame()) {
-				TextToSpeech.playVoice("Killed by the bunker!");
+				TextToSpeech.playVoice(KILLED_BY_THE_BUNKER);
 				TextToSpeech.voiceInterruptor = true;
 				Flags.killedByBunker = false;
 				try {
@@ -312,7 +318,7 @@ public class DrawScene extends UpdateObjects {
 	private void handleKilledByDragon() {
 		if (Flags.killedByDragon) {
 			if (!InitObjects.isIngame()) {
-				TextToSpeech.playVoice("Killed by a dragon!");
+				TextToSpeech.playVoice(KILLED_BY_A_DRAGON);
 				TextToSpeech.voiceInterruptor = true;
 				Flags.killedByDragon = false;
 				try {
@@ -330,7 +336,7 @@ public class DrawScene extends UpdateObjects {
 	private void handleKilledByAlien() {
 		if (Flags.killedByAlien) {
 			if (!InitObjects.isIngame()) {
-				TextToSpeech.playVoice("Killed by an alien!");
+				TextToSpeech.playVoice(KILLED_BY_AN_ALIEN);
 				TextToSpeech.voiceInterruptor = true;
 				Flags.killedByAlien = false;
 				try {
@@ -427,14 +433,14 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 	}
-
+	
 	private void drawGameStateL1(Graphics g) {
 		drawScene1(g);
 		drawL1Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawAsteroids(g);
-		drawGamePausedPressArrowKey(g);
+		drawPressArrowKey(g);
 	}
 
 	private void drawGameStateL2(Graphics g) {
@@ -443,7 +449,7 @@ public class DrawScene extends UpdateObjects {
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawSatellite(g);
-		drawGamePausedPressArrowKey(g);
+		drawPressArrowKey(g);
 	}
 
 	private void drawGameStateL3(Graphics g) {
@@ -453,7 +459,7 @@ public class DrawScene extends UpdateObjects {
 		drawLifeBunker(g);
 		drawLifePlayerShip(g);
 		drawAstronaut(g);
-		drawGamePausedPressArrowKey(g);
+		drawPressArrowKey(g);
 
 		LoadSounds.TAUNT.stop();
 	}
@@ -463,10 +469,10 @@ public class DrawScene extends UpdateObjects {
 		drawL4Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
-		drawGamePausedPressArrowKey(g);
+		drawPressArrowKey(g);
 	}
 
-	private void drawGamePausedPressArrowKey(Graphics g) {
+	private void drawPressArrowKey(Graphics g) {
 		if (!(InitObjects.getTimerEasy().isRunning() || InitObjects.getTimerMedium().isRunning()
 				|| InitObjects.getTimerHard().isRunning())) {
 			drawGamePaused(g);
@@ -484,7 +490,7 @@ public class DrawScene extends UpdateObjects {
 			drawGamePaused(g);
 		}
 	}
-
+	
 	private void drawL1Labels(Graphics g) {
 
 		setFontStyle(g);
@@ -514,7 +520,7 @@ public class DrawScene extends UpdateObjects {
 
 		drawLocation(g);
 	}
-
+	
 	private void drawL2Labels(Graphics g) {
 
 		setFontStyle(g);
@@ -844,7 +850,7 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 
-		for (Angel angel : getAngels()) {
+		for (Angel angel : Angel.angels) {
 			if (angel.getY() <= 0) {
 				angel.setVisible(false);
 			}
@@ -870,34 +876,38 @@ public class DrawScene extends UpdateObjects {
 			}
 		}
 	}
-
+	
 	private void drawScene1(Graphics g) {
+		g.drawImage(bg1, 0, 0, null);
 		if (PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible() && VolBtn.volButt.isVisible()
-				&& Bunker.bunkerObj.isVisible() && g.drawImage(bg1, 0, 0, null)) {
+				&& Bunker.bunkerObj.isVisible()) {
 			drawEntities(g);
 		}
 		drawSaveSign(g);
 	}
 
 	private void drawScene2(Graphics g) {
+		g.drawImage(bg2, 0, 0, null);
 		if (PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible() && VolBtn.volButt.isVisible()
-				&& Bunker.bunkerObj.isVisible() && g.drawImage(bg2, 0, 0, null)) {
+				&& Bunker.bunkerObj.isVisible()) {
 			drawEntities(g);
 		}
 		drawSaveSign(g);
 	}
 
 	private void drawScene3(Graphics g) {
+		g.drawImage(bg3, 0, 0, null);
 		if (PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible() && VolBtn.volButt.isVisible()
-				&& Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
+				&& Bunker.bunkerObj.isVisible()) {
 			drawEntities(g);
 		}
 		drawSaveSign(g);
 	}
 
 	private void drawScene4(Graphics g) {
+		g.drawImage(bg3, 0, 0, null);
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible()
-				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
+				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible()) {
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			EvilHead.evilHead.renderEvilHead(g);
@@ -906,8 +916,9 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawScene5(Graphics g) {
+		g.drawImage(bg3, 0, 0, null);
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible()
-				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible() && g.drawImage(bg3, 0, 0, null)) {
+				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible()) {
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
 			EvilHead.evilHead.renderEvilHead(g);
 		}
@@ -942,19 +953,19 @@ public class DrawScene extends UpdateObjects {
 
 		if (Flags.killedByAlien) {
 			String openAiMsgAlien = OpenAiApiImpl.createCompletion(Entity.ALIEN.getMsg()); 
-			msg = openAiMsgAlien == null || openAiMsgAlien.equals(Entity.ALIEN.getMsg()) 
+			msg = openAiMsgAlien == null || Entity.ALIEN.getMsg().equals(openAiMsgAlien) 
 					? KILLED_BY_AN_ALIEN : openAiMsgAlien;
 		} else if (Flags.killedByDragon) {			
 			String openAiMsgDragon = OpenAiApiImpl.createCompletion(Entity.DRAGON.getMsg());
-			msg = openAiMsgDragon == null || openAiMsgDragon.equals(Entity.DRAGON.getMsg()) 
+			msg = openAiMsgDragon == null || Entity.DRAGON.getMsg().equals(openAiMsgDragon) 
 					? KILLED_BY_A_DRAGON : openAiMsgDragon;
 		} else if (Flags.killedByBunker) {			
 			String openAiMsgBunker = OpenAiApiImpl.createCompletion(Entity.BUNKER.getMsg());
-			msg = openAiMsgBunker == null || openAiMsgBunker.equals(Entity.BUNKER.getMsg()) 
+			msg = openAiMsgBunker == null || Entity.BUNKER.getMsg().equals(openAiMsgBunker) 
 					? KILLED_BY_THE_BUNKER : openAiMsgBunker;
 		} else if (Flags.killedByEvilHead) {			
 			String openAiMsgEvilHead = OpenAiApiImpl.createCompletion(Entity.EVILHEAD.getMsg());
-			msg = openAiMsgEvilHead == null || openAiMsgEvilHead.equals(Entity.EVILHEAD.getMsg()) 
+			msg = openAiMsgEvilHead == null || Entity.EVILHEAD.getMsg().equals(openAiMsgEvilHead) 
 					? KILLED_BY_THE_EVIL_HEAD : openAiMsgEvilHead;
 		}
 
@@ -962,27 +973,27 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawCollectGold(Graphics g) {
-		final String msg = "Collect all the gold!";
+		final String msg = COLLECT_ALL_THE_GOLD;
 		formatMsg(g, msg);
 	}
 
 	private void drawKillTheBunker(Graphics g) {
-		final String msg = "Destroy the bunker!";
+		final String msg = DESTROY_THE_BUNKER;
 		formatMsg(g, msg);
 	}
 
 	private void drawKillTheHead(Graphics g) {
-		final String msg = "Finally..Kill the evil head!";
+		final String msg = KILL_THE_EVIL_HEAD;
 		formatMsg(g, msg);
 	}
 
 	private void drawOuttaControl(Graphics g) {
-		final String msg = "Dragons invasion brings the ship outta control...";
+		final String msg = SHIP_OUTTA_CONTROL;
 		formatMsg(g, msg);
 	}
 
 	private void drawGamePaused(Graphics g) {
-		final String msg = "Press an arrow to continue...";
+		final String msg = PRESS_AN_ARROW_TO_CONTINUE;
 		formatMsg(g, msg);
 	}
 
@@ -1006,7 +1017,7 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void setFontStyle(Graphics g) {
-		final Font small = new Font("Papyrus", Font.BOLD, 22);
+		final Font small = new Font(FONT_PAPYRUS, Font.BOLD, 22);
 		g.setColor(Color.ORANGE);
 		g.setFont(small);
 	}

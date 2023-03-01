@@ -48,7 +48,7 @@ public class CollisionsTest {
 		ShipRocket.rockets = Collections.singletonList(new ShipRocket(x, y));
 		BunkerBullet.bulletsLeft = Collections.singletonList(new BunkerBullet(x, y));
 		BunkerBullet.bulletsRight = Collections.singletonList(new BunkerBullet(x, y));
-		InitObjects.setExplosions(new ArrayList<Explosion>());
+		Explosion.explosions = new ArrayList<Explosion>();
 		Crosshair.crosshair = new Crosshair(x, y);
 		ShipMissile.missiles = Collections.singletonList(new ShipMissile(x, y));
 	}
@@ -226,7 +226,7 @@ public class CollisionsTest {
 		ShipRocket.rockets = null;
 		BunkerBullet.bulletsLeft = null;
 		BunkerBullet.bulletsRight = null;
-		InitObjects.setExplosions(null);
+		Explosion.explosions = null;
 		Crosshair.crosshair = null;
 		ShipMissile.missiles = null;
 	}

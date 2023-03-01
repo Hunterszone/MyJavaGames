@@ -8,12 +8,12 @@ public class KilledEnemies {
 	public static String[] getEnemiesByTypeAndCount(String enemyName) {
 		
 		if (Alien.class.getName().equalsIgnoreCase(enemyName)) {
-			final Integer alienKilledd = UpdateObjects.getAlienKilled();
-			return new String[] { enemyName, alienKilledd.toString() };
+			final int alienKilled = UpdateObjects.getAlienKilled();
+			return new String[] { enemyName, String.valueOf(alienKilled) };
 		}
 		if (Dragon.class.getName().equalsIgnoreCase(enemyName)) {
-			final Integer dragonKilledd = UpdateObjects.getDragonKilled();
-			return new String[] { enemyName, dragonKilledd.toString() };
+			final int dragonKilled = UpdateObjects.getDragonKilled();
+			return new String[] { enemyName, String.valueOf(dragonKilled) };
 		}
 		return new String[] { "" };
 	}

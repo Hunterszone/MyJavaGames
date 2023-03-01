@@ -1,5 +1,6 @@
 package items;
 
+import java.util.List;
 import java.util.Objects;
 
 import enums.Sprite;
@@ -8,6 +9,7 @@ import util.Moveable;
 
 public class Angel extends SpritePattern implements Moveable {
 
+	public static List<Angel> angels;
 	private static final long serialVersionUID = 1L;
 	private String imageName;
 

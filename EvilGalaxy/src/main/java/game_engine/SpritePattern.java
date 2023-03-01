@@ -3,6 +3,7 @@ package game_engine;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 
@@ -38,7 +39,7 @@ public abstract class SpritePattern implements Serializable {
 		return vis;
 	}
 
-	public void setVisible(Boolean visible) {
+	public void setVisible(boolean visible) {
 		vis = visible;
 	}
 
@@ -52,7 +53,7 @@ public abstract class SpritePattern implements Serializable {
 	}
 
 	protected Image loadImage(String imageName) {
-		final ImageIcon ii = new ImageIcon(imageName);
+		final ImageIcon ii = new ImageIcon(Objects.requireNonNull(imageName));
 		image = ii.getImage();
 		return image;
 	}

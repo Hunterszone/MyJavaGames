@@ -11,7 +11,7 @@ import util.TextToSpeech;
 public class Difficulty {
 
 	public static void restart() {
-		InitObjects.setAngels(new ArrayList<Angel>());
+		Angel.angels = new ArrayList<Angel>();
 		HealthPack.healthpacks = new ArrayList<>(5);
 
 		if (!InitObjects.isIngame()) {
@@ -23,7 +23,7 @@ public class Difficulty {
 
 	public static void getEasyDiff() {
 
-		InitObjects.setAngels(new ArrayList<Angel>());
+		Angel.angels = new ArrayList<Angel>();
 
 		if (!InitObjects.isIngame()) {
 			InitObjects.setIngame(true);
@@ -37,7 +37,7 @@ public class Difficulty {
 
 	public static void getMediumDiff() {
 
-		InitObjects.setAngels(new ArrayList<Angel>());
+		Angel.angels = new ArrayList<Angel>();
 
 		if (!InitObjects.isIngame()) {
 			InitObjects.setIngame(true);
@@ -51,7 +51,7 @@ public class Difficulty {
 
 	public static void getHardDiff() {
 
-		InitObjects.setAngels(new ArrayList<Angel>());
+		Angel.angels = new ArrayList<Angel>();
 
 		if (!InitObjects.isIngame()) {
 			InitObjects.setIngame(true);

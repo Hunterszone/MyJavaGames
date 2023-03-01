@@ -12,6 +12,7 @@ import enemy.PlayerShip;
 import items.Angel;
 import items.BunkerBullet;
 import items.CanonBall;
+import items.Explosion;
 import items.Gold;
 import items.HealthPack;
 import items.PlasmaBall;
@@ -70,7 +71,7 @@ public abstract class UpdateObjects extends InitObjects {
 				if (dragon.isVisible()) {
 					dragon.move();
 				} else {
-					InitObjects.getAngels().add(new Angel(dragon.getX(), dragon.getY()));
+					Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
 				}
 			}
 		});
@@ -99,8 +100,8 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	protected static void updateExplosions() {
-		getExplosions().removeIf(explosion -> explosion != null && explosion.getR() == 80);
-		getExplosions().forEach(explosion -> explosion.update());
+		Explosion.explosions.removeIf(explosion -> explosion != null && explosion.getR() == 80);
+		Explosion.explosions.forEach(explosion -> explosion.update());
 	}
 
 	private void updateMyShipMissiles() {
@@ -240,7 +241,7 @@ public abstract class UpdateObjects extends InitObjects {
 	}
 
 	private void updateAngels() {
-		getAngels().removeIf(angel -> angel != null && !angel.isVisible());
+		Angel.angels.removeIf(angel -> angel != null && !angel.isVisible());
 	}
 
 	private void updateHealth() {

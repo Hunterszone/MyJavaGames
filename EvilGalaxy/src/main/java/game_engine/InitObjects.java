@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -48,8 +49,6 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 	protected static final String[] CITY_AND_COUNTRY = getCityAndCountry();
 	
-	private static List<Explosion> explosions;
-	private static List<Angel> angels;
 	private static boolean isIngame;
 	private static Timer timerEasy, timerMedium, timerHard;
 	private static Thread animator;
@@ -89,8 +88,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		Flags.isEPressed = true;
 		
 		// Collections
-		setExplosions(new ArrayList<Explosion>());
-		setAngels(new ArrayList<Angel>());
+		Explosion.explosions = new ArrayList<Explosion>();
+		Angel.angels = new ArrayList<Angel>();
 		
 		// Icons
 		AlienIcon.alienIcon = new AlienIcon(0, 0);
@@ -115,7 +114,6 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		initDragons();
 		initHealth();
 
-//		GameMenuBar.autosave.setSelected(false);
 		TextToSpeech.voiceInterruptor = true;
 
 		setAnimator(new Thread(this));
@@ -317,7 +315,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 
 	public static void setTimerMedium(Timer timerMedium) {
-		InitObjects.timerMedium = timerMedium;
+		InitObjects.timerMedium = Objects.requireNonNull(timerMedium);
 	}
 
 	public static Timer getTimerHard() {
@@ -325,7 +323,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 
 	public static void setTimerHard(Timer timerHard) {
-		InitObjects.timerHard = timerHard;
+		InitObjects.timerHard = Objects.requireNonNull(timerHard);
 	}
 
 	public static Timer getTimerEasy() {
@@ -333,7 +331,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 
 	public static void setTimerEasy(Timer timerEasy) {
-		InitObjects.timerEasy = timerEasy;
+		InitObjects.timerEasy = Objects.requireNonNull(timerEasy);
 	}
 
 	public static boolean isIngame() {
@@ -344,19 +342,4 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		InitObjects.isIngame = isIngame;
 	}
 
-	public static List<Angel> getAngels() {
-		return angels;
-	}
-
-	public static void setAngels(List<Angel> angels) {
-		InitObjects.angels = angels;
-	}
-
-	public static List<Explosion> getExplosions() {
-		return explosions;
-	}
-
-	public static void setExplosions(List<Explosion> explosions) {
-		InitObjects.explosions = explosions;
-	}
 }
