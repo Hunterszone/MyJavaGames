@@ -136,7 +136,7 @@ public class LoadGame {
 
 		EvilHead.evilHead = new EvilHead(500, 500);
 		EvilHead.evilHead.isVisible();
-		EvilHead.evilHead.AIOnEasy();
+		AIEngine.aiEngine.AIOnEasy();
 
 		Gold.goldstack.add(new Gold(150, 150));
 		HealthPack.healthpacks.add(new HealthPack(400, 400));

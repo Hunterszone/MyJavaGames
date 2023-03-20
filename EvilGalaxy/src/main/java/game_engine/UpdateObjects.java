@@ -209,29 +209,25 @@ public abstract class UpdateObjects extends InitObjects {
 
 		if (EvilHead.evilHead.isVisible() && getTimerEasy().isRunning()) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
-				EvilHead.evilHead.AIOnEasy();
+				AIEngine.aiEngine.AIOnEasy();
 			}
 			if (Dragon.dragons.isEmpty()) {
-				EvilHead.evilHead.AIOnEasy();
+				AIEngine.aiEngine.AIOnEasy();
 			}
 		}
 
 		if (EvilHead.evilHead.isVisible() && getTimerMedium().isRunning() == true) {
 			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
-				EvilHead.evilHead.AIOnMedium();
+				AIEngine.aiEngine.AIOnMedium();
 			}
 			if (Dragon.dragons.isEmpty()) {
-				EvilHead.evilHead.AIOnMedium();
+				AIEngine.aiEngine.AIOnMedium();
 			}
 		}
 
-		if (EvilHead.evilHead.isVisible() && getTimerHard().isRunning() == true) {
-			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
-				EvilHead.evilHead.AIOnHard();
-			}
-			if (Dragon.dragons.isEmpty()) {
-				EvilHead.evilHead.AIOnHard();
-			}
+		if (Alien.aliens.isEmpty() && (!Dragon.dragons.isEmpty() || EvilHead.evilHead.isVisible()) 
+				&& getTimerHard().isRunning()) {
+			AIEngine.aiEngine.AIOnHard();
 		}
 	}
 

@@ -18,9 +18,9 @@ import util.Constants;
 public class EvilHead extends SpritePattern {
 
 	public static EvilHead evilHead;
+	public double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 	private String imageName;
-	private double speedX, speedY;
 
 	public EvilHead(int x, int y) {
 		super(x, y);
@@ -45,136 +45,6 @@ public class EvilHead extends SpritePattern {
 	private void initAmmo() {
 		PlasmaBall.plasmaBalls = new ArrayList<>();
 		CanonBall.canonBalls = new ArrayList<>();
-	}
-
-	// Simulated Artificial Intelligence on EASY
-	public void AIOnEasy() {
-
-		x += speedX;
-		y += speedY;
-
-		if (x < 1) {
-			x = 1;
-		}
-
-		if (y < 1) {
-			y = 1;
-		}
-
-		x -= 1;
-
-		if (x < 500) {
-			speedX += 1.2;
-			drawHead();
-		}
-
-		y -= 1;
-		if (y == 0) {
-			x += 1.2;
-			drawHead();
-		}
-
-		if (x > 800) {
-
-			speedX -= 1.2;
-			speedY += 1.2;
-			drawHead();
-		}
-
-		if (y > 500) {
-			speedY -= 1;
-			drawHead();
-		}
-
-	}
-
-	// Simulated Artificial Intelligence on MEDIUM
-	public void AIOnMedium() {
-
-		x += speedX;
-		y += speedY;
-
-		if (x < 1) {
-			x = 1;
-		}
-
-		if (y < 1) {
-			y = 1;
-		}
-
-		x -= 1;
-		if (y == 250 || y == 350 || y == 450) {
-			loadCanon();
-			strikeHead();
-		}
-
-		if (x < 500) {
-			speedX += 1.2;
-			drawHead();
-		}
-
-		y -= 1;
-		if (y == 0) {
-			x += 1.2;
-			drawHead();
-		}
-
-		if (x > 800) {
-			speedX -= 1.2;
-			speedY += 1.2;
-			drawHead();
-
-		}
-
-		if (y > 500) {
-			speedY -= 1;
-			drawHead();
-		}
-
-	}
-
-	// Simulated Artificial Intelligence on HARD
-	public void AIOnHard() {
-
-		x += speedX;
-		y += speedY;
-
-		if (x < 1) {
-			x = 1;
-		}
-
-		if (y < 1) {
-			y = 1;
-		}
-
-		x -= 1;
-		if (y == 250 || y == 350 || y == 450 || y == 550 || y == 650) {
-			loadCanon();
-			strikeHead();
-		}
-
-		if (x < 500) {
-			speedX += 1.2;
-			drawHead();
-		}
-
-		y -= 1;
-		if (y == 0) {
-			x += 1.2;
-			drawHead();
-		}
-
-		if (x > 800) {
-			speedX -= 1.2;
-			speedY += 1.2;
-			drawHead();
-		}
-
-		if (y > 500) {
-			speedY -= 1;
-			drawHead();
-		}
-
 	}
 
 	public List<PlasmaBall> getEvilPlasmaBalls() {
