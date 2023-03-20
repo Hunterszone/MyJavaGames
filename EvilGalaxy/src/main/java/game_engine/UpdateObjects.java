@@ -207,27 +207,22 @@ public abstract class UpdateObjects extends InitObjects {
 		assert Alien.aliens != null;
 		assert Dragon.dragons != null;
 
-		if (EvilHead.evilHead.isVisible() && getTimerEasy().isRunning()) {
-			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
-				AIEngine.aiEngine.AIOnEasy();
-			}
-			if (Dragon.dragons.isEmpty()) {
-				AIEngine.aiEngine.AIOnEasy();
-			}
+		if (getTimerEasy().isRunning()) {
+			AIEngine.aiEngine.AIOnEasy();
 		}
 
-		if (EvilHead.evilHead.isVisible() && getTimerMedium().isRunning() == true) {
-			if (Alien.aliens.size() > 0 || Dragon.dragons.size() > 0) {
-				AIEngine.aiEngine.AIOnMedium();
-			}
-			if (Dragon.dragons.isEmpty()) {
-				AIEngine.aiEngine.AIOnMedium();
-			}
+		if (getTimerMedium().isRunning()) {
+			AIEngine.aiEngine.AIOnMedium();
 		}
 
-		if (Alien.aliens.isEmpty() && (!Dragon.dragons.isEmpty() || EvilHead.evilHead.isVisible()) 
-				&& getTimerHard().isRunning()) {
-			AIEngine.aiEngine.AIOnHard();
+		if (Alien.aliens.isEmpty() && getTimerHard().isRunning()) {
+			if (!Dragon.dragons.isEmpty()) {
+				PlayerShip.playerShip.shakeShip();
+				Crosshair.crosshair.shakeCrosshair();
+			}
+			if (EvilHead.evilHead.isVisible()) {
+				AIEngine.aiEngine.AIOnHard();
+			}
 		}
 	}
 

@@ -547,8 +547,6 @@ public class DrawScene extends UpdateObjects {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
 			g.drawString(Constants.HARD, 540, 20);
 			drawOuttaControl(g);
-			PlayerShip.playerShip.shakeShip();
-			Crosshair.crosshair.shakeCrosshair();
 		}
 
 		drawLocation(g);
