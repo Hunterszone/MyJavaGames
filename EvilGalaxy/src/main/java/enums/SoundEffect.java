@@ -7,6 +7,12 @@ public enum SoundEffect {
 			return "sounds/attack.wav";
 		}
 	},
+	VICTORY {
+		@Override
+		public String getSound() {
+			return "sounds/victory.wav";
+		}
+	},
 	BGMUSIC {
 		@Override
 		public String getSound() {

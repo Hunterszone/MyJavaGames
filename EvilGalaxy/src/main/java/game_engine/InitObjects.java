@@ -136,7 +136,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		EvilHead.evilHead.setVisible(true);
 
 		AIEngine.aiEngine = new AIEngine(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
-		AIEngine.aiEngine.AIOnEasy();
+		AIEngine.aiEngine.evilHeadOnEasy();
 
 		VolBtn.volButt = new VolBtn(Constants.VOLBUT_X, Constants.VOLBUT_Y);
 		VolBtn.volButt.setVisible(true);

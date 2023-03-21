@@ -13,7 +13,7 @@ import marytts.util.data.audio.AudioPlayer;
 public class TextToSpeech {
 
 	public static boolean finMusicIsPlayed;
-	public static boolean voiceInterruptor = false;
+	public static boolean voiceInterruptor;
 	
 	private static MaryInterface marytts = null;
 	private static Set<String> voices = null;

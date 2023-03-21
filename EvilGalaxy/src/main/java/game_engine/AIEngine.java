@@ -13,7 +13,7 @@ public class AIEngine extends SpritePattern {
 	public static AIEngine aiEngine;
 	
 	// Simulated Artificial Intelligence on EASY
-	public void AIOnEasy() {
+	public void evilHeadOnEasy() {
 
 		EvilHead.evilHead.x += EvilHead.evilHead.speedX;
 		EvilHead.evilHead.y += EvilHead.evilHead.speedY;
@@ -54,7 +54,7 @@ public class AIEngine extends SpritePattern {
 	}
 
 	// Simulated Artificial Intelligence on MEDIUM
-	public void AIOnMedium() {
+	public void evilHeadOnMedium() {
 
 		EvilHead.evilHead.x += EvilHead.evilHead.speedX;
 		EvilHead.evilHead.y += EvilHead.evilHead.speedY;
@@ -101,7 +101,7 @@ public class AIEngine extends SpritePattern {
 	}
 
 	// Simulated Artificial Intelligence on HARD
-	public void AIOnHard() {
+	public void evilHeadOnHard() {
 
 		EvilHead.evilHead.x += EvilHead.evilHead.speedX;
 		EvilHead.evilHead.y += EvilHead.evilHead.speedY;

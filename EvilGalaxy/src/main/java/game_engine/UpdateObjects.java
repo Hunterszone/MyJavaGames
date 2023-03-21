@@ -208,11 +208,11 @@ public abstract class UpdateObjects extends InitObjects {
 		assert Dragon.dragons != null;
 
 		if (getTimerEasy().isRunning()) {
-			AIEngine.aiEngine.AIOnEasy();
+			AIEngine.aiEngine.evilHeadOnEasy();
 		}
 
 		if (getTimerMedium().isRunning()) {
-			AIEngine.aiEngine.AIOnMedium();
+			AIEngine.aiEngine.evilHeadOnMedium();
 		}
 
 		if (Alien.aliens.isEmpty() && getTimerHard().isRunning()) {
@@ -221,7 +221,7 @@ public abstract class UpdateObjects extends InitObjects {
 				Crosshair.crosshair.shakeCrosshair();
 			}
 			if (EvilHead.evilHead.isVisible()) {
-				AIEngine.aiEngine.AIOnHard();
+				AIEngine.aiEngine.evilHeadOnHard();
 			}
 		}
 	}

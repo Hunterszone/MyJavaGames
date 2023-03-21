@@ -28,6 +28,7 @@ import enemy.Dragon;
 import enemy.EvilHead;
 import enemy.PlayerShip;
 import enums.Entity;
+import enums.SoundEffect;
 import enums.Sprite;
 import icons.AlienIcon;
 import icons.DifficultyIcon;
@@ -52,6 +53,7 @@ import map.DragonCoordinates;
 import map.EvilHeadCoordinates;
 import map.MapEntity;
 import map.PlayerCoordinates;
+import sound_engine.PlayWave1st;
 import util.Constants;
 import util.Flags;
 import util.LoadSounds;
@@ -223,12 +225,12 @@ public class DrawScene extends UpdateObjects {
 
 			drawElonsUp(g);
 			drawElonsDown(g);
-
+			
 			if (!TextToSpeech.finMusicIsPlayed) {
-				LoadSounds.HIGHSC.play();
+				new PlayWave1st(SoundEffect.VICTORY.getSound()).start();
 				TextToSpeech.finMusicIsPlayed = true;
 			}
-
+			
 			setFontStyle(g);
 			g.drawString("Monsters: Killed!", 5, 20);
 			g.drawString("Gold: Collected!", 210, 20);
