@@ -8,36 +8,39 @@ import org.junit.Before;
 import org.junit.Test;
 
 import enemy.EvilHead;
+import game_engine.AIEngine;
 import util.Constants;
 
 public class EvilHeadTest {
 
+	private AIEngine aiEngine;
 	private EvilHead evilHead;
 
 	@Before
 	public void setUp() throws Exception {
+		aiEngine = new AIEngine(0, 0);
 		evilHead = new EvilHead(Constants.EVILHEAD_X, Constants.EVILHEAD_Y);
 	}
 	
 	@Test
 	public void testEvilHeadPositionOnEasy() {
-		evilHead.AIOnEasy();
-		assertNotEquals("EvilHead is not X-moving on EASY difficulty!", Constants.EVILHEAD_X, evilHead.getX());
-		assertNotEquals("EvilHead is not Y-moving on EASY difficulty!", Constants.EVILHEAD_Y, evilHead.getY());
+		aiEngine.evilHeadOnEasy();
+		assertNotEquals("evilHead is not X-moving on EASY difficulty!", Constants.EVILHEAD_X, aiEngine.getX());
+		assertNotEquals("evilHead is not Y-moving on EASY difficulty!", Constants.EVILHEAD_Y, aiEngine.getY());
 	}
 	
 	@Test
 	public void testEvilHeadPositionOnMedium() {
-		evilHead.AIOnMedium();
-		assertNotEquals("EvilHead is not X-moving on MEDIUM difficulty!", Constants.EVILHEAD_X, evilHead.getX());
-		assertNotEquals("EvilHead is not Y-moving on MEDIUM difficulty!", Constants.EVILHEAD_Y, evilHead.getY());
+		aiEngine.evilHeadOnMedium();
+		assertNotEquals("evilHead is not X-moving on MEDIUM difficulty!", Constants.EVILHEAD_X, aiEngine.getX());
+		assertNotEquals("evilHead is not Y-moving on MEDIUM difficulty!", Constants.EVILHEAD_Y, aiEngine.getY());
 	}
 	
 	@Test
 	public void testEvilHeadPositionOnHard() {
-		evilHead.AIOnHard();
-		assertNotEquals("EvilHead is not X-moving on HARD difficulty!", Constants.EVILHEAD_X, evilHead.getX());
-		assertNotEquals("EvilHead is not Y-moving on HARD difficulty!", Constants.EVILHEAD_Y, evilHead.getY());
+		aiEngine.evilHeadOnHard();
+		assertNotEquals("evilHead is not X-moving on HARD difficulty!", Constants.EVILHEAD_X, aiEngine.getX());
+		assertNotEquals("evilHead is not Y-moving on HARD difficulty!", Constants.EVILHEAD_Y, aiEngine.getY());
 	}
 	
 	@Test
@@ -52,6 +55,7 @@ public class EvilHeadTest {
 
 	@After
 	public void tearDown() throws Exception {
+		aiEngine = null;
 		evilHead = null;
 	}
 }
