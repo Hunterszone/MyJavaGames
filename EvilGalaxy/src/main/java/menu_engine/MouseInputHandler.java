@@ -23,6 +23,7 @@ import enums.SoundEffect;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
+import chat_engine.ChatRoom;
 import launcher.Launcher;
 import main.Main;
 import menu_states.ControlsState;
@@ -194,7 +195,16 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 						System.out.println(e1.getMessage());
 					}
 				}
-				if (mouseY >= 450 && mouseY <= 500) {
+				if (mouseY >= 450 && mouseY <= 500) { // Chat room
+					playWave1st.start();
+					try {
+						ChatRoom chatRoom = new ChatRoom();
+				        chatRoom.start(1234);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (mouseY >= 550 && mouseY <= 600) { // Back button
 					playWave1st.start();
 					ExtrasState.isOn = false;
 					Flags.isMenuOn = true;

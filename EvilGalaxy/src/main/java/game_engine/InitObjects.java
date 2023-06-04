@@ -212,8 +212,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	}
 	
 	public static void initCanvas() {
-		final CanvasMenu engine = new CanvasMenu();
-		engine.start();
+		final CanvasMenu canvasMenu = new CanvasMenu();
+		canvasMenu.start();
 	}
 
 	@Override
