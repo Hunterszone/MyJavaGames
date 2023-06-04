@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import chat_engine.ChatRoom;
 import enums.Sprite;
 import game_engine.DrawScene;
 import game_engine.InitObjects;
@@ -43,6 +44,7 @@ public final class Main extends JFrame {
 
 	public static void main(String[] args) throws URISyntaxException {
 		InitObjects.initCanvas();
+		new ChatRoom().start(1234);
 	}
 
 }

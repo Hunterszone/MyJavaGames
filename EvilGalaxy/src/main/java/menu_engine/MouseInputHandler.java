@@ -18,12 +18,12 @@ import java.net.URISyntaxException;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
+import chat_engine.Client;
 // import game packages:
 import enums.SoundEffect;
 import game_engine.InitObjects;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
-import chat_engine.ChatRoom;
 import launcher.Launcher;
 import main.Main;
 import menu_states.ControlsState;
@@ -198,8 +198,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 				if (mouseY >= 450 && mouseY <= 500) { // Chat room
 					playWave1st.start();
 					try {
-						ChatRoom chatRoom = new ChatRoom();
-				        chatRoom.start(1234);
+						new Client("127.0.0.1", 1234).run();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

@@ -14,10 +14,6 @@ public class Client {
   private String host;
   private int port;
 
-  public static void main(String[] args) throws UnknownHostException, IOException {
-    new Client("127.0.0.1", 1234).run();
-  }
-
   public Client(String host, int port) {
     this.host = host;
     this.port = port;
