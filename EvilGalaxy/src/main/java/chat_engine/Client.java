@@ -46,7 +46,7 @@ public class Client {
 
         // end Ctrl+D or thread interrupted
         output.close();
-        sc.close();
+//        sc.close();
         client.close();
       } catch (UnknownHostException e) {
         e.printStackTrace();
