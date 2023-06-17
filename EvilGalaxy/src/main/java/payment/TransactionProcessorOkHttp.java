@@ -16,11 +16,8 @@ import okhttp3.Response;
 
 public class TransactionProcessorOkHttp {
 
-//	public static void main(String[] args) throws IOException {
-//		createTransaction();
-//	}
-	
-	static String jsonResp;
+	public static String jsonRespBody;
+	public static int jsonRespCode;
 
 	public static String createTransaction(String custName) throws IOException {
 
@@ -57,11 +54,12 @@ public class TransactionProcessorOkHttp {
 		
 		Response response = client.newCall(request).execute();
 		
-		System.out.println("Transaction has been created with resp code: " + response.code());
-		
-		jsonResp = response.body().string();
+		jsonRespBody = response.body().string();
+		jsonRespCode = response.code();
 
-		return jsonResp;
+		System.out.println("Transaction has been created with resp code: " + jsonRespCode);
+
+		return jsonRespBody;
 	}
 
 	// for reporting purposes
@@ -69,7 +67,7 @@ public class TransactionProcessorOkHttp {
 		JSONParser parser = new JSONParser();
 		org.json.simple.JSONObject json = null;
 		try {
-			json = (org.json.simple.JSONObject) parser.parse(jsonResp);
+			json = (org.json.simple.JSONObject) parser.parse(jsonRespBody);
 		} catch (ParseException e) {
 			e.getMessage();
 		}

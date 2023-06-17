@@ -12,9 +12,7 @@ import okhttp3.Response;
 
 public class PaymentProcessorOkHttp {
 
-//	public static void main(String[] args) throws IOException {
-//		processPaymentForTen();
-//	}
+	public static int jsonRespCode;
 
 	public static String processPaymentForTen(String custName)
 			throws IOException {
@@ -86,9 +84,12 @@ public class PaymentProcessorOkHttp {
 				.build();
 		Response response = client.newCall(request).execute();
 		
-		System.out.println("Payment has been processesd with resp code: " + response.code());
-		System.out.println("API response: " + response.body().string());
+		jsonRespCode = response.code();
+		String jsonRespBody = response.body().string(); 
 		
-		return response.body().string();
+		System.out.println("Payment has been processesd with resp code: " + jsonRespCode);
+		System.out.println("API response: " + jsonRespBody);
+		
+		return jsonRespBody;
 	}
 }
