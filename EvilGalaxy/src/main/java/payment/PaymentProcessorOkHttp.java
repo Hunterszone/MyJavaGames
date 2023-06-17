@@ -3,10 +3,6 @@ package payment;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.HashMap;
-
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -15,13 +11,63 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class PaymentProcessorOkHttp {
-	public static void main(String[] args) throws IOException {
-		processPayment("\"IvfxMCsSW8zjhVrsAnBGVGL9yfO\"", "\"233\"", "\"BGN\"");
+
+//	public static void main(String[] args) throws IOException {
+//		processPaymentForTen();
+//	}
+
+	public static String processPaymentForTen(String custName)
+			throws IOException {
+		
+		String paymentMethToken = TransactionProcessorOkHttp.extractTransactionToken(custName);
+		
+		String payload = "{\r\n" + 
+				"        \"transaction\": {\r\n" + 
+				"\"payment_method_token\": " + paymentMethToken + ",\r\n" +
+				"          \"amount\": 10,\r\n" + 
+				"          \"currency_code\": \"USD\",\r\n" + 
+				"          \"retain_on_success\": true\r\n" + 
+				"        }\r\n" + 
+				"      }";
+		
+		return processRequest(payload);
+	}
+	
+	public static String processPaymentForTwenty(String custName)
+			throws IOException {
+		
+		String paymentMethToken = TransactionProcessorOkHttp.extractTransactionToken(custName);
+		
+		String payload = "{\r\n" + 
+				"        \"transaction\": {\r\n" + 
+				"		 \"payment_method_token\":" + paymentMethToken + ",\r\n" + 
+				"          \"amount\": 20,\r\n" + 
+				"          \"currency_code\": \"USD\",\r\n" + 
+				"          \"retain_on_success\": true\r\n" + 
+				"        }\r\n" + 
+				"      }";
+
+		return processRequest(payload);
+	}
+	
+	public static String processPaymentForFifty(String custName)
+			throws IOException {
+		
+		String paymentMethToken = TransactionProcessorOkHttp.extractTransactionToken(custName);
+		
+		String payload = "{\r\n" + 
+				"        \"transaction\": {\r\n" + 
+				"\"payment_method_token\":" + paymentMethToken + ",\r\n" + 
+				"          \"amount\": 50,\r\n" + 
+				"          \"currency_code\": \"USD\",\r\n" + 
+				"          \"retain_on_success\": true\r\n" + 
+				"        }\r\n" + 
+				"      }";
+
+		return processRequest(payload);
 	}
 
-	public static String processPayment(String paymentMethToken, String amount, String currencyCode)
-			throws IOException {
-
+	private static String processRequest(String data) throws IOException {
 		OkHttpClient client = new OkHttpClient();
 
 		String auth = "ZQybpLRQmgVQrSD3CdAzB1QWM1E" + ":"
@@ -30,40 +76,19 @@ public class PaymentProcessorOkHttp {
 
 		String authHeaderValue = "Basic " + new String(encodedAuth);
 
-		String data = "{\r\n" + "        \"transaction\": {\r\n" + "\"payment_method_token\":" + paymentMethToken
-				+ ",\r\n" + "\"amount\":" + amount + ",\r\n" + "\"currency_code\":" + currencyCode + ",\r\n"
-				+ "          \"retain_on_success\": true\r\n" + "        }\r\n" + "      }";
-
 		final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 		RequestBody body = RequestBody.create(JSON, data);
 		Request request = new Request.Builder()
 				.url("https://core.spreedly.com/v1/gateways/RmWNf0NVLOuZqthwKgHgjua4Cxn/purchase.json")
-				.header("Authorization", authHeaderValue).post(body).build();
+				.header("Authorization", authHeaderValue)
+				.post(body)
+				.build();
 		Response response = client.newCall(request).execute();
 		
-		System.out.println(response.body().string());
+		System.out.println("Payment has been processesd with resp code: " + response.code());
+		System.out.println("API response: " + response.body().string());
 		
 		return response.body().string();
-	}
-
-	public static String[] extractPaymentData(String paymentMethToken, String amount, String currencyCode)
-			throws IOException {
-		JSONParser parser = new JSONParser();
-		org.json.simple.JSONObject json = null;
-		try {
-			String jsonRespBlock = processPayment(paymentMethToken, amount, currencyCode);
-			json = (org.json.simple.JSONObject) parser.parse(jsonRespBlock);
-		} catch (ParseException e) {
-			e.getMessage();
-		}
-
-		if (json != null) {
-			Object currency = ((HashMap) json.get("transaction")).get("currency_code");
-			Object amountt = ((HashMap) json.get("transaction")).get("amount");
-			return new String[] { currency.toString(), amountt.toString() };
-		}
-
-		return new String[] { "NA", "NA" };
 	}
 }
