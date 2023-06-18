@@ -166,7 +166,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 		}
 	}
 
-	public void keyPressed(KeyEvent e) {
+	public static void keyPressed(KeyEvent e) {
 
 		final int key = e.getKeyCode();
 
