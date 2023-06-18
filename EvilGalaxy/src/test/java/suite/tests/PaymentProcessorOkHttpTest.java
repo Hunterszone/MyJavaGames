@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
-import org.apache.http.client.ClientProtocolException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -28,7 +27,7 @@ public class PaymentProcessorOkHttpTest {
 	@Before
 	public void setup() throws IOException {
 		client = PaymentProcessorOkHttpTest.mockHttpClient("{\"key\": \"val\"}");
-		statusCode = client.newCall(Mockito.any()).execute().code();
+		statusCode = client.newCall(Mockito.any(Request.class)).execute().code();
 		TransactionProcessorOkHttp.createTransaction("\"\\\"" + name.trim() + "\\\"\"");
 	}
 	

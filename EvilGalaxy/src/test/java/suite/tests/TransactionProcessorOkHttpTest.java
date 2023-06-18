@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
-import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -29,7 +28,7 @@ public class TransactionProcessorOkHttpTest {
 		TransactionProcessorOkHttp.createTransaction("\"\\\"" + name.trim() + "\\\"\"");
 		
 		// Then
-		int statusCode = client.newCall(Mockito.any()).execute().code();
+		int statusCode = client.newCall(Mockito.any(Request.class)).execute().code();
 		assertEquals(statusCode, TransactionProcessorOkHttp.jsonRespCode);
 	}
 	
