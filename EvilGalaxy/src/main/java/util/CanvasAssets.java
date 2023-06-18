@@ -35,6 +35,7 @@ public class CanvasAssets extends SpritePattern {
 	public Image gameRepo;
 	public Image gameSite;
 	public Image chatRoom;
+	public Image donate;
 	public Image headerBackground;
 	public Image header;
 	public Image myShip;
@@ -56,6 +57,7 @@ public class CanvasAssets extends SpritePattern {
 		gameRepo = loadImage("images/buttons/gamerepo.png");
 		gameSite = loadImage("images/buttons/gamesite.png");
 		chatRoom = loadImage("images/buttons/chatRoom.png");
+		donate = loadImage("images/buttons/donate.png");
 		settingsText = loadImage("images/settingsText.png");
 		settingsText2 = loadImage("images/settingsText2.png");
 		controlsText = loadImage("images/controlsText.png");

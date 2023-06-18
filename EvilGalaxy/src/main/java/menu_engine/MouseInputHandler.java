@@ -32,6 +32,7 @@ import menu_states.ExtrasState;
 import menu_states.ManualState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
+import payment.PaymentScreen;
 import sound_engine.PlayWave1st;
 import util.Constants;
 import util.Flags;
@@ -206,7 +207,11 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 						e1.printStackTrace();
 					}
 				}
-				if (mouseY >= 550 && mouseY <= 600) { // Back button
+				if (mouseY >= 550 && mouseY <= 600) { // Donate
+					playWave1st.start();
+					PaymentScreen.init();
+				}
+				if (mouseY >= 650 && mouseY <= 700) { // Back button
 					playWave1st.start();
 					ExtrasState.isOn = false;
 					Flags.isMenuOn = true;

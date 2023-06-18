@@ -15,7 +15,8 @@ public class ExtrasState {
         g.drawImage(Constants.LOAD_ASSETS.gameRepo, 410, 235, 388, 89, null);
         g.drawImage(Constants.LOAD_ASSETS.gameSite, 410, 335, 388, 89, null);
         g.drawImage(Constants.LOAD_ASSETS.chatRoom, 410, 435, 388, 89, null);
-        g.drawImage(Constants.LOAD_ASSETS.back, 410, 535, 388, 89, null);
+        g.drawImage(Constants.LOAD_ASSETS.donate, 410, 535, 388, 89, null);
+        g.drawImage(Constants.LOAD_ASSETS.back, 410, 635, 388, 89, null);
         g.drawImage(Constants.LOAD_ASSETS.header, 428, 832, 352, 49, null);
 		g.drawImage(Constants.LOAD_ASSETS.headerBackground, 180, 700, 802, 105, null);
 	}

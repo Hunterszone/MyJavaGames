@@ -28,7 +28,7 @@ public class PaymentScreen extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void init() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,7 +45,7 @@ public class PaymentScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public PaymentScreen() {
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(500, 400);
 		setTitle("Donate now");
 
