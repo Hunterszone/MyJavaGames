@@ -37,6 +37,8 @@ public class PaymentProcessorOkHttpTest {
 		PaymentProcessorOkHttp.processPaymentForTen("\"\\\"" + name.trim() + "\\\"\"");
 		
 		// Then
+		Mockito.verify(client).newCall(Mockito.any(Request.class));
+		
 		assertEquals(statusCode, PaymentProcessorOkHttp.jsonRespCode);
 	}
 	
@@ -46,6 +48,8 @@ public class PaymentProcessorOkHttpTest {
 		PaymentProcessorOkHttp.processPaymentForTwenty("\"\\\"" + name.trim() + "\\\"\"");
 		
 		// Then
+		Mockito.verify(client).newCall(Mockito.any(Request.class));
+		
 		assertEquals(statusCode, PaymentProcessorOkHttp.jsonRespCode);
 	}
 	
@@ -55,6 +59,8 @@ public class PaymentProcessorOkHttpTest {
 		PaymentProcessorOkHttp.processPaymentForFifty("\"\\\"" + name.trim() + "\\\"\"");
 		
 		// Then
+		Mockito.verify(client).newCall(Mockito.any(Request.class));
+		
 		assertEquals(statusCode, PaymentProcessorOkHttp.jsonRespCode);
 	}
 	

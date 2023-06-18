@@ -27,8 +27,11 @@ public class TransactionProcessorOkHttpTest {
 		// When
 		TransactionProcessorOkHttp.createTransaction("\"\\\"" + name.trim() + "\\\"\"");
 		
-		// Then
+		// Then        
 		int statusCode = client.newCall(Mockito.any(Request.class)).execute().code();
+		
+		Mockito.verify(client).newCall(Mockito.any(Request.class));
+		
 		assertEquals(statusCode, TransactionProcessorOkHttp.jsonRespCode);
 	}
 	
