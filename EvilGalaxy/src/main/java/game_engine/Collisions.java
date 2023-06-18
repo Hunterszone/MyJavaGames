@@ -66,7 +66,9 @@ public abstract class Collisions {
 	}
 
 	public static void checkAlienCollision(final Rectangle myship) {
-		Alien.aliens = Alien.aliens.stream().filter(alien -> alien != null).collect(Collectors.toList());
+		Alien.aliens = Alien.aliens.stream()
+				.filter(alien -> alien != null)
+				.collect(Collectors.toList());
 
 		for (final Alien alien : Alien.aliens) {
 			final Rectangle alienUnit = alien.getBounds();
@@ -95,7 +97,8 @@ public abstract class Collisions {
 	}
 
 	public static void checkRocketCollision(final Rectangle evilhead, final Rectangle bunker) {
-		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream().filter(rocket -> rocket != null)
+		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream()
+				.filter(rocket -> rocket != null)
 				.collect(Collectors.toList());
 
 		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.getLifeBunker() >= 50) {
@@ -112,9 +115,12 @@ public abstract class Collisions {
 	}
 
 	public static void checkMissileCollision(final Rectangle evilhead) {
-		List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles().stream().filter(missile -> missile != null)
+		List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles().stream()
+				.filter(missile -> missile != null)
 				.collect(Collectors.toList());
-		Alien.aliens = Alien.aliens.stream().filter(alien -> alien != null).collect(Collectors.toList());
+		Alien.aliens = Alien.aliens.stream()
+				.filter(alien -> alien != null)
+				.collect(Collectors.toList());
 
 		if (!Alien.aliens.isEmpty()) {
 			for (final Alien alien : Alien.aliens) {
@@ -136,7 +142,8 @@ public abstract class Collisions {
 		
 		shipIntersectsDragon(PlayerShip.playerShip.getBounds(), dragon, dragon.getBounds());
 		
-		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream().filter(rocket -> rocket != null)
+		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream()
+				.filter(rocket -> rocket != null)
 				.collect(Collectors.toList());
 		
 		for (final ShipRocket rocket : rockets) {
