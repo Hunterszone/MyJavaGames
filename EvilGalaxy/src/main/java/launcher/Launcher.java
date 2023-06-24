@@ -117,8 +117,8 @@ public class Launcher extends JFrame {
 			} catch (final Exception e) {
 				e.printStackTrace();
 			} finally {
-				printStream.close();
-				writer.close();
+				if (printStream != null) printStream.close();
+				if (writer != null) writer.close();
 			}
 		}
 	}
@@ -423,8 +423,8 @@ public class Launcher extends JFrame {
 		} catch (final IOException e) {
 			e.printStackTrace();
 		} finally {
-			input.close();
-			fos.close();
+			if (input != null) input.close();
+			if (fos != null) fos.close();
 		}
 	}
 
@@ -444,8 +444,8 @@ public class Launcher extends JFrame {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			reader.close();
-			file.close();
+			if (reader != null) reader.close();
+			if (file != null) file.close();
 		}
 		return values;
 	}

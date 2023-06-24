@@ -100,8 +100,8 @@ public class LoadGame {
 		} catch (final Exception e) {
 			e.getMessage();
 		} finally {
-			fileStream.close();
-			objectStream.close();
+			if (fileStream != null) fileStream.close();
+			if (objectStream != null) objectStream.close();
 		}
 
 		Flags.isMenuOn = false;

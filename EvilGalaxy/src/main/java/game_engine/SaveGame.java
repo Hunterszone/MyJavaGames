@@ -91,8 +91,8 @@ public class SaveGame {
 //				JOptionPane.showConfirmDialog(frame, e.toString() + "\nFail to save game state.", "Save game",
 //						JOptionPane.DEFAULT_OPTION);
 			} finally {
-				objectStream.close();
-				fileStream.close();
+				if (fileStream != null) fileStream.close();
+				if (objectStream != null) objectStream.close();
 			}
 
 		}

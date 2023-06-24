@@ -65,7 +65,7 @@ public class LocationJsonExtractor {
 
 	private static String getIpAddress() {
 		URL ipSource;
-		BufferedReader in;
+		BufferedReader in = null;
 		String ip = null;
 		try {
 			ipSource = new URL("http://checkip.amazonaws.com");
@@ -75,6 +75,13 @@ public class LocationJsonExtractor {
 			e.getMessage();
 		} catch (IOException e) {
 			e.getMessage();
+		} finally {
+			if (in != null)
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 		if (ip != null) {			
 			return ip;
