@@ -1,5 +1,6 @@
 package game_engine;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import items.Angel;
@@ -10,7 +11,7 @@ import util.TextToSpeech;
 
 public class Difficulty {
 
-	public static void restart() {
+	public static void restart() throws NoSuchAlgorithmException {
 		Angel.angels = new ArrayList<Angel>();
 		HealthPack.healthpacks = new ArrayList<>(5);
 
@@ -21,7 +22,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	public static void getEasyDiff() {
+	public static void getEasyDiff() throws NoSuchAlgorithmException {
 
 		Angel.angels = new ArrayList<Angel>();
 
@@ -35,7 +36,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	public static void getMediumDiff() {
+	public static void getMediumDiff() throws NoSuchAlgorithmException {
 
 		Angel.angels = new ArrayList<Angel>();
 
@@ -49,7 +50,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	public static void getHardDiff() {
+	public static void getHardDiff() throws NoSuchAlgorithmException {
 
 		Angel.angels = new ArrayList<Angel>();
 
@@ -63,7 +64,7 @@ public class Difficulty {
 		initObjects();
 	}
 
-	private static void initObjects() {
+	private static void initObjects() throws NoSuchAlgorithmException {
 
 		if (!SaveGame.savedOnL1 && !SaveGame.savedOnL2) {
 			UpdateObjects.setAlienKilled(0);

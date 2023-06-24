@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -196,7 +197,12 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.isIngame()) {
 							textArea.append("********Game initialized!*********" + "\n");
-							if(MouseInputHandler.main != null) Difficulty.getEasyDiff();
+							if(MouseInputHandler.main != null)
+								try {
+									Difficulty.getEasyDiff();
+								} catch (NoSuchAlgorithmException e1) {
+									e1.printStackTrace();
+								}
 							return;
 						}
 
@@ -219,7 +225,12 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.isIngame()) {
 							textArea.append("********Game initialized!*********" + "\n");
-							if(MouseInputHandler.main != null) Difficulty.getMediumDiff();
+							if(MouseInputHandler.main != null)
+								try {
+									Difficulty.getMediumDiff();
+								} catch (NoSuchAlgorithmException e1) {
+									e1.printStackTrace();
+								}
 							return;
 						}
 						return;
@@ -241,7 +252,12 @@ public class ConsoleContent extends OutputStream {
 						}
 						if (!InitObjects.isIngame()) {
 							textArea.append("********Game initialized!*********" + "\n");
-							if(MouseInputHandler.main != null) Difficulty.getHardDiff();
+							if(MouseInputHandler.main != null)
+								try {
+									Difficulty.getHardDiff();
+								} catch (NoSuchAlgorithmException e1) {
+									e1.printStackTrace();
+								}
 							return;
 						}
 						return;
@@ -653,7 +669,12 @@ public class ConsoleContent extends OutputStream {
 					else if (Command.RESTART.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						textArea.append("********Game initialized!*********" + "\n");
-						if(MouseInputHandler.main != null) Difficulty.restart();
+						if(MouseInputHandler.main != null)
+							try {
+								Difficulty.restart();
+							} catch (NoSuchAlgorithmException e1) {
+								e1.printStackTrace();
+							}
 						return;
 					}
 
@@ -663,7 +684,12 @@ public class ConsoleContent extends OutputStream {
 						if (InitObjects.isIngame() == true) {
 							textArea.append("********Level 2 was loaded!*********" + "\n");
 
-							if(MouseInputHandler.main != null) Difficulty.restart();
+							if(MouseInputHandler.main != null)
+								try {
+									Difficulty.restart();
+								} catch (NoSuchAlgorithmException e1) {
+									e1.printStackTrace();
+								}
 							Alien.aliens.clear();
 							LoadSounds.TAUNT.loop();
 							if (TextToSpeech.voiceInterruptor == false) {
@@ -693,7 +719,12 @@ public class ConsoleContent extends OutputStream {
 					else if (Command.LEVEL3.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.isIngame() == true) {
-							if(MouseInputHandler.main != null) Difficulty.restart();
+							if(MouseInputHandler.main != null)
+								try {
+									Difficulty.restart();
+								} catch (NoSuchAlgorithmException e1) {
+									e1.printStackTrace();
+								}
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
 							LoadSounds.TAUNT.stop();
@@ -724,7 +755,12 @@ public class ConsoleContent extends OutputStream {
 					else if (Command.LEVEL4.name().trim().equalsIgnoreCase(textArea.getText().trim())) {
 
 						if (InitObjects.isIngame() == true) {
-							if(MouseInputHandler.main != null) Difficulty.restart();
+							if(MouseInputHandler.main != null)
+								try {
+									Difficulty.restart();
+								} catch (NoSuchAlgorithmException e1) {
+									e1.printStackTrace();
+								}
 							Alien.aliens.clear();
 							Dragon.dragons.clear();
 							LoadSounds.TAUNT.stop();

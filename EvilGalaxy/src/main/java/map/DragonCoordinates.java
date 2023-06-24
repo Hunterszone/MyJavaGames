@@ -7,8 +7,9 @@ import javax.swing.JLabel;
 import enemy.Alien;
 import enemy.Dragon;
 import util.Constants;
+import util.Drawable;
 
-public class DragonCoordinates extends JLabel implements Coordinates {
+public class DragonCoordinates extends JLabel implements Drawable {
 
 	private static final long serialVersionUID = 2355593682440642728L;
 
@@ -20,8 +21,7 @@ public class DragonCoordinates extends JLabel implements Coordinates {
 		repaint();
 	}
 
-	@Override
-	public int limitX() {
+	private int limitX() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
 				if (dragon.getX() > Constants.BUNKER_X + 300) {
@@ -39,8 +39,7 @@ public class DragonCoordinates extends JLabel implements Coordinates {
 		return -50;
 	}
 
-	@Override
-	public int limitY() {
+	private int limitY() {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.size() > 0) {
 			for (Dragon dragon : Dragon.dragons) {
 				if (dragon.getY() > Constants.BUNKER_Y - 730

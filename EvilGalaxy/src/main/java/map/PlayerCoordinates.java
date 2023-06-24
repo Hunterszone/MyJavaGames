@@ -6,8 +6,9 @@ import javax.swing.JLabel;
 
 import enemy.PlayerShip;
 import util.Constants;
+import util.Drawable;
 
-public class PlayerCoordinates extends JLabel implements Coordinates {
+public class PlayerCoordinates extends JLabel implements Drawable {
 
 	private static final long serialVersionUID = 2735514298436311987L;
 
@@ -17,8 +18,7 @@ public class PlayerCoordinates extends JLabel implements Coordinates {
 		repaint();
 	}
 
-	@Override
-	public int limitX() {
+	private int limitX() {
 		if (PlayerShip.playerShip.getX() > Constants.BUNKER_X + 300) {
 			return Constants.BUNKER_X + 700;
 		}
@@ -33,8 +33,7 @@ public class PlayerCoordinates extends JLabel implements Coordinates {
 		return Constants.BUNKER_X + 550;
 	}
 
-	@Override
-	public int limitY() {
+	private int limitY() {
 		if (PlayerShip.playerShip.getY() > Constants.BUNKER_Y - 630
 				&& PlayerShip.playerShip.getY() < Constants.BUNKER_Y - 430) {
 			return Constants.BUNKER_Y - 150;

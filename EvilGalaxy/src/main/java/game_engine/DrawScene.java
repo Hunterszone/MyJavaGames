@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class DrawScene extends UpdateObjects {
 
 	private transient Image bg1, bg2, bg3;
 
-	public DrawScene() throws IOException {
+	public DrawScene() throws IOException, NoSuchAlgorithmException {
 		final int width = (int) Constants.DIMENSION.getWidth();
 		final int height = (int) Constants.DIMENSION.getHeight();
 		bg1 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG1.getImg())).getScaledInstance(width, height,

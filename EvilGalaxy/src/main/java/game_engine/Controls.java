@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import animation.AsteroidsAnimation;
@@ -29,6 +31,12 @@ import util.LoadSounds;
 import util.TextToSpeech;
 
 public class Controls implements KeyListener {
+	
+	private Random rand = SecureRandom.getInstanceStrong();
+	
+	public Controls() throws NoSuchAlgorithmException {
+		
+	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -127,20 +135,32 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_1) {
-			Difficulty.restart();
+			try {
+				Difficulty.restart();
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			}
 			TextToSpeech.playVoice("Loading level 1...");
 			TextToSpeech.voiceInterruptor = true;
 		}
 
 		if (key == KeyEvent.VK_2) {
-			Difficulty.restart();
+			try {
+				Difficulty.restart();
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			}
 			TextToSpeech.playVoice("Loading level 2...");
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
 		}
 
 		if (key == KeyEvent.VK_3) {
-			Difficulty.restart();
+			try {
+				Difficulty.restart();
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			}
 			TextToSpeech.playVoice("Loading level 3...");
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
@@ -148,7 +168,11 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_4) {
-			Difficulty.restart();
+			try {
+				Difficulty.restart();
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			}
 			TextToSpeech.playVoice("Loading level 4...");
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
@@ -163,7 +187,11 @@ public class Controls implements KeyListener {
 				Flags.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
-				Difficulty.restart();
+				try {
+					Difficulty.restart();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 
@@ -180,7 +208,11 @@ public class Controls implements KeyListener {
 			}
 			if (!InitObjects.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
-				Difficulty.getEasyDiff();
+				try {
+					Difficulty.getEasyDiff();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
 				InitObjects.getTimerEasy().stop();
 				LoadSounds.BG_MUSIC.stop();
 			} else {
@@ -202,7 +234,11 @@ public class Controls implements KeyListener {
 			}
 			if (!InitObjects.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
-				Difficulty.getMediumDiff();
+				try {
+					Difficulty.getMediumDiff();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
 				InitObjects.getTimerMedium().stop();
 				LoadSounds.BG_MUSIC.stop();
 			} else {
@@ -224,7 +260,11 @@ public class Controls implements KeyListener {
 			}
 			if (!InitObjects.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
-				Difficulty.getHardDiff();
+				try {
+					Difficulty.getHardDiff();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
 				InitObjects.getTimerHard().stop();
 				LoadSounds.BG_MUSIC.stop();
 			} else {
@@ -271,7 +311,6 @@ public class Controls implements KeyListener {
 				SaveSign.saveSign.initSave();
 				SaveSign.saveSign.setVisible(true);
 				Path path = Paths.get("saves");
-				Random rand = new Random();
 				try {
 					Files.createDirectories(path);
 					final File file = new File("saves/save" + rand.nextInt() + ".txt");

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,6 +116,8 @@ public class LoadGame {
 					e1.getMessage();
 				} catch (final MaryConfigurationException e) {
 					e.getMessage();
+				} catch (NoSuchAlgorithmException e) {
+					e.printStackTrace();
 				}
 				MouseInputHandler.main.setVisible(true);
 			});
@@ -122,7 +125,7 @@ public class LoadGame {
 		Flags.isMenuOn = true;
 	}
 
-	private void initSavedAssets() throws MaryConfigurationException {
+	private void initSavedAssets() throws MaryConfigurationException, NoSuchAlgorithmException {
 
 		InitObjects.setIngame(false);
 
@@ -143,7 +146,7 @@ public class LoadGame {
 
 	}
 
-	private void savedOnLevelFour() {
+	private void savedOnLevelFour() throws NoSuchAlgorithmException {
 		TextToSpeech.voiceInterruptor = false;
 
 		if (savedOnL4 != null && Boolean.TRUE.equals(savedOnL4) && 
@@ -161,7 +164,7 @@ public class LoadGame {
 		}
 	}
 
-	private void savedOnLevelThree() {
+	private void savedOnLevelThree() throws NoSuchAlgorithmException {
 		TextToSpeech.voiceInterruptor = false;
 
 		if (savedOnL3 != null && Boolean.TRUE.equals(savedOnL3) && 
@@ -178,7 +181,7 @@ public class LoadGame {
 		}
 	}
 
-	private void savedOnLevelTwo() {
+	private void savedOnLevelTwo() throws NoSuchAlgorithmException {
 		TextToSpeech.voiceInterruptor = false;
 
 		if (savedOnL2 != null && Boolean.TRUE.equals(savedOnL2) && 
@@ -202,7 +205,7 @@ public class LoadGame {
 		}
 	}
 
-	private void savedOnLevelOne() {
+	private void savedOnLevelOne() throws NoSuchAlgorithmException {
 		TextToSpeech.voiceInterruptor = false;
 
 		if (savedOnL1 != null && Boolean.TRUE.equals(savedOnL1) && 
@@ -225,7 +228,7 @@ public class LoadGame {
 		}
 	}
 	
-	private void onLoadPerDifficulty() {
+	private void onLoadPerDifficulty() throws NoSuchAlgorithmException {
 		TextToSpeech.playVoice("Game loaded!");
 
 		if (Flags.isEPressed == true) {

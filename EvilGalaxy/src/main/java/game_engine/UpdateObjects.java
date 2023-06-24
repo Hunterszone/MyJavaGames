@@ -1,6 +1,7 @@
 package game_engine;
 
 import java.awt.event.ActionEvent;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import enemy.Alien;
@@ -22,6 +23,10 @@ import util.Flags;
 import util.LoadSounds;
 
 public abstract class UpdateObjects extends InitObjects {
+
+	public UpdateObjects() throws NoSuchAlgorithmException {
+		super();
+	}
 
 	private static int lifeEvilHead = 3;
 	private static int lifePlayerShip = 3;

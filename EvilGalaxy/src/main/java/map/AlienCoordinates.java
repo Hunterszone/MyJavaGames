@@ -6,8 +6,9 @@ import javax.swing.JLabel;
 
 import enemy.Alien;
 import util.Constants;
+import util.Drawable;
 
-public class AlienCoordinates extends JLabel implements Coordinates {
+public class AlienCoordinates extends JLabel implements Drawable {
 
 	private static final long serialVersionUID = -3143464978804920679L;
 
@@ -19,8 +20,7 @@ public class AlienCoordinates extends JLabel implements Coordinates {
 		repaint();
 	}
 
-	@Override
-	public int limitX() {
+	private int limitX() {
 		if (Alien.aliens.size() > 0) {
 			for (Alien alien : Alien.aliens) {
 				if (alien.getX() > Constants.BUNKER_X + 300) {
@@ -37,8 +37,7 @@ public class AlienCoordinates extends JLabel implements Coordinates {
 		return Constants.BUNKER_X + 700;
 	}
 
-	@Override
-	public int limitY() {
+	private int limitY() {
 		if (Alien.aliens.size() > 0) {
 			for (Alien alien : Alien.aliens) {
 				if (alien.getY() > Constants.BUNKER_Y - 730

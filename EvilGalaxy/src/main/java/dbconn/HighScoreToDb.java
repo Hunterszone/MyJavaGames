@@ -33,7 +33,7 @@ public class HighScoreToDb {
 		openConnection();
 
 		// STEP 3: Empty DB table before operations
-		emptyTable(preparedStatement);
+		emptyTable();
 		
 		int counter = 0;
 		try {
@@ -81,12 +81,19 @@ public class HighScoreToDb {
 		}
 	}
 	
-	private static void emptyTable(PreparedStatement statement) {
+	private static void emptyTable() {
+		PreparedStatement statement = null;
 		try {
 			statement = conn.prepareStatement("DELETE FROM highscores WHERE 1");
 			statement.executeUpdate();
 		} catch (SQLException se) {
 			System.out.println(se.getMessage());
+		} finally {
+			try {
+				if (statement != null) statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

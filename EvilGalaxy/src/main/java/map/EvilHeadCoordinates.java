@@ -6,8 +6,9 @@ import javax.swing.JLabel;
 
 import enemy.EvilHead;
 import util.Constants;
+import util.Drawable;
 
-public class EvilHeadCoordinates extends JLabel implements Coordinates {
+public class EvilHeadCoordinates extends JLabel implements Drawable {
 
 	private static final long serialVersionUID = 2735514298436311987L;
 
@@ -17,8 +18,7 @@ public class EvilHeadCoordinates extends JLabel implements Coordinates {
 		repaint();
 	}
 
-	@Override
-	public int limitX() {
+	private int limitX() {
 		if (EvilHead.evilHead.getX() > Constants.BUNKER_X + 300) {
 			return Constants.BUNKER_X + 700;
 		}
@@ -31,8 +31,7 @@ public class EvilHeadCoordinates extends JLabel implements Coordinates {
 		return Constants.BUNKER_X + 550;
 	}
 
-	@Override
-	public int limitY() {
+	private int limitY() {
 		if (EvilHead.evilHead.getY() > Constants.BUNKER_Y - 630
 				&& EvilHead.evilHead.getY() < Constants.BUNKER_Y - 430) {
 			return Constants.BUNKER_Y - 150;

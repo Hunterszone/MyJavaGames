@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
@@ -74,6 +75,8 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 								main.setVisible(true);
 							} catch (IOException ioe) {
 								System.out.println(ioe.getMessage());
+							} catch (NoSuchAlgorithmException e1) {
+								e1.printStackTrace();
 							}
 							InitObjects.getTimerEasy().stop();
 						});

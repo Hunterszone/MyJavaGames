@@ -2,6 +2,7 @@ package extras;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -27,8 +28,9 @@ public final class ConsoleForm extends ConsoleContent {
 			try {
 				ex = new Main();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
 			}
 			ex.setVisible(true);
 			try {

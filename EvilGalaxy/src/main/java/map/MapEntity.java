@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import enums.Sprite;
 import util.Constants;
 import util.Drawable;
 
@@ -19,7 +20,7 @@ public class MapEntity extends JPanel implements Drawable {
 	}
 
 	private static final long serialVersionUID = 2735514298436311987L;
-	private BufferedImage mapImg = ImageIO.read(new File("images/compass.png"));
+	private BufferedImage mapImg = ImageIO.read(new File(Sprite.MAP.getImg()));
 	private Image scaledMap = mapImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 	
 	@Override

@@ -35,12 +35,12 @@ public class ChatRoom {
                 e.printStackTrace();
             } finally {
                 serverSocket.close();
-                setRunning(false);
+                running = false;
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            setRunning(false);
+        	running = false;
         }
     }
 
@@ -109,7 +109,7 @@ public class ChatRoom {
             }
 
             // Set running flag to false to stop the server's main loop
-            setRunning(false);
+            running = false;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -117,9 +117,5 @@ public class ChatRoom {
 
     public synchronized boolean isRunning() {
         return running;
-    }
-
-    private synchronized static void setRunning(boolean running) {
-    	running = running;
     }
 }

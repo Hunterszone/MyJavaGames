@@ -3,6 +3,8 @@ package game_engine;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +56,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	private static Thread animator;
 	private static final long serialVersionUID = 4553098009656808450L;
 	private static final int DELAY = 15;
+	private static Random rand;
 
 	/*
 	 * private final static int[][] posGold = { { 700, 1029 }, { 690, 1180 }, { 730,
@@ -71,13 +74,13 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	 * private final static int[][] posHealthPack = { { 540, 869 }, { 709, 1060 }, {
 	 * 650, 240 }, { 600, 500 }, { 500, 600 } };
 	 */
-
-	public InitObjects() {
+	
+	public InitObjects() throws NoSuchAlgorithmException {
 		initBoard();
 //		new XboxControls().initControls();
 	}
 
-	private void initBoard() {
+	private void initBoard() throws NoSuchAlgorithmException {
 
 		addKeyListener(new Controls());
 		setFocusable(true);
@@ -147,8 +150,6 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 	public static void initAnimations() {
 		
-		Random rand = new Random();
-
 		// Animations
 		if (AstronautAnimation.astronautAnim == null) {
 			AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
@@ -161,6 +162,11 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		}
 
 		while (AsteroidsAnimation.asteroidsAnimations.size() < 5) {
+			try {
+				rand = SecureRandom.getInstanceStrong();
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
 			final AsteroidsAnimation asteroidsAnim = new AsteroidsAnimation(rand.nextInt(Constants.B_WIDTH), 
 					rand.nextInt(Constants.B_HEIGHT));
 			AsteroidsAnimation.asteroidsAnimations.add(asteroidsAnim);

@@ -252,6 +252,12 @@ public enum Sprite {
 		public String getImg() {
 			return "images/angel.gif";
 		}
+	},
+	MAP {
+		@Override
+		public String getImg() {
+			return "images/compass.png";
+		}
 	};
 
 	public abstract String getImg();

@@ -5,6 +5,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,11 +22,11 @@ public final class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-	public Main() throws IOException {
+	public Main() throws IOException, NoSuchAlgorithmException {
 		initGame();
 	}
 
-	public void initGame() throws IOException {
+	public void initGame() throws IOException, NoSuchAlgorithmException {
 		add(new DrawScene());
 		setResizable(false);
 		setUndecorated(true);
