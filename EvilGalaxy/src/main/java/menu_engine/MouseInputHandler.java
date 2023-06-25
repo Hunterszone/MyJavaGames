@@ -20,7 +20,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
 import chat_engine.ChatRoom;
-import chat_engine.Client;
 // import game packages:
 import enums.SoundEffect;
 import game_engine.InitObjects;
@@ -204,8 +203,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 				if (mouseY >= 450 && mouseY <= 500) { // Chat room
 					playWave1st.start();
 					try {
-						new Client("127.0.0.1", 1234);
-						Client.run();
+						ChatRoom.client.run();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

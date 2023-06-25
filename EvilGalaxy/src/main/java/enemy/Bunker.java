@@ -11,8 +11,7 @@ public class Bunker extends SpritePattern {
 
 	public static Bunker bunkerObj;
 	private static final long serialVersionUID = 1L;
-	private String imageName;
-
+	
 	public Bunker(int x, int y) {
 		super(x, y);
 
@@ -44,14 +43,14 @@ public class Bunker extends SpritePattern {
 	}
 
 	public void drawBunker() {
-		imageName = Sprite.BUNKER.getImg();
+		String imageName = Sprite.BUNKER.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void drawBunkerHit() {
-		imageName = Sprite.BUNKER_HIT.getImg();
+		String imageName = Sprite.BUNKER_HIT.getImg();
 		assert imageName != null; 
 		loadImage(imageName);
 		getImageDimensions();

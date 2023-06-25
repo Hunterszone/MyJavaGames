@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class Client {
 
-  private static String host;
-  private static int port;
-  private static Thread clientThread;
+  private String host;
+  private int port;
+  private Thread clientThread;
 
   public Client(String host, int port) {
     this.host = host;
@@ -18,7 +18,7 @@ public class Client {
     this.clientThread = null;
   }
 
-  public static void run() {
+  public void run() {
     clientThread = new Thread(() -> {
       try {
         // connect client to server
@@ -58,7 +58,7 @@ public class Client {
     clientThread.start();
   }
 
-  public static void stopClient() {
+  public void stopClient() {
     if (clientThread != null) {
       clientThread.interrupt();
     }

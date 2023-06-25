@@ -10,17 +10,15 @@ public class SatelliteAnimation extends SpritePattern implements Cyclable {
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_X = 0;
 	private final int INITIAL_Y = 0;
-	public static SatelliteAnimation starAnim;
+	public static final SatelliteAnimation SATELLITE = new SatelliteAnimation(0, 0);
 
 	public SatelliteAnimation(int x, int y) {
 		super(x, y);
 		drawSatellite();
 	}
 
-	private String imageName;
-
 	public void drawSatellite() {
-		imageName = Sprite.SATELLITE_INIT.getImg();
+		String imageName = Sprite.SATELLITE_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

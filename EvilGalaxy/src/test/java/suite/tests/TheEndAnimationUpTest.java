@@ -26,13 +26,13 @@ public class TheEndAnimationUpTest {
 	
 	@Test
 	public void testListOfEndAnimationsUpExists() {
-		assertNotNull(TheEndAnimationUp.theEndAnimationUpList);
+		assertNotNull(TheEndAnimationUp.END_ANIMATION_UP);
 	}
 	
 	@Test
 	public void testListOfEndAnimationsUpIsNotEmpty() {
 		InitObjects.initAnimations();
-		assertFalse(TheEndAnimationUp.theEndAnimationUpList.isEmpty());
+		assertFalse(TheEndAnimationUp.END_ANIMATION_UP.isEmpty());
 	}
 
 	@Test

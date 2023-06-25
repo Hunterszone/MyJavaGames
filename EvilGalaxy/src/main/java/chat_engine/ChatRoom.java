@@ -14,6 +14,7 @@ public class ChatRoom {
     private static List<ClientHandler> clients = new ArrayList<>();
     private static ServerSocket serverSocket;
     private static volatile boolean running = true;
+    public static Client client = new Client("127.0.0.1", 1234);
 
     public synchronized void start(int port) {
         try {
@@ -62,7 +63,7 @@ public class ChatRoom {
                 while ((message = reader.readLine()) != null) {
                     broadcast(message);
                     if (message.equalsIgnoreCase("exit")) {
-                    	Client.stopClient();
+                    	client.stopClient();
                         break;
                     }
                 }

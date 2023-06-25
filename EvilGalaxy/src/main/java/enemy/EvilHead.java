@@ -20,8 +20,7 @@ public class EvilHead extends SpritePattern {
 	public static EvilHead evilHead;
 	public double speedX, speedY;
 	private static final long serialVersionUID = 1L;
-	private String imageName;
-
+	
 	public EvilHead(int x, int y) {
 		super(x, y);
 		drawHead();
@@ -29,14 +28,14 @@ public class EvilHead extends SpritePattern {
 	}
 
 	public void drawHead() {
-		imageName = Sprite.EVILHEAD.getImg();
+		String imageName = Sprite.EVILHEAD.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void strikeHead() {
-		imageName = Sprite.STRIKEHEAD.getImg();
+		String imageName = Sprite.STRIKEHEAD.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

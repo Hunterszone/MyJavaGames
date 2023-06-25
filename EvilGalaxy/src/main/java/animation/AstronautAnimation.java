@@ -10,17 +10,16 @@ public class AstronautAnimation extends SpritePattern implements Cyclable {
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_X = 0;
 	private final int INITIAL_Y = 0;
-	public static AstronautAnimation astronautAnim;
+	public static final AstronautAnimation ASTRONAUT = new AstronautAnimation(0, 0);
 
 	public AstronautAnimation(int x, int y) {
 		super(x, y);
 		drawAstronaut();
 	}
 
-	private String imageName;
 
 	public void drawAstronaut() {
-		imageName = Sprite.ASTRONAUT_INIT.getImg();
+		String imageName = Sprite.ASTRONAUT_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

@@ -19,7 +19,6 @@ public class HighScoreToDb {
 	private static final String PASS = "root";
 	
 	private static String[] enemyAndCount;
-	private static List<String> enemyNames = InitObjects.getEnemyNames();
 	private static Connection conn;	
 	private static PreparedStatement preparedStatement;
 
@@ -36,6 +35,7 @@ public class HighScoreToDb {
 		emptyTable();
 		
 		int counter = 0;
+		List<String> enemyNames = InitObjects.getEnemyNames();
 		try {
 			while (counter < enemyNames.size()) {
 				enemyAndCount = KilledEnemies.getEnemiesByTypeAndCount(enemyNames.get(counter));

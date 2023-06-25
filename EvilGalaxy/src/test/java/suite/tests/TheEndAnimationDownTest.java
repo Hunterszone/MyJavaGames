@@ -27,13 +27,13 @@ public class TheEndAnimationDownTest {
 	
 	@Test
 	public void testListOfEndAnimationsDownExists() {
-		assertNotNull(TheEndAnimationDown.theEndAnimationDownList);
+		assertNotNull(TheEndAnimationDown.END_ANIMATION_DOWN);
 	}
 	
 	@Test
 	public void testListOfEndAnimationsDownIsNotEmpty() {
 		InitObjects.initAnimations();
-		assertFalse(TheEndAnimationUp.theEndAnimationUpList.isEmpty());
+		assertFalse(TheEndAnimationUp.END_ANIMATION_UP.isEmpty());
 	}
 
 	@Test

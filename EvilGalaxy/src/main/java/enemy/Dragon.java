@@ -10,9 +10,8 @@ public class Dragon extends SpritePattern implements Moveable {
 
 	private static final long serialVersionUID = 1L;
 	public static List<Dragon> dragons;
-	private final int INITIAL_X = (int) Math.ceil(Math.random() * 6500);
-	private String imageName;
-
+	private static final int INITIAL_X = (int) Math.ceil(Math.random() * 6500);
+	
 	public Dragon(int x, int y) {
 		super(x, y);
 
@@ -20,7 +19,7 @@ public class Dragon extends SpritePattern implements Moveable {
 	}
 
 	public void drawDragon() {
-		imageName = Sprite.DRAGON.getImg();
+		String imageName = Sprite.DRAGON.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

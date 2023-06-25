@@ -129,51 +129,51 @@ public class DrawScene extends UpdateObjects {
 	private void drawAstronaut(Graphics g) {
 		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.astronautAnim.getX() / 2,
-				(double) AstronautAnimation.astronautAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.ASTRONAUT.getX() / 2,
+				(double) AstronautAnimation.ASTRONAUT.getY() / 2);
 		((Graphics2D) g).setTransform(a);
-		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
-				AstronautAnimation.astronautAnim.getY(), this);
+		g.drawImage(AstronautAnimation.ASTRONAUT.getImage(), AstronautAnimation.ASTRONAUT.getX(),
+				AstronautAnimation.ASTRONAUT.getY(), this);
 		a = AffineTransform.getRotateInstance(181, 850, 700);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.astronautAnim.getX() / 2,
-				(double) AstronautAnimation.astronautAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.ASTRONAUT.getX() / 2,
+				(double) AstronautAnimation.ASTRONAUT.getY() / 2);
 		((Graphics2D) g).setTransform(a);
-		g.drawImage(AstronautAnimation.astronautAnim.getImage(), AstronautAnimation.astronautAnim.getX(),
-				AstronautAnimation.astronautAnim.getY(), this);
+		g.drawImage(AstronautAnimation.ASTRONAUT.getImage(), AstronautAnimation.ASTRONAUT.getX(),
+				AstronautAnimation.ASTRONAUT.getY(), this);
 		Toolkit.getDefaultToolkit().sync();
 		((Graphics2D) g).setTransform(backup);
 	}
 	
 	private void drawAsteroids(Graphics g) {
-		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
 			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
 
 	private void drawSatellite(Graphics g) {
-		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
-				SatelliteAnimation.starAnim.getY(), this);
+		g.drawImage(SatelliteAnimation.SATELLITE.getImage(), SatelliteAnimation.SATELLITE.getX(),
+				SatelliteAnimation.SATELLITE.getY(), this);
 		final AffineTransform backup = ((Graphics2D) g).getTransform();
 		final AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) SatelliteAnimation.starAnim.getX() / 2,
-				(double) SatelliteAnimation.starAnim.getY() / 2);
+		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) SatelliteAnimation.SATELLITE.getX() / 2,
+				(double) SatelliteAnimation.SATELLITE.getY() / 2);
 		((Graphics2D) g).setTransform(a);
-		g.drawImage(SatelliteAnimation.starAnim.getImage(), SatelliteAnimation.starAnim.getX(),
-				SatelliteAnimation.starAnim.getY(), this);
+		g.drawImage(SatelliteAnimation.SATELLITE.getImage(), SatelliteAnimation.SATELLITE.getX(),
+				SatelliteAnimation.SATELLITE.getY(), this);
 		Toolkit.getDefaultToolkit().sync();
 		((Graphics2D) g).setTransform(backup);
 	}
 
 	private void drawElonsUp(Graphics g) {
-		for (final TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
+		for (final TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 			g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
 	}
 
 	private void drawElonsDown(Graphics g) {
-		for (final TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
+		for (final TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
 			g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
@@ -256,29 +256,24 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void handleAnimations() {
-		if (AstronautAnimation.astronautAnim != null)
-			AstronautAnimation.astronautAnim = null;
 
-		if (SatelliteAnimation.starAnim != null)
-			SatelliteAnimation.starAnim = null;
-
-		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
 			if (asteroidsAnim != null)
 				asteroidsAnim = null;
 		}
-		AsteroidsAnimation.asteroidsAnimations.clear();
+		AsteroidsAnimation.ASTEROID_ANIMATION.clear();
 
-		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
+		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 			if (elonAnimUp != null)
 				elonAnimUp = null;
 		}
-		TheEndAnimationUp.theEndAnimationUpList.clear();
+		TheEndAnimationUp.END_ANIMATION_UP.clear();
 
-		for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
+		for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
 			if (elonAnimDown != null)
 				elonAnimDown = null;
 		}
-		TheEndAnimationDown.theEndAnimationDownList.clear();
+		TheEndAnimationDown.END_ANIMATION_DOWN.clear();
 	}
 
 	@SuppressWarnings("finally")

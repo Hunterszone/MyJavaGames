@@ -151,17 +151,7 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public static void initAnimations() {
 		
 		// Animations
-		if (AstronautAnimation.astronautAnim == null) {
-			AstronautAnimation.astronautAnim = new AstronautAnimation(0, 0);
-			AstronautAnimation.astronautAnim.setVisible(true);
-		}
-
-		if (SatelliteAnimation.starAnim == null) {
-			SatelliteAnimation.starAnim = new SatelliteAnimation(0, 0);
-			SatelliteAnimation.starAnim.setVisible(true);
-		}
-
-		while (AsteroidsAnimation.asteroidsAnimations.size() < 5) {
+		while (AsteroidsAnimation.ASTEROID_ANIMATION.size() < 5) {
 			try {
 				rand = SecureRandom.getInstanceStrong();
 			} catch (NoSuchAlgorithmException e) {
@@ -169,20 +159,20 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 			}
 			final AsteroidsAnimation asteroidsAnim = new AsteroidsAnimation(rand.nextInt(Constants.B_WIDTH), 
 					rand.nextInt(Constants.B_HEIGHT));
-			AsteroidsAnimation.asteroidsAnimations.add(asteroidsAnim);
+			AsteroidsAnimation.ASTEROID_ANIMATION.add(asteroidsAnim);
 			asteroidsAnim.setVisible(true);
 		}
 		
-		while (TheEndAnimationDown.theEndAnimationDownList.size() < 2) {
+		while (TheEndAnimationDown.END_ANIMATION_DOWN.size() < 2) {
 			TheEndAnimationDown elonAnim = new TheEndAnimationDown(400, Constants.B_HEIGHT);
-			TheEndAnimationDown.theEndAnimationDownList.add(elonAnim);
+			TheEndAnimationDown.END_ANIMATION_DOWN.add(elonAnim);
 			elonAnim.drawTheEndDown();
 			elonAnim.setVisible(true);
 		}
 
-		while (TheEndAnimationUp.theEndAnimationUpList.size() < 3) {
+		while (TheEndAnimationUp.END_ANIMATION_UP.size() < 3) {
 			TheEndAnimationUp elonAnim = new TheEndAnimationUp(800, Constants.B_HEIGHT);
-			TheEndAnimationUp.theEndAnimationUpList.add(elonAnim);
+			TheEndAnimationUp.END_ANIMATION_UP.add(elonAnim);
 			elonAnim.drawTheEndUp();
 			elonAnim.setVisible(true);
 		}
@@ -240,28 +230,28 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		
 		while (isIngame() || getAnimator() != null) {
 
-			if (SatelliteAnimation.starAnim != null) {
-				SatelliteAnimation.starAnim.cycle();
+			if (SatelliteAnimation.SATELLITE != null) {
+				SatelliteAnimation.SATELLITE.cycle();
 			}
 
-			if (AstronautAnimation.astronautAnim != null) {
-				AstronautAnimation.astronautAnim.cycle();
+			if (AstronautAnimation.ASTRONAUT != null) {
+				AstronautAnimation.ASTRONAUT.cycle();
 			}
 
-			if (AsteroidsAnimation.asteroidsAnimations != null && !AsteroidsAnimation.asteroidsAnimations.isEmpty()) {				
-				for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			if (AsteroidsAnimation.ASTEROID_ANIMATION != null && !AsteroidsAnimation.ASTEROID_ANIMATION.isEmpty()) {				
+				for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
 					asteroidsAnim.cycle();
 				}
 			}
 
-			if (TheEndAnimationUp.theEndAnimationUpList != null && !TheEndAnimationUp.theEndAnimationUpList.isEmpty()) {
-				for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.theEndAnimationUpList) {
+			if (TheEndAnimationUp.END_ANIMATION_UP != null && !TheEndAnimationUp.END_ANIMATION_UP.isEmpty()) {
+				for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.END_ANIMATION_UP) {
 					endAnimationUp.cycle();
 				}	
 			}
 
-			if (TheEndAnimationDown.theEndAnimationDownList != null && !TheEndAnimationDown.theEndAnimationDownList.isEmpty()) {
-				for (final TheEndAnimationDown endAnimationDown : TheEndAnimationDown.theEndAnimationDownList) {
+			if (TheEndAnimationDown.END_ANIMATION_DOWN != null && !TheEndAnimationDown.END_ANIMATION_DOWN.isEmpty()) {
+				for (final TheEndAnimationDown endAnimationDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
 					endAnimationDown.cycle();
 				}
 			}

@@ -9,7 +9,6 @@ import util.Moveable;
 public class Crosshair extends SpritePattern implements Moveable {
 
 	public static Crosshair crosshair;
-	public String imageName;
 	double speedX, speedY;
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +19,7 @@ public class Crosshair extends SpritePattern implements Moveable {
 	}
 
 	public void drawCrosshair() {
-		imageName = Sprite.CROSSHAIR.getImg();
+		String imageName = Sprite.CROSSHAIR.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

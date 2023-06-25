@@ -28,7 +28,6 @@ public class PlayerShip extends SpritePattern implements Moveable {
 
 	public static PlayerShip playerShip;
 	public static double speedX, speedY;	
-	private String imageName, soundName;
 	private static final long serialVersionUID = 1L;
 
 	public PlayerShip(int x, int y) {
@@ -39,28 +38,28 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	}
 
 	public void drawShip() {
-		imageName = Sprite.MYSHIP_INIT.getImg();
+		String imageName = Sprite.MYSHIP_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void shipOnFire() {
-		imageName = Sprite.MYSHIP_ON_FIRE.getImg();
+		String imageName = Sprite.MYSHIP_ON_FIRE.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void upsideDown() {
-		imageName = Sprite.MYSHIP_LIFEBAR.getImg();
+		String imageName = Sprite.MYSHIP_LIFEBAR.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
 	}
 
 	public void godMode() {
-		imageName = Sprite.MYSHIP_GOD.getImg();
+		String imageName = Sprite.MYSHIP_GOD.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
@@ -143,7 +142,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	}
 
 	public List<ShipMissile> loadMissiles() {
-		soundName = SoundEffect.LASER.getSound();
+		String soundName = SoundEffect.LASER.getSound();
 		assert soundName != null;
 		ShipMissile.missiles.add(new ShipMissile(x + width, y-15 + height / 2));
 		new PlayWave1st(soundName).start();
@@ -151,7 +150,7 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	}
 
 	public List<ShipRocket> loadRockets() {
-		soundName = SoundEffect.ROCKET.getSound();
+		String soundName = SoundEffect.ROCKET.getSound();
 		assert soundName != null;
 		ShipRocket.rockets.add(new ShipRocket(x + width, y + height / 2));
 		new PlayWave1st(soundName).start();

@@ -13,8 +13,6 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import animation.AsteroidsAnimation;
-import animation.AstronautAnimation;
-import animation.SatelliteAnimation;
 import animation.TheEndAnimationDown;
 import animation.TheEndAnimationUp;
 import enemy.Alien;
@@ -340,25 +338,21 @@ public class Controls implements KeyListener {
 			InitObjects.getTimerHard().stop();
 			TextToSpeech.playVoice("Loading main menu...");
 			TextToSpeech.voiceInterruptor = true;
-			if (AstronautAnimation.astronautAnim != null)
-				AstronautAnimation.astronautAnim = null;
-			if (SatelliteAnimation.starAnim != null)
-				SatelliteAnimation.starAnim = null;
-			for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.asteroidsAnimations) {
+			for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
 				if (asteroidsAnim != null)
 					asteroidsAnim = null;
 			}
-			AsteroidsAnimation.asteroidsAnimations.clear();
-			for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.theEndAnimationUpList) {
+			AsteroidsAnimation.ASTEROID_ANIMATION.clear();
+			for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 				if (elonAnimUp != null)
 					elonAnimUp = null;
 			}
-			TheEndAnimationUp.theEndAnimationUpList.clear();
-			for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.theEndAnimationDownList) {
+			TheEndAnimationUp.END_ANIMATION_UP.clear();
+			for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
 				if (elonAnimDown != null)
 					elonAnimDown = null;
 			}
-			TheEndAnimationDown.theEndAnimationDownList.clear();
+			TheEndAnimationDown.END_ANIMATION_DOWN.clear();
 			InitObjects.setIngame(false);
 			if (MouseInputHandler.main != null)
 				MouseInputHandler.main.dispose();

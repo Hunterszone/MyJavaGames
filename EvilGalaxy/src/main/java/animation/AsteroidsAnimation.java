@@ -11,19 +11,17 @@ import util.Cyclable;
 public class AsteroidsAnimation extends SpritePattern implements Cyclable {
 	
 	private static final long serialVersionUID = 1L;
-	private final int INITIAL_X = (int) Math.ceil(Math.random() * 900);
-	private final int INITIAL_Y = (int) Math.ceil(Math.random());
-	public static List<AsteroidsAnimation> asteroidsAnimations = new ArrayList<AsteroidsAnimation>();
+	private static final int INITIAL_X = (int) Math.ceil(Math.random() * 900);
+	private static final int INITIAL_Y = (int) Math.ceil(Math.random());
+	public static final List<AsteroidsAnimation> ASTEROID_ANIMATION = new ArrayList<AsteroidsAnimation>();
 
 	public AsteroidsAnimation(int x, int y) {
 		super(x, y);
 		drawAsteroids();
 	}
 
-	private String imageName;
-
 	public void drawAsteroids() {
-		imageName = Sprite.ASTEROIDS_INIT.getImg();
+		String imageName = Sprite.ASTEROIDS_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

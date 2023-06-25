@@ -15,17 +15,16 @@ public class Alien extends SpritePattern implements Moveable {
 
 	public static List<Alien> aliens;
 	private static final long serialVersionUID = 1L;
-	private final int INITIAL_X = 1024;
-	private final int INITIAL_Y = 0;
-	private String imageName;
-
+	private static final int INITIAL_X = 1024;
+	private static final int INITIAL_Y = 0;
+	
 	public Alien(int x, int y) {
 		super(x, y);
 		drawAlien();
 	}
 
 	public void drawAlien() {
-		imageName = Sprite.ALIEN.getImg();
+		String imageName = Sprite.ALIEN.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();

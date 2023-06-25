@@ -10,7 +10,7 @@ import util.Cyclable;
 
 public class TheEndAnimationUp extends SpritePattern implements Cyclable {
 
-	public static List<TheEndAnimationUp> theEndAnimationUpList = new ArrayList<TheEndAnimationUp>();
+	public static final List<TheEndAnimationUp> END_ANIMATION_UP = new ArrayList<TheEndAnimationUp>();
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,8 @@ public class TheEndAnimationUp extends SpritePattern implements Cyclable {
 		drawTheEndUp();
 	}
 
-	private String imageName;
-
 	public void drawTheEndUp() {
-		imageName = Sprite.THEENDUP_INIT.getImg();
+		String imageName = Sprite.THEENDUP_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);
 		getImageDimensions();
