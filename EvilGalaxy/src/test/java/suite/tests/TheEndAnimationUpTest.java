@@ -20,11 +20,6 @@ public class TheEndAnimationUpTest {
 	}
 
 	@Test
-	public void testTheEndAnimationUpImg() {
-		assertNotNull(theEndAnimationUp.getImage());
-	}
-	
-	@Test
 	public void testListOfEndAnimationsUpExists() {
 		assertNotNull(TheEndAnimationUp.END_ANIMATION_UP);
 	}

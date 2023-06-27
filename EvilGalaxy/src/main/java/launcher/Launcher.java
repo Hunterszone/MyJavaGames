@@ -27,7 +27,6 @@ import java.util.logging.Level;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
-import extras.ConsoleForm;
 import marytts.exceptions.MaryConfigurationException;
 import util.TextToSpeech;
 
@@ -72,7 +71,7 @@ public class Launcher extends JFrame {
 			PrintWriter writer = null;
 
 			try {
-				printStream = new PrintStream(new ConsoleForm());
+//				printStream = new PrintStream(new ConsoleForm());
 				filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
 				writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
 				location = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy");

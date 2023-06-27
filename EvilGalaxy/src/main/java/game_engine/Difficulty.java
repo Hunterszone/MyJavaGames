@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import items.Angel;
 import items.HealthPack;
-import util.ConsoleContent;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -74,10 +73,6 @@ public class Difficulty {
 		TextToSpeech.finMusicIsPlayed = false;
 		TextToSpeech.voiceInterruptor = true;
 //		GameMenuBar.autosave.setSelected(false);
-
-		if (ConsoleContent.isGod == true) {
-			ConsoleContent.isGod = false;
-		}
 
 		UpdateObjects.setLifeEvilHead(3);
 		UpdateObjects.setLifePlayerShip(4);

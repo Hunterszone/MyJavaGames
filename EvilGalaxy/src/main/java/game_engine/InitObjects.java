@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import animation.AsteroidsAnimation;
+import animation.AsteroidAnimation;
 import animation.AstronautAnimation;
 import animation.SatelliteAnimation;
 import animation.TheEndAnimationDown;
@@ -151,15 +151,15 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 	public static void initAnimations() {
 		
 		// Animations
-		while (AsteroidsAnimation.ASTEROID_ANIMATION.size() < 5) {
+		while (AsteroidAnimation.ASTEROID_ANIMATION.size() < 5) {
 			try {
 				rand = SecureRandom.getInstanceStrong();
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}
-			final AsteroidsAnimation asteroidsAnim = new AsteroidsAnimation(rand.nextInt(Constants.B_WIDTH), 
+			final AsteroidAnimation asteroidsAnim = new AsteroidAnimation(rand.nextInt(Constants.B_WIDTH), 
 					rand.nextInt(Constants.B_HEIGHT));
-			AsteroidsAnimation.ASTEROID_ANIMATION.add(asteroidsAnim);
+			AsteroidAnimation.ASTEROID_ANIMATION.add(asteroidsAnim);
 			asteroidsAnim.setVisible(true);
 		}
 		
@@ -238,8 +238,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 				AstronautAnimation.ASTRONAUT.cycle();
 			}
 
-			if (AsteroidsAnimation.ASTEROID_ANIMATION != null && !AsteroidsAnimation.ASTEROID_ANIMATION.isEmpty()) {				
-				for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
+			if (AsteroidAnimation.ASTEROID_ANIMATION != null && !AsteroidAnimation.ASTEROID_ANIMATION.isEmpty()) {				
+				for (final AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
 					asteroidsAnim.cycle();
 				}
 			}

@@ -15,8 +15,8 @@ public class TextToSpeech {
 	public static boolean finMusicIsPlayed;
 	public static boolean voiceInterruptor;
 	
-	private static MaryInterface marytts = null;
-	private static Set<String> voices = null;
+	private static MaryInterface marytts;
+	private static Set<String> voices;
 
 	public static void initVoice() {
 
@@ -42,7 +42,7 @@ public class TextToSpeech {
 
 	public static void playVoice(String message) {
 
-		if (message == null || message.isEmpty()) {
+		if (message == null || message.isEmpty() || marytts == null) {
 			return;
 		}
 		

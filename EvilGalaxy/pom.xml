@@ -134,6 +134,12 @@
 			<artifactId>api</artifactId>
 			<version>0.8.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-swing -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-swing</artifactId>
+			<version>3.17.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<!-- https://mvnrepository.com/artifact/de.dfki.mary/voice-dfki-poppy-hsmm -->

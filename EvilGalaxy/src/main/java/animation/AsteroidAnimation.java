@@ -8,19 +8,19 @@ import game_engine.SpritePattern;
 import util.Constants;
 import util.Cyclable;
 
-public class AsteroidsAnimation extends SpritePattern implements Cyclable {
+public class AsteroidAnimation extends SpritePattern implements Cyclable {
 	
 	private static final long serialVersionUID = 1L;
 	private static final int INITIAL_X = (int) Math.ceil(Math.random() * 900);
 	private static final int INITIAL_Y = (int) Math.ceil(Math.random());
-	public static final List<AsteroidsAnimation> ASTEROID_ANIMATION = new ArrayList<AsteroidsAnimation>();
+	public static final List<AsteroidAnimation> ASTEROID_ANIMATION = new ArrayList<AsteroidAnimation>();
 
-	public AsteroidsAnimation(int x, int y) {
+	public AsteroidAnimation(int x, int y) {
 		super(x, y);
-		drawAsteroids();
+		drawAsteroid();
 	}
 
-	public void drawAsteroids() {
+	public void drawAsteroid() {
 		String imageName = Sprite.ASTEROIDS_INIT.getImg();
 		assert imageName != null;
 		loadImage(imageName);

@@ -54,6 +54,7 @@ public class Manual extends JFrame {
 		final JScrollPane scrollPane = new JScrollPane();
 
 		final JTextPane readme = new JTextPane();
+		readme.setName("readme");
 
 		readme.setBackground(SystemColor.controlHighlight);
 		readme.setFont(new Font("Arial", Font.BOLD | Font.PLAIN, 18));

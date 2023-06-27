@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import animation.AsteroidsAnimation;
+import animation.AsteroidAnimation;
 import animation.AstronautAnimation;
 import animation.SatelliteAnimation;
 import animation.TheEndAnimationDown;
@@ -145,7 +145,7 @@ public class DrawScene extends UpdateObjects {
 	}
 	
 	private void drawAsteroids(Graphics g) {
-		for (final AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
+		for (final AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
 			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
 			Toolkit.getDefaultToolkit().sync();
 		}
@@ -257,11 +257,11 @@ public class DrawScene extends UpdateObjects {
 
 	private void handleAnimations() {
 
-		for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
+		for (AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
 			if (asteroidsAnim != null)
 				asteroidsAnim = null;
 		}
-		AsteroidsAnimation.ASTEROID_ANIMATION.clear();
+		AsteroidAnimation.ASTEROID_ANIMATION.clear();
 
 		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 			if (elonAnimUp != null)

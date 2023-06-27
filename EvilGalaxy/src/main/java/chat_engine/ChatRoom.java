@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatRoom {
-    private static List<ClientHandler> clients = new ArrayList<>();
-    private static ServerSocket serverSocket;
     private static volatile boolean running = true;
+    public static List<ClientHandler> clients = new ArrayList<>();
+    public static ServerSocket serverSocket;
     public static Client client = new Client("127.0.0.1", 1234);
 
     public synchronized void start(int port) {
@@ -45,7 +45,7 @@ public class ChatRoom {
         }
     }
 
-    class ClientHandler extends Thread {
+    public class ClientHandler extends Thread {
         private Socket clientSocket;
         private PrintWriter writer;
         private BufferedReader reader;
@@ -80,7 +80,7 @@ public class ChatRoom {
             }
         }
 
-        private void sendMessage(String message) {
+        public void sendMessage(String message) {
             writer.println(message);
         }
     }

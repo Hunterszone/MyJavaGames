@@ -6,5 +6,6 @@ public class Flags {
 	public static boolean killedByAlien, killedByDragon, killedByBunker, killedByEvilHead;
 	public static boolean hpIsEmpty = false;
 	public static boolean isMenuOn = true;
+	public static boolean isGod;
 	
 }

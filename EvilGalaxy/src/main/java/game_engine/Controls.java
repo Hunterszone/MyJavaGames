@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-import animation.AsteroidsAnimation;
+import animation.AsteroidAnimation;
 import animation.TheEndAnimationDown;
 import animation.TheEndAnimationUp;
 import enemy.Alien;
@@ -23,17 +23,16 @@ import items.Gold;
 import items.SaveSign;
 import items.VolBtn;
 import menu_engine.MouseInputHandler;
-import util.ConsoleContent;
 import util.Flags;
 import util.LoadSounds;
 import util.TextToSpeech;
 
 public class Controls implements KeyListener {
-	
+
 	private Random rand = SecureRandom.getInstanceStrong();
-	
+
 	public Controls() throws NoSuchAlgorithmException {
-		
+
 	}
 
 	@Override
@@ -57,9 +56,8 @@ public class Controls implements KeyListener {
 
 		if (key == KeyEvent.VK_A) {
 			Flags.isSPressed = false;
-			if (InitObjects.getTimerEasy().isRunning() || 
-					InitObjects.getTimerHard().isRunning() || 
-					InitObjects.getTimerMedium().isRunning()) {
+			if (InitObjects.getTimerEasy().isRunning() || InitObjects.getTimerHard().isRunning()
+					|| InitObjects.getTimerMedium().isRunning()) {
 				LoadSounds.BG_MUSIC.loop();
 			}
 		}
@@ -71,30 +69,29 @@ public class Controls implements KeyListener {
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		}
-		
-		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || 
-				key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
+
+		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
 			if (InitObjects.isIngame()) {
-				ConsoleContent.manualON = false;
 				if (!InitObjects.getTimerHard().isRunning() && Flags.isHPressed) {
 					InitObjects.getTimerHard().start();
-					if(!Flags.isSPressed) {
-						LoadSounds.BG_MUSIC.loop();								
+					if (!Flags.isSPressed) {
+						LoadSounds.BG_MUSIC.loop();
 					}
-				} 
+				}
 				if (!InitObjects.getTimerMedium().isRunning() && Flags.isMPressed) {
 					InitObjects.getTimerMedium().start();
-					if(!Flags.isSPressed) {
-						LoadSounds.BG_MUSIC.loop();								
+					if (!Flags.isSPressed) {
+						LoadSounds.BG_MUSIC.loop();
 					}
-				} 
-				if ((!InitObjects.getTimerEasy().isRunning() && Flags.isEPressed) && 
-						!(InitObjects.getTimerEasy().isRunning() && InitObjects.getTimerMedium().isRunning() && InitObjects.getTimerHard().isRunning()) && 
-						!Flags.isMPressed && !Flags.isHPressed) {
+				}
+				if ((!InitObjects.getTimerEasy().isRunning() && Flags.isEPressed)
+						&& !(InitObjects.getTimerEasy().isRunning() && InitObjects.getTimerMedium().isRunning()
+								&& InitObjects.getTimerHard().isRunning())
+						&& !Flags.isMPressed && !Flags.isHPressed) {
 					InitObjects.getTimerEasy().start();
-					if(!Flags.isSPressed) {
-						LoadSounds.BG_MUSIC.loop();								
-					}		
+					if (!Flags.isSPressed) {
+						LoadSounds.BG_MUSIC.loop();
+					}
 				}
 				if (Alien.aliens.isEmpty()) {
 					LoadSounds.TAUNT.loop();
@@ -102,33 +99,37 @@ public class Controls implements KeyListener {
 			}
 		}
 
-		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+		if (InitObjects.isIngame()
+				&& (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
 						|| InitObjects.getTimerHard().isRunning() == true)
-				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty()
-						&& (Dragon.dragons.size() > 0 || UpdateObjects.getLifeBunker() < 50 || Gold.goldstack.isEmpty()))) {
+				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0
+						|| UpdateObjects.getLifeBunker() < 50 || Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerShip.loadRockets();
 		}
 
-		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+		if (InitObjects.isIngame()
+				&& (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
 						|| InitObjects.getTimerHard().isRunning() == true)
-				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
+				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0 || (Dragon.dragons.isEmpty()
+						&& UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerShip.gunLocked(e);
 		}
 
-		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+		if (InitObjects.isIngame()
+				&& (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
 						|| InitObjects.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& (Alien.aliens.size() > 0 || (UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerShip.loadMissiles();
 		}
 
-		if (InitObjects.isIngame() && (InitObjects.getTimerEasy().isRunning() == true
-						|| InitObjects.getTimerMedium().isRunning() == true || InitObjects.getTimerHard().isRunning() == true)
+		if (InitObjects.isIngame()
+				&& (InitObjects.getTimerEasy().isRunning() == true || InitObjects.getTimerMedium().isRunning() == true
+						|| InitObjects.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50)
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
+						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) || (Dragon.dragons.isEmpty()
+								&& UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerShip.gunLocked(e);
 		}
 
@@ -197,7 +198,6 @@ public class Controls implements KeyListener {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
 			Flags.isEPressed = true;
-			ConsoleContent.manualON = false;
 			InitObjects.getTimerHard().stop();
 			InitObjects.getTimerMedium().stop();
 			InitObjects.getTimerEasy().start();
@@ -223,7 +223,6 @@ public class Controls implements KeyListener {
 			Flags.isEPressed = false;
 			Flags.isHPressed = false;
 			Flags.isMPressed = true;
-			ConsoleContent.manualON = false;
 			InitObjects.getTimerEasy().stop();
 			InitObjects.getTimerHard().stop();
 			InitObjects.getTimerMedium().start();
@@ -249,7 +248,6 @@ public class Controls implements KeyListener {
 			Flags.isEPressed = false;
 			Flags.isMPressed = false;
 			Flags.isHPressed = true;
-			ConsoleContent.manualON = false;
 			InitObjects.getTimerEasy().stop();
 			InitObjects.getTimerMedium().stop();
 			InitObjects.getTimerHard().start();
@@ -284,18 +282,16 @@ public class Controls implements KeyListener {
 		}
 
 		if (key == KeyEvent.VK_G) {
-			if (InitObjects.isIngame()) {
-				if (!ConsoleContent.isGod) {
-					ConsoleContent.isGod = true;
-					UpdateObjects.setLifePlayerShip(999);
-					TextToSpeech.playVoice("GODLIKE!");
-					return;
-				} else {
-					ConsoleContent.isGod = false;
-					UpdateObjects.setLifePlayerShip(4);
-					TextToSpeech.playVoice("Healthy!");
-					return;
-				}
+			if (!Flags.isGod) {
+				Flags.isGod = true;
+				UpdateObjects.setLifePlayerShip(999);
+				TextToSpeech.playVoice("GODLIKE!");
+				return;
+			} else {
+				Flags.isGod = false;
+				UpdateObjects.setLifePlayerShip(4);
+				TextToSpeech.playVoice("Healthy!");
+				return;
 			}
 		}
 
@@ -338,11 +334,11 @@ public class Controls implements KeyListener {
 			InitObjects.getTimerHard().stop();
 			TextToSpeech.playVoice("Loading main menu...");
 			TextToSpeech.voiceInterruptor = true;
-			for (AsteroidsAnimation asteroidsAnim : AsteroidsAnimation.ASTEROID_ANIMATION) {
+			for (AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
 				if (asteroidsAnim != null)
 					asteroidsAnim = null;
 			}
-			AsteroidsAnimation.ASTEROID_ANIMATION.clear();
+			AsteroidAnimation.ASTEROID_ANIMATION.clear();
 			for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 				if (elonAnimUp != null)
 					elonAnimUp = null;

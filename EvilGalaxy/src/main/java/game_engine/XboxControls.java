@@ -7,7 +7,6 @@ import enemy.Alien;
 import enemy.Dragon;
 import enemy.PlayerShip;
 import items.Gold;
-import util.ConsoleContent;
 import util.LoadSounds;
 
 public class XboxControls {
@@ -35,7 +34,6 @@ public class XboxControls {
 			if (!(InitObjects.getTimerEasy().isRunning() || InitObjects.getTimerMedium().isRunning()
 					|| InitObjects.getTimerHard().isRunning())
 					&& (currState.dpadLeft || currState.dpadRight || currState.dpadUp || currState.dpadDown)) {
-				ConsoleContent.manualON = false;
 				InitObjects.getTimerHard().stop();
 				InitObjects.getTimerMedium().stop();
 				InitObjects.getTimerEasy().start();

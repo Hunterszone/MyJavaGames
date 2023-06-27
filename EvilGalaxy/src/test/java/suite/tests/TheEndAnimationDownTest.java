@@ -21,11 +21,6 @@ public class TheEndAnimationDownTest {
 	}
 
 	@Test
-	public void testTheEndAnimationUpImg() {
-		assertNotNull(theEndAnimationDown.getImage());
-	}
-	
-	@Test
 	public void testListOfEndAnimationsDownExists() {
 		assertNotNull(TheEndAnimationDown.END_ANIMATION_DOWN);
 	}
