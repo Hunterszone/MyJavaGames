@@ -670,7 +670,7 @@ public class DrawScene extends UpdateObjects {
 
 	private void drawLifePlayerShip(Graphics g) {
 
-		if (UpdateObjects.getLifePlayerShip() > 0) {
+		if (UpdateObjects.getLifePlayerShip() > 0 && PlayerShip.playerShip != null) {
 			PlayerShip.playerShip.renderShip(g);
 		} else {
 			setIngame(false);

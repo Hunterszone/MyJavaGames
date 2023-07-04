@@ -35,17 +35,16 @@ public class ChatRoom {
             } catch (SocketException e) {
                 e.printStackTrace();
             } finally {
-                serverSocket.close();
-                running = false;
+                ChatRoom.stopServer();
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-        	running = false;
+        	ChatRoom.stopServer();
         }
     }
 
-    public class ClientHandler extends Thread {
+    public static class ClientHandler extends Thread {
         private Socket clientSocket;
         private PrintWriter writer;
         private BufferedReader reader;
@@ -56,24 +55,39 @@ public class ChatRoom {
 
         public void run() {
             try {
-                reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                writer = new PrintWriter(clientSocket.getOutputStream(), true);
-
-                String message;
-                while ((message = reader.readLine()) != null) {
-                    broadcast(message);
-                    if (message.equalsIgnoreCase("exit")) {
-                    	client.stopClient();
-                        break;
-                    }
+                if (clientSocket == null) {
+                    clientSocket = new Socket("127.0.0.1", 1234);
                 }
+                           
+                if (clientSocket.isConnected()) {
+                	reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    writer = new PrintWriter(clientSocket.getOutputStream(), true);
+
+                    String message;
+                    while ((message = reader.readLine()) != null) {
+                        broadcast(message);
+                        if (message.equalsIgnoreCase("exit")) {
+                            client.stopClient();
+                            break;
+                        }
+                    }
+                } else {
+                    System.err.println("Client socket is not connected to the server.");
+                }
+                
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    writer.close();
-                    reader.close();
-                    clientSocket.close();
+                    if (writer != null) {
+                        writer.close();
+                    }
+                    if (reader != null) {
+                        reader.close();
+                    }
+                    if (clientSocket != null) {
+                        clientSocket.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -85,7 +99,7 @@ public class ChatRoom {
         }
     }
 
-    private void broadcast(String message) {
+    private static void broadcast(String message) {
         System.out.println("Broadcasting message: " + message);
         for (ClientHandler client : clients) {
             client.sendMessage(message);

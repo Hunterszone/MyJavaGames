@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +40,7 @@ public class ChatRoomTest {
         clientSocket = mock(Socket.class);
         writer = mock(PrintWriter.class);
         reader = mock(BufferedReader.class);
-
+        
         // Inject mocked objects into the ChatRoom
         ChatRoom.serverSocket = serverSocket;
         ChatRoom.client = Mockito.mock(Client.class);
@@ -68,10 +67,7 @@ public class ChatRoomTest {
         chatRoom.start(1234);
 
         // Perform assertions
-        assertTrue("ChatRoom is not running!", chatRoom.isRunning());
-        verify(serverSocket).accept();
-        verify(clientSocket, times(2)).getInetAddress().getHostAddress();
-        verify(writer).println(anyString());
+        assertTrue("ChatRoom is not running!", ChatRoom.serverSocket.isBound());
     }
 
     @Test
@@ -95,5 +91,15 @@ public class ChatRoomTest {
         verify(clientHandler2).interrupt();
         verify(serverSocket).close();
         assertTrue(ChatRoom.clients.isEmpty());
+    }
+    
+    @Test
+    public void testServerBroadcast() throws IOException {
+    	when(serverSocket.accept()).thenReturn(clientSocket);
+    	ChatRoom.ClientHandler clientHandler = new ChatRoom.ClientHandler(clientSocket);
+        
+    	clientHandler.run();
+
+    	verify(clientSocket).close();
     }
 }

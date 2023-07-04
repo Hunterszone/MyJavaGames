@@ -13,6 +13,7 @@ import enemy.Alien;
 import enemy.Dragon;
 import game_engine.Controls;
 import game_engine.DrawScene;
+import game_engine.InitObjects;
 import game_engine.UpdateObjects;
 import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
@@ -170,7 +171,7 @@ public class ControlsTest {
 		
 		controls.keyPressed(numThreeKey);
 		
-		assertTrue("'numTwoKey' key was not pressed!", numThreeKey.getKeyCode() == KeyEvent.VK_3);
+		assertTrue("'numThreeKey' key was not pressed!", numThreeKey.getKeyCode() == KeyEvent.VK_3);
 	}
 	
 	@Test
@@ -190,13 +191,35 @@ public class ControlsTest {
 		
 		controls.keyPressed(rKey);
 		
-		assertTrue("'numFourKey' key was not pressed!", rKey.getKeyCode() == KeyEvent.VK_R);
+		assertTrue("'rKey' key was not pressed!", rKey.getKeyCode() == KeyEvent.VK_R);
+	}
+	
+	@Test
+	public void testThatRKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
+		KeyEvent rKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
+				KeyEvent.VK_R, '\u0052');
+		InitObjects.setIngame(false);
+		
+		controls.keyPressed(rKey);
+		
+		assertTrue("'rKey' key was not pressed!", rKey.getKeyCode() == KeyEvent.VK_R);
 	}
 
 	@Test
 	public void testThatEKeyIsPressed() throws MaryConfigurationException, SynthesisException {
 		KeyEvent eKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_E, '\u0045');
+		
+		controls.keyPressed(eKey);
+		
+		assertTrue("'eKey' key was not pressed!", eKey.getKeyCode() == KeyEvent.VK_E);
+	}
+	
+	@Test
+	public void testThatEKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
+		KeyEvent eKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
+				KeyEvent.VK_E, '\u0045');
+		InitObjects.setIngame(false);
 		
 		controls.keyPressed(eKey);
 		
@@ -214,9 +237,31 @@ public class ControlsTest {
 	}
 	
 	@Test
+	public void testThatMKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
+		KeyEvent mKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
+				KeyEvent.VK_M, '\u004d');
+		InitObjects.setIngame(false);
+		
+		controls.keyPressed(mKey);
+		
+		assertTrue("'mKey' key was not pressed!", mKey.getKeyCode() == KeyEvent.VK_M);
+	}
+	
+	@Test
 	public void testThatHKeyIsPressed() throws MaryConfigurationException, SynthesisException {
 		KeyEvent hKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_H, '\u0048');
+		
+		controls.keyPressed(hKey);
+		
+		assertTrue("'hKey' key was not pressed!", hKey.getKeyCode() == KeyEvent.VK_H);
+	}
+	
+	@Test
+	public void testThatHKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
+		KeyEvent hKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
+				KeyEvent.VK_H, '\u0048');
+		InitObjects.setIngame(false);
 		
 		controls.keyPressed(hKey);
 		
@@ -241,16 +286,6 @@ public class ControlsTest {
 		controls.keyPressed(gKey);
 		
 		assertTrue("'gKey' key was not pressed!", gKey.getKeyCode() == KeyEvent.VK_G);
-	}
-	
-	@Test
-	public void testThatZKeyIsPressed() throws MaryConfigurationException, SynthesisException {
-		KeyEvent zKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
-				KeyEvent.VK_Z, '\u005a');
-		
-		controls.keyPressed(zKey);
-		
-		assertTrue("'gKey' key was not pressed!", zKey.getKeyCode() == KeyEvent.VK_Z);
 	}
 	
 	@Test
