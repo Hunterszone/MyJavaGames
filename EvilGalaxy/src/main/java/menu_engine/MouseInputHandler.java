@@ -9,9 +9,7 @@ package menu_engine;
 import java.awt.Desktop;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
@@ -27,6 +25,7 @@ import game_engine.LoadGame;
 import game_engine.UpdateObjects;
 import launcher.Launcher;
 import main.Main;
+import marytts.exceptions.MaryConfigurationException;
 import menu_states.ControlsState;
 import menu_states.ExtrasState;
 import menu_states.ManualState;
@@ -178,8 +177,9 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					DisplayCanvas.frame.dispose();
 					try {
 						Launcher.main(null);
-					} catch (final FileNotFoundException | UnsupportedEncodingException e1) {
-						System.out.println(e1.getMessage());
+					} catch (MaryConfigurationException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 					Flags.isMenuOn = true;
 				}

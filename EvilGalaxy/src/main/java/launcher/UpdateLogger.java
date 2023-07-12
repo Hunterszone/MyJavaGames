@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class UpdateLogger {
-	final Logger logger = Logger.getLogger(UpdateLogger.class.getName());
+	private final Logger logger = Logger.getLogger(UpdateLogger.class.getName());
 	private FileHandler fh = null;
 
 	{
@@ -36,10 +36,10 @@ public class UpdateLogger {
 		}
 
 		fh.setFormatter(new SimpleFormatter());
-		logger.addHandler(fh);
+		getLogger().addHandler(fh);
 	}
 
-	public static void main(String[] args) {
-		new UpdateLogger();
+	public Logger getLogger() {
+		return logger;
 	}
 }

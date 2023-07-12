@@ -3,25 +3,22 @@ package launcher;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import javax.swing.JFrame;
@@ -32,420 +29,202 @@ import util.TextToSpeech;
 
 public class Launcher extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	String version = "";
-	boolean needDownload = false;
-	static UpdateLogger updlog = new UpdateLogger();
+    private static final long serialVersionUID = 1L;
+    private JProgressBar progressBar;
+    private JProgressBar oProgressBar;
+    private String version = "";
+    private boolean needDownload;
+    private int i = 0;
+    private long lastTime;
+    private static final UpdateLogger updlog = new UpdateLogger();
 
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		try {
-			new Launcher();
-		} catch (final MaryConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public static void main(String[] args) throws MaryConfigurationException {
+        try {
+            new Launcher();
+        } catch (final MaryConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Launcher() throws MaryConfigurationException {
+        initializeUI();
+        needDownload();
+        performDownloads();
+        launchGame();
+    }
+
+    private void initializeUI() {
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final int width = (int) screenSize.getWidth();
+        final int height = (int) screenSize.getHeight();
+        setTitle("Updating game...");
+        setBounds(width / 2 - 200, height / 2 - 50, 400, 100);
+        setVisible(true);
+        setProgressBar(new JProgressBar(0));
+        oProgressBar = new JProgressBar(0);
+        getProgressBar().setBounds(0, 0, 400, 50);
+        oProgressBar.setBounds(0, 50, 400, 50);
+        add(getProgressBar());
+        add(oProgressBar);
+        getProgressBar().setValue(0);
+        oProgressBar.setValue(0);
+        TextToSpeech.playVoice("Updating...");
+    }
+
+    public void needDownload() {
+        try {
+            final Path versionFile = Paths.get(System.getProperty("user.dir"), "version.txt");
+            final List<String> lines = Files.readAllLines(versionFile);
+            for (final String line : lines) {
+                version = line;
+                System.out.println("Version: " + line);
+                getUpdlog().getLogger().info("Version: " + line);
+            }
+
+            final URL url = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy");
+            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String inputLine;
+            boolean needsUpdate = false;
+
+            while ((inputLine = reader.readLine()) != null) {
+                if (!inputLine.contains(version)) {
+                    needsUpdate = true;
+                    break;
+                }
+            }
+
+            if (needsUpdate) {
+                needDownload = true;
+                System.out.println("Downloading!");
+                Files.write(versionFile, inputLine.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
+                System.out.println("Updated to version " + inputLine + " from version " + version);
+            } else {
+                System.out.println("No download needed!");
+                Files.write(versionFile, "up-to-date".getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
+            }
+
+            reader.close();
+            connection.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void performDownloads() {
+        try {
+            final ExecutorService executor = Executors.newFixedThreadPool(10);
+            final List<String> downloadImg = readTextFile("images.txt");
+            final List<String> downloadSounds = readTextFile("sounds.txt");
+
+            downloadFiles(downloadImg, "images/");
+            downloadFiles(downloadSounds, "sounds/");
+
+            executor.shutdown();
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void downloadFiles(List<String> fileList, String destinationDir) throws IOException {
+        final int totalFiles = fileList.size();
+        final int batchSize = Math.min(totalFiles, 10);
+        final ExecutorService executor = Executors.newFixedThreadPool(batchSize);
+
+        for (final String file : fileList) {
+            executor.execute(() -> {
+                try {
+                    final URL url = new URL("https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/" + destinationDir + file);
+                    final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("HEAD");
+
+                    final Path filePath = Paths.get(destinationDir, file);
+                    final Path parentDir = filePath.getParent();
+                    if (parentDir != null && !Files.exists(parentDir))
+                        Files.createDirectories(parentDir);
+
+                    final long localFileSize = Files.exists(filePath) ? Files.size(filePath) : 0;
+                    if (localFileSize != conn.getContentLength()) {
+                        download(url.toString(), filePath.toString(), conn.getContentLength());
+                    } else {
+                        System.out.println("No need to download " + destinationDir + file);
+                        getUpdlog().getLogger().info("No need to download " + destinationDir + file);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            e.printStackTrace();
+        }
+    }
+
+    private void download(String source, String destination, int size) throws IOException {
+        final Path filePath = Paths.get(System.getProperty("user.dir"), destination);
+        final List<Thread> threads = new ArrayList<>();
+        System.out.println("\nDownloading from\n\t " + source + "\nTo\n\t " + filePath + "\n");
+        getUpdlog().getLogger().logp(Level.INFO, "Downloading from\n\t " + source + "\nTo\n\t " + filePath + "\n", "", "");
+
+        final URL url = new URL(source);
+        try (InputStream input = url.openStream();
+             PrintWriter writer = new PrintWriter(filePath.toFile())) {
+
+            final byte[] buffer = new byte[16 * 1024];
+            int bytesRead;
+            while ((bytesRead = input.read(buffer)) != -1) {
+                writer.write(new String(buffer, 0, bytesRead));
+            }
+
+            i++;
+            oProgressBar.setValue((int) ((i * 100.0f) / threads.size()));
+            System.out.println("Downloaded " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void launchGame() {
+        try {
+            final String exec = (System.getProperty("user.dir") + java.io.File.separator + "EvilGalaxy.jar");
+            final String[] command = { "java", "-jar", exec };
+            final ProcessBuilder pb = new ProcessBuilder(command);
+            getProgressBar().setValue(100);
+            System.out.println(pb.command());
+            pb.start();
+            System.out.println("Running " + exec);
+            dispose();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private List<String> readTextFile(String fileName) throws IOException {
+        final List<String> values = new ArrayList<>();
+        final Path filePath = Paths.get(fileName);
+        if (Files.exists(filePath)) {
+            values.addAll(Files.readAllLines(filePath));
+        }
+        return values;
+    }
+
+	public JProgressBar getProgressBar() {
+		return progressBar;
 	}
 
-	public void needDownload() throws FileNotFoundException, UnsupportedEncodingException {
-		{
-			final File filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
-			try {
-				final List<String> lines = Files.readAllLines(Paths.get(filename.getAbsolutePath()), StandardCharsets.UTF_8);
-				for (final String str : lines) {
-					version = str;
-					System.out.println("Version: " + str);
-					updlog.logger.info("Version: " + str);
-				}
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
-		}
-		progressBar.setValue(25);
-
-		{
-			URL location;
-			URL verfile;
-			String inputLine;
-			PrintStream printStream = null;
-			File filename = null;
-			PrintWriter writer = null;
-
-			try {
-//				printStream = new PrintStream(new ConsoleForm());
-				filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
-				writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
-				location = new URL("https://github.com/Hunterszone/MyJavaGames/tree/master/EvilGalaxy");
-				verfile = new URL(
-						"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/version.txt");
-
-				final URLConnection connection = location.openConnection();
-				final URLConnection verconnection = verfile.openConnection();
-
-				final BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-				final BufferedReader versin = new BufferedReader(new InputStreamReader(verconnection.getInputStream()));
-
-				final String inputVersion = versin.readLine();
-
-				progressBar.setValue(50);
-
-
-				while ((inputLine = in.readLine()) != null) {
-					System.setOut(printStream);
-					System.setErr(printStream);
-
-					if (!inputVersion.contains(version)) {
-						needDownload = true;
-						System.out.println("Downloading!");
-						writer.println(inputVersion);
-						System.out.println("Updated to version " + inputVersion + " from version " + version);
-						writer.close();
-					} else {
-						System.out.println("No download needed!");
-						filename = new File(System.getProperty("user.dir") + java.io.File.separator + "version.txt");
-						writer = new PrintWriter(filename.getAbsoluteFile(), "UTF-8");
-						writer.print("");
-						writer.println("up-to-date");
-						writer.close();
-					}
-				}
-
-				updlog.logger.info("Downloading!");
-				updlog.logger.info("Updated to version " + inputVersion + " from version " + version);
-
-				progressBar.setValue(100);
-			} catch (final Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (printStream != null) printStream.close();
-				if (writer != null) writer.close();
-			}
-		}
+	public void setProgressBar(JProgressBar progressBar) {
+		this.progressBar = progressBar;
 	}
 
-	private final JProgressBar progressBar;
-	private final JProgressBar oprogressBar;
-	int i = 0;
-	List<Thread> threads = new ArrayList<Thread>();
-	long lastTime = 0;
-
-	public Launcher() throws MaryConfigurationException, FileNotFoundException, UnsupportedEncodingException {
-		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		final int width = (int) screenSize.getWidth();
-		final int height = (int) screenSize.getHeight();
-		setTitle("Updating game...");
-		setBounds(width / 2 - 200, height / 2 - 50, 400, 100);
-		setVisible(true);
-		progressBar = new JProgressBar(0);
-		oprogressBar = new JProgressBar(0);
-		progressBar.setBounds(0, 0, 400, 50);
-		oprogressBar.setBounds(0, 50, 400, 50);
-		add(progressBar);
-		add(oprogressBar);
-		progressBar.setValue(0);
-		oprogressBar.setValue(0);
-		TextToSpeech.playVoice("Updating...");
-		needDownload();
-
-		{
-			{
-				final File f = new File("saves/");
-				if (!f.exists()) {
-					if (!f.mkdir()) {
-						System.out.println("Unable to create dir saves/!!");
-						updlog.logger.info("Unable to create dir saves/!!");
-						System.exit(1);
-					} else {
-						System.out.println("Created dir saves/!");
-						updlog.logger.info("Created dir saves/!");
-					}
-				} else {
-					System.out.println("Dir saves/ already exists");
-					updlog.logger.info("Dir saves/ already exists");
-				}
-			}
-
-			{
-				final File f = new File("sounds/");
-				if (!f.exists()) {
-					if (!f.mkdir()) {
-						System.out.println("Unable to create dir sounds/!!");
-						updlog.logger.info("Unable to create dir sounds/!!");
-						System.exit(1);
-					} else {
-						System.out.println("Created dir sounds/!");
-						updlog.logger.info("Created dir sounds/!");
-					}
-				} else {
-					System.out.println("Dir sounds/ already exists");
-					updlog.logger.info("Dir sounds/ already exists");
-				}
-			}
-
-			{
-				final File f = new File("images/");
-
-				if (!f.exists()) {
-					if (!f.mkdir()) {
-						System.out.println("Unable to create dir images/!!");
-						updlog.logger.info("Unable to create dir images/!!");
-						System.exit(1);
-					} else {
-						System.out.println("Created dir images/!");
-						updlog.logger.info("Created dir images/!");
-					}
-				} else {
-					System.out.println("Dir images/ already exists");
-					updlog.logger.info("Dir images/ already exists");
-				}
-			}
-
-			progressBar.setValue(10);
-			try {
-				{
-					final URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images.txt");
-					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					conn.setRequestMethod("HEAD");
-					final File fi = new File("images.txt");
-					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images.txt",
-								"images.txt", conn.getContentLength());
-					} else {
-						System.out.println("No need to download images.txt!");
-						updlog.logger.info("No need to download images.txt!");
-					}
-				}
-
-				{
-					final URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds.txt");
-					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					conn.setRequestMethod("HEAD");
-					final File fi = new File("sounds.txt");
-					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						download(
-								"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds.txt",
-								"sounds.txt", conn.getContentLength());
-					} else {
-						System.out.println("No need to download sounds.txt!");
-						updlog.logger.info("No need to download sounds.txt!");
-					}
-
-				}
-
-				progressBar.setValue(15);
-				final ArrayList<String> downloadImg = readTextFile("images.txt");
-				final ArrayList<String> downloadSounds = readTextFile("sounds.txt");
-
-				for (final String str : downloadImg) {
-
-					final URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images/"
-									+ str);
-					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					progressBar.setValue(30);
-					conn.setRequestMethod("HEAD");
-					final File fi = new File("images/" + str);
-					if (!fi.getParentFile().exists()) {
-						fi.getParentFile().mkdirs();
-					}
-					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						progressBar.setValue(50);
-						final Thread t = new Thread() {
-							@Override
-							public void run() {
-								try {
-									download(
-											"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/images/"
-													+ str,
-											"images/" + str, conn.getContentLength());
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-						};
-						t.start();
-						threads.add(t);
-
-					} else {
-						System.out.println("No need to download " + "images/" + str);
-						updlog.logger.info("No need to download " + "images/" + str);
-						progressBar.setValue(100);
-					}
-				}
-				for (final String str : downloadSounds) {
-
-					final URL url = new URL(
-							"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds/"
-									+ str);
-					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					// progressBar.setValue(30);
-					conn.setRequestMethod("HEAD");
-					final File fi = new File("sounds/" + str);
-					if (!fi.getParentFile().exists()) {
-						fi.getParentFile().mkdirs();
-					}
-					if (!fi.exists() || fi.length() != conn.getContentLength()) {
-						// progressBar.setValue(50);
-						final Thread t = new Thread() {
-							@Override
-							public void run() {
-								try {
-									download(
-											"https://raw.githubusercontent.com/Hunterszone/MyJavaGames/master/EvilGalaxy/sounds/"
-													+ str,
-											"sounds/" + str, conn.getContentLength());
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-						};
-						t.start();
-						threads.add(t);
-
-					} else {
-						System.out.println("No need to download " + "sounds/" + str);
-						updlog.logger.info("No need to download " + "sounds/" + str);
-						// progressBar.setValue(100);
-					}
-
-				}
-				i++;
-				oprogressBar.setValue((int) ((i * 100.0f) / downloadImg.size() - threads.size()));
-			} catch (final Exception e) {
-
-			}
-		}
-		progressBar.setValue(50);
-		final File f = new File("EvilGalaxy.jar");
-		System.out.println("Exists: " + f.exists());
-		updlog.logger.info("Exists: " + f.exists());
-		try {
-			final URL url = new URL(
-					"https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EvilGalaxy.jar?raw=true");
-			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("HEAD");
-			if (needDownload || !f.exists() || f.length() != conn.getContentLength()) {
-
-				final Thread t = new Thread() {
-
-					@Override
-					public void run() {
-						try {
-							download(
-									"https://github.com/Hunterszone/MyJavaGames/blob/master/EvilGalaxy/EvilGalaxy.jar?raw=true",
-									"EvilGalaxy.jar", conn.getContentLength());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				};
-				t.start();
-				threads.add(t);
-			}
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-
-		for (final Thread t : threads) {
-			try {
-				t.join();
-			} catch (final InterruptedException e) {
-				e.printStackTrace();
-			    Thread.currentThread().interrupt();
-			}
-
-		}
-
-		progressBar.setValue(95);
-
-		final String exec = (System.getProperty("user.dir") + java.io.File.separator + "EvilGalaxy.jar");
-		final String[] command = { "java", "-jar", exec };
-		final ProcessBuilder pb = new ProcessBuilder(command[0], command[1], command[2]);
-		progressBar.setValue(100);
-		System.out.println(pb.command());
-		try {
-			pb.start();
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Running " + exec);
-		dispose();
-
-		System.exit(0);
-
-	}
-
-	void download(String source, String destination, int size) throws IOException {
-
-		// ten percent of the total download size
-		final File ofile = new File(System.getProperty("user.dir") + "", destination);
-		System.out.println("\nDownloading from\n\t " + source + "\nTo\n\t " + destination + "\n");
-		updlog.logger.logp(Level.INFO, "Downloading from\n\t " + source + "\nTo\n\t " + destination + "\n", "", "");
-		final URL url = new URL(source);
-		InputStream input = null;
-		FileOutputStream fos = null;
-		
-		try {
-			input = url.openStream();
-			fos = new FileOutputStream(ofile);
-			if (ofile.exists())
-				ofile.delete();
-			if (!ofile.createNewFile()) {
-				throw new IOException("Can't create " + ofile.getAbsolutePath());
-			}
-
-			int inChar;
-			final byte[] buff = new byte[16 * 1024];
-			// OutputStream out = new FileOutputStream(ofile);
-			// BufferedOutputStream fos = new BufferedOutputStream(out);
-			while ((inChar = input.read(buff)) != -1) {
-				if (System.nanoTime() > lastTime + 2000000000) {
-					lastTime = System.nanoTime();
-					final int percentage = (int) ((i * 100.0f) / size);
-
-					progressBar.setValue(((int) ((percentage * 100.0f) / 100)));
-					setTitle(ofile.getName() + ": " + progressBar.getValue() + "%" + " Total: "
-							+ oprogressBar.getValue() + "%");
-				}
-				fos.write(buff, 0, inChar);
-			}
-			i++;
-			oprogressBar.setValue((int) ((i * 100.0f) / threads.size()));
-			System.out.println("Downloaded " + ofile.getAbsolutePath());
-		} catch (final EOFException e) {
-			e.printStackTrace();
-		} catch (final IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (input != null) input.close();
-			if (fos != null) fos.close();
-		}
-	}
-
-	public static ArrayList<String> readTextFile(String fileName) throws IOException {
-
-		final ArrayList<String> values = new ArrayList<String>();
-		FileReader file = null;
-		final BufferedReader reader = new BufferedReader(file);
-
-		try {
-			file = new FileReader(fileName);
-			String line = "";
-			while ((line = reader.readLine()) != null) {
-				values.add(line);
-			}
-		} catch (final Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			if (reader != null) reader.close();
-			if (file != null) file.close();
-		}
-		return values;
+	public static UpdateLogger getUpdlog() {
+		return updlog;
 	}
 }

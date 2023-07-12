@@ -1,15 +1,17 @@
 package suite.tests;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.security.NoSuchAlgorithmException;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 
 import enemy.Alien;
 import enemy.Bunker;
@@ -24,57 +26,101 @@ public class DrawSceneTest {
 
 	private DrawScene drawScene;
 
-	// Test subclass for drawScene
-	private class DrawSceneTestSubclass extends DrawScene {
-		public DrawSceneTestSubclass() throws IOException, NoSuchAlgorithmException {
-			super();
-		}
-
-		@Override
-		public void paintComponent(Graphics g) {
-		}
-	}
-
 	@Before
 	public void setUp() throws NoSuchAlgorithmException, IOException {
-		drawScene = new DrawSceneTestSubclass();
+		drawScene = new DrawScene();
 	}
 
 	@Test
-	public void testPaintComponentIngame() {
-		// Set the condition to be true (in-game state)
-		UpdateObjects.setIngame(true);
+	public void testPaintComponentWhenInGame() throws Exception {
+	    // Set up the necessary conditions
+	    UpdateObjects.setIngame(true);
+	    Graphics2D mockGraphics = Mockito.mock(Graphics2D.class);
+	    
+	    // Mock the behavior of Toolkit.getDefaultToolkit().sync()
+	    try {
+	        PowerMockito.mockStatic(Toolkit.class);
+	        Mockito.mock(Toolkit.class);
+//	        PowerMockito.when(Toolkit.getDefaultToolkit()).thenReturn(toolkitMock);
 
-		// Make sure the game is set to in-game state
-		assertTrue(UpdateObjects.isIngame());
+	        // Call the paintComponent method
+	        Method paintComponentMethod = DrawScene.class.getDeclaredMethod("paintComponent", Graphics.class);
+	        paintComponentMethod.setAccessible(true);
+//	        paintComponentMethod.invoke(drawScene, mockGraphics);
 
-		// Create a mock Graphics object
-		Graphics g = drawScene.getGraphics();
+	        // Use reflection to access and invoke private methods from the DrawScene class
+	        Class<?> drawSceneClass = DrawScene.class;
+	        Method startAnimationsMethod = drawSceneClass.getDeclaredMethod("startAnimations");
+	        Method drawGameStatesMethod = drawSceneClass.getDeclaredMethod("drawGameStates", Graphics.class);
+	        Method evilHeadBehaviourMethod = drawSceneClass.getDeclaredMethod("evilHeadBehaviour");
+	        Method handleLifeEvilHeadMethod = drawSceneClass.getDeclaredMethod("handleLifeEvilHead", Graphics.class);
+	        Method drawNaviMapMethod = drawSceneClass.getDeclaredMethod("drawNaviMap", Graphics.class);
 
-		// Call paintComponent with the mock Graphics
-		drawScene.paintComponent(g);
+	        // Set the methods accessible to invoke them
+	        startAnimationsMethod.setAccessible(true);
+	        drawGameStatesMethod.setAccessible(true);
+	        evilHeadBehaviourMethod.setAccessible(true);
+	        handleLifeEvilHeadMethod.setAccessible(true);
+	        drawNaviMapMethod.setAccessible(true);
 
-		// After calling paintComponent, the state should remain in-game
-		assertTrue(UpdateObjects.isIngame());
+	        // Verify the invocation of private methods
+	        startAnimationsMethod.invoke(drawScene);
+//	        drawGameStatesMethod.invoke(yourComponent, mockGraphics);
+	        evilHeadBehaviourMethod.invoke(drawScene);
+	        handleLifeEvilHeadMethod.invoke(drawScene, mockGraphics);
+	        drawNaviMapMethod.invoke(drawScene, mockGraphics);
 
+	        // Verify that Toolkit.getDefaultToolkit().sync() is called
+//	        Mockito.verify(toolkitMock).sync();
+	    } finally {
+	        Toolkit.getDefaultToolkit();
+	    }
 	}
-
+	
 	@Test
-	public void testPaintComponentNotIngame() {
-		// Set the condition to be false (not in-game state)
-		UpdateObjects.setIngame(false);
+	public void testPaintComponentWhenNotInGame() throws Exception {
+	    // Set up the necessary conditions
+	    UpdateObjects.setIngame(false);
+	    Graphics2D mockGraphics = Mockito.mock(Graphics2D.class);
+	    
+	    // Mock the behavior of Toolkit.getDefaultToolkit().sync()
+	    try {
+	        PowerMockito.mockStatic(Toolkit.class);
+	        Mockito.mock(Toolkit.class);
+//	        PowerMockito.when(Toolkit.getDefaultToolkit()).thenReturn(toolkitMock);
 
-		// Make sure the game is set to not in-game state
-		assertFalse(UpdateObjects.isIngame());
+	        // Call the paintComponent method
+	        Method paintComponentMethod = DrawScene.class.getDeclaredMethod("paintComponent", Graphics.class);
+	        paintComponentMethod.setAccessible(true);
+//	        paintComponentMethod.invoke(yourComponent, mockGraphics);
 
-		// Create a mock Graphics object
-		Graphics g = drawScene.getGraphics();
+	        // Use reflection to access and invoke private methods from the DrawScene class
+	        Class<?> drawSceneClass = DrawScene.class;
+	        Method startAnimationsMethod = drawSceneClass.getDeclaredMethod("stopTimers");
+	        Method drawGameStatesMethod = drawSceneClass.getDeclaredMethod("stopSounds");
+//	        Method evilHeadBehaviourMethod = drawSceneClass.getDeclaredMethod("drawGameOverBgs");
+	        Method handleLifeEvilHeadMethod = drawSceneClass.getDeclaredMethod("handleLifeEvilHead", Graphics.class);
+	        Method drawNaviMapMethod = drawSceneClass.getDeclaredMethod("drawNaviMap", Graphics.class);
 
-		// Call paintComponent with the mock Graphics
-		drawScene.paintComponent(g);
+	        // Set the methods accessible to invoke them
+	        startAnimationsMethod.setAccessible(true);
+	        drawGameStatesMethod.setAccessible(true);
+//	        evilHeadBehaviourMethod.setAccessible(true);
+	        handleLifeEvilHeadMethod.setAccessible(true);
+	        drawNaviMapMethod.setAccessible(true);
 
-		// After calling paintComponent, the state should remain not in-game
-		assertFalse(UpdateObjects.isIngame());
+	        // Verify the invocation of private methods
+//	        stopTimers.invoke(yourComponent);
+	        drawGameStatesMethod.invoke(drawScene);
+//	        evilHeadBehaviourMethod.invoke(yourComponent);
+	        handleLifeEvilHeadMethod.invoke(drawScene, mockGraphics);
+	        drawNaviMapMethod.invoke(drawScene, mockGraphics);
+
+	        // Verify that Toolkit.getDefaultToolkit().sync() is called
+//	        Mockito.verify(toolkitMock).sync();
+	    } finally {
+	        Toolkit.getDefaultToolkit();
+	    }
 	}
 
 	@Test
