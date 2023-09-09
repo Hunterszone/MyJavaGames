@@ -944,28 +944,24 @@ public class DrawScene extends UpdateObjects {
 	}
 
 	private void drawKilledBy(Graphics g) {
+	    String msg = null;
 
-		String msg = null;
+	    if (Flags.killedByAlien) {
+	        msg = retrieveOpenAiMessage(Entity.ALIEN, KILLED_BY_AN_ALIEN);
+	    } else if (Flags.killedByDragon) {
+	        msg = retrieveOpenAiMessage(Entity.DRAGON, KILLED_BY_A_DRAGON);
+	    } else if (Flags.killedByBunker) {
+	        msg = retrieveOpenAiMessage(Entity.BUNKER, KILLED_BY_THE_BUNKER);
+	    } else if (Flags.killedByEvilHead) {
+	        msg = retrieveOpenAiMessage(Entity.EVILHEAD, KILLED_BY_THE_EVIL_HEAD);
+	    }
 
-		if (Flags.killedByAlien) {
-			String openAiMsgAlien = OpenAiApiImpl.createCompletion(Entity.ALIEN.getMsg()); 
-			msg = openAiMsgAlien == null || Entity.ALIEN.getMsg().equals(openAiMsgAlien) 
-					? KILLED_BY_AN_ALIEN : openAiMsgAlien;
-		} else if (Flags.killedByDragon) {			
-			String openAiMsgDragon = OpenAiApiImpl.createCompletion(Entity.DRAGON.getMsg());
-			msg = openAiMsgDragon == null || Entity.DRAGON.getMsg().equals(openAiMsgDragon) 
-					? KILLED_BY_A_DRAGON : openAiMsgDragon;
-		} else if (Flags.killedByBunker) {			
-			String openAiMsgBunker = OpenAiApiImpl.createCompletion(Entity.BUNKER.getMsg());
-			msg = openAiMsgBunker == null || Entity.BUNKER.getMsg().equals(openAiMsgBunker) 
-					? KILLED_BY_THE_BUNKER : openAiMsgBunker;
-		} else if (Flags.killedByEvilHead) {			
-			String openAiMsgEvilHead = OpenAiApiImpl.createCompletion(Entity.EVILHEAD.getMsg());
-			msg = openAiMsgEvilHead == null || Entity.EVILHEAD.getMsg().equals(openAiMsgEvilHead) 
-					? KILLED_BY_THE_EVIL_HEAD : openAiMsgEvilHead;
-		}
+	    formatMsg(g, msg);
+	}
 
-		formatMsg(g, msg);
+	private String retrieveOpenAiMessage(Entity entity, String defaultMsg) {
+	    String openAiMsg = OpenAiApiImpl.createCompletion(entity.getMsg());
+	    return (openAiMsg != null && !entity.getMsg().equals(openAiMsg)) ? openAiMsg : defaultMsg;
 	}
 
 	private void drawCollectGold(Graphics g) {
