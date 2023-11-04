@@ -23,6 +23,7 @@ public class OpenAiApiImpl {
         try {
         	return service.createCompletion(completionRequest).getChoices().get(0).getText();	
         } catch (HttpException e) {
+        	System.err.println("createCompletion exception: " + e.getMessage());
 			return msg;
 		}
     }

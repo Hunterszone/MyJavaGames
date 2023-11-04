@@ -961,7 +961,8 @@ public class DrawScene extends UpdateObjects {
 
 	private String retrieveOpenAiMessage(Entity entity, String defaultMsg) {
 	    String openAiMsg = OpenAiApiImpl.createCompletion(entity.getMsg());
-	    return (openAiMsg != null && !entity.getMsg().equals(openAiMsg)) ? openAiMsg : defaultMsg;
+	    return openAiMsg != null && !entity.getMsg().equalsIgnoreCase(openAiMsg) 
+	    		? openAiMsg : defaultMsg;
 	}
 
 	private void drawCollectGold(Graphics g) {
