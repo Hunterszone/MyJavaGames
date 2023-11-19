@@ -1,23 +1,14 @@
 package game_engine;
 
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import javax.swing.JPanel;
-import javax.swing.Timer;
-
 import animation.AsteroidAnimation;
-import animation.AstronautAnimation;
-import animation.SatelliteAnimation;
 import animation.TheEndAnimationDown;
 import animation.TheEndAnimationUp;
 import enemy.Alien;
@@ -43,19 +34,12 @@ import items.VolBtn;
 import menu_engine.CanvasMenu;
 import util.Constants;
 import util.Flags;
+import util.ActionPerformer;
 import util.LoadSounds;
-import util.LocationJsonExtractor;
 import util.TextToSpeech;
 
-public abstract class InitObjects extends JPanel implements ActionListener, Runnable {
+public class InitObjects {
 
-	protected static final String[] CITY_AND_COUNTRY = getCityAndCountry();
-	
-	private static boolean isIngame;
-	private static Timer timerEasy, timerMedium, timerHard;
-	private static Thread animator;
-	private static final long serialVersionUID = 4553098009656808450L;
-	private static final int DELAY = 15;
 	private static Random rand;
 
 	/*
@@ -82,12 +66,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 	private void initBoard() throws NoSuchAlgorithmException {
 
-		addKeyListener(new Controls());
-		setFocusable(true);
-		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
-
 		// Constants
-		setIngame(true);
+		ActionPerformer.setIngame(true);
 		Flags.isEPressed = true;
 		
 		// Collections
@@ -119,11 +99,6 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 
 		TextToSpeech.voiceInterruptor = true;
 
-		setAnimator(new Thread(this));
-		setTimerEasy(new Timer(DELAY, this));
-		setTimerMedium(new Timer(DELAY, this));
-		setTimerHard(new Timer(DELAY, this));
-		getTimerEasy().start();
 		LoadSounds.HIGHSC.play();
 		LoadSounds.BG_MUSIC.loop();
 	}
@@ -212,132 +187,8 @@ public abstract class InitObjects extends JPanel implements ActionListener, Runn
 		canvasMenu.start();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-	}
-
-	public static List<String> getEnemyNames() {
+	public static List<String> initEnemyNames() {
 		return Arrays.asList(Alien.class.getName(), Dragon.class.getName());
-	}
-
-	@Override
-	public void run() {
-
-		long beforeTime, timeDiff, sleep;
-
-		beforeTime = System.currentTimeMillis();
-		
-		while (isIngame() || getAnimator() != null) {
-
-			if (SatelliteAnimation.SATELLITE != null) {
-				SatelliteAnimation.SATELLITE.cycle();
-			}
-
-			if (AstronautAnimation.ASTRONAUT != null) {
-				AstronautAnimation.ASTRONAUT.cycle();
-			}
-
-			if (AsteroidAnimation.ASTEROID_ANIMATION != null && !AsteroidAnimation.ASTEROID_ANIMATION.isEmpty()) {				
-				for (final AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
-					asteroidsAnim.cycle();
-				}
-			}
-
-			if (TheEndAnimationUp.END_ANIMATION_UP != null && !TheEndAnimationUp.END_ANIMATION_UP.isEmpty()) {
-				for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.END_ANIMATION_UP) {
-					endAnimationUp.cycle();
-				}	
-			}
-
-			if (TheEndAnimationDown.END_ANIMATION_DOWN != null && !TheEndAnimationDown.END_ANIMATION_DOWN.isEmpty()) {
-				for (final TheEndAnimationDown endAnimationDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
-					endAnimationDown.cycle();
-				}
-			}
-
-			repaint();
-
-			timeDiff = System.currentTimeMillis() - beforeTime;
-			sleep = DELAY - timeDiff;
-
-			if (sleep < 0) {
-				sleep = 2;
-			}
-
-			try {
-				Thread.sleep(sleep);
-			} catch (final InterruptedException e) {
-//				final String msg = String.format("Thread interrupted: %s", e.getMessage());
-//				JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
-				Thread.currentThread().interrupt();
-			}
-
-			beforeTime = System.currentTimeMillis();
-		}
-	}
-
-	@Override
-	public void addNotify() {
-		super.addNotify();
-
-		if (getAnimator() != null) {			
-			getAnimator().start();
-		}
-	}
-
-	@Override
-	public void removeNotify() {
-		super.removeNotify();
-
-		if (getAnimator() != null) {
-			getAnimator().interrupt();	
-		}
-	}
-
-	public static void setAnimator(Thread animator) {
-		InitObjects.animator = animator;
-	}
-
-	protected static Thread getAnimator() {
-		return animator;
-	}
-
-	
-	private static String[] getCityAndCountry() {
-		return LocationJsonExtractor.extractCityAndCountry();
-	}
-
-	public static Timer getTimerMedium() {
-		return timerMedium;
-	}
-
-	public static void setTimerMedium(Timer timerMedium) {
-		InitObjects.timerMedium = Objects.requireNonNull(timerMedium);
-	}
-
-	public static Timer getTimerHard() {
-		return timerHard;
-	}
-
-	public static void setTimerHard(Timer timerHard) {
-		InitObjects.timerHard = Objects.requireNonNull(timerHard);
-	}
-
-	public static Timer getTimerEasy() {
-		return timerEasy;
-	}
-
-	public static void setTimerEasy(Timer timerEasy) {
-		InitObjects.timerEasy = Objects.requireNonNull(timerEasy);
-	}
-
-	public static boolean isIngame() {
-		return isIngame;
-	}
-
-	public static void setIngame(boolean isIngame) {
-		InitObjects.isIngame = isIngame;
 	}
 
 }

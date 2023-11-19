@@ -10,7 +10,6 @@ import java.net.URL;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-@SuppressWarnings("deprecation")
 public class LocationJsonExtractor {
 
 	private static final String ACCESS_TOKEN = "?token=2760f2eddca0f4";

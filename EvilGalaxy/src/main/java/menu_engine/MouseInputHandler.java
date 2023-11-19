@@ -20,7 +20,7 @@ import javax.swing.event.MouseInputAdapter;
 import chat_engine.ChatRoom;
 // import game packages:
 import enums.SoundEffect;
-import game_engine.InitObjects;
+import util.ActionPerformer;
 import game_engine.LoadGame;
 import game_engine.UpdateObjects;
 import launcher.Launcher;
@@ -53,7 +53,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 		final int mouseY = e.getY();
 
 		if (Flags.isMenuOn) {
-			InitObjects.setAnimator(null);
+			ActionPerformer.setAnimator(null);
 			playWave1st = new PlayWave1st(clickSound);
 			if (mouseX >= 430 && mouseX <= 770) { // Play game button width
 				if (mouseY >= 115 && mouseY <= 165) { // Play game button height
@@ -63,7 +63,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					UpdateObjects.setLifePlayerShip(4);
 					UpdateObjects.setLifeEvilHead(3);
 					UpdateObjects.setLifeBunker(3);
-					InitObjects.setIngame(true);
+					ActionPerformer.setIngame(true);
 					if (main == null) {
 						DisplayCanvas.frame.remove(DisplayCanvas.canvas);
 						DisplayCanvas.frame.dispose();
@@ -76,7 +76,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 							} catch (NoSuchAlgorithmException e1) {
 								e1.printStackTrace();
 							}
-							InitObjects.getTimerEasy().stop();
+							ActionPerformer.getTimerEasy().stop();
 						});
 					}
 					Flags.isMenuOn = true;
@@ -178,8 +178,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					try {
 						Launcher.main(null);
 					} catch (MaryConfigurationException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						e1.getMessage();
 					}
 					Flags.isMenuOn = true;
 				}

@@ -12,6 +12,7 @@ import enemy.EvilHead;
 import enemy.PlayerShip;
 import items.Gold;
 import items.HealthPack;
+import util.ActionPerformer;
 import util.TextToSpeech;
 
 public class SaveGame {
@@ -25,7 +26,7 @@ public class SaveGame {
 
 		TextToSpeech.voiceInterruptor = false;
 
-		if (InitObjects.isIngame() == true) {
+		if (ActionPerformer.isIngame() == true) {
 			if (Alien.aliens.size() > 0 && TextToSpeech.voiceInterruptor == false) {
 				savedOnL2 = false;
 				savedOnL3 = false;

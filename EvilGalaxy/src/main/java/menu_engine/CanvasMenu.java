@@ -10,6 +10,7 @@ import menu_states.ManualState;
 import menu_states.MenuState;
 import menu_states.SettingsState;
 import menu_states.StateManager;
+import util.ActionPerformer;
 import util.Constants;
 import util.TextToSpeech;
 
@@ -19,7 +20,7 @@ public class CanvasMenu implements Runnable {
 	public static ColorSwitcher color;
 	public static ColorSwitcher color2;
 	public static StateManager State;
-
+	
 	private BufferStrategy bs;
 	private Graphics g;
 	private Thread thread;
@@ -32,6 +33,9 @@ public class CanvasMenu implements Runnable {
 	private ManualState manualMenu;
 
 	public CanvasMenu() {
+		if (Constants.CITY_AND_COUNTRY == null) {
+			Constants.CITY_AND_COUNTRY = ActionPerformer.getCityAndCountry();
+		}
 	}
 
 	@Override
@@ -73,9 +77,9 @@ public class CanvasMenu implements Runnable {
 
 	private void init() {
 
-		Constants.LOAD_ASSETS.init(); // initialize game assets
+		Constants.LOAD_ASSETS.init(); // initialize menu assets
 		TextToSpeech.initVoice(); // initialize supported voices
-
+		
 		display = new DisplayCanvas();
 		display.getCanvas().addMouseListener(new MouseInputHandler());
 

@@ -24,6 +24,7 @@ import marytts.exceptions.MaryConfigurationException;
 import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
 import util.Flags;
+import util.ActionPerformer;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -127,7 +128,7 @@ public class LoadGame {
 
 	private void initSavedAssets() throws MaryConfigurationException, NoSuchAlgorithmException {
 
-		InitObjects.setIngame(false);
+		ActionPerformer.setIngame(false);
 
 		savedOnLevelOne();
 
@@ -235,21 +236,21 @@ public class LoadGame {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
 			Difficulty.getEasyDiff();
-			InitObjects.getTimerEasy().stop();
+			ActionPerformer.getTimerEasy().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		} else if (Flags.isMPressed == true) {
 			Flags.isEPressed = false;
 			Flags.isHPressed = false;
 			Difficulty.getMediumDiff();
-			InitObjects.getTimerMedium().stop();
+			ActionPerformer.getTimerMedium().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		} else if (Flags.isHPressed == true) {
 			Flags.isEPressed = false;
 			Flags.isMPressed = false;
 			Difficulty.getHardDiff();
-			InitObjects.getTimerHard().stop();
+			ActionPerformer.getTimerHard().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
 		} else {

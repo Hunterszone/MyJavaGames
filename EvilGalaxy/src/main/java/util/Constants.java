@@ -3,6 +3,8 @@ package util;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.Timer;
+
 public class Constants {
 	
 	public static final CanvasAssets LOAD_ASSETS = new CanvasAssets(0, 0);
@@ -28,4 +30,8 @@ public class Constants {
 	public static final String LOCKED = ": Locked";
 	public static final String COLON_WITH_SPACE = ": ";
 	public static final String LEVEL = "Level: ";
+	public static boolean isIngame;
+	public static Timer timerEasy, timerMedium, timerHard;
+	public static Thread animator;
+	public static String[] CITY_AND_COUNTRY;
 }

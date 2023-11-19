@@ -28,6 +28,7 @@ import items.ShipMissile;
 import items.ShipRocket;
 import sound_engine.PlayWave1st;
 import util.Flags;
+import util.ActionPerformer;
 import util.LoadSounds;
 
 public abstract class Collisions {
@@ -255,7 +256,7 @@ public abstract class Collisions {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			new PlayWave1st(SoundEffect.BLOOP.getSound()).start();
 			missile.setVisible(false);
-			if (UpdateObjects.getTimerHard().isRunning()) {
+			if (ActionPerformer.getTimerHard().isRunning()) {
 				EvilHead.evilHead.loadPlasmaBall();
 			} else {
 				EvilHead.evilHead.loadCanon();
@@ -279,7 +280,7 @@ public abstract class Collisions {
 	private static void rocketIntersectsHead(Rectangle evilhead, ShipRocket rocket, Rectangle rocketUnit) {
 		if (rocketUnit.intersects(evilhead)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			if (UpdateObjects.getTimerHard().isRunning()) {
+			if (ActionPerformer.getTimerHard().isRunning()) {
 				EvilHead.evilHead.loadPlasmaBall();
 			} else {
 				EvilHead.evilHead.loadCanon();

@@ -7,6 +7,7 @@ import items.Angel;
 import items.HealthPack;
 import util.LoadSounds;
 import util.TextToSpeech;
+import util.ActionPerformer;
 
 public class Difficulty {
 
@@ -14,56 +15,56 @@ public class Difficulty {
 		Angel.angels = new ArrayList<Angel>();
 		HealthPack.healthpacks = new ArrayList<>(5);
 
-		if (!InitObjects.isIngame()) {
-			InitObjects.setIngame(true);
+		if (!ActionPerformer.isIngame()) {
+			ActionPerformer.setIngame(true);
 		}
 
-		initObjects();
+		InitAndUpdate();
 	}
 
 	public static void getEasyDiff() throws NoSuchAlgorithmException {
 
 		Angel.angels = new ArrayList<Angel>();
 
-		if (!InitObjects.isIngame()) {
-			InitObjects.setIngame(true);
-			InitObjects.getTimerMedium().stop();
-			InitObjects.getTimerHard().stop();
-			InitObjects.getTimerEasy().restart();
+		if (!ActionPerformer.isIngame()) {
+			ActionPerformer.setIngame(true);
+			ActionPerformer.getTimerMedium().stop();
+			ActionPerformer.getTimerHard().stop();
+			ActionPerformer.getTimerEasy().restart();
 		}
 
-		initObjects();
+		InitAndUpdate();
 	}
 
 	public static void getMediumDiff() throws NoSuchAlgorithmException {
 
 		Angel.angels = new ArrayList<Angel>();
 
-		if (!InitObjects.isIngame()) {
-			InitObjects.setIngame(true);
-			InitObjects.getTimerEasy().stop();
-			InitObjects.getTimerHard().stop();
-			InitObjects.getTimerMedium().restart();
+		if (!ActionPerformer.isIngame()) {
+			ActionPerformer.setIngame(true);
+			ActionPerformer.getTimerEasy().stop();
+			ActionPerformer.getTimerHard().stop();
+			ActionPerformer.getTimerMedium().restart();
 		}
 
-		initObjects();
+		InitAndUpdate();
 	}
 
 	public static void getHardDiff() throws NoSuchAlgorithmException {
 
 		Angel.angels = new ArrayList<Angel>();
 
-		if (!InitObjects.isIngame()) {
-			InitObjects.setIngame(true);
-			InitObjects.getTimerEasy().stop();
-			InitObjects.getTimerMedium().stop();
-			InitObjects.getTimerHard().restart();
+		if (!ActionPerformer.isIngame()) {
+			ActionPerformer.setIngame(true);
+			ActionPerformer.getTimerEasy().stop();
+			ActionPerformer.getTimerMedium().stop();
+			ActionPerformer.getTimerHard().restart();
 		}
 
-		initObjects();
+		InitAndUpdate();
 	}
 
-	private static void initObjects() throws NoSuchAlgorithmException {
+	private static void InitAndUpdate() throws NoSuchAlgorithmException {
 
 		if (!SaveGame.savedOnL1 && !SaveGame.savedOnL2) {
 			UpdateObjects.setAlienKilled(0);

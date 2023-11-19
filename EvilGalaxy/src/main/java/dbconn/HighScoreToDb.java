@@ -35,7 +35,7 @@ public class HighScoreToDb {
 		emptyTable();
 		
 		int counter = 0;
-		List<String> enemyNames = InitObjects.getEnemyNames();
+		List<String> enemyNames = InitObjects.initEnemyNames();
 		try {
 			while (counter < enemyNames.size()) {
 				enemyAndCount = KilledEnemies.getEnemiesByTypeAndCount(enemyNames.get(counter));

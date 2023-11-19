@@ -1,6 +1,5 @@
 package game_engine;
 
-import java.awt.event.ActionEvent;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -20,9 +19,10 @@ import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
 import util.Flags;
+import util.ActionPerformer;
 import util.LoadSounds;
 
-public abstract class UpdateObjects extends InitObjects {
+public class UpdateObjects {
 
 	public UpdateObjects() throws NoSuchAlgorithmException {
 		super();
@@ -34,40 +34,6 @@ public abstract class UpdateObjects extends InitObjects {
 	private static int goldCount = 12;
 	private static int alienKilled = 0;
 	private static int dragonKilled = 0;
-	private static final long serialVersionUID = 1L;
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		inGame();
-
-		updateMyShip();
-		updateMyCrosshair();
-		updateMyShipMissiles();
-		updateEHPlasmaBalls();
-		updateEHCanons();
-		updateRockets();
-		updateAliens();
-		updateEvilHead();
-		updateGold();
-		updateAngels();
-		updateHealth();
-		updateBullets();
-
-		Collisions.checkAlienCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkEvilHeadCollision(PlayerShip.playerShip.getBounds(), EvilHead.evilHead.getBounds());
-		Collisions.checkBunkerCollision(PlayerShip.playerShip.getBounds(), Bunker.bunkerObj.getBounds());
-		Collisions.checkGoldCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkHealthCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkMissileCollision(EvilHead.evilHead.getBounds());
-		Collisions.checkRocketCollision(EvilHead.evilHead.getBounds(), Bunker.bunkerObj.getBounds());
-		Collisions.checkPlasmaCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkCanonCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkBulletCollision(BunkerBullet.bulletsLeft);
-		Collisions.checkBulletCollision(BunkerBullet.bulletsRight);
-
-		repaint();
-	}
 
 	static void updateDragons() {
 		Dragon.dragons.stream().forEach(dragon -> {
@@ -84,21 +50,21 @@ public abstract class UpdateObjects extends InitObjects {
 		Dragon.dragons.removeIf(dragon -> dragon != null && !dragon.isVisible());
 	}
 
-	private void inGame() {
-		if (!isIngame()) {
-			getTimerEasy().stop();
-			getTimerMedium().stop();
-			getTimerHard().stop();
+	static void inGame() {
+		if (!ActionPerformer.isIngame()) {
+			ActionPerformer.getTimerEasy().stop();
+			ActionPerformer.getTimerMedium().stop();
+			ActionPerformer.getTimerHard().stop();
 		}
 	}
 
-	private void updateMyShip() {
+	static void updateMyShip() {
 		if (PlayerShip.playerShip.isVisible()) {
 			PlayerShip.playerShip.move();
 		}
 	}
 
-	private void updateMyCrosshair() {
+	static void updateMyCrosshair() {
 		if (Crosshair.crosshair.isVisible()) {
 			Crosshair.crosshair.move();
 		}
@@ -109,7 +75,7 @@ public abstract class UpdateObjects extends InitObjects {
 		Explosion.explosions.forEach(explosion -> explosion.update());
 	}
 
-	private void updateMyShipMissiles() {
+	static void updateMyShipMissiles() {
 		final List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles();
 
 		missiles.removeIf(missile -> missile != null && !missile.isVisible());
@@ -117,7 +83,7 @@ public abstract class UpdateObjects extends InitObjects {
 		missiles.stream().filter(missile -> missile.isVisible()).forEach(missile -> missile.moveMissile());
 	}
 
-	private void updateBullets() {
+	static void updateBullets() {
 		BunkerBullet.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
 		BunkerBullet.bulletsRight = Bunker.bunkerObj.getBulletsRight();
 
@@ -149,13 +115,13 @@ public abstract class UpdateObjects extends InitObjects {
 		});
 	}
 
-	private void updateEHPlasmaBalls() {
+	static void updateEHPlasmaBalls() {
 		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
 
 		plasmaBalls.removeIf(plasmaBall -> plasmaBall != null && !plasmaBall.isVisible());
 
 		plasmaBalls.stream().filter(plasmaBall -> plasmaBall.isVisible()).forEach(plasmaBall -> {
-			if (Dragon.dragons.isEmpty() && getTimerHard().isRunning()) {
+			if (Dragon.dragons.isEmpty() && ActionPerformer.getTimerHard().isRunning()) {
 				plasmaBall.movePlasmaBallDiagUp();
 				plasmaBall.movePlasmaBallDiagDown();
 				if (Gold.goldstack.isEmpty() && getLifePlayerShip() > 0) {
@@ -176,7 +142,7 @@ public abstract class UpdateObjects extends InitObjects {
 		});
 	}
 
-	private void updateEHCanons() {
+	static void updateEHCanons() {
 		final List<CanonBall> canonballs = EvilHead.evilHead.getCanons();
 
 		canonballs.removeIf(canon -> canon != null && !canon.isVisible());
@@ -190,7 +156,7 @@ public abstract class UpdateObjects extends InitObjects {
 		});
 	}
 
-	private void updateRockets() {
+	static void updateRockets() {
 		final List<ShipRocket> rocketStack = PlayerShip.playerShip.getRockets();
 
 		rocketStack.removeIf(rocket -> rocket != null && !rocket.isVisible());
@@ -198,29 +164,29 @@ public abstract class UpdateObjects extends InitObjects {
 		rocketStack.stream().filter(rocket -> rocket.isVisible()).forEach(rocket -> rocket.moveRocket());
 	}
 
-	private void updateAliens() {
+	static void updateAliens() {
 		Alien.aliens.removeIf(alien -> alien != null && !alien.isVisible());
 		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
-			if (getTimerHard().isRunning()) {
+			if (ActionPerformer.getTimerHard().isRunning()) {
 				alien.moveFaster();
 			}
 			alien.move();
 		});
 	}
 
-	private void updateEvilHead() {
+	static void updateEvilHead() {
 		assert Alien.aliens != null;
 		assert Dragon.dragons != null;
 
-		if (getTimerEasy().isRunning()) {
+		if (ActionPerformer.getTimerEasy().isRunning()) {
 			AIEngine.aiEngine.evilHeadOnEasy();
 		}
 
-		if (getTimerMedium().isRunning()) {
+		if (ActionPerformer.getTimerMedium().isRunning()) {
 			AIEngine.aiEngine.evilHeadOnMedium();
 		}
 
-		if (Alien.aliens.isEmpty() && getTimerHard().isRunning()) {
+		if (Alien.aliens.isEmpty() && ActionPerformer.getTimerHard().isRunning()) {
 			if (!Dragon.dragons.isEmpty()) {
 				PlayerShip.playerShip.shakeShip();
 				Crosshair.crosshair.shakeCrosshair();
@@ -231,16 +197,16 @@ public abstract class UpdateObjects extends InitObjects {
 		}
 	}
 
-	private void updateGold() {
+	static void updateGold() {
 		Gold.goldstack.removeIf(goldBar -> goldBar != null && !goldBar.isVisible());
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 
-	private void updateAngels() {
+	static void updateAngels() {
 		Angel.angels.removeIf(angel -> angel != null && !angel.isVisible());
 	}
 
-	private void updateHealth() {
+	static void updateHealth() {
 		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && 
 				Dragon.dragons.isEmpty() && getLifePlayerShip() <= 3 && !Flags.hpIsEmpty) {
 			HealthPack.healthpacks
