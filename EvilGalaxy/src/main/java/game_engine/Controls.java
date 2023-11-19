@@ -183,6 +183,8 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_R) {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
+			Flags.isMapVisible = false;
+			Flags.isClockVisible = false;
 			if (!ActionPerformer.isIngame()) {
 				Flags.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
@@ -198,6 +200,8 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_E) {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
+			Flags.isMapVisible = false;
+			Flags.isClockVisible = false;
 			Flags.isEPressed = true;
 			ActionPerformer.getTimerHard().stop();
 			ActionPerformer.getTimerMedium().stop();
@@ -223,6 +227,8 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_M) {
 			Flags.isEPressed = false;
 			Flags.isHPressed = false;
+			Flags.isMapVisible = false;
+			Flags.isClockVisible = false;
 			Flags.isMPressed = true;
 			ActionPerformer.getTimerEasy().stop();
 			ActionPerformer.getTimerHard().stop();
@@ -248,6 +254,8 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_H) {
 			Flags.isEPressed = false;
 			Flags.isMPressed = false;
+			Flags.isMapVisible = false;
+			Flags.isClockVisible = false;
 			Flags.isHPressed = true;
 			ActionPerformer.getTimerEasy().stop();
 			ActionPerformer.getTimerMedium().stop();
@@ -277,6 +285,18 @@ public class Controls implements KeyListener {
 					return;
 				} else {
 					Flags.isMapVisible = false;
+					return;
+				}
+			}
+		}
+		
+		if (key == KeyEvent.VK_T) {
+			if (ActionPerformer.isIngame()) {
+				if (Flags.isClockVisible == false) {
+					Flags.isClockVisible = true;
+					return;
+				} else {
+					Flags.isClockVisible = false;
 					return;
 				}
 			}

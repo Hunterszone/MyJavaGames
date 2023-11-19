@@ -131,6 +131,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			evilHeadBehaviour();
 			handleLifeEvilHead(g);
 			drawNaviMap(g);
+			drawDateTime(g);
 		} else {
 			stopTimers();
 			stopSounds();
@@ -730,14 +731,17 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawNaviMap(Graphics g) {
 		if (Flags.isMapVisible) {
-			setFontStyle(g);
 			mapEntity.draw(g);
 			playerSign.draw(g);
 			alienSign.draw(g);
 			dragonSign.draw(g);
-			if (UpdateObjects.getLifeBunker() >= 50) {
-				evilHeadSign.draw(g);
-			}
+			evilHeadSign.draw(g);
+		}
+	}
+
+	private void drawDateTime(Graphics g) {
+		if (Flags.isClockVisible) {
+			setFontStyle(g);
 			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 1010, 23);
 		}
 	}

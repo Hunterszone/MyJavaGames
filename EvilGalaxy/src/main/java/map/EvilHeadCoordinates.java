@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 
 import enemy.EvilHead;
+import game_engine.UpdateObjects;
 import util.Constants;
 import util.Drawable;
 
@@ -14,7 +15,9 @@ public class EvilHeadCoordinates extends JLabel implements Drawable {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(EvilHead.evilHead.getImage(), limitX(), limitY(), 50, 50, this);
+		if (UpdateObjects.getLifeBunker() >= 50) {
+			g.drawImage(EvilHead.evilHead.getImage(), limitX(), limitY(), 50, 50, this);
+		}
 		repaint();
 	}
 
