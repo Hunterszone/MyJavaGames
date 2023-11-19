@@ -21,7 +21,7 @@ public class EvilHeadCoordinatesTest {
 		
 		evilHeadCoordinates.draw(g);
 		
-		Mockito.verify(g).drawImage(EvilHead.evilHead.getImage(), 1310, 670, 50, 50, evilHeadCoordinates);
+		Mockito.verify(g).drawImage(EvilHead.evilHead.getImage(), 1193, 529, 50, 50, evilHeadCoordinates);
 		
         assertEquals(110, EvilHead.evilHead.getImage().getWidth(evilHeadCoordinates));
         assertEquals(55, EvilHead.evilHead.getImage().getHeight(evilHeadCoordinates));

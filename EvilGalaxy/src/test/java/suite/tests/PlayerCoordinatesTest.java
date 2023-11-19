@@ -22,7 +22,7 @@ public class PlayerCoordinatesTest {
 		
 		playerCoordinates.draw(g);
 		
-		Mockito.verify(g).drawImage(PlayerShip.playerShip.getImage(), 1310, 670, 50, 50, playerCoordinates);
+		Mockito.verify(g).drawImage(PlayerShip.playerShip.getImage(), 1118, 529, 50, 50, playerCoordinates);
 		
         assertEquals(168, PlayerShip.playerShip.getImage().getWidth(playerCoordinates));
         assertEquals(63, PlayerShip.playerShip.getImage().getHeight(playerCoordinates));

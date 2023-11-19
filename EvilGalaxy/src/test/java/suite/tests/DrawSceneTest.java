@@ -21,6 +21,7 @@ import game_engine.UpdateObjects;
 import items.Angel;
 import items.Gold;
 import items.HealthPack;
+import util.ActionPerformer;
 
 public class DrawSceneTest {
 
@@ -34,7 +35,7 @@ public class DrawSceneTest {
 	@Test
 	public void testPaintComponentWhenInGame() throws Exception {
 	    // Set up the necessary conditions
-	    UpdateObjects.setIngame(true);
+	    ActionPerformer.setIngame(true);
 	    Graphics2D mockGraphics = Mockito.mock(Graphics2D.class);
 	    
 	    // Mock the behavior of Toolkit.getDefaultToolkit().sync()
@@ -80,7 +81,7 @@ public class DrawSceneTest {
 	@Test
 	public void testPaintComponentWhenNotInGame() throws Exception {
 	    // Set up the necessary conditions
-	    UpdateObjects.setIngame(false);
+		ActionPerformer.setIngame(false);
 	    Graphics2D mockGraphics = Mockito.mock(Graphics2D.class);
 	    
 	    // Mock the behavior of Toolkit.getDefaultToolkit().sync()

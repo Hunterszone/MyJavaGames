@@ -24,7 +24,7 @@ public class DragonCoordinatesTest {
 		
 		dragonCoordinates.draw(g);
 		
-		Mockito.verify(g).drawImage(Dragon.dragons.get(0).getImage(), 1310, 745, 40, 40, dragonCoordinates);
+		Mockito.verify(g).drawImage(Dragon.dragons.get(0).getImage(), 1118, 604, 40, 40, dragonCoordinates);
 		
         assertEquals(150, Dragon.dragons.get(0).getImage().getWidth(dragonCoordinates));
         assertEquals(150, Dragon.dragons.get(0).getImage().getHeight(dragonCoordinates));

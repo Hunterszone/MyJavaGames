@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import enemy.PlayerShip;
 import game_engine.DrawScene;
+import util.ActionPerformer;
 import util.Constants;
 
 public class PlayerShipTest {
@@ -22,6 +23,7 @@ public class PlayerShipTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Constants.CITY_AND_COUNTRY = ActionPerformer.getCityAndCountry();
 		component = new DrawScene();
 		PlayerShip.playerShip = new PlayerShip(Constants.MYSHIP_X, Constants.MYSHIP_Y);
 	}

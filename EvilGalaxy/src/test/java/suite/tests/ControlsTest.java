@@ -13,7 +13,8 @@ import enemy.Alien;
 import enemy.Dragon;
 import game_engine.Controls;
 import game_engine.DrawScene;
-import game_engine.InitObjects;
+import util.ActionPerformer;
+import util.Constants;
 import game_engine.UpdateObjects;
 import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
@@ -26,6 +27,7 @@ public class ControlsTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		Constants.CITY_AND_COUNTRY = ActionPerformer.getCityAndCountry();
 		component = new DrawScene();
 		controls = new Controls();
 	}
@@ -198,7 +200,7 @@ public class ControlsTest {
 	public void testThatRKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
 		KeyEvent rKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_R, '\u0052');
-		InitObjects.setIngame(false);
+		ActionPerformer.setIngame(false);
 		
 		controls.keyPressed(rKey);
 		
@@ -219,7 +221,7 @@ public class ControlsTest {
 	public void testThatEKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
 		KeyEvent eKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_E, '\u0045');
-		InitObjects.setIngame(false);
+		ActionPerformer.setIngame(false);
 		
 		controls.keyPressed(eKey);
 		
@@ -240,7 +242,7 @@ public class ControlsTest {
 	public void testThatMKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
 		KeyEvent mKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_M, '\u004d');
-		InitObjects.setIngame(false);
+		ActionPerformer.setIngame(false);
 		
 		controls.keyPressed(mKey);
 		
@@ -261,7 +263,7 @@ public class ControlsTest {
 	public void testThatHKeyIsPressedAndNotInGame() throws MaryConfigurationException, SynthesisException {
 		KeyEvent hKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_H, '\u0048');
-		InitObjects.setIngame(false);
+		ActionPerformer.setIngame(false);
 		
 		controls.keyPressed(hKey);
 		

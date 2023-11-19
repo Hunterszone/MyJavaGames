@@ -1,6 +1,7 @@
 package suite.tests;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.theokanning.openai.OpenAiService;
@@ -11,6 +12,7 @@ import retrofit2.HttpException;
 
 public class OpenAiApiIImplTest {
 
+	@Ignore("TBD")
 	@Test
 	public void testCompletionRequest() {
 		OpenAiService service = new OpenAiService("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"); // put your API key

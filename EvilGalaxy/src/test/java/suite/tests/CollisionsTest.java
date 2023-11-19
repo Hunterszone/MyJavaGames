@@ -18,7 +18,6 @@ import enemy.Dragon;
 import enemy.EvilHead;
 import enemy.PlayerShip;
 import game_engine.Collisions;
-import game_engine.InitObjects;
 import game_engine.UpdateObjects;
 import items.BunkerBullet;
 import items.CanonBall;
@@ -28,6 +27,7 @@ import items.HealthPack;
 import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
+import util.ActionPerformer;
 import util.Flags;
 
 public class CollisionsTest {
@@ -240,6 +240,6 @@ public class CollisionsTest {
 		BunkerBullet.bulletsRight = new ArrayList<BunkerBullet>();
 		UpdateObjects.setLifeBunker(50);
 		UpdateObjects.setLifeEvilHead(3);
-		InitObjects.setTimerHard(new Timer(15, null));
+		ActionPerformer.setTimerHard(new Timer(15, null));
 	}
 }
