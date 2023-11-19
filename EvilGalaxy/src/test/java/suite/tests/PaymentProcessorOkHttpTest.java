@@ -23,6 +23,7 @@ public class PaymentProcessorOkHttpTest {
 	private int statusCode;
 	private OkHttpClient client;
 	private String name = "Ivan Ivanov";
+	private PaymentProcessorOkHttp paymentProcessorOkHttp = new PaymentProcessorOkHttp(); 
 	
 	@Before
 	public void setup() throws IOException {
@@ -34,7 +35,7 @@ public class PaymentProcessorOkHttpTest {
 	@Test
 	public void testApiResponseStatusCodeForTen() throws IOException {
 		// When
-		PaymentProcessorOkHttp.processPaymentForTen("\"\\\"" + name.trim() + "\\\"\"");
+		paymentProcessorOkHttp.processPayment("\"\\\"" + name.trim() + "\\\"\"", 10);
 		
 		// Then
 		Mockito.verify(client, Mockito.times(1)).newCall(Mockito.any(Request.class));
@@ -45,7 +46,7 @@ public class PaymentProcessorOkHttpTest {
 	@Test
 	public void testApiResponseStatusCodeForTwenty() throws IOException {
 		// When
-		PaymentProcessorOkHttp.processPaymentForTwenty("\"\\\"" + name.trim() + "\\\"\"");
+		paymentProcessorOkHttp.processPayment("\"\\\"" + name.trim() + "\\\"\"", 20);
 		
 		// Then
 		Mockito.verify(client, Mockito.times(1)).newCall(Mockito.any(Request.class));
@@ -56,7 +57,7 @@ public class PaymentProcessorOkHttpTest {
 	@Test
 	public void testApiResponseStatusCodeForFifty() throws IOException {
 		// When
-		PaymentProcessorOkHttp.processPaymentForFifty("\"\\\"" + name.trim() + "\\\"\"");
+		paymentProcessorOkHttp.processPayment("\"\\\"" + name.trim() + "\\\"\"", 50);
 		
 		// Then
 		Mockito.verify(client, Mockito.times(1)).newCall(Mockito.any(Request.class));

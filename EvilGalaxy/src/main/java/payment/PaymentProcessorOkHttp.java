@@ -10,57 +10,17 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class PaymentProcessorOkHttp {
+public class PaymentProcessorOkHttp implements Payable {
 
 	public static int jsonRespCode;
 
-	public static String processPaymentForTen(String custName)
-			throws IOException {
-		
+	@Override
+	public String processPayment(String custName, double amount) throws IOException {
 		String paymentMethToken = TransactionProcessorOkHttp.extractTransactionToken(custName);
-		
-		String payload = "{\r\n" + 
-				"        \"transaction\": {\r\n" + 
-				"\"payment_method_token\": " + paymentMethToken + ",\r\n" +
-				"          \"amount\": 10,\r\n" + 
-				"          \"currency_code\": \"USD\",\r\n" + 
-				"          \"retain_on_success\": true\r\n" + 
-				"        }\r\n" + 
-				"      }";
-		
-		return processRequest(payload);
-	}
-	
-	public static String processPaymentForTwenty(String custName)
-			throws IOException {
-		
-		String paymentMethToken = TransactionProcessorOkHttp.extractTransactionToken(custName);
-		
-		String payload = "{\r\n" + 
-				"        \"transaction\": {\r\n" + 
-				"		 \"payment_method_token\":" + paymentMethToken + ",\r\n" + 
-				"          \"amount\": 20,\r\n" + 
-				"          \"currency_code\": \"USD\",\r\n" + 
-				"          \"retain_on_success\": true\r\n" + 
-				"        }\r\n" + 
-				"      }";
 
-		return processRequest(payload);
-	}
-	
-	public static String processPaymentForFifty(String custName)
-			throws IOException {
-		
-		String paymentMethToken = TransactionProcessorOkHttp.extractTransactionToken(custName);
-		
-		String payload = "{\r\n" + 
-				"        \"transaction\": {\r\n" + 
-				"\"payment_method_token\":" + paymentMethToken + ",\r\n" + 
-				"          \"amount\": 50,\r\n" + 
-				"          \"currency_code\": \"USD\",\r\n" + 
-				"          \"retain_on_success\": true\r\n" + 
-				"        }\r\n" + 
-				"      }";
+		String payload = "{\r\n" + "        \"transaction\": {\r\n" + "\"payment_method_token\": " + paymentMethToken
+				+ ",\r\n" + "          \"amount\": " + amount + ",\r\n" + "          \"currency_code\": \"USD\",\r\n"
+				+ "          \"retain_on_success\": true\r\n" + "        }\r\n" + "      }";
 
 		return processRequest(payload);
 	}
@@ -79,17 +39,16 @@ public class PaymentProcessorOkHttp {
 		RequestBody body = RequestBody.create(JSON, data);
 		Request request = new Request.Builder()
 				.url("https://core.spreedly.com/v1/gateways/RmWNf0NVLOuZqthwKgHgjua4Cxn/purchase.json")
-				.header("Authorization", authHeaderValue)
-				.post(body)
-				.build();
+				.header("Authorization", authHeaderValue).post(body).build();
 		Response response = client.newCall(request).execute();
-		
+
 		jsonRespCode = response.code();
-		String jsonRespBody = response.body().string(); 
-		
+		String jsonRespBody = response.body().string();
+
 		System.out.println("Payment has been processesd with resp code: " + jsonRespCode);
 		System.out.println("API response: " + jsonRespBody);
-		
+
 		return jsonRespBody;
 	}
+	
 }

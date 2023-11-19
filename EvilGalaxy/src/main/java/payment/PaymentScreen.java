@@ -18,10 +18,11 @@ import javax.swing.border.EmptyBorder;
 
 public class PaymentScreen extends JFrame {
 
-	/**
-	 * 
-	 */
+	private static final String OPENING_SLASHES = "\"\\\"";
+	private static final String CLOSING_SLASHES = "\\\"\"";
 	private static final long serialVersionUID = 1L;
+
+	private PaymentProcessorOkHttp paymentProcessorOkHttp = new PaymentProcessorOkHttp();
 	private JPanel contentPane;
 	private CardLayout ca;
 
@@ -81,7 +82,7 @@ public class PaymentScreen extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 			try {
 				TransactionProcessorOkHttp.createTransaction(
-						"\"\\\"" + name.getText().trim() + "\\\"\""
+						OPENING_SLASHES + name.getText().trim() + CLOSING_SLASHES
 						);
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -109,7 +110,7 @@ public class PaymentScreen extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 			progressBar.setValue(100);
 			try {
-				PaymentProcessorOkHttp.processPaymentForTen("\"\\\"" + name.getText().trim() + "\\\"\"");
+				paymentProcessorOkHttp.processPayment(OPENING_SLASHES + name.getText().trim() + CLOSING_SLASHES, 10);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -121,7 +122,7 @@ public class PaymentScreen extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 			progressBar.setValue(100);
 			try {
-				PaymentProcessorOkHttp.processPaymentForTwenty("\"\\\"" + name.getText().trim() + "\\\"\"");
+				paymentProcessorOkHttp.processPayment(OPENING_SLASHES + name.getText().trim() + CLOSING_SLASHES, 20);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -133,7 +134,7 @@ public class PaymentScreen extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 			progressBar.setValue(100);
 			try {
-				PaymentProcessorOkHttp.processPaymentForFifty("\"\\\"" + name.getText().trim() + "\\\"\"");
+				paymentProcessorOkHttp.processPayment(OPENING_SLASHES + name.getText().trim() + CLOSING_SLASHES, 50);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
