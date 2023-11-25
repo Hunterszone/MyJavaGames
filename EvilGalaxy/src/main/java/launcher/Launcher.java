@@ -33,24 +33,31 @@ public class Launcher extends JFrame {
     private JProgressBar progressBar;
     private JProgressBar oProgressBar;
     private String version = "";
-    private boolean needDownload;
     private int i = 0;
-    private long lastTime;
     private static final UpdateLogger updlog = new UpdateLogger();
-
-    public static void main(String[] args) throws MaryConfigurationException {
+    private boolean shouldInvokeMethod = true;
+    
+    public static void main(String[] args) throws MaryConfigurationException, IOException {
         try {
-            new Launcher();
+        	new Launcher().downloadAndLaunch();
         } catch (final MaryConfigurationException e) {
             e.printStackTrace();
         }
     }
 
-    public Launcher() throws MaryConfigurationException {
+    public Launcher() throws MaryConfigurationException, IOException {
+
+    }
+    
+    public void downloadAndLaunch() throws IOException {
         initializeUI();
         needDownload();
         performDownloads();
         launchGame();
+    }
+    
+    public void setShouldInvokeMethod(boolean shouldInvokeMethod) {
+        this.shouldInvokeMethod = shouldInvokeMethod;
     }
 
     private void initializeUI() {
@@ -71,13 +78,12 @@ public class Launcher extends JFrame {
         TextToSpeech.playVoice("Updating...");
     }
 
-    public void needDownload() {
+    private void needDownload() {
         try {
             final Path versionFile = Paths.get(System.getProperty("user.dir"), "version.txt");
             final List<String> lines = Files.readAllLines(versionFile);
             for (final String line : lines) {
                 version = line;
-                System.out.println("Version: " + line);
                 getUpdlog().getLogger().info("Version: " + line);
             }
 
@@ -96,12 +102,8 @@ public class Launcher extends JFrame {
             }
 
             if (needsUpdate) {
-                needDownload = true;
-                System.out.println("Downloading!");
                 Files.write(versionFile, inputLine.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
-                System.out.println("Updated to version " + inputLine + " from version " + version);
             } else {
-                System.out.println("No download needed!");
                 Files.write(versionFile, "up-to-date".getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
             }
 
@@ -191,22 +193,20 @@ public class Launcher extends JFrame {
         }
     }
 
-    private void launchGame() {
-        try {
-            final String exec = (System.getProperty("user.dir") + java.io.File.separator + "EvilGalaxy.jar");
-            final String[] command = { "java", "-jar", exec };
-            final ProcessBuilder pb = new ProcessBuilder(command);
-            getProgressBar().setValue(100);
+    private void launchGame() throws IOException {
+        if (shouldInvokeMethod) {
+        	String exec = (System.getProperty("user.dir") + java.io.File.separator + "EvilGalaxy.jar");
+            String[] command = { "java", "-jar", exec };
+            ProcessBuilder pb = new ProcessBuilder(command);
+        	getProgressBar().setValue(100);
             System.out.println(pb.command());
             pb.start();
             System.out.println("Running " + exec);
             dispose();
-            System.exit(0);
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.exit(0);        	
         }
     }
-
+    
     private List<String> readTextFile(String fileName) throws IOException {
         final List<String> values = new ArrayList<>();
         final Path filePath = Paths.get(fileName);

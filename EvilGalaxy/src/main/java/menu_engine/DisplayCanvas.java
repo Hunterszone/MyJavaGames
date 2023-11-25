@@ -20,7 +20,6 @@ public class DisplayCanvas {
 
     public static JFrame frame;
     public static Canvas canvas;
-//	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	static Dimension dim;
 	
     public DisplayCanvas() {

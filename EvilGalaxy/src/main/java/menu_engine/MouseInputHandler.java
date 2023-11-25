@@ -177,7 +177,7 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					DisplayCanvas.frame.dispose();
 					try {
 						Launcher.main(null);
-					} catch (MaryConfigurationException e1) {
+					} catch (MaryConfigurationException | IOException e1) {
 						e1.getMessage();
 					}
 					Flags.isMenuOn = true;

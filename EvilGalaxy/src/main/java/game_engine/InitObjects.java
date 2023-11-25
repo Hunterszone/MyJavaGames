@@ -32,9 +32,9 @@ import items.HealthPack;
 import items.SaveSign;
 import items.VolBtn;
 import menu_engine.CanvasMenu;
+import util.ActionPerformer;
 import util.Constants;
 import util.Flags;
-import util.ActionPerformer;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -183,10 +183,9 @@ public class InitObjects {
 	}
 	
 	public static void initCanvas() {
-		final CanvasMenu canvasMenu = new CanvasMenu();
-		canvasMenu.start();
+		new CanvasMenu().start();
 	}
-
+	
 	public static List<String> initEnemyNames() {
 		return Arrays.asList(Alien.class.getName(), Dragon.class.getName());
 	}
