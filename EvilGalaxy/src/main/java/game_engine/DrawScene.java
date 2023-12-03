@@ -4,12 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -21,6 +19,8 @@ import java.util.Objects;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import org.apache.commons.lang.StringUtils;
 
 import animation.AsteroidAnimation;
 import animation.AstronautAnimation;
@@ -61,9 +61,9 @@ import map.EvilHeadCoordinates;
 import map.MapEntity;
 import map.PlayerCoordinates;
 import sound_engine.PlayWave1st;
+import util.ActionPerformer;
 import util.Constants;
 import util.Flags;
-import util.ActionPerformer;
 import util.LoadSounds;
 import util.OpenAiApiImpl;
 import util.TextToSpeech;
@@ -107,6 +107,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		evilHeadSign = new EvilHeadCoordinates();
 		alienSign = new AlienCoordinates();
 		dragonSign = new DragonCoordinates();
+		
 		new InitObjects();
 		new UpdateObjects();
 		
@@ -148,60 +149,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			explosion.draw(g);
 		}
 	}
-
-	private void drawAstronaut(Graphics g) {
-		final AffineTransform backup = ((Graphics2D) g).getTransform();
-		AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.ASTRONAUT.getX() / 2,
-				(double) AstronautAnimation.ASTRONAUT.getY() / 2);
-		((Graphics2D) g).setTransform(a);
-		g.drawImage(AstronautAnimation.ASTRONAUT.getImage(), AstronautAnimation.ASTRONAUT.getX(),
-				AstronautAnimation.ASTRONAUT.getY(), this);
-		a = AffineTransform.getRotateInstance(181, 850, 700);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.ASTRONAUT.getX() / 2,
-				(double) AstronautAnimation.ASTRONAUT.getY() / 2);
-		((Graphics2D) g).setTransform(a);
-		g.drawImage(AstronautAnimation.ASTRONAUT.getImage(), AstronautAnimation.ASTRONAUT.getX(),
-				AstronautAnimation.ASTRONAUT.getY(), this);
-		Toolkit.getDefaultToolkit().sync();
-		((Graphics2D) g).setTransform(backup);
-	}
 	
-	private void drawAsteroids(Graphics g) {
-		for (final AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
-			g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), this);
-			Toolkit.getDefaultToolkit().sync();
-		}
-	}
-
-	private void drawSatellite(Graphics g) {
-		g.drawImage(SatelliteAnimation.SATELLITE.getImage(), SatelliteAnimation.SATELLITE.getX(),
-				SatelliteAnimation.SATELLITE.getY(), this);
-		final AffineTransform backup = ((Graphics2D) g).getTransform();
-		final AffineTransform a = AffineTransform.getRotateInstance(200, 600, 1000);
-		a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) SatelliteAnimation.SATELLITE.getX() / 2,
-				(double) SatelliteAnimation.SATELLITE.getY() / 2);
-		((Graphics2D) g).setTransform(a);
-		g.drawImage(SatelliteAnimation.SATELLITE.getImage(), SatelliteAnimation.SATELLITE.getX(),
-				SatelliteAnimation.SATELLITE.getY(), this);
-		Toolkit.getDefaultToolkit().sync();
-		((Graphics2D) g).setTransform(backup);
-	}
-
-	private void drawElonsUp(Graphics g) {
-		for (final TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
-			g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), this);
-			Toolkit.getDefaultToolkit().sync();
-		}
-	}
-
-	private void drawElonsDown(Graphics g) {
-		for (final TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
-			g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), this);
-			Toolkit.getDefaultToolkit().sync();
-		}
-	}
-
 	private void startAnimations() {
 		if (ActionPerformer.getAnimator() == null) {
 			ActionPerformer.setAnimator(new Thread(this));
@@ -246,10 +194,10 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawGameWon(Graphics g) {
 		if (UpdateObjects.getLifeEvilHead() == 50) {
-
-			drawElonsUp(g);
-			drawElonsDown(g);
 			
+			DrawAnimations.drawElonsUp(g, this);
+			DrawAnimations.drawElonsDown(g, this);
+
 			if (!TextToSpeech.finMusicIsPlayed) {
 				new PlayWave1st(SoundEffect.VICTORY.getSound()).start();
 				TextToSpeech.finMusicIsPlayed = true;
@@ -460,7 +408,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		drawL1Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
-		drawAsteroids(g);
+		DrawAnimations.drawAsteroids(g, this);
 		drawPressArrowKey(g);
 	}
 
@@ -469,7 +417,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		drawL2Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
-		drawSatellite(g);
+		DrawAnimations.drawSatellite(g, this);
 		drawPressArrowKey(g);
 	}
 
@@ -479,7 +427,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		drawObjects(g);
 		drawLifeBunker(g);
 		drawLifePlayerShip(g);
-		drawAstronaut(g);
+		DrawAnimations.drawAstronaut(g, this);
 		drawPressArrowKey(g);
 
 		LoadSounds.TAUNT.stop();
@@ -989,8 +937,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private String retrieveOpenAiMessage(Entity entity, String defaultMsg) {
 	    String openAiMsg = OpenAiApiImpl.createCompletion(entity.getMsg());
-	    return openAiMsg != null && !entity.getMsg().equalsIgnoreCase(openAiMsg) 
-	    		? openAiMsg : defaultMsg;
+	    return !StringUtils.isEmpty(openAiMsg) ? openAiMsg : defaultMsg;
 	}
 
 	private void drawCollectGold(Graphics g) {
@@ -1042,7 +989,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		g.setColor(Color.ORANGE);
 		g.setFont(small);
 	}
-
+	
 	@Override
 	public void run() {
 

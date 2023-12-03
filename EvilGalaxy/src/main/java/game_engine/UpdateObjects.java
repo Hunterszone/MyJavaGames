@@ -1,6 +1,5 @@
 package game_engine;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import enemy.Alien;
@@ -18,13 +17,13 @@ import items.HealthPack;
 import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
-import util.Flags;
 import util.ActionPerformer;
+import util.Flags;
 import util.LoadSounds;
 
 public class UpdateObjects {
 
-	public UpdateObjects() throws NoSuchAlgorithmException {
+	public UpdateObjects() {
 		super();
 	}
 
