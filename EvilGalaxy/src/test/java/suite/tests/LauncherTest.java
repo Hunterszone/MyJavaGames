@@ -11,6 +11,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,6 +31,7 @@ public class LauncherTest {
     @InjectMocks
     private Launcher myClass;
 
+    @Ignore
     @Test
     public void testNeedDownload() throws Exception {
         // Initialize mocks

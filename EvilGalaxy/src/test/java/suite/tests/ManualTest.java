@@ -34,7 +34,6 @@ public class ManualTest {
         window.cleanUp();
     }
 
-    @Ignore("TBD")
     @Test
     public void testManualContent() throws InterruptedException {
         // Wait for the frame to be ready

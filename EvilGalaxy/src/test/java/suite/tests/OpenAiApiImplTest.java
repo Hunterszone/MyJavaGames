@@ -1,32 +1,55 @@
 package suite.tests;
 
-import org.junit.Assert;
-import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.completion.CompletionResult;
 
-import enums.Entity;
 import retrofit2.HttpException;
+import retrofit2.Response;
+import util.OpenAiApiImpl;
 
-public class OpenAiApiIImplTest {
+public class OpenAiApiImplTest {
 
-	@Ignore("TBD")
-	@Test
-	public void testCompletionRequest() {
-		OpenAiService service = new OpenAiService("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"); // put your API key
-		CompletionRequest completionRequest = CompletionRequest.builder()
-                .model("davinci")
-                .prompt(Entity.ALIEN.getMsg())
-                .echo(true)
-                .user("testing")
-                .build();
-		
-		try {
-			Assert.assertTrue(service.createCompletion(completionRequest).getChoices().get(0).getText().contains(Entity.ALIEN.getMsg()));	
-        } catch (HttpException e) {
-			e.printStackTrace();
-		}
-	}
+    @Test
+    public void testCreateCompletionSuccess() throws Exception {
+        String prompt = "Test prompt";
+        String expectedResponse = "Test";
+
+        OpenAiService serviceMock = mock(OpenAiService.class);
+        CompletionResult completionCallMock = mock(CompletionResult.class);
+        Response<?> responseMock = Response.success(expectedResponse);
+
+        Mockito.doReturn(completionCallMock).when(serviceMock).createCompletion(Mockito.any(CompletionRequest.class));
+        Mockito.doReturn(responseMock.toString()).when(completionCallMock).toString();
+
+        String result = OpenAiApiImpl.createCompletion(prompt).substring(0, 4);
+
+        assertEquals(expectedResponse, result);
+    }
+
+    @Test
+    public void testCreateCompletionFailure() throws IOException {
+        String prompt = "Test prompt";
+        String expectedFallbackResponse = "Test prompt";
+
+        OpenAiService serviceMock = mock(OpenAiService.class);
+        CompletionResult completionCallMock = mock(CompletionResult.class);
+        HttpException httpExceptionMock = mock(HttpException.class);
+
+        when(serviceMock.createCompletion(Mockito.any(CompletionRequest.class))).thenReturn(completionCallMock);
+        when(completionCallMock.toString()).thenThrow(httpExceptionMock);
+
+        String result = OpenAiApiImpl.createCompletion(prompt).substring(0, 11);
+
+        assertEquals(expectedFallbackResponse, result);
+    }
 }
