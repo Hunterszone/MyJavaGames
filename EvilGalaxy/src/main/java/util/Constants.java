@@ -30,7 +30,13 @@ public class Constants {
 	public static final String LOCKED = ": Locked";
 	public static final String COLON_WITH_SPACE = ": ";
 	public static final String LEVEL = "Level: ";
-	public static boolean isIngame;
+	public static final String FONT_PAPYRUS = "Papyrus";
+	public static final String COLLECT_ALL_THE_GOLD = "Collect all the gold!";
+	public static final String DESTROY_THE_BUNKER = "Destroy the bunker!";
+	public static final String KILL_THE_EVIL_HEAD = "Finally..Kill the evil head!";
+	public static final String SHIP_OUTTA_CONTROL = "Dragons invasion brings the ship outta control...";
+	
+	public static boolean isIngame, isOnPause;
 	public static Timer timerEasy, timerMedium, timerHard;
 	public static Thread animator;
 	public static String[] CITY_AND_COUNTRY;

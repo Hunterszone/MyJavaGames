@@ -25,6 +25,7 @@ import items.VolBtn;
 import menu_engine.MouseInputHandler;
 import util.Flags;
 import util.ActionPerformer;
+import util.Constants;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -69,10 +70,12 @@ public class Controls implements KeyListener {
 			ActionPerformer.getTimerHard().stop();
 			LoadSounds.BG_MUSIC.stop();
 			LoadSounds.TAUNT.stop();
+			Constants.isOnPause = true;
 		}
 
 		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
 			if (ActionPerformer.isIngame()) {
+				Constants.isOnPause = false;
 				if (!ActionPerformer.getTimerHard().isRunning() && Flags.isHPressed) {
 					ActionPerformer.getTimerHard().start();
 					if (!Flags.isSPressed) {
@@ -142,6 +145,7 @@ public class Controls implements KeyListener {
 			}
 			TextToSpeech.playVoice("Loading level 1...");
 			TextToSpeech.voiceInterruptor = true;
+			Constants.isOnPause = true;
 		}
 
 		if (key == KeyEvent.VK_2) {
@@ -153,6 +157,7 @@ public class Controls implements KeyListener {
 			TextToSpeech.playVoice("Loading level 2...");
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
+			Constants.isOnPause = true;
 		}
 
 		if (key == KeyEvent.VK_3) {
@@ -165,6 +170,7 @@ public class Controls implements KeyListener {
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
+			Constants.isOnPause = true;
 		}
 
 		if (key == KeyEvent.VK_4) {
@@ -178,6 +184,7 @@ public class Controls implements KeyListener {
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
 			UpdateObjects.setLifeBunker(50);
+			Constants.isOnPause = true;
 		}
 
 		if (key == KeyEvent.VK_R) {
@@ -185,8 +192,8 @@ public class Controls implements KeyListener {
 			Flags.isHPressed = false;
 			Flags.isMapVisible = false;
 			Flags.isClockVisible = false;
+			Flags.isEPressed = true;
 			if (!ActionPerformer.isIngame()) {
-				Flags.isEPressed = true;
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
 				try {
@@ -194,6 +201,8 @@ public class Controls implements KeyListener {
 				} catch (NoSuchAlgorithmException e1) {
 					e1.printStackTrace();
 				}
+			} else {
+				Constants.isOnPause = true;
 			}
 		}
 

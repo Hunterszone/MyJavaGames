@@ -15,7 +15,7 @@ import enemy.Dragon;
 
 public class DrawAnimations {
 	
-	public static void drawAstronaut(Graphics g, DrawScene drawScene) {
+	static void drawAstronaut(Graphics g, DrawScene drawScene) {
 		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
 			final AffineTransform backup = ((Graphics2D) g).getTransform();
 			AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
@@ -35,7 +35,7 @@ public class DrawAnimations {
 		}
 	}
 	
-	public static void drawAsteroids(Graphics g, DrawScene drawScene) {
+	static void drawAsteroids(Graphics g, DrawScene drawScene) {
 		if (Alien.aliens.size() > 0) {
 			for (final AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
 				g.drawImage(asteroidsAnim.getImage(), asteroidsAnim.getX(), asteroidsAnim.getY(), drawScene);
@@ -44,7 +44,7 @@ public class DrawAnimations {
 		}
 	}
 
-	public static void drawSatellite(Graphics g, DrawScene drawScene) {
+	static void drawSatellite(Graphics g, DrawScene drawScene) {
 		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
 			g.drawImage(SatelliteAnimation.SATELLITE.getImage(), SatelliteAnimation.SATELLITE.getX(),
 					SatelliteAnimation.SATELLITE.getY(), drawScene);
@@ -60,7 +60,7 @@ public class DrawAnimations {
 		}
 	}
 
-	public static void drawElonsUp(Graphics g, DrawScene drawScene) {
+	static void drawElonsUp(Graphics g, DrawScene drawScene) {
 		if (UpdateObjects.getLifeEvilHead() == 50) {
 			for (final TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 				g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), drawScene);
@@ -70,12 +70,33 @@ public class DrawAnimations {
 			
 	}
 
-	public static void drawElonsDown(Graphics g, DrawScene drawScene) {
+	static void drawElonsDown(Graphics g, DrawScene drawScene) {
 		if (UpdateObjects.getLifeEvilHead() == 50) {
 			for (final TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
 				g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), drawScene);
 				Toolkit.getDefaultToolkit().sync();
 			}
 		}
-	}	
+	}
+	
+	static void handleAnimations() {
+
+		for (AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
+			if (asteroidsAnim != null)
+				asteroidsAnim = null;
+		}
+		AsteroidAnimation.ASTEROID_ANIMATION.clear();
+
+		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
+			if (elonAnimUp != null)
+				elonAnimUp = null;
+		}
+		TheEndAnimationUp.END_ANIMATION_UP.clear();
+
+		for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
+			if (elonAnimDown != null)
+				elonAnimDown = null;
+		}
+		TheEndAnimationDown.END_ANIMATION_DOWN.clear();
+	}
 }

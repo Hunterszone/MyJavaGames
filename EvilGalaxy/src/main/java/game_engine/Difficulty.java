@@ -19,7 +19,7 @@ public class Difficulty {
 			ActionPerformer.setIngame(true);
 		}
 
-		InitAndUpdate();
+		initAndUpdate();
 	}
 
 	public static void getEasyDiff() throws NoSuchAlgorithmException {
@@ -33,7 +33,7 @@ public class Difficulty {
 			ActionPerformer.getTimerEasy().restart();
 		}
 
-		InitAndUpdate();
+		initAndUpdate();
 	}
 
 	public static void getMediumDiff() throws NoSuchAlgorithmException {
@@ -47,7 +47,7 @@ public class Difficulty {
 			ActionPerformer.getTimerMedium().restart();
 		}
 
-		InitAndUpdate();
+		initAndUpdate();
 	}
 
 	public static void getHardDiff() throws NoSuchAlgorithmException {
@@ -61,10 +61,10 @@ public class Difficulty {
 			ActionPerformer.getTimerHard().restart();
 		}
 
-		InitAndUpdate();
+		initAndUpdate();
 	}
 
-	private static void InitAndUpdate() throws NoSuchAlgorithmException {
+	private static void initAndUpdate() throws NoSuchAlgorithmException {
 
 		if (!SaveGame.savedOnL1 && !SaveGame.savedOnL2) {
 			UpdateObjects.setAlienKilled(0);

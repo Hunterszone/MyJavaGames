@@ -2,7 +2,6 @@ package game_engine;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -37,13 +36,6 @@ import enemy.PlayerShip;
 import enums.Entity;
 import enums.SoundEffect;
 import enums.Sprite;
-import icons.AlienIcon;
-import icons.DifficultyIcon;
-import icons.DragonIcon;
-import icons.GoldIcon;
-import icons.LaserIcon;
-import icons.LocationIcon;
-import icons.RocketIcon;
 import items.Angel;
 import items.BunkerBullet;
 import items.CanonBall;
@@ -63,6 +55,7 @@ import map.PlayerCoordinates;
 import sound_engine.PlayWave1st;
 import util.ActionPerformer;
 import util.Constants;
+import util.Drawable;
 import util.Flags;
 import util.LoadSounds;
 import util.OpenAiApiImpl;
@@ -70,11 +63,6 @@ import util.TextToSpeech;
 
 public class DrawScene extends JPanel implements ActionListener, Runnable {
 
-	private static final String COLLECT_ALL_THE_GOLD = "Collect all the gold!";
-	private static final String DESTROY_THE_BUNKER = "Destroy the bunker!";
-	private static final String KILL_THE_EVIL_HEAD = "Finally..Kill the evil head!";
-	private static final String SHIP_OUTTA_CONTROL = "Dragons invasion brings the ship outta control...";
-	private static final String FONT_PAPYRUS = "Papyrus";
 	private static final long serialVersionUID = 160473770719678686L;
 	private static final String PRESS_AN_ARROW_TO_CONTINUE = "Press an arrow to continue...";
 	private static final String KILLED_BY_THE_EVIL_HEAD = "Killed by the EvilHead!";
@@ -82,9 +70,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	private static final String KILLED_BY_A_DRAGON = "Killed by a dragon!";
 	private static final String KILLED_BY_AN_ALIEN = "Killed by an alien!";
 	private static final int DELAY = 15;
-	private static final String CITY = Constants.CITY_AND_COUNTRY[0];
-	private static final String COUNTRY = Constants.CITY_AND_COUNTRY[1];
-	
+
 	private MapEntity mapEntity;
 	private PlayerCoordinates playerSign;
 	private EvilHeadCoordinates evilHeadSign;
@@ -96,25 +82,25 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	public DrawScene() throws IOException, NoSuchAlgorithmException {
 		final int width = (int) Constants.DIMENSION.getWidth();
 		final int height = (int) Constants.DIMENSION.getHeight();
-		bg1 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG1.getImg())).getScaledInstance(width, height,
-				Image.SCALE_SMOOTH);
-		bg2 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG2.getImg())).getScaledInstance(width, height,
-				Image.SCALE_SMOOTH);
-		bg3 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG3.getImg())).getScaledInstance(width, height,
-				Image.SCALE_SMOOTH);
+		bg1 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG1.getImg()))
+				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		bg2 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG2.getImg()))
+				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		bg3 = Toolkit.getDefaultToolkit().createImage(Objects.requireNonNull(Sprite.BG3.getImg()))
+				.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		mapEntity = new MapEntity();
 		playerSign = new PlayerCoordinates();
 		evilHeadSign = new EvilHeadCoordinates();
 		alienSign = new AlienCoordinates();
 		dragonSign = new DragonCoordinates();
-		
+
 		new InitObjects();
 		new UpdateObjects();
-		
+
 		addKeyListener(new Controls());
 		setFocusable(true);
 		setPreferredSize(new Dimension(Constants.B_WIDTH, Constants.B_HEIGHT));
-		
+
 		ActionPerformer.setAnimator(new Thread(this));
 		ActionPerformer.setTimerEasy(new Timer(DELAY, this));
 		ActionPerformer.setTimerMedium(new Timer(DELAY, this));
@@ -149,7 +135,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			explosion.draw(g);
 		}
 	}
-	
+
 	private void startAnimations() {
 		if (ActionPerformer.getAnimator() == null) {
 			ActionPerformer.setAnimator(new Thread(this));
@@ -194,7 +180,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawGameWon(Graphics g) {
 		if (UpdateObjects.getLifeEvilHead() == 50) {
-			
+
 			DrawAnimations.drawElonsUp(g, this);
 			DrawAnimations.drawElonsDown(g, this);
 
@@ -202,8 +188,8 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 				new PlayWave1st(SoundEffect.VICTORY.getSound()).start();
 				TextToSpeech.finMusicIsPlayed = true;
 			}
-			
-			setFontStyle(g);
+
+			Drawable.setFontStyle(g);
 			g.drawString("Monsters: Killed!", 5, 20);
 			g.drawString("Gold: Collected!", 210, 20);
 		}
@@ -221,30 +207,9 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			handleKilledByDragon();
 			handleKilledByBunker();
 			handleKilledByEvilHead();
-			handleAnimations();
+			DrawAnimations.handleAnimations();
 			ActionPerformer.setAnimator(null);
 		}
-	}
-
-	private void handleAnimations() {
-
-		for (AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
-			if (asteroidsAnim != null)
-				asteroidsAnim = null;
-		}
-		AsteroidAnimation.ASTEROID_ANIMATION.clear();
-
-		for (TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
-			if (elonAnimUp != null)
-				elonAnimUp = null;
-		}
-		TheEndAnimationUp.END_ANIMATION_UP.clear();
-
-		for (TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
-			if (elonAnimDown != null)
-				elonAnimDown = null;
-		}
-		TheEndAnimationDown.END_ANIMATION_DOWN.clear();
 	}
 
 	@SuppressWarnings("finally")
@@ -326,18 +291,34 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 		if (Alien.aliens.isEmpty() && !Dragon.dragons.isEmpty()) {
 			drawGameStateL2(g);
+			if (ActionPerformer.getTimerHard().isRunning() && !Constants.isOnPause) {
+				g.drawString(formatMsg(g, Constants.SHIP_OUTTA_CONTROL), Constants.BUNKER_X,
+						((int) Constants.DIMENSION.getHeight() / 2) - 150);
+			}
 		}
 
 		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
 			drawGameStateL3(g);
+			if (!Constants.isOnPause) {
+				g.drawString(formatMsg(g, Constants.DESTROY_THE_BUNKER), Constants.BUNKER_X,
+						((int) Constants.DIMENSION.getHeight() / 2) - 150);
+			}
 		}
 
 		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0) {
 			drawGameStateL4(g);
+			if (!Constants.isOnPause) {
+				g.drawString(formatMsg(g, Constants.COLLECT_ALL_THE_GOLD), Constants.BUNKER_X,
+						((int) Constants.DIMENSION.getHeight() / 2) - 150);
+			}
 		}
 
 		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()) {
 			drawGameStateL5(g);
+			if (!Constants.isOnPause) {
+				g.drawString(formatMsg(g, Constants.KILL_THE_EVIL_HEAD), Constants.BUNKER_X,
+						((int) Constants.DIMENSION.getHeight() / 2) - 150);
+			}
 		}
 	}
 
@@ -402,10 +383,10 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			}
 		}
 	}
-	
+
 	private void drawGameStateL1(Graphics g) {
 		drawScene1(g);
-		drawL1Labels(g);
+		DrawLabels.drawL1Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		DrawAnimations.drawAsteroids(g, this);
@@ -414,7 +395,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawGameStateL2(Graphics g) {
 		drawScene2(g);
-		drawL2Labels(g);
+		DrawLabels.drawL2Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		DrawAnimations.drawSatellite(g, this);
@@ -423,7 +404,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawGameStateL3(Graphics g) {
 		drawScene3(g);
-		drawL3Labels(g);
+		DrawLabels.drawL3Labels(g);
 		drawObjects(g);
 		drawLifeBunker(g);
 		drawLifePlayerShip(g);
@@ -435,7 +416,15 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawGameStateL4(Graphics g) {
 		drawScene4(g);
-		drawL4Labels(g);
+		DrawLabels.drawL4Labels(g);
+		drawObjects(g);
+		drawLifePlayerShip(g);
+		drawPressArrowKey(g);
+	}
+
+	private void drawGameStateL5(Graphics g) {
+		drawScene5(g);
+		DrawLabels.drawL5Labels(g);
 		drawObjects(g);
 		drawLifePlayerShip(g);
 		drawPressArrowKey(g);
@@ -443,202 +432,9 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawPressArrowKey(Graphics g) {
 		if (!(ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning()
-				|| ActionPerformer.getTimerHard().isRunning())) {
+				|| ActionPerformer.getTimerHard().isRunning()) && Constants.isOnPause) {
 			drawGamePaused(g);
 		}
-	}
-
-	private void drawGameStateL5(Graphics g) {
-		drawScene5(g);
-		drawL5Labels(g);
-		drawObjects(g);
-		drawLifePlayerShip(g);
-
-		if (!(ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning()
-				|| ActionPerformer.getTimerHard().isRunning())) {
-			drawGamePaused(g);
-		}
-	}
-	
-	private void drawL1Labels(Graphics g) {
-
-		setFontStyle(g);
-
-		g.drawString(Constants.LEVEL + 1, 5, 20);
-		g.drawImage(AlienIcon.alienIcon.getImage(), 100, 5, null);
-		g.drawString(Constants.COLON_WITH_SPACE + Alien.aliens.size(), 140, 20);
-		g.drawImage(LaserIcon.laserIcon.getImage(), 200, 5, null);
-		g.drawString(Constants.UNLOCKED, 240, 20);
-		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
-		g.drawString(Constants.LOCKED, 410, 20);
-
-		if (ActionPerformer.getTimerEasy().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 510, 5, null);
-			g.drawString(Constants.EASY, 545, 20);
-		}
-
-		if (ActionPerformer.getTimerMedium().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 510, 5, null);
-			g.drawString(Constants.MEDIUM, 545, 20);
-		}
-
-		if (ActionPerformer.getTimerHard().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 510, 5, null);
-			g.drawString(Constants.HARD, 545, 20);
-		}
-
-		drawLocation(g);
-	}
-	
-	private void drawL2Labels(Graphics g) {
-
-		setFontStyle(g);
-
-		g.drawString(Constants.LEVEL + 2, 5, 20);
-		g.drawImage(DragonIcon.dragonIcon.getImage(), 100, 5, null);
-		g.drawString(Constants.COLON_WITH_SPACE + Dragon.dragons.size(), 140, 20);
-		g.drawImage(LaserIcon.laserIcon.getImage(), 190, 5, null);
-		g.drawString(Constants.LOCKED, 230, 20);
-		g.drawImage(RocketIcon.rocketIcon.getImage(), 340, 5, null);
-		g.drawString(Constants.UNLOCKED, 375, 20);
-
-		if (ActionPerformer.getTimerEasy().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(Constants.EASY, 540, 20);
-		}
-
-		if (ActionPerformer.getTimerMedium().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(Constants.MEDIUM, 540, 20);
-		}
-
-		if (ActionPerformer.getTimerHard().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 500, 5, null);
-			g.drawString(Constants.HARD, 540, 20);
-			drawOuttaControl(g);
-		}
-
-		drawLocation(g);
-
-		if (ActionPerformer.getTimerEasy().isRunning() 
-				|| ActionPerformer.getTimerMedium().isRunning() 
-				|| ActionPerformer.getTimerHard().isRunning()) {
-			UpdateObjects.updateDragons();
-			LoadSounds.TAUNT.loop();
-		}
-	}
-
-	private void drawL3Labels(Graphics g) {
-
-		setFontStyle(g);
-
-		if (ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning()
-				|| ActionPerformer.getTimerHard().isRunning()) {
-			drawKillTheBunker(g);
-		}
-
-		g.drawString(Constants.LEVEL + 3, 5, 20);
-		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
-		g.drawString(Constants.LOCKED, 135, 20);
-		g.drawImage(RocketIcon.rocketIcon.getImage(), 235, 5, null);
-		g.drawString(Constants.UNLOCKED, 275, 20);
-
-		if (ActionPerformer.getTimerEasy().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
-			g.drawString(Constants.EASY, 440, 20);
-		}
-
-		if (ActionPerformer.getTimerMedium().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
-			g.drawString(Constants.MEDIUM, 440, 20);
-		}
-
-		if (ActionPerformer.getTimerHard().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 400, 5, null);
-			g.drawString(Constants.HARD, 440, 20);
-		}
-
-		g.drawImage(LocationIcon.locationIcon.getImage(), 550, 0, null);
-		g.drawString(" : " + CITY + "/" + COUNTRY, 570, 20);
-	}
-
-	private void drawL4Labels(Graphics g) {
-
-		setFontStyle(g);
-
-		g.drawString(Constants.LEVEL + 4, 5, 20);
-		g.drawImage(GoldIcon.goldIcon.getImage(), 100, 5, null);
-		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - UpdateObjects.getGoldCount())) + "/12", 140,
-				20);
-		g.drawImage(LaserIcon.laserIcon.getImage(), 225, 5, null);
-		g.drawString(Constants.LOCKED, 265, 20);
-		g.drawImage(RocketIcon.rocketIcon.getImage(), 370, 5, null);
-		g.drawString(Constants.LOCKED, 405, 20);
-
-		if (ActionPerformer.getTimerEasy().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(Constants.EASY, 540, 20);
-		}
-
-		if (ActionPerformer.getTimerMedium().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(Constants.MEDIUM, 540, 20);
-		}
-
-		if (ActionPerformer.getTimerHard().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 505, 5, null);
-			g.drawString(Constants.HARD, 540, 20);
-		}
-
-		if (ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning()
-				|| ActionPerformer.getTimerHard().isRunning()) {
-			drawCollectGold(g);
-		}
-
-		drawLocation(g);
-		g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
-		g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
-		Bunker.bunkerObj.drawBunkerHit();
-		EvilHead.evilHead.renderEvilHead(g);
-	}
-
-	private void drawLocation(Graphics g) {
-		g.drawImage(LocationIcon.locationIcon.getImage(), 650, 0, null);
-		g.drawString(" : " + CITY + "/" + COUNTRY, 670, 20);
-	}
-
-	private void drawL5Labels(Graphics g) {
-
-		setFontStyle(g);
-
-		g.drawString(Constants.LEVEL + 4, 5, 20);
-		g.drawImage(LaserIcon.laserIcon.getImage(), 95, 5, null);
-		g.drawString(Constants.UNLOCKED, 135, 20);
-		g.drawImage(RocketIcon.rocketIcon.getImage(), 265, 5, null);
-		g.drawString(Constants.UNLOCKED, 295, 20);
-
-		if (ActionPerformer.getTimerEasy().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
-			g.drawString(Constants.EASY, 460, 20);
-		}
-
-		if (ActionPerformer.getTimerMedium().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
-			g.drawString(Constants.MEDIUM, 460, 20);
-		}
-
-		if (ActionPerformer.getTimerHard().isRunning()) {
-			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
-			g.drawString(Constants.HARD, 460, 20);
-		}
-
-		if (ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning()
-				|| ActionPerformer.getTimerHard().isRunning()) {
-			drawKillTheHead(g);
-		}
-
-		g.drawImage(LocationIcon.locationIcon.getImage(), 570, 0, null);
-		g.drawString(" : " + CITY + "/" + COUNTRY, 590, 20);
 	}
 
 	private void drawLifePlayerShip(Graphics g) {
@@ -689,7 +485,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawDateTime(Graphics g) {
 		if (Flags.isClockVisible) {
-			setFontStyle(g);
+			Drawable.setFontStyle(g);
 			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 1010, 23);
 		}
 	}
@@ -848,7 +644,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			}
 		}
 	}
-	
+
 	private void drawScene1(Graphics g) {
 		g.drawImage(bg1, 0, 0, null);
 		if (PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible() && VolBtn.volButt.isVisible()
@@ -911,7 +707,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	}
 
 	private void drawGameOver(Graphics g) {
-		setFontStyle(g);
+		Drawable.setFontStyle(g);
 		g.drawString("Monsters left: " + 0, 5, 20);
 		g.drawString("Health: 0%", 200, 20);
 		if (UpdateObjects.getLifeBunker() >= 50) {
@@ -920,44 +716,24 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	}
 
 	private void drawKilledBy(Graphics g) {
-	    String msg = null;
+		String msg = null;
 
-	    if (Flags.killedByAlien) {
-	        msg = retrieveOpenAiMessage(Entity.ALIEN, KILLED_BY_AN_ALIEN);
-	    } else if (Flags.killedByDragon) {
-	        msg = retrieveOpenAiMessage(Entity.DRAGON, KILLED_BY_A_DRAGON);
-	    } else if (Flags.killedByBunker) {
-	        msg = retrieveOpenAiMessage(Entity.BUNKER, KILLED_BY_THE_BUNKER);
-	    } else if (Flags.killedByEvilHead) {
-	        msg = retrieveOpenAiMessage(Entity.EVILHEAD, KILLED_BY_THE_EVIL_HEAD);
-	    }
+		if (Flags.killedByAlien) {
+			msg = retrieveOpenAiMessage(Entity.ALIEN, KILLED_BY_AN_ALIEN);
+		} else if (Flags.killedByDragon) {
+			msg = retrieveOpenAiMessage(Entity.DRAGON, KILLED_BY_A_DRAGON);
+		} else if (Flags.killedByBunker) {
+			msg = retrieveOpenAiMessage(Entity.BUNKER, KILLED_BY_THE_BUNKER);
+		} else if (Flags.killedByEvilHead) {
+			msg = retrieveOpenAiMessage(Entity.EVILHEAD, KILLED_BY_THE_EVIL_HEAD);
+		}
 
-	    formatMsg(g, msg);
+		formatMsg(g, msg);
 	}
 
 	private String retrieveOpenAiMessage(Entity entity, String defaultMsg) {
-	    String openAiMsg = OpenAiApiImpl.createCompletion(entity.getMsg());
-	    return !StringUtils.isEmpty(openAiMsg) ? openAiMsg : defaultMsg;
-	}
-
-	private void drawCollectGold(Graphics g) {
-		final String msg = COLLECT_ALL_THE_GOLD;
-		formatMsg(g, msg);
-	}
-
-	private void drawKillTheBunker(Graphics g) {
-		final String msg = DESTROY_THE_BUNKER;
-		formatMsg(g, msg);
-	}
-
-	private void drawKillTheHead(Graphics g) {
-		final String msg = KILL_THE_EVIL_HEAD;
-		formatMsg(g, msg);
-	}
-
-	private void drawOuttaControl(Graphics g) {
-		final String msg = SHIP_OUTTA_CONTROL;
-		formatMsg(g, msg);
+		String openAiMsg = OpenAiApiImpl.createCompletion(entity.getMsg());
+		return !StringUtils.isEmpty(openAiMsg) ? openAiMsg : defaultMsg;
 	}
 
 	private void drawGamePaused(Graphics g) {
@@ -965,12 +741,12 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		formatMsg(g, msg);
 	}
 
-	private void formatMsg(Graphics g, final String msg) {
+	private String formatMsg(Graphics g, final String msg) {
 		int width = msg != null ? g.getFontMetrics().stringWidth(msg) : 0;
 		String[] tokens = null;
 		g.setColor(Color.BLACK);
 		g.fillRect(Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 180, width, 50);
-		setFontStyle(g);
+		Drawable.setFontStyle(g);
 		if (msg != null && msg.contains("What")) {
 			tokens = msg.split("[?!.]");
 			if (tokens.length > 1) {
@@ -982,21 +758,16 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		} else {
 			g.drawString(msg, Constants.BUNKER_X, ((int) Constants.DIMENSION.getHeight() / 2) - 150);
 		}
+		return "";
 	}
 
-	private void setFontStyle(Graphics g) {
-		final Font small = new Font(FONT_PAPYRUS, Font.BOLD, 22);
-		g.setColor(Color.ORANGE);
-		g.setFont(small);
-	}
-	
 	@Override
 	public void run() {
 
 		long beforeTime, timeDiff, sleep;
 
 		beforeTime = System.currentTimeMillis();
-		
+
 		while (ActionPerformer.isIngame() || ActionPerformer.getAnimator() != null) {
 
 			if (SatelliteAnimation.SATELLITE != null) {
@@ -1007,7 +778,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 				AstronautAnimation.ASTRONAUT.cycle();
 			}
 
-			if (AsteroidAnimation.ASTEROID_ANIMATION != null && !AsteroidAnimation.ASTEROID_ANIMATION.isEmpty()) {				
+			if (AsteroidAnimation.ASTEROID_ANIMATION != null && !AsteroidAnimation.ASTEROID_ANIMATION.isEmpty()) {
 				for (final AsteroidAnimation asteroidsAnim : AsteroidAnimation.ASTEROID_ANIMATION) {
 					asteroidsAnim.cycle();
 				}
@@ -1016,7 +787,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			if (TheEndAnimationUp.END_ANIMATION_UP != null && !TheEndAnimationUp.END_ANIMATION_UP.isEmpty()) {
 				for (final TheEndAnimationUp endAnimationUp : TheEndAnimationUp.END_ANIMATION_UP) {
 					endAnimationUp.cycle();
-				}	
+				}
 			}
 
 			if (TheEndAnimationDown.END_ANIMATION_DOWN != null && !TheEndAnimationDown.END_ANIMATION_DOWN.isEmpty()) {
@@ -1045,12 +816,12 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			beforeTime = System.currentTimeMillis();
 		}
 	}
-	
+
 	@Override
 	public void addNotify() {
 		super.addNotify();
 
-		if (ActionPerformer.getAnimator() != null) {			
+		if (ActionPerformer.getAnimator() != null) {
 			ActionPerformer.getAnimator().start();
 		}
 	}
@@ -1060,7 +831,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		super.removeNotify();
 
 		if (ActionPerformer.getAnimator() != null) {
-			ActionPerformer.getAnimator().interrupt();	
+			ActionPerformer.getAnimator().interrupt();
 		}
 	}
 
