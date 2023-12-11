@@ -51,7 +51,7 @@ public class DrawLabels {
 			g.drawString(Constants.HARD, 545, 20);
 		}
 
-		drawLocation(g);
+		drawLocation(g, 650);
 	}
 	
 	static void drawL2Labels(Graphics g) {
@@ -81,7 +81,7 @@ public class DrawLabels {
 			g.drawString(Constants.HARD, 540, 20);
 		}
 
-		drawLocation(g);
+		drawLocation(g, 650);
 
 		if (ActionPerformer.getTimerEasy().isRunning() 
 				|| ActionPerformer.getTimerMedium().isRunning() 
@@ -147,7 +147,7 @@ public class DrawLabels {
 			g.drawString(Constants.HARD, 540, 20);
 		}
 
-		drawLocation(g);
+		drawLocation(g, 650);
 
 		g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
@@ -181,11 +181,6 @@ public class DrawLabels {
 		}
 		
 		drawLocation(g, 570);
-	}
-	
-	static void drawLocation(Graphics g) {
-		g.drawImage(LocationIcon.locationIcon.getImage(), 650, 0, null);
-		g.drawString(" : " + CITY + "/" + COUNTRY, 670, 20);
 	}
 	
 	static void drawLocation(Graphics g, int xAxis) {

@@ -9,7 +9,7 @@ public class OpenAiApiImpl {
 	
     public static String createCompletion(String msg) {
 //        String token = System.getenv("OPENAI_TOKEN");
-        OpenAiService service = new OpenAiService("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");
+        OpenAiService service = new OpenAiService("***********************************");
 
         System.out.println("\nCreating completion...");
         CompletionRequest completionRequest = CompletionRequest.builder()
@@ -24,7 +24,7 @@ public class OpenAiApiImpl {
         	return service.createCompletion(completionRequest).getChoices().get(0).getText();	
         } catch (HttpException e) {
         	System.err.println("createCompletion exception: " + e.getMessage());
-			return msg;
+			return null;
 		}
     }
 }
