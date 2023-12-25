@@ -624,8 +624,6 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			}
 
 			g.drawImage(angel.getImage(), angel.getX(), angel.getY(), this);
-
-			angel.move();
 		}
 
 		if (UpdateObjects.getLifeBunker() >= 50) {
@@ -847,9 +845,9 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		UpdateObjects.updateEHCanons();
 		UpdateObjects.updateRockets();
 		UpdateObjects.updateAliens();
+		UpdateObjects.updateDragons();
 		UpdateObjects.updateEvilHead();
 		UpdateObjects.updateGold();
-		UpdateObjects.updateAngels();
 		UpdateObjects.updateHealth();
 		UpdateObjects.updateBullets();
 

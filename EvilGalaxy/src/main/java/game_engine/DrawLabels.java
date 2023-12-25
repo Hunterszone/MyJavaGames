@@ -17,7 +17,6 @@ import items.Gold;
 import util.ActionPerformer;
 import util.Constants;
 import util.Drawable;
-import util.LoadSounds;
 
 public class DrawLabels {
 	
@@ -82,13 +81,6 @@ public class DrawLabels {
 		}
 
 		drawLocation(g, 650);
-
-		if (ActionPerformer.getTimerEasy().isRunning() 
-				|| ActionPerformer.getTimerMedium().isRunning() 
-				|| ActionPerformer.getTimerHard().isRunning()) {
-			UpdateObjects.updateDragons();
-			LoadSounds.TAUNT.loop();
-		}
 	}
 
 	static void drawL3Labels(Graphics g) {

@@ -141,6 +141,8 @@ public abstract class Collisions {
 	public static void checkDragonCollision(final Dragon dragon) {
 		dragon.setVisible(true);
 		
+		LoadSounds.TAUNT.loop();
+		
 		shipIntersectsDragon(PlayerShip.playerShip.getBounds(), dragon, dragon.getBounds());
 		
 		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream()
