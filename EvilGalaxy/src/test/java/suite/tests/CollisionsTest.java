@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.Timer;
 
@@ -19,6 +20,7 @@ import enemy.EvilHead;
 import enemy.PlayerShip;
 import game_engine.Collisions;
 import game_engine.UpdateObjects;
+import items.Angel;
 import items.BunkerBullet;
 import items.CanonBall;
 import items.Explosion;
@@ -51,6 +53,7 @@ public class CollisionsTest {
 		Explosion.explosions = new ArrayList<Explosion>();
 		Crosshair.crosshair = new Crosshair(x, y);
 		ShipMissile.missiles = Collections.singletonList(new ShipMissile(x, y));
+		Angel.angels = new ArrayList<Angel>();
 	}
 
 	@Test
@@ -73,9 +76,11 @@ public class CollisionsTest {
 
 	@Test
 	public void shipIntersectsDragon() {
+		Alien.aliens = new ArrayList<Alien>();
+        Dragon.dragons = new ArrayList<Dragon>();
 		UpdateObjects.setDragonKilled(0);
 
-		Collisions.checkDragonCollision(Dragon.dragons.get(0));
+		Collisions.checkDragonCollision(PlayerShip.playerShip.getBounds());
 
 		assertTrue("ship does not intersect dragon", UpdateObjects.getDragonKilled() == 1);
 	}
@@ -174,9 +179,11 @@ public class CollisionsTest {
 
 	@Test
 	public void rocketIntersectsDragon() {
+		Alien.aliens = new ArrayList<Alien>();
+		Dragon.dragons = new ArrayList<Dragon>();
 		UpdateObjects.setDragonKilled(0);
 				
-		Collisions.checkDragonCollision(Dragon.dragons.get(0));
+		Collisions.checkDragonCollision(PlayerShip.playerShip.getBounds());
 
 		assertTrue("rocket does not intersect dragon", UpdateObjects.getDragonKilled() == 1);
 	}
@@ -229,6 +236,7 @@ public class CollisionsTest {
 		Explosion.explosions = null;
 		Crosshair.crosshair = null;
 		ShipMissile.missiles = null;
+		Angel.angels = null;
 	}
 	
 	private void triggerEvilHeadCollision() {
