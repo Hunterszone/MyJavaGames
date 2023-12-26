@@ -183,7 +183,7 @@ public class DrawLabels {
 		drawLocation(g, 570);
 	}
 	
-	static void drawLocation(Graphics g, int xAxis) {
+	private static void drawLocation(Graphics g, int xAxis) {
 		g.drawImage(LocationIcon.locationIcon.getImage(), xAxis, 0, null);
 		g.drawString(" : " + CITY + "/" + COUNTRY, xAxis+20, 20);
 	}
