@@ -74,6 +74,7 @@ public class HighScoreToDb {
 	private static void openConnection() {
 		System.out.println("Connecting to a selected database...");
 		try {
+			DriverManager.setLoginTimeout(2);
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("Connected database successfully...");
 		} catch (SQLException se) {

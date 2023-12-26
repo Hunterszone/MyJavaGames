@@ -23,10 +23,6 @@ import util.LoadSounds;
 
 public class UpdateObjects {
 
-	public UpdateObjects() {
-		super();
-	}
-
 	private static int lifeEvilHead = 3;
 	private static int lifePlayerShip = 3;
 	private static int lifeBunker = 3;
@@ -35,18 +31,22 @@ public class UpdateObjects {
 	private static int dragonKilled = 0;
 
 	static void updateDragons() {
-		Dragon.dragons.stream().forEach(dragon -> {
-			if (dragon != null) {
-				Collisions.checkDragonCollision(dragon);
-				if (dragon.isVisible()) {
-					dragon.move();
-				} else {
-					Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
+		if (Alien.aliens.isEmpty()) {			
+			Dragon.dragons.stream().forEach(dragon -> {
+				if (dragon != null) {
+					Collisions.checkDragonCollision(dragon);
+					if (dragon.isVisible()) {
+						dragon.move();
+					} else {
+						Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
+					}
 				}
-			}
-		});
-
-		Dragon.dragons.removeIf(dragon -> dragon != null && !dragon.isVisible());
+			});
+			
+			Dragon.dragons.removeIf(dragon -> dragon != null && !dragon.isVisible());
+			
+			updateAngels();
+		}
 	}
 
 	static void inGame() {
@@ -201,10 +201,6 @@ public class UpdateObjects {
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 
-	static void updateAngels() {
-		Angel.angels.removeIf(angel -> angel != null && !angel.isVisible());
-	}
-
 	static void updateHealth() {
 		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && 
 				Dragon.dragons.isEmpty() && getLifePlayerShip() <= 3 && !Flags.hpIsEmpty) {
@@ -220,6 +216,16 @@ public class UpdateObjects {
 				.forEach(healthPack -> healthPack.move());
 
 		HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible());
+	}
+	
+	private static void updateAngels() {
+		Angel.angels.stream().forEach(angel -> {
+			if (angel.isVisible()) {
+				angel.move();
+			}
+		});
+
+		Angel.angels.removeIf(angel -> angel != null && !angel.isVisible());
 	}
 
 	public static int getDragonKilled() {
