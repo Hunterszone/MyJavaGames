@@ -26,6 +26,6 @@ public class Angel extends SpritePattern implements Moveable {
 
 	@Override
 	public void move() {
-		y -= 0.01;
+		y -= 4;
 	}
 }

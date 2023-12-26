@@ -164,9 +164,11 @@ public class InitObjects {
 
 	public static void initDragons() {
 		Dragon.dragons = new ArrayList<Dragon>();
-		IntStream.range(0, 30).mapToObj(i -> new Dragon(posDragon[i][0], posDragon[i][1])).forEach(dragon -> {
-			Dragon.dragons.add(dragon);
-			dragon.setVisible(false);
+		IntStream.range(0, 30)
+			.mapToObj(i -> new Dragon(posDragon[i][0], posDragon[i][1]))
+			.forEach(dragon -> {
+				Dragon.dragons.add(dragon);
+				dragon.setVisible(false);
 		});
 	}
 

@@ -36,13 +36,4 @@ public class HealthPack extends SpritePattern implements Moveable {
 
 	}
 	
-	public void moveUp() {
-
-		if (y <= INITIAL_Y) {
-			y = 1200;
-		}
-
-		y -= 5;
-
-	}
 }

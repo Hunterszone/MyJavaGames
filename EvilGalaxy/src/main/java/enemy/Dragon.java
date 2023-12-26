@@ -32,6 +32,6 @@ public class Dragon extends SpritePattern implements Moveable {
 			x = INITIAL_X;
 		}
 
-		x -= 2;
+		x -= 4;
 	}
 }

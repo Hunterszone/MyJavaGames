@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -597,18 +596,12 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		}
 
 		if (!Alien.aliens.isEmpty()) {
-			if (Alien.aliens.size() >= 40) {
-				HealthPack.healthpacks = new ArrayList<HealthPack>(5);
-			} else {
-				for (HealthPack hp : HealthPack.healthpacks) {
-					if (hp.getY() <= 0) {
-						hp.setVisible(false);
-					}
-
-					g.drawImage(hp.getImage(), hp.getX(), hp.getY(), this);
-
-					hp.moveUp();
+			for (HealthPack hp : HealthPack.healthpacks) {
+				if (hp.getY() >= Constants.B_HEIGHT) {
+					hp.setVisible(false);
 				}
+
+				g.drawImage(hp.getImage(), hp.getX(), hp.getY(), this);
 			}
 		}
 
@@ -846,12 +839,14 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		UpdateObjects.updateRockets();
 		UpdateObjects.updateAliens();
 		UpdateObjects.updateDragons();
+		UpdateObjects.updateAngels();
 		UpdateObjects.updateEvilHead();
 		UpdateObjects.updateGold();
 		UpdateObjects.updateHealth();
 		UpdateObjects.updateBullets();
 
 		Collisions.checkAlienCollision(PlayerShip.playerShip.getBounds());
+		Collisions.checkDragonCollision(PlayerShip.playerShip.getBounds());
 		Collisions.checkEvilHeadCollision(PlayerShip.playerShip.getBounds(), EvilHead.evilHead.getBounds());
 		Collisions.checkBunkerCollision(PlayerShip.playerShip.getBounds(), Bunker.bunkerObj.getBounds());
 		Collisions.checkGoldCollision(PlayerShip.playerShip.getBounds());

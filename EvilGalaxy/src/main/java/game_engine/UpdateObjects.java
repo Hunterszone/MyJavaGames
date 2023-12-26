@@ -31,21 +31,12 @@ public class UpdateObjects {
 	private static int dragonKilled = 0;
 
 	static void updateDragons() {
-		if (Alien.aliens.isEmpty()) {			
+		if (Alien.aliens.isEmpty()) {
 			Dragon.dragons.stream().forEach(dragon -> {
-				if (dragon != null) {
-					Collisions.checkDragonCollision(dragon);
-					if (dragon.isVisible()) {
-						dragon.move();
-					} else {
-						Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
-					}
+				if (dragon != null && dragon.isVisible()) {
+					dragon.move();
 				}
 			});
-			
-			Dragon.dragons.removeIf(dragon -> dragon != null && !dragon.isVisible());
-			
-			updateAngels();
 		}
 	}
 
@@ -165,10 +156,12 @@ public class UpdateObjects {
 
 	static void updateAliens() {
 		Alien.aliens.removeIf(alien -> alien != null && !alien.isVisible());
-		Alien.aliens.stream().filter(alien -> alien.isVisible()).forEach(alien -> {
-			if (ActionPerformer.getTimerHard().isRunning()) {
-				alien.moveFaster();
-			}
+		Alien.aliens.stream()
+			.filter(alien -> alien.isVisible())
+			.forEach(alien -> {
+				if (ActionPerformer.getTimerHard().isRunning()) {
+					alien.moveFaster();
+				}
 			alien.move();
 		});
 	}
@@ -202,8 +195,8 @@ public class UpdateObjects {
 	}
 
 	static void updateHealth() {
-		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && 
-				Dragon.dragons.isEmpty() && getLifePlayerShip() <= 3 && !Flags.hpIsEmpty) {
+		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && Dragon.dragons.isEmpty()
+				&& getLifePlayerShip() <= 3 && !Flags.hpIsEmpty) {
 			HealthPack.healthpacks
 					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
@@ -217,8 +210,8 @@ public class UpdateObjects {
 
 		HealthPack.healthpacks.removeIf(healthPack -> healthPack != null && !healthPack.isVisible());
 	}
-	
-	private static void updateAngels() {
+
+	static void updateAngels() {
 		Angel.angels.stream().forEach(angel -> {
 			if (angel.isVisible()) {
 				angel.move();
