@@ -10,6 +10,8 @@ import util.Moveable;
 public class Angel extends SpritePattern implements Moveable {
 
 	public static List<Angel> angels;
+
+	private static final int SPEED_Y = 4;
 	private static final long serialVersionUID = 1L;
 	private String imageName;
 
@@ -26,6 +28,6 @@ public class Angel extends SpritePattern implements Moveable {
 
 	@Override
 	public void move() {
-		y -= 4;
+		y -= SPEED_Y;
 	}
 }

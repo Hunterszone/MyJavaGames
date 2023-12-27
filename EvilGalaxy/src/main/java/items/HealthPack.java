@@ -10,6 +10,8 @@ import util.Moveable;
 public class HealthPack extends SpritePattern implements Moveable {
 
 	public static List<HealthPack> healthpacks;
+	
+	private static final int SPEED_Y = 5;
 	private static final long serialVersionUID = 1L;
 	private final int INITIAL_Y = 0;
 	private String imageName;
@@ -27,13 +29,11 @@ public class HealthPack extends SpritePattern implements Moveable {
 
 	@Override
 	public void move() {
-
 		if (y > 1200) {
 			y = INITIAL_Y;
 		}
 
-		y += 5;
-
+		y += SPEED_Y;
 	}
 	
 }

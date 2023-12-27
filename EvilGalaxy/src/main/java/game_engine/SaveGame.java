@@ -13,6 +13,7 @@ import enemy.PlayerShip;
 import items.Gold;
 import items.HealthPack;
 import util.ActionPerformer;
+import util.LivesAndCounts;
 import util.TextToSpeech;
 
 public class SaveGame {
@@ -48,7 +49,7 @@ public class SaveGame {
 
 			TextToSpeech.voiceInterruptor = false;
 
-			if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50
+			if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50
 					&& TextToSpeech.voiceInterruptor == false) {
 				savedOnL2 = false;
 				savedOnL1 = false;
@@ -60,7 +61,7 @@ public class SaveGame {
 
 			TextToSpeech.voiceInterruptor = false;
 
-			if (UpdateObjects.getLifeBunker() == 50 && TextToSpeech.voiceInterruptor == false) {
+			if (LivesAndCounts.getLifeBunker() == 50 && TextToSpeech.voiceInterruptor == false) {
 				savedOnL1 = false;
 				savedOnL2 = false;
 				savedOnL3 = false;

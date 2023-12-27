@@ -35,6 +35,7 @@ import menu_engine.CanvasMenu;
 import util.ActionPerformer;
 import util.Constants;
 import util.Flags;
+import util.LivesAndCounts;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -174,14 +175,13 @@ public class InitObjects {
 
 	public static void initGold() {
 		Gold.goldstack = new ArrayList<>();
-
-		for (int i = 0; i < UpdateObjects.getGoldCount(); i++) {
+		for (int i = 0; i < LivesAndCounts.getGoldCount(); i++) {
 			Gold.goldstack.add(new Gold((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
 		}
 	}
 
 	public static void initHealth() {
-		HealthPack.healthpacks = new ArrayList<>(5);
+		HealthPack.healthpacks = new ArrayList<>();
 	}
 	
 	public static void initCanvas() {

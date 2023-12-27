@@ -1,20 +1,20 @@
 package game_engine;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 import items.Angel;
 import items.HealthPack;
 import util.LoadSounds;
 import util.TextToSpeech;
 import util.ActionPerformer;
+import util.LivesAndCounts;
 
 public class Difficulty {
 
 	public static void restart() throws NoSuchAlgorithmException {
-		Angel.angels = new ArrayList<Angel>();
-		HealthPack.healthpacks = new ArrayList<>(5);
-
+		
+		clearItems();
+		
 		if (!ActionPerformer.isIngame()) {
 			ActionPerformer.setIngame(true);
 		}
@@ -22,9 +22,14 @@ public class Difficulty {
 		initAndUpdate();
 	}
 
-	public static void getEasyDiff() throws NoSuchAlgorithmException {
+	private static void clearItems() {
+		HealthPack.healthpacks.clear();
+		Angel.angels.clear();
+	}
 
-		Angel.angels = new ArrayList<Angel>();
+	public static void getEasyDiff() throws NoSuchAlgorithmException {
+		
+		clearItems();
 
 		if (!ActionPerformer.isIngame()) {
 			ActionPerformer.setIngame(true);
@@ -37,8 +42,8 @@ public class Difficulty {
 	}
 
 	public static void getMediumDiff() throws NoSuchAlgorithmException {
-
-		Angel.angels = new ArrayList<Angel>();
+		
+		clearItems();
 
 		if (!ActionPerformer.isIngame()) {
 			ActionPerformer.setIngame(true);
@@ -51,8 +56,8 @@ public class Difficulty {
 	}
 
 	public static void getHardDiff() throws NoSuchAlgorithmException {
-
-		Angel.angels = new ArrayList<Angel>();
+		
+		clearItems();
 
 		if (!ActionPerformer.isIngame()) {
 			ActionPerformer.setIngame(true);
@@ -67,17 +72,17 @@ public class Difficulty {
 	private static void initAndUpdate() throws NoSuchAlgorithmException {
 
 		if (!SaveGame.savedOnL1 && !SaveGame.savedOnL2) {
-			UpdateObjects.setAlienKilled(0);
-			UpdateObjects.setDragonKilled(0);
+			LivesAndCounts.setAlienKilled(0);
+			LivesAndCounts.setDragonKilled(0);
 		}
 
 		TextToSpeech.finMusicIsPlayed = false;
 		TextToSpeech.voiceInterruptor = true;
 //		GameMenuBar.autosave.setSelected(false);
 
-		UpdateObjects.setLifeEvilHead(3);
-		UpdateObjects.setLifePlayerShip(4);
-		UpdateObjects.setLifeBunker(3);
+		LivesAndCounts.setLifeEvilHead(3);
+		LivesAndCounts.setLifePlayerShip(4);
+		LivesAndCounts.setLifeBunker(3);
 
 		InitObjects.initEntities();
 		InitObjects.initAnimations();
@@ -85,15 +90,7 @@ public class Difficulty {
 		InitObjects.initGold();
 		InitObjects.initDragons();
 
-		loadHealthPacks();
-
 		LoadSounds.HIGHSC.play();
 	}
 
-	private static void loadHealthPacks() {
-		for (int i = 0; i < 5; i++) {
-			HealthPack.healthpacks
-					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
-		}
-	}
 }

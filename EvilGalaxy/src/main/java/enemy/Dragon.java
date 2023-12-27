@@ -8,8 +8,10 @@ import util.Moveable;
 
 public class Dragon extends SpritePattern implements Moveable {
 
-	private static final long serialVersionUID = 1L;
 	public static List<Dragon> dragons;
+
+	private static final int SPEED_X = 4;
+	private static final long serialVersionUID = 1L;
 	private static final int INITIAL_X = (int) Math.ceil(Math.random() * 6500);
 	
 	public Dragon(int x, int y) {
@@ -32,6 +34,6 @@ public class Dragon extends SpritePattern implements Moveable {
 			x = INITIAL_X;
 		}
 
-		x -= 4;
+		x -= SPEED_X;
 	}
 }

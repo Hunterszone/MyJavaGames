@@ -29,6 +29,7 @@ import items.ShipMissile;
 import items.ShipRocket;
 import sound_engine.PlayWave1st;
 import util.Flags;
+import util.LivesAndCounts;
 import util.ActionPerformer;
 import util.LoadSounds;
 
@@ -78,7 +79,7 @@ public abstract class Collisions {
 	}
 
 	public static void checkBunkerCollision(final Rectangle myShip, final Rectangle bunker) {
-		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) {
 			shipIntersectsBunker(myShip, bunker);
 		}
 	}
@@ -95,7 +96,9 @@ public abstract class Collisions {
 
 	public static void checkRocketCollision(final Rectangle evilhead, final Rectangle bunker) {
 
-		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets().stream().filter(rocket -> rocket != null)
+		List<ShipRocket> rockets = PlayerShip.playerShip.getRockets()
+				.stream()
+				.filter(rocket -> rocket != null)
 				.collect(Collectors.toList());
 
 		if (Alien.aliens.isEmpty()) {
@@ -105,13 +108,13 @@ public abstract class Collisions {
 		}
 
 		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty()
-				&& UpdateObjects.getLifeBunker() >= 50) {
+				&& LivesAndCounts.getLifeBunker() >= 50) {
 			for (final ShipRocket rocket : rockets) {
 				rocketIntersectsHead(evilhead, rocket, rocket.getBounds());
 			}
 		}
 
-		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) {
 			for (final ShipRocket rocket : rockets) {
 				rocketIntersectsBunker(bunker, rocket, rocket.getBounds());
 			}
@@ -130,7 +133,7 @@ public abstract class Collisions {
 		}
 
 		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty()
-				&& UpdateObjects.getLifeBunker() >= 50) {
+				&& LivesAndCounts.getLifeBunker() >= 50) {
 			for (final ShipMissile missile : missiles) {
 				missileIntersectsHead(evilhead, missile, missile.getBounds());
 			}
@@ -147,14 +150,14 @@ public abstract class Collisions {
 	private static void shipIntersectsAlien(Rectangle myShip, Alien alien) {
 		if (myShip.intersects(alien.getBounds())) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			UpdateObjects.setLifePlayerShip(UpdateObjects.getLifePlayerShip() - 1);
 			alien.setVisible(false);
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 //			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			UpdateObjects.setAlienKilled(UpdateObjects.getAlienKilled() + 1);
+			LivesAndCounts.decreasePlayerShipLife(1);
+			LivesAndCounts.increaseAlienKilledCount(1);
 			Flags.killedByBunker = false;
 			Flags.killedByDragon = false;
 			Flags.killedByEvilHead = false;
@@ -163,24 +166,23 @@ public abstract class Collisions {
 	}
 
 	private static void shipIntersectsDragon(Rectangle myShip) {
-		Iterator<Dragon> iter = Dragon.dragons.iterator();
-		while (iter.hasNext()) {
-			Dragon dragon = iter.next();
+		for (Iterator<Dragon> it = Dragon.dragons.iterator(); it.hasNext();) {
+			Dragon dragon = it.next();
 			dragon.setVisible(true);
 			if (myShip.intersects(dragon.getBounds())) {
 //				FrameUtils.vibrate(MouseInputHandler.main);
-				UpdateObjects.setLifePlayerShip(UpdateObjects.getLifePlayerShip() - 1);
 				dragon.setVisible(false);
+				LivesAndCounts.decreasePlayerShipLife(1);
+				LivesAndCounts.increaseDragonKilledCount(1);
 				Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
 				Explosion.explosions.add(new Explosion(dragon.getX(), dragon.getY(), 30, 30));
 				new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 //				PlayerShip.playerOne.upsideDown();
-				UpdateObjects.setDragonKilled(UpdateObjects.getDragonKilled() + 1);
 				Flags.killedByBunker = false;
 				Flags.killedByEvilHead = false;
 				Flags.killedByAlien = false;
 				Flags.killedByDragon = true;
-				iter.remove();
+				it.remove();
 			}
 		}
 	}
@@ -191,7 +193,7 @@ public abstract class Collisions {
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffect.EXPLOSION.getSound()).start();
-			UpdateObjects.setLifePlayerShip(0);
+			LivesAndCounts.setLifePlayerShip(0);
 			Flags.killedByAlien = false;
 			Flags.killedByDragon = false;
 			Flags.killedByEvilHead = false;
@@ -200,11 +202,9 @@ public abstract class Collisions {
 	}
 
 	private static void shipIntersectsGold(Rectangle myShip) {
-		Gold.goldstack = Gold.goldstack.stream().filter(gold -> gold != null).collect(Collectors.toList());
-
 		for (Iterator<Gold> it = Gold.goldstack.iterator(); it.hasNext();) {
 			Gold gold = it.next();
-			if (myShip.intersects(gold.getBounds()) && UpdateObjects.getLifeBunker() >= 50) {
+			if (myShip.intersects(gold.getBounds()) && LivesAndCounts.getLifeBunker() >= 50) {
 				gold.setVisible(false);
 				LoadSounds.GOT_GOLD.play();
 				it.remove();
@@ -214,37 +214,36 @@ public abstract class Collisions {
 
 	private static void shipIntersectsHealth(Rectangle myShip, HealthPack health, Rectangle healthUnit) {
 		if (myShip.intersects(healthUnit) && (!Alien.aliens.isEmpty()
-				|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) || Gold.goldstack.isEmpty())) {
+				|| (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) || Gold.goldstack.isEmpty())) {
 			health.setVisible(false);
 			LoadSounds.GOT_HP.play();
-			if (UpdateObjects.getLifePlayerShip() <= 3) {
-				UpdateObjects.setLifePlayerShip(UpdateObjects.getLifePlayerShip() + 1);
+			if (LivesAndCounts.getLifePlayerShip() <= 3) {
+				LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() + 1);
 			}
 		}
 	}
 
 	private static void missileIntersectsAlien(ShipMissile missile) {
-		Iterator<Alien> iter = Alien.aliens.iterator();
-		while (iter.hasNext()) {
-			Alien alien = iter.next();
+		for (Alien alien : Alien.aliens) {
 			if (missile.getBounds().intersects(alien.getBounds())) {
 //				FrameUtils.vibrate(MouseInputHandler.main);
 				missile.setVisible(false);
 				alien.loadCanon();
 				alien.setVisible(false);
 				new PlayWave1st(SoundEffect.BLOOP.getSound()).start();
-				UpdateObjects.setAlienKilled(UpdateObjects.getAlienKilled() + 1);
+				LivesAndCounts.setAlienKilled(LivesAndCounts.getAlienKilled() + 1);
 			}
 		}
 	}
 
 	private static void shipIntersectsHead(Rectangle myShip, Rectangle evilhead) {
-		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50
 				&& myShip.intersects(evilhead)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
+			HealthPack.healthpacks.add(new HealthPack((int) evilhead.getX(), (int) evilhead.getY()));
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
-			UpdateObjects.setLifePlayerShip(0);
+			LivesAndCounts.setLifePlayerShip(0);
 			Flags.killedByBunker = false;
 			Flags.killedByAlien = false;
 			Flags.killedByDragon = false;
@@ -262,23 +261,24 @@ public abstract class Collisions {
 			} else {
 				EvilHead.evilHead.loadCanon();
 			}
+			HealthPack.healthpacks.add(new HealthPack((int) evilhead.getX(), (int) evilhead.getY()));
 			EvilHead.evilHead.strikeHead();
-			UpdateObjects.setLifeEvilHead(UpdateObjects.getLifeEvilHead() + 1);
+			LivesAndCounts.decreaseEvilHeadLife(1);
 		}
 	}
 
 	private static void rocketIntersectsDragon(ShipRocket rocket) {
-		Iterator<Dragon> iter = Dragon.dragons.iterator();
-		while (iter.hasNext()) {
-			Dragon dragon = iter.next();
+//		List<Dragon> dragonsList = new ArrayList<>(Dragon.dragons);
+		for (Iterator<Dragon> it = Dragon.dragons.iterator(); it.hasNext();) {
+			Dragon dragon = it.next();
 			if (rocket.getBounds().intersects(dragon.getBounds())) {
 //				FrameUtils.vibrate(MouseInputHandler.main);
 				new PlayWave1st(SoundEffect.BLOOP.getSound()).start();
 				rocket.setVisible(false);
 				dragon.setVisible(false);
 				Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
-				UpdateObjects.setDragonKilled(UpdateObjects.getDragonKilled() + 1);
-				iter.remove();
+				LivesAndCounts.increaseDragonKilledCount(1);
+				it.remove();
 			}
 		}
 	}
@@ -291,9 +291,10 @@ public abstract class Collisions {
 			} else {
 				EvilHead.evilHead.loadCanon();
 			}
+			HealthPack.healthpacks.add(new HealthPack((int) evilhead.getX(), (int) evilhead.getY()));
 			EvilHead.evilHead.strikeHead();
 			rocket.setVisible(false);
-			UpdateObjects.setLifeEvilHead(UpdateObjects.getLifeEvilHead() + 1);
+			LivesAndCounts.decreaseEvilHeadLife(1);
 		}
 	}
 
@@ -306,20 +307,20 @@ public abstract class Collisions {
 			rocket.setVisible(false);
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			LoadSounds.HIT.play();
-			UpdateObjects.setLifeBunker(UpdateObjects.getLifeBunker() + 1);
+			LivesAndCounts.decreaseBunkerLife(1);
 		}
 	}
 
 	private static void plasmaBallIntersectsShip(PlasmaBall plasmaBall, Rectangle plasmaBallUnit, Rectangle ship) {
-		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50
 				&& plasmaBallUnit.intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			UpdateObjects.setLifePlayerShip(UpdateObjects.getLifePlayerShip() - 1);
+			LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() - 1);
 			plasmaBall.setVisible(false);
 			Explosion.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
-			if (UpdateObjects.getLifePlayerShip() == 0) {
+			if (LivesAndCounts.getLifePlayerShip() == 0) {
 				Flags.killedByBunker = false;
 				Flags.killedByDragon = false;
 				Flags.killedByAlien = false;
@@ -331,7 +332,7 @@ public abstract class Collisions {
 	private static void bulletIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit, Rectangle ship) {
 		if (bulletUnit.intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			UpdateObjects.setLifePlayerShip(UpdateObjects.getLifePlayerShip() - 1);
+			LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() - 1);
 			bullet.setVisible(false);
 			Explosion.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
@@ -339,7 +340,7 @@ public abstract class Collisions {
 //			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			if (UpdateObjects.getLifePlayerShip() == 0) {
+			if (LivesAndCounts.getLifePlayerShip() == 0) {
 				Flags.killedByDragon = false;
 				Flags.killedByAlien = false;
 				Flags.killedByEvilHead = false;
@@ -349,16 +350,16 @@ public abstract class Collisions {
 	}
 
 	private static void canonIntersectsShip(Rectangle myShip, CanonBall canon, Rectangle canonUnit) {
-		if ((!Alien.aliens.isEmpty() || UpdateObjects.getLifeBunker() >= 50) && canonUnit.intersects(myShip)) {
+		if ((!Alien.aliens.isEmpty() || LivesAndCounts.getLifeBunker() >= 50) && canonUnit.intersects(myShip)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			UpdateObjects.setLifePlayerShip(UpdateObjects.getLifePlayerShip() - 1);
+			LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() - 1);
 			canon.setVisible(false);
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.BURNED.getSound()).start();
 //			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			if (UpdateObjects.getLifePlayerShip() == 0) {
+			if (LivesAndCounts.getLifePlayerShip() == 0) {
 				if (!Alien.aliens.isEmpty()) {
 					Flags.killedByDragon = false;
 					Flags.killedByBunker = false;

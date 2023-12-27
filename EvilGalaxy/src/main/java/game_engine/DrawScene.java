@@ -56,6 +56,7 @@ import util.ActionPerformer;
 import util.Constants;
 import util.Drawable;
 import util.Flags;
+import util.LivesAndCounts;
 import util.LoadSounds;
 import util.OpenAiApiImpl;
 import util.TextToSpeech;
@@ -94,7 +95,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		dragonSign = new DragonCoordinates();
 
 		new InitObjects();
-		new UpdateObjects();
+		new LivesAndCounts();
 
 		addKeyListener(new Controls());
 		setFocusable(true);
@@ -151,15 +152,15 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			g.drawImage(bg2, 0, 0, null);
 		}
 
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) {
 			g.drawImage(bg3, 0, 0, null);
 		}
 
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.size() > 0) {
 			g.drawImage(bg3, 0, 0, null);
 		}
 
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()) {
 			g.drawImage(bg3, 0, 0, null);
 		}
 	}
@@ -178,7 +179,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	}
 
 	private void drawGameWon(Graphics g) {
-		if (UpdateObjects.getLifeEvilHead() == 50) {
+		if (LivesAndCounts.getLifeEvilHead() == 50) {
 
 			DrawAnimations.drawElonsUp(g, this);
 			DrawAnimations.drawElonsDown(g, this);
@@ -195,7 +196,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	}
 
 	private void handleGameOver(Graphics g) {
-		if (UpdateObjects.getLifePlayerShip() <= 0) {
+		if (LivesAndCounts.getLifePlayerShip() <= 0) {
 			if (!TextToSpeech.finMusicIsPlayed) {
 				LoadSounds.FIN.play();
 				TextToSpeech.finMusicIsPlayed = true;
@@ -296,7 +297,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			}
 		}
 
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) {
 			drawGameStateL3(g);
 			if (!Constants.isOnPause) {
 				g.drawString(formatMsg(g, Constants.DESTROY_THE_BUNKER), Constants.BUNKER_X,
@@ -304,7 +305,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			}
 		}
 
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.size() > 0) {
 			drawGameStateL4(g);
 			if (!Constants.isOnPause) {
 				g.drawString(formatMsg(g, Constants.COLLECT_ALL_THE_GOLD), Constants.BUNKER_X,
@@ -312,7 +313,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 			}
 		}
 
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()) {
 			drawGameStateL5(g);
 			if (!Constants.isOnPause) {
 				g.drawString(formatMsg(g, Constants.KILL_THE_EVIL_HEAD), Constants.BUNKER_X,
@@ -323,50 +324,50 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void handleLifeEvilHead(Graphics g) {
 
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.getLifeBunker() >= 50
-				&& UpdateObjects.getLifeEvilHead() < 10) {
+		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && LivesAndCounts.getLifeBunker() >= 50
+				&& LivesAndCounts.getLifeEvilHead() < 10) {
 			g.drawString("Health: 100%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 10 && UpdateObjects.getLifeEvilHead() < 20) {
+		if (LivesAndCounts.getLifeEvilHead() >= 10 && LivesAndCounts.getLifeEvilHead() < 20) {
 			g.drawString("Health: 80%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 20 && UpdateObjects.getLifeEvilHead() < 30) {
+		if (LivesAndCounts.getLifeEvilHead() >= 20 && LivesAndCounts.getLifeEvilHead() < 30) {
 			g.drawString("Health: 60%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 30 && UpdateObjects.getLifeEvilHead() < 35) {
+		if (LivesAndCounts.getLifeEvilHead() >= 30 && LivesAndCounts.getLifeEvilHead() < 35) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 35) {
+		if (LivesAndCounts.getLifeEvilHead() >= 35) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 30 && UpdateObjects.getLifeEvilHead() < 40) {
+		if (LivesAndCounts.getLifeEvilHead() >= 30 && LivesAndCounts.getLifeEvilHead() < 40) {
 			g.drawString("Health: 40%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 40 && UpdateObjects.getLifeEvilHead() < 45) {
+		if (LivesAndCounts.getLifeEvilHead() >= 40 && LivesAndCounts.getLifeEvilHead() < 45) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 45) {
+		if (LivesAndCounts.getLifeEvilHead() >= 45) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (UpdateObjects.getLifeEvilHead() >= 40 && UpdateObjects.getLifeEvilHead() < 50) {
+		if (LivesAndCounts.getLifeEvilHead() >= 40 && LivesAndCounts.getLifeEvilHead() < 50) {
 			g.drawString("Health: 20%", EvilHead.evilHead.x, EvilHead.evilHead.y);
 		}
 
-		if (UpdateObjects.getLifeEvilHead() == 50) {
+		if (LivesAndCounts.getLifeEvilHead() == 50) {
 			ActionPerformer.setIngame(false);
 		}
 	}
 
 	private void evilHeadBehaviour() {
-		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && UpdateObjects.getLifeBunker() >= 50) {
+		if (Dragon.dragons.isEmpty() && Gold.goldstack.isEmpty() && LivesAndCounts.getLifeBunker() >= 50) {
 			if (EvilHead.evilHead.x - PlayerShip.playerShip.x > 810) {
 				PlayerShip.playerShip.shakeShip();
 				Crosshair.crosshair.shakeCrosshair();
@@ -438,34 +439,34 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 	private void drawLifePlayerShip(Graphics g) {
 
-		if (UpdateObjects.getLifePlayerShip() > 0 && PlayerShip.playerShip != null) {
+		if (LivesAndCounts.getLifePlayerShip() > 0 && PlayerShip.playerShip != null) {
 			PlayerShip.playerShip.renderShip(g);
 		} else {
 			ActionPerformer.setIngame(false);
 		}
 
-		if (UpdateObjects.getLifePlayerShip() > 4) {
+		if (LivesAndCounts.getLifePlayerShip() > 4) {
 			g.drawString("GODMODE", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			PlayerShip.playerShip.godMode();
 		}
 
-		if (UpdateObjects.getLifePlayerShip() == 4) {
+		if (LivesAndCounts.getLifePlayerShip() == 4) {
 			g.drawString("Health: 100%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 		}
 
-		if (UpdateObjects.getLifePlayerShip() == 3) {
+		if (LivesAndCounts.getLifePlayerShip() == 3) {
 			g.drawString("Health: 75%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
 			UpdateObjects.updateExplosions();
 		}
 
-		if (UpdateObjects.getLifePlayerShip() == 2) {
+		if (LivesAndCounts.getLifePlayerShip() == 2) {
 			g.drawString("Health: 50%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
 			UpdateObjects.updateExplosions();
 		}
 
-		if (UpdateObjects.getLifePlayerShip() == 1) {
+		if (LivesAndCounts.getLifePlayerShip() == 1) {
 			g.drawString("Health: 25%", PlayerShip.playerShip.x, PlayerShip.playerShip.y);
 			drawExplosion(g);
 			UpdateObjects.updateExplosions();
@@ -490,127 +491,71 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	}
 
 	private void drawLifeBunker(Graphics g) {
-		if (UpdateObjects.getLifeBunker() < 10 && Gold.goldstack.size() > 0) {
+		if (LivesAndCounts.getLifeBunker() < 10 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 100%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 10 && UpdateObjects.getLifeBunker() < 20 && Gold.goldstack.size() > 0) {
+		if (LivesAndCounts.getLifeBunker() >= 10 && LivesAndCounts.getLifeBunker() < 20 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 80%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 20 && UpdateObjects.getLifeBunker() < 30 && Gold.goldstack.size() > 0) {
+		if (LivesAndCounts.getLifeBunker() >= 20 && LivesAndCounts.getLifeBunker() < 30 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 60%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 30 && UpdateObjects.getLifeBunker() < 35) {
+		if (LivesAndCounts.getLifeBunker() >= 30 && LivesAndCounts.getLifeBunker() < 35) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 35) {
+		if (LivesAndCounts.getLifeBunker() >= 35) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 30 && UpdateObjects.getLifeBunker() < 40 && Gold.goldstack.size() > 0) {
+		if (LivesAndCounts.getLifeBunker() >= 30 && LivesAndCounts.getLifeBunker() < 40 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 40%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 40 && UpdateObjects.getLifeBunker() < 45) {
+		if (LivesAndCounts.getLifeBunker() >= 40 && LivesAndCounts.getLifeBunker() < 45) {
 			LoadSounds.TAUNT.loop();
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 45) {
+		if (LivesAndCounts.getLifeBunker() >= 45) {
 			LoadSounds.TAUNT.stop();
 		}
 
-		if (UpdateObjects.getLifeBunker() >= 40 && UpdateObjects.getLifeBunker() < 50 && Gold.goldstack.size() > 0) {
+		if (LivesAndCounts.getLifeBunker() >= 40 && LivesAndCounts.getLifeBunker() < 50 && Gold.goldstack.size() > 0) {
 			g.drawString("Health: 20%", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		}
 
 	}
 
 	private void drawObjects(Graphics g) {
+		drawMissiles(g);
+		drawRockets(g);
+		drawPlasmaBalls(g);
+		drawCanonBalls(g);
+		drawAlienCanons(g);
+		drawBunkerBulletsLeft(g);
+		drawBunkerBulletsRight(g);
+		drawAliens(g);
+		drawHealthPacks(g);
+		drawDragons(g);
+		drawAngels(g);
+		drawGold(g);
+	}
 
-		final List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles();
-
-		for (final ShipMissile m : missiles) {
-			if (m.isVisible()) {
-				g.drawImage(m.getImage(), m.getX(), m.getY(), this);
-			}
-		}
-
-		final List<ShipRocket> rs = PlayerShip.playerShip.getRockets();
-
-		for (final ShipRocket r : rs) {
-			if (r.isVisible()) {
-				g.drawImage(r.getImage(), r.getX(), r.getY(), this);
-			}
-		}
-
-		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
-
-		for (final PlasmaBall n : plasmaBalls) {
-			if (n.isVisible() && UpdateObjects.getLifeBunker() >= 50) {
-				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
-			}
-		}
-
-		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
-
-		for (final CanonBall n : canons) {
-			if (n.isVisible() && UpdateObjects.getLifeBunker() >= 50) {
-				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
-			}
-		}
-
-		final List<CanonBall> alienCanons = CanonBall.canonBalls;
-
-		for (final CanonBall n : alienCanons) {
-			if (n.isVisible() && !Alien.aliens.isEmpty()) {
-				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
-			}
-		}
-
-		BunkerBullet.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
-
-		for (final BunkerBullet n : BunkerBullet.bulletsLeft) {
-			if (n.isVisible()) {
-				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
-			}
-		}
-
-		BunkerBullet.bulletsRight = Bunker.bunkerObj.getBulletsRight();
-
-		for (final BunkerBullet n : BunkerBullet.bulletsRight) {
-			if (n.isVisible()) {
-				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
-			}
-		}
-
-		for (final Alien alien : Alien.aliens) {
-			if (alien.isVisible()) {
-				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
-			} else {
-				HealthPack.healthpacks.add(new HealthPack(alien.getX(), alien.getY()));
-			}
-		}
-
-		if (!Alien.aliens.isEmpty()) {
-			for (HealthPack hp : HealthPack.healthpacks) {
-				if (hp.getY() >= Constants.B_HEIGHT) {
-					hp.setVisible(false);
+	private void drawGold(Graphics g) {
+		if (LivesAndCounts.getLifeBunker() >= 50) {
+			for (final Gold gold : Gold.goldstack) {
+				if (gold.isVisible()) {
+					g.drawImage(gold.getImage(), gold.getX(), gold.getY(), this);
 				}
-
-				g.drawImage(hp.getImage(), hp.getX(), hp.getY(), this);
 			}
 		}
+	}
 
-		for (final Dragon dragon : Dragon.dragons) {
-			if (dragon.isVisible()) {
-				g.drawImage(dragon.getImage(), dragon.getX(), dragon.getY(), this);
-			}
-		}
-
+	private void drawAngels(Graphics g) {
 		for (Angel angel : Angel.angels) {
 			if (angel.getY() <= 0) {
 				angel.setVisible(false);
@@ -618,20 +563,104 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 
 			g.drawImage(angel.getImage(), angel.getX(), angel.getY(), this);
 		}
+	}
 
-		if (UpdateObjects.getLifeBunker() >= 50) {
-			for (final Gold gold : Gold.goldstack) {
-				if (gold.isVisible()) {
-					g.drawImage(gold.getImage(), gold.getX(), gold.getY(), this);
-				}
+	private void drawDragons(Graphics g) {
+		for (final Dragon dragon : Dragon.dragons) {
+			if (dragon.isVisible()) {
+				g.drawImage(dragon.getImage(), dragon.getX(), dragon.getY(), this);
 			}
 		}
+	}
 
-		if (Dragon.dragons.isEmpty() && (UpdateObjects.getLifeBunker() < 50 || Gold.goldstack.isEmpty())) {
-			for (final HealthPack health : HealthPack.healthpacks) {
-				if (health.isVisible()) {
-					g.drawImage(health.getImage(), health.getX(), health.getY(), this);
-				}
+	private void drawHealthPacks(Graphics g) {
+		for (HealthPack hp : HealthPack.healthpacks) {
+			if (hp.getY() >= Constants.B_HEIGHT) {
+				hp.setVisible(false);
+			}
+
+			if (!Alien.aliens.isEmpty() || Gold.goldstack.isEmpty()) {
+				g.drawImage(hp.getImage(), hp.getX(), hp.getY(), this);
+			}
+		}
+	}
+
+	private void drawAliens(Graphics g) {
+		for (final Alien alien : Alien.aliens) {
+			if (alien.isVisible()) {
+				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
+			} else {
+				HealthPack.healthpacks.add(new HealthPack(alien.getX(), alien.getY()));
+			}
+		}
+	}
+
+	private void drawBunkerBulletsRight(Graphics g) {
+		BunkerBullet.bulletsRight = Bunker.bunkerObj.getBulletsRight();
+
+		for (final BunkerBullet n : BunkerBullet.bulletsRight) {
+			if (n.isVisible()) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+	}
+
+	private void drawBunkerBulletsLeft(Graphics g) {
+		BunkerBullet.bulletsLeft = Bunker.bunkerObj.getBulletsLeft();
+
+		for (final BunkerBullet n : BunkerBullet.bulletsLeft) {
+			if (n.isVisible()) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+	}
+
+	private void drawAlienCanons(Graphics g) {
+		final List<CanonBall> alienCanons = CanonBall.canonBalls;
+
+		for (final CanonBall n : alienCanons) {
+			if (n.isVisible() && !Alien.aliens.isEmpty()) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+	}
+
+	private void drawCanonBalls(Graphics g) {
+		final List<CanonBall> canons = EvilHead.evilHead.getCanons();
+
+		for (final CanonBall n : canons) {
+			if (n.isVisible() && LivesAndCounts.getLifeBunker() >= 50) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+	}
+
+	private void drawPlasmaBalls(Graphics g) {
+		final List<PlasmaBall> plasmaBalls = EvilHead.evilHead.getEvilPlasmaBalls();
+
+		for (final PlasmaBall n : plasmaBalls) {
+			if (n.isVisible() && LivesAndCounts.getLifeBunker() >= 50) {
+				g.drawImage(n.getImage(), n.getX(), n.getY(), this);
+			}
+		}
+	}
+
+	private void drawRockets(Graphics g) {
+		final List<ShipRocket> rs = PlayerShip.playerShip.getRockets();
+
+		for (final ShipRocket r : rs) {
+			if (r.isVisible()) {
+				g.drawImage(r.getImage(), r.getX(), r.getY(), this);
+			}
+		}
+	}
+
+	private void drawMissiles(Graphics g) {
+		final List<ShipMissile> missiles = PlayerShip.playerShip.getMissiles();
+
+		for (final ShipMissile m : missiles) {
+			if (m.isVisible()) {
+				g.drawImage(m.getImage(), m.getX(), m.getY(), this);
 			}
 		}
 	}
@@ -701,7 +730,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		Drawable.setFontStyle(g);
 		g.drawString("Monsters left: " + 0, 5, 20);
 		g.drawString("Health: 0%", 200, 20);
-		if (UpdateObjects.getLifeBunker() >= 50) {
+		if (LivesAndCounts.getLifeBunker() >= 50) {
 			g.drawString("Gold: " + 0, 340, 20);
 		}
 	}

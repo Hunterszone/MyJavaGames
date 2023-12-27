@@ -8,6 +8,7 @@ import enemy.Dragon;
 import enemy.PlayerShip;
 import items.Gold;
 import util.ActionPerformer;
+import util.LivesAndCounts;
 import util.LoadSounds;
 
 public class XboxControls {
@@ -73,16 +74,16 @@ public class XboxControls {
 				System.out.println("\"dpadDown\" on \"" + currState.controllerType + "\" is pressed");
 			}
 			if (currState.a) {
-				if (ActionPerformer.isIngame() == true
-						&& (ActionPerformer.getTimerEasy().isRunning() == true || ActionPerformer.getTimerMedium().isRunning() == true
-								|| ActionPerformer.getTimerHard().isRunning() == true)
-						&& (Alien.aliens.size() > 0 || (UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
+				if (ActionPerformer.isIngame()
+						&& (ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning() == true
+								|| ActionPerformer.getTimerHard().isRunning())
+						&& (Alien.aliens.size() > 0 || (LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
 					PlayerShip.playerShip.loadMissiles();
 				}
-				if (ActionPerformer.isIngame() == true
-						&& (ActionPerformer.getTimerEasy().isRunning() == true || ActionPerformer.getTimerMedium().isRunning() == true
-								|| ActionPerformer.getTimerHard().isRunning() == true)
-						&& (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0 || UpdateObjects.getLifeBunker() < 50
+				if (ActionPerformer.isIngame()
+						&& (ActionPerformer.getTimerEasy().isRunning() || ActionPerformer.getTimerMedium().isRunning() == true
+								|| ActionPerformer.getTimerHard().isRunning())
+						&& (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0 || LivesAndCounts.getLifeBunker() < 50
 								|| Gold.goldstack.isEmpty()))) {
 					PlayerShip.playerShip.loadRockets();
 				}

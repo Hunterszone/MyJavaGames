@@ -12,11 +12,12 @@ import animation.TheEndAnimationDown;
 import animation.TheEndAnimationUp;
 import enemy.Alien;
 import enemy.Dragon;
+import util.LivesAndCounts;
 
 public class DrawAnimations {
 	
 	static void drawAstronaut(Graphics g, DrawScene drawScene) {
-		if (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) {
+		if (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) {
 			final AffineTransform backup = ((Graphics2D) g).getTransform();
 			AffineTransform a = AffineTransform.getRotateInstance(360, 400, 200);
 			a.rotate(Math.toRadians(Math.ceil(Math.random())), (double) AstronautAnimation.ASTRONAUT.getX() / 2,
@@ -61,7 +62,7 @@ public class DrawAnimations {
 	}
 
 	static void drawElonsUp(Graphics g, DrawScene drawScene) {
-		if (UpdateObjects.getLifeEvilHead() == 50) {
+		if (LivesAndCounts.getLifeEvilHead() == 50) {
 			for (final TheEndAnimationUp elonAnimUp : TheEndAnimationUp.END_ANIMATION_UP) {
 				g.drawImage(elonAnimUp.getImage(), elonAnimUp.getX(), elonAnimUp.getY(), drawScene);
 				Toolkit.getDefaultToolkit().sync();
@@ -71,7 +72,7 @@ public class DrawAnimations {
 	}
 
 	static void drawElonsDown(Graphics g, DrawScene drawScene) {
-		if (UpdateObjects.getLifeEvilHead() == 50) {
+		if (LivesAndCounts.getLifeEvilHead() == 50) {
 			for (final TheEndAnimationDown elonAnimDown : TheEndAnimationDown.END_ANIMATION_DOWN) {
 				g.drawImage(elonAnimDown.getImage(), elonAnimDown.getX(), elonAnimDown.getY(), drawScene);
 				Toolkit.getDefaultToolkit().sync();

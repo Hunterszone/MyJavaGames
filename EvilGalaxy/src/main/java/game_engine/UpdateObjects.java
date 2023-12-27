@@ -18,17 +18,10 @@ import items.PlasmaBall;
 import items.ShipMissile;
 import items.ShipRocket;
 import util.ActionPerformer;
-import util.Flags;
+import util.LivesAndCounts;
 import util.LoadSounds;
 
 public class UpdateObjects {
-
-	private static int lifeEvilHead = 3;
-	private static int lifePlayerShip = 3;
-	private static int lifeBunker = 3;
-	private static int goldCount = 12;
-	private static int alienKilled = 0;
-	private static int dragonKilled = 0;
 
 	static void updateDragons() {
 		if (Alien.aliens.isEmpty()) {
@@ -114,13 +107,13 @@ public class UpdateObjects {
 			if (Dragon.dragons.isEmpty() && ActionPerformer.getTimerHard().isRunning()) {
 				plasmaBall.movePlasmaBallDiagUp();
 				plasmaBall.movePlasmaBallDiagDown();
-				if (Gold.goldstack.isEmpty() && getLifePlayerShip() > 0) {
+				if (Gold.goldstack.isEmpty() && LivesAndCounts.getLifePlayerShip() > 0) {
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
 						plasmaBall.movePlasmaBallRight();
 					}
 				}
-				if (Gold.goldstack.size() > 0 && getLifePlayerShip() <= 3) {
+				if (Gold.goldstack.size() > 0 && LivesAndCounts.getLifePlayerShip() <= 3) {
 					if (plasmaBall.y > 768) {
 						plasmaBall.y = 768;
 						plasmaBall.movePlasmaBallRight();
@@ -195,16 +188,6 @@ public class UpdateObjects {
 	}
 
 	static void updateHealth() {
-		if (HealthPack.healthpacks.size() < 5 && Alien.aliens.isEmpty() && Dragon.dragons.isEmpty()
-				&& getLifePlayerShip() <= 3 && !Flags.hpIsEmpty) {
-			HealthPack.healthpacks
-					.add(new HealthPack((int) Math.ceil(Math.random() * 1200), (int) Math.floor(Math.random() * 1200)));
-		}
-
-		if (HealthPack.healthpacks.isEmpty()) {
-			Flags.hpIsEmpty = true;
-		}
-
 		HealthPack.healthpacks.stream().filter(healthPack -> healthPack.isVisible())
 				.forEach(healthPack -> healthPack.move());
 
@@ -219,53 +202,5 @@ public class UpdateObjects {
 		});
 
 		Angel.angels.removeIf(angel -> angel != null && !angel.isVisible());
-	}
-
-	public static int getDragonKilled() {
-		return dragonKilled;
-	}
-
-	public static void setDragonKilled(int dragonKilled) {
-		UpdateObjects.dragonKilled = dragonKilled;
-	}
-
-	public static int getAlienKilled() {
-		return alienKilled;
-	}
-
-	public static void setAlienKilled(int alienKilled) {
-		UpdateObjects.alienKilled = alienKilled;
-	}
-
-	public static int getLifeEvilHead() {
-		return lifeEvilHead;
-	}
-
-	public static void setLifeEvilHead(int lifeEvilHead) {
-		UpdateObjects.lifeEvilHead = lifeEvilHead;
-	}
-
-	public static int getLifeBunker() {
-		return lifeBunker;
-	}
-
-	public static void setLifeBunker(int lifeBunker) {
-		UpdateObjects.lifeBunker = lifeBunker;
-	}
-
-	public static int getGoldCount() {
-		return goldCount;
-	}
-
-	public static void setGoldCount(int goldCount) {
-		UpdateObjects.goldCount = goldCount;
-	}
-
-	public static int getLifePlayerShip() {
-		return lifePlayerShip;
-	}
-
-	public static void setLifePlayerShip(int lifePlayerShip) {
-		UpdateObjects.lifePlayerShip = lifePlayerShip;
 	}
 }

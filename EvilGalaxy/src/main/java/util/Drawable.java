@@ -1,16 +1,16 @@
 package util;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+@FunctionalInterface
 public interface Drawable {
 
-	public void draw(Graphics g);
+	void draw(Graphics g);
 	
-	public static void setFontStyle(Graphics g) {
-		final Font small = new Font(Constants.FONT_PAPYRUS, Font.BOLD, 22);
-		g.setColor(Color.ORANGE);
+	static void setFontStyle(Graphics g) {
+		final Font small = new Font(Constants.FONT_PAPYRUS, Font.BOLD, Constants.FONT_SIZE);
+		g.setColor(Constants.FONT_COLOR);
 		g.setFont(small);
 	}
 }

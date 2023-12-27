@@ -22,7 +22,6 @@ import chat_engine.ChatRoom;
 import enums.SoundEffect;
 import util.ActionPerformer;
 import game_engine.LoadGame;
-import game_engine.UpdateObjects;
 import launcher.Launcher;
 import main.Main;
 import marytts.exceptions.MaryConfigurationException;
@@ -35,6 +34,7 @@ import payment.PaymentScreen;
 import sound_engine.PlayWave1st;
 import util.Constants;
 import util.Flags;
+import util.LivesAndCounts;
 import util.LoadSounds;
 import util.TextToSpeech;
 
@@ -60,9 +60,9 @@ public class MouseInputHandler extends MouseInputAdapter implements MouseListene
 					LoadSounds.MENU_MUSIC.stop();
 					playWave1st.start();
 					Flags.isMenuOn = false;
-					UpdateObjects.setLifePlayerShip(4);
-					UpdateObjects.setLifeEvilHead(3);
-					UpdateObjects.setLifeBunker(3);
+					LivesAndCounts.setLifePlayerShip(4);
+					LivesAndCounts.setLifeEvilHead(3);
+					LivesAndCounts.setLifeBunker(3);
 					ActionPerformer.setIngame(true);
 					if (main == null) {
 						DisplayCanvas.frame.remove(DisplayCanvas.canvas);

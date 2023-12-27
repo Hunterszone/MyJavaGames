@@ -24,6 +24,7 @@ import marytts.exceptions.MaryConfigurationException;
 import menu_engine.DisplayCanvas;
 import menu_engine.MouseInputHandler;
 import util.Flags;
+import util.LivesAndCounts;
 import util.ActionPerformer;
 import util.LoadSounds;
 import util.TextToSpeech;
@@ -157,7 +158,7 @@ public class LoadGame {
 
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
-			UpdateObjects.setLifeBunker(50);
+			LivesAndCounts.setLifeBunker(50);
 			TextToSpeech.voiceInterruptor = true;
 			savedOnL4 = false;
 		
@@ -192,7 +193,7 @@ public class LoadGame {
 
 			Alien.aliens.clear();
 			Dragon.dragons = new ArrayList<>();
-			for (int i = 0; i < 30 - UpdateObjects.getDragonKilled(); i++) {
+			for (int i = 0; i < 30 - LivesAndCounts.getDragonKilled(); i++) {
 				final Dragon born = new Dragon((int) Math.ceil(Math.random() * 4700),
 						(int) Math.ceil(Math.random() * 800));
 				Dragon.dragons.add(born);
@@ -215,7 +216,7 @@ public class LoadGame {
 			onLoadPerDifficulty();
 
 			Alien.aliens = new ArrayList<>();
-			for (int i = 0; i < 40 - UpdateObjects.getAlienKilled(); i++) {
+			for (int i = 0; i < 40 - LivesAndCounts.getAlienKilled(); i++) {
 				final Alien born = new Alien((int) Math.ceil(Math.random() * 7000),
 						(int) Math.ceil(Math.random() * 800));
 				Alien.aliens.add(born);

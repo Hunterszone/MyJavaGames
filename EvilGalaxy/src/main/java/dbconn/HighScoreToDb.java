@@ -11,6 +11,7 @@ import util.KilledEnemies;
 
 public class HighScoreToDb {
 
+	private static final int LOGIN_TIMEOUT = 2;
 	// JDBC driver name and database URL
 	private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // for H2 is "org.h2.Driver"
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/evilgalaxy"; // for H2 is "jdbc:h2:file:" +
@@ -74,7 +75,7 @@ public class HighScoreToDb {
 	private static void openConnection() {
 		System.out.println("Connecting to a selected database...");
 		try {
-			DriverManager.setLoginTimeout(2);
+			DriverManager.setLoginTimeout(LOGIN_TIMEOUT);
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("Connected database successfully...");
 		} catch (SQLException se) {

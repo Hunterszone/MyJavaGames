@@ -7,13 +7,13 @@ import java.util.List;
 import enums.Sprite;
 import enums.SoundEffect;
 import game_engine.SpritePattern;
-import game_engine.UpdateObjects;
 import items.CanonBall;
 import items.PlasmaBall;
 import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.LivesAndCounts;
 
 public class EvilHead extends SpritePattern {
 
@@ -56,12 +56,12 @@ public class EvilHead extends SpritePattern {
 
 	public void loadPlasmaBall() {
 		PlasmaBall.plasmaBalls.add(new PlasmaBall(x + width, y + height / 2));
-		if (UpdateObjects.getLifeBunker() >= 50) new PlayWave1st(SoundEffect.BOING_2.getSound()).start();
+		if (LivesAndCounts.getLifeBunker() >= 50) new PlayWave1st(SoundEffect.BOING_2.getSound()).start();
 	}
 
 	public void loadCanon() {
 		CanonBall.canonBalls.add(new CanonBall(x + width, y + height / 2));
-		if (UpdateObjects.getLifeBunker() >= 50) new PlayWave1st(SoundEffect.BOING.getSound()).start();
+		if (LivesAndCounts.getLifeBunker() >= 50) new PlayWave1st(SoundEffect.BOING.getSound()).start();
 	}
 
 	public void renderEvilHead(Graphics g) {

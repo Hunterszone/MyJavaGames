@@ -17,6 +17,7 @@ import items.Gold;
 import util.ActionPerformer;
 import util.Constants;
 import util.Drawable;
+import util.LivesAndCounts;
 
 public class DrawLabels {
 	
@@ -117,7 +118,7 @@ public class DrawLabels {
 
 		g.drawString(Constants.LEVEL + 4, 5, 20);
 		g.drawImage(GoldIcon.goldIcon.getImage(), 100, 5, null);
-		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - UpdateObjects.getGoldCount())) + "/12", 140,
+		g.drawString(Constants.COLON_WITH_SPACE + (-(Gold.goldstack.size() - LivesAndCounts.getGoldCount())) + "/12", 140,
 				20);
 		g.drawImage(LaserIcon.laserIcon.getImage(), 225, 5, null);
 		g.drawString(Constants.LOCKED, 265, 20);

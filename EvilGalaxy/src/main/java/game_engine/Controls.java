@@ -24,6 +24,7 @@ import items.SaveSign;
 import items.VolBtn;
 import menu_engine.MouseInputHandler;
 import util.Flags;
+import util.LivesAndCounts;
 import util.ActionPerformer;
 import util.Constants;
 import util.LoadSounds;
@@ -107,7 +108,7 @@ public class Controls implements KeyListener {
 				&& (ActionPerformer.getTimerEasy().isRunning() == true || ActionPerformer.getTimerMedium().isRunning() == true
 						|| ActionPerformer.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.isEmpty() && (Dragon.dragons.size() > 0
-						|| UpdateObjects.getLifeBunker() < 50 || Gold.goldstack.isEmpty()))) {
+						|| LivesAndCounts.getLifeBunker() < 50 || Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerShip.loadRockets();
 		}
 
@@ -115,7 +116,7 @@ public class Controls implements KeyListener {
 				&& (ActionPerformer.getTimerEasy().isRunning() == true || ActionPerformer.getTimerMedium().isRunning() == true
 						|| ActionPerformer.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_CONTROL && (Alien.aliens.size() > 0 || (Dragon.dragons.isEmpty()
-						&& UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
+						&& LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerShip.gunLocked(e);
 		}
 
@@ -123,7 +124,7 @@ public class Controls implements KeyListener {
 				&& (ActionPerformer.getTimerEasy().isRunning() == true || ActionPerformer.getTimerMedium().isRunning() == true
 						|| ActionPerformer.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
-				&& (Alien.aliens.size() > 0 || (UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
+				&& (Alien.aliens.size() > 0 || (LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.isEmpty()))) {
 			PlayerShip.playerShip.loadMissiles();
 		}
 
@@ -132,8 +133,8 @@ public class Controls implements KeyListener {
 						|| ActionPerformer.getTimerHard().isRunning() == true)
 				&& key == KeyEvent.VK_SPACE
 				&& ((Alien.aliens.isEmpty() && Dragon.dragons.size() > 0)
-						|| (Dragon.dragons.isEmpty() && UpdateObjects.getLifeBunker() < 50) || (Dragon.dragons.isEmpty()
-								&& UpdateObjects.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
+						|| (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) || (Dragon.dragons.isEmpty()
+								&& LivesAndCounts.getLifeBunker() >= 50 && Gold.goldstack.size() > 0))) {
 			PlayerShip.playerShip.gunLocked(e);
 		}
 
@@ -183,15 +184,13 @@ public class Controls implements KeyListener {
 			TextToSpeech.voiceInterruptor = true;
 			Alien.aliens.clear();
 			Dragon.dragons.clear();
-			UpdateObjects.setLifeBunker(50);
+			LivesAndCounts.setLifeBunker(50);
 			Constants.isOnPause = true;
 		}
 
 		if (key == KeyEvent.VK_R) {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
-			Flags.isMapVisible = false;
-			Flags.isClockVisible = false;
 			Flags.isEPressed = true;
 			if (!ActionPerformer.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
@@ -209,8 +208,6 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_E) {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
-			Flags.isMapVisible = false;
-			Flags.isClockVisible = false;
 			Flags.isEPressed = true;
 			ActionPerformer.getTimerHard().stop();
 			ActionPerformer.getTimerMedium().stop();
@@ -236,8 +233,6 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_M) {
 			Flags.isEPressed = false;
 			Flags.isHPressed = false;
-			Flags.isMapVisible = false;
-			Flags.isClockVisible = false;
 			Flags.isMPressed = true;
 			ActionPerformer.getTimerEasy().stop();
 			ActionPerformer.getTimerHard().stop();
@@ -263,8 +258,6 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_H) {
 			Flags.isEPressed = false;
 			Flags.isMPressed = false;
-			Flags.isMapVisible = false;
-			Flags.isClockVisible = false;
 			Flags.isHPressed = true;
 			ActionPerformer.getTimerEasy().stop();
 			ActionPerformer.getTimerMedium().stop();
@@ -314,12 +307,12 @@ public class Controls implements KeyListener {
 		if (key == KeyEvent.VK_G) {
 			if (!Flags.isGod) {
 				Flags.isGod = true;
-				UpdateObjects.setLifePlayerShip(999);
+				LivesAndCounts.setLifePlayerShip(999);
 				TextToSpeech.playVoice("GODLIKE!");
 				return;
 			} else {
 				Flags.isGod = false;
-				UpdateObjects.setLifePlayerShip(4);
+				LivesAndCounts.setLifePlayerShip(4);
 				TextToSpeech.playVoice("Healthy!");
 				return;
 			}
