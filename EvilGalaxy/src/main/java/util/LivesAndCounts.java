@@ -57,6 +57,13 @@ public class LivesAndCounts {
 		LivesAndCounts.lifePlayerShip = lifePlayerShip;
 	}
 	
+	// Method to increase the player ship life
+    public static void increasePlayerShipLife(int amount) {
+        int currentLife = getLifePlayerShip();
+        int newLife = Math.max(Constants.MIN_LIFE_PLAYER_SHIP, currentLife + amount);
+        setLifePlayerShip(newLife);
+    }
+	
 	// Method to decrease the player ship life
     public static void decreasePlayerShipLife(int amount) {
         int currentLife = getLifePlayerShip();

@@ -158,10 +158,7 @@ public abstract class Collisions {
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
 			LivesAndCounts.decreasePlayerShipLife(1);
 			LivesAndCounts.increaseAlienKilledCount(1);
-			Flags.killedByBunker = false;
-			Flags.killedByDragon = false;
-			Flags.killedByEvilHead = false;
-			Flags.killedByAlien = true;
+			checkKilledByAlien();
 		}
 	}
 
@@ -178,10 +175,7 @@ public abstract class Collisions {
 				Explosion.explosions.add(new Explosion(dragon.getX(), dragon.getY(), 30, 30));
 				new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 //				PlayerShip.playerOne.upsideDown();
-				Flags.killedByBunker = false;
-				Flags.killedByEvilHead = false;
-				Flags.killedByAlien = false;
-				Flags.killedByDragon = true;
+				checkKilledByDragon();
 				it.remove();
 			}
 		}
@@ -194,10 +188,7 @@ public abstract class Collisions {
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			new PlayWave1st(SoundEffect.EXPLOSION.getSound()).start();
 			LivesAndCounts.setLifePlayerShip(0);
-			Flags.killedByAlien = false;
-			Flags.killedByDragon = false;
-			Flags.killedByEvilHead = false;
-			Flags.killedByBunker = true;
+			checkKilledByBunker();
 		}
 	}
 
@@ -218,7 +209,7 @@ public abstract class Collisions {
 			health.setVisible(false);
 			LoadSounds.GOT_HP.play();
 			if (LivesAndCounts.getLifePlayerShip() <= 3) {
-				LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() + 1);
+				LivesAndCounts.increasePlayerShipLife(1);
 			}
 		}
 	}
@@ -244,10 +235,7 @@ public abstract class Collisions {
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			LivesAndCounts.setLifePlayerShip(0);
-			Flags.killedByBunker = false;
-			Flags.killedByAlien = false;
-			Flags.killedByDragon = false;
-			Flags.killedByEvilHead = true;
+			checkKilledByEvilHead();
 		}
 	}
 
@@ -315,24 +303,19 @@ public abstract class Collisions {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50
 				&& plasmaBallUnit.intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() - 1);
+			LivesAndCounts.decreasePlayerShipLife(1);
 			plasmaBall.setVisible(false);
 			Explosion.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
-			if (LivesAndCounts.getLifePlayerShip() == 0) {
-				Flags.killedByBunker = false;
-				Flags.killedByDragon = false;
-				Flags.killedByAlien = false;
-				Flags.killedByEvilHead = true;
-			}
+			checkKilledByEvilHead();
 		}
 	}
 
 	private static void bulletIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit, Rectangle ship) {
 		if (bulletUnit.intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() - 1);
+			LivesAndCounts.decreasePlayerShipLife(1);
 			bullet.setVisible(false);
 			Explosion.explosions.add(new Explosion(ship.getX(), ship.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
@@ -340,19 +323,14 @@ public abstract class Collisions {
 //			PlayerShip.playerOne.upsideDown();
 			PlayerShip.playerShip.x = -PlayerShip.playerShip.getX();
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
-			if (LivesAndCounts.getLifePlayerShip() == 0) {
-				Flags.killedByDragon = false;
-				Flags.killedByAlien = false;
-				Flags.killedByEvilHead = false;
-				Flags.killedByBunker = true;
-			}
+			checkKilledByBunker();
 		}
 	}
 
 	private static void canonIntersectsShip(Rectangle myShip, CanonBall canon, Rectangle canonUnit) {
 		if ((!Alien.aliens.isEmpty() || LivesAndCounts.getLifeBunker() >= 50) && canonUnit.intersects(myShip)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			LivesAndCounts.setLifePlayerShip(LivesAndCounts.getLifePlayerShip() - 1);
+			LivesAndCounts.decreasePlayerShipLife(1);
 			canon.setVisible(false);
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.BURNED.getSound()).start();
@@ -361,17 +339,39 @@ public abstract class Collisions {
 			Crosshair.crosshair.x = -Crosshair.crosshair.getX();
 			if (LivesAndCounts.getLifePlayerShip() == 0) {
 				if (!Alien.aliens.isEmpty()) {
-					Flags.killedByDragon = false;
-					Flags.killedByBunker = false;
-					Flags.killedByEvilHead = false;
-					Flags.killedByAlien = true;
+					checkKilledByAlien();
 				} else {
-					Flags.killedByDragon = false;
-					Flags.killedByAlien = false;
-					Flags.killedByBunker = false;
-					Flags.killedByEvilHead = true;
+					checkKilledByEvilHead();
 				}
 			}
 		}
+	}
+	
+	private static void checkKilledByAlien() {
+		Flags.killedByBunker = false;
+		Flags.killedByDragon = false;
+		Flags.killedByEvilHead = false;
+		Flags.killedByAlien = true;
+	}
+	
+	private static void checkKilledByDragon() {
+		Flags.killedByBunker = false;
+		Flags.killedByEvilHead = false;
+		Flags.killedByAlien = false;
+		Flags.killedByDragon = true;
+	}
+	
+	private static void checkKilledByBunker() {
+		Flags.killedByAlien = false;
+		Flags.killedByDragon = false;
+		Flags.killedByEvilHead = false;
+		Flags.killedByBunker = true;
+	}
+	
+	private static void checkKilledByEvilHead() {
+		Flags.killedByBunker = false;
+		Flags.killedByAlien = false;
+		Flags.killedByDragon = false;
+		Flags.killedByEvilHead = true;
 	}
 }
