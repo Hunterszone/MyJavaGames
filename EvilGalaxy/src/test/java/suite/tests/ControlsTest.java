@@ -15,10 +15,10 @@ import game_engine.Controls;
 import game_engine.DrawScene;
 import util.ActionPerformer;
 import util.Constants;
-import game_engine.UpdateObjects;
 import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
 import util.Flags;
+import util.LivesAndCounts;
 
 public class ControlsTest {
 
@@ -98,7 +98,7 @@ public class ControlsTest {
 	@Test
 	public void testThatControlKeyIsPressedWhenOnL2OrL4() {
 		Alien.aliens = new ArrayList<Alien>();
-		UpdateObjects.setLifeBunker(40);
+		LivesAndCounts.setLifeBunker(40);
 		KeyEvent controlKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_CONTROL, '\u0011');
 		
@@ -112,7 +112,7 @@ public class ControlsTest {
 		Dragon.dragons = new ArrayList<Dragon>();
 		Alien.aliens = new ArrayList<Alien>();
 		Alien.aliens.add(new Alien(TestUtils.POS_X, TestUtils.POS_Y));
-		UpdateObjects.setLifeBunker(50);
+		LivesAndCounts.setLifeBunker(50);
 		KeyEvent controlKey = new KeyEvent(component, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
 				KeyEvent.VK_CONTROL, '\u0011');
 		

@@ -41,8 +41,7 @@ public abstract class Collisions {
 		final Rectangle ship = PlayerShip.playerShip.getBounds();
 
 		for (final BunkerBullet bullet : bullets) {
-			final Rectangle bulletUnit = bullet.getBounds();
-			bulletIntersectsShip(bullet, bulletUnit, ship);
+			bulletIntersectsShip(bullet, ship);
 		}
 	}
 
@@ -57,15 +56,15 @@ public abstract class Collisions {
 	}
 
 	public static void checkHealthCollision(final Rectangle myShip) {
-		HealthPack.healthpacks = HealthPack.healthpacks.stream().filter(hp -> hp != null).collect(Collectors.toList());
-
 		for (final HealthPack health : HealthPack.healthpacks) {
-			shipIntersectsHealth(myShip, health, health.getBounds());
+			shipIntersectsHealth(myShip, health);
 		}
 	}
 
 	public static void checkGoldCollision(final Rectangle myShip) {
-		shipIntersectsGold(myShip);
+		for (final Gold goldBar : Gold.goldstack) {
+			shipIntersectsGold(myShip, goldBar);
+		}
 	}
 
 	public static void checkAlienCollision(final Rectangle myShip) {
@@ -192,19 +191,15 @@ public abstract class Collisions {
 		}
 	}
 
-	private static void shipIntersectsGold(Rectangle myShip) {
-		for (Iterator<Gold> it = Gold.goldstack.iterator(); it.hasNext();) {
-			Gold gold = it.next();
-			if (myShip.intersects(gold.getBounds()) && LivesAndCounts.getLifeBunker() >= 50) {
-				gold.setVisible(false);
-				LoadSounds.GOT_GOLD.play();
-				it.remove();
-			}
+	private static void shipIntersectsGold(Rectangle myShip, Gold goldBar) {
+		if (myShip.intersects(goldBar.getBounds()) && LivesAndCounts.getLifeBunker() >= 50) {
+			goldBar.setVisible(false);
+			LoadSounds.GOT_GOLD.play();
 		}
 	}
 
-	private static void shipIntersectsHealth(Rectangle myShip, HealthPack health, Rectangle healthUnit) {
-		if (myShip.intersects(healthUnit) && (!Alien.aliens.isEmpty()
+	private static void shipIntersectsHealth(Rectangle myShip, HealthPack health) {
+		if (myShip.intersects(health.getBounds()) && (!Alien.aliens.isEmpty()
 				|| (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) || Gold.goldstack.isEmpty())) {
 			health.setVisible(false);
 			LoadSounds.GOT_HP.play();
@@ -312,8 +307,8 @@ public abstract class Collisions {
 		}
 	}
 
-	private static void bulletIntersectsShip(BunkerBullet bullet, Rectangle bulletUnit, Rectangle ship) {
-		if (bulletUnit.intersects(ship)) {
+	private static void bulletIntersectsShip(BunkerBullet bullet, Rectangle ship) {
+		if (bullet.getBounds().intersects(ship)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
 			LivesAndCounts.decreasePlayerShipLife(1);
 			bullet.setVisible(false);

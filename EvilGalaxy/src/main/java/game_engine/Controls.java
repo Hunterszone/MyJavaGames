@@ -192,6 +192,7 @@ public class Controls implements KeyListener {
 			Flags.isMPressed = false;
 			Flags.isHPressed = false;
 			Flags.isEPressed = true;
+			Constants.isOnPause = true;
 			if (!ActionPerformer.isIngame()) {
 				TextToSpeech.playVoice("Loading level 1...");
 				TextToSpeech.voiceInterruptor = true;
@@ -200,8 +201,6 @@ public class Controls implements KeyListener {
 				} catch (NoSuchAlgorithmException e1) {
 					e1.printStackTrace();
 				}
-			} else {
-				Constants.isOnPause = true;
 			}
 		}
 
