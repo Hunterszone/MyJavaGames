@@ -62,9 +62,7 @@ public abstract class Collisions {
 	}
 
 	public static void checkGoldCollision(final Rectangle myShip) {
-		for (final Gold goldBar : Gold.goldstack) {
-			shipIntersectsGold(myShip, goldBar);
-		}
+		shipIntersectsGold(myShip);
 	}
 
 	public static void checkAlienCollision(final Rectangle myShip) {
@@ -191,10 +189,15 @@ public abstract class Collisions {
 		}
 	}
 
-	private static void shipIntersectsGold(Rectangle myShip, Gold goldBar) {
-		if (myShip.intersects(goldBar.getBounds()) && LivesAndCounts.getLifeBunker() >= 50) {
-			goldBar.setVisible(false);
-			LoadSounds.GOT_GOLD.play();
+	private static void shipIntersectsGold(Rectangle myShip) {
+		for (Iterator<Gold> it = Gold.goldstack.iterator(); it.hasNext();) {
+			Gold gold = it.next();
+			gold.setVisible(true);
+			if (myShip.intersects(gold.getBounds()) && LivesAndCounts.getLifeBunker() >= 50) {
+				gold.setVisible(false);
+				LoadSounds.GOT_GOLD.play();
+				it.remove();
+			}
 		}
 	}
 
@@ -226,7 +229,6 @@ public abstract class Collisions {
 		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() >= 50
 				&& myShip.intersects(evilhead)) {
 //			FrameUtils.vibrate(MouseInputHandler.main);
-			HealthPack.healthpacks.add(new HealthPack((int) evilhead.getX(), (int) evilhead.getY()));
 			Explosion.explosions.add(new Explosion(myShip.getX(), myShip.getY(), 30, 30));
 			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
 			LivesAndCounts.setLifePlayerShip(0);

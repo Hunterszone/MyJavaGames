@@ -41,16 +41,16 @@ public class CollisionsTest {
 		Bunker.bunkerObj = new Bunker(x, y);
 		EvilHead.evilHead = new EvilHead(x, y);
 		Crosshair.crosshair = new Crosshair(x, y);
-		Alien.aliens = Collections.singletonList(new Alien(x, y));
-		Dragon.dragons = Collections.singletonList(new Dragon(x, y));
-		HealthPack.healthpacks = Collections.singletonList(new HealthPack(x, y));
-		Gold.goldstack = Collections.singletonList(new Gold(x, y));
-		CanonBall.canonBalls = Collections.singletonList(new CanonBall(x, y));
-		PlasmaBall.plasmaBalls = Collections.singletonList(new PlasmaBall(x, y));
-		ShipRocket.rockets = Collections.singletonList(new ShipRocket(x, y));
-		BunkerBullet.bulletsLeft = Collections.singletonList(new BunkerBullet(x, y));
-		BunkerBullet.bulletsRight = Collections.singletonList(new BunkerBullet(x, y));
-		ShipMissile.missiles = Collections.singletonList(new ShipMissile(x, y));
+		Alien.aliens = new ArrayList<>(Collections.singletonList(new Alien(x, y)));
+		Dragon.dragons = new ArrayList<>(Collections.singletonList(new Dragon(x, y)));
+		HealthPack.healthpacks = new ArrayList<>(Collections.singletonList(new HealthPack(x, y)));
+		Gold.goldstack = new ArrayList<>(Collections.singletonList(new Gold(x, y)));
+		CanonBall.canonBalls = new ArrayList<>(Collections.singletonList(new CanonBall(x, y)));
+		PlasmaBall.plasmaBalls = new ArrayList<>(Collections.singletonList(new PlasmaBall(x, y)));
+		ShipRocket.rockets = new ArrayList<>(Collections.singletonList(new ShipRocket(x, y)));
+		BunkerBullet.bulletsLeft = new ArrayList<>(Collections.singletonList(new BunkerBullet(x, y)));
+		BunkerBullet.bulletsRight = new ArrayList<>(Collections.singletonList(new BunkerBullet(x, y)));
+		ShipMissile.missiles = new ArrayList<>(Collections.singletonList(new ShipMissile(x, y)));
 		Explosion.explosions = new ArrayList<Explosion>();
 		Angel.angels = new ArrayList<Angel>();
 	}
@@ -76,8 +76,6 @@ public class CollisionsTest {
 	@Test
 	public void shipIntersectsDragon() {
 		Alien.aliens = new ArrayList<Alien>();
-		Dragon.dragons = new ArrayList<Dragon>();
-		
 		LivesAndCounts.setDragonKilled(0);
 
 		Collisions.checkDragonCollision(PlayerShip.playerShip.getBounds());

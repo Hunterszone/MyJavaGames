@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.text.DateFormat;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -486,7 +486,7 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 	private void drawDateTime(Graphics g) {
 		if (Flags.isClockVisible) {
 			Drawable.setFontStyle(g);
-			g.drawString("Date/Time: " + DateFormat.getDateTimeInstance().format(new Date()), 1010, 23);
+			g.drawString("Date/Time: " + Date.from(Instant.now()), 1010, 23);
 		}
 	}
 

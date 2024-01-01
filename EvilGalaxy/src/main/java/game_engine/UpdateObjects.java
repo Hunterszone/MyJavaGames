@@ -183,7 +183,6 @@ public class UpdateObjects {
 	}
 
 	static void updateGold() {
-		Gold.goldstack.removeIf(goldBar -> goldBar != null && !goldBar.isVisible());
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
 	}
 

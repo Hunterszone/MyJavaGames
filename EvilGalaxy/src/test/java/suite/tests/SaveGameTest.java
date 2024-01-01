@@ -1,6 +1,5 @@
 package suite.tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -13,15 +12,10 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import enemy.Alien;
-import enemy.Bunker;
 import enemy.Dragon;
-import enemy.EvilHead;
-import enemy.PlayerShip;
 import game_engine.SaveGame;
-import game_engine.UpdateObjects;
-import items.Gold;
-import items.HealthPack;
 import util.ActionPerformer;
+import util.LivesAndCounts;
 import util.TextToSpeech;
 
 public class SaveGameTest {
@@ -35,7 +29,7 @@ public class SaveGameTest {
         TextToSpeech.voiceInterruptor = false;
         Alien.aliens = new ArrayList<>();
         Dragon.dragons = new ArrayList<>();
-        UpdateObjects.setLifeBunker(50);
+        LivesAndCounts.setLifeBunker(50);
 
         // Create a mock file
         File mockFile = temporaryFolder.newFile("testSaveGame.txt");
