@@ -9,7 +9,7 @@ public class OpenAiApiImpl {
 	
     public static String createCompletion(String msg) {
 //        String token = System.getenv("OPENAI_TOKEN");
-        OpenAiService service = new OpenAiService("***********************************");
+        OpenAiService service = new OpenAiService("*****************************");
 
         System.out.println("\nCreating completion...");
         CompletionRequest completionRequest = CompletionRequest.builder()
