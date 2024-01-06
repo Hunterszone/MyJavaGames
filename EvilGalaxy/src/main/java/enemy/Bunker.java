@@ -1,13 +1,21 @@
 package enemy;
 
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.SoundEffect;
 import enums.Sprite;
 import game_engine.SpritePattern;
 import items.BunkerBullet;
+import items.Explosion;
+import sound_engine.PlayWave1st;
+import util.Intersectable;
+import util.KilledByChecker;
+import util.LivesAndCounts;
 
-public class Bunker extends SpritePattern {
+public class Bunker extends SpritePattern implements Intersectable {
 
 	public static Bunker bunkerObj;
 	private static final long serialVersionUID = 1L;
@@ -54,5 +62,19 @@ public class Bunker extends SpritePattern {
 		assert imageName != null; 
 		loadImage(imageName);
 		getImageDimensions();
+	}
+
+	@Override
+	public void intersects(Shape entity) {
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) {
+			if (entity.intersects(this.getBounds())) {
+//			FrameUtils.vibrate(MouseInputHandler.main);
+				Explosion.explosions.add(new Explosion(((Rectangle) entity).getX(), ((Rectangle) entity).getY(), 30, 30));
+				new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
+				new PlayWave1st(SoundEffect.EXPLOSION.getSound()).start();
+				LivesAndCounts.setLifePlayerShip(0);
+				KilledByChecker.checkKilledByBunker();
+			}
+		}
 	}
 }

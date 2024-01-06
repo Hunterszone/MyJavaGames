@@ -1,13 +1,22 @@
 package items;
 
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.List;
 import java.util.Objects;
 
+import enemy.Alien;
+import enums.SoundEffect;
 import enums.Sprite;
 import game_engine.SpritePattern;
+import sound_engine.PlayWave1st;
 import util.Constants;
+import util.Intersectable;
+import util.KilledByChecker;
+import util.LivesAndCounts;
+import util.Moveable;
 
-public class CanonBall extends SpritePattern {
+public class CanonBall extends SpritePattern implements Moveable, Intersectable {
 	
 	public static List<CanonBall> canonBalls;
 
@@ -26,17 +35,31 @@ public class CanonBall extends SpritePattern {
 		getImageDimensions();
 	}
 
-	public void moveCanonLeft() {
+	@Override
+	public void move() {
 		x -= CANON_SPEED;
 		if(x < Constants.B_WIDTH - 1280) {
 			this.setVisible(false);
 		}
 	}
 	
-	public void moveCanonRight() {
-		x += CANON_SPEED;
-		if(x > Constants.B_WIDTH + 130) {
+	@Override
+	public void intersects(Shape entity) {
+		if ((!Alien.aliens.isEmpty() || LivesAndCounts.getLifeBunker() >= 50) 
+				&& this.getBounds().intersects((Rectangle) entity)) {
+//			FrameUtils.vibrate(MouseInputHandler.main);
+			LivesAndCounts.decreasePlayerShipLife(1);
 			this.setVisible(false);
+			Explosion.explosions.add(new Explosion(((Rectangle) entity).getX(), ((Rectangle) entity).getY(), 30, 30));
+			new PlayWave1st(SoundEffect.BURNED.getSound()).start();
+//			PlayerShip.playerOne.upsideDown();
+			if (LivesAndCounts.getLifePlayerShip() == 0) {
+				if (!Alien.aliens.isEmpty()) {
+					KilledByChecker.checkKilledByAlien();
+				} else {
+					KilledByChecker.checkKilledByEvilHead();
+				}
+			}
 		}
 	}
 }

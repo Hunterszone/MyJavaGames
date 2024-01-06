@@ -589,8 +589,6 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		for (final Alien alien : Alien.aliens) {
 			if (alien.isVisible()) {
 				g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
-			} else {
-				HealthPack.healthpacks.add(new HealthPack(alien.getX(), alien.getY()));
 			}
 		}
 	}
@@ -698,7 +696,8 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible()) {
 			g.drawImage(Bunker.bunkerObj.getImage(), Bunker.bunkerObj.getX(), Bunker.bunkerObj.getY(), this);
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
-			EvilHead.evilHead.renderEvilHead(g);
+			EvilHead.evilHead.colorizeEvilHead(g);
+			drawEntities(g);
 		}
 		drawSaveSign(g);
 	}
@@ -708,7 +707,8 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		if (EvilHead.evilHead.isVisible() && PlayerShip.playerShip.isVisible() && Crosshair.crosshair.isVisible()
 				&& VolBtn.volButt.isVisible() && Bunker.bunkerObj.isVisible()) {
 			g.drawImage(EvilHead.evilHead.getImage(), EvilHead.evilHead.getX(), EvilHead.evilHead.getY(), this);
-			EvilHead.evilHead.renderEvilHead(g);
+			EvilHead.evilHead.colorizeEvilHead(g);
+			drawEntities(g);
 		}
 		drawSaveSign(g);
 	}
@@ -874,18 +874,18 @@ public class DrawScene extends JPanel implements ActionListener, Runnable {
 		UpdateObjects.updateHealth();
 		UpdateObjects.updateBullets();
 
-		Collisions.checkAlienCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkDragonCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkEvilHeadCollision(PlayerShip.playerShip.getBounds(), EvilHead.evilHead.getBounds());
-		Collisions.checkBunkerCollision(PlayerShip.playerShip.getBounds(), Bunker.bunkerObj.getBounds());
-		Collisions.checkGoldCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkHealthCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkMissileCollision(EvilHead.evilHead.getBounds());
-		Collisions.checkRocketCollision(EvilHead.evilHead.getBounds(), Bunker.bunkerObj.getBounds());
-		Collisions.checkPlasmaCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkCanonCollision(PlayerShip.playerShip.getBounds());
-		Collisions.checkBulletCollision(BunkerBullet.bulletsLeft);
-		Collisions.checkBulletCollision(BunkerBullet.bulletsRight);
+		Collisions.checkAlienCollisionWithPlayerShip();
+		Collisions.checkDragonCollisionWithPlayerShip();
+		Collisions.checkBunkerCollisionWithPlayerShip();
+		Collisions.checkEvilHeadCollisionWithPlayerShip();
+		Collisions.checkGoldCollisionWithPlayerShip();
+		Collisions.checkHealthCollisionWithPlayerShip();
+		Collisions.checkMissileCollisions();
+		Collisions.checkRocketCollisions();
+		Collisions.checkPlasmaCollisionWithPlayerShip();
+		Collisions.checkCanonCollisionWithPlayerShip();
+		Collisions.checkBulletCollisionWithPlayerShip(BunkerBullet.bulletsLeft);
+		Collisions.checkBulletCollisionWithPlayerShip(BunkerBullet.bulletsRight);
 
 		repaint();
 	}

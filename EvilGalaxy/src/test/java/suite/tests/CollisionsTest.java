@@ -108,7 +108,7 @@ public class CollisionsTest {
 	public void bulletLeftIntersectsShip() {
 		LivesAndCounts.setLifePlayerShip(3);
 		
-		Collisions.checkBulletCollision(BunkerBullet.bulletsLeft);
+		Collisions.checkBulletCollisionWithPlayerShip(BunkerBullet.bulletsLeft);
 
 		assertTrue("left bullet does not intersect ship", LivesAndCounts.getLifePlayerShip() == 2);
 	}
@@ -117,7 +117,7 @@ public class CollisionsTest {
 	public void bulletRightIntersectsShip() {
 		LivesAndCounts.setLifePlayerShip(3);
 		
-		Collisions.checkBulletCollision(BunkerBullet.bulletsRight);
+		Collisions.checkBulletCollisionWithPlayerShip(BunkerBullet.bulletsRight);
 
 		assertTrue("right bullet does not intersect ship", LivesAndCounts.getLifePlayerShip() == 2);
 	}

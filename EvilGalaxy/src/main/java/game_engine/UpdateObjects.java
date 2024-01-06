@@ -110,17 +110,17 @@ public class UpdateObjects {
 				if (Gold.goldstack.isEmpty() && LivesAndCounts.getLifePlayerShip() > 0) {
 					if (plasmaBall.y < 0) {
 						plasmaBall.y = 0;
-						plasmaBall.movePlasmaBallRight();
+						plasmaBall.move();
 					}
 				}
 				if (Gold.goldstack.size() > 0 && LivesAndCounts.getLifePlayerShip() <= 3) {
 					if (plasmaBall.y > 768) {
 						plasmaBall.y = 768;
-						plasmaBall.movePlasmaBallRight();
+						plasmaBall.move();
 					}
 				}
 			} else {
-				plasmaBall.movePlasmaBallRight();
+				plasmaBall.move();
 			}
 		});
 	}
@@ -130,13 +130,7 @@ public class UpdateObjects {
 
 		canonballs.removeIf(canon -> canon != null && !canon.isVisible());
 
-		canonballs.stream().filter(canon -> canon.isVisible()).forEach(canon -> {
-			if (EvilHead.evilHead.x - PlayerShip.playerShip.x > 0) {
-				canon.moveCanonLeft();
-			} else {
-				canon.moveCanonRight();
-			}
-		});
+		canonballs.stream().filter(canon -> canon.isVisible()).forEach(canon -> canon.move());
 	}
 
 	static void updateRockets() {
@@ -184,6 +178,7 @@ public class UpdateObjects {
 
 	static void updateGold() {
 		Gold.goldstack.stream().filter(goldBar -> goldBar.isVisible()).forEach(goldBar -> goldBar.move());
+		Gold.goldstack.removeIf(goldBar -> goldBar != null && !goldBar.isVisible());
 	}
 
 	static void updateHealth() {

@@ -7,24 +7,31 @@ package enemy;
 
 // import java libraries:
 import java.awt.Graphics;
+import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 // import game packages:
 import enums.Sprite;
 import enums.SoundEffect;
 import game_engine.SpritePattern;
+import items.Angel;
+import items.Explosion;
 import items.ShipMissile;
 import items.ShipRocket;
 import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.Intersectable;
+import util.KilledByChecker;
+import util.LivesAndCounts;
 import util.LoadSounds;
 import util.Moveable;
 
-public class PlayerShip extends SpritePattern implements Moveable {
+public class PlayerShip extends SpritePattern implements Moveable, Intersectable {
 
 	public static PlayerShip playerShip;
 	public static double speedX, speedY;	
@@ -208,4 +215,24 @@ public class PlayerShip extends SpritePattern implements Moveable {
 	public void renderShip(Graphics g) {
         g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.myShip, CanvasMenu.color.getColor()), Math.round(this.getX()), Math.round(this.getY()), null);
     }
+
+	@Override
+	public void intersects(Shape entity) {
+		for (Iterator<Dragon> it = Dragon.dragons.iterator(); it.hasNext();) {
+			Dragon dragon = it.next();
+			dragon.setVisible(true);
+			if (this.getBounds().intersects(dragon.getBounds())) {
+//				FrameUtils.vibrate(MouseInputHandler.main);
+				dragon.setVisible(false);
+				LivesAndCounts.decreasePlayerShipLife(1);
+				LivesAndCounts.increaseDragonKilledCount(1);
+				Angel.angels.add(new Angel(dragon.getX(), dragon.getY()));
+				Explosion.explosions.add(new Explosion(dragon.getX(), dragon.getY(), 30, 30));
+				new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
+//				PlayerShip.playerOne.upsideDown();
+				KilledByChecker.checkKilledByDragon();
+				it.remove();
+			}
+		}
+	}
 }

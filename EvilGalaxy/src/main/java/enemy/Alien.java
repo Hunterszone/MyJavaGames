@@ -1,18 +1,24 @@
 package enemy;
 
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import enums.Sprite;
 import enums.SoundEffect;
+import enums.Sprite;
 import game_engine.SpritePattern;
 import items.CanonBall;
+import items.Explosion;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.Intersectable;
+import util.KilledByChecker;
+import util.LivesAndCounts;
 import util.Moveable;
 
-public class Alien extends SpritePattern implements Moveable {
+public class Alien extends SpritePattern implements Moveable, Intersectable {
 
 	public static List<Alien> aliens;
 
@@ -64,4 +70,17 @@ public class Alien extends SpritePattern implements Moveable {
 		if (!Alien.aliens.isEmpty()) new PlayWave1st(SoundEffect.BOING.getSound()).start();
 	}
 
+	@Override
+	public void intersects(Shape entity) {
+		if (entity.intersects(this.getBounds())) {
+//			FrameUtils.vibrate(MouseInputHandler.main);
+			this.setVisible(false);
+			Explosion.explosions.add(new Explosion(((Rectangle) entity).getX(), ((Rectangle) entity).getY(), 30, 30));
+			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
+//			PlayerShip.playerOne.upsideDown();
+			LivesAndCounts.decreasePlayerShipLife(1);
+			LivesAndCounts.increaseAlienKilledCount(1);
+			KilledByChecker.checkKilledByAlien();
+		}
+	}
 }

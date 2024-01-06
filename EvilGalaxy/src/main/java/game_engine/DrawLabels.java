@@ -144,8 +144,8 @@ public class DrawLabels {
 
 		g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		g.drawString("You're mine!", EvilHead.evilHead.x, EvilHead.evilHead.y);
+
 		Bunker.bunkerObj.drawBunkerHit();
-		EvilHead.evilHead.renderEvilHead(g);
 	}
 
 	static void drawL5Labels(Graphics g) {
@@ -172,6 +172,8 @@ public class DrawLabels {
 			g.drawImage(DifficultyIcon.difficultyIcon.getImage(), 420, 5, null);
 			g.drawString(Constants.HARD, 460, 20);
 		}
+		
+		g.drawString("Bunker destroyed!", Bunker.bunkerObj.x, Bunker.bunkerObj.y);
 		
 		drawLocation(g, 570);
 	}

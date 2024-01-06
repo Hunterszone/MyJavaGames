@@ -1,6 +1,8 @@
 package enemy;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +10,17 @@ import enums.Sprite;
 import enums.SoundEffect;
 import game_engine.SpritePattern;
 import items.CanonBall;
+import items.Explosion;
 import items.PlasmaBall;
 import menu_engine.CanvasMenu;
 import menu_engine.ImageColorizer;
 import sound_engine.PlayWave1st;
 import util.Constants;
+import util.Intersectable;
+import util.KilledByChecker;
 import util.LivesAndCounts;
 
-public class EvilHead extends SpritePattern {
+public class EvilHead extends SpritePattern implements Intersectable {
 
 	public static EvilHead evilHead;
 	public double speedX, speedY;
@@ -64,8 +69,21 @@ public class EvilHead extends SpritePattern {
 		if (LivesAndCounts.getLifeBunker() >= 50) new PlayWave1st(SoundEffect.BOING.getSound()).start();
 	}
 
-	public void renderEvilHead(Graphics g) {
+	public void colorizeEvilHead(Graphics g) {
 		g.drawImage(ImageColorizer.dye(Constants.LOAD_ASSETS.evilHead, CanvasMenu.color2.getColor()),
 				Math.round(this.getX()), Math.round(this.getY()), null);
+	}
+
+	@Override
+	public void intersects(Shape entity) {
+		if (Alien.aliens.isEmpty() && Dragon.dragons.isEmpty() 
+				&& LivesAndCounts.getLifeBunker() >= 50
+				&& entity.intersects(this.getBounds())) {
+//			FrameUtils.vibrate(MouseInputHandler.main);
+			Explosion.explosions.add(new Explosion(((Rectangle) entity).getX(), ((Rectangle) entity).getY(), 30, 30));
+			new PlayWave1st(SoundEffect.SCREAM.getSound()).start();
+			LivesAndCounts.setLifePlayerShip(0);
+			KilledByChecker.checkKilledByEvilHead();
+		}		
 	}
 }

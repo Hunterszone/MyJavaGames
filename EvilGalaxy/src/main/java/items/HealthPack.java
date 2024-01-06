@@ -1,13 +1,19 @@
 package items;
 
+import java.awt.Shape;
 import java.util.List;
 import java.util.Objects;
 
+import enemy.Alien;
+import enemy.Dragon;
 import enums.Sprite;
 import game_engine.SpritePattern;
+import util.Intersectable;
+import util.LivesAndCounts;
+import util.LoadSounds;
 import util.Moveable;
 
-public class HealthPack extends SpritePattern implements Moveable {
+public class HealthPack extends SpritePattern implements Moveable, Intersectable {
 
 	public static List<HealthPack> healthpacks;
 	
@@ -34,6 +40,18 @@ public class HealthPack extends SpritePattern implements Moveable {
 		}
 
 		y += SPEED_Y;
+	}
+
+	@Override
+	public void intersects(Shape entity) {
+		if (entity.intersects(this.getBounds()) && (!Alien.aliens.isEmpty()
+				|| (Dragon.dragons.isEmpty() && LivesAndCounts.getLifeBunker() < 50) || Gold.goldstack.isEmpty())) {
+			this.setVisible(false);
+			LoadSounds.GOT_HP.play();
+			if (LivesAndCounts.getLifePlayerShip() <= 3) {
+				LivesAndCounts.increasePlayerShipLife(1);
+			}
+		}
 	}
 	
 }
